@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AppStorePackCost</key>
+	<integer>0</integer>
+	<key>pack_name</key>
+	<string>Empty Puzzle</string>
+	<key>pack_number</key>
+	<integer>0</integer>
+	<key>puzzles</key>
+	<array>
+		<dict>
+			<key>arrayOfBeamsplittersDictionaries</key>
+			<array/>
+			<key>arrayOfJewelsDictionaries</key>
+			<array/>
+			<key>arrayOfLasersDictionaries</key>
+			<array/>
+			<key>arrayOfMirrorsDictionaries</key>
+			<array/>
+			<key>arrayOfPrismsDictionaries</key>
+			<array/>
+			<key>arrayOfRectanglesDictionaries</key>
+			<array/>
+			<key>gridSizeX</key>
+			<integer>6</integer>
+			<key>gridSizeY</key>
+			<integer>8</integer>
+			<key>puzzleCompletionCondition</key>
+			<integer>0</integer>
+			<key>puzzlePoints</key>
+			<integer>100</integer>
+		</dict>
+	</array>
+</dict>
+</plist>

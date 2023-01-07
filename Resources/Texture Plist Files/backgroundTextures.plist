@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>TileOutline.png</string>
+	<string>GridTile.png</string>
+	<string>Border-Aspect-4-3.png</string>
+	<string>single-arrow-1.png</string>
+	<string>Background-Aspect-4-3.png</string>
+	<string>TapToRotate.png</string>
+	<string>TapToRotateText.png</string>
+	<string>DragTileText.png</string>
+	<string>TileSquareBright.png</string>
+	<string>TileSquareTranslucent.png</string>
+	<string>PointingFinger.png</string>
+	<string>TileCheckmark.png</string>
+	<string>PackCompleted.png</string>
+	<string>backgroundLandscapeGrid.png</string>
+</array>
+</plist>
