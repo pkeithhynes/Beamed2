@@ -264,13 +264,28 @@
     // Start rendering
     rc.renderON = YES;
     
-    // Start loop1Player
-    [appd playSound:appd.puzzleBegin1_SoundFileObject];
-    if ([[appd getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"]){
-        [appd.loop1Player play];
+    // Start loop2Player in PACKTYPE_MAIN
+    if (rc.appCurrentGamePackType == PACKTYPE_MAIN ||
+        rc.appCurrentGamePackType == PACKTYPE_DAILY){
+        [appd playSound:appd.puzzleBegin1_SoundFileObject];
+        [appd.loop1Player pause];
+        if ([[appd getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"] &&
+            ![appd.loop2Player isPlaying]){
+            [appd.loop2Player setVolume:0.5 fadeDuration:0.0];
+            [appd.loop2Player play];
+        }
+        [appd.loop3Player pause];
     }
-    [appd.loop2Player pause];
-    [appd.loop3Player pause];
+    else {
+        [appd playSound:appd.puzzleBegin1_SoundFileObject];
+        if ([[appd getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"] &&
+            ![appd.loop1Player isPlaying]){
+            [appd.loop1Player setVolume:0.5 fadeDuration:0.0];
+            [appd.loop1Player play];
+        }
+        [appd.loop2Player pause];
+        [appd.loop3Player pause];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -1758,8 +1773,10 @@
     switch (rc.appCurrentGamePackType) {
         case PACKTYPE_MAIN:{
             if (nextPuzzleNumber <= [appd fetchCurrentPackLength]){
-                if ([[appd getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"]){
-                    [appd.loop1Player play];
+                if ([[appd getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"] &&
+                    ![appd.loop2Player isPlaying]){
+                    [appd.loop2Player setVolume:0.5 fadeDuration:0.0];
+                    [appd.loop2Player play];
                 }
                 [self setPuzzleLabel];
                 [appd playSound:appd.puzzleBegin1_SoundFileObject];
@@ -1773,7 +1790,9 @@
             int maxGamePuzzle = [appd countPuzzlesWithinPack:demoPuzzlePackDictionary];
             int currentDemoPuzzleNumber = [appd fetchDemoPuzzleNumber];
             if (currentDemoPuzzleNumber <= maxGamePuzzle && [self queryPuzzleExists:dictionaryName puzzle:[appd fetchDemoPuzzleNumber]]) {
-                if ([[appd getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"]){
+                if ([[appd getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"] &&
+                    ![appd.loop1Player isPlaying]){
+                    [appd.loop1Player setVolume:0.5 fadeDuration:0.0];
                     [appd.loop1Player play];
                 }
                 [self setPuzzleLabel];

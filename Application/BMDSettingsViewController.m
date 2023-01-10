@@ -838,12 +838,13 @@
     if (musicSwitchValue == YES){
         [appd setObjectInDefaults:@"YES" forKey:@"musicEnabled"];
         musicEnabledLabel.textColor = [UIColor greenColor];
-        [appd.loop2Player play];
+        [appd.loop1Player setVolume:0.5 fadeDuration:0.0];
+        [appd.loop1Player play];
     }
     else {
         [appd setObjectInDefaults:@"NO" forKey:@"musicEnabled"];
         musicEnabledLabel.textColor = [UIColor redColor];
-        [appd.loop2Player pause];
+        [appd.loop1Player pause];
     }
     [appd playSound:appd.tapSoundFileObject];
 }

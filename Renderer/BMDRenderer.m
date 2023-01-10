@@ -304,12 +304,9 @@ API_AVAILABLE(ios(13.0))
     
     // Experiment with clearColor
     renderPassDescriptor.colorAttachments[0].loadAction = MTLLoadActionClear;
-//    renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(0.2, 0.2, 0.2, 1.0);
-//    renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(0.4, 0.4, 0.44, 1.0);
     renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(0.0, 0.0, 0.0, 0.0);
 
     // Experiment with texture rotation
-//    _rotationMatrix = matrix_from_rotation(M_PI/4.0);
     _identityMatrix = identity_matrix();
 
     if(renderPassDescriptor != nil)
@@ -326,7 +323,6 @@ API_AVAILABLE(ios(13.0))
         BMDViewController *rootController = (BMDViewController*)[[(BMDAppDelegate *)[[UIApplication sharedApplication]delegate] window] rootViewController];
         BMDAppDelegate *appDelegate = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
         Optics *optics = appDelegate->optics;
-//        DLog("appCurrentPageNumber = %d", rootController.appCurrentPageNumber);
 
         if (rootController.renderON){
             // Load and draw textures
@@ -399,9 +395,6 @@ API_AVAILABLE(ios(13.0))
         
         // Schedule and present once the framebuffer is complete using the current drawable
                     [commandBuffer1 presentDrawable:view.currentDrawable];
-//        [commandBuffer1 presentDrawable:view.currentDrawable afterMinimumDuration:1.0/view.preferredFramesPerSecond];
-        
-//        DLog("Renderer");
         
         // Finalize rendering here & push the command buffer to the GPU
         [commandBuffer1 commit];

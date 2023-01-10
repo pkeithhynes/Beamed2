@@ -56,9 +56,9 @@
 		<key>UIColorName</key>
 		<string>LaunchColor</string>
 		<key>UIImageName</key>
-		<string>SquaretailLogo-13-6</string>
+		<string>LaunchScreen</string>
 		<key>UIImageRespectsSafeAreaInsets</key>
-		<true/>
+		<false/>
 	</dict>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>

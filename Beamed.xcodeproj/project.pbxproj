@@ -400,9 +400,11 @@
 		8068338B292ECB1B00620AC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8068338A292ECB1B00620AC1 /* GoogleService-Info.plist */; };
 		8068338C292ECB1B00620AC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8068338A292ECB1B00620AC1 /* GoogleService-Info.plist */; };
 		8068338D292ECB1B00620AC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8068338A292ECB1B00620AC1 /* GoogleService-Info.plist */; };
-		807E6576295248CF00CEE533 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 807E6575295248CF00CEE533 /* Logo.png */; };
-		807E6577295248CF00CEE533 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 807E6575295248CF00CEE533 /* Logo.png */; };
-		807E6578295248CF00CEE533 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 807E6575295248CF00CEE533 /* Logo.png */; };
+		806B4ECF296C7D7F00FFD306 /* LoadingScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 806B4ECE296C7D7F00FFD306 /* LoadingScreen.png */; };
+		806B4ED1296C7F5400FFD306 /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 806B4ED0296C7F5400FFD306 /* LaunchScreen.png */; };
+		806B4ED3296C821D00FFD306 /* Beamed2Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 806B4ED2296C821D00FFD306 /* Beamed2Logo.png */; };
+		806B4ED7296C932300FFD306 /* InternalCalculations.wav in Resources */ = {isa = PBXBuildFile; fileRef = 806B4ED6296C932300FFD306 /* InternalCalculations.wav */; };
+		806B4ED9296C986300FFD306 /* NightDrive.wav in Resources */ = {isa = PBXBuildFile; fileRef = 806B4ED8296C986300FFD306 /* NightDrive.wav */; };
 		80843526291370E400EAAAB3 /* TileOpaque.png in Resources */ = {isa = PBXBuildFile; fileRef = 80843525291370E400EAAAB3 /* TileOpaque.png */; };
 		80843527291370E400EAAAB3 /* TileOpaque.png in Resources */ = {isa = PBXBuildFile; fileRef = 80843525291370E400EAAAB3 /* TileOpaque.png */; };
 		80843528291370E400EAAAB3 /* TileOpaque.png in Resources */ = {isa = PBXBuildFile; fileRef = 80843525291370E400EAAAB3 /* TileOpaque.png */; };
@@ -541,9 +543,6 @@
 		80E76F5F28AAAD7600F6D31D /* BMDPuzzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E76F5E28AAAD7600F6D31D /* BMDPuzzleViewController.m */; };
 		80E76F6028AAAD7600F6D31D /* BMDPuzzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E76F5E28AAAD7600F6D31D /* BMDPuzzleViewController.m */; };
 		80E76F6128AAAD7600F6D31D /* BMDPuzzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E76F5E28AAAD7600F6D31D /* BMDPuzzleViewController.m */; };
-		80F12FB7294BA507007378ED /* SquaretailLogo-13-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F12FB6294BA507007378ED /* SquaretailLogo-13-6.png */; };
-		80F12FB8294BA507007378ED /* SquaretailLogo-13-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F12FB6294BA507007378ED /* SquaretailLogo-13-6.png */; };
-		80F12FB9294BA507007378ED /* SquaretailLogo-13-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F12FB6294BA507007378ED /* SquaretailLogo-13-6.png */; };
 		80F406F628F0B113006C4F82 /* Jewel-original.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F406F528F0B113006C4F82 /* Jewel-original.png */; };
 		80F406F728F0B113006C4F82 /* Jewel-original.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F406F528F0B113006C4F82 /* Jewel-original.png */; };
 		80F406F828F0B113006C4F82 /* Jewel-original.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F406F528F0B113006C4F82 /* Jewel-original.png */; };
@@ -747,7 +746,11 @@
 		8064E6582902463A006EEC33 /* editedPuzzlePack.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = editedPuzzlePack.plist; sourceTree = "<group>"; };
 		8065EA6E29004E2C00E383D7 /* cyanPerspectiveLandscapeGrid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cyanPerspectiveLandscapeGrid.png; sourceTree = "<group>"; };
 		8068338A292ECB1B00620AC1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		807E6575295248CF00CEE533 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
+		806B4ECE296C7D7F00FFD306 /* LoadingScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoadingScreen.png; sourceTree = "<group>"; };
+		806B4ED0296C7F5400FFD306 /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
+		806B4ED2296C821D00FFD306 /* Beamed2Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Beamed2Logo.png; sourceTree = "<group>"; };
+		806B4ED6296C932300FFD306 /* InternalCalculations.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = InternalCalculations.wav; sourceTree = "<group>"; };
+		806B4ED8296C986300FFD306 /* NightDrive.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = NightDrive.wav; sourceTree = "<group>"; };
 		80843525291370E400EAAAB3 /* TileOpaque.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileOpaque.png; sourceTree = "<group>"; };
 		80884C34292ED3A9005B29FC /* VungleSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = VungleSDK.xcframework; path = ../../Downloads/vungle6121/VungleSDK.xcframework; sourceTree = SOURCE_ROOT; };
 		80884C3A292EDAB8005B29FC /* FirebaseCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseCore.xcframework; sourceTree = "<group>"; };
@@ -816,7 +819,6 @@
 		80DFC2C228FB368000BE90C3 /* GridTile2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GridTile2.png; sourceTree = "<group>"; };
 		80E76F5D28AAAD7600F6D31D /* BMDPuzzleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMDPuzzleViewController.h; sourceTree = "<group>"; };
 		80E76F5E28AAAD7600F6D31D /* BMDPuzzleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMDPuzzleViewController.m; sourceTree = "<group>"; };
-		80F12FB6294BA507007378ED /* SquaretailLogo-13-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SquaretailLogo-13-6.png"; sourceTree = "<group>"; };
 		80F406F528F0B113006C4F82 /* Jewel-original.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Jewel-original.png"; sourceTree = "<group>"; };
 		80F406F928F0C110006C4F82 /* backgroundTextures.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = backgroundTextures.plist; sourceTree = "<group>"; };
 		80F9BBC828DC981E00DDE749 /* PointingFinger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PointingFinger.png; sourceTree = "<group>"; };
@@ -1040,7 +1042,7 @@
 			children = (
 				5270AFC72667BE0100F1CF81 /* Level Plist Files */,
 				80F406F328F08CC9006C4F82 /* Texture Plist Files */,
-				52A9A2A625717C0D0072F41E /* Sounds */,
+				52A9A2A625717C0D0072F41E /* Audio */,
 				520E891E255C642D00C83B6E /* Textures */,
 			);
 			path = Resources;
@@ -1097,6 +1099,8 @@
 				523239FC27AC73DB00B5D6B0 /* IntrigueComedy.wav */,
 				523239FB27AC73DA00B5D6B0 /* PuzzleBackgroundTheme2.wav */,
 				523239FF27AC742C00B5D6B0 /* MysteryPuzzleLoop2.wav */,
+				806B4ED6296C932300FFD306 /* InternalCalculations.wav */,
+				806B4ED8296C986300FFD306 /* NightDrive.wav */,
 			);
 			path = "Music Loops";
 			sourceTree = "<group>";
@@ -1201,7 +1205,7 @@
 			path = Stingers;
 			sourceTree = "<group>";
 		};
-		52A9A2A625717C0D0072F41E /* Sounds */ = {
+		52A9A2A625717C0D0072F41E /* Audio */ = {
 			isa = PBXGroup;
 			children = (
 				523239FA27AC736C00B5D6B0 /* Music Loops */,
@@ -1209,7 +1213,7 @@
 				80F406F228F08C62006C4F82 /* Misc Effects */,
 				80F406F128F08C3D006C4F82 /* Laser Effects */,
 			);
-			path = Sounds;
+			path = Audio;
 			sourceTree = "<group>";
 		};
 		52C83F0C25B0CD6F003E7D51 /* Button Textures */ = {
@@ -1239,8 +1243,9 @@
 		52E2105825BA2D2A0095466B /* Home Screen Textures */ = {
 			isa = PBXGroup;
 			children = (
-				80F12FB6294BA507007378ED /* SquaretailLogo-13-6.png */,
-				807E6575295248CF00CEE533 /* Logo.png */,
+				806B4ED0296C7F5400FFD306 /* LaunchScreen.png */,
+				806B4ED2296C821D00FFD306 /* Beamed2Logo.png */,
+				806B4ECE296C7D7F00FFD306 /* LoadingScreen.png */,
 			);
 			name = "Home Screen Textures";
 			sourceTree = "<group>";
@@ -1493,7 +1498,6 @@
 				52A9A2F625717F1F0072F41E /* LaserQuick.wav in Resources */,
 				529A511827ACD24200FE0669 /* win-game-puzzle-50.wav in Resources */,
 				3AFD65641F71A7240008A125 /* Main.storyboard in Resources */,
-				80F12FB8294BA507007378ED /* SquaretailLogo-13-6.png in Resources */,
 				809DF29228F1EFEE00AC4680 /* tileAnimations.plist in Resources */,
 				809B05CE2904E83A00081D46 /* grayRectangle.png in Resources */,
 				52994B8925DA13D700887B9C /* Rings_00018.png in Resources */,
@@ -1559,7 +1563,6 @@
 				80FDEA7529145EE4007C05F7 /* Beamsplitter.png in Resources */,
 				52994B3B25DA13D700887B9C /* Rings_00010.png in Resources */,
 				8023B2D12915C13300176960 /* JewelWhite.png in Resources */,
-				807E6577295248CF00CEE533 /* Logo.png in Resources */,
 				5286EA4225646E2400B43209 /* TileSquareBlack.png in Resources */,
 				52994B4D25DA13D700887B9C /* Rings_00007.png in Resources */,
 				5286EAB62564706B00B43209 /* TileJewelActivated14.png in Resources */,
@@ -1584,6 +1587,7 @@
 				5286EA9B2564706B00B43209 /* TileJewelActivated03.png in Resources */,
 				52994B7425DA13D700887B9C /* Rings_00029.png in Resources */,
 				80A4F74028D4D855007BDE13 /* dailyPuzzlesPackDictionary.plist in Resources */,
+				806B4ED7296C932300FFD306 /* InternalCalculations.wav in Resources */,
 				52A9A2CE25717F0B0072F41E /* 39783_Light_SaberSciFiLowSwingSlow_4.wav in Resources */,
 				80BE77DF27E3CD9F00E2B4FD /* Assets.xcassets in Resources */,
 				5286EAB92564706B00B43209 /* TileJewelActivated10.png in Resources */,
@@ -1626,8 +1630,10 @@
 				5286EAB32564706B00B43209 /* TileJewelActivated07.png in Resources */,
 				80843527291370E400EAAAB3 /* TileOpaque.png in Resources */,
 				52A9A2EE25717F1B0072F41E /* GlimmerTwinkle.wav in Resources */,
+				806B4ECF296C7D7F00FFD306 /* LoadingScreen.png in Resources */,
 				5286EA922564706B00B43209 /* TileJewelActivated06.png in Resources */,
 				80C6EFB428A0462900A0C810 /* ButtonCheckmarkPackBackground.png in Resources */,
+				806B4ED1296C7F5400FFD306 /* LaunchScreen.png in Resources */,
 				80CEC1B22921609700882AB9 /* CompletedJigsawPuzzle.png in Resources */,
 				805DB34527D1417700F9572A /* Beamsplitter-1.png in Resources */,
 				52A9A2DE25717F140072F41E /* Click.wav in Resources */,
@@ -1651,12 +1657,14 @@
 				80ADCC2029557639002B231F /* backgroundLandscapeGrid.png in Resources */,
 				8023B2B12915AD9B00176960 /* JewelRed.png in Resources */,
 				80BE38B7292FFE5900076A7E /* InAppMessagingDisplayResources.bundle in Resources */,
+				806B4ED3296C821D00FFD306 /* Beamed2Logo.png in Resources */,
 				529A511727ACD24200FE0669 /* win-game-puzzle-93.wav in Resources */,
 				8044DD942904908E0078942B /* yellowRectangle.png in Resources */,
 				80F406F728F0B113006C4F82 /* Jewel-original.png in Resources */,
 				52994B6825DA13D700887B9C /* Rings_00008.png in Resources */,
 				52994B4A25DA13D700887B9C /* Rings_00019.png in Resources */,
 				529A511E27ACD57200FE0669 /* Mobile_Game_Melodic_Stinger_Dreamy_Synth_Level_Up_2.wav in Resources */,
+				806B4ED9296C986300FFD306 /* NightDrive.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1680,7 +1688,6 @@
 				526FBD1D25926960001F5647 /* Beam-Angle00-10.png in Resources */,
 				52994B4B25DA13D700887B9C /* Rings_00019.png in Resources */,
 				5286EAA52564706B00B43209 /* TileJewelActivated05.png in Resources */,
-				807E6578295248CF00CEE533 /* Logo.png in Resources */,
 				5286EA9C2564706B00B43209 /* TileJewelActivated03.png in Resources */,
 				80BB3CA728DBC42700C547D1 /* DragTileText.png in Resources */,
 				8023B2D62915F54D00176960 /* JewelYellow.png in Resources */,
@@ -1790,7 +1797,6 @@
 				8023B2B62915AE9E00176960 /* Jewel.png in Resources */,
 				80895495291DB77B009C4D02 /* NoAds.png in Resources */,
 				5286EABA2564706B00B43209 /* TileJewelActivated10.png in Resources */,
-				80F12FB9294BA507007378ED /* SquaretailLogo-13-6.png in Resources */,
 				52A9A2EA25717F180072F41E /* Clink.wav in Resources */,
 				52994B5425DA13D700887B9C /* Rings_00016.png in Resources */,
 				5286EA6625646FBB00B43209 /* TileMirror.png in Resources */,
@@ -1833,7 +1839,6 @@
 				52994B4925DA13D700887B9C /* Rings_00019.png in Resources */,
 				52994B7625DA13D700887B9C /* Rings_00015.png in Resources */,
 				526FBCD625926960001F5647 /* Beam-Angle00-03.png in Resources */,
-				807E6576295248CF00CEE533 /* Logo.png in Resources */,
 				52994B5825DA13D700887B9C /* Rings_00011.png in Resources */,
 				5251ACD8279667DA00A50A7B /* paidHintPacksArray.plist in Resources */,
 				5286EA852564706B00B43209 /* TileJewelActivated09.png in Resources */,
@@ -1942,7 +1947,6 @@
 				52994B7C25DA13D700887B9C /* Rings_00025.png in Resources */,
 				80FDEA6829145848007C05F7 /* TileSquareTranslucent.png in Resources */,
 				80895493291DB77B009C4D02 /* NoAds.png in Resources */,
-				80F12FB7294BA507007378ED /* SquaretailLogo-13-6.png in Resources */,
 				8023B2B42915AE9E00176960 /* Jewel.png in Resources */,
 				5286EB072564715400B43209 /* TileSpectrumR0.png in Resources */,
 				52994B4325DA13D700887B9C /* Rings_00002.png in Resources */,

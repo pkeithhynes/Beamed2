@@ -144,19 +144,19 @@ Implementation of the cross-platform view controller
     DLog(">>> BMDViewController.viewDidAppear");
     [super viewDidAppear:animated];
     
-        
+    // Start loop1Player
+//    [appd playSound:appd.puzzleBegin1_SoundFileObject];
+    if ([[appd getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"] &&
+        ![appd.loop1Player isPlaying]){
+        [appd.loop1Player setVolume:0.5 fadeDuration:0.0];
+        [appd.loop1Player play];
+    }
+    [appd.loop2Player pause];
+    [appd.loop3Player pause];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    // iCloud token debug code
-    //    if ([[defaults objectForKey:@"permittedToUseiCloud"] isEqualToString:@"NOTHING"]){
-    //        NSString *permitted = [NSString stringWithString:[defaults objectForKey:@"permittedToUseiCloud"]];
-    //        DLog("%s", [permitted UTF8String]);
-    //    }
-
-    //
-    // NOT running in Simulator
-    //
-    // No iCloud valid token so ask the user if they wish to use iCloud to store defaults
+    // No permittedToUseiCloud so ask the user if they wish to use iCloud to store defaults
     if ([[defaults objectForKey:@"permittedToUseiCloud"] isEqualToString:@"NOTHING"] && appd.currentiCloudToken != nil) {
         [self chooseWhetherToUseiCloudStorage];
     }
@@ -195,34 +195,16 @@ Implementation of the cross-platform view controller
                                      }];
 #endif
 
-//#else
-//    //
-//    // IS running in Simulator
-//    //
-//    if ([[defaults objectForKey:@"permittedToUseiCloud"] isEqualToString:@"NOTHING"] ||
-//        [defaults objectForKey:@"permittedToUseiCloud"] == nil){
-//        // Note that iCloud is not available on the simulator
-//        [defaults setObject:@"NO" forKey:@"permittedToUseiCloud"];
-//        // Initialize tracking of Puzzle Pack Progress in NSDefaults
-//        [appd initializePuzzlePacksProgress];
-//    }
-//    if (![appd checkForEndlessHintsPurchased] && [defaults objectForKey:@"numberOfHintsRemaining"] == nil){
-//        [defaults setObject:[NSNumber numberWithInt:kInitialFreeHints] forKey:@"numberOfHintsRemaining"];
-//    }
-//    appCurrentGamePackType = PACKTYPE_MAIN;
-//    [self refreshHomeView];
-//    [self hideLaunchScreen];
-//    [self loadAppropriateSizeBannerAd];
-//
-//    // Start loop1Player
-//    [appd playSound:appd.puzzleBegin1_SoundFileObject];
-//    if ([[appd getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"]){
-//        [appd.loop1Player play];
-//    }
-//    [appd.loop2Player pause];
-//    [appd.loop3Player pause];
-//#endif
+    if (![[defaults objectForKey:@"demoHasBeenCompleted"] isEqualToString:@"NOTHING"]){
+        if (![appd checkForEndlessHintsPurchased] && [defaults objectForKey:@"numberOfHintsRemaining"] == nil){
+            [defaults setObject:[NSNumber numberWithInt:kInitialFreeHints] forKey:@"numberOfHintsRemaining"];
+        }
+        //    appCurrentGamePackType = PACKTYPE_MAIN;
+        [self refreshHomeView];
+        [self hideLaunchScreen];
+        [self loadAppropriateSizeBannerAd];
         
+    }
 }
 
 - (void)refreshHomeView {
@@ -298,7 +280,15 @@ Implementation of the cross-platform view controller
     }
     [startPuzzleButton setAttributedTitle:packTitle1 forState:UIControlStateNormal];
 
-    [appd.loop1Player pause];
+    // Start loop1Player
+//    [appd playSound:appd.puzzleBegin1_SoundFileObject];
+    if ([[appd getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"] &&
+        ![appd.loop1Player isPlaying]){
+        [appd.loop1Player setVolume:0.5 fadeDuration:0.0];
+        [appd.loop1Player play];
+    }
+    [appd.loop2Player pause];
+    [appd.loop3Player pause];
 
     // Update the dailyPuzzleButton
     NSNumber *dailyPuzzleCompletionDay = [appd getObjectFromDefaults:@"dailyPuzzleCompletionDay"];
@@ -378,10 +368,12 @@ Implementation of the cross-platform view controller
 }
 
 - (void)startMainScreenMusicLoop {
-    if ([[appd getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"]){
-        [appd.loop2Player play];
+    if ([[appd getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"] &&
+        ![appd.loop1Player isPlaying]){
+        [appd.loop1Player setVolume:0.5 fadeDuration:0.0];
+        [appd.loop1Player play];
     }
-    [appd.loop1Player pause];
+    [appd.loop2Player pause];
     [appd.loop3Player pause];
 }
 
@@ -516,7 +508,7 @@ Implementation of the cross-platform view controller
 
 // Show the launch screen while the application is processing and not ready for user input
 - (void)showLaunchScreen{
-    UIImage *launchImage = [UIImage imageNamed:@"Logo.png"];
+    UIImage *launchImage = [UIImage imageNamed:@"LoadingScreen.png"];
 //    UIImage *launchImage = [UIImage imageNamed:@"LoadingScreen.png"];
     UIImageView *launchImageView = [[UIImageView alloc] initWithImage:launchImage];
     CGSize launchSize = launchImage.size;
@@ -1330,7 +1322,7 @@ Implementation of the cross-platform view controller
     homeView.opaque = YES;
     
     // Get the logo image size
-    UIImage *logoImage = [UIImage imageNamed:@"Logo.png"];
+    UIImage *logoImage = [UIImage imageNamed:@"Beamed2Logo.png"];
     UIImageView *logoImageView = [[UIImageView alloc] initWithImage:logoImage];
     CGSize logoSize = logoImage.size;
     CGFloat logoWidth = screenWidthInPixels/contentScaleFactor;
