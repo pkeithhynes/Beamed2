@@ -312,8 +312,12 @@
                                      kFIRParameterContentType:@"image"
                                      }];
 #endif
-    [appd playMusicLoop:appd.loop2Player];
-
+    if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+        [appd playMusicLoop:appd.loop1Player];
+    }
+    else {
+        [appd playMusicLoop:appd.loop2Player];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
