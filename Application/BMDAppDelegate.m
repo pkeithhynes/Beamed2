@@ -1293,24 +1293,27 @@ CGFloat _screenHeightInPixels;
 }
 
 - (void)playMusicLoop:(AVAudioPlayer *)player {
-    // Play appropriate music when playing a Puzzle
-    if ([[self getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"] && player != nil){
-        if (loop1Player.isPlaying){
-            [loop1Player pause];
+    if ([[self getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"] &&
+        player != nil){
+        // If player is already playing then leave it well enough alone
+        if (!player.isPlaying){
+            if (player == loop1Player){
+                [loop2Player pause];
+            }
+            else if (player == loop2Player){
+                [loop1Player pause];
+            }
+            [player play];
         }
-        if (loop2Player.isPlaying){
-            [loop2Player pause];
-        }
-        [player play];
     }
 }
 
 - (void)playPuzzleCompleteSoundEffect {
     if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
-        [loop1Player setVolume:0.25 fadeDuration:0.0];
+        [loop1Player setVolume:0.10 fadeDuration:0.0];
     }
     else {
-        [loop2Player setVolume:0.25 fadeDuration:0.0];
+        [loop2Player setVolume:0.10 fadeDuration:0.0];
     }
     switch([self fetchCurrentPuzzleNumberForPack:[self fetchCurrentPackNumber]] % 3){
         case 0:{

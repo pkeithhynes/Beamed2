@@ -2505,6 +2505,13 @@
                                    solved:NO];
         }
     }
+    
+    if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+        [appd playMusicLoop:appd.loop1Player];
+    }
+    else {
+        [appd playMusicLoop:appd.loop2Player];
+    }
 
 }
 
