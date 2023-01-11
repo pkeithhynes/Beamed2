@@ -51,6 +51,17 @@ API_AVAILABLE(ios(13.0))
     AVAudioPlayer   *loop1Player;
     AVAudioPlayer   *loop2Player;
     AVAudioPlayer   *loop3Player;
+    
+    AVAudioPlayer   *laser1Player;
+    AVAudioPlayer   *laser2Player;
+    AVAudioPlayer   *tapPlayer;
+    AVAudioPlayer   *clinkPlayer;
+    AVAudioPlayer   *tileCorrectlyPlacedPlayer;
+    AVAudioPlayer   *puzzleComplete1Player;
+    AVAudioPlayer   *puzzleComplete2Player;
+    AVAudioPlayer   *puzzleComplete3Player;
+
+    
     SystemSoundID    loopMusic1_SoundFileObject;
 
     CFURLRef        tapSoundFileURLRef;
@@ -176,13 +187,19 @@ API_AVAILABLE(ios(13.0))
 @property (nonatomic, retain) AVAudioPlayer * _Nullable loop2Player;
 @property (nonatomic, retain) AVAudioPlayer * _Nullable loop3Player;
 
+@property (nonatomic, retain) AVAudioPlayer * _Nullable laser1Player;
+@property (nonatomic, retain) AVAudioPlayer * _Nullable laser2Player;
+@property (nonatomic, retain) AVAudioPlayer * _Nullable tapPlayer;
+@property (nonatomic, retain) AVAudioPlayer * _Nullable clinkPlayer;
+@property (nonatomic, retain) AVAudioPlayer * _Nullable tileCorrectlyPlacedPlayer;
+@property (nonatomic, retain) AVAudioPlayer * _Nullable puzzleComplete1Player;
+@property (nonatomic, retain) AVAudioPlayer * _Nullable puzzleComplete2Player;
+@property (nonatomic, retain) AVAudioPlayer * _Nullable puzzleComplete3Player;
+
 @property (nonatomic, retain) GKLeaderboard   * _Nullable totalPuzzlesLeaderboard;
 @property (nonatomic, retain) GKLeaderboard   * _Nullable totalJewelsLeaderboard;
 
 - (BOOL)initAllTextures:(nonnull MTKView *)mtkView metalRenderer:(nonnull BMDRenderer *)metalRenderer;
-- (void)playSound:(SystemSoundID)sound;
-- (void)playLaserSound;
-- (void)playPuzzleCompleteSoundEffect;
 - (BOOL)loadMetalTextureFromFile:(NSString *_Nonnull)name withExtension:(NSString *_Nonnull)ext;
 
 - (void)saveDailyPuzzleNumber:(unsigned int)puzzleNumber;
@@ -334,6 +351,15 @@ API_AVAILABLE(ios(13.0))
 - (void)vungleLoadBannerLeaderboardAd;
 - (void)vungleLoadRewardedAd;
 //- (void)vunglePlayRewardedAd;
+
+- (void)playSound:(AVAudioPlayer *_Nonnull)player;
+- (void)playLaserSound;
+- (void)playPuzzleCompleteSoundEffect;
+- (void)pauseLoopMusic;
+- (void)playMusicLoop;
+- (void)playMusicLoop:(AVAudioPlayer *_Nonnull)player;
+- (void)duckLoopMusic;
+- (void)unduckLoopMusic;
 
 
 

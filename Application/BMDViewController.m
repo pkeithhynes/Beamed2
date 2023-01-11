@@ -145,14 +145,7 @@ Implementation of the cross-platform view controller
     [super viewDidAppear:animated];
     
     // Start loop1Player
-//    [appd playSound:appd.puzzleBegin1_SoundFileObject];
-    if ([[appd getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"] &&
-        ![appd.loop1Player isPlaying]){
-        [appd.loop1Player setVolume:0.5 fadeDuration:0.0];
-        [appd.loop1Player play];
-    }
-    [appd.loop2Player pause];
-    [appd.loop3Player pause];
+    [appd playMusicLoop:appd.loop1Player];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
@@ -281,14 +274,7 @@ Implementation of the cross-platform view controller
     [startPuzzleButton setAttributedTitle:packTitle1 forState:UIControlStateNormal];
 
     // Start loop1Player
-//    [appd playSound:appd.puzzleBegin1_SoundFileObject];
-    if ([[appd getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"] &&
-        ![appd.loop1Player isPlaying]){
-        [appd.loop1Player setVolume:0.5 fadeDuration:0.0];
-        [appd.loop1Player play];
-    }
-    [appd.loop2Player pause];
-    [appd.loop3Player pause];
+    [appd playMusicLoop:appd.loop1Player];
 
     // Update the dailyPuzzleButton
     NSNumber *dailyPuzzleCompletionDay = [appd getObjectFromDefaults:@"dailyPuzzleCompletionDay"];
@@ -368,13 +354,7 @@ Implementation of the cross-platform view controller
 }
 
 - (void)startMainScreenMusicLoop {
-    if ([[appd getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"] &&
-        ![appd.loop1Player isPlaying]){
-        [appd.loop1Player setVolume:0.5 fadeDuration:0.0];
-        [appd.loop1Player play];
-    }
-    [appd.loop2Player pause];
-    [appd.loop3Player pause];
+    [appd playMusicLoop:appd.loop1Player];
 }
 
 //
@@ -1226,7 +1206,7 @@ Implementation of the cross-platform view controller
     // View controller approach
     DLog("BMDViewController.startDemoPuzzle");
     self.homeView.hidden = YES;
-    //    [appd playSound:appd.tapSoundFileObject];
+    [appd playSound:appd.tapPlayer];
     self.appCurrentGamePackType = PACKTYPE_DEMO;
     puzzleViewController = [[BMDPuzzleViewController alloc] init];
     [self addChildViewController:puzzleViewController];
@@ -1960,7 +1940,7 @@ Implementation of the cross-platform view controller
     // View controller approach
     DLog("BMDViewController.startPuzzleButtonPressed");
     self.homeView.hidden = YES;
-    [appd playSound:appd.tapSoundFileObject];
+    [appd playSound:appd.tapPlayer];
     
     unsigned int unsolvedPuzzleCount = [appd queryNumberOfPuzzlesLeftInCurrentPack];
     if (unsolvedPuzzleCount == 0){
@@ -1968,7 +1948,7 @@ Implementation of the cross-platform view controller
     }
     else {
         DLog("startPuzzleButtonPressed, starting puzzle %d", [appd fetchCurrentPuzzleNumber]);
-        [appd playSound:appd.tapSoundFileObject];
+        [appd playSound:appd.tapPlayer];
         if ([appd fetchCurrentPuzzleNumber] == [appd fetchCurrentPackLength]+1){
             [appd.loop2Player pause];
             [self morePuzzlePacksButtonPressed];
@@ -1986,7 +1966,7 @@ Implementation of the cross-platform view controller
 - (void)dailyPuzzleButtonPressed {
     // View controller approach
     DLog("BMDViewController.dailyPuzzleButtonPressed");
-    [appd playSound:appd.tapSoundFileObject];
+    [appd playSound:appd.tapPlayer];
     self.homeView.hidden = YES;
     NSNumber *dailyPuzzleCompletionDay = [appd getObjectFromDefaults:@"dailyPuzzleCompletionDay"];
     NSNumber *todayLocal = [NSNumber numberWithUnsignedInt:[appd getLocalDaysSinceReferenceDate]];
@@ -2003,7 +1983,7 @@ Implementation of the cross-platform view controller
                                          }];
 #endif
 
-        [appd playSound:appd.tapSoundFileObject];
+        [appd playSound:appd.tapPlayer];
         appCurrentGamePackType = PACKTYPE_DAILY;
         // If Edit Mode is enabled then trigger the Puzzle Editor to either Edit or Play puzzles being edited
         // ...else trigger the Daily Puzzle
@@ -2020,14 +2000,14 @@ Implementation of the cross-platform view controller
         DLog("Daily Puzzle Already Completed - do not start");
         [self refreshHomeView];
         [self loadAppropriateSizeBannerAd];
-        [self startMainScreenMusicLoop];
+//        [self startMainScreenMusicLoop];
     }
 }
 
 - (void)morePuzzlePacksButtonPressed {
     DLog("BMDViewController.morePuzzlePacksButtonPressed");
     // View controller approach
-    [appd playSound:appd.tapSoundFileObject];
+    [appd playSound:appd.tapPlayer];
     packsViewController = [[BMDPacksViewController alloc] init];
     [self addChildViewController:packsViewController];
     [self.view addSubview:packsViewController.view];
@@ -2037,7 +2017,7 @@ Implementation of the cross-platform view controller
 - (void)moreHintPacksButtonPressed {
     DLog("BMDViewController.moreHintPacksButtonPressed");
     // View controller approach
-    [appd playSound:appd.tapSoundFileObject];
+    [appd playSound:appd.tapPlayer];
     hintsViewController = [[BMDHintsViewController alloc] init];
     [self addChildViewController:hintsViewController];
     [self.view addSubview:hintsViewController.view];
@@ -2047,7 +2027,7 @@ Implementation of the cross-platform view controller
 - (void)settingsButtonPressed {
     DLog("BMDViewController.settingsButtonPressed");
     // View controller approach
-    [appd playSound:appd.tapSoundFileObject];
+    [appd playSound:appd.tapPlayer];
     settingsViewController = [[BMDSettingsViewController alloc] init];
     [self addChildViewController:settingsViewController];
     [self.view addSubview:settingsViewController.view];
@@ -2066,7 +2046,7 @@ Implementation of the cross-platform view controller
 - (void)noAdsButtonPressed {
     DLog("BMDViewController.noAdsButtonPressed");
     // View controller approach
-    [appd playSound:appd.tapSoundFileObject];
+    [appd playSound:appd.tapPlayer];
     [appd purchaseAdFreePuzzles];
 }
 

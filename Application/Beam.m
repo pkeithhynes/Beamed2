@@ -21,6 +21,7 @@
                        beamLevel:(int)level
                        startTile:(Tile *)startT
                          endTile:(Tile *)endT {
+    BMDAppDelegate *appDelegate = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
     if (beamLevel < kNumberOfBeamLevels){
 //        DLog("Beam init level = %d", beamLevel);
         root = isRoot;

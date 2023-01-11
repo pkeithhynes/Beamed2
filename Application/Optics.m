@@ -28,8 +28,7 @@
 @synthesize puzzleCompleteRenderArray;
 @synthesize puzzleViewControllerObjectsInitialized;
 
-extern void playSound(SystemSoundID SOUND);
-
+extern void playSound(AVAudioPlayer *PLAYER);
 
 //***********************************************************************
 // Initialization Methods
@@ -3729,8 +3728,8 @@ extern void playSound(SystemSoundID SOUND);
                 puzzleCompleted = YES;
                 if (!puzzleHasBeenCompleted) {
                     // Play Puzzle Complete sound effect if puzzleCompleted and sound effect has not yet been played
-                    [appd.loop2Player setVolume:0.0 fadeDuration:0.0];
-                    [appd.loop2Player pause];
+//                    [appd.loop2Player setVolume:0.0 fadeDuration:0.0];
+//                    [appd.loop2Player pause];
                     [appd playPuzzleCompleteSoundEffect];
                 }
                 [self handlePuzzleCompletion:nil];
@@ -3756,8 +3755,8 @@ extern void playSound(SystemSoundID SOUND);
                 puzzleCompleted = YES;
                 if (!puzzleHasBeenCompleted) {
                     // Play Puzzle Complete sound effect if puzzleCompleted and sound effect has not yet been played
-                    [appd.loop2Player setVolume:0.0 fadeDuration:0.0];
-                    [appd.loop2Player pause];
+//                    [appd.loop2Player setVolume:0.0 fadeDuration:0.0];
+//                    [appd.loop2Player pause];
                     [appd playPuzzleCompleteSoundEffect];
                 }
                 [self handlePuzzleCompletion:nil];
@@ -3787,8 +3786,8 @@ extern void playSound(SystemSoundID SOUND);
                 puzzleCompleted = YES;
                 if (!puzzleHasBeenCompleted) {
                     // Play Puzzle Complete sound effect if puzzleCompleted and sound effect has not yet been played
-                    [appd.loop1Player setVolume:0.0 fadeDuration:0.0];
-                    [appd.loop1Player pause];
+//                    [appd.loop1Player setVolume:0.0 fadeDuration:0.0];
+//                    [appd.loop1Player pause];
                     [appd playPuzzleCompleteSoundEffect];
                 }
                 [self handlePuzzleCompletion:nil];
@@ -4370,7 +4369,7 @@ extern void playSound(SystemSoundID SOUND);
 - (void)finishPositionTileForHint:(Tile *)tile {
     tile->placedUsingHint = YES;
     tile->fixed = YES;
-    [appd playSound:appd.tileCorrectlyPlacedSoundFileObject];
+    [appd playSound:appd.tileCorrectlyPlacedPlayer];
     tile->placedGridPosition.x = tile->gridPosition.x;
     tile->placedGridPosition.y = tile->gridPosition.y;
     tile->placedTileAngle = tile->tileAngle;
@@ -4917,14 +4916,14 @@ extern void playSound(SystemSoundID SOUND);
         if (gridTouchGestures.gridPosition.x != gridTouchGestures.previousGridPosition.x ||
             gridTouchGestures.gridPosition.y != gridTouchGestures.previousGridPosition.y) {
             BMDAppDelegate *appd = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
-            [appd playSound:appd.tapSoundFileObject];
+            [appd playSound:appd.tapPlayer];
         }
     }
 }
 
 - (void)handleTileLongPress:(vector_int2)position {
     vector_int2 gridPosition = [self pixelPositionToGridPosition:position];
-    [appd playSound:appd.tapSoundFileObject];
+    [appd playSound:appd.tapPlayer];
     if ((tileCurrentlyBeingEdited = [self tileOccupiesGridPosition:gridPosition]) != nil){
         DLog("Tile Detected at x=%d, y=%d", gridPosition.x, gridPosition.y);
         if (tileCurrentlyBeingEdited->fixed){
@@ -4975,7 +4974,7 @@ extern void playSound(SystemSoundID SOUND);
                     // Remove the corresponding TileHint from the Array of unused TileHints
                     if ((hint = [self tileMatchesAnyUnusedHint:tileCurrentlyBeingEdited]) != nil
                         && tileCurrentlyBeingEdited->demoTile == NO) {
-                        [appd playSound:appd.tileCorrectlyPlacedSoundFileObject];
+                        [appd playSound:appd.tileCorrectlyPlacedPlayer];
                         if (rc.appCurrentGamePackType != PACKTYPE_EDITOR ||
                             (![appd editModeIsEnabled] && rc.appCurrentGamePackType == PACKTYPE_EDITOR)){
                             [self updateTileHintArray:tileCurrentlyBeingEdited hint:hint];
@@ -4989,7 +4988,8 @@ extern void playSound(SystemSoundID SOUND);
                     // NOT a demoTile but with no matching TileHint
                     else {
                         // Play a clink sound to indicate motion to a new grid position
-                        [appd playSound:appd.clinkSoundFileObject];
+                        [appd.laser2Player play];
+//                        [appd playSound:appd.clinkPlayer];
                         // Are we in editMode?
                         // tile.placed is only set to YES during gamePlay mode so disable placed flag if in editMode
                         if ([appd editModeIsEnabled]){
@@ -5100,7 +5100,7 @@ extern void playSound(SystemSoundID SOUND);
                 // LASER stacking is specifically permitted!
                 else if (tileCurrentlyBeingEdited->tileShape == LASER && [self tileTypeAtTouchLocation] == LASER){
                     if ((hint = [self tileMatchesAnyUnusedHint:tileCurrentlyBeingEdited]) != nil) {
-                        [appd playSound:appd.tileCorrectlyPlacedSoundFileObject];
+                        [appd playSound:appd.tileCorrectlyPlacedPlayer];
                         if (rc.appCurrentGamePackType != PACKTYPE_EDITOR ||
                             (![appd editModeIsEnabled] && rc.appCurrentGamePackType == PACKTYPE_EDITOR)){
                             [self updateTileHintArray:tileCurrentlyBeingEdited hint:hint];
@@ -5111,7 +5111,7 @@ extern void playSound(SystemSoundID SOUND);
                     }
                     else {
                         // If moved play a clink
-                        [appd playSound:appd.clinkSoundFileObject];
+                        [appd playSound:appd.clinkPlayer];
                         tileCurrentlyBeingEdited->placedManuallyMatchesHint = NO;
                         tileCurrentlyBeingEdited->placedUsingHint = NO;
                         // tile.placed is only set to YES during gamePlay
@@ -5258,7 +5258,7 @@ extern void playSound(SystemSoundID SOUND);
 
                 [self updateEnergizedStateForAllTiles];
                 if ((hint = [self tileMatchesAnyUnusedHint:tileCurrentlyBeingEdited]) != nil) {
-                    [appd playSound:appd.tileCorrectlyPlacedSoundFileObject];
+                    [appd playSound:appd.tileCorrectlyPlacedPlayer];
                     if (rc.appCurrentGamePackType != PACKTYPE_EDITOR ||
                         (![appd editModeIsEnabled] && rc.appCurrentGamePackType == PACKTYPE_EDITOR)){
                         [self updateTileHintArray:tileCurrentlyBeingEdited hint:hint];
@@ -5269,7 +5269,7 @@ extern void playSound(SystemSoundID SOUND);
                 }
                 else {
                     // If rotated play a tap sound
-                    [appd playSound:appd.tapSoundFileObject];
+                    [appd playSound:appd.tapPlayer];
                     tileCurrentlyBeingEdited->placedManuallyMatchesHint = NO;
                     tileCurrentlyBeingEdited->placedUsingHint = NO;
                     // tile.placed is only set to YES during gamePlay

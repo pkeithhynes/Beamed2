@@ -408,7 +408,7 @@
 }
 
 - (void)hintPackButtonPressed:(UIButton *)sender {
-    [appd playSound:appd.tapSoundFileObject];
+    [appd playSound:appd.tapPlayer];
     unsigned int pack = (unsigned int)sender.tag;
     DLog("hintPackButtonPressed %d", pack);
     NSMutableArray *array = [appd fetchPacksArray:@"paidHintPacksArray.plist"];
@@ -425,7 +425,7 @@
 
 - (void)backButtonPressed {
     DLog("BMDHintsViewController.backButtonPressed");
-    [appd playSound:appd.tapSoundFileObject];
+    [appd playSound:appd.tapPlayer];
     if ([self.parentViewController isKindOfClass:[BMDViewController class]]){
         DLog("backButtonPressed parentViewController is BMDViewController");
         [rc refreshHomeView];

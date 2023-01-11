@@ -109,19 +109,19 @@
 #define kProductUpgradeKey @"upgrade0001"
 #define kChimeUp @"Chime01up"
 
-#define kLoopMusic1 @"NightDrive"
-#define kLoopMusic2 @"InternalCalculations"
+#define kLoopMusic1 @"InternalCalculations"
+#define kLoopMusic2 @"NightDrive"
 #define kLoopMusic3 @"IntrigueComedy"
-//#define kLoopMusicA @"PuzzleBackgroundTheme2"
-//#define kLoopMusicB @"MysteryPuzzleLoop2"
+#define kLoopMusic4 @"PuzzleBackgroundTheme2"
+#define kLoopMusic5 @"MysteryPuzzleLoop2"
 
 #define kTilePlacedCorrectly @"Reward"
 #define kPuzzleBegin1 @"Mobile_Game_Melodic_Stinger_Dreamy_Synth_Level_Up_2"
 
 #define kPuzzleComplete1 @"win-game-puzzle-119"
-#define kPuzzleComplete2 @"win-game-puzzle-50"
-#define kPuzzleComplete3 @"win-game-puzzle-52"
-#define kPuzzleComplete4 @"win-game-puzzle-93"
+#define kPuzzleComplete2 @"win-game-puzzle-52"
+#define kPuzzleComplete3 @"win-game-puzzle-93"
+#define kPuzzleComplete4 @"win-game-puzzle-50"
 
 // Enumerated types
 enum eDisplayAspectRatio { ASPECT_4_3, ASPECT_10_7, ASPECT_3_2, ASPECT_16_9, ASPECT_13_6 };

@@ -264,28 +264,29 @@
     // Start rendering
     rc.renderON = YES;
     
-    // Start loop2Player in PACKTYPE_MAIN
-    if (rc.appCurrentGamePackType == PACKTYPE_MAIN ||
-        rc.appCurrentGamePackType == PACKTYPE_DAILY){
-        [appd playSound:appd.puzzleBegin1_SoundFileObject];
-        [appd.loop1Player pause];
-        if ([[appd getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"] &&
-            ![appd.loop2Player isPlaying]){
-            [appd.loop2Player setVolume:0.5 fadeDuration:0.0];
-            [appd.loop2Player play];
-        }
-        [appd.loop3Player pause];
-    }
-    else {
-        [appd playSound:appd.puzzleBegin1_SoundFileObject];
-        if ([[appd getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"] &&
-            ![appd.loop1Player isPlaying]){
-            [appd.loop1Player setVolume:0.5 fadeDuration:0.0];
-            [appd.loop1Player play];
-        }
-        [appd.loop2Player pause];
-        [appd.loop3Player pause];
-    }
+//    // Start loop2Player in PACKTYPE_MAIN
+//    if (rc.appCurrentGamePackType == PACKTYPE_MAIN ||
+//        rc.appCurrentGamePackType == PACKTYPE_DAILY){
+////        [appd playSound:appd.puzzleBegin1_SoundFileObject];
+//        [appd.loop1Player pause];
+//        if ([[appd getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"] &&
+//            ![appd.loop2Player isPlaying]){
+//            [appd.loop2Player setVolume:0.5 fadeDuration:0.0];
+//            [appd.loop2Player play];
+//        }
+//        [appd.loop3Player pause];
+//    }
+//    else {
+////        [appd playSound:appd.puzzleBegin1_SoundFileObject];
+//        if ([[appd getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"] &&
+//            ![appd.loop1Player isPlaying]){
+//            [appd.loop1Player setVolume:0.5 fadeDuration:0.0];
+//            [appd.loop1Player play];
+//        }
+//        [appd.loop2Player pause];
+//        [appd.loop3Player pause];
+//    }
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -311,6 +312,8 @@
                                      kFIRParameterContentType:@"image"
                                      }];
 #endif
+    [appd playMusicLoop:appd.loop2Player];
+
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
@@ -1773,13 +1776,9 @@
     switch (rc.appCurrentGamePackType) {
         case PACKTYPE_MAIN:{
             if (nextPuzzleNumber <= [appd fetchCurrentPackLength]){
-                if ([[appd getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"] &&
-                    ![appd.loop2Player isPlaying]){
-                    [appd.loop2Player setVolume:0.5 fadeDuration:0.0];
-                    [appd.loop2Player play];
-                }
+                [appd playMusicLoop:appd.loop2Player];
                 [self setPuzzleLabel];
-                [appd playSound:appd.puzzleBegin1_SoundFileObject];
+//                [appd playSound:appd.puzzleBegin1_SoundFileObject];
                 [self startNewPuzzleInCurrentPack];
             }
             break;
@@ -1790,11 +1789,7 @@
             int maxGamePuzzle = [appd countPuzzlesWithinPack:demoPuzzlePackDictionary];
             int currentDemoPuzzleNumber = [appd fetchDemoPuzzleNumber];
             if (currentDemoPuzzleNumber <= maxGamePuzzle && [self queryPuzzleExists:dictionaryName puzzle:[appd fetchDemoPuzzleNumber]]) {
-                if ([[appd getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"] &&
-                    ![appd.loop1Player isPlaying]){
-                    [appd.loop1Player setVolume:0.5 fadeDuration:0.0];
-                    [appd.loop1Player play];
-                }
+                [appd playMusicLoop:appd.loop1Player];
                 [self setPuzzleLabel];
                 [self startNewPuzzleFromDictionary:[appd fetchDemoPuzzleNumber] dictionaryName:dictionaryName];
                 break;
@@ -2036,7 +2031,7 @@
 
     // Otherwise the usual backButton functionality
     else {
-        [appd playSound:appd.tapSoundFileObject];
+        [appd playSound:appd.tapPlayer];
         
         // Save progress before exiting only if the puzzle has not been completed
         if ([appd->optics queryPuzzleCompleted] == NO){
@@ -2141,7 +2136,7 @@
             [backButton setTitle:[NSString stringWithFormat:@"Back"] forState:UIControlStateNormal];
         }
     }
-    [appd playSound:appd.tapSoundFileObject];
+    [appd playSound:appd.tapPlayer];
 }
 
 - (void)editPlayButtonPressed {
@@ -2178,7 +2173,7 @@
             [appd->optics initWithDictionary:puzzle viewController:self];
         }
     }
-    [appd playSound:appd.tapSoundFileObject];
+    [appd playSound:appd.tapPlayer];
 }
 
 - (void)clearButtonPressed {
@@ -2293,7 +2288,7 @@
     appd.numberOfHintsRemaining = [[appd getObjectFromDefaults:@"numberOfHintsRemaining"] intValue];
     if ([appd checkForEndlessHintsPurchased]){
         [appd->optics startPositionTileForHint];
-        [appd playSound:appd.tapSoundFileObject];
+        [appd playSound:appd.tapPlayer];
     }
     else if (appd.numberOfHintsRemaining > 0){
         if (![appd editModeIsEnabled] && rc.appCurrentGamePackType == PACKTYPE_EDITOR){
@@ -2306,7 +2301,7 @@
         [rc updateMoreHintPacksButton];
         [self setHintButtonLabel:appd.numberOfHintsRemaining];
         [appd->optics startPositionTileForHint];
-        [appd playSound:appd.tapSoundFileObject];
+        [appd playSound:appd.tapPlayer];
     }
     else {
         // Save progress before exiting

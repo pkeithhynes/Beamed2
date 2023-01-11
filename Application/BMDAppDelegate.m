@@ -92,6 +92,16 @@ CGFloat _screenHeightInPixels;
 @synthesize loop1Player;
 @synthesize loop2Player;
 @synthesize loop3Player;
+
+@synthesize laser1Player;
+@synthesize laser2Player;
+@synthesize tapPlayer;
+@synthesize clinkPlayer;
+@synthesize tileCorrectlyPlacedPlayer;
+@synthesize puzzleComplete1Player;
+@synthesize puzzleComplete2Player;
+@synthesize puzzleComplete3Player;
+
 @synthesize loopMusic1_SoundFileObject;
 @synthesize currentPack;
 @synthesize currentTutorialPuzzle;
@@ -1264,73 +1274,90 @@ CGFloat _screenHeightInPixels;
     return retVal;
 }
 
-- (void)playSound:(SystemSoundID)sound {
-    if ([[self getStringFromDefaults:@"soundsEnabled"] isEqualToString:@"YES"] && sound != 0){
-        AudioServicesPlaySystemSound(sound);
+
+//
+// Music and Sound handling
+//
+
+- (void)playSound:(AVAudioPlayer *)player {
+    if ([[self getStringFromDefaults:@"soundsEnabled"] isEqualToString:@"YES"] && player != nil){
+        [player play];
     }
 }
 
-//- (void)playCompletionSound:(SystemSoundID)sound {
-//    if ([[self getStringFromDefaults:@"soundsEnabled"] isEqualToString:@"YES"] && sound != 0){
-//        AudioServicesPlaySystemSound(sound);
-//        if ([loop1Player isPlaying]){
-//            [loop1Player setVolume:1.0 fadeDuration:1.0];
-//        }
-//        else if ([loop2Player isPlaying]){
-//            [loop2Player setVolume:1.0 fadeDuration:1.0];
-//        }
-//    }
-//}
+- (void)playMusicLoop {
+    // Play appropriate music when playing a Puzzle
+    if ([[self getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"]){
+        [loop1Player play];
+    }
+}
+
+- (void)playMusicLoop:(AVAudioPlayer *)player {
+    // Play appropriate music when playing a Puzzle
+    if ([[self getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"] && player != nil){
+        if (loop1Player.isPlaying){
+            [loop1Player pause];
+        }
+        if (loop2Player.isPlaying){
+            [loop2Player pause];
+        }
+        [player play];
+    }
+}
 
 - (void)playPuzzleCompleteSoundEffect {
-    if (rc.appCurrentGamePackType == PACKTYPE_MAIN ||
-        rc.appCurrentGamePackType == PACKTYPE_DAILY){
-        [loop2Player play];
-        [loop2Player setVolume:0.5 fadeDuration:2.5];
+    if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+        [loop1Player setVolume:0.25 fadeDuration:0.0];
     }
-    else if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
-        [loop1Player play];
-        [loop1Player setVolume:0.5 fadeDuration:2.5];
+    else {
+        [loop2Player setVolume:0.25 fadeDuration:0.0];
     }
-
-    switch([self fetchCurrentPuzzleNumberForPack:[self fetchCurrentPackNumber]] % 4){
+    switch([self fetchCurrentPuzzleNumberForPack:[self fetchCurrentPackNumber]] % 3){
         case 0:{
-            [self playSound:puzzleComplete1_SoundFileObject];
+            [self playSound:puzzleComplete1Player];
             break;
         }
         case 1:{
-            [self playSound:puzzleComplete2_SoundFileObject];
+            [self playSound:puzzleComplete2Player];
             break;
         }
-        case 2:{
-            [self playSound:puzzleComplete3_SoundFileObject];
-            break;
-        }
-        case 3:
+        case 2:
         default:{
-            [self playSound:puzzleComplete4_SoundFileObject];
+            [self playSound:puzzleComplete3Player];
             break;
         }
     }
 }
 
-- (void)playLaserSound {
-    SystemSoundID sound;
-    if (laserSoundFlip){
-        sound = laser1SoundFileObject;
-    }
-    else {
-        sound = laser2SoundFileObject;
-    }
-    if ([[self getStringFromDefaults:@"soundsEnabled"] isEqualToString:@"YES"] && !self->laserSoundCurrentlyPlaying && !optics->puzzleHasBeenCompleted) {
-        self->laserSoundCurrentlyPlaying = YES;
-        AudioServicesPlaySystemSoundWithCompletion(sound,
-        ^{
-            self->laserSoundCurrentlyPlaying = NO;
-            self->laserSoundFlip = !self->laserSoundFlip;
-        });
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
+    DLog("audioPlayerDidFinishPlaying");
+    if (player == puzzleComplete1Player ||
+        player == puzzleComplete2Player ||
+        player == puzzleComplete3Player){
+        if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+            [loop1Player setVolume:1.0 fadeDuration:0.0];
+        }
+        else {
+            [loop2Player setVolume:1.0 fadeDuration:0.0];
+        }
     }
 }
+
+
+- (void)playLaserSound {
+    AVAudioPlayer *player;
+    if (laserSoundFlip){
+        player = laser1Player;
+    }
+    else {
+        player = laser2Player;
+    }
+    if ([[self getStringFromDefaults:@"soundsEnabled"] isEqualToString:@"YES"] && player != nil){
+        [player play];
+    }
+}
+
+
 
 - (BOOL)initAllTextures:(nonnull MTKView *)mtkView metalRenderer:(BMDRenderer *)metalRenderer {
     BOOL success = YES;
@@ -1690,55 +1717,80 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     laserSoundCurrentlyPlaying = NO;
     laserSoundFlip = NO;
 
-    //    Get Tap sound effect (Use clink for now)
-    NSString *path = [[NSBundle mainBundle] pathForResource:kButtonClinkSoundEffect ofType:@"wav"];
-    NSURL *tapSound = [NSURL URLWithString:path];
-    // Store the URL as a CFURLRef instance
-    tapSoundFileURLRef = (__bridge CFURLRef) tapSound;
-    AudioServicesCreateSystemSoundID (tapSoundFileURLRef, &tapSoundFileObject);
-    
-    //    Get Plop sound effect
-    path = [[NSBundle mainBundle] pathForResource:kButtonPlopSoundEffect ofType:@"wav"];
-    NSURL *plopSound = [NSURL URLWithString:path];
-    // Store the URL as a CFURLRef instance
-    plopSoundFileURLRef = (__bridge CFURLRef) plopSound;
-    AudioServicesCreateSystemSoundID (plopSoundFileURLRef, &plopSoundFileObject);
-    
-    //    Get Clink sound effect
-    path = [[NSBundle mainBundle] pathForResource:kButtonClinkSoundEffect ofType:@"wav"];
-    NSURL *clinkSound = [NSURL URLWithString:path];
-    // Store the URL as a CFURLRef instance
-    clinkSoundFileURLRef = (__bridge CFURLRef) clinkSound;
-    AudioServicesCreateSystemSoundID (clinkSoundFileURLRef, &clinkSoundFileObject);
-    
-    //    Get twinkle sound effect
-    path = [[NSBundle mainBundle] pathForResource:kButtontwinkleSoundEffect ofType:@"wav"];
-    NSURL *twinkleSound = [NSURL URLWithString:path];
-    // Store the URL as a CFURLRef instance
-    twinkleSoundFileURLRef = (__bridge CFURLRef) twinkleSound;
-    AudioServicesCreateSystemSoundID (twinkleSoundFileURLRef, &twinkleSoundFileObject);
-    
-    //    Get Tile placed correctly sound effect
-    path = [[NSBundle mainBundle] pathForResource:kTilePlacedCorrectly ofType:@"wav"];
-    NSURL *tilePlacedCorrectlySound = [NSURL URLWithString:path];
-    // Store the URL as a CFURLRef instance
-    tileCorrectlyPlacedSoundFileURLRef = (__bridge CFURLRef) tilePlacedCorrectlySound;
-    AudioServicesCreateSystemSoundID (tileCorrectlyPlacedSoundFileURLRef, &tileCorrectlyPlacedSoundFileObject);
-    
-    //    Get Laser 1 sound effect
-    path = [[NSBundle mainBundle] pathForResource:kLaserSound1 ofType:@"wav"];
-    NSURL *laser1Sound = [NSURL URLWithString:path];
-    // Store the URL as a CFURLRef instance
-    laser1SoundFileURLRef = (__bridge CFURLRef) laser1Sound;
-    AudioServicesCreateSystemSoundID (laser1SoundFileURLRef, &laser1SoundFileObject);
-    
-    //    Get Laser 2 sound effect
+    //    AVAudioPlayer for Laser 1 sound effect
+    NSString *path = [[NSBundle mainBundle] pathForResource:kLaserSound1 ofType:@"wav"];
+    NSURL *laser1Effect = [NSURL URLWithString:path];
+    laser1Player = [[AVAudioPlayer alloc] initWithContentsOfURL:laser1Effect error:nil];
+    if(!laser1Player)
+       DLog("error in initializing laser player 1");
+    laser1Player.delegate = self;
+    laser1Player.numberOfLoops = 0;
+
+    //    AVAudioPlayer for Laser 2 sound effect
     path = [[NSBundle mainBundle] pathForResource:kLaserSound2 ofType:@"wav"];
-    NSURL *laser2Sound = [NSURL URLWithString:path];
-    // Store the URL as a CFURLRef instance
-    laser2SoundFileURLRef = (__bridge CFURLRef) laser2Sound;
-    AudioServicesCreateSystemSoundID (laser2SoundFileURLRef, &laser2SoundFileObject);
-    
+    NSURL *laser2Effect = [NSURL URLWithString:path];
+    laser2Player = [[AVAudioPlayer alloc] initWithContentsOfURL:laser2Effect error:nil];
+    if(!laser2Player)
+       DLog("error in initializing laser player 2");
+    laser2Player.delegate = self;
+    laser2Player.numberOfLoops = 0;
+
+    //    AVAudioPlayer for tap sound effect
+    path = [[NSBundle mainBundle] pathForResource:kButtonClickSoundEffect ofType:@"wav"];
+    NSURL *tapEffect = [NSURL URLWithString:path];
+    tapPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:tapEffect error:nil];
+    if(!tapPlayer)
+       DLog("error in initializing tap player");
+    tapPlayer.delegate = self;
+    tapPlayer.numberOfLoops = 0;
+
+    //    AVAudioPlayer for clink sound effect
+    path = [[NSBundle mainBundle] pathForResource:kButtonClinkSoundEffect ofType:@"wav"];
+    NSURL *clinkEffect = [NSURL URLWithString:path];
+    clinkPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:clinkEffect error:nil];
+    if(!clinkPlayer)
+       DLog("error in initializing clinkPlayer");
+    clinkPlayer.delegate = self;
+    clinkPlayer.numberOfLoops = 0;
+
+    //    AVAudioPlayer for tileCorrectlyPlacedPlayer effect
+    path = [[NSBundle mainBundle] pathForResource:kTilePlacedCorrectly ofType:@"wav"];
+    NSURL *tileCorrectlyPlacedEffect = [NSURL URLWithString:path];
+    tileCorrectlyPlacedPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:tileCorrectlyPlacedEffect error:nil];
+    if(!tileCorrectlyPlacedPlayer)
+       DLog("error in initializing tileCorrectlyPlacedPlayer");
+    tileCorrectlyPlacedPlayer.delegate = self;
+    tileCorrectlyPlacedPlayer.numberOfLoops = 0;
+
+    //    AVAudioPlayer for puzzleComplete1Player sound effect
+    path = [[NSBundle mainBundle] pathForResource:kPuzzleComplete1 ofType:@"wav"];
+    NSURL *puzzleComplete1Effect = [NSURL URLWithString:path];
+    puzzleComplete1Player = [[AVAudioPlayer alloc] initWithContentsOfURL:puzzleComplete1Effect error:nil];
+    if(!puzzleComplete1Player)
+       DLog("error in initializing puzzleComplete1Player");
+    puzzleComplete1Player.delegate = self;
+    puzzleComplete1Player.numberOfLoops = 0;
+
+    //    AVAudioPlayer for puzzleComplete2Player sound effect
+    path = [[NSBundle mainBundle] pathForResource:kPuzzleComplete2 ofType:@"wav"];
+    NSURL *puzzleComplete2Effect = [NSURL URLWithString:path];
+    puzzleComplete2Player = [[AVAudioPlayer alloc] initWithContentsOfURL:puzzleComplete2Effect error:nil];
+    if(!puzzleComplete2Player)
+       DLog("error in initializing puzzleComplete2Player");
+    puzzleComplete2Player.delegate = self;
+    puzzleComplete2Player.numberOfLoops = 0;
+
+    //    AVAudioPlayer for puzzleComplete3Player sound effect
+    path = [[NSBundle mainBundle] pathForResource:kPuzzleComplete3 ofType:@"wav"];
+    NSURL *puzzleComplete3Effect = [NSURL URLWithString:path];
+    puzzleComplete3Player = [[AVAudioPlayer alloc] initWithContentsOfURL:puzzleComplete3Effect error:nil];
+    if(!puzzleComplete3Player)
+       DLog("error in initializing puzzleComplete3Player");
+    puzzleComplete3Player.delegate = self;
+    puzzleComplete3Player.numberOfLoops = 0;
+
+
+
     //    Get Jewel Energized sound effect
     path = [[NSBundle mainBundle] pathForResource:kJewelEnergized ofType:@"wav"];
     NSURL *jewelEnergizedSound = [NSURL URLWithString:path];
@@ -1919,11 +1971,6 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     else {
         return nil;
     }
-}
-
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player
-                       successfully:(BOOL)flag {
-    DLog("audioPlayerDidFinishPlaying");
 }
 
 

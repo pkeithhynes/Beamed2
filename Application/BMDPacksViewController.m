@@ -547,7 +547,7 @@
 //
 
 - (void)puzzlePackButtonPressed:(UIButton *)sender {
-    [appd playSound:appd.tapSoundFileObject];
+    [appd playSound:appd.tapPlayer];
     unsigned int packIndex = (unsigned int)sender.tag;
     NSMutableArray *array = [appd.gameDictionaries objectForKey:kPuzzlePacksArray];
     if ([array count] > packIndex){
@@ -606,7 +606,7 @@
 
 - (void)backButtonPressed {
     DLog("backButtonPressed");
-    [appd playSound:appd.tapSoundFileObject];
+    [appd playSound:appd.tapPlayer];
     [(BMDViewController *)self.parentViewController refreshHomeView];
     [self willMoveToParentViewController:self.parentViewController];
     [self.view removeFromSuperview];

@@ -1197,10 +1197,10 @@
 			children = (
 				529A511B27ACD54D00FE0669 /* Reward.wav */,
 				529A511D27ACD57200FE0669 /* Mobile_Game_Melodic_Stinger_Dreamy_Synth_Level_Up_2.wav */,
-				529A511427ACD24200FE0669 /* win-game-puzzle-50.wav */,
+				529A511527ACD24200FE0669 /* win-game-puzzle-119.wav */,
 				529A511227ACD24100FE0669 /* win-game-puzzle-52.wav */,
 				529A511327ACD24100FE0669 /* win-game-puzzle-93.wav */,
-				529A511527ACD24200FE0669 /* win-game-puzzle-119.wav */,
+				529A511427ACD24200FE0669 /* win-game-puzzle-50.wav */,
 			);
 			path = Stingers;
 			sourceTree = "<group>";

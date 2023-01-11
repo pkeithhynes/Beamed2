@@ -688,7 +688,7 @@
 
 - (void)backButtonPressed {
     DLog("backButtonPressed");
-    [appd playSound:appd.tapSoundFileObject];
+    [appd playSound:appd.tapPlayer];
     [(BMDViewController *)self.parentViewController refreshHomeView];
     [self willMoveToParentViewController:self.parentViewController];
     [self.view removeFromSuperview];
@@ -705,7 +705,7 @@
         [[GKGameCenterViewController alloc]initWithState:GKGameCenterViewControllerStateLeaderboards];
     leaderboardViewController.gameCenterDelegate = self;
     [self showViewController:leaderboardViewController sender:self];
-    [appd playSound:appd.tapSoundFileObject];
+    [appd playSound:appd.tapPlayer];
 }
 
 - (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)viewController
@@ -716,7 +716,7 @@
 
 - (void)restorePurchasesButtonPressed {
     // Restore purchases from the App Store
-    [appd playSound:appd.tapSoundFileObject];
+    [appd playSound:appd.tapPlayer];
     [appd restorePurchases];
 }
 
@@ -829,7 +829,7 @@
         [appd setObjectInDefaults:@"NO" forKey:@"soundsEnabled"];
         soundEffectsEnabledLabel.textColor = [UIColor redColor];
     }
-    [appd playSound:appd.tapSoundFileObject];
+    [appd playSound:appd.tapPlayer];
 }
 
 - (void)musicSwitchChanged:(UISwitch *)sender {
@@ -838,15 +838,14 @@
     if (musicSwitchValue == YES){
         [appd setObjectInDefaults:@"YES" forKey:@"musicEnabled"];
         musicEnabledLabel.textColor = [UIColor greenColor];
-        [appd.loop1Player setVolume:0.5 fadeDuration:0.0];
-        [appd.loop1Player play];
+        [appd playMusicLoop:appd.loop1Player];
     }
     else {
         [appd setObjectInDefaults:@"NO" forKey:@"musicEnabled"];
         musicEnabledLabel.textColor = [UIColor redColor];
         [appd.loop1Player pause];
     }
-    [appd playSound:appd.tapSoundFileObject];
+    [appd playSound:appd.tapPlayer];
 }
 
 @end
