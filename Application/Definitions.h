@@ -86,6 +86,7 @@
 
 // File paths for texture resources
 #define kBackgroundTextures @"backgroundTextures.plist"
+#define kBackgroundAnimationTextures @"backgroundAnimationTextures.plist"
 #define kJewelTextures @"jewelTextures.plist"
 
 // File paths for game puzzles

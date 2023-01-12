@@ -25,6 +25,11 @@ Header for the cross-platform view controller
 #import "BMDPacksViewController.h"
 #import "BMDPuzzleViewController.h"
 #import "BMDSettingsViewController.h"
+#import "Background.h"
+#import "TextureRenderData.h"
+
+@class Background;
+@class TextureRenderData;
 
 
 
@@ -32,8 +37,18 @@ API_AVAILABLE(ios(13.0))
 @interface BMDViewController : PlatformViewController <GKGameCenterControllerDelegate>{
     @public
     
+    // Single instance of BMDRenderer
+    BMDRenderer *renderer;
+    NSMutableDictionary *backgroundRenderDictionary;
+    Background *background;
+    TextureRenderData *backgroundRenderDataImage;
+    TextureRenderData *backgroundAnimationImage;
+    uint16_t animationFrame;
+
+    
     // Render MetalKit View ON/OFF
-    BOOL renderON;
+    BOOL renderPuzzleON;
+    BOOL renderBackgroundON;
 
     // Store view controller information here
     BMDHintsViewController *hintsViewController;
@@ -46,7 +61,7 @@ API_AVAILABLE(ios(13.0))
     // Page views
     //
     UIView *rootView;
-    UIView *homeView;
+    MTKView *homeView;
     UIView *launchView;
     UIView *bannerAdView;
     UIView *scoresView;
@@ -142,6 +157,10 @@ API_AVAILABLE(ios(13.0))
     GKAccessPoint *gamekitAccessPoint;
 }
 
+@property (nonatomic, retain) BMDRenderer *renderer;
+@property (nonatomic, retain) NSMutableDictionary *backgroundRenderDictionary;
+@property (nonatomic, retain) Background *background;
+
 @property (nonatomic, retain) UILabel *gameTitleLabel;
 @property (nonatomic, retain) UILabel *puzzleSolvedLabel;
 @property (nonatomic, retain) UILabel *gamePuzzleLabel;
@@ -174,7 +193,7 @@ API_AVAILABLE(ios(13.0))
 @property (nonatomic, retain) BMDSettingsViewController *settingsViewController;
 
 @property (nonatomic, retain) UIView *rootView;
-@property (nonatomic, retain) UIView *homeView;
+@property (nonatomic, retain) MTKView *homeView;
 @property (nonatomic, retain) UIView *bannerAdView;
 @property (nonatomic, retain) UIView *scoresView;
 
@@ -232,7 +251,8 @@ API_AVAILABLE(ios(13.0))
 @property (nonatomic, retain) GKAccessPoint *gamekitAccessPoint;
 
 
-@property (nonatomic) BOOL renderON;
+@property (nonatomic) BOOL renderPuzzleON;
+@property (nonatomic) BOOL renderBackgroundON;
 
 - (NSString *)gameDictionaryNameFromPuzzlePack;
 - (void)setPuzzleLabel;
@@ -259,5 +279,7 @@ API_AVAILABLE(ios(13.0))
 - (void)setupViewsButtonsLabels;
 
 - (void)startPuzzleEditor;
+
+- (NSMutableDictionary *)renderBackground;
 
 @end

@@ -89,6 +89,10 @@ API_AVAILABLE(ios(13.0))
     BOOL                laserSoundCurrentlyPlaying;
     
     // Puzzle textures
+    NSMutableArray  *backgroundAnimationContainers;
+    NSMutableArray  *backgroundTextures;
+    NSMutableArray  *jewelTextures;
+
     NSMutableArray  *loadedTextureFiles;
     NSMutableArray  *backgroundTextureFiles;
     NSMutableArray  *jewelTextureFiles;
@@ -130,6 +134,7 @@ API_AVAILABLE(ios(13.0))
 @property (strong, nonatomic) UIWindow * _Nonnull window;
 @property (strong, nonatomic) MTKView * _Nonnull view;
 @property (nonatomic, retain) NSMutableArray  * _Nullable loadedTextureFiles;
+@property (nonatomic, retain) NSMutableArray  * _Nullable backgroundAnimationContainers;
 @property (nonatomic, retain) NSMutableArray  * _Nullable backgroundTextures;
 @property (nonatomic, retain) NSMutableArray  * _Nullable jewelTextures;
 @property (nonatomic, retain) NSMutableArray  * _Nullable tileAnimationContainers;

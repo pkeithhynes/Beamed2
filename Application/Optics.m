@@ -674,7 +674,6 @@ extern void playSound(AVAudioPlayer *PLAYER);
     
     // Add render arrays into the master renderDictionary
     [renderDictionary setObject:backgroundRenderDataImage forKey:@"backgroundImage"];
-//    [renderDictionary setObject:backgroundRenderDataOuter forKey:@"backgroundRenderDataOuter"];
     [renderDictionary setObject:backgroundRenderDataInner forKey:@"backgroundRenderDataInner"];
     if (![appd autoGenIsEnabled]){
         [renderDictionary setObject:unusedTileBackgroundRenderData forKey:@"unusedTileBackgroundRenderData"];

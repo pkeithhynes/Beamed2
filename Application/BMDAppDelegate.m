@@ -51,6 +51,7 @@ CGFloat _screenHeightInPixels;
 @synthesize window;
 @synthesize rc;
 @synthesize loadedTextureFiles;
+@synthesize backgroundAnimationContainers;
 @synthesize backgroundTextures;
 @synthesize jewelTextures;
 @synthesize tileAnimationContainers;
@@ -976,6 +977,9 @@ CGFloat _screenHeightInPixels;
     else if ([key isEqualToString:@"backgroundTextures.plist"]){
         filePath = [documentsDirectory stringByAppendingPathComponent:kBackgroundTextures];
     }
+    else if ([key isEqualToString:@"backgroundAnimationTextures.plist"]){
+        filePath = [documentsDirectory stringByAppendingPathComponent:kBackgroundAnimationTextures];
+    }
     else if ([key isEqualToString:@"jewelTextures.plist"]){
         filePath = [documentsDirectory stringByAppendingPathComponent:kJewelTextures];
     }
@@ -1001,6 +1005,9 @@ CGFloat _screenHeightInPixels;
     }
     else if ([key isEqualToString:@"backgroundTextures.plist"]){
         path = [[NSBundle mainBundle] pathForResource:@"backgroundTextures" ofType:@"plist"];
+    }
+    else if ([key isEqualToString:@"backgroundAnimationTextures.plist"]){
+        path = [[NSBundle mainBundle] pathForResource:@"backgroundAnimationTextures" ofType:@"plist"];
     }
     else if ([key isEqualToString:@"jewelTextures.plist"]){
         path = [[NSBundle mainBundle] pathForResource:@"jewelTextures" ofType:@"plist"];
@@ -1370,6 +1377,7 @@ CGFloat _screenHeightInPixels;
     
     loadedTextureFiles = [NSMutableArray arrayWithCapacity:1];
     backgroundTextures = [NSMutableArray arrayWithCapacity:1];
+    backgroundAnimationContainers = [NSMutableArray arrayWithCapacity:1];
     jewelTextures = [NSMutableArray arrayWithCapacity:1];
     tileAnimationContainers = [NSMutableArray arrayWithCapacity:1];
     beamAnimationContainers = [NSMutableArray arrayWithCapacity:1];
@@ -1395,7 +1403,14 @@ CGFloat _screenHeightInPixels;
         DLog("Ring animation initialization failed.\n");
         success = NO;
     }
-
+    
+//    if ((backgroundAnimationContainers = [self fetchAnimationDataFromPlist:@"backgroundAnimations" fext:@"plist" animationContainers:ringAnimationContainers]) != nil)
+//        DLog("Background animation initialization complete.\n");
+//    else {
+//        DLog("Background animation initialization failed.\n");
+//        success = NO;
+//    }
+    
     // Read Background textures from plist
     if ([self fetchTextureFilesFromPlist:@"backgroundTextures.plist" textures:backgroundTextures])
         DLog("Background textures loaded from plist.\n");
@@ -3086,7 +3101,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
         [placementID isEqualToString:vunglePlacementBannerLeaderboard]){
         if (rc.bannerAdView == nil &&
             [sdk isAdCachedForPlacementID:placementID] &&
-            rc.renderON == NO){
+            rc.renderPuzzleON == NO){
             DLog("addAdViewToView: %s", [placementID UTF8String]);
             NSError *adError;
             [rc buildVungleAdView];

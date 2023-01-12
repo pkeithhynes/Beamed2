@@ -322,14 +322,30 @@ API_AVAILABLE(ios(13.0))
         // - Use the App Page number to determine what textures should be rendered
         BMDViewController *rootController = (BMDViewController*)[[(BMDAppDelegate *)[[UIApplication sharedApplication]delegate] window] rootViewController];
         BMDAppDelegate *appDelegate = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
-        Optics *optics = appDelegate->optics;
 
-        if (rootController.renderON){
+//        if (rootController.renderBackgroundON){
+//            // Load and draw textures for various screen backgrounds other than Puzzles
+//            renderDictionary = [rootController renderBackground];
+//            
+//            // Draw a background image behind other screen elements
+//            TextureRenderData *backgroundImage = [renderDictionary objectForKey:@"backgroundImage"];
+//            if (backgroundImage != nil){
+//                [self drawMetalTexture:backgroundImage withView:_view texturePositionInPixels:backgroundImage->texturePositionInPixels textureSizeInPixels:backgroundImage->textureDimensionsInPixels withPipelineState:backgroundImage->tileColor withRotationTransformation:NO];
+//            }
+//            // Next draw the current frame of a background animation
+//            backgroundImage = [renderDictionary objectForKey:@"backgroundAnimationImage"];
+//            if (backgroundImage != nil){
+//                [self drawMetalTexture:backgroundImage withView:_view texturePositionInPixels:backgroundImage->texturePositionInPixels textureSizeInPixels:backgroundImage->textureDimensionsInPixels withPipelineState:backgroundImage->tileColor withRotationTransformation:NO];
+//            }
+//        }
+        
+        if (rootController.renderPuzzleON){
             // Load and draw textures
             //
             // Update Optics
             // - receive array of Tile RenderData
             // - receive background RenderData
+            Optics *optics = appDelegate->optics;
             renderDictionary = [optics renderPuzzle];
             
             // Draw a background image behind the Gameplay area
@@ -407,7 +423,7 @@ API_AVAILABLE(ios(13.0))
 - (void)prepareVertexBuffer:(nonnull MTKView *)mtkView texturePositionInPixelsX:(int)positionX texturePositionInPixelsY:(int)positionY textureSizeInPixels:(vector_int2)size isMetal:(BOOL)metal rotationAngle:(float)angle
 {
     BMDAppDelegate *appDelegate = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
-    Optics *optics = appDelegate->optics;
+    BMDViewController *rc = (BMDViewController*)[[(BMDAppDelegate *)[[UIApplication sharedApplication]delegate] window] rootViewController];
     
     vector_int2 position;
     position.x = positionX; position.y = positionY;
@@ -420,14 +436,14 @@ API_AVAILABLE(ios(13.0))
     vector_float2 textureLowerLeft;      // (0, 1) in Metal texture space
     vector_float2 textureLowerRight;     // (1, 1) in Metal texture space
     
-    textureTopLeft[0] =     (float)position.x   -   ((float)optics->_screenWidthInPixels/2.f);
-    textureTopLeft[1] =     -(float)position.y   +   ((float)optics->_screenHeightInPixels/2.f);
-    textureTopRight[0] =    (float)position.x   -   ((float)optics->_screenWidthInPixels/2.f)   + (float)size.x;
-    textureTopRight[1] =    -(float)position.y   +   ((float)optics->_screenHeightInPixels/2.f);
-    textureLowerLeft[0] =   (float)position.x   -   ((float)optics->_screenWidthInPixels/2.f);
-    textureLowerLeft[1] =   -(float)position.y   +   ((float)optics->_screenHeightInPixels/2.f)  - (float)size.y;
-    textureLowerRight[0] =  (float)position.x   -   ((float)optics->_screenWidthInPixels/2.f)   + (float)size.x;
-    textureLowerRight[1] =  -(float)position.y   +   ((float)optics->_screenHeightInPixels/2.f)  - (float)size.y;
+    textureTopLeft[0] =     (float)position.x   -   ((float)rc.screenWidthInPixels/2.f);
+    textureTopLeft[1] =     -(float)position.y   +   ((float)rc.screenHeightInPixels/2.f);
+    textureTopRight[0] =    (float)position.x   -   ((float)rc.screenWidthInPixels/2.f)   + (float)size.x;
+    textureTopRight[1] =    -(float)position.y   +   ((float)rc.screenHeightInPixels/2.f);
+    textureLowerLeft[0] =   (float)position.x   -   ((float)rc.screenWidthInPixels/2.f);
+    textureLowerLeft[1] =   -(float)position.y   +   ((float)rc.screenHeightInPixels/2.f)  - (float)size.y;
+    textureLowerRight[0] =  (float)position.x   -   ((float)rc.screenWidthInPixels/2.f)   + (float)size.x;
+    textureLowerRight[1] =  -(float)position.y   +   ((float)rc.screenHeightInPixels/2.f)  - (float)size.y;
 
     if (metal) {
         // Use Metal convention to set up the texture to screen mapping based on the characteristics of the device screen
@@ -771,8 +787,6 @@ API_AVAILABLE(ios(13.0))
 
 
 - (void)renderBeamTextureArray:(NSMutableArray *)beamTextureArray {
-    BMDAppDelegate *appDelegate = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
-    Optics *optics = appDelegate->optics;
     // Render array of beam textures from a 2d array of BeamTextureRenderData instances
     NSEnumerator *bgaEnum = [beamTextureArray objectEnumerator];
     BeamTextureRenderData *brd;

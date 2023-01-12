@@ -22,6 +22,10 @@ Implementation of the cross-platform view controller
     
 }
 
+@synthesize renderer;
+@synthesize backgroundRenderDictionary;
+@synthesize background;
+
 //@synthesize nextButton;
 @synthesize prevButton;
 @synthesize backButton;
@@ -109,7 +113,8 @@ Implementation of the cross-platform view controller
 @synthesize puzzleSolutionTime;
 @synthesize gamekitAccessPoint;
 
-@synthesize renderON;
+@synthesize renderPuzzleON;
+@synthesize renderBackgroundON;
 
 - (void)viewDidLoad
 {
@@ -119,8 +124,9 @@ Implementation of the cross-platform view controller
 
     appd = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
 
-    self.renderON = NO;     // MetalKit rendering is initially disabled 
-    
+    self.renderPuzzleON = NO;           // MetalKit Puzzle rendering is initially disabled
+    self.renderBackgroundON = NO;       // MetalKit Background rendering is initially disabled
+
     [self setupPhysicalDeviceDisplay];
     
     [self setupViewsButtonsLabels];
@@ -196,9 +202,18 @@ Implementation of the cross-platform view controller
         [self refreshHomeView];
         [self hideLaunchScreen];
         [self loadAppropriateSizeBannerAd];
-        
     }
 }
+
+//- (NSMutableDictionary *)renderBackground {
+//    DLog("renderBackground");
+//    animationFrame++;
+//    backgroundRenderDataImage = [background renderBackgroundImage:7];
+//    backgroundAnimationImage = [background renderBackgroundAnimations:animationFrame backgroundColor:7];
+//    [backgroundRenderDictionary setObject:backgroundRenderDataImage forKey:@"backgroundImage"];
+//    [backgroundRenderDictionary setObject:backgroundAnimationImage forKey:@"backgroundAnimationImage"];
+//    return backgroundRenderDictionary;
+//}
 
 - (void)refreshHomeView {
     homeView.hidden = NO;
@@ -224,21 +239,31 @@ Implementation of the cross-platform view controller
     homeViewBackground.clipsToBounds = YES;
     [homeView addSubview:homeViewBackground];
     [homeView sendSubviewToBack:homeViewBackground];
+    
     [rootView sendSubviewToBack:homeView];
     
-    // Get the starry sky image
-//    UIImage *starrySkyImage = [UIImage imageNamed:@"starrysky.jpg"];
-//    UIImageView *starrySkyImageView = [[UIImageView alloc] initWithImage:starrySkyImage];
-//    CGSize starrySkySize = starrySkyImage.size;
-//    CGFloat starrySkyWidth = starrySkySize.width/contentScaleFactor;
-//    CGFloat starrySkyHeight = starrySkySize.height/contentScaleFactor;
-//    starrySkyImageView.frame = CGRectMake(homeView.frame.origin.x,
-//                                          homeView.frame.origin.y,
-//                                          starrySkyWidth,
-//                                          starrySkyHeight);
-//    [homeView addSubview:starrySkyImageView];
-//    [homeView sendSubviewToBack:starrySkyImageView];
+    //
+    // Activate BMDRenderer
+    //
+//    homeView.enableSetNeedsDisplay = NO;
+//    homeView.preferredFramesPerSecond = 30;
+//    homeView.presentsWithTransaction = NO;
+//    homeView.device = MTLCreateSystemDefaultDevice();
+//    NSAssert(homeView.device, @"Metal is not supported on this device");
+//    renderer = [[BMDRenderer alloc] initWithMetalKitView:homeView];
+//    NSAssert(renderer, @"Renderer failed initialization");
+//    // Initialize the renderer with the view size
+//    [renderer mtkView:homeView drawableSizeWillChange:homeView.drawableSize];
+//    homeView.delegate = renderer;
+//    [appd initAllTextures:homeView metalRenderer:renderer];
+//
+//    // The fixed part of the background only needs to get rendered once
+//    background = [[Background alloc] init];
+//    backgroundRenderDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
+//    animationFrame = 0;
+//    renderBackgroundON = YES;
 
+    
     //
     // Activate Game Center Access Point
     //
@@ -577,17 +602,17 @@ Implementation of the cross-platform view controller
     [scoresView sendSubviewToBack:scoresViewBackground];
     
     // Get the starry sky image
-    UIImage *starrySkyImage = [UIImage imageNamed:@"starrysky.jpg"];
-    UIImageView *starrySkyImageView = [[UIImageView alloc] initWithImage:starrySkyImage];
-    CGSize starrySkySize = starrySkyImage.size;
-    CGFloat starrySkyWidth = starrySkySize.width/contentScaleFactor;
-    CGFloat starrySkyHeight = starrySkySize.height/contentScaleFactor;
-    starrySkyImageView.frame = CGRectMake(homeView.frame.origin.x,
-                                          homeView.frame.origin.y,
-                                          starrySkyWidth,
-                                          starrySkyHeight);
-    [scoresView addSubview:starrySkyImageView];
-    [scoresView sendSubviewToBack:starrySkyImageView];
+//    UIImage *starrySkyImage = [UIImage imageNamed:@"starrysky.jpg"];
+//    UIImageView *starrySkyImageView = [[UIImageView alloc] initWithImage:starrySkyImage];
+//    CGSize starrySkySize = starrySkyImage.size;
+//    CGFloat starrySkyWidth = starrySkySize.width/contentScaleFactor;
+//    CGFloat starrySkyHeight = starrySkySize.height/contentScaleFactor;
+//    starrySkyImageView.frame = CGRectMake(homeView.frame.origin.x,
+//                                          homeView.frame.origin.y,
+//                                          starrySkyWidth,
+//                                          starrySkyHeight);
+//    [scoresView addSubview:starrySkyImageView];
+//    [scoresView sendSubviewToBack:starrySkyImageView];
 
     NSString *adFree = [appd getObjectFromDefaults:@"AD_FREE_PUZZLES"];
     if (![adFree isEqualToString:@"YES"]){
@@ -1288,18 +1313,31 @@ Implementation of the cross-platform view controller
     rootView.alpha = 1.0;
     rootView.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.14 alpha:1.0];
 
+
+    
     //
     // Set up PAGE_HOME with homeView
     // homeView holds the home page view
-    // logoView holds the Logo image
     //
-    CGRect homeFrame = rootView.bounds;
-    homeView = [[UIView alloc] initWithFrame:homeFrame];
+    CGRect homeBounds = rootView.bounds;
+//    homeView = [[UIView alloc] initWithFrame:homeBounds];
+    homeView = [[MTKView alloc] initWithFrame:homeBounds device:MTLCreateSystemDefaultDevice()];
     
-    // homeView tile pattern
-    homeView.backgroundColor = [UIColor blackColor];
-    homeView.alpha = 1.0;
-    homeView.opaque = YES;
+//    homeView.enableSetNeedsDisplay = NO;
+//    homeView.preferredFramesPerSecond = 30;
+//    homeView.presentsWithTransaction = NO;
+//    homeView.device = MTLCreateSystemDefaultDevice();
+//    NSAssert(homeView.device, @"Metal is not supported on this device");
+//    renderer = [[BMDRenderer alloc] initWithMetalKitView:homeView];
+//    NSAssert(renderer, @"Renderer failed initialization");
+//    // Initialize the renderer with the view size
+//    [renderer mtkView:homeView drawableSizeWillChange:homeView.drawableSize];
+//    homeView.delegate = renderer;
+
+    // homeView background
+//    homeView.backgroundColor = [UIColor blackColor];
+//    homeView.alpha = 1.0;
+//    homeView.opaque = YES;
     
     // Get the logo image size
     UIImage *logoImage = [UIImage imageNamed:@"Beamed2Logo.png"];

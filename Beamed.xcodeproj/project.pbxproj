@@ -310,6 +310,189 @@
 		63B42F171ED2063800859D09 /* BMDShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3AF7E9C11EB64A46003BB06D /* BMDShaders.metal */; };
 		63B42F181ED2063C00859D09 /* BMDShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3AF7E9C11EB64A46003BB06D /* BMDShaders.metal */; };
 		800465FB2906FE4F0044345E /* AppIcons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 800465FA2906FE4F0044345E /* AppIcons.xcassets */; };
+		80099A95296F4CBC0022F747 /* AnimatedHomeScreen_00007.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A8B296F4CBB0022F747 /* AnimatedHomeScreen_00007.png */; };
+		80099A96296F4CBC0022F747 /* AnimatedHomeScreen_00009.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A8C296F4CBB0022F747 /* AnimatedHomeScreen_00009.png */; };
+		80099A97296F4CBC0022F747 /* AnimatedHomeScreen_00008.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A8D296F4CBB0022F747 /* AnimatedHomeScreen_00008.png */; };
+		80099A98296F4CBC0022F747 /* AnimatedHomeScreen_00002.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A8E296F4CBB0022F747 /* AnimatedHomeScreen_00002.png */; };
+		80099A99296F4CBC0022F747 /* AnimatedHomeScreen_00000.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A8F296F4CBB0022F747 /* AnimatedHomeScreen_00000.png */; };
+		80099A9A296F4CBC0022F747 /* AnimatedHomeScreen_00001.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A90296F4CBB0022F747 /* AnimatedHomeScreen_00001.png */; };
+		80099A9B296F4CBC0022F747 /* AnimatedHomeScreen_00003.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A91296F4CBC0022F747 /* AnimatedHomeScreen_00003.png */; };
+		80099A9C296F4CBC0022F747 /* AnimatedHomeScreen_00004.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A92296F4CBC0022F747 /* AnimatedHomeScreen_00004.png */; };
+		80099A9D296F4CBC0022F747 /* AnimatedHomeScreen_00005.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A93296F4CBC0022F747 /* AnimatedHomeScreen_00005.png */; };
+		80099A9E296F4CBC0022F747 /* AnimatedHomeScreen_00006.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A94296F4CBC0022F747 /* AnimatedHomeScreen_00006.png */; };
+		80099AB3296F4CCD0022F747 /* AnimatedHomeScreen_00016.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A9F296F4CCB0022F747 /* AnimatedHomeScreen_00016.png */; };
+		80099AB4296F4CCD0022F747 /* AnimatedHomeScreen_00012.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA0296F4CCB0022F747 /* AnimatedHomeScreen_00012.png */; };
+		80099AB5296F4CCD0022F747 /* AnimatedHomeScreen_00027.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA1296F4CCB0022F747 /* AnimatedHomeScreen_00027.png */; };
+		80099AB6296F4CCD0022F747 /* AnimatedHomeScreen_00021.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA2296F4CCB0022F747 /* AnimatedHomeScreen_00021.png */; };
+		80099AB7296F4CCD0022F747 /* AnimatedHomeScreen_00022.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA3296F4CCB0022F747 /* AnimatedHomeScreen_00022.png */; };
+		80099AB8296F4CCD0022F747 /* AnimatedHomeScreen_00029.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA4296F4CCB0022F747 /* AnimatedHomeScreen_00029.png */; };
+		80099AB9296F4CCD0022F747 /* AnimatedHomeScreen_00015.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA5296F4CCB0022F747 /* AnimatedHomeScreen_00015.png */; };
+		80099ABA296F4CCD0022F747 /* AnimatedHomeScreen_00024.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA6296F4CCB0022F747 /* AnimatedHomeScreen_00024.png */; };
+		80099ABB296F4CCD0022F747 /* AnimatedHomeScreen_00011.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA7296F4CCB0022F747 /* AnimatedHomeScreen_00011.png */; };
+		80099ABC296F4CCD0022F747 /* AnimatedHomeScreen_00018.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA8296F4CCC0022F747 /* AnimatedHomeScreen_00018.png */; };
+		80099ABD296F4CCD0022F747 /* AnimatedHomeScreen_00020.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA9296F4CCC0022F747 /* AnimatedHomeScreen_00020.png */; };
+		80099ABE296F4CCD0022F747 /* AnimatedHomeScreen_00026.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AAA296F4CCC0022F747 /* AnimatedHomeScreen_00026.png */; };
+		80099ABF296F4CCD0022F747 /* AnimatedHomeScreen_00019.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AAB296F4CCC0022F747 /* AnimatedHomeScreen_00019.png */; };
+		80099AC0296F4CCD0022F747 /* AnimatedHomeScreen_00023.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AAC296F4CCC0022F747 /* AnimatedHomeScreen_00023.png */; };
+		80099AC1296F4CCD0022F747 /* AnimatedHomeScreen_00017.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AAD296F4CCC0022F747 /* AnimatedHomeScreen_00017.png */; };
+		80099AC2296F4CCD0022F747 /* AnimatedHomeScreen_00013.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AAE296F4CCC0022F747 /* AnimatedHomeScreen_00013.png */; };
+		80099AC3296F4CCD0022F747 /* AnimatedHomeScreen_00025.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AAF296F4CCC0022F747 /* AnimatedHomeScreen_00025.png */; };
+		80099AC4296F4CCD0022F747 /* AnimatedHomeScreen_00014.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AB0296F4CCC0022F747 /* AnimatedHomeScreen_00014.png */; };
+		80099AC5296F4CCD0022F747 /* AnimatedHomeScreen_00010.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AB1296F4CCC0022F747 /* AnimatedHomeScreen_00010.png */; };
+		80099AC6296F4CCD0022F747 /* AnimatedHomeScreen_00028.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AB2296F4CCC0022F747 /* AnimatedHomeScreen_00028.png */; };
+		80099AE5296F4CE20022F747 /* AnimatedHomeScreen_00046.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AC7296F4CDF0022F747 /* AnimatedHomeScreen_00046.png */; };
+		80099AE6296F4CE20022F747 /* AnimatedHomeScreen_00051.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AC8296F4CDF0022F747 /* AnimatedHomeScreen_00051.png */; };
+		80099AE7296F4CE20022F747 /* AnimatedHomeScreen_00033.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AC9296F4CDF0022F747 /* AnimatedHomeScreen_00033.png */; };
+		80099AE8296F4CE20022F747 /* AnimatedHomeScreen_00032.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ACA296F4CDF0022F747 /* AnimatedHomeScreen_00032.png */; };
+		80099AE9296F4CE20022F747 /* AnimatedHomeScreen_00039.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ACB296F4CDF0022F747 /* AnimatedHomeScreen_00039.png */; };
+		80099AEA296F4CE20022F747 /* AnimatedHomeScreen_00035.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ACC296F4CDF0022F747 /* AnimatedHomeScreen_00035.png */; };
+		80099AEB296F4CE20022F747 /* AnimatedHomeScreen_00037.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ACD296F4CDF0022F747 /* AnimatedHomeScreen_00037.png */; };
+		80099AEC296F4CE20022F747 /* AnimatedHomeScreen_00036.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ACE296F4CDF0022F747 /* AnimatedHomeScreen_00036.png */; };
+		80099AED296F4CE20022F747 /* AnimatedHomeScreen_00054.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ACF296F4CE00022F747 /* AnimatedHomeScreen_00054.png */; };
+		80099AEE296F4CE20022F747 /* AnimatedHomeScreen_00030.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD0296F4CE00022F747 /* AnimatedHomeScreen_00030.png */; };
+		80099AEF296F4CE20022F747 /* AnimatedHomeScreen_00053.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD1296F4CE00022F747 /* AnimatedHomeScreen_00053.png */; };
+		80099AF0296F4CE20022F747 /* AnimatedHomeScreen_00043.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD2296F4CE00022F747 /* AnimatedHomeScreen_00043.png */; };
+		80099AF1296F4CE20022F747 /* AnimatedHomeScreen_00038.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD3296F4CE00022F747 /* AnimatedHomeScreen_00038.png */; };
+		80099AF2296F4CE20022F747 /* AnimatedHomeScreen_00050.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD4296F4CE00022F747 /* AnimatedHomeScreen_00050.png */; };
+		80099AF3296F4CE20022F747 /* AnimatedHomeScreen_00042.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD5296F4CE00022F747 /* AnimatedHomeScreen_00042.png */; };
+		80099AF4296F4CE20022F747 /* AnimatedHomeScreen_00047.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD6296F4CE00022F747 /* AnimatedHomeScreen_00047.png */; };
+		80099AF5296F4CE20022F747 /* AnimatedHomeScreen_00045.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD7296F4CE00022F747 /* AnimatedHomeScreen_00045.png */; };
+		80099AF6296F4CE20022F747 /* AnimatedHomeScreen_00034.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD8296F4CE00022F747 /* AnimatedHomeScreen_00034.png */; };
+		80099AF7296F4CE20022F747 /* AnimatedHomeScreen_00055.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD9296F4CE00022F747 /* AnimatedHomeScreen_00055.png */; };
+		80099AF8296F4CE20022F747 /* AnimatedHomeScreen_00059.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ADA296F4CE10022F747 /* AnimatedHomeScreen_00059.png */; };
+		80099AF9296F4CE20022F747 /* AnimatedHomeScreen_00031.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ADB296F4CE10022F747 /* AnimatedHomeScreen_00031.png */; };
+		80099AFA296F4CE20022F747 /* AnimatedHomeScreen_00044.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ADC296F4CE10022F747 /* AnimatedHomeScreen_00044.png */; };
+		80099AFB296F4CE20022F747 /* AnimatedHomeScreen_00056.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ADD296F4CE10022F747 /* AnimatedHomeScreen_00056.png */; };
+		80099AFC296F4CE20022F747 /* AnimatedHomeScreen_00049.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ADE296F4CE10022F747 /* AnimatedHomeScreen_00049.png */; };
+		80099AFD296F4CE20022F747 /* AnimatedHomeScreen_00058.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ADF296F4CE10022F747 /* AnimatedHomeScreen_00058.png */; };
+		80099AFE296F4CE20022F747 /* AnimatedHomeScreen_00057.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AE0296F4CE10022F747 /* AnimatedHomeScreen_00057.png */; };
+		80099AFF296F4CE20022F747 /* AnimatedHomeScreen_00048.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AE1296F4CE10022F747 /* AnimatedHomeScreen_00048.png */; };
+		80099B00296F4CE20022F747 /* AnimatedHomeScreen_00052.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AE2296F4CE10022F747 /* AnimatedHomeScreen_00052.png */; };
+		80099B01296F4CE20022F747 /* AnimatedHomeScreen_00040.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AE3296F4CE10022F747 /* AnimatedHomeScreen_00040.png */; };
+		80099B02296F4CE20022F747 /* AnimatedHomeScreen_00041.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AE4296F4CE20022F747 /* AnimatedHomeScreen_00041.png */; };
+		80099B07296FBB1A0022F747 /* AnimatedHomeScreen_00000.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A8F296F4CBB0022F747 /* AnimatedHomeScreen_00000.png */; };
+		80099B08296FBB1A0022F747 /* AnimatedHomeScreen_00000.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A8F296F4CBB0022F747 /* AnimatedHomeScreen_00000.png */; };
+		80099B09296FBB1F0022F747 /* AnimatedHomeScreen_00001.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A90296F4CBB0022F747 /* AnimatedHomeScreen_00001.png */; };
+		80099B0A296FBB1F0022F747 /* AnimatedHomeScreen_00001.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A90296F4CBB0022F747 /* AnimatedHomeScreen_00001.png */; };
+		80099B0B296FBB220022F747 /* AnimatedHomeScreen_00002.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A8E296F4CBB0022F747 /* AnimatedHomeScreen_00002.png */; };
+		80099B0C296FBB230022F747 /* AnimatedHomeScreen_00002.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A8E296F4CBB0022F747 /* AnimatedHomeScreen_00002.png */; };
+		80099B0D296FBB270022F747 /* AnimatedHomeScreen_00003.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A91296F4CBC0022F747 /* AnimatedHomeScreen_00003.png */; };
+		80099B0E296FBB280022F747 /* AnimatedHomeScreen_00003.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A91296F4CBC0022F747 /* AnimatedHomeScreen_00003.png */; };
+		80099B0F296FBB2F0022F747 /* AnimatedHomeScreen_00004.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A92296F4CBC0022F747 /* AnimatedHomeScreen_00004.png */; };
+		80099B10296FBB2F0022F747 /* AnimatedHomeScreen_00007.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A8B296F4CBB0022F747 /* AnimatedHomeScreen_00007.png */; };
+		80099B11296FBB2F0022F747 /* AnimatedHomeScreen_00005.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A93296F4CBC0022F747 /* AnimatedHomeScreen_00005.png */; };
+		80099B12296FBB2F0022F747 /* AnimatedHomeScreen_00006.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A94296F4CBC0022F747 /* AnimatedHomeScreen_00006.png */; };
+		80099B13296FBB300022F747 /* AnimatedHomeScreen_00004.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A92296F4CBC0022F747 /* AnimatedHomeScreen_00004.png */; };
+		80099B14296FBB300022F747 /* AnimatedHomeScreen_00007.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A8B296F4CBB0022F747 /* AnimatedHomeScreen_00007.png */; };
+		80099B15296FBB300022F747 /* AnimatedHomeScreen_00005.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A93296F4CBC0022F747 /* AnimatedHomeScreen_00005.png */; };
+		80099B16296FBB300022F747 /* AnimatedHomeScreen_00006.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A94296F4CBC0022F747 /* AnimatedHomeScreen_00006.png */; };
+		80099B17296FBB400022F747 /* AnimatedHomeScreen_00027.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA1296F4CCB0022F747 /* AnimatedHomeScreen_00027.png */; };
+		80099B18296FBB400022F747 /* AnimatedHomeScreen_00023.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AAC296F4CCC0022F747 /* AnimatedHomeScreen_00023.png */; };
+		80099B19296FBB400022F747 /* AnimatedHomeScreen_00017.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AAD296F4CCC0022F747 /* AnimatedHomeScreen_00017.png */; };
+		80099B1A296FBB400022F747 /* AnimatedHomeScreen_00049.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ADE296F4CE10022F747 /* AnimatedHomeScreen_00049.png */; };
+		80099B1B296FBB400022F747 /* AnimatedHomeScreen_00046.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AC7296F4CDF0022F747 /* AnimatedHomeScreen_00046.png */; };
+		80099B1C296FBB400022F747 /* AnimatedHomeScreen_00011.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA7296F4CCB0022F747 /* AnimatedHomeScreen_00011.png */; };
+		80099B1D296FBB400022F747 /* AnimatedHomeScreen_00013.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AAE296F4CCC0022F747 /* AnimatedHomeScreen_00013.png */; };
+		80099B1E296FBB400022F747 /* AnimatedHomeScreen_00018.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA8296F4CCC0022F747 /* AnimatedHomeScreen_00018.png */; };
+		80099B1F296FBB400022F747 /* AnimatedHomeScreen_00053.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD1296F4CE00022F747 /* AnimatedHomeScreen_00053.png */; };
+		80099B20296FBB400022F747 /* AnimatedHomeScreen_00056.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ADD296F4CE10022F747 /* AnimatedHomeScreen_00056.png */; };
+		80099B21296FBB400022F747 /* AnimatedHomeScreen_00010.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AB1296F4CCC0022F747 /* AnimatedHomeScreen_00010.png */; };
+		80099B22296FBB400022F747 /* AnimatedHomeScreen_00015.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA5296F4CCB0022F747 /* AnimatedHomeScreen_00015.png */; };
+		80099B23296FBB400022F747 /* AnimatedHomeScreen_00052.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AE2296F4CE10022F747 /* AnimatedHomeScreen_00052.png */; };
+		80099B24296FBB400022F747 /* AnimatedHomeScreen_00050.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD4296F4CE00022F747 /* AnimatedHomeScreen_00050.png */; };
+		80099B25296FBB400022F747 /* AnimatedHomeScreen_00008.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A8D296F4CBB0022F747 /* AnimatedHomeScreen_00008.png */; };
+		80099B26296FBB400022F747 /* AnimatedHomeScreen_00030.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD0296F4CE00022F747 /* AnimatedHomeScreen_00030.png */; };
+		80099B27296FBB400022F747 /* AnimatedHomeScreen_00032.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ACA296F4CDF0022F747 /* AnimatedHomeScreen_00032.png */; };
+		80099B28296FBB400022F747 /* AnimatedHomeScreen_00034.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD8296F4CE00022F747 /* AnimatedHomeScreen_00034.png */; };
+		80099B29296FBB400022F747 /* AnimatedHomeScreen_00058.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ADF296F4CE10022F747 /* AnimatedHomeScreen_00058.png */; };
+		80099B2A296FBB400022F747 /* AnimatedHomeScreen_00059.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ADA296F4CE10022F747 /* AnimatedHomeScreen_00059.png */; };
+		80099B2B296FBB400022F747 /* AnimatedHomeScreen_00057.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AE0296F4CE10022F747 /* AnimatedHomeScreen_00057.png */; };
+		80099B2C296FBB400022F747 /* AnimatedHomeScreen_00045.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD7296F4CE00022F747 /* AnimatedHomeScreen_00045.png */; };
+		80099B2D296FBB400022F747 /* AnimatedHomeScreen_00054.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ACF296F4CE00022F747 /* AnimatedHomeScreen_00054.png */; };
+		80099B2E296FBB400022F747 /* AnimatedHomeScreen_00021.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA2296F4CCB0022F747 /* AnimatedHomeScreen_00021.png */; };
+		80099B2F296FBB400022F747 /* AnimatedHomeScreen_00014.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AB0296F4CCC0022F747 /* AnimatedHomeScreen_00014.png */; };
+		80099B30296FBB400022F747 /* AnimatedHomeScreen_00031.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ADB296F4CE10022F747 /* AnimatedHomeScreen_00031.png */; };
+		80099B31296FBB400022F747 /* AnimatedHomeScreen_00024.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA6296F4CCB0022F747 /* AnimatedHomeScreen_00024.png */; };
+		80099B32296FBB400022F747 /* AnimatedHomeScreen_00039.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ACB296F4CDF0022F747 /* AnimatedHomeScreen_00039.png */; };
+		80099B33296FBB400022F747 /* AnimatedHomeScreen_00042.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD5296F4CE00022F747 /* AnimatedHomeScreen_00042.png */; };
+		80099B34296FBB400022F747 /* AnimatedHomeScreen_00022.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA3296F4CCB0022F747 /* AnimatedHomeScreen_00022.png */; };
+		80099B35296FBB400022F747 /* AnimatedHomeScreen_00020.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA9296F4CCC0022F747 /* AnimatedHomeScreen_00020.png */; };
+		80099B36296FBB400022F747 /* AnimatedHomeScreen_00040.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AE3296F4CE10022F747 /* AnimatedHomeScreen_00040.png */; };
+		80099B37296FBB400022F747 /* AnimatedHomeScreen_00038.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD3296F4CE00022F747 /* AnimatedHomeScreen_00038.png */; };
+		80099B38296FBB400022F747 /* AnimatedHomeScreen_00041.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AE4296F4CE20022F747 /* AnimatedHomeScreen_00041.png */; };
+		80099B39296FBB400022F747 /* AnimatedHomeScreen_00012.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA0296F4CCB0022F747 /* AnimatedHomeScreen_00012.png */; };
+		80099B3A296FBB400022F747 /* AnimatedHomeScreen_00044.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ADC296F4CE10022F747 /* AnimatedHomeScreen_00044.png */; };
+		80099B3B296FBB400022F747 /* AnimatedHomeScreen_00033.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AC9296F4CDF0022F747 /* AnimatedHomeScreen_00033.png */; };
+		80099B3C296FBB400022F747 /* AnimatedHomeScreen_00048.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AE1296F4CE10022F747 /* AnimatedHomeScreen_00048.png */; };
+		80099B3D296FBB400022F747 /* AnimatedHomeScreen_00019.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AAB296F4CCC0022F747 /* AnimatedHomeScreen_00019.png */; };
+		80099B3E296FBB400022F747 /* AnimatedHomeScreen_00047.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD6296F4CE00022F747 /* AnimatedHomeScreen_00047.png */; };
+		80099B3F296FBB400022F747 /* AnimatedHomeScreen_00016.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A9F296F4CCB0022F747 /* AnimatedHomeScreen_00016.png */; };
+		80099B40296FBB400022F747 /* AnimatedHomeScreen_00036.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ACE296F4CDF0022F747 /* AnimatedHomeScreen_00036.png */; };
+		80099B41296FBB400022F747 /* AnimatedHomeScreen_00028.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AB2296F4CCC0022F747 /* AnimatedHomeScreen_00028.png */; };
+		80099B42296FBB400022F747 /* AnimatedHomeScreen_00055.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD9296F4CE00022F747 /* AnimatedHomeScreen_00055.png */; };
+		80099B43296FBB400022F747 /* AnimatedHomeScreen_00043.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD2296F4CE00022F747 /* AnimatedHomeScreen_00043.png */; };
+		80099B44296FBB400022F747 /* AnimatedHomeScreen_00035.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ACC296F4CDF0022F747 /* AnimatedHomeScreen_00035.png */; };
+		80099B45296FBB400022F747 /* AnimatedHomeScreen_00051.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AC8296F4CDF0022F747 /* AnimatedHomeScreen_00051.png */; };
+		80099B46296FBB400022F747 /* AnimatedHomeScreen_00029.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA4296F4CCB0022F747 /* AnimatedHomeScreen_00029.png */; };
+		80099B47296FBB400022F747 /* AnimatedHomeScreen_00009.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A8C296F4CBB0022F747 /* AnimatedHomeScreen_00009.png */; };
+		80099B48296FBB400022F747 /* AnimatedHomeScreen_00025.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AAF296F4CCC0022F747 /* AnimatedHomeScreen_00025.png */; };
+		80099B49296FBB400022F747 /* AnimatedHomeScreen_00026.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AAA296F4CCC0022F747 /* AnimatedHomeScreen_00026.png */; };
+		80099B4A296FBB400022F747 /* AnimatedHomeScreen_00037.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ACD296F4CDF0022F747 /* AnimatedHomeScreen_00037.png */; };
+		80099B4B296FBB400022F747 /* AnimatedHomeScreen_00027.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA1296F4CCB0022F747 /* AnimatedHomeScreen_00027.png */; };
+		80099B4C296FBB400022F747 /* AnimatedHomeScreen_00023.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AAC296F4CCC0022F747 /* AnimatedHomeScreen_00023.png */; };
+		80099B4D296FBB400022F747 /* AnimatedHomeScreen_00017.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AAD296F4CCC0022F747 /* AnimatedHomeScreen_00017.png */; };
+		80099B4E296FBB400022F747 /* AnimatedHomeScreen_00049.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ADE296F4CE10022F747 /* AnimatedHomeScreen_00049.png */; };
+		80099B4F296FBB400022F747 /* AnimatedHomeScreen_00046.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AC7296F4CDF0022F747 /* AnimatedHomeScreen_00046.png */; };
+		80099B50296FBB400022F747 /* AnimatedHomeScreen_00011.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA7296F4CCB0022F747 /* AnimatedHomeScreen_00011.png */; };
+		80099B51296FBB400022F747 /* AnimatedHomeScreen_00013.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AAE296F4CCC0022F747 /* AnimatedHomeScreen_00013.png */; };
+		80099B52296FBB400022F747 /* AnimatedHomeScreen_00018.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA8296F4CCC0022F747 /* AnimatedHomeScreen_00018.png */; };
+		80099B53296FBB400022F747 /* AnimatedHomeScreen_00053.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD1296F4CE00022F747 /* AnimatedHomeScreen_00053.png */; };
+		80099B54296FBB400022F747 /* AnimatedHomeScreen_00056.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ADD296F4CE10022F747 /* AnimatedHomeScreen_00056.png */; };
+		80099B55296FBB400022F747 /* AnimatedHomeScreen_00010.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AB1296F4CCC0022F747 /* AnimatedHomeScreen_00010.png */; };
+		80099B56296FBB400022F747 /* AnimatedHomeScreen_00015.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA5296F4CCB0022F747 /* AnimatedHomeScreen_00015.png */; };
+		80099B57296FBB400022F747 /* AnimatedHomeScreen_00052.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AE2296F4CE10022F747 /* AnimatedHomeScreen_00052.png */; };
+		80099B58296FBB400022F747 /* AnimatedHomeScreen_00050.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD4296F4CE00022F747 /* AnimatedHomeScreen_00050.png */; };
+		80099B59296FBB400022F747 /* AnimatedHomeScreen_00008.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A8D296F4CBB0022F747 /* AnimatedHomeScreen_00008.png */; };
+		80099B5A296FBB400022F747 /* AnimatedHomeScreen_00030.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD0296F4CE00022F747 /* AnimatedHomeScreen_00030.png */; };
+		80099B5B296FBB400022F747 /* AnimatedHomeScreen_00032.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ACA296F4CDF0022F747 /* AnimatedHomeScreen_00032.png */; };
+		80099B5C296FBB400022F747 /* AnimatedHomeScreen_00034.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD8296F4CE00022F747 /* AnimatedHomeScreen_00034.png */; };
+		80099B5D296FBB400022F747 /* AnimatedHomeScreen_00058.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ADF296F4CE10022F747 /* AnimatedHomeScreen_00058.png */; };
+		80099B5E296FBB400022F747 /* AnimatedHomeScreen_00059.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ADA296F4CE10022F747 /* AnimatedHomeScreen_00059.png */; };
+		80099B5F296FBB400022F747 /* AnimatedHomeScreen_00057.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AE0296F4CE10022F747 /* AnimatedHomeScreen_00057.png */; };
+		80099B60296FBB400022F747 /* AnimatedHomeScreen_00045.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD7296F4CE00022F747 /* AnimatedHomeScreen_00045.png */; };
+		80099B61296FBB400022F747 /* AnimatedHomeScreen_00054.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ACF296F4CE00022F747 /* AnimatedHomeScreen_00054.png */; };
+		80099B62296FBB400022F747 /* AnimatedHomeScreen_00021.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA2296F4CCB0022F747 /* AnimatedHomeScreen_00021.png */; };
+		80099B63296FBB400022F747 /* AnimatedHomeScreen_00014.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AB0296F4CCC0022F747 /* AnimatedHomeScreen_00014.png */; };
+		80099B64296FBB400022F747 /* AnimatedHomeScreen_00031.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ADB296F4CE10022F747 /* AnimatedHomeScreen_00031.png */; };
+		80099B65296FBB400022F747 /* AnimatedHomeScreen_00024.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA6296F4CCB0022F747 /* AnimatedHomeScreen_00024.png */; };
+		80099B66296FBB400022F747 /* AnimatedHomeScreen_00039.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ACB296F4CDF0022F747 /* AnimatedHomeScreen_00039.png */; };
+		80099B67296FBB400022F747 /* AnimatedHomeScreen_00042.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD5296F4CE00022F747 /* AnimatedHomeScreen_00042.png */; };
+		80099B68296FBB400022F747 /* AnimatedHomeScreen_00022.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA3296F4CCB0022F747 /* AnimatedHomeScreen_00022.png */; };
+		80099B69296FBB400022F747 /* AnimatedHomeScreen_00020.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA9296F4CCC0022F747 /* AnimatedHomeScreen_00020.png */; };
+		80099B6A296FBB400022F747 /* AnimatedHomeScreen_00040.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AE3296F4CE10022F747 /* AnimatedHomeScreen_00040.png */; };
+		80099B6B296FBB400022F747 /* AnimatedHomeScreen_00038.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD3296F4CE00022F747 /* AnimatedHomeScreen_00038.png */; };
+		80099B6C296FBB400022F747 /* AnimatedHomeScreen_00041.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AE4296F4CE20022F747 /* AnimatedHomeScreen_00041.png */; };
+		80099B6D296FBB400022F747 /* AnimatedHomeScreen_00012.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA0296F4CCB0022F747 /* AnimatedHomeScreen_00012.png */; };
+		80099B6E296FBB400022F747 /* AnimatedHomeScreen_00044.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ADC296F4CE10022F747 /* AnimatedHomeScreen_00044.png */; };
+		80099B6F296FBB400022F747 /* AnimatedHomeScreen_00033.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AC9296F4CDF0022F747 /* AnimatedHomeScreen_00033.png */; };
+		80099B70296FBB400022F747 /* AnimatedHomeScreen_00048.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AE1296F4CE10022F747 /* AnimatedHomeScreen_00048.png */; };
+		80099B71296FBB400022F747 /* AnimatedHomeScreen_00019.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AAB296F4CCC0022F747 /* AnimatedHomeScreen_00019.png */; };
+		80099B72296FBB400022F747 /* AnimatedHomeScreen_00047.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD6296F4CE00022F747 /* AnimatedHomeScreen_00047.png */; };
+		80099B73296FBB400022F747 /* AnimatedHomeScreen_00016.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A9F296F4CCB0022F747 /* AnimatedHomeScreen_00016.png */; };
+		80099B74296FBB400022F747 /* AnimatedHomeScreen_00036.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ACE296F4CDF0022F747 /* AnimatedHomeScreen_00036.png */; };
+		80099B75296FBB400022F747 /* AnimatedHomeScreen_00028.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AB2296F4CCC0022F747 /* AnimatedHomeScreen_00028.png */; };
+		80099B76296FBB400022F747 /* AnimatedHomeScreen_00055.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD9296F4CE00022F747 /* AnimatedHomeScreen_00055.png */; };
+		80099B77296FBB400022F747 /* AnimatedHomeScreen_00043.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AD2296F4CE00022F747 /* AnimatedHomeScreen_00043.png */; };
+		80099B78296FBB400022F747 /* AnimatedHomeScreen_00035.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ACC296F4CDF0022F747 /* AnimatedHomeScreen_00035.png */; };
+		80099B79296FBB400022F747 /* AnimatedHomeScreen_00051.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AC8296F4CDF0022F747 /* AnimatedHomeScreen_00051.png */; };
+		80099B7A296FBB400022F747 /* AnimatedHomeScreen_00029.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AA4296F4CCB0022F747 /* AnimatedHomeScreen_00029.png */; };
+		80099B7B296FBB400022F747 /* AnimatedHomeScreen_00009.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099A8C296F4CBB0022F747 /* AnimatedHomeScreen_00009.png */; };
+		80099B7C296FBB400022F747 /* AnimatedHomeScreen_00025.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AAF296F4CCC0022F747 /* AnimatedHomeScreen_00025.png */; };
+		80099B7D296FBB400022F747 /* AnimatedHomeScreen_00026.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099AAA296F4CCC0022F747 /* AnimatedHomeScreen_00026.png */; };
+		80099B7E296FBB400022F747 /* AnimatedHomeScreen_00037.png in Resources */ = {isa = PBXBuildFile; fileRef = 80099ACD296F4CDF0022F747 /* AnimatedHomeScreen_00037.png */; };
+		80099B80296FBDB90022F747 /* backgroundAnimations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80099B7F296FBDB90022F747 /* backgroundAnimations.plist */; };
+		80099B81296FBDB90022F747 /* backgroundAnimations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80099B7F296FBDB90022F747 /* backgroundAnimations.plist */; };
+		80099B82296FBDB90022F747 /* backgroundAnimations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80099B7F296FBDB90022F747 /* backgroundAnimations.plist */; };
 		800E459B292EE45F0041976E /* BridgingHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E459A292EE45F0041976E /* BridgingHeader.swift */; };
 		800E459C292EE45F0041976E /* BridgingHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E459A292EE45F0041976E /* BridgingHeader.swift */; };
 		800E459D292EE45F0041976E /* BridgingHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E459A292EE45F0041976E /* BridgingHeader.swift */; };
@@ -394,9 +577,6 @@
 		8064E6592902463A006EEC33 /* editedPuzzlePack.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8064E6582902463A006EEC33 /* editedPuzzlePack.plist */; };
 		8064E65A2902463A006EEC33 /* editedPuzzlePack.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8064E6582902463A006EEC33 /* editedPuzzlePack.plist */; };
 		8064E65B2902463A006EEC33 /* editedPuzzlePack.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8064E6582902463A006EEC33 /* editedPuzzlePack.plist */; };
-		8065EA6F29004E2C00E383D7 /* cyanPerspectiveLandscapeGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = 8065EA6E29004E2C00E383D7 /* cyanPerspectiveLandscapeGrid.png */; };
-		8065EA7029004E2C00E383D7 /* cyanPerspectiveLandscapeGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = 8065EA6E29004E2C00E383D7 /* cyanPerspectiveLandscapeGrid.png */; };
-		8065EA7129004E2C00E383D7 /* cyanPerspectiveLandscapeGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = 8065EA6E29004E2C00E383D7 /* cyanPerspectiveLandscapeGrid.png */; };
 		8068338B292ECB1B00620AC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8068338A292ECB1B00620AC1 /* GoogleService-Info.plist */; };
 		8068338C292ECB1B00620AC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8068338A292ECB1B00620AC1 /* GoogleService-Info.plist */; };
 		8068338D292ECB1B00620AC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8068338A292ECB1B00620AC1 /* GoogleService-Info.plist */; };
@@ -709,6 +889,67 @@
 		52FD128925814C9600ECBE3D /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
 		52FD128A25814C9600ECBE3D /* Background.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Background.m; sourceTree = "<group>"; };
 		800465FA2906FE4F0044345E /* AppIcons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = AppIcons.xcassets; path = Assets.xcassets/AppIcons.xcassets; sourceTree = "<group>"; };
+		80099A8B296F4CBB0022F747 /* AnimatedHomeScreen_00007.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00007.png; sourceTree = "<group>"; };
+		80099A8C296F4CBB0022F747 /* AnimatedHomeScreen_00009.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00009.png; sourceTree = "<group>"; };
+		80099A8D296F4CBB0022F747 /* AnimatedHomeScreen_00008.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00008.png; sourceTree = "<group>"; };
+		80099A8E296F4CBB0022F747 /* AnimatedHomeScreen_00002.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00002.png; sourceTree = "<group>"; };
+		80099A8F296F4CBB0022F747 /* AnimatedHomeScreen_00000.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00000.png; sourceTree = "<group>"; };
+		80099A90296F4CBB0022F747 /* AnimatedHomeScreen_00001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00001.png; sourceTree = "<group>"; };
+		80099A91296F4CBC0022F747 /* AnimatedHomeScreen_00003.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00003.png; sourceTree = "<group>"; };
+		80099A92296F4CBC0022F747 /* AnimatedHomeScreen_00004.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00004.png; sourceTree = "<group>"; };
+		80099A93296F4CBC0022F747 /* AnimatedHomeScreen_00005.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00005.png; sourceTree = "<group>"; };
+		80099A94296F4CBC0022F747 /* AnimatedHomeScreen_00006.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00006.png; sourceTree = "<group>"; };
+		80099A9F296F4CCB0022F747 /* AnimatedHomeScreen_00016.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00016.png; sourceTree = "<group>"; };
+		80099AA0296F4CCB0022F747 /* AnimatedHomeScreen_00012.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00012.png; sourceTree = "<group>"; };
+		80099AA1296F4CCB0022F747 /* AnimatedHomeScreen_00027.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00027.png; sourceTree = "<group>"; };
+		80099AA2296F4CCB0022F747 /* AnimatedHomeScreen_00021.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00021.png; sourceTree = "<group>"; };
+		80099AA3296F4CCB0022F747 /* AnimatedHomeScreen_00022.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00022.png; sourceTree = "<group>"; };
+		80099AA4296F4CCB0022F747 /* AnimatedHomeScreen_00029.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00029.png; sourceTree = "<group>"; };
+		80099AA5296F4CCB0022F747 /* AnimatedHomeScreen_00015.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00015.png; sourceTree = "<group>"; };
+		80099AA6296F4CCB0022F747 /* AnimatedHomeScreen_00024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00024.png; sourceTree = "<group>"; };
+		80099AA7296F4CCB0022F747 /* AnimatedHomeScreen_00011.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00011.png; sourceTree = "<group>"; };
+		80099AA8296F4CCC0022F747 /* AnimatedHomeScreen_00018.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00018.png; sourceTree = "<group>"; };
+		80099AA9296F4CCC0022F747 /* AnimatedHomeScreen_00020.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00020.png; sourceTree = "<group>"; };
+		80099AAA296F4CCC0022F747 /* AnimatedHomeScreen_00026.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00026.png; sourceTree = "<group>"; };
+		80099AAB296F4CCC0022F747 /* AnimatedHomeScreen_00019.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00019.png; sourceTree = "<group>"; };
+		80099AAC296F4CCC0022F747 /* AnimatedHomeScreen_00023.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00023.png; sourceTree = "<group>"; };
+		80099AAD296F4CCC0022F747 /* AnimatedHomeScreen_00017.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00017.png; sourceTree = "<group>"; };
+		80099AAE296F4CCC0022F747 /* AnimatedHomeScreen_00013.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00013.png; sourceTree = "<group>"; };
+		80099AAF296F4CCC0022F747 /* AnimatedHomeScreen_00025.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00025.png; sourceTree = "<group>"; };
+		80099AB0296F4CCC0022F747 /* AnimatedHomeScreen_00014.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00014.png; sourceTree = "<group>"; };
+		80099AB1296F4CCC0022F747 /* AnimatedHomeScreen_00010.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00010.png; sourceTree = "<group>"; };
+		80099AB2296F4CCC0022F747 /* AnimatedHomeScreen_00028.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00028.png; sourceTree = "<group>"; };
+		80099AC7296F4CDF0022F747 /* AnimatedHomeScreen_00046.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00046.png; sourceTree = "<group>"; };
+		80099AC8296F4CDF0022F747 /* AnimatedHomeScreen_00051.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00051.png; sourceTree = "<group>"; };
+		80099AC9296F4CDF0022F747 /* AnimatedHomeScreen_00033.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00033.png; sourceTree = "<group>"; };
+		80099ACA296F4CDF0022F747 /* AnimatedHomeScreen_00032.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00032.png; sourceTree = "<group>"; };
+		80099ACB296F4CDF0022F747 /* AnimatedHomeScreen_00039.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00039.png; sourceTree = "<group>"; };
+		80099ACC296F4CDF0022F747 /* AnimatedHomeScreen_00035.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00035.png; sourceTree = "<group>"; };
+		80099ACD296F4CDF0022F747 /* AnimatedHomeScreen_00037.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00037.png; sourceTree = "<group>"; };
+		80099ACE296F4CDF0022F747 /* AnimatedHomeScreen_00036.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00036.png; sourceTree = "<group>"; };
+		80099ACF296F4CE00022F747 /* AnimatedHomeScreen_00054.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00054.png; sourceTree = "<group>"; };
+		80099AD0296F4CE00022F747 /* AnimatedHomeScreen_00030.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00030.png; sourceTree = "<group>"; };
+		80099AD1296F4CE00022F747 /* AnimatedHomeScreen_00053.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00053.png; sourceTree = "<group>"; };
+		80099AD2296F4CE00022F747 /* AnimatedHomeScreen_00043.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00043.png; sourceTree = "<group>"; };
+		80099AD3296F4CE00022F747 /* AnimatedHomeScreen_00038.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00038.png; sourceTree = "<group>"; };
+		80099AD4296F4CE00022F747 /* AnimatedHomeScreen_00050.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00050.png; sourceTree = "<group>"; };
+		80099AD5296F4CE00022F747 /* AnimatedHomeScreen_00042.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00042.png; sourceTree = "<group>"; };
+		80099AD6296F4CE00022F747 /* AnimatedHomeScreen_00047.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00047.png; sourceTree = "<group>"; };
+		80099AD7296F4CE00022F747 /* AnimatedHomeScreen_00045.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00045.png; sourceTree = "<group>"; };
+		80099AD8296F4CE00022F747 /* AnimatedHomeScreen_00034.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00034.png; sourceTree = "<group>"; };
+		80099AD9296F4CE00022F747 /* AnimatedHomeScreen_00055.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00055.png; sourceTree = "<group>"; };
+		80099ADA296F4CE10022F747 /* AnimatedHomeScreen_00059.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00059.png; sourceTree = "<group>"; };
+		80099ADB296F4CE10022F747 /* AnimatedHomeScreen_00031.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00031.png; sourceTree = "<group>"; };
+		80099ADC296F4CE10022F747 /* AnimatedHomeScreen_00044.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00044.png; sourceTree = "<group>"; };
+		80099ADD296F4CE10022F747 /* AnimatedHomeScreen_00056.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00056.png; sourceTree = "<group>"; };
+		80099ADE296F4CE10022F747 /* AnimatedHomeScreen_00049.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00049.png; sourceTree = "<group>"; };
+		80099ADF296F4CE10022F747 /* AnimatedHomeScreen_00058.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00058.png; sourceTree = "<group>"; };
+		80099AE0296F4CE10022F747 /* AnimatedHomeScreen_00057.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00057.png; sourceTree = "<group>"; };
+		80099AE1296F4CE10022F747 /* AnimatedHomeScreen_00048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00048.png; sourceTree = "<group>"; };
+		80099AE2296F4CE10022F747 /* AnimatedHomeScreen_00052.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00052.png; sourceTree = "<group>"; };
+		80099AE3296F4CE10022F747 /* AnimatedHomeScreen_00040.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00040.png; sourceTree = "<group>"; };
+		80099AE4296F4CE20022F747 /* AnimatedHomeScreen_00041.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AnimatedHomeScreen_00041.png; sourceTree = "<group>"; };
+		80099B7F296FBDB90022F747 /* backgroundAnimations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = backgroundAnimations.plist; sourceTree = "<group>"; };
 		800E4597292EE45F0041976E /* Beamed-macOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Beamed-macOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		800E4598292EE45F0041976E /* Beamed-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Beamed-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		800E4599292EE45F0041976E /* Beamed-tvOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Beamed-tvOS-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -744,7 +985,6 @@
 		805DB34327D1417700F9572A /* Beamsplitter-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Beamsplitter-1.png"; sourceTree = "<group>"; };
 		805DB34B27D1453F00F9572A /* Prism.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Prism.png; sourceTree = "<group>"; };
 		8064E6582902463A006EEC33 /* editedPuzzlePack.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = editedPuzzlePack.plist; sourceTree = "<group>"; };
-		8065EA6E29004E2C00E383D7 /* cyanPerspectiveLandscapeGrid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cyanPerspectiveLandscapeGrid.png; sourceTree = "<group>"; };
 		8068338A292ECB1B00620AC1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		806B4ECE296C7D7F00FFD306 /* LoadingScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoadingScreen.png; sourceTree = "<group>"; };
 		806B4ED0296C7F5400FFD306 /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
@@ -1051,6 +1291,7 @@
 		520E891E255C642D00C83B6E /* Textures */ = {
 			isa = PBXGroup;
 			children = (
+				80099A8A296F4C7B0022F747 /* Animated Screen Backgrounds */,
 				80F406F428F0AE97006C4F82 /* Activated Jewel Textures */,
 				80BF263527D7237F00BF9736 /* LaserGun */,
 				800ECE3928DF80F000A7DC62 /* Foreground Textures */,
@@ -1250,6 +1491,73 @@
 			name = "Home Screen Textures";
 			sourceTree = "<group>";
 		};
+		80099A8A296F4C7B0022F747 /* Animated Screen Backgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				80099A8F296F4CBB0022F747 /* AnimatedHomeScreen_00000.png */,
+				80099A90296F4CBB0022F747 /* AnimatedHomeScreen_00001.png */,
+				80099A8E296F4CBB0022F747 /* AnimatedHomeScreen_00002.png */,
+				80099A91296F4CBC0022F747 /* AnimatedHomeScreen_00003.png */,
+				80099A92296F4CBC0022F747 /* AnimatedHomeScreen_00004.png */,
+				80099A93296F4CBC0022F747 /* AnimatedHomeScreen_00005.png */,
+				80099A94296F4CBC0022F747 /* AnimatedHomeScreen_00006.png */,
+				80099A8B296F4CBB0022F747 /* AnimatedHomeScreen_00007.png */,
+				80099A8D296F4CBB0022F747 /* AnimatedHomeScreen_00008.png */,
+				80099A8C296F4CBB0022F747 /* AnimatedHomeScreen_00009.png */,
+				80099AB1296F4CCC0022F747 /* AnimatedHomeScreen_00010.png */,
+				80099AA7296F4CCB0022F747 /* AnimatedHomeScreen_00011.png */,
+				80099AA0296F4CCB0022F747 /* AnimatedHomeScreen_00012.png */,
+				80099AAE296F4CCC0022F747 /* AnimatedHomeScreen_00013.png */,
+				80099AB0296F4CCC0022F747 /* AnimatedHomeScreen_00014.png */,
+				80099AA5296F4CCB0022F747 /* AnimatedHomeScreen_00015.png */,
+				80099A9F296F4CCB0022F747 /* AnimatedHomeScreen_00016.png */,
+				80099AAD296F4CCC0022F747 /* AnimatedHomeScreen_00017.png */,
+				80099AA8296F4CCC0022F747 /* AnimatedHomeScreen_00018.png */,
+				80099AAB296F4CCC0022F747 /* AnimatedHomeScreen_00019.png */,
+				80099AA9296F4CCC0022F747 /* AnimatedHomeScreen_00020.png */,
+				80099AA2296F4CCB0022F747 /* AnimatedHomeScreen_00021.png */,
+				80099AA3296F4CCB0022F747 /* AnimatedHomeScreen_00022.png */,
+				80099AAC296F4CCC0022F747 /* AnimatedHomeScreen_00023.png */,
+				80099AA6296F4CCB0022F747 /* AnimatedHomeScreen_00024.png */,
+				80099AAF296F4CCC0022F747 /* AnimatedHomeScreen_00025.png */,
+				80099AAA296F4CCC0022F747 /* AnimatedHomeScreen_00026.png */,
+				80099AA1296F4CCB0022F747 /* AnimatedHomeScreen_00027.png */,
+				80099AB2296F4CCC0022F747 /* AnimatedHomeScreen_00028.png */,
+				80099AA4296F4CCB0022F747 /* AnimatedHomeScreen_00029.png */,
+				80099AD0296F4CE00022F747 /* AnimatedHomeScreen_00030.png */,
+				80099ADB296F4CE10022F747 /* AnimatedHomeScreen_00031.png */,
+				80099ACA296F4CDF0022F747 /* AnimatedHomeScreen_00032.png */,
+				80099AC9296F4CDF0022F747 /* AnimatedHomeScreen_00033.png */,
+				80099AD8296F4CE00022F747 /* AnimatedHomeScreen_00034.png */,
+				80099ACC296F4CDF0022F747 /* AnimatedHomeScreen_00035.png */,
+				80099ACE296F4CDF0022F747 /* AnimatedHomeScreen_00036.png */,
+				80099ACD296F4CDF0022F747 /* AnimatedHomeScreen_00037.png */,
+				80099AD3296F4CE00022F747 /* AnimatedHomeScreen_00038.png */,
+				80099ACB296F4CDF0022F747 /* AnimatedHomeScreen_00039.png */,
+				80099AE3296F4CE10022F747 /* AnimatedHomeScreen_00040.png */,
+				80099AE4296F4CE20022F747 /* AnimatedHomeScreen_00041.png */,
+				80099AD5296F4CE00022F747 /* AnimatedHomeScreen_00042.png */,
+				80099AD2296F4CE00022F747 /* AnimatedHomeScreen_00043.png */,
+				80099ADC296F4CE10022F747 /* AnimatedHomeScreen_00044.png */,
+				80099AD7296F4CE00022F747 /* AnimatedHomeScreen_00045.png */,
+				80099AC7296F4CDF0022F747 /* AnimatedHomeScreen_00046.png */,
+				80099AD6296F4CE00022F747 /* AnimatedHomeScreen_00047.png */,
+				80099AE1296F4CE10022F747 /* AnimatedHomeScreen_00048.png */,
+				80099ADE296F4CE10022F747 /* AnimatedHomeScreen_00049.png */,
+				80099AD4296F4CE00022F747 /* AnimatedHomeScreen_00050.png */,
+				80099AC8296F4CDF0022F747 /* AnimatedHomeScreen_00051.png */,
+				80099AE2296F4CE10022F747 /* AnimatedHomeScreen_00052.png */,
+				80099AD1296F4CE00022F747 /* AnimatedHomeScreen_00053.png */,
+				80099ACF296F4CE00022F747 /* AnimatedHomeScreen_00054.png */,
+				80099AD9296F4CE00022F747 /* AnimatedHomeScreen_00055.png */,
+				80099ADD296F4CE10022F747 /* AnimatedHomeScreen_00056.png */,
+				80099AE0296F4CE10022F747 /* AnimatedHomeScreen_00057.png */,
+				80099ADF296F4CE10022F747 /* AnimatedHomeScreen_00058.png */,
+				80099ADA296F4CE10022F747 /* AnimatedHomeScreen_00059.png */,
+			);
+			path = "Animated Screen Backgrounds";
+			sourceTree = "<group>";
+		};
 		800ECE3928DF80F000A7DC62 /* Foreground Textures */ = {
 			isa = PBXGroup;
 			children = (
@@ -1271,7 +1579,6 @@
 			isa = PBXGroup;
 			children = (
 				80A2DB522954256A00C790AD /* starrysky.jpg */,
-				8065EA6E29004E2C00E383D7 /* cyanPerspectiveLandscapeGrid.png */,
 				80ADCC1E29557639002B231F /* backgroundLandscapeGrid.png */,
 			);
 			path = "Screen Backgrounds";
@@ -1333,6 +1640,7 @@
 			isa = PBXGroup;
 			children = (
 				809DF29028F1EFEE00AC4680 /* tileAnimations.plist */,
+				80099B7F296FBDB90022F747 /* backgroundAnimations.plist */,
 				80F406F928F0C110006C4F82 /* backgroundTextures.plist */,
 				809DF29428F22F9A00AC4680 /* beamAnimations.plist */,
 				809DF29828F2334E00AC4680 /* ringAnimations.plist */,
@@ -1494,6 +1802,9 @@
 				8044DD972904908E0078942B /* cyanRectangleSelected.png in Resources */,
 				526FBCDD25926960001F5647 /* Beam-Angle00-08.png in Resources */,
 				80895494291DB77B009C4D02 /* NoAds.png in Resources */,
+				80099B30296FBB400022F747 /* AnimatedHomeScreen_00031.png in Resources */,
+				80099B32296FBB400022F747 /* AnimatedHomeScreen_00039.png in Resources */,
+				80099B1D296FBB400022F747 /* AnimatedHomeScreen_00013.png in Resources */,
 				8023B2C92915BBDF00176960 /* JewelMagenta.png in Resources */,
 				52A9A2F625717F1F0072F41E /* LaserQuick.wav in Resources */,
 				529A511827ACD24200FE0669 /* win-game-puzzle-50.wav in Resources */,
@@ -1512,6 +1823,7 @@
 				5251ACD9279667DA00A50A7B /* paidHintPacksArray.plist in Resources */,
 				5286EAB02564706B00B43209 /* TileJewelActivated13.png in Resources */,
 				80BF264427D723A000BF9736 /* LaserGun-5.png in Resources */,
+				80099B2C296FBB400022F747 /* AnimatedHomeScreen_00045.png in Resources */,
 				80FDEA6D29145A5C007C05F7 /* TileSquareBright.png in Resources */,
 				526FBCD125926960001F5647 /* Beam-Angle00-06.png in Resources */,
 				52994B3825DA13D700887B9C /* Rings_00012.png in Resources */,
@@ -1519,20 +1831,33 @@
 				52994B5325DA13D700887B9C /* Rings_00016.png in Resources */,
 				52994B5F25DA13D700887B9C /* Rings_00000.png in Resources */,
 				80F9BBCA28DC981E00DDE749 /* PointingFinger.png in Resources */,
+				80099B18296FBB400022F747 /* AnimatedHomeScreen_00023.png in Resources */,
+				80099B36296FBB400022F747 /* AnimatedHomeScreen_00040.png in Resources */,
 				5286EB262564715400B43209 /* TileSpectrumL0.png in Resources */,
 				800ECE4028DF86D400A7DC62 /* PackCompleted.png in Resources */,
 				8023B2C12915B7C100176960 /* JewelBlue.png in Resources */,
 				80BF264F27D723A000BF9736 /* LaserGun-12.png in Resources */,
+				80099B3A296FBB400022F747 /* AnimatedHomeScreen_00044.png in Resources */,
+				80099B3D296FBB400022F747 /* AnimatedHomeScreen_00019.png in Resources */,
+				80099B29296FBB400022F747 /* AnimatedHomeScreen_00058.png in Resources */,
 				526FBCE925926960001F5647 /* Beam-Angle00-09.png in Resources */,
+				80099B46296FBB400022F747 /* AnimatedHomeScreen_00029.png in Resources */,
 				526FBD2525926960001F5647 /* Beam-Angle00-14.png in Resources */,
 				52994B4125DA13D700887B9C /* Rings_00028.png in Resources */,
 				80FDEA7129145E52007C05F7 /* Beamsplitter-2.png in Resources */,
 				8023B2B52915AE9E00176960 /* Jewel.png in Resources */,
+				80099B35296FBB400022F747 /* AnimatedHomeScreen_00020.png in Resources */,
 				52994B7125DA13D700887B9C /* Rings_00013.png in Resources */,
+				80099B3F296FBB400022F747 /* AnimatedHomeScreen_00016.png in Resources */,
+				80099B2A296FBB400022F747 /* AnimatedHomeScreen_00059.png in Resources */,
+				80099B24296FBB400022F747 /* AnimatedHomeScreen_00050.png in Resources */,
 				80895498291DB7FE009C4D02 /* nextArrow.png in Resources */,
+				80099B3E296FBB400022F747 /* AnimatedHomeScreen_00047.png in Resources */,
 				522D214827AC85D700A91252 /* PuzzleBackgroundTheme2.wav in Resources */,
+				80099B81296FBDB90022F747 /* backgroundAnimations.plist in Resources */,
 				529A511927ACD24200FE0669 /* win-game-puzzle-119.wav in Resources */,
 				8044DD9A2904908E0078942B /* cyanRectangle.png in Resources */,
+				80099B10296FBB2F0022F747 /* AnimatedHomeScreen_00007.png in Resources */,
 				52A9A2C625717F070072F41E /* 39770_Light_SaberSciFiLowSwingFast_1.wav in Resources */,
 				52994B8325DA13D700887B9C /* Rings_00014.png in Resources */,
 				80D4CA182965DD6B00AD28D7 /* helpButton.png in Resources */,
@@ -1541,24 +1866,32 @@
 				80A4F73C28D4D5ED007BDE13 /* demoPuzzlePackDictionary.plist in Resources */,
 				52994B6525DA13D700887B9C /* Rings_00026.png in Resources */,
 				8044DD8D290486140078942B /* locked.png in Resources */,
+				80099B33296FBB400022F747 /* AnimatedHomeScreen_00042.png in Resources */,
 				526FBD2825926960001F5647 /* Beam-Angle00-01.png in Resources */,
 				80BF264327D723A000BF9736 /* LaserGun-7.png in Resources */,
 				52994B5C25DA13D700887B9C /* Rings_00022.png in Resources */,
 				5286EACB2564706B00B43209 /* TileJewelActivated08.png in Resources */,
 				8089548C291DB76B009C4D02 /* backArrow.png in Resources */,
+				80099B1C296FBB400022F747 /* AnimatedHomeScreen_00011.png in Resources */,
 				80C3279F2918623400EBE438 /* CheckmarkInCircle.png in Resources */,
 				5286EA6525646FBB00B43209 /* TileMirror.png in Resources */,
 				5286EAA42564706B00B43209 /* TileJewelActivated05.png in Resources */,
+				80099B2E296FBB400022F747 /* AnimatedHomeScreen_00021.png in Resources */,
 				80BF264E27D723A000BF9736 /* LaserGun-6.png in Resources */,
 				5286EAC82564706B00B43209 /* TileJewelActivated12.png in Resources */,
 				80895488291DB661009C4D02 /* settingsGear.png in Resources */,
 				80A2DB542954256A00C790AD /* starrysky.jpg in Resources */,
+				80099B20296FBB400022F747 /* AnimatedHomeScreen_00056.png in Resources */,
 				52994B8C25DA13D700887B9C /* Rings_00004.png in Resources */,
 				52A9A2BE25717F040072F41E /* 2169_Button_sound_plop01.wav in Resources */,
 				80F406FB28F0C110006C4F82 /* backgroundTextures.plist in Resources */,
 				80BF264927D723A000BF9736 /* LaserGun-2.png in Resources */,
 				5266332725FBD8ED00776E9B /* single-arrow-1.png in Resources */,
+				80099B3B296FBB400022F747 /* AnimatedHomeScreen_00033.png in Resources */,
 				52994B5925DA13D700887B9C /* Rings_00011.png in Resources */,
+				80099B2F296FBB400022F747 /* AnimatedHomeScreen_00014.png in Resources */,
+				80099B47296FBB400022F747 /* AnimatedHomeScreen_00009.png in Resources */,
+				80099B37296FBB400022F747 /* AnimatedHomeScreen_00038.png in Resources */,
 				526FBCD425926960001F5647 /* Beam-Angle00-02.png in Resources */,
 				80FDEA7529145EE4007C05F7 /* Beamsplitter.png in Resources */,
 				52994B3B25DA13D700887B9C /* Rings_00010.png in Resources */,
@@ -1569,40 +1902,59 @@
 				52994B6225DA13D700887B9C /* Rings_00023.png in Resources */,
 				522D214927AC85DD00A91252 /* IntrigueComedy.wav in Resources */,
 				52994B8625DA13D700887B9C /* Rings_00024.png in Resources */,
+				80099B28296FBB400022F747 /* AnimatedHomeScreen_00034.png in Resources */,
 				8035E142295F5DEB001B65C3 /* replayIconWhite.png in Resources */,
 				52994B8025DA13D700887B9C /* Rings_00017.png in Resources */,
+				80099B31296FBB400022F747 /* AnimatedHomeScreen_00024.png in Resources */,
 				52994B3525DA13D700887B9C /* Rings_00020.png in Resources */,
 				8044DD8229047FDD0078942B /* unlocked.png in Resources */,
 				809DF29628F22F9A00AC4680 /* beamAnimations.plist in Resources */,
 				80BF264D27D723A000BF9736 /* LaserGun-1.png in Resources */,
 				526FBCE625926960001F5647 /* Beam-Angle00-07.png in Resources */,
 				5286EA862564706B00B43209 /* TileJewelActivated09.png in Resources */,
+				80099B34296FBB400022F747 /* AnimatedHomeScreen_00022.png in Resources */,
 				80895490291DB773009C4D02 /* shoppingCart.png in Resources */,
 				80BF264A27D723A000BF9736 /* LaserGun-4.png in Resources */,
+				80099B22296FBB400022F747 /* AnimatedHomeScreen_00015.png in Resources */,
+				80099B0D296FBB270022F747 /* AnimatedHomeScreen_00003.png in Resources */,
 				52A9A2E625717F180072F41E /* Clink.wav in Resources */,
+				80099B12296FBB2F0022F747 /* AnimatedHomeScreen_00006.png in Resources */,
 				8044DD9D2904908E0078942B /* yellowRectangleSelected.png in Resources */,
 				52A9A2D625717F0F0072F41E /* Chime01up.wav in Resources */,
 				52994B5025DA13D700887B9C /* Rings_00027.png in Resources */,
 				808C49D228D41210002A768C /* puzzlePacksArray.plist in Resources */,
 				5286EA9B2564706B00B43209 /* TileJewelActivated03.png in Resources */,
 				52994B7425DA13D700887B9C /* Rings_00029.png in Resources */,
+				80099B1B296FBB400022F747 /* AnimatedHomeScreen_00046.png in Resources */,
+				80099B17296FBB400022F747 /* AnimatedHomeScreen_00027.png in Resources */,
 				80A4F74028D4D855007BDE13 /* dailyPuzzlesPackDictionary.plist in Resources */,
+				80099B26296FBB400022F747 /* AnimatedHomeScreen_00030.png in Resources */,
 				806B4ED7296C932300FFD306 /* InternalCalculations.wav in Resources */,
 				52A9A2CE25717F0B0072F41E /* 39783_Light_SaberSciFiLowSwingSlow_4.wav in Resources */,
+				80099B2B296FBB400022F747 /* AnimatedHomeScreen_00057.png in Resources */,
 				80BE77DF27E3CD9F00E2B4FD /* Assets.xcassets in Resources */,
 				5286EAB92564706B00B43209 /* TileJewelActivated10.png in Resources */,
 				80FC3A842967F2C800CB1567 /* helpImage.png in Resources */,
+				80099B3C296FBB400022F747 /* AnimatedHomeScreen_00048.png in Resources */,
+				80099B38296FBB400022F747 /* AnimatedHomeScreen_00041.png in Resources */,
 				52994B7D25DA13D700887B9C /* Rings_00025.png in Resources */,
 				52994B4425DA13D700887B9C /* Rings_00002.png in Resources */,
 				80151C81289F3E2000A602E3 /* ButtonCheckmarkBackground.png in Resources */,
 				52994B4725DA13D700887B9C /* Rings_00021.png in Resources */,
+				80099B1F296FBB400022F747 /* AnimatedHomeScreen_00053.png in Resources */,
+				80099B27296FBB400022F747 /* AnimatedHomeScreen_00032.png in Resources */,
+				80099B19296FBB400022F747 /* AnimatedHomeScreen_00017.png in Resources */,
 				5286EAAD2564706B00B43209 /* TileJewelActivated01.png in Resources */,
 				52994B7A25DA13D700887B9C /* Rings_00009.png in Resources */,
+				80099B0F296FBB2F0022F747 /* AnimatedHomeScreen_00004.png in Resources */,
 				52A9A30625717F260072F41E /* TapClink.wav in Resources */,
+				80099B45296FBB400022F747 /* AnimatedHomeScreen_00051.png in Resources */,
 				8023B2AE2915AD9B00176960 /* JewelGreen.png in Resources */,
 				8023B2BD2915B35A00176960 /* jewelTextures.plist in Resources */,
 				80C538EB28DF349700E0606E /* TileCheckmark.png in Resources */,
 				526FBCFE25926960001F5647 /* Beam-Angle00-13.png in Resources */,
+				80099B25296FBB400022F747 /* AnimatedHomeScreen_00008.png in Resources */,
+				80099B0B296FBB220022F747 /* AnimatedHomeScreen_00002.png in Resources */,
 				80B3DF69283ACA2100B54B7D /* TapToRotate.png in Resources */,
 				52994B5625DA13D700887B9C /* Rings_00003.png in Resources */,
 				80BF264827D723A000BF9736 /* LaserGun-0.png in Resources */,
@@ -1611,12 +1963,15 @@
 				52A4EAA025B2273A00E716B8 /* Border-Aspect-4-3.png in Resources */,
 				5286EA952564706B00B43209 /* TileJewelActivated02.png in Resources */,
 				80DFC2C428FB368000BE90C3 /* GridTile2.png in Resources */,
+				80099B2D296FBB400022F747 /* AnimatedHomeScreen_00054.png in Resources */,
 				529A511C27ACD54D00FE0669 /* Reward.wav in Resources */,
 				520BBD2B260A6BC20080EADC /* Background-Aspect-4-3.png in Resources */,
 				80BF264C27D723A000BF9736 /* LaserGun-11.png in Resources */,
+				80099B11296FBB2F0022F747 /* AnimatedHomeScreen_00005.png in Resources */,
+				80099B48296FBB400022F747 /* AnimatedHomeScreen_00025.png in Resources */,
 				80BF264727D723A000BF9736 /* LaserGun-3.png in Resources */,
-				8065EA7029004E2C00E383D7 /* cyanPerspectiveLandscapeGrid.png in Resources */,
 				8064E65A2902463A006EEC33 /* editedPuzzlePack.plist in Resources */,
+				80099B39296FBB400022F747 /* AnimatedHomeScreen_00012.png in Resources */,
 				526FBCD725926960001F5647 /* Beam-Angle00-03.png in Resources */,
 				526FBD5E25926960001F5647 /* Beam-Angle00-12.png in Resources */,
 				52A9A2FE25717F220072F41E /* LaserQuick2.wav in Resources */,
@@ -1624,17 +1979,24 @@
 				80BB3CA628DBC42700C547D1 /* DragTileText.png in Resources */,
 				5286EBEE2564BCD300B43209 /* TileOutline.png in Resources */,
 				52994B3E25DA13D700887B9C /* Rings_00005.png in Resources */,
+				80099B43296FBB400022F747 /* AnimatedHomeScreen_00043.png in Resources */,
 				8023B2CD2915BD8300176960 /* JewelCyan.png in Resources */,
 				801670FA28C4346500803D05 /* TapToRotateText.png in Resources */,
 				5209D027276298AA00A95891 /* PuzzleMarkerCompletedGreen.png in Resources */,
 				5286EAB32564706B00B43209 /* TileJewelActivated07.png in Resources */,
+				80099B07296FBB1A0022F747 /* AnimatedHomeScreen_00000.png in Resources */,
 				80843527291370E400EAAAB3 /* TileOpaque.png in Resources */,
 				52A9A2EE25717F1B0072F41E /* GlimmerTwinkle.wav in Resources */,
+				80099B40296FBB400022F747 /* AnimatedHomeScreen_00036.png in Resources */,
 				806B4ECF296C7D7F00FFD306 /* LoadingScreen.png in Resources */,
 				5286EA922564706B00B43209 /* TileJewelActivated06.png in Resources */,
+				80099B09296FBB1F0022F747 /* AnimatedHomeScreen_00001.png in Resources */,
 				80C6EFB428A0462900A0C810 /* ButtonCheckmarkPackBackground.png in Resources */,
+				80099B42296FBB400022F747 /* AnimatedHomeScreen_00055.png in Resources */,
 				806B4ED1296C7F5400FFD306 /* LaunchScreen.png in Resources */,
+				80099B41296FBB400022F747 /* AnimatedHomeScreen_00028.png in Resources */,
 				80CEC1B22921609700882AB9 /* CompletedJigsawPuzzle.png in Resources */,
+				80099B21296FBB400022F747 /* AnimatedHomeScreen_00010.png in Resources */,
 				805DB34527D1417700F9572A /* Beamsplitter-1.png in Resources */,
 				52A9A2DE25717F140072F41E /* Click.wav in Resources */,
 				52994B6B25DA13D700887B9C /* Rings_00006.png in Resources */,
@@ -1648,23 +2010,29 @@
 				80BF264627D723A000BF9736 /* LaserGun-10.png in Resources */,
 				5286EA8F2564706B00B43209 /* TileJewelActivated04.png in Resources */,
 				5286EABC2564706B00B43209 /* TileJewelActivated15.png in Resources */,
+				80099B1E296FBB400022F747 /* AnimatedHomeScreen_00018.png in Resources */,
 				529A511627ACD24200FE0669 /* win-game-puzzle-52.wav in Resources */,
+				80099B44296FBB400022F747 /* AnimatedHomeScreen_00035.png in Resources */,
 				808E49DE295E18A900D4D077 /* nextArrowWhite.png in Resources */,
 				8095C48327DB014E00E1740C /* GridTile.png in Resources */,
 				80CEC1BA2921712300882AB9 /* JewelChest.png in Resources */,
 				52994B7725DA13D700887B9C /* Rings_00015.png in Resources */,
 				5286EA9E2564706B00B43209 /* TileJewelActivated11.png in Resources */,
+				80099B49296FBB400022F747 /* AnimatedHomeScreen_00026.png in Resources */,
 				80ADCC2029557639002B231F /* backgroundLandscapeGrid.png in Resources */,
 				8023B2B12915AD9B00176960 /* JewelRed.png in Resources */,
 				80BE38B7292FFE5900076A7E /* InAppMessagingDisplayResources.bundle in Resources */,
 				806B4ED3296C821D00FFD306 /* Beamed2Logo.png in Resources */,
 				529A511727ACD24200FE0669 /* win-game-puzzle-93.wav in Resources */,
 				8044DD942904908E0078942B /* yellowRectangle.png in Resources */,
+				80099B23296FBB400022F747 /* AnimatedHomeScreen_00052.png in Resources */,
 				80F406F728F0B113006C4F82 /* Jewel-original.png in Resources */,
+				80099B1A296FBB400022F747 /* AnimatedHomeScreen_00049.png in Resources */,
 				52994B6825DA13D700887B9C /* Rings_00008.png in Resources */,
 				52994B4A25DA13D700887B9C /* Rings_00019.png in Resources */,
 				529A511E27ACD57200FE0669 /* Mobile_Game_Melodic_Stinger_Dreamy_Synth_Level_Up_2.wav in Resources */,
 				806B4ED9296C986300FFD306 /* NightDrive.wav in Resources */,
+				80099B4A296FBB400022F747 /* AnimatedHomeScreen_00037.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1672,20 +2040,32 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80099B51296FBB400022F747 /* AnimatedHomeScreen_00013.png in Resources */,
 				8044DD9B2904908E0078942B /* cyanRectangle.png in Resources */,
 				52A9A30225717F230072F41E /* LaserQuick2.wav in Resources */,
+				80099B14296FBB300022F747 /* AnimatedHomeScreen_00007.png in Resources */,
+				80099B71296FBB400022F747 /* AnimatedHomeScreen_00019.png in Resources */,
+				80099B67296FBB400022F747 /* AnimatedHomeScreen_00042.png in Resources */,
 				8044DD982904908E0078942B /* cyanRectangleSelected.png in Resources */,
 				52A9A2C225717F040072F41E /* 2169_Button_sound_plop01.wav in Resources */,
+				80099B5E296FBB400022F747 /* AnimatedHomeScreen_00059.png in Resources */,
+				80099B15296FBB300022F747 /* AnimatedHomeScreen_00005.png in Resources */,
 				80A2DB552954256A00C790AD /* starrysky.jpg in Resources */,
 				80C6EFB528A0462900A0C810 /* ButtonCheckmarkPackBackground.png in Resources */,
 				52994B8425DA13D700887B9C /* Rings_00014.png in Resources */,
 				52994B3C25DA13D700887B9C /* Rings_00010.png in Resources */,
 				526FBCD825926960001F5647 /* Beam-Angle00-03.png in Resources */,
+				80099B82296FBDB90022F747 /* backgroundAnimations.plist in Resources */,
+				80099B66296FBB400022F747 /* AnimatedHomeScreen_00039.png in Resources */,
 				5286EAC92564706B00B43209 /* TileJewelActivated12.png in Resources */,
+				80099B62296FBB400022F747 /* AnimatedHomeScreen_00021.png in Resources */,
 				5286EA0D25646CAF00B43209 /* TileSquareBlack.png in Resources */,
+				80099B4C296FBB400022F747 /* AnimatedHomeScreen_00023.png in Resources */,
 				809B05CF2904E83A00081D46 /* grayRectangle.png in Resources */,
 				80895499291DB7FE009C4D02 /* nextArrow.png in Resources */,
 				526FBD1D25926960001F5647 /* Beam-Angle00-10.png in Resources */,
+				80099B6A296FBB400022F747 /* AnimatedHomeScreen_00040.png in Resources */,
+				80099B53296FBB400022F747 /* AnimatedHomeScreen_00053.png in Resources */,
 				52994B4B25DA13D700887B9C /* Rings_00019.png in Resources */,
 				5286EAA52564706B00B43209 /* TileJewelActivated05.png in Resources */,
 				5286EA9C2564706B00B43209 /* TileJewelActivated03.png in Resources */,
@@ -1697,34 +2077,52 @@
 				808E49DF295E18A900D4D077 /* nextArrowWhite.png in Resources */,
 				5286EA9F2564706B00B43209 /* TileJewelActivated11.png in Resources */,
 				8023B2CA2915BBDF00176960 /* JewelMagenta.png in Resources */,
+				80099B59296FBB400022F747 /* AnimatedHomeScreen_00008.png in Resources */,
 				52994B5125DA13D700887B9C /* Rings_00027.png in Resources */,
+				80099B55296FBB400022F747 /* AnimatedHomeScreen_00010.png in Resources */,
 				80DFC2C528FB368000BE90C3 /* GridTile2.png in Resources */,
 				8089549D291DB805009C4D02 /* lightBulb.png in Resources */,
 				52A4EAA125B2273A00E716B8 /* Border-Aspect-4-3.png in Resources */,
+				80099B65296FBB400022F747 /* AnimatedHomeScreen_00024.png in Resources */,
+				80099B74296FBB400022F747 /* AnimatedHomeScreen_00036.png in Resources */,
 				526FBCEA25926960001F5647 /* Beam-Angle00-09.png in Resources */,
+				80099B6D296FBB400022F747 /* AnimatedHomeScreen_00012.png in Resources */,
+				80099B7E296FBB400022F747 /* AnimatedHomeScreen_00037.png in Resources */,
 				808E49DC295E18A900D4D077 /* backArrowWhite.png in Resources */,
 				52A9A2D225717F0C0072F41E /* 39783_Light_SaberSciFiLowSwingSlow_4.wav in Resources */,
 				8023B2CE2915BD8300176960 /* JewelCyan.png in Resources */,
+				80099B4F296FBB400022F747 /* AnimatedHomeScreen_00046.png in Resources */,
+				80099B73296FBB400022F747 /* AnimatedHomeScreen_00016.png in Resources */,
 				5286EA872564706B00B43209 /* TileJewelActivated09.png in Resources */,
+				80099B13296FBB300022F747 /* AnimatedHomeScreen_00004.png in Resources */,
 				8095C48427DB014E00E1740C /* GridTile.png in Resources */,
 				8023B2B22915AD9B00176960 /* JewelRed.png in Resources */,
 				52A9A30A25717F260072F41E /* TapClink.wav in Resources */,
 				809DF29728F22F9A00AC4680 /* beamAnimations.plist in Resources */,
 				80151C82289F3E2000A602E3 /* ButtonCheckmarkBackground.png in Resources */,
+				80099B7C296FBB400022F747 /* AnimatedHomeScreen_00025.png in Resources */,
 				801670FB28C4346500803D05 /* TapToRotateText.png in Resources */,
+				80099B58296FBB400022F747 /* AnimatedHomeScreen_00050.png in Resources */,
 				8089548D291DB76B009C4D02 /* backArrow.png in Resources */,
 				52994B7225DA13D700887B9C /* Rings_00013.png in Resources */,
 				5286EA932564706B00B43209 /* TileJewelActivated06.png in Resources */,
+				80099B16296FBB300022F747 /* AnimatedHomeScreen_00006.png in Resources */,
 				5286EA902564706B00B43209 /* TileJewelActivated04.png in Resources */,
+				80099B5B296FBB400022F747 /* AnimatedHomeScreen_00032.png in Resources */,
 				52994B7525DA13D700887B9C /* Rings_00029.png in Resources */,
+				80099B52296FBB400022F747 /* AnimatedHomeScreen_00018.png in Resources */,
 				80FC3A852967F2C800CB1567 /* helpImage.png in Resources */,
 				80FDEA7229145E52007C05F7 /* Beamsplitter-2.png in Resources */,
 				80BE38B8292FFE5900076A7E /* InAppMessagingDisplayResources.bundle in Resources */,
 				526FBCFF25926960001F5647 /* Beam-Angle00-13.png in Resources */,
+				80099B7A296FBB400022F747 /* AnimatedHomeScreen_00029.png in Resources */,
 				80B3DF6A283ACA2100B54B7D /* TapToRotate.png in Resources */,
+				80099B5D296FBB400022F747 /* AnimatedHomeScreen_00058.png in Resources */,
+				80099B0A296FBB1F0022F747 /* AnimatedHomeScreen_00001.png in Resources */,
 				8023B2D22915C13300176960 /* JewelWhite.png in Resources */,
 				52994B3F25DA13D700887B9C /* Rings_00005.png in Resources */,
 				526FBCD225926960001F5647 /* Beam-Angle00-06.png in Resources */,
+				80099B64296FBB400022F747 /* AnimatedHomeScreen_00031.png in Resources */,
 				52994B8125DA13D700887B9C /* Rings_00017.png in Resources */,
 				5286EAB12564706B00B43209 /* TileJewelActivated13.png in Resources */,
 				809DF29B28F2334E00AC4680 /* ringAnimations.plist in Resources */,
@@ -1734,53 +2132,74 @@
 				52994B5D25DA13D700887B9C /* Rings_00022.png in Resources */,
 				52994B8A25DA13D700887B9C /* Rings_00018.png in Resources */,
 				8068338D292ECB1B00620AC1 /* GoogleService-Info.plist in Resources */,
+				80099B63296FBB400022F747 /* AnimatedHomeScreen_00014.png in Resources */,
 				80CEC1BB2921712300882AB9 /* JewelChest.png in Resources */,
 				80FDEA6E29145A5C007C05F7 /* TileSquareBright.png in Resources */,
 				52994B3925DA13D700887B9C /* Rings_00012.png in Resources */,
 				52A9A2F225717F1C0072F41E /* GlimmerTwinkle.wav in Resources */,
+				80099B76296FBB400022F747 /* AnimatedHomeScreen_00055.png in Resources */,
 				52994B6F25DA13D700887B9C /* Rings_00001.png in Resources */,
 				52994B6925DA13D700887B9C /* Rings_00008.png in Resources */,
-				8065EA7129004E2C00E383D7 /* cyanPerspectiveLandscapeGrid.png in Resources */,
 				52994B6025DA13D700887B9C /* Rings_00000.png in Resources */,
 				80F406FC28F0C110006C4F82 /* backgroundTextures.plist in Resources */,
 				80CEC1B32921609700882AB9 /* CompletedJigsawPuzzle.png in Resources */,
 				80FDEA7629145EE4007C05F7 /* Beamsplitter.png in Resources */,
+				80099B4D296FBB400022F747 /* AnimatedHomeScreen_00017.png in Resources */,
 				5286EB272564715400B43209 /* TileSpectrumL0.png in Resources */,
 				80843528291370E400EAAAB3 /* TileOpaque.png in Resources */,
+				80099B08296FBB1A0022F747 /* AnimatedHomeScreen_00000.png in Resources */,
 				526FBD5F25926960001F5647 /* Beam-Angle00-12.png in Resources */,
 				52994B8725DA13D700887B9C /* Rings_00024.png in Resources */,
 				80D4CA192965DD6B00AD28D7 /* helpButton.png in Resources */,
 				80A4F73D28D4D5ED007BDE13 /* demoPuzzlePackDictionary.plist in Resources */,
+				80099B6C296FBB400022F747 /* AnimatedHomeScreen_00041.png in Resources */,
 				80F406F828F0B113006C4F82 /* Jewel-original.png in Resources */,
+				80099B69296FBB400022F747 /* AnimatedHomeScreen_00020.png in Resources */,
 				52994B8D25DA13D700887B9C /* Rings_00004.png in Resources */,
 				8035E143295F5DEB001B65C3 /* replayIconWhite.png in Resources */,
+				80099B7D296FBB400022F747 /* AnimatedHomeScreen_00026.png in Resources */,
 				808E3BC728FC5304009C1474 /* GridTileDot.png in Resources */,
+				80099B72296FBB400022F747 /* AnimatedHomeScreen_00047.png in Resources */,
 				5286EB092564715400B43209 /* TileSpectrumR0.png in Resources */,
 				526FBD2625926960001F5647 /* Beam-Angle00-14.png in Resources */,
 				52994B6325DA13D700887B9C /* Rings_00023.png in Resources */,
+				80099B6E296FBB400022F747 /* AnimatedHomeScreen_00044.png in Resources */,
 				52994B7B25DA13D700887B9C /* Rings_00009.png in Resources */,
+				80099B6F296FBB400022F747 /* AnimatedHomeScreen_00033.png in Resources */,
 				8044DD9E2904908E0078942B /* yellowRectangleSelected.png in Resources */,
+				80099B75296FBB400022F747 /* AnimatedHomeScreen_00028.png in Resources */,
 				5286EBEF2564BCD300B43209 /* TileOutline.png in Resources */,
 				80FD2F4C2914C76E004DF6E8 /* TileSquareBright-1.png in Resources */,
 				809DF29328F1EFEE00AC4680 /* tileAnimations.plist in Resources */,
 				800ECE4128DF86D400A7DC62 /* PackCompleted.png in Resources */,
 				52A9A2FA25717F200072F41E /* LaserQuick.wav in Resources */,
+				80099B77296FBB400022F747 /* AnimatedHomeScreen_00043.png in Resources */,
+				80099B4B296FBB400022F747 /* AnimatedHomeScreen_00027.png in Resources */,
 				8023B2C22915B7C100176960 /* JewelBlue.png in Resources */,
+				80099B79296FBB400022F747 /* AnimatedHomeScreen_00051.png in Resources */,
+				80099B68296FBB400022F747 /* AnimatedHomeScreen_00022.png in Resources */,
 				5286EAB72564706B00B43209 /* TileJewelActivated14.png in Resources */,
+				80099B5F296FBB400022F747 /* AnimatedHomeScreen_00057.png in Resources */,
 				80A4F74128D4D855007BDE13 /* dailyPuzzlesPackDictionary.plist in Resources */,
+				80099B56296FBB400022F747 /* AnimatedHomeScreen_00015.png in Resources */,
 				5266332825FBD8ED00776E9B /* single-arrow-1.png in Resources */,
 				5286EAAE2564706B00B43209 /* TileJewelActivated01.png in Resources */,
+				80099B60296FBB400022F747 /* AnimatedHomeScreen_00045.png in Resources */,
 				52A9A2DA25717F100072F41E /* Chime01up.wav in Resources */,
 				52A9A2E225717F140072F41E /* Click.wav in Resources */,
 				526FBD5325926960001F5647 /* Beam-Angle00-11.png in Resources */,
+				80099B5C296FBB400022F747 /* AnimatedHomeScreen_00034.png in Resources */,
 				80895491291DB773009C4D02 /* shoppingCart.png in Resources */,
 				5286EAB42564706B00B43209 /* TileJewelActivated07.png in Resources */,
 				52994B5A25DA13D700887B9C /* Rings_00011.png in Resources */,
 				8044DD8329047FDD0078942B /* unlocked.png in Resources */,
+				80099B70296FBB400022F747 /* AnimatedHomeScreen_00048.png in Resources */,
 				8023B2BE2915B35A00176960 /* jewelTextures.plist in Resources */,
 				8044DD8E290486140078942B /* locked.png in Resources */,
 				526FBCF025926960001F5647 /* Beam-Angle00-04.png in Resources */,
 				526FBCD525926960001F5647 /* Beam-Angle00-02.png in Resources */,
+				80099B6B296FBB400022F747 /* AnimatedHomeScreen_00038.png in Resources */,
+				80099B4E296FBB400022F747 /* AnimatedHomeScreen_00049.png in Resources */,
 				52994B6C25DA13D700887B9C /* Rings_00006.png in Resources */,
 				80895489291DB661009C4D02 /* settingsGear.png in Resources */,
 				80C538EC28DF349700E0606E /* TileCheckmark.png in Resources */,
@@ -1798,20 +2217,29 @@
 				80895495291DB77B009C4D02 /* NoAds.png in Resources */,
 				5286EABA2564706B00B43209 /* TileJewelActivated10.png in Resources */,
 				52A9A2EA25717F180072F41E /* Clink.wav in Resources */,
+				80099B5A296FBB400022F747 /* AnimatedHomeScreen_00030.png in Resources */,
+				80099B50296FBB400022F747 /* AnimatedHomeScreen_00011.png in Resources */,
 				52994B5425DA13D700887B9C /* Rings_00016.png in Resources */,
 				5286EA6625646FBB00B43209 /* TileMirror.png in Resources */,
 				52994B6625DA13D700887B9C /* Rings_00026.png in Resources */,
+				80099B54296FBB400022F747 /* AnimatedHomeScreen_00056.png in Resources */,
 				520BBD2C260A6BC20080EADC /* Background-Aspect-4-3.png in Resources */,
+				80099B78296FBB400022F747 /* AnimatedHomeScreen_00035.png in Resources */,
 				5286EACC2564706B00B43209 /* TileJewelActivated08.png in Resources */,
 				80ADCC2129557639002B231F /* backgroundLandscapeGrid.png in Resources */,
+				80099B0E296FBB280022F747 /* AnimatedHomeScreen_00003.png in Resources */,
 				52994B3625DA13D700887B9C /* Rings_00020.png in Resources */,
 				805DB34627D1417700F9572A /* Beamsplitter-1.png in Resources */,
+				80099B57296FBB400022F747 /* AnimatedHomeScreen_00052.png in Resources */,
 				52994B4525DA13D700887B9C /* Rings_00002.png in Resources */,
 				808C49D328D41210002A768C /* puzzlePacksArray.plist in Resources */,
+				80099B61296FBB400022F747 /* AnimatedHomeScreen_00054.png in Resources */,
 				52994B7825DA13D700887B9C /* Rings_00015.png in Resources */,
 				80F9BBCB28DC981E00DDE749 /* PointingFinger.png in Resources */,
 				805DB34E27D1453F00F9572A /* Prism.png in Resources */,
 				5286EABD2564706B00B43209 /* TileJewelActivated15.png in Resources */,
+				80099B7B296FBB400022F747 /* AnimatedHomeScreen_00009.png in Resources */,
+				80099B0C296FBB230022F747 /* AnimatedHomeScreen_00002.png in Resources */,
 				52994B4E25DA13D700887B9C /* Rings_00007.png in Resources */,
 				80C327A02918623400EBE438 /* CheckmarkInCircle.png in Resources */,
 				5286EA962564706B00B43209 /* TileJewelActivated02.png in Resources */,
@@ -1823,12 +2251,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				8044DD992904908E0078942B /* cyanRectangle.png in Resources */,
+				80099AEB296F4CE20022F747 /* AnimatedHomeScreen_00037.png in Resources */,
+				80099AB8296F4CCD0022F747 /* AnimatedHomeScreen_00029.png in Resources */,
 				5286EAC72564706B00B43209 /* TileJewelActivated12.png in Resources */,
 				8044DD962904908E0078942B /* cyanRectangleSelected.png in Resources */,
+				80099AEC296F4CE20022F747 /* AnimatedHomeScreen_00036.png in Resources */,
 				52A9A2B725717C550072F41E /* TapClink.wav in Resources */,
+				80099AE8296F4CE20022F747 /* AnimatedHomeScreen_00032.png in Resources */,
+				80099ABC296F4CCD0022F747 /* AnimatedHomeScreen_00018.png in Resources */,
 				80A2DB532954256A00C790AD /* starrysky.jpg in Resources */,
+				80099ABA296F4CCD0022F747 /* AnimatedHomeScreen_00024.png in Resources */,
+				80099AF9296F4CE20022F747 /* AnimatedHomeScreen_00031.png in Resources */,
 				52A9A2B825717C550072F41E /* Click.wav in Resources */,
+				80099B02296F4CE20022F747 /* AnimatedHomeScreen_00041.png in Resources */,
+				80099AF3296F4CE20022F747 /* AnimatedHomeScreen_00042.png in Resources */,
+				80099B80296FBDB90022F747 /* backgroundAnimations.plist in Resources */,
 				80C6EFB328A0462900A0C810 /* ButtonCheckmarkPackBackground.png in Resources */,
+				80099AF8296F4CE20022F747 /* AnimatedHomeScreen_00059.png in Resources */,
 				52994B7025DA13D700887B9C /* Rings_00013.png in Resources */,
 				52994B7325DA13D700887B9C /* Rings_00029.png in Resources */,
 				52994B6425DA13D700887B9C /* Rings_00026.png in Resources */,
@@ -1836,6 +2275,7 @@
 				5286EA942564706B00B43209 /* TileJewelActivated02.png in Resources */,
 				809B05CD2904E83A00081D46 /* grayRectangle.png in Resources */,
 				80895497291DB7FE009C4D02 /* nextArrow.png in Resources */,
+				80099AB3296F4CCD0022F747 /* AnimatedHomeScreen_00016.png in Resources */,
 				52994B4925DA13D700887B9C /* Rings_00019.png in Resources */,
 				52994B7625DA13D700887B9C /* Rings_00015.png in Resources */,
 				526FBCD625926960001F5647 /* Beam-Angle00-03.png in Resources */,
@@ -1843,39 +2283,55 @@
 				5251ACD8279667DA00A50A7B /* paidHintPacksArray.plist in Resources */,
 				5286EA852564706B00B43209 /* TileJewelActivated09.png in Resources */,
 				8023B2D42915F54D00176960 /* JewelYellow.png in Resources */,
+				80099B00296F4CE20022F747 /* AnimatedHomeScreen_00052.png in Resources */,
 				8023B2AD2915AD9B00176960 /* JewelGreen.png in Resources */,
 				808E49DD295E18A900D4D077 /* nextArrowWhite.png in Resources */,
+				80099AC5296F4CCD0022F747 /* AnimatedHomeScreen_00010.png in Resources */,
 				5286EAB22564706B00B43209 /* TileJewelActivated07.png in Resources */,
 				5286EA0B25646CAF00B43209 /* TileSquareBlack.png in Resources */,
 				80BB3CA528DBC42700C547D1 /* DragTileText.png in Resources */,
 				8023B2C82915BBDF00176960 /* JewelMagenta.png in Resources */,
 				52994B5225DA13D700887B9C /* Rings_00016.png in Resources */,
+				80099AEF296F4CE20022F747 /* AnimatedHomeScreen_00053.png in Resources */,
+				80099AB7296F4CCD0022F747 /* AnimatedHomeScreen_00022.png in Resources */,
+				80099AC6296F4CCD0022F747 /* AnimatedHomeScreen_00028.png in Resources */,
 				8089549B291DB805009C4D02 /* lightBulb.png in Resources */,
+				80099AF6296F4CE20022F747 /* AnimatedHomeScreen_00034.png in Resources */,
 				80DFC2C328FB368000BE90C3 /* GridTile2.png in Resources */,
 				808E49DA295E18A900D4D077 /* backArrowWhite.png in Resources */,
+				80099AF7296F4CE20022F747 /* AnimatedHomeScreen_00055.png in Resources */,
 				526FBD1B25926960001F5647 /* Beam-Angle00-10.png in Resources */,
 				52994B4C25DA13D700887B9C /* Rings_00007.png in Resources */,
 				52994B7F25DA13D700887B9C /* Rings_00017.png in Resources */,
 				5284E5EB25AAA1320042F429 /* README.md in Resources */,
+				80099AE6296F4CE20022F747 /* AnimatedHomeScreen_00051.png in Resources */,
+				80099AEA296F4CE20022F747 /* AnimatedHomeScreen_00035.png in Resources */,
 				8023B2CC2915BD8300176960 /* JewelCyan.png in Resources */,
 				805DB34C27D1453F00F9572A /* Prism.png in Resources */,
 				5286EBED2564BCD300B43209 /* TileOutline.png in Resources */,
 				8023B2B02915AD9B00176960 /* JewelRed.png in Resources */,
 				52A4EA9F25B2273A00E716B8 /* Border-Aspect-4-3.png in Resources */,
+				80099ABB296F4CCD0022F747 /* AnimatedHomeScreen_00011.png in Resources */,
 				3AFD655F1F71A71B0008A125 /* Main.storyboard in Resources */,
+				80099AFB296F4CE20022F747 /* AnimatedHomeScreen_00056.png in Resources */,
+				80099A96296F4CBC0022F747 /* AnimatedHomeScreen_00009.png in Resources */,
 				526FBCE825926960001F5647 /* Beam-Angle00-09.png in Resources */,
 				805DB34427D1417700F9572A /* Beamsplitter-1.png in Resources */,
 				809DF29528F22F9A00AC4680 /* beamAnimations.plist in Resources */,
 				8089548B291DB76B009C4D02 /* backArrow.png in Resources */,
 				80FC3A832967F2C800CB1567 /* helpImage.png in Resources */,
+				80099A99296F4CBC0022F747 /* AnimatedHomeScreen_00000.png in Resources */,
 				5286EACA2564706B00B43209 /* TileJewelActivated08.png in Resources */,
 				52A9A2B325717C550072F41E /* 39770_Light_SaberSciFiLowSwingFast_1.wav in Resources */,
 				80BE38B6292FFE5900076A7E /* InAppMessagingDisplayResources.bundle in Resources */,
+				80099AFA296F4CE20022F747 /* AnimatedHomeScreen_00044.png in Resources */,
 				5286EA9A2564706B00B43209 /* TileJewelActivated03.png in Resources */,
+				80099AE7296F4CE20022F747 /* AnimatedHomeScreen_00033.png in Resources */,
 				80151C80289F3E2000A602E3 /* ButtonCheckmarkBackground.png in Resources */,
 				80FDEA7029145E52007C05F7 /* Beamsplitter-2.png in Resources */,
 				801670F928C4346500803D05 /* TapToRotateText.png in Resources */,
 				80B3DF68283ACA2100B54B7D /* TapToRotate.png in Resources */,
+				80099AF0296F4CE20022F747 /* AnimatedHomeScreen_00043.png in Resources */,
 				8023B2D02915C13300176960 /* JewelWhite.png in Resources */,
 				52A9A2B225717C550072F41E /* 2169_Button_sound_plop01.wav in Resources */,
 				52A9A2B525717C550072F41E /* LaserQuick.wav in Resources */,
@@ -1883,29 +2339,39 @@
 				526FBCD025926960001F5647 /* Beam-Angle00-06.png in Resources */,
 				809DF29928F2334E00AC4680 /* ringAnimations.plist in Resources */,
 				52A9A2B425717C550072F41E /* Chime01up.wav in Resources */,
+				80099AB9296F4CCD0022F747 /* AnimatedHomeScreen_00015.png in Resources */,
 				8068338B292ECB1B00620AC1 /* GoogleService-Info.plist in Resources */,
+				80099AEE296F4CE20022F747 /* AnimatedHomeScreen_00030.png in Resources */,
 				8095C48227DB014E00E1740C /* GridTile.png in Resources */,
 				526FBCE525926960001F5647 /* Beam-Angle00-07.png in Resources */,
 				80CEC1B92921712300882AB9 /* JewelChest.png in Resources */,
 				52994B5525DA13D700887B9C /* Rings_00003.png in Resources */,
+				80099AC1296F4CCD0022F747 /* AnimatedHomeScreen_00017.png in Resources */,
+				80099AFE296F4CE20022F747 /* AnimatedHomeScreen_00057.png in Resources */,
 				52A9A2BA25717C550072F41E /* GlimmerTwinkle.wav in Resources */,
 				80FDEA6C29145A5C007C05F7 /* TileSquareBright.png in Resources */,
 				5286EAAC2564706B00B43209 /* TileJewelActivated01.png in Resources */,
+				80099AFC296F4CE20022F747 /* AnimatedHomeScreen_00049.png in Resources */,
 				52994B8825DA13D700887B9C /* Rings_00018.png in Resources */,
+				80099A9C296F4CBC0022F747 /* AnimatedHomeScreen_00004.png in Resources */,
 				5286EAAF2564706B00B43209 /* TileJewelActivated13.png in Resources */,
+				80099AB5296F4CCD0022F747 /* AnimatedHomeScreen_00027.png in Resources */,
 				526FBD5D25926960001F5647 /* Beam-Angle00-12.png in Resources */,
-				8065EA6F29004E2C00E383D7 /* cyanPerspectiveLandscapeGrid.png in Resources */,
 				80CEC1B12921609700882AB9 /* CompletedJigsawPuzzle.png in Resources */,
 				5286EABB2564706B00B43209 /* TileJewelActivated15.png in Resources */,
+				80099AB6296F4CCD0022F747 /* AnimatedHomeScreen_00021.png in Resources */,
 				52A9A2B125717C550072F41E /* Clink.wav in Resources */,
+				80099AFF296F4CE20022F747 /* AnimatedHomeScreen_00048.png in Resources */,
 				80FDEA7429145EE4007C05F7 /* Beamsplitter.png in Resources */,
 				80D4CA172965DD6B00AD28D7 /* helpButton.png in Resources */,
 				80F406FA28F0C110006C4F82 /* backgroundTextures.plist in Resources */,
 				80843526291370E400EAAAB3 /* TileOpaque.png in Resources */,
 				80A4F73B28D4D5ED007BDE13 /* demoPuzzlePackDictionary.plist in Resources */,
+				80099AFD296F4CE20022F747 /* AnimatedHomeScreen_00058.png in Resources */,
 				8035E141295F5DEB001B65C3 /* replayIconWhite.png in Resources */,
 				52994B4625DA13D700887B9C /* Rings_00021.png in Resources */,
 				5286EAB52564706B00B43209 /* TileJewelActivated14.png in Resources */,
+				80099A9E296F4CBC0022F747 /* AnimatedHomeScreen_00006.png in Resources */,
 				526FBD2425926960001F5647 /* Beam-Angle00-14.png in Resources */,
 				5286EA9D2564706B00B43209 /* TileJewelActivated11.png in Resources */,
 				808E3BC528FC5304009C1474 /* GridTileDot.png in Resources */,
@@ -1913,20 +2379,28 @@
 				800ECE3F28DF86D400A7DC62 /* PackCompleted.png in Resources */,
 				52A9A2B625717C550072F41E /* LaserQuick2.wav in Resources */,
 				80A4F73F28D4D855007BDE13 /* dailyPuzzlesPackDictionary.plist in Resources */,
+				80099A9D296F4CBC0022F747 /* AnimatedHomeScreen_00005.png in Resources */,
 				8044DD9C2904908E0078942B /* yellowRectangleSelected.png in Resources */,
 				52994B3D25DA13D700887B9C /* Rings_00005.png in Resources */,
 				52994B3A25DA13D700887B9C /* Rings_00010.png in Resources */,
+				80099AC2296F4CCD0022F747 /* AnimatedHomeScreen_00013.png in Resources */,
 				80FD2F4A2914C76E004DF6E8 /* TileSquareBright-1.png in Resources */,
 				52994B8525DA13D700887B9C /* Rings_00024.png in Resources */,
 				52994B6D25DA13D700887B9C /* Rings_00001.png in Resources */,
 				809DF29128F1EFEE00AC4680 /* tileAnimations.plist in Resources */,
 				8023B2C02915B7C100176960 /* JewelBlue.png in Resources */,
 				520BBD2A260A6BC20080EADC /* Background-Aspect-4-3.png in Resources */,
+				80099AC3296F4CCD0022F747 /* AnimatedHomeScreen_00025.png in Resources */,
+				80099AF2296F4CE20022F747 /* AnimatedHomeScreen_00050.png in Resources */,
 				526FBD5125926960001F5647 /* Beam-Angle00-11.png in Resources */,
 				52994B6125DA13D700887B9C /* Rings_00023.png in Resources */,
+				80099AC0296F4CCD0022F747 /* AnimatedHomeScreen_00023.png in Resources */,
 				8089548F291DB773009C4D02 /* shoppingCart.png in Resources */,
+				80099A95296F4CBC0022F747 /* AnimatedHomeScreen_00007.png in Resources */,
+				80099A98296F4CBC0022F747 /* AnimatedHomeScreen_00002.png in Resources */,
 				526FBCEE25926960001F5647 /* Beam-Angle00-04.png in Resources */,
 				526FBCD325926960001F5647 /* Beam-Angle00-02.png in Resources */,
+				80099ABE296F4CCD0022F747 /* AnimatedHomeScreen_00026.png in Resources */,
 				526FBCDC25926960001F5647 /* Beam-Angle00-08.png in Resources */,
 				52994B6A25DA13D700887B9C /* Rings_00006.png in Resources */,
 				8044DD8129047FDD0078942B /* unlocked.png in Resources */,
@@ -1936,33 +2410,47 @@
 				80895487291DB661009C4D02 /* settingsGear.png in Resources */,
 				80C538EA28DF349700E0606E /* TileCheckmark.png in Resources */,
 				526FBCF725926960001F5647 /* Beam-Angle00-05.png in Resources */,
+				80099A9A296F4CBC0022F747 /* AnimatedHomeScreen_00001.png in Resources */,
 				52A9A2B925717C550072F41E /* 39783_Light_SaberSciFiLowSwingSlow_4.wav in Resources */,
 				52994B5B25DA13D700887B9C /* Rings_00022.png in Resources */,
 				8044DD932904908E0078942B /* yellowRectangle.png in Resources */,
+				80099AF4296F4CE20022F747 /* AnimatedHomeScreen_00047.png in Resources */,
 				52994B4F25DA13D700887B9C /* Rings_00027.png in Resources */,
+				80099AE5296F4CE20022F747 /* AnimatedHomeScreen_00046.png in Resources */,
 				52994B6725DA13D700887B9C /* Rings_00008.png in Resources */,
 				8064E6592902463A006EEC33 /* editedPuzzlePack.plist in Resources */,
 				52994B3725DA13D700887B9C /* Rings_00012.png in Resources */,
+				80099AE9296F4CE20022F747 /* AnimatedHomeScreen_00039.png in Resources */,
 				52994B7925DA13D700887B9C /* Rings_00009.png in Resources */,
+				80099B01296F4CE20022F747 /* AnimatedHomeScreen_00040.png in Resources */,
 				52994B7C25DA13D700887B9C /* Rings_00025.png in Resources */,
 				80FDEA6829145848007C05F7 /* TileSquareTranslucent.png in Resources */,
+				80099A97296F4CBC0022F747 /* AnimatedHomeScreen_00008.png in Resources */,
+				80099AED296F4CE20022F747 /* AnimatedHomeScreen_00054.png in Resources */,
 				80895493291DB77B009C4D02 /* NoAds.png in Resources */,
 				8023B2B42915AE9E00176960 /* Jewel.png in Resources */,
 				5286EB072564715400B43209 /* TileSpectrumR0.png in Resources */,
 				52994B4325DA13D700887B9C /* Rings_00002.png in Resources */,
+				80099AF5296F4CE20022F747 /* AnimatedHomeScreen_00045.png in Resources */,
 				5286EA6425646FBB00B43209 /* TileMirror.png in Resources */,
+				80099AF1296F4CE20022F747 /* AnimatedHomeScreen_00038.png in Resources */,
 				52994B8225DA13D700887B9C /* Rings_00014.png in Resources */,
+				80099AB4296F4CCD0022F747 /* AnimatedHomeScreen_00012.png in Resources */,
 				5266332625FBD8ED00776E9B /* single-arrow-1.png in Resources */,
 				80ADCC1F29557639002B231F /* backgroundLandscapeGrid.png in Resources */,
 				5286EB252564715400B43209 /* TileSpectrumL0.png in Resources */,
 				52994B4025DA13D700887B9C /* Rings_00028.png in Resources */,
 				52994B5E25DA13D700887B9C /* Rings_00000.png in Resources */,
 				52994B8B25DA13D700887B9C /* Rings_00004.png in Resources */,
+				80099A9B296F4CBC0022F747 /* AnimatedHomeScreen_00003.png in Resources */,
 				808C49D128D41210002A768C /* puzzlePacksArray.plist in Resources */,
+				80099AC4296F4CCD0022F747 /* AnimatedHomeScreen_00014.png in Resources */,
 				80F9BBC928DC981E00DDE749 /* PointingFinger.png in Resources */,
 				5286EA912564706B00B43209 /* TileJewelActivated06.png in Resources */,
 				52994B3425DA13D700887B9C /* Rings_00020.png in Resources */,
+				80099ABF296F4CCD0022F747 /* AnimatedHomeScreen_00019.png in Resources */,
 				5286EAA32564706B00B43209 /* TileJewelActivated05.png in Resources */,
+				80099ABD296F4CCD0022F747 /* AnimatedHomeScreen_00020.png in Resources */,
 				80C3279E2918623400EBE438 /* CheckmarkInCircle.png in Resources */,
 				5286EAB82564706B00B43209 /* TileJewelActivated10.png in Resources */,
 			);

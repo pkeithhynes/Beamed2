@@ -24,6 +24,7 @@ API_AVAILABLE(ios(13.0))
     TextureRenderData     *backgroundRenderDataOuter;
     TextureRenderData     *backgroundRenderDataInner;
     TextureRenderData     *backgroundRenderDataImage;
+    TextureRenderData     *backgroundRenderAnimationImage;
     TextureRenderData     *unusedTileBackgroundRenderData;
     NSUInteger            animationFrame;            // Pointer to the current frame of the animation
 @private
@@ -31,6 +32,8 @@ API_AVAILABLE(ios(13.0))
 
 - (TextureRenderData *)renderBorder:(enum eTileColors)color;
 - (TextureRenderData *)renderBackgroundImage:(unsigned int)backgroundColor;
+- (TextureRenderData *)renderBackgroundAnimations:(uint16_t)frameCounter
+                                  backgroundColor:(unsigned int)backgroundColor;
 - (TextureRenderData *)renderBackgroundInner:(unsigned int)backgroundColor;
 - (TextureRenderData *)renderBackgroundOuter:(unsigned int)backgroundColor;
 - (TextureRenderData *)renderUnusedTileBackground:(unsigned int)backgroundColor numberOfUnplacedTiles:(unsigned int)numberOfUnplacedTiles initialNumberOfUnplacedTiles:(unsigned int)initialNumberOfUnplacedTiles;

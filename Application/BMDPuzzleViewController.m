@@ -19,7 +19,7 @@
 @end
 
 @implementation BMDPuzzleViewController{
-    BMDRenderer *renderer;
+//    BMDRenderer *renderer;
     BMDViewController *rc;
     BMDAppDelegate *appd;
 }
@@ -91,7 +91,8 @@
     appd = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     // Turn off rendering while initializing puzzleView and optics
-    rc.renderON = NO;
+    rc.renderBackgroundON = NO;
+    rc.renderPuzzleON = NO;
     
     // Set up puzzleView
     CGRect puzzleBounds = rc.rootView.bounds;
@@ -103,14 +104,14 @@
     puzzleView.presentsWithTransaction = NO;
     puzzleView.device = MTLCreateSystemDefaultDevice();
     NSAssert(puzzleView.device, @"Metal is not supported on this device");
-    renderer = [[BMDRenderer alloc] initWithMetalKitView:puzzleView];
-    NSAssert(renderer, @"Renderer failed initialization");
+    rc.renderer = [[BMDRenderer alloc] initWithMetalKitView:puzzleView];
+    NSAssert(rc.renderer, @"Renderer failed initialization");
     // Initialize the renderer with the view size
-    [renderer mtkView:puzzleView drawableSizeWillChange:puzzleView.drawableSize];
-    puzzleView.delegate = renderer;
+    [rc.renderer mtkView:puzzleView drawableSizeWillChange:puzzleView.drawableSize];
+    puzzleView.delegate = rc.renderer;
     
     // Load Textures
-    [appd initAllTextures:puzzleView metalRenderer:renderer];
+    [appd initAllTextures:puzzleView metalRenderer:rc.renderer];
     
     NSMutableDictionary *pack = nil;
     NSMutableDictionary *puzzle = nil;
@@ -262,7 +263,7 @@
     
     
     // Start rendering
-    rc.renderON = YES;
+    rc.renderPuzzleON = YES;
     
 //    // Start loop2Player in PACKTYPE_MAIN
 //    if (rc.appCurrentGamePackType == PACKTYPE_MAIN ||
@@ -292,7 +293,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     DLog("DEBUG1 - BMDPuzzleViewController.viewDidAppear");
     puzzleView.preferredFramesPerSecond = 30;
-    rc.renderON = YES;
+    rc.renderPuzzleON = YES;
     
     NSString *adFree = [appd getObjectFromDefaults:@"AD_FREE_PUZZLES"];
     if (![adFree isEqualToString:@"YES"]){
@@ -322,7 +323,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated{
     DLog("BMDPuzzleViewController.viewDidDisappear");
-    rc.renderON = NO;
+    rc.renderPuzzleON = NO;
 }
 
 - (BOOL)queryPuzzleExists:(NSString *)dictionaryName puzzle:(unsigned int)puzzleIndex {
@@ -2084,7 +2085,7 @@
             [self willMoveToParentViewController:self.parentViewController];
             [puzzleView removeFromSuperview];
             [self removeFromParentViewController];
-            rc.renderON = NO;
+            rc.renderPuzzleON = NO;
             [rc refreshHomeView];
             [rc loadAppropriateSizeBannerAd];
             [rc startMainScreenMusicLoop];
@@ -2096,7 +2097,7 @@
             [self willMoveToParentViewController:self.parentViewController];
             [puzzleView removeFromSuperview];
             [self removeFromParentViewController];
-            rc.renderON = NO;
+            rc.renderPuzzleON = NO;
         }
         
         // Always switch to PACKTYPE_MAIN when leaving BMDPuzzleViewController

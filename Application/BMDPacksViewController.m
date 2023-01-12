@@ -611,7 +611,7 @@
     [self willMoveToParentViewController:self.parentViewController];
     [self.view removeFromSuperview];
     [self removeFromParentViewController];
-    rc.renderON = NO;
+    rc.renderPuzzleON = NO;
     [rc refreshHomeView];
     [rc loadAppropriateSizeBannerAd];
     [rc startMainScreenMusicLoop];
