@@ -155,7 +155,7 @@
     backgroundRenderDataImage.renderTexture = backgroundTextureData.texture;
     backgroundRenderDataImage->texturePositionInPixels.x = 0;
     backgroundRenderDataImage->texturePositionInPixels.y = 0;
-    backgroundRenderDataImage->textureDimensionsInPixels.x = rc.screenWidthInPixels;
+    backgroundRenderDataImage->textureDimensionsInPixels.x = 1.5*rc.screenWidthInPixels;
     backgroundRenderDataImage->textureDimensionsInPixels.y = rc.screenHeightInPixels;
     backgroundRenderDataImage->tileColor = backgroundColor;
     return backgroundRenderDataImage;

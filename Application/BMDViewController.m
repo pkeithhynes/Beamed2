@@ -206,24 +206,70 @@ Implementation of the cross-platform view controller
     }
 }
 
+
+
 - (NSMutableDictionary *)renderBackground {
     DLog("renderBackground");
     animationFrame++;
-    if (animationFrame % 8 == 0){
+    // Generate frame intervals from time intervals
+    unsigned int frameModulus = 2;
+    unsigned int animationIntervalInFrames = timeBetweenAnimationsInSeconds * frameModulus * 30;
+    unsigned int animationDurationInFrames = animationDurationInSeconds * frameModulus * 30;
+
+    if (animationFrame % frameModulus == 0){
+        // Redraw the background every frameModulus frames
+        [backgroundRenderDictionary removeAllObjects];
         backgroundRenderDataImage = [background renderBackgroundImage:7];
-        ringRenderArray = [foreground renderJewelRingArray:ringRenderArray
-                                             numberOfRings:1];
         [backgroundRenderDictionary setObject:backgroundRenderDataImage forKey:@"backgroundImage"];
-        [backgroundRenderDictionary setObject:ringRenderArray forKey:@"ringRenderArray"];
         
-        [backgroundRenderDictionary removeObjectForKey:@"refreshBackgroundImage"];
-        if ([ringRenderArray count] > 10){
-            [ringRenderArray removeObjectAtIndex:0];
+        // Initiate a new animation sequence every animationIntervalInFrames
+        if (animationFrameMarker1 < 0 &&
+            animationFrame % animationIntervalInFrames == 0){
+            // Marks the end frame of animation
+            animationFrameMarker1 = animationFrame + animationDurationInFrames;
+            syncFrame = YES;
+            // Clear out the previous animation and generate a new animation center point for next animation
+            [ringRenderArray removeAllObjects];
+            animationColor = (enum eTileColors)arc4random_uniform(7);
+            
+            animationCenter.x = arc4random_uniform(screenWidthInPixels);
+            animationCenter.y = screenHeightInPixels-0.7*arc4random_uniform(screenHeightInPixels);
+            
+            // Proportion of the way from 0.3*screenHeightInPixels to 1.0*screenHeightInPixels
+            CGFloat yProportion = animationCenter.y/(float)screenHeightInPixels;
+            CGFloat maxWidth = (CGFloat)screenWidthInPixels;
+            CGFloat actualWidth = yProportion*maxWidth;
+            
+            animationScaleFactor = 0.2 + (yProportion-0.3)*0.3/0.7;
+            animationSizeX = actualWidth;
+            animationSizeY = animationScaleFactor*actualWidth;
+        }
+        // Generate the next animation frame
+        else if (animationFrameMarker1 > 0 &&
+                 animationFrame < animationFrameMarker1){
+            // Add to the ringRenderArray
+            ringRenderArray = [foreground renderRingArray:ringRenderArray
+                                            numberOfRings:1
+                                                  centerX:(unsigned int)animationCenter.x
+                                                  centerY:(unsigned int)animationCenter.y
+                                                    color:(enum eTileColors)animationColor
+                                                    sizeX:animationSizeX
+                                                    sizeY:animationSizeY
+                                                syncFrame:syncFrame
+            ];
+            syncFrame = NO;
+            [backgroundRenderDictionary setObject:ringRenderArray forKey:@"ringRenderArray"];
+        }
+        else if (animationFrameMarker1 > 0 &&
+                 animationFrame >= animationFrameMarker1) {
+            // Indicates no animation at the present time
+            animationFrameMarker1 = -1;
         }
     }
-
     return backgroundRenderDictionary;
 }
+
+
 
 - (void)refreshHomeView {
     homeView.hidden = NO;
@@ -273,7 +319,12 @@ Implementation of the cross-platform view controller
     foreground = [[Foreground alloc] init];
     ringRenderArray = [NSMutableArray arrayWithCapacity:1];
 
+    // Control animations
     animationFrame = 0;
+    timeBetweenAnimationsInSeconds = 2;
+    animationDurationInSeconds = 3;
+    animationFrameMarker1 = -1;
+    syncFrame = YES;
     renderBackgroundON = YES;
 
     

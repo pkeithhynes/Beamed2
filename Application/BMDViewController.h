@@ -47,6 +47,14 @@ API_AVAILABLE(ios(13.0))
     TextureRenderData *backgroundRenderDataImage;
     TextureRenderData *backgroundAnimationImage;
     unsigned long animationFrame;
+    long animationFrameMarker1, animationFrameMarker2;
+    CGPoint animationCenter;
+    unsigned int timeBetweenAnimationsInSeconds;
+    unsigned int animationDurationInSeconds;
+    unsigned int animationColor;
+    unsigned int animationSizeX, animationSizeY;
+    CGFloat animationScaleFactor;
+    BOOL syncFrame;
     NSMutableArray *ringRenderArray;
 
     
