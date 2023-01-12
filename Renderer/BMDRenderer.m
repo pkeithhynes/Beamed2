@@ -323,21 +323,21 @@ API_AVAILABLE(ios(13.0))
         BMDViewController *rootController = (BMDViewController*)[[(BMDAppDelegate *)[[UIApplication sharedApplication]delegate] window] rootViewController];
         BMDAppDelegate *appDelegate = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
 
-//        if (rootController.renderBackgroundON){
-//            // Load and draw textures for various screen backgrounds other than Puzzles
-//            renderDictionary = [rootController renderBackground];
-//            
-//            // Draw a background image behind other screen elements
-//            TextureRenderData *backgroundImage = [renderDictionary objectForKey:@"backgroundImage"];
-//            if (backgroundImage != nil){
-//                [self drawMetalTexture:backgroundImage withView:_view texturePositionInPixels:backgroundImage->texturePositionInPixels textureSizeInPixels:backgroundImage->textureDimensionsInPixels withPipelineState:backgroundImage->tileColor withRotationTransformation:NO];
-//            }
-//            // Next draw the current frame of a background animation
-//            backgroundImage = [renderDictionary objectForKey:@"backgroundAnimationImage"];
-//            if (backgroundImage != nil){
-//                [self drawMetalTexture:backgroundImage withView:_view texturePositionInPixels:backgroundImage->texturePositionInPixels textureSizeInPixels:backgroundImage->textureDimensionsInPixels withPipelineState:backgroundImage->tileColor withRotationTransformation:NO];
-//            }
-//        }
+        if (rootController.renderBackgroundON){
+            // Load and draw textures for various screen backgrounds other than Puzzles
+            renderDictionary = [rootController renderBackground];
+            
+            // Draw a background image behind other screen elements
+            TextureRenderData *backgroundImage = [renderDictionary objectForKey:@"backgroundImage"];
+            if (backgroundImage != nil){
+                [self drawMetalTexture:backgroundImage withView:_view texturePositionInPixels:backgroundImage->texturePositionInPixels textureSizeInPixels:backgroundImage->textureDimensionsInPixels withPipelineState:backgroundImage->tileColor withRotationTransformation:NO];
+            }
+            // Next draw the current frame of a background animation
+            backgroundImage = [renderDictionary objectForKey:@"backgroundAnimationImage"];
+            if (backgroundImage != nil){
+                [self drawMetalTexture:backgroundImage withView:_view texturePositionInPixels:backgroundImage->texturePositionInPixels textureSizeInPixels:backgroundImage->textureDimensionsInPixels withPipelineState:backgroundImage->tileColor withRotationTransformation:NO];
+            }
+        }
         
         if (rootController.renderPuzzleON){
             // Load and draw textures

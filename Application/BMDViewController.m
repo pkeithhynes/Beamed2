@@ -205,63 +205,63 @@ Implementation of the cross-platform view controller
     }
 }
 
-//- (NSMutableDictionary *)renderBackground {
-//    DLog("renderBackground");
-//    animationFrame++;
-//    backgroundRenderDataImage = [background renderBackgroundImage:7];
-//    backgroundAnimationImage = [background renderBackgroundAnimations:animationFrame backgroundColor:7];
-//    [backgroundRenderDictionary setObject:backgroundRenderDataImage forKey:@"backgroundImage"];
-//    [backgroundRenderDictionary setObject:backgroundAnimationImage forKey:@"backgroundAnimationImage"];
-//    return backgroundRenderDictionary;
-//}
+- (NSMutableDictionary *)renderBackground {
+    DLog("renderBackground");
+    animationFrame++;
+    backgroundRenderDataImage = [background renderBackgroundImage:7];
+    backgroundAnimationImage = [background renderBackgroundAnimations:animationFrame backgroundColor:7];
+    [backgroundRenderDictionary setObject:backgroundRenderDataImage forKey:@"backgroundImage"];
+    [backgroundRenderDictionary setObject:backgroundAnimationImage forKey:@"backgroundAnimationImage"];
+    return backgroundRenderDictionary;
+}
 
 - (void)refreshHomeView {
     homeView.hidden = NO;
     
     // Set background color and graphic image
-    homeView.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.14 alpha:1.0];
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"backgroundLandscapeGrid" ofType:@"png"];
-    UIImage *sourceImage = [UIImage imageWithContentsOfFile:filePath];
-    CGFloat imageWidth = (CGFloat)sourceImage.size.width;
-    CGFloat imageHeight = (CGFloat)sourceImage.size.height;
-    CGFloat displayWidth = self.view.frame.size.width;
-    CGFloat displayHeight = self.view.frame.size.height;
-    CGFloat scaleFactor = displayHeight / imageHeight;
-    CGFloat newHeight = displayHeight;
-    CGFloat newWidth = imageWidth * scaleFactor;
-    CGSize imageSize = CGSizeMake(newWidth, newHeight);
-    UIGraphicsBeginImageContext(imageSize);
-    [sourceImage drawInRect:CGRectMake(-(newWidth-displayWidth)/2.0, 0, newWidth, newHeight)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    UIImageView *homeViewBackground = [[UIImageView alloc]initWithImage:newImage];
-    homeViewBackground.contentMode = UIViewContentModeScaleAspectFill;
-    homeViewBackground.clipsToBounds = YES;
-    [homeView addSubview:homeViewBackground];
-    [homeView sendSubviewToBack:homeViewBackground];
-    
-    [rootView sendSubviewToBack:homeView];
+//    homeView.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.14 alpha:1.0];
+//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"backgroundLandscapeGrid" ofType:@"png"];
+//    UIImage *sourceImage = [UIImage imageWithContentsOfFile:filePath];
+//    CGFloat imageWidth = (CGFloat)sourceImage.size.width;
+//    CGFloat imageHeight = (CGFloat)sourceImage.size.height;
+//    CGFloat displayWidth = self.view.frame.size.width;
+//    CGFloat displayHeight = self.view.frame.size.height;
+//    CGFloat scaleFactor = displayHeight / imageHeight;
+//    CGFloat newHeight = displayHeight;
+//    CGFloat newWidth = imageWidth * scaleFactor;
+//    CGSize imageSize = CGSizeMake(newWidth, newHeight);
+//    UIGraphicsBeginImageContext(imageSize);
+//    [sourceImage drawInRect:CGRectMake(-(newWidth-displayWidth)/2.0, 0, newWidth, newHeight)];
+//    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    UIImageView *homeViewBackground = [[UIImageView alloc]initWithImage:newImage];
+//    homeViewBackground.contentMode = UIViewContentModeScaleAspectFill;
+//    homeViewBackground.clipsToBounds = YES;
+//    [homeView addSubview:homeViewBackground];
+//    [homeView sendSubviewToBack:homeViewBackground];
+//
+//    [rootView sendSubviewToBack:homeView];
     
     //
     // Activate BMDRenderer
     //
-//    homeView.enableSetNeedsDisplay = NO;
-//    homeView.preferredFramesPerSecond = 30;
-//    homeView.presentsWithTransaction = NO;
-//    homeView.device = MTLCreateSystemDefaultDevice();
-//    NSAssert(homeView.device, @"Metal is not supported on this device");
-//    renderer = [[BMDRenderer alloc] initWithMetalKitView:homeView];
-//    NSAssert(renderer, @"Renderer failed initialization");
-//    // Initialize the renderer with the view size
-//    [renderer mtkView:homeView drawableSizeWillChange:homeView.drawableSize];
-//    homeView.delegate = renderer;
-//    [appd initAllTextures:homeView metalRenderer:renderer];
-//
-//    // The fixed part of the background only needs to get rendered once
-//    background = [[Background alloc] init];
-//    backgroundRenderDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
-//    animationFrame = 0;
-//    renderBackgroundON = YES;
+    homeView.enableSetNeedsDisplay = NO;
+    homeView.preferredFramesPerSecond = 30;
+    homeView.presentsWithTransaction = NO;
+    homeView.device = MTLCreateSystemDefaultDevice();
+    NSAssert(homeView.device, @"Metal is not supported on this device");
+    renderer = [[BMDRenderer alloc] initWithMetalKitView:homeView];
+    NSAssert(renderer, @"Renderer failed initialization");
+    // Initialize the renderer with the view size
+    [renderer mtkView:homeView drawableSizeWillChange:homeView.drawableSize];
+    homeView.delegate = renderer;
+    [appd initAllTextures:homeView metalRenderer:renderer];
+
+    // The fixed part of the background only needs to get rendered once
+    background = [[Background alloc] init];
+    backgroundRenderDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
+    animationFrame = 0;
+    renderBackgroundON = YES;
 
     
     //
