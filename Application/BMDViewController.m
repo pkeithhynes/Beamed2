@@ -19,12 +19,13 @@ Implementation of the cross-platform view controller
     CAGradientLayer *homeViewColorGradient;
     int gradientAnimationIndex;
     CGFloat yOffsetPrevBackNextInEditMode;
-    
 }
 
 @synthesize renderer;
 @synthesize backgroundRenderDictionary;
 @synthesize background;
+@synthesize foreground;
+@synthesize ringRenderArray;
 
 //@synthesize nextButton;
 @synthesize prevButton;
@@ -208,10 +209,19 @@ Implementation of the cross-platform view controller
 - (NSMutableDictionary *)renderBackground {
     DLog("renderBackground");
     animationFrame++;
-    backgroundRenderDataImage = [background renderBackgroundImage:7];
-    backgroundAnimationImage = [background renderBackgroundAnimations:animationFrame backgroundColor:7];
-    [backgroundRenderDictionary setObject:backgroundRenderDataImage forKey:@"backgroundImage"];
-    [backgroundRenderDictionary setObject:backgroundAnimationImage forKey:@"backgroundAnimationImage"];
+    if (animationFrame % 8 == 0){
+        backgroundRenderDataImage = [background renderBackgroundImage:7];
+        ringRenderArray = [foreground renderJewelRingArray:ringRenderArray
+                                             numberOfRings:1];
+        [backgroundRenderDictionary setObject:backgroundRenderDataImage forKey:@"backgroundImage"];
+        [backgroundRenderDictionary setObject:ringRenderArray forKey:@"ringRenderArray"];
+        
+        [backgroundRenderDictionary removeObjectForKey:@"refreshBackgroundImage"];
+        if ([ringRenderArray count] > 10){
+            [ringRenderArray removeObjectAtIndex:0];
+        }
+    }
+
     return backgroundRenderDictionary;
 }
 
@@ -260,6 +270,9 @@ Implementation of the cross-platform view controller
     // The fixed part of the background only needs to get rendered once
     background = [[Background alloc] init];
     backgroundRenderDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
+    foreground = [[Foreground alloc] init];
+    ringRenderArray = [NSMutableArray arrayWithCapacity:1];
+
     animationFrame = 0;
     renderBackgroundON = YES;
 

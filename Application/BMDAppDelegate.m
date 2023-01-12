@@ -1404,12 +1404,12 @@ CGFloat _screenHeightInPixels;
         success = NO;
     }
     
-    if ((backgroundAnimationContainers = [self fetchAnimationDataFromPlist:@"backgroundAnimations" fext:@"plist" animationContainers:ringAnimationContainers]) != nil)
-        DLog("Background animation initialization complete.\n");
-    else {
-        DLog("Background animation initialization failed.\n");
-        success = NO;
-    }
+//    if ((backgroundAnimationContainers = [self fetchAnimationDataFromPlist:@"backgroundAnimations" fext:@"plist" animationContainers:ringAnimationContainers]) != nil)
+//        DLog("Background animation initialization complete.\n");
+//    else {
+//        DLog("Background animation initialization failed.\n");
+//        success = NO;
+//    }
     
     // Read Background textures from plist
     if ([self fetchTextureFilesFromPlist:@"backgroundTextures.plist" textures:backgroundTextures])

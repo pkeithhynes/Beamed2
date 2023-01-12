@@ -31,6 +31,8 @@ API_AVAILABLE(ios(13.0))
 - (NSMutableArray *)renderIdleJewelRingArray:(NSMutableArray *)ringArray;
 - (NSMutableArray *)renderPuzzleCompletedMarker:(NSMutableArray *)foregroundArray;
 - (NSMutableArray *)renderPackCompletedMarker:(NSMutableArray *)foregroundArray;
+- (NSMutableArray *)renderJewelRingArray:(NSMutableArray *)ringArray
+                           numberOfRings:(unsigned int)numberOfRings;
 
 @end
 

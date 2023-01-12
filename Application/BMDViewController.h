@@ -25,9 +25,11 @@ Header for the cross-platform view controller
 #import "BMDPacksViewController.h"
 #import "BMDPuzzleViewController.h"
 #import "BMDSettingsViewController.h"
+#import "Foreground.h"
 #import "Background.h"
 #import "TextureRenderData.h"
 
+@class Foreground;
 @class Background;
 @class TextureRenderData;
 
@@ -41,9 +43,11 @@ API_AVAILABLE(ios(13.0))
     BMDRenderer *renderer;
     NSMutableDictionary *backgroundRenderDictionary;
     Background *background;
+    Foreground *foreground;
     TextureRenderData *backgroundRenderDataImage;
     TextureRenderData *backgroundAnimationImage;
-    uint16_t animationFrame;
+    unsigned long animationFrame;
+    NSMutableArray *ringRenderArray;
 
     
     // Render MetalKit View ON/OFF
@@ -160,6 +164,9 @@ API_AVAILABLE(ios(13.0))
 @property (nonatomic, retain) BMDRenderer *renderer;
 @property (nonatomic, retain) NSMutableDictionary *backgroundRenderDictionary;
 @property (nonatomic, retain) Background *background;
+@property (nonatomic, retain) Foreground *foreground;
+@property (nonatomic, retain) NSMutableArray *ringRenderArray;
+
 
 @property (nonatomic, retain) UILabel *gameTitleLabel;
 @property (nonatomic, retain) UILabel *puzzleSolvedLabel;

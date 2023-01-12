@@ -332,11 +332,15 @@ API_AVAILABLE(ios(13.0))
             if (backgroundImage != nil){
                 [self drawMetalTexture:backgroundImage withView:_view texturePositionInPixels:backgroundImage->texturePositionInPixels textureSizeInPixels:backgroundImage->textureDimensionsInPixels withPipelineState:backgroundImage->tileColor withRotationTransformation:NO];
             }
-            // Next draw the current frame of a background animation
-            backgroundImage = [renderDictionary objectForKey:@"backgroundAnimationImage"];
-            if (backgroundImage != nil){
-                [self drawMetalTexture:backgroundImage withView:_view texturePositionInPixels:backgroundImage->texturePositionInPixels textureSizeInPixels:backgroundImage->textureDimensionsInPixels withPipelineState:backgroundImage->tileColor withRotationTransformation:NO];
-            }
+            
+            // Render array of ring textures
+            [self renderRingTextures:[renderDictionary objectForKey:@"ringRenderArray"] withPipelineState:7];
+
+           // Next draw the current frame of a background animation
+//            backgroundImage = [renderDictionary objectForKey:@"backgroundAnimationImage"];
+//            if (backgroundImage != nil){
+//                [self drawMetalTexture:backgroundImage withView:_view texturePositionInPixels:backgroundImage->texturePositionInPixels textureSizeInPixels:backgroundImage->textureDimensionsInPixels withPipelineState:backgroundImage->tileColor withRotationTransformation:NO];
+//            }
         }
         
         if (rootController.renderPuzzleON){
