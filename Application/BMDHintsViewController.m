@@ -474,11 +474,13 @@
             }
         }
         
-        // Pause loop1Player
-        if (appd.loop1Player.isPlaying){
-            [appd.loop1Player pause];
+        if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+            [appd playMusicLoop:appd.loop1Player];
         }
-        
+        else {
+            [appd playMusicLoop:appd.loop2Player];
+        }
+
         [self willMoveToParentViewController:self.parentViewController];
         [self.view removeFromSuperview];
         [self removeFromParentViewController];

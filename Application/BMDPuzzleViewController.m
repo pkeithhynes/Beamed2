@@ -39,6 +39,7 @@
 @synthesize clearButton;
 
 @synthesize wholeScreenButton;
+@synthesize settingsGearButton;
 @synthesize helpButton;
 @synthesize hintButton;
 @synthesize hintBulb;
@@ -290,7 +291,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    DLog("DEBUG1 - BMDPuzzleViewController.viewDidAppear");
+    DLog("BMDPuzzleViewController.viewDidAppear");
     puzzleView.preferredFramesPerSecond = METAL_RENDERER_FPS;
     rc.renderPuzzleON = YES;
     
@@ -311,7 +312,9 @@
             kFIRParameterItemName:@"PuzzleVC viewDidAppear",
             kFIRParameterContentType:@"image"
         }];
-    }    if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+    }
+    
+    if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
         [appd playMusicLoop:appd.loop1Player];
     }
     else {
@@ -890,6 +893,49 @@
     [puzzleView addSubview:helpLabel];
     [puzzleView bringSubviewToFront:helpLabel];
     
+    //
+    // Add "Settings Gear" button to homeView
+    //
+    settingsGearButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    CGRect settingsRect;
+    switch (rc.displayAspectRatio) {
+        case ASPECT_4_3:
+            // iPad (9th generation)
+        case ASPECT_10_7:
+            // iPad Air (5th generation)
+        case ASPECT_3_2: {
+            // iPad Mini (6th generation)
+            //
+            settingsRect = CGRectMake(helpRect.origin.x,
+                                      helpRect.origin.y+1.5*backButtonIconSizeInPoints,
+                                      backButtonIconSizeInPoints,
+                                      backButtonIconSizeInPoints);
+            break;
+        }
+        case ASPECT_16_9:
+            // iPhone 14
+        case ASPECT_13_6: {
+            // iPhone 8
+        default:
+            settingsRect = CGRectMake(backArrowRect.origin.x+0.5*(helpRect.origin.x-backArrowRect.origin.x),
+//            settingsRect = CGRectMake(0.5*(helpRect.origin.x-backArrowRect.origin.x)-0.5*helpRect.size.width,
+                                      helpRect.origin.y,
+                                      helpRect.size.width,
+                                      helpRect.size.height);
+            break;
+        }
+    }
+    settingsGearButton.frame = settingsRect;
+    settingsGearButton.enabled = YES;
+    settingsGearButton.hidden = [appd->optics allTilesArePlaced] || (rc.appCurrentGamePackType == PACKTYPE_DEMO);
+    [settingsGearButton addTarget:self action:@selector(settingsButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    UIImage *settingsGearImage = [UIImage imageNamed:@"settingsGear.png"];
+    [settingsGearButton setBackgroundImage:settingsGearImage forState:UIControlStateNormal];
+    settingsGearButton.alpha = 1.0;
+
+    [puzzleView addSubview:settingsGearButton];
+    [puzzleView bringSubviewToFront:settingsGearButton];
+
     //
     // nextArrow icon
     //
@@ -1808,6 +1854,55 @@
 //
 // Button Press and Gesture Handler Methods Go Here
 //
+
+- (void)settingsButtonPressed {
+    DLog("BMDPuzzleViewController.settingsButtonPressed");
+//    [appd playSound:appd.tapPlayer];
+    
+    // Save progress before exiting
+    [appd->optics savePuzzleProgressToDefaults];
+    
+    // If not yet solved then store endTime for timeSegment
+    long endTime = [[NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]] longValue];
+    int currentPackNumber = -1;
+    int currentPuzzleNumber = 0;
+    NSMutableDictionary *emptyJewelCountDictionary = [appd buildEmptyJewelCountDictionary];
+    if (rc.appCurrentGamePackType == PACKTYPE_MAIN){
+        currentPackNumber = [appd fetchCurrentPackNumber];
+        currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
+        if ([appd puzzleSolutionStatus:currentPackNumber
+                          puzzleNumber:currentPuzzleNumber] == -1){
+            [appd updatePuzzleScoresArray:currentPackNumber
+                             puzzleNumber:currentPuzzleNumber
+                           numberOfJewels:emptyJewelCountDictionary
+                                startTime:-1        // Do not change startTime
+                                  endTime:endTime
+                                   solved:NO];
+        }
+    }
+    else if (rc.appCurrentGamePackType == PACKTYPE_DAILY) {
+        currentPackNumber = -1;
+        currentPuzzleNumber = [appd fetchDailyPuzzleNumber];
+        if ([appd puzzleSolutionStatus:currentPackNumber
+                          puzzleNumber:currentPuzzleNumber] == -1){
+            [appd updatePuzzleScoresArray:currentPackNumber
+                             puzzleNumber:currentPuzzleNumber
+                           numberOfJewels:emptyJewelCountDictionary
+                                startTime:-1        // Do not change startTime
+                                  endTime:endTime
+                                   solved:NO];
+        }
+    }
+    
+    // Pause loop2Player
+    [appd.loop2Player pause];
+
+    // Transfer control to settingsViewController
+    rc.settingsViewController = [[BMDSettingsViewController alloc] init];
+    [self addChildViewController:rc.settingsViewController];
+    [self.view addSubview:rc.settingsViewController.view];
+    [rc.settingsViewController didMoveToParentViewController:self];
+}
 
 - (void)nextButtonPressed {
     // Puzzle Editor
