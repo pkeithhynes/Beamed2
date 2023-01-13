@@ -2342,6 +2342,9 @@
                                        solved:NO];
             }
         }
+        
+        // Pause loop2Player
+        [appd.loop2Player pause];
 
         // Transfer control to hintsViewController
         self.hintsViewController = [[BMDHintsViewController alloc] init];

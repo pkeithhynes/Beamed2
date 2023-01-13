@@ -13,7 +13,7 @@
 #define ENABLE_PUZZLE_EDITOR NO  // YES Enables puzzle editing and playback, NO Disables puzzle editing and enables gameplay only
 #define ENABLE_GA YES           // YES enables Google Ananlytics
 #define FORCE_PUZZLE_EDITOR_AUTOGEN NO    // YES forces AutoGen mode when PE enabled
-#define ENABLE_HOME_SCREEN_ANIMATION YES
+#define ENABLE_HOME_SCREEN_ANIMATION NO
 
 // Coordinate systems
 // - All tiles are positioned on a grid ranging from 6x8 to 12x16
@@ -101,16 +101,12 @@
 
 // File paths for sound effects
 #define kButtonClinkSoundEffect @"TapClink"
-#define kButtonPlopSoundEffect @"2169_Button_sound_plop01"
 #define kButtonClickSoundEffect @"Click"
-#define kButtontwinkleSoundEffect @"GlimmerTwinkle"
 #define kLaserSound1 @"LaserQuick2"
 #define kLaserSound2 @"LaserQuick"
-#define kJewelEnergized @"GlimmerTwinkle"
 #define kScreenCaptureJPEG @"beamedScreenCapture.jpg"
 #define kProductsPlist @"products"
 #define kProductUpgradeKey @"upgrade0001"
-#define kChimeUp @"Chime01up"
 
 #define kLoopMusic1 @"InternalCalculations"
 #define kLoopMusic2 @"NightDrive"

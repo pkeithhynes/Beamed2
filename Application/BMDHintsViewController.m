@@ -41,7 +41,7 @@
     playRewardedAd = NO;
     
     CGRect hintPacksFrame = rc.rootView.bounds;
-
+    
     // Create hintsView
     hintsView = [[UIView alloc] initWithFrame:hintPacksFrame];
     self.view = hintsView;
@@ -257,6 +257,9 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     DLog("BMDHintsViewController.viewDidAppear");
+    
+    [appd playMusicLoop:appd.loop1Player];
+    
     NSString *adFree = [appd getObjectFromDefaults:@"AD_FREE_PUZZLES"];
     if (![adFree isEqualToString:@"YES"]){
         [hintsView addSubview:rc.bannerAdView];
@@ -469,6 +472,11 @@
                                       endTime:-1
                                        solved:NO];
             }
+        }
+        
+        // Pause loop1Player
+        if (appd.loop1Player.isPlaying){
+            [appd.loop1Player pause];
         }
         
         [self willMoveToParentViewController:self.parentViewController];

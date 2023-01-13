@@ -301,6 +301,10 @@ CGFloat _screenHeightInPixels;
     }
     
     [rc updateTodaysDate];
+    
+    // Resume Music Loop
+    [self playMusicLoop];
+    
     DLog("<<< Calling applicationDidBecomeActive");
 }
 
@@ -1315,25 +1319,22 @@ CGFloat _screenHeightInPixels;
 }
 
 - (void)playPuzzleCompleteSoundEffect {
-    if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
-        [loop1Player setVolume:0.10 fadeDuration:0.0];
-    }
-    else {
+    if (rc.appCurrentGamePackType != PACKTYPE_DEMO){
         [loop2Player setVolume:0.10 fadeDuration:0.0];
-    }
-    switch([self fetchCurrentPuzzleNumberForPack:[self fetchCurrentPackNumber]] % 3){
-        case 0:{
-            [self playSound:puzzleComplete1Player];
-            break;
-        }
-        case 1:{
-            [self playSound:puzzleComplete2Player];
-            break;
-        }
-        case 2:
-        default:{
-            [self playSound:puzzleComplete3Player];
-            break;
+        switch([self fetchCurrentPuzzleNumberForPack:[self fetchCurrentPackNumber]] % 3){
+            case 0:{
+                [self playSound:puzzleComplete1Player];
+                break;
+            }
+            case 1:{
+                [self playSound:puzzleComplete2Player];
+                break;
+            }
+            case 2:
+            default:{
+                [self playSound:puzzleComplete3Player];
+                break;
+            }
         }
     }
 }
@@ -1806,49 +1807,47 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     puzzleComplete3Player.delegate = self;
     puzzleComplete3Player.numberOfLoops = 0;
 
-
-
-    //    Get Jewel Energized sound effect
-    path = [[NSBundle mainBundle] pathForResource:kJewelEnergized ofType:@"wav"];
-    NSURL *jewelEnergizedSound = [NSURL URLWithString:path];
-    // Store the URL as a CFURLRef instance
-    jewelEnergizedSoundFileURLRef = (__bridge CFURLRef) jewelEnergizedSound;
-    AudioServicesCreateSystemSoundID (jewelEnergizedSoundFileURLRef, &jewelEnergizedSoundFileObject);
-
-    //    Get Puzzle Begin 1 sound effect
-    path = [[NSBundle mainBundle] pathForResource:kPuzzleBegin1 ofType:@"wav"];
-    NSURL *puzzleBeginSound1 = [NSURL URLWithString:path];
-    // Store the URL as a CFURLRef instance
-    puzzleBegin1_SoundFileURLRef = (__bridge CFURLRef) puzzleBeginSound1;
-    AudioServicesCreateSystemSoundID (puzzleBegin1_SoundFileURLRef, &puzzleBegin1_SoundFileObject);
-    
-    //    Get Puzzle Complete 1 sound effect
-    path = [[NSBundle mainBundle] pathForResource:kPuzzleComplete1 ofType:@"wav"];
-    NSURL *puzzleCompleteSound1 = [NSURL URLWithString:path];
-    // Store the URL as a CFURLRef instance
-    puzzleComplete1_SoundFileURLRef = (__bridge CFURLRef) puzzleCompleteSound1;
-    AudioServicesCreateSystemSoundID (puzzleComplete1_SoundFileURLRef, &puzzleComplete1_SoundFileObject);
-    
-    //    Get Puzzle Complete 2 sound effect
-    path = [[NSBundle mainBundle] pathForResource:kPuzzleComplete2 ofType:@"wav"];
-    NSURL *puzzleCompleteSound2 = [NSURL URLWithString:path];
-    // Store the URL as a CFURLRef instance
-    puzzleComplete2_SoundFileURLRef = (__bridge CFURLRef) puzzleCompleteSound2;
-    AudioServicesCreateSystemSoundID (puzzleComplete2_SoundFileURLRef, &puzzleComplete2_SoundFileObject);
-    
-    //    Get Puzzle Complete 3 sound effect
-    path = [[NSBundle mainBundle] pathForResource:kPuzzleComplete3 ofType:@"wav"];
-    NSURL *puzzleCompleteSound3 = [NSURL URLWithString:path];
-    // Store the URL as a CFURLRef instance
-    puzzleComplete3_SoundFileURLRef = (__bridge CFURLRef) puzzleCompleteSound3;
-    AudioServicesCreateSystemSoundID (puzzleComplete3_SoundFileURLRef, &puzzleComplete3_SoundFileObject);
-    
-    //    Get Puzzle Complete 4 sound effect
-    path = [[NSBundle mainBundle] pathForResource:kPuzzleComplete4 ofType:@"wav"];
-    NSURL *puzzleCompleteSound4 = [NSURL URLWithString:path];
-    // Store the URL as a CFURLRef instance
-    puzzleComplete4_SoundFileURLRef = (__bridge CFURLRef) puzzleCompleteSound4;
-    AudioServicesCreateSystemSoundID (puzzleComplete4_SoundFileURLRef, &puzzleComplete4_SoundFileObject);
+//    //    Get Jewel Energized sound effect
+//    path = [[NSBundle mainBundle] pathForResource:kJewelEnergized ofType:@"wav"];
+//    NSURL *jewelEnergizedSound = [NSURL URLWithString:path];
+//    // Store the URL as a CFURLRef instance
+//    jewelEnergizedSoundFileURLRef = (__bridge CFURLRef) jewelEnergizedSound;
+//    AudioServicesCreateSystemSoundID (jewelEnergizedSoundFileURLRef, &jewelEnergizedSoundFileObject);
+//
+//    //    Get Puzzle Begin 1 sound effect
+//    path = [[NSBundle mainBundle] pathForResource:kPuzzleBegin1 ofType:@"wav"];
+//    NSURL *puzzleBeginSound1 = [NSURL URLWithString:path];
+//    // Store the URL as a CFURLRef instance
+//    puzzleBegin1_SoundFileURLRef = (__bridge CFURLRef) puzzleBeginSound1;
+//    AudioServicesCreateSystemSoundID (puzzleBegin1_SoundFileURLRef, &puzzleBegin1_SoundFileObject);
+//
+//    //    Get Puzzle Complete 1 sound effect
+//    path = [[NSBundle mainBundle] pathForResource:kPuzzleComplete1 ofType:@"wav"];
+//    NSURL *puzzleCompleteSound1 = [NSURL URLWithString:path];
+//    // Store the URL as a CFURLRef instance
+//    puzzleComplete1_SoundFileURLRef = (__bridge CFURLRef) puzzleCompleteSound1;
+//    AudioServicesCreateSystemSoundID (puzzleComplete1_SoundFileURLRef, &puzzleComplete1_SoundFileObject);
+//
+//    //    Get Puzzle Complete 2 sound effect
+//    path = [[NSBundle mainBundle] pathForResource:kPuzzleComplete2 ofType:@"wav"];
+//    NSURL *puzzleCompleteSound2 = [NSURL URLWithString:path];
+//    // Store the URL as a CFURLRef instance
+//    puzzleComplete2_SoundFileURLRef = (__bridge CFURLRef) puzzleCompleteSound2;
+//    AudioServicesCreateSystemSoundID (puzzleComplete2_SoundFileURLRef, &puzzleComplete2_SoundFileObject);
+//
+//    //    Get Puzzle Complete 3 sound effect
+//    path = [[NSBundle mainBundle] pathForResource:kPuzzleComplete3 ofType:@"wav"];
+//    NSURL *puzzleCompleteSound3 = [NSURL URLWithString:path];
+//    // Store the URL as a CFURLRef instance
+//    puzzleComplete3_SoundFileURLRef = (__bridge CFURLRef) puzzleCompleteSound3;
+//    AudioServicesCreateSystemSoundID (puzzleComplete3_SoundFileURLRef, &puzzleComplete3_SoundFileObject);
+//
+//    //    Get Puzzle Complete 4 sound effect
+//    path = [[NSBundle mainBundle] pathForResource:kPuzzleComplete4 ofType:@"wav"];
+//    NSURL *puzzleCompleteSound4 = [NSURL URLWithString:path];
+//    // Store the URL as a CFURLRef instance
+//    puzzleComplete4_SoundFileURLRef = (__bridge CFURLRef) puzzleCompleteSound4;
+//    AudioServicesCreateSystemSoundID (puzzleComplete4_SoundFileURLRef, &puzzleComplete4_SoundFileObject);
     
     //    Get Loop Music 1
     path = [[NSBundle mainBundle] pathForResource:kLoopMusic1 ofType:@"wav"];
