@@ -405,16 +405,15 @@
         [packsView bringSubviewToFront:rc.bannerAdView];
     }
     rc.gamekitAccessPoint.active = NO;
-#ifdef ENABLE_GA
-
-    [FIRAnalytics logEventWithName:kFIREventSelectContent
-                        parameters:@{
-                                     kFIRParameterItemID:[NSString stringWithFormat:@"id-%@", @"PacksVC viewDidAppear"],
-                                     kFIRParameterItemName:@"PacksVC viewDidAppear",
-                                     kFIRParameterContentType:@"image"
-                                     }];
-#endif
-}
+    if (ENABLE_GA == YES){
+        
+        [FIRAnalytics logEventWithName:kFIREventSelectContent
+                            parameters:@{
+            kFIRParameterItemID:[NSString stringWithFormat:@"id-%@", @"PacksVC viewDidAppear"],
+            kFIRParameterItemName:@"PacksVC viewDidAppear",
+            kFIRParameterContentType:@"image"
+        }];
+    }}
 
 - (void)updateOnePackButtonTitle:(int)packDisplayIndex
                       packNumber:(int)packNumber

@@ -1664,11 +1664,11 @@ extern void playSound(AVAudioPlayer *PLAYER);
         if (nextPuzzleNumber >= currentPackLength){
             [appd saveDemoPuzzleNumber:currentPackLength];
             [defaults setObject:@"YES" forKey:@"demoHasBeenCompleted"];
-#ifdef ENABLE_GA
-    [FIRAnalytics logEventWithName:kFIREventTutorialComplete
-                        parameters:@{
-                                     }];
-#endif
+            if (ENABLE_GA == YES){
+                [FIRAnalytics logEventWithName:kFIREventTutorialComplete
+                                    parameters:@{
+                }];
+            }
         }
         else {
             [appd saveDemoPuzzleNumber:nextPuzzleNumber];
@@ -3902,14 +3902,13 @@ extern void playSound(AVAudioPlayer *PLAYER);
                 }
             }];
             
-#ifdef ENABLE_GA
-            [FIRAnalytics logEventWithName:@"puzzleSolved"
-                                parameters:@{
-                @"packNumber":[NSString stringWithFormat:@"%d", currentPackNumber],
-                @"puzzleNumber":[NSString stringWithFormat:@"%d", currentPuzzleNumber]
-            }];
-#endif
-
+            if (ENABLE_GA == YES){
+                [FIRAnalytics logEventWithName:@"puzzleSolved"
+                                    parameters:@{
+                    @"packNumber":[NSString stringWithFormat:@"%d", currentPackNumber],
+                    @"puzzleNumber":[NSString stringWithFormat:@"%d", currentPuzzleNumber]
+                }];
+            }
         }
         
         // Test out [appd fetchSolutionTime]
@@ -3960,13 +3959,12 @@ extern void playSound(AVAudioPlayer *PLAYER);
                 }
             }];
             
-#ifdef ENABLE_GA
-        [FIRAnalytics logEventWithName:@"dailyPuzzleSolved"
-                            parameters:@{
-                                         @"puzzleNumber":[NSString stringWithFormat:@"%d", [appd fetchDailyPuzzleNumber]]
-                                         }];
-#endif
-
+            if (ENABLE_GA == YES){
+                [FIRAnalytics logEventWithName:@"dailyPuzzleSolved"
+                                    parameters:@{
+                    @"puzzleNumber":[NSString stringWithFormat:@"%d", [appd fetchDailyPuzzleNumber]]
+                }];
+            }
 
         }
         

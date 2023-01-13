@@ -7,11 +7,13 @@
 //
 #import <UIKit/UIKit.h>
 
-#define BUILD_VERSION "0.10"
+#define METAL_RENDERER_FPS 20
+
+#define BUILD_VERSION "0.50"
 #define ENABLE_PUZZLE_EDITOR NO  // YES Enables puzzle editing and playback, NO Disables puzzle editing and enables gameplay only
 #define ENABLE_GA YES           // YES enables Google Ananlytics
 #define FORCE_PUZZLE_EDITOR_AUTOGEN NO    // YES forces AutoGen mode when PE enabled
-#define INCLUDE_GK 1
+#define ENABLE_HOME_SCREEN_ANIMATION YES
 
 // Coordinate systems
 // - All tiles are positioned on a grid ranging from 6x8 to 12x16

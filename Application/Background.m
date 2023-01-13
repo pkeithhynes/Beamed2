@@ -153,7 +153,7 @@
 
     backgroundRenderDataImage = [[TextureRenderData alloc] init];
     backgroundRenderDataImage.renderTexture = backgroundTextureData.texture;
-    backgroundRenderDataImage->texturePositionInPixels.x = 0;
+    backgroundRenderDataImage->texturePositionInPixels.x = -0.375*rc.screenWidthInPixels;
     backgroundRenderDataImage->texturePositionInPixels.y = 0;
     backgroundRenderDataImage->textureDimensionsInPixels.x = 1.5*rc.screenWidthInPixels;
     backgroundRenderDataImage->textureDimensionsInPixels.y = rc.screenHeightInPixels;

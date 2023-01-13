@@ -624,16 +624,15 @@
         [settingsView bringSubviewToFront:rc.bannerAdView];
     }
     rc.gamekitAccessPoint.active = NO;
-#ifdef ENABLE_GA
-
-    [FIRAnalytics logEventWithName:kFIREventSelectContent
-                        parameters:@{
-                                     kFIRParameterItemID:[NSString stringWithFormat:@"id-%@", @"SettingsVC viewDidAppear"],
-                                     kFIRParameterItemName:@"SettingsVC viewDidAppear",
-                                     kFIRParameterContentType:@"image"
-                                     }];
-#endif
-
+    if (ENABLE_GA == YES){
+        
+        [FIRAnalytics logEventWithName:kFIREventSelectContent
+                            parameters:@{
+            kFIRParameterItemID:[NSString stringWithFormat:@"id-%@", @"SettingsVC viewDidAppear"],
+            kFIRParameterItemName:@"SettingsVC viewDidAppear",
+            kFIRParameterContentType:@"image"
+        }];
+    }
 }
 
 - (void)setupBackButton:(CGRect)frame size:(CGSize)buttonSize position:(CGPoint)buttonPosition {

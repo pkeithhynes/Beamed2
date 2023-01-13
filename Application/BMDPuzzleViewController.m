@@ -100,7 +100,7 @@
     self.view = puzzleView;
         
     puzzleView.enableSetNeedsDisplay = NO;
-    puzzleView.preferredFramesPerSecond = 30;
+    puzzleView.preferredFramesPerSecond = METAL_RENDERER_FPS;
     puzzleView.presentsWithTransaction = NO;
     puzzleView.device = MTLCreateSystemDefaultDevice();
     NSAssert(puzzleView.device, @"Metal is not supported on this device");
@@ -222,12 +222,11 @@
         // Track start of DEMO
         if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
             
-#ifdef ENABLE_GA
-    [FIRAnalytics logEventWithName:kFIREventTutorialBegin
-                        parameters:@{
-                                     }];
-#endif
-        }
+            if (ENABLE_GA == YES){
+                [FIRAnalytics logEventWithName:kFIREventTutorialBegin
+                                    parameters:@{
+                }];
+            }        }
         
         appd->optics = [Optics alloc];
         [appd->optics initWithDictionary:puzzle viewController:self];
@@ -292,7 +291,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     DLog("DEBUG1 - BMDPuzzleViewController.viewDidAppear");
-    puzzleView.preferredFramesPerSecond = 30;
+    puzzleView.preferredFramesPerSecond = METAL_RENDERER_FPS;
     rc.renderPuzzleON = YES;
     
     NSString *adFree = [appd getObjectFromDefaults:@"AD_FREE_PUZZLES"];
@@ -304,16 +303,15 @@
     [rc hideLaunchScreen];
     rc.gamekitAccessPoint.active = NO;
 
-#ifdef ENABLE_GA
-
-    [FIRAnalytics logEventWithName:kFIREventSelectContent
-                        parameters:@{
-                                     kFIRParameterItemID:[NSString stringWithFormat:@"id-%@", @"PuzzleVC viewDidAppear"],
-                                     kFIRParameterItemName:@"PuzzleVC viewDidAppear",
-                                     kFIRParameterContentType:@"image"
-                                     }];
-#endif
-    if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+    if (ENABLE_GA == YES){
+        
+        [FIRAnalytics logEventWithName:kFIREventSelectContent
+                            parameters:@{
+            kFIRParameterItemID:[NSString stringWithFormat:@"id-%@", @"PuzzleVC viewDidAppear"],
+            kFIRParameterItemName:@"PuzzleVC viewDidAppear",
+            kFIRParameterContentType:@"image"
+        }];
+    }    if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
         [appd playMusicLoop:appd.loop1Player];
     }
     else {

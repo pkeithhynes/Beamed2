@@ -222,23 +222,22 @@ CGFloat _screenHeightInPixels;
     }
     
 
-#ifdef ENABLE_GA
-    //
-    // Firebase
-    //
-    [FIRApp configure];
-    NSUbiquitousKeyValueStore *kvStore = [NSUbiquitousKeyValueStore defaultStore];
-    NSDictionary *kvDictionary = [kvStore dictionaryRepresentation];
-    DLog("kvStore");
-
-    [FIRAnalytics logEventWithName:kFIREventSelectContent
-                        parameters:@{
-                                     kFIRParameterItemID:[NSString stringWithFormat:@"id-%@", @"AppDelegate Launch"],
-                                     kFIRParameterItemName:@"AppDelegate Launch",
-                                     kFIRParameterContentType:@"image"
-                                     }];
-#endif
-    
+    if (ENABLE_GA == YES){
+        //
+        // Firebase
+        //
+        [FIRApp configure];
+        NSUbiquitousKeyValueStore *kvStore = [NSUbiquitousKeyValueStore defaultStore];
+        NSDictionary *kvDictionary = [kvStore dictionaryRepresentation];
+        DLog("kvStore");
+        
+        [FIRAnalytics logEventWithName:kFIREventSelectContent
+                            parameters:@{
+            kFIRParameterItemID:[NSString stringWithFormat:@"id-%@", @"AppDelegate Launch"],
+            kFIRParameterItemName:@"AppDelegate Launch",
+            kFIRParameterContentType:@"image"
+        }];
+    }
     DLog("<<< Calling didFinishLaunchingWithOptions");
     return YES;
 }

@@ -265,16 +265,15 @@
 
     playRewardedAd = NO;
     rc.gamekitAccessPoint.active = NO;
-#ifdef ENABLE_GA
-
-    [FIRAnalytics logEventWithName:kFIREventSelectContent
-                        parameters:@{
-                                     kFIRParameterItemID:[NSString stringWithFormat:@"id-%@", @"HintsVC viewDidAppear"],
-                                     kFIRParameterItemName:@"HintsVC viewDidAppear",
-                                     kFIRParameterContentType:@"image"
-                                     }];
-#endif
-
+    if (ENABLE_GA == YES){
+        
+        [FIRAnalytics logEventWithName:kFIREventSelectContent
+                            parameters:@{
+            kFIRParameterItemID:[NSString stringWithFormat:@"id-%@", @"HintsVC viewDidAppear"],
+            kFIRParameterItemName:@"HintsVC viewDidAppear",
+            kFIRParameterContentType:@"image"
+        }];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
