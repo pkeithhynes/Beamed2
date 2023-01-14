@@ -40,6 +40,7 @@
 
 @synthesize wholeScreenButton;
 @synthesize settingsGearButton;
+@synthesize shoppingCartButton;
 @synthesize helpButton;
 @synthesize hintButton;
 @synthesize hintBulb;
@@ -536,6 +537,8 @@
     CGFloat puzzleCompleteLabelAnchorPointsY;
     CGFloat prevHomeNextFontSize;
     CGFloat backButtonIconSizeInPoints = 60;
+    CGFloat settingsGearIconSizeInPoints = 66;
+    CGFloat shoppingCartIconSizeInPoints = 66;
     int scoreFontSize;
 
     switch (rc.displayAspectRatio) {
@@ -555,6 +558,8 @@
             prevHomeNextFontSize = 36;
             backButtonIconSizeInPoints = 60;
             bulbSizeInPoints = 60;
+            settingsGearIconSizeInPoints = 66;
+            shoppingCartIconSizeInPoints = 62;
             
             jewelChestButtonSizeInPoints = 140;
             completedPuzzleButtonSizeInPoints = 140;
@@ -582,7 +587,9 @@
             prevHomeNextFontSize = 20;
             backButtonIconSizeInPoints = 40;
             bulbSizeInPoints = 40;
-
+            settingsGearIconSizeInPoints = 44;
+            shoppingCartIconSizeInPoints = 42;
+            
             jewelChestButtonSizeInPoints = 90;
             completedPuzzleButtonSizeInPoints = 90;
             scoreFontSize = 10;
@@ -610,6 +617,8 @@
             prevHomeNextFontSize = 26;
             backButtonIconSizeInPoints = 40;
             bulbSizeInPoints = 40;
+            settingsGearIconSizeInPoints = 44;
+            shoppingCartIconSizeInPoints = 42;
 
             jewelChestButtonSizeInPoints = 90;
             completedPuzzleButtonSizeInPoints = 90;
@@ -907,9 +916,9 @@
             // iPad Mini (6th generation)
             //
             settingsRect = CGRectMake(helpRect.origin.x,
-                                      helpRect.origin.y+1.5*backButtonIconSizeInPoints,
-                                      backButtonIconSizeInPoints,
-                                      backButtonIconSizeInPoints);
+                                      helpRect.origin.y+1.5*settingsGearIconSizeInPoints,
+                                      settingsGearIconSizeInPoints,
+                                      settingsGearIconSizeInPoints);
             break;
         }
         case ASPECT_16_9:
@@ -918,10 +927,9 @@
             // iPhone 8
         default:
             settingsRect = CGRectMake(backArrowRect.origin.x+0.5*(helpRect.origin.x-backArrowRect.origin.x),
-//            settingsRect = CGRectMake(0.5*(helpRect.origin.x-backArrowRect.origin.x)-0.5*helpRect.size.width,
                                       helpRect.origin.y,
-                                      helpRect.size.width,
-                                      helpRect.size.height);
+                                      settingsGearIconSizeInPoints,
+                                      settingsGearIconSizeInPoints);
             break;
         }
     }
@@ -936,6 +944,47 @@
     [puzzleView addSubview:settingsGearButton];
     [puzzleView bringSubviewToFront:settingsGearButton];
 
+    //
+    // Add "Shopping Cart" button to homeView
+    //
+    shoppingCartButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    CGRect shoppingRect;
+    switch (rc.displayAspectRatio) {
+        case ASPECT_4_3:
+            // iPad (9th generation)
+        case ASPECT_10_7:
+            // iPad Air (5th generation)
+        case ASPECT_3_2: {
+            // iPad Mini (6th generation)
+            //
+            shoppingRect = CGRectMake(settingsRect.origin.x,
+                                      settingsRect.origin.y+1.5*shoppingCartIconSizeInPoints,
+                                      shoppingCartIconSizeInPoints,
+                                      shoppingCartIconSizeInPoints);
+            break;
+        }
+        case ASPECT_16_9:
+            // iPhone 14
+        case ASPECT_13_6: {
+            // iPhone 8
+        default:
+            shoppingRect = CGRectMake(helpRect.origin.x+0.5*(hintRect.origin.x-helpRect.origin.x),
+                                      helpRect.origin.y,
+                                      shoppingCartIconSizeInPoints,
+                                      shoppingCartIconSizeInPoints);
+            break;
+        }
+    }
+    shoppingCartButton.frame = shoppingRect;
+    shoppingCartButton.enabled = YES;
+    shoppingCartButton.hidden = [appd->optics allTilesArePlaced] || (rc.appCurrentGamePackType == PACKTYPE_DEMO);
+    [shoppingCartButton addTarget:self action:@selector(settingsButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    UIImage *shoppingCartImage = [UIImage imageNamed:@"shoppingCart.png"];
+    [shoppingCartButton setBackgroundImage:shoppingCartImage forState:UIControlStateNormal];
+    shoppingCartButton.alpha = 1.0;
+    [puzzleView addSubview:shoppingCartButton];
+    [puzzleView bringSubviewToFront:shoppingCartButton];
+    
     //
     // nextArrow icon
     //
