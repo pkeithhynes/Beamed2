@@ -2031,13 +2031,8 @@ Implementation of the cross-platform view controller
     // Add homeView to rootView
     [rootView addSubview:homeView];
     [rootView bringSubviewToFront:homeView];
-
-    //
-    // Create an instance of the hintsViewController
-    //
-//    hintsViewController = [[BMDHintsViewController alloc] init];
-
 }
+
 
 //
 // Button Handler Methods Go Here

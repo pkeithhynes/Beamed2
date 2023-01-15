@@ -398,6 +398,8 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    DLog("BMDPacksViewController.viewDidAppear");
+    [appd playMusicLoop:appd.loop1Player];
     [self updateAllPackTitles];
     NSString *adFree = [appd getObjectFromDefaults:@"AD_FREE_PUZZLES"];
     if (![adFree isEqualToString:@"YES"]){
@@ -604,17 +606,86 @@
 }
 
 - (void)backButtonPressed {
-    DLog("backButtonPressed");
+    DLog("BMDPacksViewController.backButtonPressed");
     [appd playSound:appd.tapPlayer];
-    [(BMDViewController *)self.parentViewController refreshHomeView];
-    [self willMoveToParentViewController:self.parentViewController];
-    [self.view removeFromSuperview];
-    [self removeFromParentViewController];
-    rc.renderPuzzleON = NO;
-    [rc refreshHomeView];
-    [rc loadAppropriateSizeBannerAd];
-    [rc startMainScreenMusicLoop];
+    if ([self.parentViewController isKindOfClass:[BMDViewController class]]){
+        DLog("backButtonPressed parentViewController is BMDViewController");
+        [rc refreshHomeView];
+        [self willMoveToParentViewController:self.parentViewController];
+        [self.view removeFromSuperview];
+        [self removeFromParentViewController];
+        rc.renderPuzzleON = NO;
+        [rc refreshHomeView];
+        [rc loadAppropriateSizeBannerAd];
+        [rc startMainScreenMusicLoop];
+    }
+    else if ([self.parentViewController isKindOfClass:[BMDPuzzleViewController class]]){
+        DLog("backButtonPressed parentViewController is BMDPuzzleViewController");
+        
+        // If not yet solved then store startTime for timeSegment
+        long startTime = [[NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]] longValue];
+        int currentPackNumber = -1;
+        int currentPuzzleNumber = 0;
+        NSMutableDictionary *emptyJewelCountDictionary = [appd buildEmptyJewelCountDictionary];
+        if (rc.appCurrentGamePackType == PACKTYPE_MAIN){
+            currentPackNumber = [appd fetchCurrentPackNumber];
+            currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
+            if ([appd puzzleSolutionStatus:currentPackNumber
+                              puzzleNumber:currentPuzzleNumber] == -1){
+                [appd updatePuzzleScoresArray:currentPackNumber
+                                 puzzleNumber:currentPuzzleNumber
+                               numberOfJewels:emptyJewelCountDictionary
+                                    startTime:startTime        // New segment startTime
+                                      endTime:-1
+                                       solved:NO];
+            }
+        }
+        else if (rc.appCurrentGamePackType == PACKTYPE_DAILY) {
+            currentPackNumber = -1;
+            currentPuzzleNumber = [appd fetchDailyPuzzleNumber];
+            if ([appd puzzleSolutionStatus:currentPackNumber
+                              puzzleNumber:currentPuzzleNumber] == -1){
+                [appd updatePuzzleScoresArray:currentPackNumber
+                                 puzzleNumber:currentPuzzleNumber
+                               numberOfJewels:emptyJewelCountDictionary
+                                    startTime:startTime        // New segment startTime
+                                      endTime:-1
+                                       solved:NO];
+            }
+        }
+        
+        if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+            [appd playMusicLoop:appd.loop1Player];
+        }
+        else {
+            [appd playMusicLoop:appd.loop2Player];
+        }
+        
+        [self willMoveToParentViewController:self.parentViewController];
+        [self.view removeFromSuperview];
+        [self removeFromParentViewController];
+    }
+    else{
+        DLog("backButtonPressed parentViewController is unknown");
+        [self willMoveToParentViewController:self.parentViewController];
+        [self.view removeFromSuperview];
+        [self removeFromParentViewController];
+    }
 }
+
+
+//- (void)backButtonPressed {
+//    DLog("backButtonPressed");
+//    [appd playSound:appd.tapPlayer];
+//    [(BMDViewController *)self.parentViewController refreshHomeView];
+//    [self willMoveToParentViewController:self.parentViewController];
+//    [self.view removeFromSuperview];
+//    [self removeFromParentViewController];
+//    rc.renderPuzzleON = NO;
+//    [rc refreshHomeView];
+//    [rc loadAppropriateSizeBannerAd];
+//    [rc startMainScreenMusicLoop];
+//}
 
 //
 // Utility Methods Go Here

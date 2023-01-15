@@ -978,7 +978,7 @@
     shoppingCartButton.frame = shoppingRect;
     shoppingCartButton.enabled = YES;
     shoppingCartButton.hidden = [appd->optics allTilesArePlaced] || (rc.appCurrentGamePackType == PACKTYPE_DEMO);
-    [shoppingCartButton addTarget:self action:@selector(settingsButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [shoppingCartButton addTarget:self action:@selector(morePuzzlePacksButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     UIImage *shoppingCartImage = [UIImage imageNamed:@"shoppingCart.png"];
     [shoppingCartButton setBackgroundImage:shoppingCartImage forState:UIControlStateNormal];
     shoppingCartButton.alpha = 1.0;
@@ -1906,7 +1906,6 @@
 
 - (void)settingsButtonPressed {
     DLog("BMDPuzzleViewController.settingsButtonPressed");
-//    [appd playSound:appd.tapPlayer];
     
     // Save progress before exiting
     [appd->optics savePuzzleProgressToDefaults];
@@ -1952,6 +1951,56 @@
     [self.view addSubview:rc.settingsViewController.view];
     [rc.settingsViewController didMoveToParentViewController:self];
 }
+
+- (void)morePuzzlePacksButtonPressed {
+    DLog("BMDPuzzleViewController.morePuzzlePacksButtonPressed");
+    
+    // Save progress before exiting
+    [appd->optics savePuzzleProgressToDefaults];
+    
+    // If not yet solved then store endTime for timeSegment
+    long endTime = [[NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]] longValue];
+    int currentPackNumber = -1;
+    int currentPuzzleNumber = 0;
+    NSMutableDictionary *emptyJewelCountDictionary = [appd buildEmptyJewelCountDictionary];
+    if (rc.appCurrentGamePackType == PACKTYPE_MAIN){
+        currentPackNumber = [appd fetchCurrentPackNumber];
+        currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
+        if ([appd puzzleSolutionStatus:currentPackNumber
+                          puzzleNumber:currentPuzzleNumber] == -1){
+            [appd updatePuzzleScoresArray:currentPackNumber
+                             puzzleNumber:currentPuzzleNumber
+                           numberOfJewels:emptyJewelCountDictionary
+                                startTime:-1        // Do not change startTime
+                                  endTime:endTime
+                                   solved:NO];
+        }
+    }
+    else if (rc.appCurrentGamePackType == PACKTYPE_DAILY) {
+        currentPackNumber = -1;
+        currentPuzzleNumber = [appd fetchDailyPuzzleNumber];
+        if ([appd puzzleSolutionStatus:currentPackNumber
+                          puzzleNumber:currentPuzzleNumber] == -1){
+            [appd updatePuzzleScoresArray:currentPackNumber
+                             puzzleNumber:currentPuzzleNumber
+                           numberOfJewels:emptyJewelCountDictionary
+                                startTime:-1        // Do not change startTime
+                                  endTime:endTime
+                                   solved:NO];
+        }
+    }
+    
+    // Pause loop2Player
+    [appd.loop2Player pause];
+
+    // Transfer control to settingsViewController
+    rc.packsViewController = [[BMDPacksViewController alloc] init];
+    [self addChildViewController:rc.packsViewController];
+    [self.view addSubview:rc.packsViewController.view];
+    [rc.packsViewController didMoveToParentViewController:self];
+}
+
+
 
 - (void)nextButtonPressed {
     // Puzzle Editor
