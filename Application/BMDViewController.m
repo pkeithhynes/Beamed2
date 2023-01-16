@@ -2130,6 +2130,10 @@ Implementation of the cross-platform view controller
     // View controller approach
     [appd playSound:appd.tapPlayer];
     settingsViewController = [[BMDSettingsViewController alloc] init];
+    settingsViewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    
+//    [self presentViewController:settingsViewController animated:NO completion:nil];
+    
     [self addChildViewController:settingsViewController];
     [self.view addSubview:settingsViewController.view];
     [settingsViewController didMoveToParentViewController:self];
@@ -2155,6 +2159,11 @@ Implementation of the cross-platform view controller
     scoresView.hidden = YES;
     [scoresView removeFromSuperview];
     [self refreshHomeView];
+}
+
+- (BMDViewController *)removeAllChildViewControllers:(BMDViewController *)vc {
+    NSArray *children = [NSArray arrayWithArray:vc.childViewControllers];
+    return vc;
 }
 
 @end

@@ -703,7 +703,7 @@
     }
     else if ([self.parentViewController isKindOfClass:[BMDPuzzleViewController class]]){
         DLog("backButtonPressed parentViewController is BMDPuzzleViewController");
-        
+
         // If not yet solved then store startTime for timeSegment
         long startTime = [[NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]] longValue];
         int currentPackNumber = -1;
@@ -735,14 +735,14 @@
                                        solved:NO];
             }
         }
-        
+
         if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
             [appd playMusicLoop:appd.loop1Player];
         }
         else {
             [appd playMusicLoop:appd.loop2Player];
         }
-        
+
         [self willMoveToParentViewController:self.parentViewController];
         [self.view removeFromSuperview];
         [self removeFromParentViewController];

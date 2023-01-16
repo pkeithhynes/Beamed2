@@ -570,11 +570,26 @@
             appd.currentPack = packNumber;
             [appd saveCurrentPackNumber:packNumber];
 
+            // Remove puzzleViewController from rc
+            NSArray *children = [NSArray arrayWithArray:rc.childViewControllers];
+            if (children != nil){
+                BMDPuzzleViewController *puzzleVC = [children objectAtIndex:0];
+                if (puzzleVC != nil &&
+                    [puzzleVC isKindOfClass:[BMDPuzzleViewController class]]){
+                    // Remove packsView and packsViewController from puzzleViewController
+                    [packsView removeFromSuperview];
+                    [self removeFromParentViewController];
+                    [puzzleVC.view removeFromSuperview];
+                    [puzzleVC removeFromParentViewController];
+                }
+            }
+            
             rc.appCurrentGamePackType = PACKTYPE_MAIN;
-            BMDPuzzleViewController *puzzleViewController = [[BMDPuzzleViewController alloc]init];
-            [rc addChildViewController:puzzleViewController];
-            [rc.view addSubview:puzzleViewController.view];
-            [puzzleViewController didMoveToParentViewController:rc];
+            rc.puzzleViewController = [[BMDPuzzleViewController alloc]init];
+            [rc addChildViewController:rc.puzzleViewController];
+            [rc.view addSubview:rc.puzzleViewController.view];
+            [rc.puzzleViewController didMoveToParentViewController:rc];
+            
         }
         else {
             if (![appd queryPurchasedPuzzlePack:(int)packNumber]){
@@ -591,11 +606,25 @@
                 appd.currentPack = packNumber;
                 [appd saveCurrentPackNumber:packNumber];
                 
+                // Remove puzzleViewController from rc
+                NSArray *children = [NSArray arrayWithArray:rc.childViewControllers];
+                if (children != nil){
+                    BMDPuzzleViewController *puzzleVC = [children objectAtIndex:0];
+                    if (puzzleVC != nil &&
+                        [puzzleVC isKindOfClass:[BMDPuzzleViewController class]]){
+                        // Remove packsView and packsViewController from puzzleViewController
+                        [packsView removeFromSuperview];
+                        [self removeFromParentViewController];
+                        [puzzleVC.view removeFromSuperview];
+                        [puzzleVC removeFromParentViewController];
+                    }
+                }
+
                 rc.appCurrentGamePackType = PACKTYPE_MAIN;
-                BMDPuzzleViewController *puzzleViewController = [[BMDPuzzleViewController alloc]init];
-                [rc addChildViewController:puzzleViewController];
-                [rc.view addSubview:puzzleViewController.view];
-                [puzzleViewController didMoveToParentViewController:rc];
+                rc.puzzleViewController = [[BMDPuzzleViewController alloc]init];
+                [rc addChildViewController:rc.puzzleViewController];
+                [rc.view addSubview:rc.puzzleViewController.view];
+                [rc.puzzleViewController didMoveToParentViewController:rc];
             }
         }
         DLog("puzzlePackButtonPressed %d", packIndex);

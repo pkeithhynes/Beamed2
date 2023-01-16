@@ -2218,7 +2218,6 @@
 }
 
 - (void)backButtonPressed {
-    DLog("backButtonPressed");
     // In autoGen the backButton generates new Puzzles
         
     if ([appd autoGenIsEnabled] == YES){
