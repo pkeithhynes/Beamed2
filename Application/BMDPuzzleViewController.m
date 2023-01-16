@@ -979,7 +979,7 @@
     shoppingCartButton.enabled = YES;
     shoppingCartButton.hidden = [appd->optics allTilesArePlaced] || (rc.appCurrentGamePackType == PACKTYPE_DEMO);
     [shoppingCartButton addTarget:self action:@selector(morePuzzlePacksButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    UIImage *shoppingCartImage = [UIImage imageNamed:@"shoppingCart.png"];
+    UIImage *shoppingCartImage = [UIImage imageNamed:@"puzzlePacks.png"];
     [shoppingCartButton setBackgroundImage:shoppingCartImage forState:UIControlStateNormal];
     shoppingCartButton.alpha = 1.0;
     [puzzleView addSubview:shoppingCartButton];

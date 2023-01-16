@@ -527,6 +527,9 @@
 		808C49D128D41210002A768C /* puzzlePacksArray.plist in Resources */ = {isa = PBXBuildFile; fileRef = 808C49D028D41210002A768C /* puzzlePacksArray.plist */; };
 		808C49D228D41210002A768C /* puzzlePacksArray.plist in Resources */ = {isa = PBXBuildFile; fileRef = 808C49D028D41210002A768C /* puzzlePacksArray.plist */; };
 		808C49D328D41210002A768C /* puzzlePacksArray.plist in Resources */ = {isa = PBXBuildFile; fileRef = 808C49D028D41210002A768C /* puzzlePacksArray.plist */; };
+		808D86B4297527B00022B2FE /* puzzlePacks.png in Resources */ = {isa = PBXBuildFile; fileRef = 808D86B3297527B00022B2FE /* puzzlePacks.png */; };
+		808D86B5297527B00022B2FE /* puzzlePacks.png in Resources */ = {isa = PBXBuildFile; fileRef = 808D86B3297527B00022B2FE /* puzzlePacks.png */; };
+		808D86B6297527B00022B2FE /* puzzlePacks.png in Resources */ = {isa = PBXBuildFile; fileRef = 808D86B3297527B00022B2FE /* puzzlePacks.png */; };
 		808E3BC528FC5304009C1474 /* GridTileDot.png in Resources */ = {isa = PBXBuildFile; fileRef = 808E3BC428FC5304009C1474 /* GridTileDot.png */; };
 		808E3BC628FC5304009C1474 /* GridTileDot.png in Resources */ = {isa = PBXBuildFile; fileRef = 808E3BC428FC5304009C1474 /* GridTileDot.png */; };
 		808E3BC728FC5304009C1474 /* GridTileDot.png in Resources */ = {isa = PBXBuildFile; fileRef = 808E3BC428FC5304009C1474 /* GridTileDot.png */; };
@@ -950,6 +953,7 @@
 		808998E328B6F143003D2345 /* BMDSettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMDSettingsViewController.h; sourceTree = "<group>"; };
 		808998E428B6F143003D2345 /* BMDSettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMDSettingsViewController.m; sourceTree = "<group>"; };
 		808C49D028D41210002A768C /* puzzlePacksArray.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = puzzlePacksArray.plist; sourceTree = "<group>"; };
+		808D86B3297527B00022B2FE /* puzzlePacks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = puzzlePacks.png; sourceTree = "<group>"; };
 		808E3BC428FC5304009C1474 /* GridTileDot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GridTileDot.png; sourceTree = "<group>"; };
 		808E49D7295E18A900D4D077 /* backArrowWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backArrowWhite.png; sourceTree = "<group>"; };
 		808E49D8295E18A900D4D077 /* nextArrowWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nextArrowWhite.png; sourceTree = "<group>"; };
@@ -1435,6 +1439,7 @@
 				8044DD7F29047FDC0078942B /* unlocked.png */,
 				8089548A291DB76B009C4D02 /* backArrow.png */,
 				80895496291DB7FE009C4D02 /* nextArrow.png */,
+				808D86B3297527B00022B2FE /* puzzlePacks.png */,
 			);
 			path = "Button Textures";
 			sourceTree = "<group>";
@@ -1884,6 +1889,7 @@
 				52A9A2CE25717F0B0072F41E /* 39783_Light_SaberSciFiLowSwingSlow_4.wav in Resources */,
 				80BE77DF27E3CD9F00E2B4FD /* Assets.xcassets in Resources */,
 				80099C1D296FCBA60022F747 /* backgroundAnimations_00005.png in Resources */,
+				808D86B5297527B00022B2FE /* puzzlePacks.png in Resources */,
 				5286EAB92564706B00B43209 /* TileJewelActivated10.png in Resources */,
 				80FC3A842967F2C800CB1567 /* helpImage.png in Resources */,
 				52994B7D25DA13D700887B9C /* Rings_00025.png in Resources */,
@@ -2026,6 +2032,7 @@
 				809FEADA2971176200B13351 /* 67412386-reward-license.pdf in Resources */,
 				808E49DF295E18A900D4D077 /* nextArrowWhite.png in Resources */,
 				5286EA9F2564706B00B43209 /* TileJewelActivated11.png in Resources */,
+				808D86B6297527B00022B2FE /* puzzlePacks.png in Resources */,
 				809FEA9329710C2500B13351 /* 70645766-night-drive-80s-license.txt in Resources */,
 				8023B2CA2915BBDF00176960 /* JewelMagenta.png in Resources */,
 				80099C3F296FCBA60022F747 /* backgroundAnimations_00008.png in Resources */,
@@ -2226,6 +2233,7 @@
 				809FEAA32971167200B13351 /* 67409516-intrigue-comedy-license.pdf in Resources */,
 				809FEAD82971176200B13351 /* 67412386-reward-license.pdf in Resources */,
 				808E49DD295E18A900D4D077 /* nextArrowWhite.png in Resources */,
+				808D86B4297527B00022B2FE /* puzzlePacks.png in Resources */,
 				5286EAB22564706B00B43209 /* TileJewelActivated07.png in Resources */,
 				809FEA9129710C2500B13351 /* 70645766-night-drive-80s-license.txt in Resources */,
 				5286EA0B25646CAF00B43209 /* TileSquareBlack.png in Resources */,

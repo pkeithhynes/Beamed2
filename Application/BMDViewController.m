@@ -2015,7 +2015,7 @@ Implementation of the cross-platform view controller
             break;
         }
     }
-    UIImage *shoppingCartImage = [UIImage imageNamed:@"shoppingCart.png"];
+    UIImage *shoppingCartImage = [UIImage imageNamed:@"puzzlePacks.png"];
     [shoppingCartButton setBackgroundImage:shoppingCartImage forState:UIControlStateNormal];
     buttonRect = CGRectMake(buttonCx-buttonWidth/2.0+2.5*buttonWidth,
                             buttonCy,
