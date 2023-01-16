@@ -266,29 +266,6 @@
     // Start rendering
     rc.renderPuzzleON = YES;
     
-//    // Start loop2Player in PACKTYPE_MAIN
-//    if (rc.appCurrentGamePackType == PACKTYPE_MAIN ||
-//        rc.appCurrentGamePackType == PACKTYPE_DAILY){
-////        [appd playSound:appd.puzzleBegin1_SoundFileObject];
-//        [appd.loop1Player pause];
-//        if ([[appd getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"] &&
-//            ![appd.loop2Player isPlaying]){
-//            [appd.loop2Player setVolume:0.5 fadeDuration:0.0];
-//            [appd.loop2Player play];
-//        }
-//        [appd.loop3Player pause];
-//    }
-//    else {
-////        [appd playSound:appd.puzzleBegin1_SoundFileObject];
-//        if ([[appd getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"] &&
-//            ![appd.loop1Player isPlaying]){
-//            [appd.loop1Player setVolume:0.5 fadeDuration:0.0];
-//            [appd.loop1Player play];
-//        }
-//        [appd.loop2Player pause];
-//        [appd.loop3Player pause];
-//    }
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {

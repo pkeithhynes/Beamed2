@@ -7,7 +7,7 @@
 //
 #import <UIKit/UIKit.h>
 
-#define METAL_RENDERER_FPS 20
+#define METAL_RENDERER_FPS 24
 
 #define BUILD_VERSION "0.50"
 #define ENABLE_PUZZLE_EDITOR NO  // YES Enables puzzle editing and playback, NO Disables puzzle editing and enables gameplay only

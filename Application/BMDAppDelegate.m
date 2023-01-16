@@ -303,7 +303,7 @@ CGFloat _screenHeightInPixels;
     [rc updateTodaysDate];
     
     // Resume Music Loop
-    [self playMusicLoop];
+    [self playMusicLoop:loop1Player];
     
     DLog("<<< Calling applicationDidBecomeActive");
 }

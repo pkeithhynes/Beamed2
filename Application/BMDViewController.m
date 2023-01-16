@@ -2161,9 +2161,4 @@ Implementation of the cross-platform view controller
     [self refreshHomeView];
 }
 
-- (BMDViewController *)removeAllChildViewControllers:(BMDViewController *)vc {
-    NSArray *children = [NSArray arrayWithArray:vc.childViewControllers];
-    return vc;
-}
-
 @end

@@ -3726,9 +3726,6 @@ extern void playSound(AVAudioPlayer *PLAYER);
             if ([self checkIfAllJewelsAreEnergized]) {
                 puzzleCompleted = YES;
                 if (!puzzleHasBeenCompleted) {
-                    // Play Puzzle Complete sound effect if puzzleCompleted and sound effect has not yet been played
-//                    [appd.loop2Player setVolume:0.0 fadeDuration:0.0];
-//                    [appd.loop2Player pause];
                     [appd playPuzzleCompleteSoundEffect];
                 }
                 [self handlePuzzleCompletion:nil];
@@ -3753,9 +3750,6 @@ extern void playSound(AVAudioPlayer *PLAYER);
             if ([self checkIfAllJewelsAreEnergized]) {
                 puzzleCompleted = YES;
                 if (!puzzleHasBeenCompleted) {
-                    // Play Puzzle Complete sound effect if puzzleCompleted and sound effect has not yet been played
-//                    [appd.loop2Player setVolume:0.0 fadeDuration:0.0];
-//                    [appd.loop2Player pause];
                     [appd playPuzzleCompleteSoundEffect];
                 }
                 [self handlePuzzleCompletion:nil];
@@ -3784,9 +3778,6 @@ extern void playSound(AVAudioPlayer *PLAYER);
             if ([self checkIfAllJewelsAreEnergized]) {
                 puzzleCompleted = YES;
                 if (!puzzleHasBeenCompleted) {
-                    // Play Puzzle Complete sound effect if puzzleCompleted and sound effect has not yet been played
-//                    [appd.loop1Player setVolume:0.0 fadeDuration:0.0];
-//                    [appd.loop1Player pause];
                     [appd playPuzzleCompleteSoundEffect];
                 }
                 [self handlePuzzleCompletion:nil];
