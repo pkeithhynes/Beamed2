@@ -40,7 +40,7 @@
 
 @synthesize wholeScreenButton;
 @synthesize settingsGearButton;
-@synthesize shoppingCartButton;
+@synthesize puzzlePacksButton;
 @synthesize helpButton;
 @synthesize hintButton;
 @synthesize hintBulb;
@@ -826,14 +826,14 @@
             // iPhone 8
         default:
             // Horizontally constrained
-            displayWidth = 0.8*rc.screenWidthInPixels/rc.contentScaleFactor;
-            displayHeight = 0.6*rc.screenHeightInPixels/rc.contentScaleFactor;
+            displayWidth = 1.0*rc.screenWidthInPixels/rc.contentScaleFactor;
+            displayHeight = 0.7*rc.screenHeightInPixels/rc.contentScaleFactor;
             imageViewRect = CGRectMake(0.0,
                                        (displayHeight-imageHeight*displayWidth/imageWidth)/2.0,
                                        displayWidth,
                                        imageHeight*displayWidth/imageWidth);
-            helpImageViewRect = CGRectMake(0.1*rc.screenWidthInPixels/rc.contentScaleFactor,
-                                              0.2*rc.screenHeightInPixels/rc.contentScaleFactor,
+            helpImageViewRect = CGRectMake(0.0*rc.screenWidthInPixels/rc.contentScaleFactor,
+                                              0.15*rc.screenHeightInPixels/rc.contentScaleFactor,
                                               displayWidth,
                                               displayHeight);
             break;
@@ -853,8 +853,8 @@
     [helpImageView.layer setBorderColor:[UIColor whiteColor].CGColor];
     [helpImageView.layer setBorderWidth:2.0];
     [helpImageView.layer setCornerRadius:15.0];
-    [puzzleView addSubview:helpImageView];
-    [puzzleView bringSubviewToFront:helpImageView];
+//    [puzzleView addSubview:helpImageView];
+//    [puzzleView bringSubviewToFront:helpImageView];
 
     //
     // helpLabel
@@ -876,8 +876,8 @@
     helpLabel.layer.masksToBounds = YES;
     helpLabel.layer.cornerRadius = 15;
     helpLabel.hidden = YES;
-    [puzzleView addSubview:helpLabel];
-    [puzzleView bringSubviewToFront:helpLabel];
+//    [puzzleView addSubview:helpLabel];
+//    [puzzleView bringSubviewToFront:helpLabel];
     
     //
     // Add "Settings Gear" button to homeView
@@ -917,14 +917,13 @@
     UIImage *settingsGearImage = [UIImage imageNamed:@"settingsGear.png"];
     [settingsGearButton setBackgroundImage:settingsGearImage forState:UIControlStateNormal];
     settingsGearButton.alpha = 1.0;
-
     [puzzleView addSubview:settingsGearButton];
     [puzzleView bringSubviewToFront:settingsGearButton];
 
     //
     // Add "Shopping Cart" button to homeView
     //
-    shoppingCartButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    puzzlePacksButton = [UIButton buttonWithType:UIButtonTypeCustom];
     CGRect shoppingRect;
     switch (rc.displayAspectRatio) {
         case ASPECT_4_3:
@@ -952,15 +951,22 @@
             break;
         }
     }
-    shoppingCartButton.frame = shoppingRect;
-    shoppingCartButton.enabled = YES;
-    shoppingCartButton.hidden = [appd->optics allTilesArePlaced] || (rc.appCurrentGamePackType == PACKTYPE_DEMO);
-    [shoppingCartButton addTarget:self action:@selector(morePuzzlePacksButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    puzzlePacksButton.frame = shoppingRect;
+    puzzlePacksButton.enabled = YES;
+    puzzlePacksButton.hidden = [appd->optics allTilesArePlaced] || (rc.appCurrentGamePackType == PACKTYPE_DEMO);
+    [puzzlePacksButton addTarget:self action:@selector(morePuzzlePacksButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     UIImage *shoppingCartImage = [UIImage imageNamed:@"puzzlePacks.png"];
-    [shoppingCartButton setBackgroundImage:shoppingCartImage forState:UIControlStateNormal];
-    shoppingCartButton.alpha = 1.0;
-    [puzzleView addSubview:shoppingCartButton];
-    [puzzleView bringSubviewToFront:shoppingCartButton];
+    [puzzlePacksButton setBackgroundImage:shoppingCartImage forState:UIControlStateNormal];
+    puzzlePacksButton.alpha = 1.0;
+    [puzzleView addSubview:puzzlePacksButton];
+    [puzzleView bringSubviewToFront:puzzlePacksButton];
+    
+    // Add helpLabel and helpImageView on top of puzzlePacksButton and settingsGearButton
+    [puzzleView addSubview:helpLabel];
+    [puzzleView bringSubviewToFront:helpLabel];
+    [puzzleView addSubview:helpImageView];
+    [puzzleView bringSubviewToFront:helpImageView];
+
     
     //
     // nextArrow icon

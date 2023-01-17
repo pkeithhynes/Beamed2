@@ -2027,7 +2027,7 @@ Implementation of the cross-platform view controller
     //
     // Add "Shopping Cart" button to homeView
     //
-    UIButton *shoppingCartButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *puzzlePacksButton = [UIButton buttonWithType:UIButtonTypeCustom];
     switch (displayAspectRatio) {
         case ASPECT_4_3:{
             // iPad (9th generation)
@@ -2053,17 +2053,17 @@ Implementation of the cross-platform view controller
         }
     }
     UIImage *shoppingCartImage = [UIImage imageNamed:@"puzzlePacks.png"];
-    [shoppingCartButton setBackgroundImage:shoppingCartImage forState:UIControlStateNormal];
+    [puzzlePacksButton setBackgroundImage:shoppingCartImage forState:UIControlStateNormal];
     buttonRect = CGRectMake(buttonCx-buttonWidth/2.0+2.5*buttonWidth,
                             buttonCy,
                             buttonWidth,
                             buttonHeight);
-    shoppingCartButton.frame = buttonRect;
-    [shoppingCartButton addTarget:self action:@selector(morePuzzlePacksButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    shoppingCartButton.showsTouchWhenHighlighted = YES;
-    shoppingCartButton.alpha = 1.0;
-    [homeView addSubview:shoppingCartButton];
-    [homeView bringSubviewToFront:shoppingCartButton];
+    puzzlePacksButton.frame = buttonRect;
+    [puzzlePacksButton addTarget:self action:@selector(morePuzzlePacksButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    puzzlePacksButton.showsTouchWhenHighlighted = YES;
+    puzzlePacksButton.alpha = 1.0;
+    [homeView addSubview:puzzlePacksButton];
+    [homeView bringSubviewToFront:puzzlePacksButton];
     
     // Add homeView to rootView
     [rootView addSubview:homeView];
