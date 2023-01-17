@@ -695,6 +695,7 @@ Implementation of the cross-platform view controller
     CGFloat backButtonIconSizeInPoints = 60;
     CGFloat backArrowPosX, backArrowPosY;
     CGPoint centerInPoints;
+    CGFloat radius;
     switch (displayAspectRatio) {
         case ASPECT_4_3:
             // iPad (9th generation)
@@ -708,7 +709,8 @@ Implementation of the cross-platform view controller
             backButtonIconSizeInPoints = 60;
             backArrowPosX = 48;
             backArrowPosY = 162;
-            centerInPoints = CGPointMake(0.50*screenWidthInPixels/contentScaleFactor, 0.50*screenHeightInPixels/contentScaleFactor);
+            centerInPoints = CGPointMake(0.50*screenWidthInPixels/contentScaleFactor, 0.45*screenHeightInPixels/contentScaleFactor);
+            radius = 0.25*screenWidthInPixels/contentScaleFactor;
             break;
         }
         case ASPECT_16_9: {
@@ -720,6 +722,7 @@ Implementation of the cross-platform view controller
             backArrowPosX = 33;
             backArrowPosY = 99;
             centerInPoints = CGPointMake(0.50*screenWidthInPixels/contentScaleFactor, 0.40*screenHeightInPixels/contentScaleFactor);
+            radius = 0.30*screenWidthInPixels/contentScaleFactor;
             break;
         }
         case ASPECT_13_6:
@@ -732,10 +735,10 @@ Implementation of the cross-platform view controller
             backArrowPosX = 33;
             backArrowPosY = 99;
             centerInPoints = CGPointMake(0.50*screenWidthInPixels/contentScaleFactor, 0.40*screenHeightInPixels/contentScaleFactor);
+            radius = 0.30*screenWidthInPixels/contentScaleFactor;
             break;
         }
     }
-    CGFloat radius = 0.30*screenWidthInPixels/contentScaleFactor;
     
     // Scores Label
     CGRect scoresFrame = rootView.bounds;
@@ -849,22 +852,6 @@ Implementation of the cross-platform view controller
     [scoresView addSubview: jewelLabel];
     [scoresView bringSubviewToFront:jewelLabel];
     
-    // Cyan
-    jewelImageView = [self createImageView:@"JewelCyan.png"
-                                     width:jewelWidth
-                                      posX:centerInPoints.x
-                                      posY:centerInPoints.y+radius];
-    [scoresView addSubview: jewelImageView];
-    [scoresView bringSubviewToFront:jewelImageView];
-    jewelLabel = [self createJewelLabel:COLOR_CYAN
-                               fontSize:fontSize
-                         numberOfJewels:cyanJewelCount
-                             jewelWidth:jewelWidth
-                              jewelPosX:centerInPoints.x
-                              jewelPosY:centerInPoints.y+radius];
-    [scoresView addSubview: jewelLabel];
-    [scoresView bringSubviewToFront:jewelLabel];
-    
     // Blue
     jewelImageView = [self createImageView:@"JewelBlue.png"
                                      width:jewelWidth
@@ -899,6 +886,56 @@ Implementation of the cross-platform view controller
     
     [rootView addSubview:scoresView];
     [rootView bringSubviewToFront:scoresView];
+    
+    // Cyan
+    jewelImageView = [self createImageView:@"JewelCyan.png"
+                                     width:jewelWidth
+                                      posX:centerInPoints.x
+                                      posY:centerInPoints.y+radius];
+    [scoresView addSubview: jewelImageView];
+    [scoresView bringSubviewToFront:jewelImageView];
+    jewelLabel = [self createJewelLabel:COLOR_CYAN
+                               fontSize:fontSize
+                         numberOfJewels:cyanJewelCount
+                             jewelWidth:jewelWidth
+                              jewelPosX:centerInPoints.x
+                              jewelPosY:centerInPoints.y+radius];
+    [scoresView addSubview: jewelLabel];
+    [scoresView bringSubviewToFront:jewelLabel];
+    
+    // Add puzzlesSolvedLabel
+    CGRect puzzlesSolvedLabelFrame = CGRectMake(centerInPoints.x-0.75*radius,
+                                                centerInPoints.y+radius+jewelWidth,
+                                           1.5*radius,
+                                           1.5*fontSize);
+    UILabel *puzzlesSolvedLabel = [[UILabel alloc] initWithFrame:puzzlesSolvedLabelFrame];
+    int numberOfPuzzlesSolved = [appd countPuzzlesSolved];
+    puzzlesSolvedLabel.layer.borderColor = [UIColor clearColor].CGColor;
+    puzzlesSolvedLabel.layer.borderWidth = 1.0;
+    puzzlesSolvedLabel.text = [NSString stringWithString:[NSString stringWithFormat:@"Puzzles Solved %d", numberOfPuzzlesSolved]];
+    [puzzlesSolvedLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:fontSize]];
+    [puzzlesSolvedLabel setTextAlignment:NSTextAlignmentCenter];
+    [puzzlesSolvedLabel setTextColor:[UIColor whiteColor]];
+    [scoresView addSubview: puzzlesSolvedLabel];
+    [scoresView bringSubviewToFront:puzzlesSolvedLabel];
+
+
+    // Add totalSolutionTimeLabel
+    CGRect totalSolutionTimeLabelFrame = CGRectMake(centerInPoints.x-1.25*radius,
+                                                    centerInPoints.y+radius+jewelWidth+1.5*fontSize,
+                                                    2.5*radius,
+                                                    1.5*fontSize);
+    UILabel *totalSolutionTimeLabel = [[UILabel alloc] initWithFrame:totalSolutionTimeLabelFrame];
+    long solutionTime = [appd fetchTotalSolutionTimeForAllPacks];
+    totalSolutionTimeLabel.layer.borderColor = [UIColor clearColor].CGColor;
+    totalSolutionTimeLabel.layer.borderWidth = 1.0;
+    totalSolutionTimeLabel.text = [NSString stringWithString:[NSString stringWithFormat:@"Total Solution Time %02d%:%02d", solutionTime/60, solutionTime%60]];
+    [totalSolutionTimeLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:fontSize]];
+    [totalSolutionTimeLabel setTextAlignment:NSTextAlignmentCenter];
+    [totalSolutionTimeLabel setTextColor:[UIColor whiteColor]];
+    [scoresView addSubview: totalSolutionTimeLabel];
+    [scoresView bringSubviewToFront:totalSolutionTimeLabel];
+
 }
 
 

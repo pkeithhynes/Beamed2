@@ -943,6 +943,36 @@ CGFloat _screenHeightInPixels;
     return packDictionary;
 }
 
+- (int)countNumberOfPacksInArray:(NSString *)key{
+    int numberOfPacks = -1;
+    NSMutableArray *array = nil;
+    array = [self fetchPacksArray:key];
+    if (array != nil){
+        numberOfPacks = (int)[array count];
+    }
+    return numberOfPacks;
+}
+
+- (int)countNumberOfPuzzlesWithinPack:(int)packIndex InArray:(NSString *)key{
+    int packLength = -1;
+    NSMutableArray *puzzlePacksArray = nil, *puzzleArray = nil;
+    NSMutableDictionary *puzzlePackDict = nil;
+    puzzlePacksArray = [self fetchPacksArray:key];
+    if (puzzlePacksArray != nil && [puzzlePacksArray count] > packIndex){
+        puzzlePackDict = [puzzlePacksArray objectAtIndex:packIndex];
+        if (puzzlePackDict != nil){
+            puzzleArray = [puzzlePackDict objectForKey:@"puzzles"];
+            if (puzzleArray != nil){
+                packLength = [puzzleArray count];
+                return packLength;
+            }
+        }
+    }
+    return packLength;
+}
+
+
+
 // Fetch an NSArray of packs from the documents directory or main bundle
 - (NSMutableArray *)fetchPacksArray:(NSString *)key {
     // See if file exists in the document directory first
@@ -2302,7 +2332,30 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     return numberOfPuzzlesSolved;
 }
 
-- (long)fetchSolutionTime:(int)packNumber
+- (long)fetchTotalSolutionTimeForAllPacks {
+    long totalSolutionTime = 0;
+    long solutionTime = 0;
+    // Enumerate over puzzleScoresArray
+    NSMutableArray *puzzleScoresArray = [self getArrayFromDefaults:@"puzzleScoresArray"];
+    if (puzzleScoresArray != nil && [puzzleScoresArray count] > 0){
+        NSEnumerator *scoresEnum = [puzzleScoresArray objectEnumerator];
+        NSMutableDictionary *scoreDictionary;
+        while (scoreDictionary = [scoresEnum nextObject]) {
+            BOOL puzzleSolved = [[scoreDictionary objectForKey:@"solved"]boolValue];
+            if (puzzleSolved){
+                NSNumber *solutionTimeNumber = nil;
+                solutionTimeNumber = [scoreDictionary objectForKey:@"solutionTime"];
+                if (solutionTimeNumber){
+                    solutionTime = [solutionTimeNumber longValue];
+                    totalSolutionTime = totalSolutionTime + solutionTime;
+                }
+            }
+        }
+    }
+    return totalSolutionTime;
+}
+
+- (long)calculateSolutionTime:(int)packNumber
              puzzleNumber:(int)puzzleNumber {
     long solutionTime = 0;
     // Read puzzleScoresArray from defaults
@@ -2357,6 +2410,19 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
 }
 
     
+//- (long)fetchTotalSolutionTimeForAllPacks {
+//    long solutionTime = 0;
+//    int numberOfPacks = [self countNumberOfPacksInArray:kPuzzlePacksArray];
+//    for (int ii=0; ii<numberOfPacks; ii++){
+//        int numberOfPuzzles = [self countNumberOfPuzzlesWithinPack:ii InArray:kPuzzlePacksArray];
+//        for (int jj=0; jj<numberOfPuzzles; jj++){
+//            solutionTime = solutionTime + [self calculateSolutionTime:ii puzzleNumber:jj];
+//        }
+//    }
+//    return solutionTime;
+//}
+
+
 // +1   Puzzle is solved
 //  0   Puzzle is unsolved
 // -1   Puzzle is in progress
@@ -2512,8 +2578,9 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                     // Add scoreDictionary to puzzleScoresArray
                     [puzzleScoresArray addObject:scoreDictionary];
                 }
-                // Not yet solved so update timeSegment array and puzzleSolved status
+                // The corresponding stored scoreDictionary is not yet solved so update timeSegment array and puzzleSolved status
                 else {
+                    // If we just solved it then add numberOfJewelsDictionary
                     if (solved){
                         // numberOfJewelsDictionary, numberOfTiles, numberOfMoves parameters set with parameters
                         [scoreDictionary setObject:[NSNumber numberWithBool:YES] forKey:@"solved"];
@@ -2543,6 +2610,15 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                     [timeSegmentArray addObject:timeSegmentDictionary];
                     // Add timeSegmentArray to scoreDictionary
                     [scoreDictionary setObject:timeSegmentArray forKey:@"timeSegmentArray"];
+                    // Add scoreDictionary to puzzleScoresArray
+                    [puzzleScoresArray replaceObjectAtIndex:scoreDictionaryIndex withObject:scoreDictionary];
+                    // Save puzzleScoresArray to defaults so that we can calcuate solutionTime
+                    [self setObjectInDefaults:puzzleScoresArray forKey:@"puzzleScoresArray"];
+                    if (solved){
+                        // If solved then calculate total solutionTime and add it to scoreDictionary
+                        long solutionTime = [self calculateSolutionTime:packNumber puzzleNumber:puzzleNumber];
+                        [scoreDictionary setObject:[NSNumber numberWithLong:solutionTime] forKey:@"solutionTime"];
+                    }
                     // Add scoreDictionary to puzzleScoresArray
                     [puzzleScoresArray replaceObjectAtIndex:scoreDictionaryIndex withObject:scoreDictionary];
                 }
@@ -2619,8 +2695,6 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
 //
 // StoreKit interface for purchasing puzzle and hint packs
 //
-
-// Handle the successful purchase of ad free puzzles
 - (void)completeAdFreePurchase {
     DLog("Purchased Ad Free Puzzles");
     [self setObjectInDefaults:@"YES" forKey:@"AD_FREE_PUZZLES"];
@@ -2634,7 +2708,6 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     [self vungleCloseBannerAd];
 }
 
-// Handle the successful purchase of a puzzle pack
 - (void)completePuzzlePackPurchase:(int)packNumber {
     if (packNumber > 0){
         [self savePurchasedPuzzlePack:packNumber];
@@ -2665,7 +2738,6 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     }
 }
 
-// Handle the successful purchase of a hint pack
 - (void)completeHintPackPurchase:(int)pack {
     DLog("Purchased Hint Pack %d", pack);
     NSMutableArray *arrayOfPaidHintPacks = [self fetchPacksArray:@"paidHintPacksArray.plist"];
@@ -2713,7 +2785,6 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     }
 }
 
-// Use defaults to keep a local record of purchased packs
 - (BOOL)existPurchasedPacks {
     NSDictionary *dictionary = [self getDictionaryFromDefaults:kPaidPuzzlePacksKey];
     if (dictionary){

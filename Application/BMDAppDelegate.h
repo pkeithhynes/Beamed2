@@ -212,6 +212,8 @@ API_AVAILABLE(ios(13.0))
 - (NSMutableDictionary *_Nullable)fetchDailyPuzzle:(unsigned int)puzzleNumber;
 
 
+- (int)countNumberOfPacksInArray:(NSString *_Nonnull)key;
+
 - (NSMutableArray *_Nullable)fetchPacksArray:(NSString *_Nonnull)key;
 - (uint)getLocalDaysSinceReferenceDate;
 
@@ -245,7 +247,9 @@ API_AVAILABLE(ios(13.0))
 - (void)incrementNumberOfMovesInPuzzleScoresArray:(int)packNumber
                                      puzzleNumber:(int)puzzleNumber;
 
-- (long)fetchSolutionTime:(int)packNumber puzzleNumber:(int)puzzleNumber;
+- (long)calculateSolutionTime:(int)packNumber puzzleNumber:(int)puzzleNumber;
+
+- (long)fetchTotalSolutionTimeForAllPacks;
 
 - (int)countTotalJewelsCollected;
 
@@ -261,6 +265,7 @@ API_AVAILABLE(ios(13.0))
 
 - (NSMutableDictionary *)buildEmptyJewelCountDictionary;
 
+- (long)fetchTotalSolutionTimeForAllPacks;
 
 
 //
