@@ -150,7 +150,8 @@ enum eBackgroundTextures {  OVERLAY_TILE_OUTLINE,
                             POINTING_FINGER,
                             TILE_CHECKMARK,
                             PACK_COMPLETED,
-                            PUZZLE_BACKGROUND_IMAGE1
+                            PUZZLE_BACKGROUND_IMAGE1,
+                            HELP_IMAGE
 };
 enum eTextAlignment { ALIGN_LEFT, ALIGN_CENTER, ALIGN_RIGHT };
 // --- Various Animations

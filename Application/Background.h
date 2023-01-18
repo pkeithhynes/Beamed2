@@ -32,6 +32,7 @@ API_AVAILABLE(ios(13.0))
 
 - (TextureRenderData *)renderBorder:(enum eTileColors)color;
 - (TextureRenderData *)renderBackgroundImage:(unsigned int)backgroundColor;
+- (TextureRenderData *)renderBackgroundImage:(unsigned int)imageIndex color:(unsigned int)backgroundColor;
 - (TextureRenderData *)renderBackgroundAnimations:(uint16_t)frameCounter
                                   backgroundColor:(unsigned int)backgroundColor;
 - (TextureRenderData *)renderBackgroundInner:(unsigned int)backgroundColor;

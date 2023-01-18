@@ -2667,6 +2667,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Beamed-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				COMPRESS_PNG_FILES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = LK6X8L9DX6;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2711,6 +2712,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Beamed-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				COMPRESS_PNG_FILES = YES;
 				DEVELOPMENT_TEAM = LK6X8L9DX6;
 				GCC_PREPROCESSOR_DEFINITIONS = TARGET_IOS;
 				INFOPLIST_FILE = Application/iOS/Info.plist;

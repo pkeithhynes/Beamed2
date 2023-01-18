@@ -436,8 +436,9 @@ extern void playSound(AVAudioPlayer *PLAYER);
     //
     // Fetch the Puzzle background image
     //
-    backgroundRenderDataImage = [background renderBackgroundImage:7];
-    
+//    backgroundRenderDataImage = [background renderBackgroundImage:7];
+    backgroundRenderDataImage = [background renderBackgroundImage:HELP_IMAGE color:7];
+
     //
     // Fetch the Gameplay inner and outer background colors
     //

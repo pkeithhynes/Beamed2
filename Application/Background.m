@@ -161,6 +161,28 @@
     return backgroundRenderDataImage;
 }
 
+- (TextureRenderData *)renderBackgroundImage:(unsigned int)imageIndex color:(unsigned int)backgroundColor {
+    BMDAppDelegate *appDelegate = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
+    BMDViewController *rc = (BMDViewController*)[[(BMDAppDelegate *)[[UIApplication sharedApplication]delegate] window] rootViewController];
+
+    NSMutableArray *backgroundTextureDataArray = appDelegate.backgroundTextures;
+    TextureData *backgroundTextureData;
+    
+    backgroundTextureData = [backgroundTextureDataArray objectAtIndex:imageIndex];
+    int width = (int)backgroundTextureData.texture.width;
+    int height = (int)backgroundTextureData.texture.height;
+    float heightToWidthRatio = (float)height/(float)width;
+
+    backgroundRenderDataImage = [[TextureRenderData alloc] init];
+    backgroundRenderDataImage.renderTexture = backgroundTextureData.texture;
+    backgroundRenderDataImage->textureDimensionsInPixels.x = 0.8*rc.screenWidthInPixels;
+    backgroundRenderDataImage->textureDimensionsInPixels.y = backgroundRenderDataImage->textureDimensionsInPixels.x*heightToWidthRatio;
+    backgroundRenderDataImage->texturePositionInPixels.x = (rc.screenWidthInPixels-backgroundRenderDataImage->textureDimensionsInPixels.x)/2.0;
+    backgroundRenderDataImage->texturePositionInPixels.y = (rc.screenHeightInPixels-backgroundRenderDataImage->textureDimensionsInPixels.y)/2.0;
+    backgroundRenderDataImage->tileColor = backgroundColor;
+    return backgroundRenderDataImage;
+}
+
 - (TextureRenderData *)renderBackgroundAnimations:(uint16_t)frameCounter
                                   backgroundColor:(unsigned int)backgroundColor {
     BMDAppDelegate *appDelegate = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
