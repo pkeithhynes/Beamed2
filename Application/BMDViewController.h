@@ -61,6 +61,7 @@ API_AVAILABLE(ios(13.0))
     // Render MetalKit View ON/OFF
     BOOL renderPuzzleON;
     BOOL renderBackgroundON;
+    BOOL renderOverlayON;
 
     // Store view controller information here
     BMDHintsViewController *hintsViewController;
@@ -268,6 +269,7 @@ API_AVAILABLE(ios(13.0))
 
 @property (nonatomic) BOOL renderPuzzleON;
 @property (nonatomic) BOOL renderBackgroundON;
+@property (nonatomic) BOOL renderOverlayON;
 
 - (NSString *)gameDictionaryNameFromPuzzlePack;
 - (void)setPuzzleLabel;

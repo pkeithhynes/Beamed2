@@ -161,7 +161,7 @@
     return backgroundRenderDataImage;
 }
 
-- (TextureRenderData *)renderBackgroundImage:(unsigned int)imageIndex color:(unsigned int)backgroundColor {
+- (TextureRenderData *)renderOverlayImage:(unsigned int)imageIndex color:(unsigned int)backgroundColor {
     BMDAppDelegate *appDelegate = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
     BMDViewController *rc = (BMDViewController*)[[(BMDAppDelegate *)[[UIApplication sharedApplication]delegate] window] rootViewController];
 

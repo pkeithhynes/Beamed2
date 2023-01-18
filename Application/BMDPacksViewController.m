@@ -644,6 +644,7 @@
         [self.view removeFromSuperview];
         [self removeFromParentViewController];
         rc.renderPuzzleON = NO;
+        rc.renderOverlayON = NO;
         [rc refreshHomeView];
         [rc loadAppropriateSizeBannerAd];
         [rc startMainScreenMusicLoop];

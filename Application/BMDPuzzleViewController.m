@@ -95,7 +95,8 @@
     // Turn off rendering while initializing puzzleView and optics
     rc.renderBackgroundON = NO;
     rc.renderPuzzleON = NO;
-    
+    rc.renderOverlayON = NO;
+
     // Set up puzzleView
     CGRect puzzleBounds = rc.rootView.bounds;
     puzzleView = [[MTKView alloc] initWithFrame:puzzleBounds device:MTLCreateSystemDefaultDevice()];
@@ -303,6 +304,7 @@
 - (void)viewDidDisappear:(BOOL)animated{
     DLog("BMDPuzzleViewController.viewDidDisappear");
     rc.renderPuzzleON = NO;
+    rc.renderOverlayON = NO;
 }
 
 - (BOOL)queryPuzzleExists:(NSString *)dictionaryName puzzle:(unsigned int)puzzleIndex {
@@ -2259,6 +2261,7 @@
             [puzzleView removeFromSuperview];
             [self removeFromParentViewController];
             rc.renderPuzzleON = NO;
+            rc.renderOverlayON = NO;
             [rc refreshHomeView];
             [rc loadAppropriateSizeBannerAd];
             [rc startMainScreenMusicLoop];
@@ -2271,6 +2274,7 @@
             [puzzleView removeFromSuperview];
             [self removeFromParentViewController];
             rc.renderPuzzleON = NO;
+            rc.renderOverlayON = NO;
         }
         
         // Always switch to PACKTYPE_MAIN when leaving BMDPuzzleViewController
@@ -2530,15 +2534,17 @@
 }
 
 - (void)helpButtonPressed {
-    helpImageView.hidden = NO;
+//    helpImageView.hidden = NO;
     wholeScreenButton.enabled = YES;
     wholeScreenButton.hidden = NO;
+    rc.renderOverlayON = YES;
 }
 
 - (void)wholeScreenButtonPressed {
     wholeScreenButton.enabled = NO;
     wholeScreenButton.hidden = YES;
     helpImageView.hidden = YES;
+    rc.renderOverlayON = NO;
 }
 
 - (void)gridSizeStepperPressed {

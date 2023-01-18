@@ -402,6 +402,15 @@ API_AVAILABLE(ios(13.0))
             if ([renderDictionary objectForKey:@"puzzleCompleteRenderArray"] != nil){
                 [self renderTextureArray:[renderDictionary objectForKey:@"puzzleCompleteRenderArray"] withPipelineState:7];
             }
+
+            // Render an overlay texture
+            if ([renderDictionary objectForKey:@"overlayImage"] != nil){
+                // Draw a background image behind the Gameplay area
+                TextureRenderData *backgroundImage = [renderDictionary objectForKey:@"overlayImage"];
+                if (backgroundImage != nil){
+                    [self drawMetalTexture:backgroundImage withView:_view texturePositionInPixels:backgroundImage->texturePositionInPixels textureSizeInPixels:backgroundImage->textureDimensionsInPixels withPipelineState:backgroundImage->tileColor withRotationTransformation:NO];
+                }
+            }
         }
         
         // That is all the encoder commands for this frame

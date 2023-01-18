@@ -436,8 +436,11 @@ extern void playSound(AVAudioPlayer *PLAYER);
     //
     // Fetch the Puzzle background image
     //
-//    backgroundRenderDataImage = [background renderBackgroundImage:7];
-    backgroundRenderDataImage = [background renderBackgroundImage:HELP_IMAGE color:7];
+    backgroundRenderDataImage = [background renderBackgroundImage:7];
+    overlayRenderDataImage = nil;
+    if (rc.renderOverlayON){
+        overlayRenderDataImage = [background renderOverlayImage:HELP_IMAGE color:7];
+    }
 
     //
     // Fetch the Gameplay inner and outer background colors
@@ -675,6 +678,9 @@ extern void playSound(AVAudioPlayer *PLAYER);
     
     // Add render arrays into the master renderDictionary
     [renderDictionary setObject:backgroundRenderDataImage forKey:@"backgroundImage"];
+    if (overlayRenderDataImage != nil){
+        [renderDictionary setObject:overlayRenderDataImage forKey:@"overlayImage"];
+    }
     [renderDictionary setObject:backgroundRenderDataInner forKey:@"backgroundRenderDataInner"];
     if (![appd autoGenIsEnabled]){
         [renderDictionary setObject:unusedTileBackgroundRenderData forKey:@"unusedTileBackgroundRenderData"];

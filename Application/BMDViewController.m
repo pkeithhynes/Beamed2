@@ -116,6 +116,7 @@ Implementation of the cross-platform view controller
 
 @synthesize renderPuzzleON;
 @synthesize renderBackgroundON;
+@synthesize renderOverlayON;
 
 - (void)viewDidLoad
 {
@@ -127,6 +128,7 @@ Implementation of the cross-platform view controller
 
     self.renderPuzzleON = NO;           // MetalKit Puzzle rendering is initially disabled
     self.renderBackgroundON = NO;       // MetalKit Background rendering is initially disabled
+    self.renderOverlayON = NO;
 
     [self setupPhysicalDeviceDisplay];
     
