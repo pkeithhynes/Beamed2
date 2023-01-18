@@ -641,7 +641,7 @@ Implementation of the cross-platform view controller
 // Show the launch screen while the application is processing and not ready for user input
 - (void)scoresButtonPressed{
     // Create scoresView
-//    CGRect scoresViewFrame = rootView.bounds;
+    //    CGRect scoresViewFrame = rootView.bounds;
     CGRect scoresViewFrame = CGRectMake(rootView.bounds.origin.x,
                                         rootView.bounds.origin.y,
                                         rootView.bounds.size.width,
@@ -672,25 +672,12 @@ Implementation of the cross-platform view controller
     [scoresView addSubview:scoresViewBackground];
     [scoresView sendSubviewToBack:scoresViewBackground];
     
-    // Get the starry sky image
-//    UIImage *starrySkyImage = [UIImage imageNamed:@"starrysky.jpg"];
-//    UIImageView *starrySkyImageView = [[UIImageView alloc] initWithImage:starrySkyImage];
-//    CGSize starrySkySize = starrySkyImage.size;
-//    CGFloat starrySkyWidth = starrySkySize.width/contentScaleFactor;
-//    CGFloat starrySkyHeight = starrySkySize.height/contentScaleFactor;
-//    starrySkyImageView.frame = CGRectMake(homeView.frame.origin.x,
-//                                          homeView.frame.origin.y,
-//                                          starrySkyWidth,
-//                                          starrySkyHeight);
-//    [scoresView addSubview:starrySkyImageView];
-//    [scoresView sendSubviewToBack:starrySkyImageView];
-
     NSString *adFree = [appd getObjectFromDefaults:@"AD_FREE_PUZZLES"];
     if (![adFree isEqualToString:@"YES"]){
         [scoresView addSubview:bannerAdView];
         [scoresView bringSubviewToFront:bannerAdView];
     }
-
+    
     CGFloat titleLabelSize;
     CGFloat jewelWidth;
     int fontSize;
@@ -698,6 +685,7 @@ Implementation of the cross-platform view controller
     CGFloat backArrowPosX, backArrowPosY;
     CGPoint centerInPoints;
     CGFloat radius;
+    CGFloat scoresLabelY;
     switch (displayAspectRatio) {
         case ASPECT_4_3:
             // iPad (9th generation)
@@ -706,18 +694,20 @@ Implementation of the cross-platform view controller
         case ASPECT_3_2: {
             // iPad Mini (6th generation)
             titleLabelSize = 36;
+            scoresLabelY = 2.0*titleLabelSize;
             jewelWidth = 0.15*screenWidthInPixels/contentScaleFactor;
             fontSize = 28;
             backButtonIconSizeInPoints = 60;
             backArrowPosX = 48;
             backArrowPosY = 162;
-            centerInPoints = CGPointMake(0.50*screenWidthInPixels/contentScaleFactor, 0.45*screenHeightInPixels/contentScaleFactor);
+            centerInPoints = CGPointMake(0.50*screenWidthInPixels/contentScaleFactor, 0.40*screenHeightInPixels/contentScaleFactor);
             radius = 0.25*screenWidthInPixels/contentScaleFactor;
             break;
         }
         case ASPECT_16_9: {
             // iPhone 8
             titleLabelSize = 22;
+            scoresLabelY = 4.5*titleLabelSize;
             jewelWidth = 0.15*screenWidthInPixels/contentScaleFactor;
             fontSize = 20;
             backButtonIconSizeInPoints = 40;
@@ -731,6 +721,7 @@ Implementation of the cross-platform view controller
         default:{
             // iPhone 14
             titleLabelSize = 22;
+            scoresLabelY = 4.5*titleLabelSize;
             jewelWidth = 0.15*screenWidthInPixels/contentScaleFactor;
             fontSize = 20;
             backButtonIconSizeInPoints = 40;
@@ -746,11 +737,10 @@ Implementation of the cross-platform view controller
     CGRect scoresFrame = rootView.bounds;
     CGFloat w = 0.5*scoresFrame.size.width;
     CGFloat h = 1.5*titleLabelSize;
-    CGFloat settingsLabelY = 3.0*h;
     CGRect scoresLabelFrame = CGRectMake(0.5*scoresFrame.size.width - w/2.0,
-                                           settingsLabelY,
-                                           w,
-                                           h);
+                                         scoresLabelY,
+                                         w,
+                                         h);
     UILabel *scoresPageLabel = [[UILabel alloc] initWithFrame:scoresLabelFrame];
     scoresPageLabel.text = @"Scores";
     scoresPageLabel.textColor = [UIColor cyanColor];
@@ -768,7 +758,7 @@ Implementation of the cross-platform view controller
     // Create a back arrow icon at the left hand side
     UIButton *backArrow = [UIButton buttonWithType:UIButtonTypeCustom];
     CGRect backArrowRect = CGRectMake(backArrowPosX,
-                                      backArrowPosY,
+                                      scoresLabelY,
                                       backButtonIconSizeInPoints,
                                       backButtonIconSizeInPoints);
     backArrow.frame = backArrowRect;
@@ -789,7 +779,7 @@ Implementation of the cross-platform view controller
     int cyanJewelCount = [appd countTotalJewelsCollectedByColorKey:@"cyanCount"];
     int magentaJewelCount = [appd countTotalJewelsCollectedByColorKey:@"magentaCount"];
     int whiteJewelCount = [appd countTotalJewelsCollectedByColorKey:@"whiteCount"];
-
+    
     // White
     UIImageView *jewelImageView = [self createImageView:@"JewelWhite.png"
                                                   width:jewelWidth
@@ -905,38 +895,107 @@ Implementation of the cross-platform view controller
     [scoresView addSubview: jewelLabel];
     [scoresView bringSubviewToFront:jewelLabel];
     
-    // Add puzzlesSolvedLabel
-    CGRect puzzlesSolvedLabelFrame = CGRectMake(centerInPoints.x-0.75*radius,
-                                                centerInPoints.y+radius+jewelWidth,
-                                           1.5*radius,
-                                           1.5*fontSize);
-    UILabel *puzzlesSolvedLabel = [[UILabel alloc] initWithFrame:puzzlesSolvedLabelFrame];
-    int numberOfPuzzlesSolved = [appd countPuzzlesSolved];
-    puzzlesSolvedLabel.layer.borderColor = [UIColor clearColor].CGColor;
-    puzzlesSolvedLabel.layer.borderWidth = 1.0;
-    puzzlesSolvedLabel.text = [NSString stringWithString:[NSString stringWithFormat:@"Puzzles Solved %d", numberOfPuzzlesSolved]];
-    [puzzlesSolvedLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:fontSize]];
-    [puzzlesSolvedLabel setTextAlignment:NSTextAlignmentCenter];
-    [puzzlesSolvedLabel setTextColor:[UIColor whiteColor]];
-    [scoresView addSubview: puzzlesSolvedLabel];
-    [scoresView bringSubviewToFront:puzzlesSolvedLabel];
-
-
-    // Add totalSolutionTimeLabel
-    CGRect totalSolutionTimeLabelFrame = CGRectMake(centerInPoints.x-1.25*radius,
+    // Add jewelsCollectedLabelLeft
+    CGRect jewelsCollectedLabelLeftFrame = CGRectMake(centerInPoints.x-1.0*radius,
                                                     centerInPoints.y+radius+jewelWidth+1.5*fontSize,
-                                                    2.5*radius,
+                                                    1.5*radius,
                                                     1.5*fontSize);
-    UILabel *totalSolutionTimeLabel = [[UILabel alloc] initWithFrame:totalSolutionTimeLabelFrame];
+    UILabel *jewelsCollectedLabelLeft = [[UILabel alloc] initWithFrame:jewelsCollectedLabelLeftFrame];
+    jewelsCollectedLabelLeft.layer.borderColor = [UIColor clearColor].CGColor;
+    jewelsCollectedLabelLeft.layer.borderWidth = 1.0;
+    jewelsCollectedLabelLeft.text = [NSString stringWithString:[NSString stringWithFormat:@"Jewels Collected"]];
+    [jewelsCollectedLabelLeft setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:fontSize]];
+    [jewelsCollectedLabelLeft setTextAlignment:NSTextAlignmentLeft];
+    [jewelsCollectedLabelLeft setTextColor:[UIColor whiteColor]];
+    [scoresView addSubview: jewelsCollectedLabelLeft];
+    [scoresView bringSubviewToFront:jewelsCollectedLabelLeft];
+    
+    // Add jewelsCollectedLabelRight
+    CGRect jewelsCollectedLabelRightFrame = CGRectMake(centerInPoints.x,
+                                                     centerInPoints.y+radius+jewelWidth+1.5*fontSize,
+                                                     1.0*radius,
+                                                     1.5*fontSize);
+    UILabel *jewelsCollectedLabelRight = [[UILabel alloc] initWithFrame:jewelsCollectedLabelRightFrame];
+    int numberOfJewelsCollected =   redJewelCount+
+                                    greenJewelCount+
+                                    blueJewelCount+
+                                    yellowJewelCount+
+                                    cyanJewelCount+
+                                    magentaJewelCount+
+                                    whiteJewelCount;
+    jewelsCollectedLabelRight.layer.borderColor = [UIColor clearColor].CGColor;
+    jewelsCollectedLabelRight.layer.borderWidth = 1.0;
+    jewelsCollectedLabelRight.text = [NSString stringWithString:[NSString stringWithFormat:@"%d", numberOfJewelsCollected]];
+    [jewelsCollectedLabelRight setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:fontSize]];
+    [jewelsCollectedLabelRight setTextAlignment:NSTextAlignmentRight];
+    [jewelsCollectedLabelRight setTextColor:[UIColor whiteColor]];
+    //    puzzlesSolvedLabelRight.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.75];
+    [scoresView addSubview: jewelsCollectedLabelRight];
+    [scoresView bringSubviewToFront:jewelsCollectedLabelRight];
+    
+    // Add puzzlesSolvedLabelLeft
+    CGRect puzzlesSolvedLabelLeftFrame = CGRectMake(centerInPoints.x-1.0*radius,
+                                                    centerInPoints.y+radius+jewelWidth+3.0*fontSize,
+                                                    1.5*radius,
+                                                    1.5*fontSize);
+    UILabel *puzzlesSolvedLabelLeft = [[UILabel alloc] initWithFrame:puzzlesSolvedLabelLeftFrame];
+    puzzlesSolvedLabelLeft.layer.borderColor = [UIColor clearColor].CGColor;
+    puzzlesSolvedLabelLeft.layer.borderWidth = 1.0;
+    puzzlesSolvedLabelLeft.text = [NSString stringWithString:[NSString stringWithFormat:@"Puzzles Solved"]];
+    [puzzlesSolvedLabelLeft setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:fontSize]];
+    [puzzlesSolvedLabelLeft setTextAlignment:NSTextAlignmentLeft];
+    [puzzlesSolvedLabelLeft setTextColor:[UIColor whiteColor]];
+    [scoresView addSubview: puzzlesSolvedLabelLeft];
+    [scoresView bringSubviewToFront:puzzlesSolvedLabelLeft];
+    
+    // Add puzzlesSolvedLabelRight
+    CGRect puzzlesSolvedLabelrightFrame = CGRectMake(centerInPoints.x,
+                                                     centerInPoints.y+radius+jewelWidth+3.0*fontSize,
+                                                     1.0*radius,
+                                                     1.5*fontSize);
+    UILabel *puzzlesSolvedLabelRight = [[UILabel alloc] initWithFrame:puzzlesSolvedLabelrightFrame];
+    int numberOfPuzzlesSolved = [appd countPuzzlesSolved];
+    puzzlesSolvedLabelRight.layer.borderColor = [UIColor clearColor].CGColor;
+    puzzlesSolvedLabelRight.layer.borderWidth = 1.0;
+    puzzlesSolvedLabelRight.text = [NSString stringWithString:[NSString stringWithFormat:@"%d", numberOfPuzzlesSolved]];
+    [puzzlesSolvedLabelRight setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:fontSize]];
+    [puzzlesSolvedLabelRight setTextAlignment:NSTextAlignmentRight];
+    [puzzlesSolvedLabelRight setTextColor:[UIColor whiteColor]];
+    //    puzzlesSolvedLabelRight.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.75];
+    [scoresView addSubview: puzzlesSolvedLabelRight];
+    [scoresView bringSubviewToFront:puzzlesSolvedLabelRight];
+    
+    //     Add totalSolutionTimeLabelLeft
+    CGRect totalSolutionTimeLabelLeftFrame = CGRectMake(centerInPoints.x-1.0*radius,
+                                                        centerInPoints.y+radius+jewelWidth+4.5*fontSize,
+                                                        1.5*radius,
+                                                        1.5*fontSize);
+    UILabel *totalSolutionTimeLabelLeft = [[UILabel alloc] initWithFrame:totalSolutionTimeLabelLeftFrame];
+    totalSolutionTimeLabelLeft.layer.borderColor = [UIColor clearColor].CGColor;
+    totalSolutionTimeLabelLeft.layer.borderWidth = 1.0;
+    totalSolutionTimeLabelLeft.text = [NSString stringWithString:[NSString stringWithFormat:@"Solution Time"]];
+    [totalSolutionTimeLabelLeft setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:fontSize]];
+    [totalSolutionTimeLabelLeft setTextAlignment:NSTextAlignmentLeft];
+    [totalSolutionTimeLabelLeft setTextColor:[UIColor whiteColor]];
+    [scoresView addSubview: totalSolutionTimeLabelLeft];
+    [scoresView bringSubviewToFront:totalSolutionTimeLabelLeft];
+
+    //     Add totalSolutionTimeLabelRight
+    CGRect totalSolutionTimeLabelRightFrame = CGRectMake(centerInPoints.x,
+                                                        centerInPoints.y+radius+jewelWidth+4.5*fontSize,
+                                                        1.0*radius,
+                                                        1.5*fontSize);
+    UILabel *totalSolutionTimeLabelRight = [[UILabel alloc] initWithFrame:totalSolutionTimeLabelRightFrame];
     long solutionTime = [appd fetchTotalSolutionTimeForAllPacks];
-    totalSolutionTimeLabel.layer.borderColor = [UIColor clearColor].CGColor;
-    totalSolutionTimeLabel.layer.borderWidth = 1.0;
-    totalSolutionTimeLabel.text = [NSString stringWithString:[NSString stringWithFormat:@"Total Solution Time %02d%:%02d", solutionTime/60, solutionTime%60]];
-    [totalSolutionTimeLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:fontSize]];
-    [totalSolutionTimeLabel setTextAlignment:NSTextAlignmentCenter];
-    [totalSolutionTimeLabel setTextColor:[UIColor whiteColor]];
-    [scoresView addSubview: totalSolutionTimeLabel];
-    [scoresView bringSubviewToFront:totalSolutionTimeLabel];
+    totalSolutionTimeLabelRight.layer.borderColor = [UIColor clearColor].CGColor;
+    totalSolutionTimeLabelRight.layer.borderWidth = 1.0;
+    totalSolutionTimeLabelRight.text = [NSString stringWithString:[NSString stringWithFormat:@"%02ld%:%02ld", solutionTime/60, solutionTime%60]];
+    [totalSolutionTimeLabelRight setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:fontSize]];
+    [totalSolutionTimeLabelRight setTextAlignment:NSTextAlignmentRight];
+    [totalSolutionTimeLabelRight setTextColor:[UIColor whiteColor]];
+//    totalSolutionTimeLabelLeft.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.75];
+    [scoresView addSubview: totalSolutionTimeLabelRight];
+    [scoresView bringSubviewToFront:totalSolutionTimeLabelRight];
 
 }
 

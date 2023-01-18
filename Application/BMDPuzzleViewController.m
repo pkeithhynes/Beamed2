@@ -39,6 +39,7 @@
 @synthesize clearButton;
 
 @synthesize wholeScreenButton;
+@synthesize wholeScreenFilter;
 @synthesize settingsGearButton;
 @synthesize puzzlePacksButton;
 @synthesize helpButton;
@@ -494,7 +495,6 @@
     
 }
 
-// Configure buttons and labels for Puzzle Play
 - (void)buildButtonsAndLabelsForPlay {
     DLog("buildButtonsAndLabelsForPlay");
     // Setup control buttons and information view at the top of the screen
@@ -855,8 +855,6 @@
     [helpImageView.layer setBorderColor:[UIColor whiteColor].CGColor];
     [helpImageView.layer setBorderWidth:2.0];
     [helpImageView.layer setCornerRadius:15.0];
-//    [puzzleView addSubview:helpImageView];
-//    [puzzleView bringSubviewToFront:helpImageView];
 
     //
     // helpLabel
@@ -878,8 +876,6 @@
     helpLabel.layer.masksToBounds = YES;
     helpLabel.layer.cornerRadius = 15;
     helpLabel.hidden = YES;
-//    [puzzleView addSubview:helpLabel];
-//    [puzzleView bringSubviewToFront:helpLabel];
     
     //
     // Add "Settings Gear" button to homeView
@@ -963,6 +959,26 @@
     [puzzleView addSubview:puzzlePacksButton];
     [puzzleView bringSubviewToFront:puzzlePacksButton];
     
+    //
+    // wholeScreenFilter
+    //
+    // Create a translucent filter (button) covering the entire screen
+    wholeScreenFilter = [UIButton buttonWithType:UIButtonTypeCustom];
+    CGRect wholeScreenFilterRect = CGRectMake(0,
+                                              0,
+                                              rc.screenWidthInPixels/rc.contentScaleFactor,
+                                              rc.screenHeightInPixels/rc.contentScaleFactor);
+    wholeScreenFilter.frame = wholeScreenFilterRect;
+    wholeScreenFilter.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.75];
+    wholeScreenFilter.layer.borderColor = [UIColor blackColor].CGColor;
+    wholeScreenFilter.layer.borderWidth = 0.0;
+    wholeScreenFilter.enabled = NO;
+    wholeScreenFilter.hidden = YES;
+    [wholeScreenFilter addTarget:self action:@selector(wholeScreenFilterPressed) forControlEvents:UIControlEventTouchUpInside];
+    [puzzleView addSubview:wholeScreenFilter];
+    [puzzleView bringSubviewToFront:wholeScreenFilter];
+    
+
     // Add helpLabel and helpImageView on top of puzzlePacksButton and settingsGearButton
     [puzzleView addSubview:helpLabel];
     [puzzleView bringSubviewToFront:helpLabel];
@@ -1031,23 +1047,9 @@
     [puzzleView addSubview:replayIconWhite];
     [puzzleView bringSubviewToFront:replayIconWhite];
 
-    //
-    // puzzleCompleteLabel
-    //
-//    UIImage *puzzleSolvedImage = [UIImage imageNamed:@"PuzzleMarkerCompletedGreen.png"];
-//    CGSize puzzleSolvedSize = puzzleSolvedImage.size;
-//    puzzleSolvedView = [[UIImageView alloc] initWithImage:puzzleSolvedImage];
-//    CGFloat w = 0.5*rc.screenWidthInPixels/rc.contentScaleFactor;
-//    CGFloat h = w*puzzleSolvedSize.height/puzzleSolvedSize.width;
-//    puzzleSolvedView.frame = CGRectMake(0.5*rc.screenWidthInPixels/rc.contentScaleFactor - w/2.0, 0.4*rc.screenHeightInPixels/rc.contentScaleFactor, w, h);
-//    [puzzleView addSubview:puzzleSolvedView];
-//    [puzzleView bringSubviewToFront:puzzleSolvedView];
-    
     CGFloat puzzleCompleteLabelCenter = (0.5*rc.screenWidthInPixels)/rc.contentScaleFactor;
     CGFloat puzzleCompleteLabelWidth = 0.9*(appd->optics->_puzzleDisplayWidthInPixels)/rc.contentScaleFactor;
-//    CGFloat puzzleCompleteLabelWidth = (rc.screenWidthInPixels)/rc.contentScaleFactor;
     CGFloat puzzleCompleteLabelHeight = 3.0*puzzleCompleteFontSize;
-//    CGFloat puzzleCompleteLabelHeight = (0.3*rc.screenHeightInPixels)/rc.contentScaleFactor;
     puzzleCompleteLabelInitialFrame = CGRectMake(puzzleCompleteLabelCenter-puzzleCompleteLabelWidth/2, puzzleCompleteLabelAnchorPointsY-puzzleCompleteLabelHeight, puzzleCompleteLabelWidth, puzzleCompleteLabelHeight);
     // Set up the frame for the final position of puzzleCompleteLabel in normal puzzle play
     puzzleCompleteLabelFinalFrame = CGRectMake(puzzleCompleteLabelCenter-puzzleCompleteLabelWidth/2, rc.topPaddingInPoints+(0.4*rc.screenHeightInPixels)/rc.contentScaleFactor-puzzleCompleteLabelHeight/2, puzzleCompleteLabelWidth, puzzleCompleteLabelHeight);
@@ -1085,7 +1087,6 @@
 
 }
 
-// Configure buttons and labels for the Puzzle Editor
 - (void)buildButtonsAndLabelsForEdit {
     DLog("buildButtonsAndLabelsForEdit");
     // Setup control buttons and information view at the top of the screen
@@ -1884,11 +1885,9 @@
     }
 }
 
-
 //
 // Button Press and Gesture Handler Methods Go Here
 //
-
 - (void)settingsButtonPressed {
     DLog("BMDPuzzleViewController.settingsButtonPressed");
     
@@ -1984,8 +1983,6 @@
     [self.view addSubview:rc.packsViewController.view];
     [rc.packsViewController didMoveToParentViewController:self];
 }
-
-
 
 - (void)nextButtonPressed {
     // Puzzle Editor
@@ -2534,7 +2531,9 @@
 }
 
 - (void)helpButtonPressed {
-//    helpImageView.hidden = NO;
+//    wholeScreenFilter.hidden = NO;
+//    [puzzleView bringSubviewToFront:helpLabel];
+//    [puzzleView bringSubviewToFront:helpImageView];
     wholeScreenButton.enabled = YES;
     wholeScreenButton.hidden = NO;
     rc.renderOverlayON = YES;
@@ -2542,9 +2541,15 @@
 
 - (void)wholeScreenButtonPressed {
     wholeScreenButton.enabled = NO;
+    wholeScreenFilter.hidden = YES;
     wholeScreenButton.hidden = YES;
     helpImageView.hidden = YES;
     rc.renderOverlayON = NO;
+}
+
+- (void)wholeScreenFilterPressed {
+    DLog("wholeScreenFilterPressed");
+    wholeScreenFilter.enabled = NO;
 }
 
 - (void)gridSizeStepperPressed {

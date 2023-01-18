@@ -3909,7 +3909,6 @@ extern void playSound(AVAudioPlayer *PLAYER);
             }
         }
         
-        // Test out [appd fetchSolutionTime]
         long solutionTime = [appd calculateSolutionTime:currentPackNumber puzzleNumber:[appd fetchCurrentPuzzleNumber]];
         DLog("solutionTime = %ld", solutionTime);
         vc.puzzleCompleteLabel.text = [NSString stringWithFormat:@"Solved in %02d\:%02d", (int)solutionTime/60, (int)solutionTime%60];
