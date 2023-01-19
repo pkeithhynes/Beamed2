@@ -810,14 +810,14 @@
             // iPad Mini (6th generation)
             //
             // Vertically constrained
-            displayWidth = 0.8*rc.screenWidthInPixels/rc.contentScaleFactor;
-            displayHeight = 0.8*rc.screenHeightInPixels/rc.contentScaleFactor;
+            displayWidth = 0.9*rc.screenWidthInPixels/rc.contentScaleFactor;
+            displayHeight = 0.9*rc.screenHeightInPixels/rc.contentScaleFactor;
             imageViewRect = CGRectMake((displayWidth-imageWidth*displayHeight/imageHeight)/2.0,
                                        0.0,
                                        imageWidth*displayHeight/imageHeight,
                                        displayHeight);
-            helpImageViewRect = CGRectMake(0.1*rc.screenWidthInPixels/rc.contentScaleFactor,
-                                              0.1*rc.screenHeightInPixels/rc.contentScaleFactor,
+            helpImageViewRect = CGRectMake(0.05*rc.screenWidthInPixels/rc.contentScaleFactor,
+                                              0.05*rc.screenHeightInPixels/rc.contentScaleFactor,
                                               displayWidth,
                                               displayHeight);
             break;
@@ -829,11 +829,16 @@
         default:
             // Horizontally constrained
             displayWidth = 1.0*rc.screenWidthInPixels/rc.contentScaleFactor;
-            displayHeight = 0.7*rc.screenHeightInPixels/rc.contentScaleFactor;
+            displayHeight = 1.0*rc.screenHeightInPixels/rc.contentScaleFactor;
+//            displayHeight = 0.7*rc.screenHeightInPixels/rc.contentScaleFactor;
             imageViewRect = CGRectMake(0.0,
-                                       (displayHeight-imageHeight*displayWidth/imageWidth)/2.0,
+                                       0.0,
                                        displayWidth,
-                                       imageHeight*displayWidth/imageWidth);
+                                       displayHeight);
+//            imageViewRect = CGRectMake(0.0,
+//                                       (displayHeight-imageHeight*displayWidth/imageWidth)/2.0,
+//                                       displayWidth,
+//                                       imageHeight*displayWidth/imageWidth);
             helpImageViewRect = CGRectMake(0.0*rc.screenWidthInPixels/rc.contentScaleFactor,
                                               0.15*rc.screenHeightInPixels/rc.contentScaleFactor,
                                               displayWidth,
@@ -847,36 +852,16 @@
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     helpImageView = [[UIImageView alloc]initWithImage:newImage];
-    helpImageView.frame = helpImageViewRect;
+    helpImageView.frame = imageViewRect;
+//    helpImageView.frame = helpImageViewRect;
     helpImageView.contentMode = UIViewContentModeScaleAspectFill;
-    helpImageView.clipsToBounds = YES;
+    helpImageView.clipsToBounds = NO;
     helpImageView.hidden = YES;
     [helpImageView.layer setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0].CGColor];
     [helpImageView.layer setBorderColor:[UIColor whiteColor].CGColor];
     [helpImageView.layer setBorderWidth:2.0];
     [helpImageView.layer setCornerRadius:15.0];
 
-    //
-    // helpLabel
-    //
-    width = 0.8*rc.screenWidthInPixels/rc.contentScaleFactor;
-    height = 0.8*rc.screenHeightInPixels/rc.contentScaleFactor;
-    posX = 0.1*rc.screenWidthInPixels/rc.contentScaleFactor;
-    posY = 0.1*rc.screenHeightInPixels/rc.contentScaleFactor;
-    labelFrame = CGRectMake(posX, posY, width, height);
-    helpLabel = [[UILabel alloc] initWithFrame:labelFrame];
-    [helpLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:helpLabelFontSize]];
-    helpLabel.layer.borderWidth = 2.0;
-    helpLabel.layer.borderColor = [UIColor whiteColor].CGColor;
-    helpLabel.textAlignment = NSTextAlignmentCenter;
-    helpLabel.text = @"Help Text";
-    helpLabel.adjustsFontSizeToFitWidth = NO;
-    helpLabel.textColor = [UIColor whiteColor];
-    helpLabel.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.95];
-    helpLabel.layer.masksToBounds = YES;
-    helpLabel.layer.cornerRadius = 15;
-    helpLabel.hidden = YES;
-    
     //
     // Add "Settings Gear" button to homeView
     //
@@ -963,25 +948,22 @@
     // wholeScreenFilter
     //
     // Create a translucent filter (button) covering the entire screen
-    wholeScreenFilter = [UIButton buttonWithType:UIButtonTypeCustom];
-    CGRect wholeScreenFilterRect = CGRectMake(0,
-                                              0,
-                                              rc.screenWidthInPixels/rc.contentScaleFactor,
-                                              rc.screenHeightInPixels/rc.contentScaleFactor);
-    wholeScreenFilter.frame = wholeScreenFilterRect;
-    wholeScreenFilter.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.75];
-    wholeScreenFilter.layer.borderColor = [UIColor blackColor].CGColor;
-    wholeScreenFilter.layer.borderWidth = 0.0;
-    wholeScreenFilter.enabled = NO;
-    wholeScreenFilter.hidden = YES;
-    [wholeScreenFilter addTarget:self action:@selector(wholeScreenFilterPressed) forControlEvents:UIControlEventTouchUpInside];
-    [puzzleView addSubview:wholeScreenFilter];
-    [puzzleView bringSubviewToFront:wholeScreenFilter];
+//    CGRect wholeScreenFilterRect = CGRectMake(0,
+//                                              0,
+//                                              rc.screenWidthInPixels/rc.contentScaleFactor,
+//                                              rc.screenHeightInPixels/rc.contentScaleFactor);
+//    wholeScreenFilter = [[UILabel alloc]initWithFrame:wholeScreenFilterRect];
+//    wholeScreenFilter.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.75];
+//    wholeScreenFilter.layer.borderColor = [UIColor blackColor].CGColor;
+//    wholeScreenFilter.layer.borderWidth = 0.0;
+//    wholeScreenFilter.hidden = YES;
+//    [puzzleView addSubview:wholeScreenFilter];
+//    [puzzleView bringSubviewToFront:wholeScreenFilter];
     
 
     // Add helpLabel and helpImageView on top of puzzlePacksButton and settingsGearButton
-    [puzzleView addSubview:helpLabel];
-    [puzzleView bringSubviewToFront:helpLabel];
+//    [puzzleView addSubview:helpLabel];
+//    [puzzleView bringSubviewToFront:helpLabel];
     [puzzleView addSubview:helpImageView];
     [puzzleView bringSubviewToFront:helpImageView];
 
@@ -2531,9 +2513,6 @@
 }
 
 - (void)helpButtonPressed {
-//    wholeScreenFilter.hidden = NO;
-//    [puzzleView bringSubviewToFront:helpLabel];
-//    [puzzleView bringSubviewToFront:helpImageView];
     wholeScreenButton.enabled = YES;
     wholeScreenButton.hidden = NO;
     rc.renderOverlayON = YES;
@@ -2541,7 +2520,6 @@
 
 - (void)wholeScreenButtonPressed {
     wholeScreenButton.enabled = NO;
-    wholeScreenFilter.hidden = YES;
     wholeScreenButton.hidden = YES;
     helpImageView.hidden = YES;
     rc.renderOverlayON = NO;

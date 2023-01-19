@@ -400,9 +400,6 @@
 		800EE45928E3B463004236A1 /* Optics.m in Sources */ = {isa = PBXBuildFile; fileRef = 800EE45828E3B463004236A1 /* Optics.m */; };
 		800EE45A28E3B463004236A1 /* Optics.m in Sources */ = {isa = PBXBuildFile; fileRef = 800EE45828E3B463004236A1 /* Optics.m */; };
 		800EE45B28E3B463004236A1 /* Optics.m in Sources */ = {isa = PBXBuildFile; fileRef = 800EE45828E3B463004236A1 /* Optics.m */; };
-		8013A9E52978B1FD001A1CF8 /* helpImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 8013A9E42978B1FD001A1CF8 /* helpImage.png */; };
-		8013A9E62978B1FD001A1CF8 /* helpImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 8013A9E42978B1FD001A1CF8 /* helpImage.png */; };
-		8013A9E72978B1FD001A1CF8 /* helpImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 8013A9E42978B1FD001A1CF8 /* helpImage.png */; };
 		80151C80289F3E2000A602E3 /* ButtonCheckmarkBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 80151C7F289F3E2000A602E3 /* ButtonCheckmarkBackground.png */; };
 		80151C81289F3E2000A602E3 /* ButtonCheckmarkBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 80151C7F289F3E2000A602E3 /* ButtonCheckmarkBackground.png */; };
 		80151C82289F3E2000A602E3 /* ButtonCheckmarkBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 80151C7F289F3E2000A602E3 /* ButtonCheckmarkBackground.png */; };
@@ -469,6 +466,9 @@
 		8044DD9C2904908E0078942B /* yellowRectangleSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 8044DD922904908E0078942B /* yellowRectangleSelected.png */; };
 		8044DD9D2904908E0078942B /* yellowRectangleSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 8044DD922904908E0078942B /* yellowRectangleSelected.png */; };
 		8044DD9E2904908E0078942B /* yellowRectangleSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 8044DD922904908E0078942B /* yellowRectangleSelected.png */; };
+		804660142978EDE00020B68C /* helpImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 804660132978EDE00020B68C /* helpImage.png */; };
+		804660152978EDE10020B68C /* helpImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 804660132978EDE00020B68C /* helpImage.png */; };
+		804660162978EDE10020B68C /* helpImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 804660132978EDE00020B68C /* helpImage.png */; };
 		805DB34427D1417700F9572A /* Beamsplitter-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 805DB34327D1417700F9572A /* Beamsplitter-1.png */; };
 		805DB34527D1417700F9572A /* Beamsplitter-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 805DB34327D1417700F9572A /* Beamsplitter-1.png */; };
 		805DB34627D1417700F9572A /* Beamsplitter-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 805DB34327D1417700F9572A /* Beamsplitter-1.png */; };
@@ -893,7 +893,6 @@
 		800E459A292EE45F0041976E /* BridgingHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgingHeader.swift; sourceTree = "<group>"; };
 		800ECE3E28DF86D400A7DC62 /* PackCompleted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PackCompleted.png; sourceTree = "<group>"; };
 		800EE45828E3B463004236A1 /* Optics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Optics.m; sourceTree = "<group>"; };
-		8013A9E42978B1FD001A1CF8 /* helpImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helpImage.png; sourceTree = "<group>"; };
 		80151C7F289F3E2000A602E3 /* ButtonCheckmarkBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonCheckmarkBackground.png; sourceTree = "<group>"; };
 		801670F828C4346500803D05 /* TapToRotateText.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TapToRotateText.png; sourceTree = "<group>"; };
 		801D0B0B28B4267F008D435B /* BMDPacksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMDPacksViewController.h; sourceTree = "<group>"; };
@@ -920,6 +919,7 @@
 		8044DD902904908E0078942B /* cyanRectangleSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cyanRectangleSelected.png; sourceTree = "<group>"; };
 		8044DD912904908E0078942B /* cyanRectangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cyanRectangle.png; sourceTree = "<group>"; };
 		8044DD922904908E0078942B /* yellowRectangleSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowRectangleSelected.png; sourceTree = "<group>"; };
+		804660132978EDE00020B68C /* helpImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helpImage.png; sourceTree = "<group>"; };
 		805DB34327D1417700F9572A /* Beamsplitter-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Beamsplitter-1.png"; sourceTree = "<group>"; };
 		805DB34B27D1453F00F9572A /* Prism.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Prism.png; sourceTree = "<group>"; };
 		8064E6582902463A006EEC33 /* editedPuzzlePack.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = editedPuzzlePack.plist; sourceTree = "<group>"; };
@@ -1494,7 +1494,7 @@
 		800ECE3928DF80F000A7DC62 /* Foreground Textures */ = {
 			isa = PBXGroup;
 			children = (
-				8013A9E42978B1FD001A1CF8 /* helpImage.png */,
+				804660132978EDE00020B68C /* helpImage.png */,
 				80CEC1B82921712200882AB9 /* JewelChest.png */,
 				80CEC1B02921609700882AB9 /* CompletedJigsawPuzzle.png */,
 				80C3279D2918623400EBE438 /* CheckmarkInCircle.png */,
@@ -1967,7 +1967,7 @@
 				5286EABC2564706B00B43209 /* TileJewelActivated15.png in Resources */,
 				529A511627ACD24200FE0669 /* win-game-puzzle-52.wav in Resources */,
 				80099C5F296FCBA60022F747 /* backgroundAnimations_00018.png in Resources */,
-				8013A9E62978B1FD001A1CF8 /* helpImage.png in Resources */,
+				804660152978EDE10020B68C /* helpImage.png in Resources */,
 				808E49DE295E18A900D4D077 /* nextArrowWhite.png in Resources */,
 				8095C48327DB014E00E1740C /* GridTile.png in Resources */,
 				80CEC1BA2921712300882AB9 /* JewelChest.png in Resources */,
@@ -2158,7 +2158,7 @@
 				526FBD2925926960001F5647 /* Beam-Angle00-01.png in Resources */,
 				526FBCF925926960001F5647 /* Beam-Angle00-05.png in Resources */,
 				3A06FBA71F730C4000073097 /* Main.storyboard in Resources */,
-				8013A9E72978B1FD001A1CF8 /* helpImage.png in Resources */,
+				804660162978EDE10020B68C /* helpImage.png in Resources */,
 				8064E65B2902463A006EEC33 /* editedPuzzlePack.plist in Resources */,
 				80099C1E296FCBA60022F747 /* backgroundAnimations_00005.png in Resources */,
 				5251ACDA279667DA00A50A7B /* paidHintPacksArray.plist in Resources */,
@@ -2359,7 +2359,7 @@
 				8044DD932904908E0078942B /* yellowRectangle.png in Resources */,
 				52994B4F25DA13D700887B9C /* Rings_00027.png in Resources */,
 				52994B6725DA13D700887B9C /* Rings_00008.png in Resources */,
-				8013A9E52978B1FD001A1CF8 /* helpImage.png in Resources */,
+				804660142978EDE00020B68C /* helpImage.png in Resources */,
 				80099C1C296FCBA60022F747 /* backgroundAnimations_00005.png in Resources */,
 				8064E6592902463A006EEC33 /* editedPuzzlePack.plist in Resources */,
 				52994B3725DA13D700887B9C /* Rings_00012.png in Resources */,
