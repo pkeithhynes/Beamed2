@@ -563,10 +563,24 @@ Implementation of the cross-platform view controller
             [self->appd setObjectInDefaults:@"YES" forKey:@"editModeEnabled"];
         }
         self->appd.numberOfHintsRemaining = [[self->appd getObjectFromDefaults:@"numberOfHintsRemaining"] intValue];
-        self->appCurrentGamePackType = PACKTYPE_MAIN;
-        [self refreshHomeView];
-        [self hideLaunchScreen];
-        [self loadAppropriateSizeBannerAd];
+        if (ENABLE_PUZZLE_EDITOR == NO){
+            //
+            // Only consider running PACKTYPE_DEMO when PE disabled
+            //
+            if ([[defaults objectForKey:@"demoHasBeenCompleted"] isEqualToString:@"NOTHING"]){
+                [self startDemoPuzzle];
+            }
+        }
+        else {
+            self->appCurrentGamePackType = PACKTYPE_MAIN;
+            [self refreshHomeView];
+            [self hideLaunchScreen];
+            [self loadAppropriateSizeBannerAd];
+        }
+//        self->appCurrentGamePackType = PACKTYPE_MAIN;
+//        [self refreshHomeView];
+//        [self hideLaunchScreen];
+//        [self loadAppropriateSizeBannerAd];
     }];
     [alert addAction:localAction];
     

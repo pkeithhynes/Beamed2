@@ -797,8 +797,8 @@
     //
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"helpImage" ofType:@"png"];
     UIImage *sourceImage = [UIImage imageWithContentsOfFile:filePath];
-    CGFloat imageWidth = (CGFloat)sourceImage.size.width;
-    CGFloat imageHeight = (CGFloat)sourceImage.size.height;
+    CGFloat imageWidth = (CGFloat)sourceImage.size.width/rc.contentScaleFactor;
+    CGFloat imageHeight = (CGFloat)sourceImage.size.height/rc.contentScaleFactor;
     CGFloat displayWidth, displayHeight;
     CGRect imageViewRect, helpImageViewRect;
     switch (rc.displayAspectRatio) {
@@ -829,16 +829,11 @@
         default:
             // Horizontally constrained
             displayWidth = 1.0*rc.screenWidthInPixels/rc.contentScaleFactor;
-            displayHeight = 1.0*rc.screenHeightInPixels/rc.contentScaleFactor;
-//            displayHeight = 0.7*rc.screenHeightInPixels/rc.contentScaleFactor;
+            displayHeight = 0.7*rc.screenHeightInPixels/rc.contentScaleFactor;
             imageViewRect = CGRectMake(0.0,
-                                       0.0,
+                                       (displayHeight-imageHeight*displayWidth/imageWidth)/2.0,
                                        displayWidth,
-                                       displayHeight);
-//            imageViewRect = CGRectMake(0.0,
-//                                       (displayHeight-imageHeight*displayWidth/imageWidth)/2.0,
-//                                       displayWidth,
-//                                       imageHeight*displayWidth/imageWidth);
+                                       imageHeight*displayWidth/imageWidth);
             helpImageViewRect = CGRectMake(0.0*rc.screenWidthInPixels/rc.contentScaleFactor,
                                               0.15*rc.screenHeightInPixels/rc.contentScaleFactor,
                                               displayWidth,
@@ -852,8 +847,7 @@
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     helpImageView = [[UIImageView alloc]initWithImage:newImage];
-    helpImageView.frame = imageViewRect;
-//    helpImageView.frame = helpImageViewRect;
+    helpImageView.frame = helpImageViewRect;
     helpImageView.contentMode = UIViewContentModeScaleAspectFill;
     helpImageView.clipsToBounds = NO;
     helpImageView.hidden = YES;
