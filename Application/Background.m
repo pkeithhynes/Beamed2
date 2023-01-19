@@ -289,26 +289,26 @@
     return demoTileRenderData;
 }
 
-- (TextureRenderData *)renderPointingFinger:(vector_int2)position angle:(enum eObjectAngle)angle {
-    BMDAppDelegate *appDelegate = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
-    Optics *optics = appDelegate->optics;
-    
-    NSMutableArray *backgroundTextureDataArray = appDelegate.backgroundTextures;
-    TextureData *demoTileTextureData = [backgroundTextureDataArray objectAtIndex:POINTING_FINGER];
-    TextureRenderData *demoTileRenderData = [[TextureRenderData alloc] init];
-
-    demoTileRenderData.renderTexture = demoTileTextureData.texture;
-    
-        demoTileRenderData->tileColor = COLOR_WHITE;
-        demoTileRenderData->texturePositionInPixels.x = position.x - 0.2*optics->_squareTileSideLengthInPixels;
-        demoTileRenderData->texturePositionInPixels.y = position.y - 0.2*optics->_squareTileSideLengthInPixels;
-        demoTileRenderData->textureDimensionsInPixels.x = 3.6*optics->_squareTileSideLengthInPixels;
-        demoTileRenderData->textureDimensionsInPixels.y = 3.0*optics->_squareTileSideLengthInPixels;
-
-    demoTileRenderData->tileColor = COLOR_YELLOW;
-    demoTileRenderData->angle = angle;
-    return demoTileRenderData;
-}
+//- (TextureRenderData *)renderPointingFinger:(vector_int2)position angle:(enum eObjectAngle)angle {
+//    BMDAppDelegate *appDelegate = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
+//    Optics *optics = appDelegate->optics;
+//    
+//    NSMutableArray *backgroundTextureDataArray = appDelegate.backgroundTextures;
+//    TextureData *demoTileTextureData = [backgroundTextureDataArray objectAtIndex:POINTING_FINGER];
+//    TextureRenderData *demoTileRenderData = [[TextureRenderData alloc] init];
+//
+//    demoTileRenderData.renderTexture = demoTileTextureData.texture;
+//    
+//        demoTileRenderData->tileColor = COLOR_WHITE;
+//        demoTileRenderData->texturePositionInPixels.x = position.x - 0.2*optics->_squareTileSideLengthInPixels;
+//        demoTileRenderData->texturePositionInPixels.y = position.y - 0.2*optics->_squareTileSideLengthInPixels;
+//        demoTileRenderData->textureDimensionsInPixels.x = 3.6*optics->_squareTileSideLengthInPixels;
+//        demoTileRenderData->textureDimensionsInPixels.y = 3.0*optics->_squareTileSideLengthInPixels;
+//
+//    demoTileRenderData->tileColor = COLOR_YELLOW;
+//    demoTileRenderData->angle = angle;
+//    return demoTileRenderData;
+//}
 
 - (TextureRenderData *)renderDragPromptText:(vector_int2)position angle:(enum eObjectAngle)angle {
     BMDAppDelegate *appDelegate = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];

@@ -329,7 +329,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
     // Fetch a render array of Tiles
     Tile *myTile;
     TextureRenderData *tileRenderData;
-    TextureRenderData *movableTileRenderData, *tapDemoTilePromptRenderData, *tapDemoTilePromptTextRenderData, *pointingFingerRenderData;
+    TextureRenderData *movableTileRenderData, *tapDemoTilePromptRenderData, *tapDemoTilePromptTextRenderData;
     NSEnumerator *tilesEnum = [tiles objectEnumerator];
     BOOL movableTileDragTextDisplayed = NO;
     unsigned int numberOfUnplacedTiles = 0;
@@ -416,8 +416,8 @@ extern void playSound(AVAudioPlayer *PLAYER);
                     movableTileRenderData = [background renderMovableTile:myTile->tilePositionInPixels placedUsingHint:myTile->placedUsingHint placedManuallyMatchesHint:myTile->placedManuallyMatchesHint];
                     [tileRenderArray addObject:movableTileRenderData];
                     // Finger pointing at one unplaced Tile
-                    pointingFingerRenderData = [background renderPointingFinger:myTile->tilePositionInPixels angle:ANGLE135];
-                    [tileRenderArray addObject:pointingFingerRenderData];
+//                    pointingFingerRenderData = [background renderPointingFinger:myTile->tilePositionInPixels angle:ANGLE135];
+//                    [tileRenderArray addObject:pointingFingerRenderData];
                     movableTileDragTextDisplayed = YES;
                 }
                 else if (myTile->placedUsingHint || myTile->placedManuallyMatchesHint){

@@ -20,7 +20,6 @@
 		3AFD65711F71A8A00008A125 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFD65691F71A8900008A125 /* main.m */; };
 		3AFD65721F71A8A10008A125 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFD65691F71A8900008A125 /* main.m */; };
 		3AFD65731F71A8A10008A125 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFD65691F71A8900008A125 /* main.m */; };
-		5209D027276298AA00A95891 /* PuzzleMarkerCompletedGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 5209D026276298AA00A95891 /* PuzzleMarkerCompletedGreen.png */; };
 		520BBD2A260A6BC20080EADC /* Background-Aspect-4-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 520BBD29260A6BC20080EADC /* Background-Aspect-4-3.png */; };
 		520BBD2B260A6BC20080EADC /* Background-Aspect-4-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 520BBD29260A6BC20080EADC /* Background-Aspect-4-3.png */; };
 		520BBD2C260A6BC20080EADC /* Background-Aspect-4-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 520BBD29260A6BC20080EADC /* Background-Aspect-4-3.png */; };
@@ -307,9 +306,6 @@
 		800EE45928E3B463004236A1 /* Optics.m in Sources */ = {isa = PBXBuildFile; fileRef = 800EE45828E3B463004236A1 /* Optics.m */; };
 		800EE45A28E3B463004236A1 /* Optics.m in Sources */ = {isa = PBXBuildFile; fileRef = 800EE45828E3B463004236A1 /* Optics.m */; };
 		800EE45B28E3B463004236A1 /* Optics.m in Sources */ = {isa = PBXBuildFile; fileRef = 800EE45828E3B463004236A1 /* Optics.m */; };
-		80151C80289F3E2000A602E3 /* ButtonCheckmarkBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 80151C7F289F3E2000A602E3 /* ButtonCheckmarkBackground.png */; };
-		80151C81289F3E2000A602E3 /* ButtonCheckmarkBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 80151C7F289F3E2000A602E3 /* ButtonCheckmarkBackground.png */; };
-		80151C82289F3E2000A602E3 /* ButtonCheckmarkBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 80151C7F289F3E2000A602E3 /* ButtonCheckmarkBackground.png */; };
 		801670F928C4346500803D05 /* TapToRotateText.png in Resources */ = {isa = PBXBuildFile; fileRef = 801670F828C4346500803D05 /* TapToRotateText.png */; };
 		801670FA28C4346500803D05 /* TapToRotateText.png in Resources */ = {isa = PBXBuildFile; fileRef = 801670F828C4346500803D05 /* TapToRotateText.png */; };
 		801670FB28C4346500803D05 /* TapToRotateText.png in Resources */ = {isa = PBXBuildFile; fileRef = 801670F828C4346500803D05 /* TapToRotateText.png */; };
@@ -352,6 +348,12 @@
 		8035E141295F5DEB001B65C3 /* replayIconWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 8035E140295F5DEB001B65C3 /* replayIconWhite.png */; };
 		8035E142295F5DEB001B65C3 /* replayIconWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 8035E140295F5DEB001B65C3 /* replayIconWhite.png */; };
 		8035E143295F5DEB001B65C3 /* replayIconWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 8035E140295F5DEB001B65C3 /* replayIconWhite.png */; };
+		803AFB702979CFB100BDB614 /* Fiverr - Proof of Doing - Laser Gun and some jewels.png in Resources */ = {isa = PBXBuildFile; fileRef = 803AFB6F2979CFB100BDB614 /* Fiverr - Proof of Doing - Laser Gun and some jewels.png */; };
+		803AFB712979CFB100BDB614 /* Fiverr - Proof of Doing - Laser Gun and some jewels.png in Resources */ = {isa = PBXBuildFile; fileRef = 803AFB6F2979CFB100BDB614 /* Fiverr - Proof of Doing - Laser Gun and some jewels.png */; };
+		803AFB722979CFB100BDB614 /* Fiverr - Proof of Doing - Laser Gun and some jewels.png in Resources */ = {isa = PBXBuildFile; fileRef = 803AFB6F2979CFB100BDB614 /* Fiverr - Proof of Doing - Laser Gun and some jewels.png */; };
+		803AFB782979D12900BDB614 /* Provenance.xib in Resources */ = {isa = PBXBuildFile; fileRef = 803AFB772979D12900BDB614 /* Provenance.xib */; };
+		803AFB792979D12900BDB614 /* Provenance.xib in Resources */ = {isa = PBXBuildFile; fileRef = 803AFB772979D12900BDB614 /* Provenance.xib */; };
+		803AFB7A2979D12900BDB614 /* Provenance.xib in Resources */ = {isa = PBXBuildFile; fileRef = 803AFB772979D12900BDB614 /* Provenance.xib */; };
 		8043568428A6BF3700AE910A /* BMDHintsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8043568328A6BF3700AE910A /* BMDHintsViewController.m */; };
 		8043568528A6BF3700AE910A /* BMDHintsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8043568328A6BF3700AE910A /* BMDHintsViewController.m */; };
 		8043568628A6BF3700AE910A /* BMDHintsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8043568328A6BF3700AE910A /* BMDHintsViewController.m */; };
@@ -586,9 +588,6 @@
 		80C538EA28DF349700E0606E /* TileCheckmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C538E928DF349700E0606E /* TileCheckmark.png */; };
 		80C538EB28DF349700E0606E /* TileCheckmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C538E928DF349700E0606E /* TileCheckmark.png */; };
 		80C538EC28DF349700E0606E /* TileCheckmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C538E928DF349700E0606E /* TileCheckmark.png */; };
-		80C6EFB328A0462900A0C810 /* ButtonCheckmarkPackBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C6EFB228A0462900A0C810 /* ButtonCheckmarkPackBackground.png */; };
-		80C6EFB428A0462900A0C810 /* ButtonCheckmarkPackBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C6EFB228A0462900A0C810 /* ButtonCheckmarkPackBackground.png */; };
-		80C6EFB528A0462900A0C810 /* ButtonCheckmarkPackBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C6EFB228A0462900A0C810 /* ButtonCheckmarkPackBackground.png */; };
 		80D4CA172965DD6B00AD28D7 /* helpButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D4CA162965DD6B00AD28D7 /* helpButton.png */; };
 		80D4CA182965DD6B00AD28D7 /* helpButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D4CA162965DD6B00AD28D7 /* helpButton.png */; };
 		80D4CA192965DD6B00AD28D7 /* helpButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D4CA162965DD6B00AD28D7 /* helpButton.png */; };
@@ -604,9 +603,6 @@
 		80F406FA28F0C110006C4F82 /* backgroundTextures.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F406F928F0C110006C4F82 /* backgroundTextures.plist */; };
 		80F406FB28F0C110006C4F82 /* backgroundTextures.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F406F928F0C110006C4F82 /* backgroundTextures.plist */; };
 		80F406FC28F0C110006C4F82 /* backgroundTextures.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F406F928F0C110006C4F82 /* backgroundTextures.plist */; };
-		80F9BBC928DC981E00DDE749 /* PointingFinger.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F9BBC828DC981E00DDE749 /* PointingFinger.png */; };
-		80F9BBCA28DC981E00DDE749 /* PointingFinger.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F9BBC828DC981E00DDE749 /* PointingFinger.png */; };
-		80F9BBCB28DC981E00DDE749 /* PointingFinger.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F9BBC828DC981E00DDE749 /* PointingFinger.png */; };
 		80FD2F4A2914C76E004DF6E8 /* TileSquareBright-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FD2F492914C76E004DF6E8 /* TileSquareBright-1.png */; };
 		80FD2F4B2914C76E004DF6E8 /* TileSquareBright-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FD2F492914C76E004DF6E8 /* TileSquareBright-1.png */; };
 		80FD2F4C2914C76E004DF6E8 /* TileSquareBright-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FD2F492914C76E004DF6E8 /* TileSquareBright-1.png */; };
@@ -643,7 +639,6 @@
 		3AFD656A1F71A8900008A125 /* BMDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMDViewController.m; sourceTree = "<group>"; };
 		3AFD65741F71A8A70008A125 /* BMDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMDAppDelegate.h; sourceTree = "<group>"; };
 		3AFD65751F71A8AB0008A125 /* BMDViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMDViewController.h; sourceTree = "<group>"; };
-		5209D026276298AA00A95891 /* PuzzleMarkerCompletedGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PuzzleMarkerCompletedGreen.png; sourceTree = "<group>"; };
 		520BBD29260A6BC20080EADC /* Background-Aspect-4-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Background-Aspect-4-3.png"; sourceTree = "<group>"; };
 		521E14FA25951081009B3743 /* BeamTextureRenderData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeamTextureRenderData.h; sourceTree = "<group>"; };
 		521E14FB25951081009B3743 /* BeamTextureRenderData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeamTextureRenderData.m; sourceTree = "<group>"; };
@@ -763,7 +758,6 @@
 		800E459A292EE45F0041976E /* BridgingHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgingHeader.swift; sourceTree = "<group>"; };
 		800ECE3E28DF86D400A7DC62 /* PackCompleted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PackCompleted.png; sourceTree = "<group>"; };
 		800EE45828E3B463004236A1 /* Optics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Optics.m; sourceTree = "<group>"; };
-		80151C7F289F3E2000A602E3 /* ButtonCheckmarkBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonCheckmarkBackground.png; sourceTree = "<group>"; };
 		801670F828C4346500803D05 /* TapToRotateText.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TapToRotateText.png; sourceTree = "<group>"; };
 		801D0B0B28B4267F008D435B /* BMDPacksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMDPacksViewController.h; sourceTree = "<group>"; };
 		801D0B0C28B4267F008D435B /* BMDPacksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMDPacksViewController.m; sourceTree = "<group>"; };
@@ -781,6 +775,13 @@
 		802B2E492895ABED009DE2A7 /* UIDemoLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIDemoLabel.h; sourceTree = "<group>"; };
 		802B2E4A2895ABED009DE2A7 /* UIDemoLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIDemoLabel.m; sourceTree = "<group>"; };
 		8035E140295F5DEB001B65C3 /* replayIconWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = replayIconWhite.png; path = ../../../../AEWork/replayIconWhite.png; sourceTree = "<group>"; };
+		803AFB6F2979CFB100BDB614 /* Fiverr - Proof of Doing - Laser Gun and some jewels.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Fiverr - Proof of Doing - Laser Gun and some jewels.png"; sourceTree = "<group>"; };
+		803AFB742979D01A00BDB614 /* Provenance.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Provenance.md; sourceTree = "<group>"; };
+		803AFB772979D12900BDB614 /* Provenance.xib */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Provenance.xib; sourceTree = "<group>"; };
+		803AFB7C2979D1FD00BDB614 /* Provenance.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Provenance.md; sourceTree = "<group>"; };
+		803AFB7E2979D58800BDB614 /* Provenance.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Provenance.md; sourceTree = "<group>"; };
+		803AFB802979F9E900BDB614 /* Provenance.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Provenance.md; sourceTree = "<group>"; };
+		803AFB822979FB9700BDB614 /* Provenance.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Provenance.md; sourceTree = "<group>"; };
 		8043568228A6BF3700AE910A /* BMDHintsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMDHintsViewController.h; sourceTree = "<group>"; };
 		8043568328A6BF3700AE910A /* BMDHintsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMDHintsViewController.m; sourceTree = "<group>"; };
 		8044DD7F29047FDC0078942B /* unlocked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unlocked.png; sourceTree = "<group>"; };
@@ -883,14 +884,12 @@
 		80BF264227D723A000BF9736 /* LaserGun-12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaserGun-12.png"; sourceTree = "<group>"; };
 		80C3279D2918623400EBE438 /* CheckmarkInCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckmarkInCircle.png; sourceTree = "<group>"; };
 		80C538E928DF349700E0606E /* TileCheckmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileCheckmark.png; sourceTree = "<group>"; };
-		80C6EFB228A0462900A0C810 /* ButtonCheckmarkPackBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonCheckmarkPackBackground.png; sourceTree = "<group>"; };
 		80D4CA162965DD6B00AD28D7 /* helpButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helpButton.png; sourceTree = "<group>"; };
 		80DFC2C228FB368000BE90C3 /* GridTile2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GridTile2.png; sourceTree = "<group>"; };
 		80E76F5D28AAAD7600F6D31D /* BMDPuzzleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMDPuzzleViewController.h; sourceTree = "<group>"; };
 		80E76F5E28AAAD7600F6D31D /* BMDPuzzleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMDPuzzleViewController.m; sourceTree = "<group>"; };
 		80F406F528F0B113006C4F82 /* Jewel-original.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Jewel-original.png"; sourceTree = "<group>"; };
 		80F406F928F0C110006C4F82 /* backgroundTextures.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = backgroundTextures.plist; sourceTree = "<group>"; };
-		80F9BBC828DC981E00DDE749 /* PointingFinger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PointingFinger.png; sourceTree = "<group>"; };
 		80FD2F492914C76E004DF6E8 /* TileSquareBright-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TileSquareBright-1.png"; sourceTree = "<group>"; };
 		80FDEA6729145848007C05F7 /* TileSquareTranslucent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileSquareTranslucent.png; sourceTree = "<group>"; };
 		80FDEA6B29145A5C007C05F7 /* TileSquareBright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileSquareBright.png; sourceTree = "<group>"; };
@@ -1119,7 +1118,9 @@
 		520E891E255C642D00C83B6E /* Textures */ = {
 			isa = PBXGroup;
 			children = (
+				803AFB752979D09F00BDB614 /* Jewel Textures */,
 				80F406F428F0AE97006C4F82 /* Activated Jewel Textures */,
+				525E733725D85C9D0020F667 /* Jewel Ring Textures */,
 				80BF263527D7237F00BF9736 /* LaserGun */,
 				800ECE3928DF80F000A7DC62 /* Foreground Textures */,
 				52E2105825BA2D2A0095466B /* Home Screen Textures */,
@@ -1127,7 +1128,6 @@
 				8065EA652900494A00E383D7 /* Screen Backgrounds */,
 				5286EBA72564922100B43209 /* Background Textures */,
 				5286EB6425648CC700B43209 /* Beam Textures */,
-				525E733725D85C9D0020F667 /* Jewel Ring Textures */,
 				520E891F255C643B00C83B6E /* Tile Textures */,
 			);
 			path = Textures;
@@ -1147,13 +1147,6 @@
 				5286EAFE2564715400B43209 /* TileSpectrumL0.png */,
 				5286EAF42564715400B43209 /* TileSpectrumR0.png */,
 				5286EA5C25646FBB00B43209 /* TileMirror.png */,
-				8023B2AC2915AD9B00176960 /* JewelRed.png */,
-				8023B2AB2915AD9B00176960 /* JewelGreen.png */,
-				8023B2BF2915B7C100176960 /* JewelBlue.png */,
-				8023B2D32915F54D00176960 /* JewelYellow.png */,
-				8023B2C72915BBDF00176960 /* JewelMagenta.png */,
-				8023B2CB2915BD8300176960 /* JewelCyan.png */,
-				8023B2CF2915C13300176960 /* JewelWhite.png */,
 				8023B2B32915AE9E00176960 /* Jewel.png */,
 				80F406F528F0B113006C4F82 /* Jewel-original.png */,
 				5286EA0925646CAF00B43209 /* TileSquareBlack.png */,
@@ -1177,6 +1170,7 @@
 		525E733725D85C9D0020F667 /* Jewel Ring Textures */ = {
 			isa = PBXGroup;
 			children = (
+				803AFB7B2979D1E400BDB614 /* Licenses */,
 				52994B2425DA13D600887B9C /* Rings_00000.png */,
 				52994B2925DA13D600887B9C /* Rings_00001.png */,
 				52994B1B25DA13D500887B9C /* Rings_00002.png */,
@@ -1289,6 +1283,7 @@
 		52C83F0C25B0CD6F003E7D51 /* Button Textures */ = {
 			isa = PBXGroup;
 			children = (
+				803AFB812979FB7600BDB614 /* Licenses */,
 				80D4CA162965DD6B00AD28D7 /* helpButton.png */,
 				808E49D7295E18A900D4D077 /* backArrowWhite.png */,
 				808E49D8295E18A900D4D077 /* nextArrowWhite.png */,
@@ -1314,6 +1309,7 @@
 		52E2105825BA2D2A0095466B /* Home Screen Textures */ = {
 			isa = PBXGroup;
 			children = (
+				803AFB7F2979F9CC00BDB614 /* Licenses */,
 				806B4ED0296C7F5400FFD306 /* LaunchScreen.png */,
 				806B4ED2296C821D00FFD306 /* Beamed2Logo.png */,
 				806B4ECE296C7D7F00FFD306 /* LoadingScreen.png */,
@@ -1324,16 +1320,84 @@
 		800ECE3928DF80F000A7DC62 /* Foreground Textures */ = {
 			isa = PBXGroup;
 			children = (
+				803AFB7D2979D56B00BDB614 /* Licenses */,
 				804660132978EDE00020B68C /* helpImage.png */,
 				80C3279D2918623400EBE438 /* CheckmarkInCircle.png */,
 				800ECE3E28DF86D400A7DC62 /* PackCompleted.png */,
-				5209D026276298AA00A95891 /* PuzzleMarkerCompletedGreen.png */,
-				80151C7F289F3E2000A602E3 /* ButtonCheckmarkBackground.png */,
-				80C6EFB228A0462900A0C810 /* ButtonCheckmarkPackBackground.png */,
 				80C538E928DF349700E0606E /* TileCheckmark.png */,
-				80F9BBC828DC981E00DDE749 /* PointingFinger.png */,
 			);
 			path = "Foreground Textures";
+			sourceTree = "<group>";
+		};
+		803AFB6E2979CF9400BDB614 /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				803AFB6F2979CFB100BDB614 /* Fiverr - Proof of Doing - Laser Gun and some jewels.png */,
+			);
+			path = Licenses;
+			sourceTree = "<group>";
+		};
+		803AFB732979CFC500BDB614 /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				803AFB742979D01A00BDB614 /* Provenance.md */,
+			);
+			path = Licenses;
+			sourceTree = "<group>";
+		};
+		803AFB752979D09F00BDB614 /* Jewel Textures */ = {
+			isa = PBXGroup;
+			children = (
+				803AFB762979D0FB00BDB614 /* Licenses */,
+				8023B2AC2915AD9B00176960 /* JewelRed.png */,
+				8023B2AB2915AD9B00176960 /* JewelGreen.png */,
+				8023B2BF2915B7C100176960 /* JewelBlue.png */,
+				8023B2D32915F54D00176960 /* JewelYellow.png */,
+				8023B2C72915BBDF00176960 /* JewelMagenta.png */,
+				8023B2CB2915BD8300176960 /* JewelCyan.png */,
+				8023B2CF2915C13300176960 /* JewelWhite.png */,
+			);
+			path = "Jewel Textures";
+			sourceTree = "<group>";
+		};
+		803AFB762979D0FB00BDB614 /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				803AFB772979D12900BDB614 /* Provenance.xib */,
+			);
+			path = Licenses;
+			sourceTree = "<group>";
+		};
+		803AFB7B2979D1E400BDB614 /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				803AFB7C2979D1FD00BDB614 /* Provenance.md */,
+			);
+			path = Licenses;
+			sourceTree = "<group>";
+		};
+		803AFB7D2979D56B00BDB614 /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				803AFB7E2979D58800BDB614 /* Provenance.md */,
+			);
+			path = Licenses;
+			sourceTree = "<group>";
+		};
+		803AFB7F2979F9CC00BDB614 /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				803AFB802979F9E900BDB614 /* Provenance.md */,
+			);
+			name = Licenses;
+			sourceTree = "<group>";
+		};
+		803AFB812979FB7600BDB614 /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				803AFB822979FB9700BDB614 /* Provenance.md */,
+			);
+			path = Licenses;
 			sourceTree = "<group>";
 		};
 		8065EA652900494A00E383D7 /* Screen Backgrounds */ = {
@@ -1392,6 +1456,7 @@
 		80BF263527D7237F00BF9736 /* LaserGun */ = {
 			isa = PBXGroup;
 			children = (
+				803AFB6E2979CF9400BDB614 /* Licenses */,
 				80BF263B27D723A000BF9736 /* LaserGun-0.png */,
 				80BF264027D723A000BF9736 /* LaserGun-1.png */,
 				80BF263C27D723A000BF9736 /* LaserGun-2.png */,
@@ -1444,6 +1509,7 @@
 		80F406F428F0AE97006C4F82 /* Activated Jewel Textures */ = {
 			isa = PBXGroup;
 			children = (
+				803AFB732979CFC500BDB614 /* Licenses */,
 				5286EA7A2564706B00B43209 /* TileJewelActivated01.png */,
 				5286EA722564706B00B43209 /* TileJewelActivated02.png */,
 				5286EA742564706B00B43209 /* TileJewelActivated03.png */,
@@ -1625,7 +1691,6 @@
 				809FEAC72971176200B13351 /* 67410903-win-game-level-52-license.txt in Resources */,
 				52994B5325DA13D700887B9C /* Rings_00016.png in Resources */,
 				52994B5F25DA13D700887B9C /* Rings_00000.png in Resources */,
-				80F9BBCA28DC981E00DDE749 /* PointingFinger.png in Resources */,
 				5286EB262564715400B43209 /* TileSpectrumL0.png in Resources */,
 				800ECE4028DF86D400A7DC62 /* PackCompleted.png in Resources */,
 				8023B2C12915B7C100176960 /* JewelBlue.png in Resources */,
@@ -1704,7 +1769,6 @@
 				5286EAB92564706B00B43209 /* TileJewelActivated10.png in Resources */,
 				52994B7D25DA13D700887B9C /* Rings_00025.png in Resources */,
 				52994B4425DA13D700887B9C /* Rings_00002.png in Resources */,
-				80151C81289F3E2000A602E3 /* ButtonCheckmarkBackground.png in Resources */,
 				52994B4725DA13D700887B9C /* Rings_00021.png in Resources */,
 				5286EAAD2564706B00B43209 /* TileJewelActivated01.png in Resources */,
 				52994B7A25DA13D700887B9C /* Rings_00009.png in Resources */,
@@ -1731,16 +1795,17 @@
 				526FBD5E25926960001F5647 /* Beam-Angle00-12.png in Resources */,
 				52A9A2FE25717F220072F41E /* LaserQuick2.wav in Resources */,
 				526FBD5225926960001F5647 /* Beam-Angle00-11.png in Resources */,
+				803AFB792979D12900BDB614 /* Provenance.xib in Resources */,
 				80BB3CA628DBC42700C547D1 /* DragTileText.png in Resources */,
 				5286EBEE2564BCD300B43209 /* TileOutline.png in Resources */,
 				52994B3E25DA13D700887B9C /* Rings_00005.png in Resources */,
+				803AFB712979CFB100BDB614 /* Fiverr - Proof of Doing - Laser Gun and some jewels.png in Resources */,
 				809FEAC12971176200B13351 /* 67412386-reward-license.txt in Resources */,
 				809FEA8F29710C2500B13351 /* 70645767-internal-calculations-license.pdf in Resources */,
 				809FEA9529710C2500B13351 /* 70645766-night-drive-80s-license.pdf in Resources */,
 				8023B2CD2915BD8300176960 /* JewelCyan.png in Resources */,
 				801670FA28C4346500803D05 /* TapToRotateText.png in Resources */,
 				809FEADE297117A600B13351 /* 67412387-mobile-game-melodic-stinger-dreamy-synth-level-up-2-license.pdf in Resources */,
-				5209D027276298AA00A95891 /* PuzzleMarkerCompletedGreen.png in Resources */,
 				5286EAB32564706B00B43209 /* TileJewelActivated07.png in Resources */,
 				809FEAD62971176200B13351 /* 67410905-win-game-level-119-license.pdf in Resources */,
 				809FEACA2971176200B13351 /* 67410901-win-game-level-50-license.pdf in Resources */,
@@ -1748,7 +1813,6 @@
 				806B4ECF296C7D7F00FFD306 /* LoadingScreen.png in Resources */,
 				5286EA922564706B00B43209 /* TileJewelActivated06.png in Resources */,
 				809FEAAD2971167200B13351 /* 67409514-puzzle-background-theme-2-license.txt in Resources */,
-				80C6EFB428A0462900A0C810 /* ButtonCheckmarkPackBackground.png in Resources */,
 				806B4ED1296C7F5400FFD306 /* LaunchScreen.png in Resources */,
 				805DB34527D1417700F9572A /* Beamsplitter-1.png in Resources */,
 				52A9A2DE25717F140072F41E /* Click.wav in Resources */,
@@ -1795,7 +1859,6 @@
 				809FEABF2971176200B13351 /* 67410905-win-game-level-119-license.txt in Resources */,
 				8044DD982904908E0078942B /* cyanRectangleSelected.png in Resources */,
 				80A2DB552954256A00C790AD /* starrysky.jpg in Resources */,
-				80C6EFB528A0462900A0C810 /* ButtonCheckmarkPackBackground.png in Resources */,
 				52994B8425DA13D700887B9C /* Rings_00014.png in Resources */,
 				52994B3C25DA13D700887B9C /* Rings_00010.png in Resources */,
 				809FEAAE2971167200B13351 /* 67409514-puzzle-background-theme-2-license.txt in Resources */,
@@ -1834,7 +1897,6 @@
 				8023B2B22915AD9B00176960 /* JewelRed.png in Resources */,
 				52A9A30A25717F260072F41E /* TapClink.wav in Resources */,
 				809DF29728F22F9A00AC4680 /* beamAnimations.plist in Resources */,
-				80151C82289F3E2000A602E3 /* ButtonCheckmarkBackground.png in Resources */,
 				801670FB28C4346500803D05 /* TapToRotateText.png in Resources */,
 				8089548D291DB76B009C4D02 /* backArrow.png in Resources */,
 				52994B7225DA13D700887B9C /* Rings_00013.png in Resources */,
@@ -1848,6 +1910,7 @@
 				809FEA9629710C2500B13351 /* 70645766-night-drive-80s-license.pdf in Resources */,
 				8023B2D22915C13300176960 /* JewelWhite.png in Resources */,
 				52994B3F25DA13D700887B9C /* Rings_00005.png in Resources */,
+				803AFB722979CFB100BDB614 /* Fiverr - Proof of Doing - Laser Gun and some jewels.png in Resources */,
 				526FBCD225926960001F5647 /* Beam-Angle00-06.png in Resources */,
 				52994B8125DA13D700887B9C /* Rings_00017.png in Resources */,
 				809FEAC52971176200B13351 /* 67410903-win-game-level-52-license.pdf in Resources */,
@@ -1942,9 +2005,9 @@
 				808C49D328D41210002A768C /* puzzlePacksArray.plist in Resources */,
 				52994B7825DA13D700887B9C /* Rings_00015.png in Resources */,
 				809FEAD72971176200B13351 /* 67410905-win-game-level-119-license.pdf in Resources */,
-				80F9BBCB28DC981E00DDE749 /* PointingFinger.png in Resources */,
 				805DB34E27D1453F00F9572A /* Prism.png in Resources */,
 				5286EABD2564706B00B43209 /* TileJewelActivated15.png in Resources */,
+				803AFB7A2979D12900BDB614 /* Provenance.xib in Resources */,
 				52994B4E25DA13D700887B9C /* Rings_00007.png in Resources */,
 				80C327A02918623400EBE438 /* CheckmarkInCircle.png in Resources */,
 				5286EA962564706B00B43209 /* TileJewelActivated02.png in Resources */,
@@ -1965,7 +2028,6 @@
 				52A9A2B725717C550072F41E /* TapClink.wav in Resources */,
 				80A2DB532954256A00C790AD /* starrysky.jpg in Resources */,
 				52A9A2B825717C550072F41E /* Click.wav in Resources */,
-				80C6EFB328A0462900A0C810 /* ButtonCheckmarkPackBackground.png in Resources */,
 				809FEAAC2971167200B13351 /* 67409514-puzzle-background-theme-2-license.txt in Resources */,
 				52994B7025DA13D700887B9C /* Rings_00013.png in Resources */,
 				52994B7325DA13D700887B9C /* Rings_00029.png in Resources */,
@@ -2015,7 +2077,7 @@
 				80BE38B6292FFE5900076A7E /* InAppMessagingDisplayResources.bundle in Resources */,
 				5286EA9A2564706B00B43209 /* TileJewelActivated03.png in Resources */,
 				809FEA9429710C2500B13351 /* 70645766-night-drive-80s-license.pdf in Resources */,
-				80151C80289F3E2000A602E3 /* ButtonCheckmarkBackground.png in Resources */,
+				803AFB702979CFB100BDB614 /* Fiverr - Proof of Doing - Laser Gun and some jewels.png in Resources */,
 				80FDEA7029145E52007C05F7 /* Beamsplitter-2.png in Resources */,
 				801670F928C4346500803D05 /* TapToRotateText.png in Resources */,
 				80B3DF68283ACA2100B54B7D /* TapToRotate.png in Resources */,
@@ -2110,9 +2172,9 @@
 				52994B8B25DA13D700887B9C /* Rings_00004.png in Resources */,
 				808C49D128D41210002A768C /* puzzlePacksArray.plist in Resources */,
 				809FEAD52971176200B13351 /* 67410905-win-game-level-119-license.pdf in Resources */,
-				80F9BBC928DC981E00DDE749 /* PointingFinger.png in Resources */,
 				5286EA912564706B00B43209 /* TileJewelActivated06.png in Resources */,
 				52994B3425DA13D700887B9C /* Rings_00020.png in Resources */,
+				803AFB782979D12900BDB614 /* Provenance.xib in Resources */,
 				5286EAA32564706B00B43209 /* TileJewelActivated05.png in Resources */,
 				80C3279E2918623400EBE438 /* CheckmarkInCircle.png in Resources */,
 				5286EAB82564706B00B43209 /* TileJewelActivated10.png in Resources */,

@@ -43,6 +43,6 @@ API_AVAILABLE(ios(13.0))
 - (TextureRenderData *)renderTapToRotatePrompt:(vector_int2)position angle:(enum eObjectAngle)angle;
 - (TextureRenderData *)renderTapToRotatePromptText:(vector_int2)position angle:(enum eObjectAngle)angle;
 - (TextureRenderData *)renderDragPromptText:(vector_int2)position angle:(enum eObjectAngle)angle;
-- (TextureRenderData *)renderPointingFinger:(vector_int2)position angle:(enum eObjectAngle)angle;
+//- (TextureRenderData *)renderPointingFinger:(vector_int2)position angle:(enum eObjectAngle)angle;
 - (TextureRenderData *)renderTutorialTilePathArrow:(vector_int2)startPosition end:(vector_int2)endPosition textureRenderData:(TextureRenderData *)textureRenderData;
 @end
