@@ -574,9 +574,9 @@
 		80A4F73F28D4D855007BDE13 /* dailyPuzzlesPackDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F73E28D4D855007BDE13 /* dailyPuzzlesPackDictionary.plist */; };
 		80A4F74028D4D855007BDE13 /* dailyPuzzlesPackDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F73E28D4D855007BDE13 /* dailyPuzzlesPackDictionary.plist */; };
 		80A4F74128D4D855007BDE13 /* dailyPuzzlesPackDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F73E28D4D855007BDE13 /* dailyPuzzlesPackDictionary.plist */; };
-		80ADCC1F29557639002B231F /* backgroundLandscapeGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = 80ADCC1E29557639002B231F /* backgroundLandscapeGrid.png */; };
-		80ADCC2029557639002B231F /* backgroundLandscapeGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = 80ADCC1E29557639002B231F /* backgroundLandscapeGrid.png */; };
-		80ADCC2129557639002B231F /* backgroundLandscapeGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = 80ADCC1E29557639002B231F /* backgroundLandscapeGrid.png */; };
+		80ADCC1F29557639002B231F /* backgroundLandscapeGrid1.png in Resources */ = {isa = PBXBuildFile; fileRef = 80ADCC1E29557639002B231F /* backgroundLandscapeGrid1.png */; };
+		80ADCC2029557639002B231F /* backgroundLandscapeGrid1.png in Resources */ = {isa = PBXBuildFile; fileRef = 80ADCC1E29557639002B231F /* backgroundLandscapeGrid1.png */; };
+		80ADCC2129557639002B231F /* backgroundLandscapeGrid1.png in Resources */ = {isa = PBXBuildFile; fileRef = 80ADCC1E29557639002B231F /* backgroundLandscapeGrid1.png */; };
 		80BB3CA528DBC42700C547D1 /* DragTileText.png in Resources */ = {isa = PBXBuildFile; fileRef = 80BB3CA428DBC42700C547D1 /* DragTileText.png */; };
 		80BB3CA628DBC42700C547D1 /* DragTileText.png in Resources */ = {isa = PBXBuildFile; fileRef = 80BB3CA428DBC42700C547D1 /* DragTileText.png */; };
 		80BB3CA728DBC42700C547D1 /* DragTileText.png in Resources */ = {isa = PBXBuildFile; fileRef = 80BB3CA428DBC42700C547D1 /* DragTileText.png */; };
@@ -621,6 +621,9 @@
 		80E76F5F28AAAD7600F6D31D /* BMDPuzzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E76F5E28AAAD7600F6D31D /* BMDPuzzleViewController.m */; };
 		80E76F6028AAAD7600F6D31D /* BMDPuzzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E76F5E28AAAD7600F6D31D /* BMDPuzzleViewController.m */; };
 		80E76F6128AAAD7600F6D31D /* BMDPuzzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E76F5E28AAAD7600F6D31D /* BMDPuzzleViewController.m */; };
+		80F31603297BAD5D003DCCDF /* backgroundLandscapeGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F31602297BAD5D003DCCDF /* backgroundLandscapeGrid.png */; };
+		80F31604297BAD5D003DCCDF /* backgroundLandscapeGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F31602297BAD5D003DCCDF /* backgroundLandscapeGrid.png */; };
+		80F31605297BAD5D003DCCDF /* backgroundLandscapeGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F31602297BAD5D003DCCDF /* backgroundLandscapeGrid.png */; };
 		80F406FA28F0C110006C4F82 /* backgroundTextures.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F406F928F0C110006C4F82 /* backgroundTextures.plist */; };
 		80F406FB28F0C110006C4F82 /* backgroundTextures.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F406F928F0C110006C4F82 /* backgroundTextures.plist */; };
 		80F406FC28F0C110006C4F82 /* backgroundTextures.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F406F928F0C110006C4F82 /* backgroundTextures.plist */; };
@@ -889,7 +892,7 @@
 		809FEADC297117A600B13351 /* 67412387-mobile-game-melodic-stinger-dreamy-synth-level-up-2-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "67412387-mobile-game-melodic-stinger-dreamy-synth-level-up-2-license.txt"; sourceTree = "<group>"; };
 		80A4F73A28D4D5ED007BDE13 /* demoPuzzlePackDictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = demoPuzzlePackDictionary.plist; sourceTree = "<group>"; };
 		80A4F73E28D4D855007BDE13 /* dailyPuzzlesPackDictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dailyPuzzlesPackDictionary.plist; sourceTree = "<group>"; };
-		80ADCC1E29557639002B231F /* backgroundLandscapeGrid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundLandscapeGrid.png; sourceTree = "<group>"; };
+		80ADCC1E29557639002B231F /* backgroundLandscapeGrid1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundLandscapeGrid1.png; sourceTree = "<group>"; };
 		80BB3CA428DBC42700C547D1 /* DragTileText.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DragTileText.png; sourceTree = "<group>"; };
 		80BE38AC292FFE4700076A7E /* FirebaseABTesting.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseABTesting.xcframework; sourceTree = "<group>"; };
 		80BE38B0292FFE5200076A7E /* FirebaseInAppMessagingSwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseInAppMessagingSwift.xcframework; sourceTree = "<group>"; };
@@ -915,6 +918,7 @@
 		80DFC2C228FB368000BE90C3 /* GridTile2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GridTile2.png; sourceTree = "<group>"; };
 		80E76F5D28AAAD7600F6D31D /* BMDPuzzleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMDPuzzleViewController.h; sourceTree = "<group>"; };
 		80E76F5E28AAAD7600F6D31D /* BMDPuzzleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMDPuzzleViewController.m; sourceTree = "<group>"; };
+		80F31602297BAD5D003DCCDF /* backgroundLandscapeGrid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundLandscapeGrid.png; sourceTree = "<group>"; };
 		80F406F928F0C110006C4F82 /* backgroundTextures.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = backgroundTextures.plist; sourceTree = "<group>"; };
 		80FDEA6729145848007C05F7 /* TileSquareTranslucent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileSquareTranslucent.png; sourceTree = "<group>"; };
 		80FDEA6B29145A5C007C05F7 /* TileSquareBright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileSquareBright.png; sourceTree = "<group>"; };
@@ -1478,7 +1482,8 @@
 			isa = PBXGroup;
 			children = (
 				8011CE55297B1F4700E7CEAB /* Licenses */,
-				80ADCC1E29557639002B231F /* backgroundLandscapeGrid.png */,
+				80ADCC1E29557639002B231F /* backgroundLandscapeGrid1.png */,
+				80F31602297BAD5D003DCCDF /* backgroundLandscapeGrid.png */,
 			);
 			path = "Screen Backgrounds";
 			sourceTree = "<group>";
@@ -1839,6 +1844,7 @@
 				5286EAB92564706B00B43209 /* TileJewelActivated10.png in Resources */,
 				52994B7D25DA13D700887B9C /* Rings_00025.png in Resources */,
 				52994B4425DA13D700887B9C /* Rings_00002.png in Resources */,
+				80F31604297BAD5D003DCCDF /* backgroundLandscapeGrid.png in Resources */,
 				52994B4725DA13D700887B9C /* Rings_00021.png in Resources */,
 				5286EAAD2564706B00B43209 /* TileJewelActivated01.png in Resources */,
 				52994B7A25DA13D700887B9C /* Rings_00009.png in Resources */,
@@ -1906,7 +1912,7 @@
 				8095C48327DB014E00E1740C /* GridTile.png in Resources */,
 				52994B7725DA13D700887B9C /* Rings_00015.png in Resources */,
 				5286EA9E2564706B00B43209 /* TileJewelActivated11.png in Resources */,
-				80ADCC2029557639002B231F /* backgroundLandscapeGrid.png in Resources */,
+				80ADCC2029557639002B231F /* backgroundLandscapeGrid1.png in Resources */,
 				8023B2B12915AD9B00176960 /* JewelRed.png in Resources */,
 				80BE38B7292FFE5900076A7E /* InAppMessagingDisplayResources.bundle in Resources */,
 				806B4ED3296C821D00FFD306 /* Beamed2Logo.png in Resources */,
@@ -1964,6 +1970,7 @@
 				809FEACE2971176200B13351 /* 67410904-win-game-level-93-license.txt in Resources */,
 				526FBCEA25926960001F5647 /* Beam-Angle00-09.png in Resources */,
 				8011CE8E297B2C0200E7CEAB /* lightBulb-11934419-vecteezy.pdf in Resources */,
+				80F31605297BAD5D003DCCDF /* backgroundLandscapeGrid.png in Resources */,
 				808E49DC295E18A900D4D077 /* backArrowWhite.png in Resources */,
 				8023B2CE2915BD8300176960 /* JewelCyan.png in Resources */,
 				5286EA872564706B00B43209 /* TileJewelActivated09.png in Resources */,
@@ -2073,7 +2080,7 @@
 				52994B6625DA13D700887B9C /* Rings_00026.png in Resources */,
 				520BBD2C260A6BC20080EADC /* Background-Aspect-4-3.png in Resources */,
 				5286EACC2564706B00B43209 /* TileJewelActivated08.png in Resources */,
-				80ADCC2129557639002B231F /* backgroundLandscapeGrid.png in Resources */,
+				80ADCC2129557639002B231F /* backgroundLandscapeGrid1.png in Resources */,
 				52994B3625DA13D700887B9C /* Rings_00020.png in Resources */,
 				52994B4525DA13D700887B9C /* Rings_00002.png in Resources */,
 				8011CE9D297B8B3500E7CEAB /* 003577572-light-sabersci-fihighswingsfas.wav in Resources */,
@@ -2136,6 +2143,7 @@
 				8089549B291DB805009C4D02 /* lightBulb.png in Resources */,
 				809FEACC2971176200B13351 /* 67410904-win-game-level-93-license.txt in Resources */,
 				8011CE8C297B2C0200E7CEAB /* lightBulb-11934419-vecteezy.pdf in Resources */,
+				80F31603297BAD5D003DCCDF /* backgroundLandscapeGrid.png in Resources */,
 				80DFC2C328FB368000BE90C3 /* GridTile2.png in Resources */,
 				808E49DA295E18A900D4D077 /* backArrowWhite.png in Resources */,
 				526FBD1B25926960001F5647 /* Beam-Angle00-10.png in Resources */,
@@ -2244,7 +2252,7 @@
 				5286EA6425646FBB00B43209 /* TileMirror.png in Resources */,
 				52994B8225DA13D700887B9C /* Rings_00014.png in Resources */,
 				5266332625FBD8ED00776E9B /* single-arrow-1.png in Resources */,
-				80ADCC1F29557639002B231F /* backgroundLandscapeGrid.png in Resources */,
+				80ADCC1F29557639002B231F /* backgroundLandscapeGrid1.png in Resources */,
 				5286EB252564715400B43209 /* TileSpectrumL0.png in Resources */,
 				52994B4025DA13D700887B9C /* Rings_00028.png in Resources */,
 				52994B5E25DA13D700887B9C /* Rings_00000.png in Resources */,
