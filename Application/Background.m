@@ -249,28 +249,6 @@
     return backgroundRenderDataOuter;
 }
 
-- (TextureRenderData *)renderBorder:(enum eTileColors)color
-{
-    BMDAppDelegate *appDelegate = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
-    Optics *optics = appDelegate->optics;
-
-    NSMutableArray *backgroundTextureDataArray = appDelegate.backgroundTextures;
-    TextureData *backgroundTextureData;
-    
-    backgroundTextureData = [backgroundTextureDataArray objectAtIndex:BORDER_ASPECT_4_3];
-
-    borderRenderData = [[TextureRenderData alloc] init];
-    borderRenderData.renderTexture = backgroundTextureData.texture;
-    borderRenderData->tileColor = color;
-
-    borderRenderData->texturePositionInPixels.x = optics->_tileHorizontalOffsetInPixels;
-    borderRenderData->texturePositionInPixels.y = optics->_tileVerticalOffsetInPixels;
-    borderRenderData->textureDimensionsInPixels.x = optics->_puzzleDisplayWidthInPixels;
-    borderRenderData->textureDimensionsInPixels.y = optics->_puzzleDisplayHeightInPixels;
-
-    return borderRenderData;
-}
-
 - (TextureRenderData *)renderTapToRotatePrompt:(vector_int2)position angle:(enum eObjectAngle)angle {
     BMDAppDelegate *appDelegate = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
     Optics *optics = appDelegate->optics;

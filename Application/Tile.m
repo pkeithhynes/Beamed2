@@ -208,9 +208,9 @@ API_AVAILABLE(ios(13.0))
     // We do not have too many levels of beams
     if (![incomingBeams[color] containsObject:beam] && beam->beamLevel<kNumberOfBeamLevels) {
         // Play a laser sound
-        if (!appDelegate->laserSoundCurrentlyPlaying){
-            [appDelegate playLaserSound];
-        }
+//        if (!appDelegate->laserSoundCurrentlyPlaying){
+//            [appDelegate playLaserSound];
+//        }
         switch (tileShape) {
             case CIRCLE:			// These tiles block the beam so add the beam to the incomingBeams array but then do nothing
             case JEWEL:

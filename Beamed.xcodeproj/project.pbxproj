@@ -101,9 +101,6 @@
 		5284E5EB25AAA1320042F429 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5284E5EA25AAA1320042F429 /* README.md */; };
 		5284E5EC25AAA1320042F429 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5284E5EA25AAA1320042F429 /* README.md */; };
 		5284E5ED25AAA1320042F429 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5284E5EA25AAA1320042F429 /* README.md */; };
-		5286EA0B25646CAF00B43209 /* TileSquareBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 5286EA0925646CAF00B43209 /* TileSquareBlack.png */; };
-		5286EA0D25646CAF00B43209 /* TileSquareBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 5286EA0925646CAF00B43209 /* TileSquareBlack.png */; };
-		5286EA4225646E2400B43209 /* TileSquareBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 5286EA0925646CAF00B43209 /* TileSquareBlack.png */; };
 		5286EA6425646FBB00B43209 /* TileMirror.png in Resources */ = {isa = PBXBuildFile; fileRef = 5286EA5C25646FBB00B43209 /* TileMirror.png */; };
 		5286EA6525646FBB00B43209 /* TileMirror.png in Resources */ = {isa = PBXBuildFile; fileRef = 5286EA5C25646FBB00B43209 /* TileMirror.png */; };
 		5286EA6625646FBB00B43209 /* TileMirror.png in Resources */ = {isa = PBXBuildFile; fileRef = 5286EA5C25646FBB00B43209 /* TileMirror.png */; };
@@ -260,27 +257,6 @@
 		529B181D263CB77E005A3646 /* BMDGameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 529B181C263CB77E005A3646 /* BMDGameCenterManager.m */; };
 		529B181E263CB77E005A3646 /* BMDGameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 529B181C263CB77E005A3646 /* BMDGameCenterManager.m */; };
 		529B181F263CB77E005A3646 /* BMDGameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 529B181C263CB77E005A3646 /* BMDGameCenterManager.m */; };
-		52A4EA9F25B2273A00E716B8 /* Border-Aspect-4-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 52A4EA9E25B2273A00E716B8 /* Border-Aspect-4-3.png */; };
-		52A4EAA025B2273A00E716B8 /* Border-Aspect-4-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 52A4EA9E25B2273A00E716B8 /* Border-Aspect-4-3.png */; };
-		52A4EAA125B2273A00E716B8 /* Border-Aspect-4-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 52A4EA9E25B2273A00E716B8 /* Border-Aspect-4-3.png */; };
-		52A9A2B325717C550072F41E /* 39770_Light_SaberSciFiLowSwingFast_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 52A9A2A925717C550072F41E /* 39770_Light_SaberSciFiLowSwingFast_1.wav */; };
-		52A9A2B525717C550072F41E /* LaserQuick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 52A9A2AB25717C550072F41E /* LaserQuick.wav */; };
-		52A9A2B625717C550072F41E /* LaserQuick2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 52A9A2AC25717C550072F41E /* LaserQuick2.wav */; };
-		52A9A2B725717C550072F41E /* TapClink.wav in Resources */ = {isa = PBXBuildFile; fileRef = 52A9A2AD25717C550072F41E /* TapClink.wav */; };
-		52A9A2B825717C550072F41E /* Click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 52A9A2AE25717C550072F41E /* Click.wav */; };
-		52A9A2B925717C550072F41E /* 39783_Light_SaberSciFiLowSwingSlow_4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 52A9A2AF25717C550072F41E /* 39783_Light_SaberSciFiLowSwingSlow_4.wav */; };
-		52A9A2C625717F070072F41E /* 39770_Light_SaberSciFiLowSwingFast_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 52A9A2A925717C550072F41E /* 39770_Light_SaberSciFiLowSwingFast_1.wav */; };
-		52A9A2CA25717F080072F41E /* 39770_Light_SaberSciFiLowSwingFast_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 52A9A2A925717C550072F41E /* 39770_Light_SaberSciFiLowSwingFast_1.wav */; };
-		52A9A2CE25717F0B0072F41E /* 39783_Light_SaberSciFiLowSwingSlow_4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 52A9A2AF25717C550072F41E /* 39783_Light_SaberSciFiLowSwingSlow_4.wav */; };
-		52A9A2D225717F0C0072F41E /* 39783_Light_SaberSciFiLowSwingSlow_4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 52A9A2AF25717C550072F41E /* 39783_Light_SaberSciFiLowSwingSlow_4.wav */; };
-		52A9A2DE25717F140072F41E /* Click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 52A9A2AE25717C550072F41E /* Click.wav */; };
-		52A9A2E225717F140072F41E /* Click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 52A9A2AE25717C550072F41E /* Click.wav */; };
-		52A9A2F625717F1F0072F41E /* LaserQuick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 52A9A2AB25717C550072F41E /* LaserQuick.wav */; };
-		52A9A2FA25717F200072F41E /* LaserQuick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 52A9A2AB25717C550072F41E /* LaserQuick.wav */; };
-		52A9A2FE25717F220072F41E /* LaserQuick2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 52A9A2AC25717C550072F41E /* LaserQuick2.wav */; };
-		52A9A30225717F230072F41E /* LaserQuick2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 52A9A2AC25717C550072F41E /* LaserQuick2.wav */; };
-		52A9A30625717F260072F41E /* TapClink.wav in Resources */ = {isa = PBXBuildFile; fileRef = 52A9A2AD25717C550072F41E /* TapClink.wav */; };
-		52A9A30A25717F260072F41E /* TapClink.wav in Resources */ = {isa = PBXBuildFile; fileRef = 52A9A2AD25717C550072F41E /* TapClink.wav */; };
 		52CFF411258BC75D00DB31C1 /* GameControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CFF410258BC75D00DB31C1 /* GameControls.m */; };
 		52CFF415258BC9DA00DB31C1 /* GameControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CFF410258BC75D00DB31C1 /* GameControls.m */; };
 		52CFF419258BC9DB00DB31C1 /* GameControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CFF410258BC75D00DB31C1 /* GameControls.m */; };
@@ -306,6 +282,63 @@
 		800EE45928E3B463004236A1 /* Optics.m in Sources */ = {isa = PBXBuildFile; fileRef = 800EE45828E3B463004236A1 /* Optics.m */; };
 		800EE45A28E3B463004236A1 /* Optics.m in Sources */ = {isa = PBXBuildFile; fileRef = 800EE45828E3B463004236A1 /* Optics.m */; };
 		800EE45B28E3B463004236A1 /* Optics.m in Sources */ = {isa = PBXBuildFile; fileRef = 800EE45828E3B463004236A1 /* Optics.m */; };
+		8011CE58297B267800E7CEAB /* Dreamstime - starrysky.jpg - Proof of License.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE57297B267800E7CEAB /* Dreamstime - starrysky.jpg - Proof of License.pdf */; };
+		8011CE59297B267800E7CEAB /* Dreamstime - starrysky.jpg - Proof of License.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE57297B267800E7CEAB /* Dreamstime - starrysky.jpg - Proof of License.pdf */; };
+		8011CE5A297B267800E7CEAB /* Dreamstime - starrysky.jpg - Proof of License.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE57297B267800E7CEAB /* Dreamstime - starrysky.jpg - Proof of License.pdf */; };
+		8011CE5C297B28E500E7CEAB /* abstractBackground-2173070-Vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE5B297B28E500E7CEAB /* abstractBackground-2173070-Vecteezy.pdf */; };
+		8011CE5D297B28E500E7CEAB /* abstractBackground-2173070-Vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE5B297B28E500E7CEAB /* abstractBackground-2173070-Vecteezy.pdf */; };
+		8011CE5E297B28E500E7CEAB /* abstractBackground-2173070-Vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE5B297B28E500E7CEAB /* abstractBackground-2173070-Vecteezy.pdf */; };
+		8011CE60297B299200E7CEAB /* fishLogo-13761701-Vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE5F297B299200E7CEAB /* fishLogo-13761701-Vecteezy.pdf */; };
+		8011CE61297B299200E7CEAB /* fishLogo-13761701-Vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE5F297B299200E7CEAB /* fishLogo-13761701-Vecteezy.pdf */; };
+		8011CE62297B299200E7CEAB /* fishLogo-13761701-Vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE5F297B299200E7CEAB /* fishLogo-13761701-Vecteezy.pdf */; };
+		8011CE6E297B2C0200E7CEAB /* noAds-9398585-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE63297B2C0100E7CEAB /* noAds-9398585-vecteezy.pdf */; };
+		8011CE6F297B2C0200E7CEAB /* noAds-9398585-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE63297B2C0100E7CEAB /* noAds-9398585-vecteezy.pdf */; };
+		8011CE70297B2C0200E7CEAB /* noAds-9398585-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE63297B2C0100E7CEAB /* noAds-9398585-vecteezy.pdf */; };
+		8011CE71297B2C0200E7CEAB /* nextArrow-11227990-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE64297B2C0100E7CEAB /* nextArrow-11227990-vecteezy.pdf */; };
+		8011CE72297B2C0200E7CEAB /* nextArrow-11227990-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE64297B2C0100E7CEAB /* nextArrow-11227990-vecteezy.pdf */; };
+		8011CE73297B2C0200E7CEAB /* nextArrow-11227990-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE64297B2C0100E7CEAB /* nextArrow-11227990-vecteezy.pdf */; };
+		8011CE74297B2C0200E7CEAB /* backArrow-11569642-Vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE65297B2C0100E7CEAB /* backArrow-11569642-Vecteezy.pdf */; };
+		8011CE75297B2C0200E7CEAB /* backArrow-11569642-Vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE65297B2C0100E7CEAB /* backArrow-11569642-Vecteezy.pdf */; };
+		8011CE76297B2C0200E7CEAB /* backArrow-11569642-Vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE65297B2C0100E7CEAB /* backArrow-11569642-Vecteezy.pdf */; };
+		8011CE77297B2C0200E7CEAB /* puzzlePacks-512469-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE66297B2C0200E7CEAB /* puzzlePacks-512469-vecteezy.pdf */; };
+		8011CE78297B2C0200E7CEAB /* puzzlePacks-512469-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE66297B2C0200E7CEAB /* puzzlePacks-512469-vecteezy.pdf */; };
+		8011CE79297B2C0200E7CEAB /* puzzlePacks-512469-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE66297B2C0200E7CEAB /* puzzlePacks-512469-vecteezy.pdf */; };
+		8011CE7A297B2C0200E7CEAB /* replayIcon-4372691-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE67297B2C0200E7CEAB /* replayIcon-4372691-vecteezy.pdf */; };
+		8011CE7B297B2C0200E7CEAB /* replayIcon-4372691-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE67297B2C0200E7CEAB /* replayIcon-4372691-vecteezy.pdf */; };
+		8011CE7C297B2C0200E7CEAB /* replayIcon-4372691-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE67297B2C0200E7CEAB /* replayIcon-4372691-vecteezy.pdf */; };
+		8011CE7D297B2C0200E7CEAB /* settingsGear-9589999-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE68297B2C0200E7CEAB /* settingsGear-9589999-vecteezy.pdf */; };
+		8011CE7E297B2C0200E7CEAB /* settingsGear-9589999-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE68297B2C0200E7CEAB /* settingsGear-9589999-vecteezy.pdf */; };
+		8011CE7F297B2C0200E7CEAB /* settingsGear-9589999-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE68297B2C0200E7CEAB /* settingsGear-9589999-vecteezy.pdf */; };
+		8011CE80297B2C0200E7CEAB /* shoppingCart-9385753-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE69297B2C0200E7CEAB /* shoppingCart-9385753-vecteezy.pdf */; };
+		8011CE81297B2C0200E7CEAB /* shoppingCart-9385753-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE69297B2C0200E7CEAB /* shoppingCart-9385753-vecteezy.pdf */; };
+		8011CE82297B2C0200E7CEAB /* shoppingCart-9385753-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE69297B2C0200E7CEAB /* shoppingCart-9385753-vecteezy.pdf */; };
+		8011CE83297B2C0200E7CEAB /* unlocked-12674672-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE6A297B2C0200E7CEAB /* unlocked-12674672-vecteezy.pdf */; };
+		8011CE84297B2C0200E7CEAB /* unlocked-12674672-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE6A297B2C0200E7CEAB /* unlocked-12674672-vecteezy.pdf */; };
+		8011CE85297B2C0200E7CEAB /* unlocked-12674672-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE6A297B2C0200E7CEAB /* unlocked-12674672-vecteezy.pdf */; };
+		8011CE86297B2C0200E7CEAB /* helpButton-440213-Vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE6B297B2C0200E7CEAB /* helpButton-440213-Vecteezy.pdf */; };
+		8011CE87297B2C0200E7CEAB /* helpButton-440213-Vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE6B297B2C0200E7CEAB /* helpButton-440213-Vecteezy.pdf */; };
+		8011CE88297B2C0200E7CEAB /* helpButton-440213-Vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE6B297B2C0200E7CEAB /* helpButton-440213-Vecteezy.pdf */; };
+		8011CE89297B2C0200E7CEAB /* locked-12675441-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE6C297B2C0200E7CEAB /* locked-12675441-vecteezy.pdf */; };
+		8011CE8A297B2C0200E7CEAB /* locked-12675441-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE6C297B2C0200E7CEAB /* locked-12675441-vecteezy.pdf */; };
+		8011CE8B297B2C0200E7CEAB /* locked-12675441-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE6C297B2C0200E7CEAB /* locked-12675441-vecteezy.pdf */; };
+		8011CE8C297B2C0200E7CEAB /* lightBulb-11934419-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE6D297B2C0200E7CEAB /* lightBulb-11934419-vecteezy.pdf */; };
+		8011CE8D297B2C0200E7CEAB /* lightBulb-11934419-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE6D297B2C0200E7CEAB /* lightBulb-11934419-vecteezy.pdf */; };
+		8011CE8E297B2C0200E7CEAB /* lightBulb-11934419-vecteezy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE6D297B2C0200E7CEAB /* lightBulb-11934419-vecteezy.pdf */; };
+		8011CE92297B3E4400E7CEAB /* TapToRotate.png in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE91297B3E4400E7CEAB /* TapToRotate.png */; };
+		8011CE93297B3E4400E7CEAB /* TapToRotate.png in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE91297B3E4400E7CEAB /* TapToRotate.png */; };
+		8011CE94297B3E4400E7CEAB /* TapToRotate.png in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE91297B3E4400E7CEAB /* TapToRotate.png */; };
+		8011CE9B297B8B3500E7CEAB /* 003577572-light-sabersci-fihighswingsfas.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE99297B8B3500E7CEAB /* 003577572-light-sabersci-fihighswingsfas.wav */; };
+		8011CE9C297B8B3500E7CEAB /* 003577572-light-sabersci-fihighswingsfas.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE99297B8B3500E7CEAB /* 003577572-light-sabersci-fihighswingsfas.wav */; };
+		8011CE9D297B8B3500E7CEAB /* 003577572-light-sabersci-fihighswingsfas.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE99297B8B3500E7CEAB /* 003577572-light-sabersci-fihighswingsfas.wav */; };
+		8011CE9E297B8B3500E7CEAB /* 003577603-light-sabersci-filowswingfast-.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE9A297B8B3500E7CEAB /* 003577603-light-sabersci-filowswingfast-.wav */; };
+		8011CE9F297B8B3500E7CEAB /* 003577603-light-sabersci-filowswingfast-.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE9A297B8B3500E7CEAB /* 003577603-light-sabersci-filowswingfast-.wav */; };
+		8011CEA0297B8B3500E7CEAB /* 003577603-light-sabersci-filowswingfast-.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8011CE9A297B8B3500E7CEAB /* 003577603-light-sabersci-filowswingfast-.wav */; };
+		8011CEA2297B8B3E00E7CEAB /* 085149494-puzzle-game-organic-wood-block.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8011CEA1297B8B3E00E7CEAB /* 085149494-puzzle-game-organic-wood-block.wav */; };
+		8011CEA3297B8B3E00E7CEAB /* 085149494-puzzle-game-organic-wood-block.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8011CEA1297B8B3E00E7CEAB /* 085149494-puzzle-game-organic-wood-block.wav */; };
+		8011CEA4297B8B3E00E7CEAB /* 085149494-puzzle-game-organic-wood-block.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8011CEA1297B8B3E00E7CEAB /* 085149494-puzzle-game-organic-wood-block.wav */; };
+		8011CEA7297B8CCC00E7CEAB /* Pond5_Proof-of-purchase_6732927.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CEA6297B8CCC00E7CEAB /* Pond5_Proof-of-purchase_6732927.pdf */; };
+		8011CEA8297B8CCC00E7CEAB /* Pond5_Proof-of-purchase_6732927.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CEA6297B8CCC00E7CEAB /* Pond5_Proof-of-purchase_6732927.pdf */; };
+		8011CEA9297B8CCC00E7CEAB /* Pond5_Proof-of-purchase_6732927.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8011CEA6297B8CCC00E7CEAB /* Pond5_Proof-of-purchase_6732927.pdf */; };
 		801670F928C4346500803D05 /* TapToRotateText.png in Resources */ = {isa = PBXBuildFile; fileRef = 801670F828C4346500803D05 /* TapToRotateText.png */; };
 		801670FA28C4346500803D05 /* TapToRotateText.png in Resources */ = {isa = PBXBuildFile; fileRef = 801670F828C4346500803D05 /* TapToRotateText.png */; };
 		801670FB28C4346500803D05 /* TapToRotateText.png in Resources */ = {isa = PBXBuildFile; fileRef = 801670F828C4346500803D05 /* TapToRotateText.png */; };
@@ -378,9 +411,6 @@
 		804660142978EDE00020B68C /* helpImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 804660132978EDE00020B68C /* helpImage.png */; };
 		804660152978EDE10020B68C /* helpImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 804660132978EDE00020B68C /* helpImage.png */; };
 		804660162978EDE10020B68C /* helpImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 804660132978EDE00020B68C /* helpImage.png */; };
-		805DB34427D1417700F9572A /* Beamsplitter-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 805DB34327D1417700F9572A /* Beamsplitter-1.png */; };
-		805DB34527D1417700F9572A /* Beamsplitter-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 805DB34327D1417700F9572A /* Beamsplitter-1.png */; };
-		805DB34627D1417700F9572A /* Beamsplitter-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 805DB34327D1417700F9572A /* Beamsplitter-1.png */; };
 		805DB34C27D1453F00F9572A /* Prism.png in Resources */ = {isa = PBXBuildFile; fileRef = 805DB34B27D1453F00F9572A /* Prism.png */; };
 		805DB34D27D1453F00F9572A /* Prism.png in Resources */ = {isa = PBXBuildFile; fileRef = 805DB34B27D1453F00F9572A /* Prism.png */; };
 		805DB34E27D1453F00F9572A /* Prism.png in Resources */ = {isa = PBXBuildFile; fileRef = 805DB34B27D1453F00F9572A /* Prism.png */; };
@@ -538,9 +568,6 @@
 		809FEAE0297117A600B13351 /* 67412387-mobile-game-melodic-stinger-dreamy-synth-level-up-2-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 809FEADC297117A600B13351 /* 67412387-mobile-game-melodic-stinger-dreamy-synth-level-up-2-license.txt */; };
 		809FEAE1297117A600B13351 /* 67412387-mobile-game-melodic-stinger-dreamy-synth-level-up-2-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 809FEADC297117A600B13351 /* 67412387-mobile-game-melodic-stinger-dreamy-synth-level-up-2-license.txt */; };
 		809FEAE2297117A600B13351 /* 67412387-mobile-game-melodic-stinger-dreamy-synth-level-up-2-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 809FEADC297117A600B13351 /* 67412387-mobile-game-melodic-stinger-dreamy-synth-level-up-2-license.txt */; };
-		80A2DB532954256A00C790AD /* starrysky.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 80A2DB522954256A00C790AD /* starrysky.jpg */; };
-		80A2DB542954256A00C790AD /* starrysky.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 80A2DB522954256A00C790AD /* starrysky.jpg */; };
-		80A2DB552954256A00C790AD /* starrysky.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 80A2DB522954256A00C790AD /* starrysky.jpg */; };
 		80A4F73B28D4D5ED007BDE13 /* demoPuzzlePackDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F73A28D4D5ED007BDE13 /* demoPuzzlePackDictionary.plist */; };
 		80A4F73C28D4D5ED007BDE13 /* demoPuzzlePackDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F73A28D4D5ED007BDE13 /* demoPuzzlePackDictionary.plist */; };
 		80A4F73D28D4D5ED007BDE13 /* demoPuzzlePackDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F73A28D4D5ED007BDE13 /* demoPuzzlePackDictionary.plist */; };
@@ -550,9 +577,6 @@
 		80ADCC1F29557639002B231F /* backgroundLandscapeGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = 80ADCC1E29557639002B231F /* backgroundLandscapeGrid.png */; };
 		80ADCC2029557639002B231F /* backgroundLandscapeGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = 80ADCC1E29557639002B231F /* backgroundLandscapeGrid.png */; };
 		80ADCC2129557639002B231F /* backgroundLandscapeGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = 80ADCC1E29557639002B231F /* backgroundLandscapeGrid.png */; };
-		80B3DF68283ACA2100B54B7D /* TapToRotate.png in Resources */ = {isa = PBXBuildFile; fileRef = 80B3DF67283ACA2100B54B7D /* TapToRotate.png */; };
-		80B3DF69283ACA2100B54B7D /* TapToRotate.png in Resources */ = {isa = PBXBuildFile; fileRef = 80B3DF67283ACA2100B54B7D /* TapToRotate.png */; };
-		80B3DF6A283ACA2100B54B7D /* TapToRotate.png in Resources */ = {isa = PBXBuildFile; fileRef = 80B3DF67283ACA2100B54B7D /* TapToRotate.png */; };
 		80BB3CA528DBC42700C547D1 /* DragTileText.png in Resources */ = {isa = PBXBuildFile; fileRef = 80BB3CA428DBC42700C547D1 /* DragTileText.png */; };
 		80BB3CA628DBC42700C547D1 /* DragTileText.png in Resources */ = {isa = PBXBuildFile; fileRef = 80BB3CA428DBC42700C547D1 /* DragTileText.png */; };
 		80BB3CA728DBC42700C547D1 /* DragTileText.png in Resources */ = {isa = PBXBuildFile; fileRef = 80BB3CA428DBC42700C547D1 /* DragTileText.png */; };
@@ -597,24 +621,15 @@
 		80E76F5F28AAAD7600F6D31D /* BMDPuzzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E76F5E28AAAD7600F6D31D /* BMDPuzzleViewController.m */; };
 		80E76F6028AAAD7600F6D31D /* BMDPuzzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E76F5E28AAAD7600F6D31D /* BMDPuzzleViewController.m */; };
 		80E76F6128AAAD7600F6D31D /* BMDPuzzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E76F5E28AAAD7600F6D31D /* BMDPuzzleViewController.m */; };
-		80F406F628F0B113006C4F82 /* Jewel-original.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F406F528F0B113006C4F82 /* Jewel-original.png */; };
-		80F406F728F0B113006C4F82 /* Jewel-original.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F406F528F0B113006C4F82 /* Jewel-original.png */; };
-		80F406F828F0B113006C4F82 /* Jewel-original.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F406F528F0B113006C4F82 /* Jewel-original.png */; };
 		80F406FA28F0C110006C4F82 /* backgroundTextures.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F406F928F0C110006C4F82 /* backgroundTextures.plist */; };
 		80F406FB28F0C110006C4F82 /* backgroundTextures.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F406F928F0C110006C4F82 /* backgroundTextures.plist */; };
 		80F406FC28F0C110006C4F82 /* backgroundTextures.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F406F928F0C110006C4F82 /* backgroundTextures.plist */; };
-		80FD2F4A2914C76E004DF6E8 /* TileSquareBright-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FD2F492914C76E004DF6E8 /* TileSquareBright-1.png */; };
-		80FD2F4B2914C76E004DF6E8 /* TileSquareBright-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FD2F492914C76E004DF6E8 /* TileSquareBright-1.png */; };
-		80FD2F4C2914C76E004DF6E8 /* TileSquareBright-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FD2F492914C76E004DF6E8 /* TileSquareBright-1.png */; };
 		80FDEA6829145848007C05F7 /* TileSquareTranslucent.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FDEA6729145848007C05F7 /* TileSquareTranslucent.png */; };
 		80FDEA6929145848007C05F7 /* TileSquareTranslucent.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FDEA6729145848007C05F7 /* TileSquareTranslucent.png */; };
 		80FDEA6A29145848007C05F7 /* TileSquareTranslucent.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FDEA6729145848007C05F7 /* TileSquareTranslucent.png */; };
 		80FDEA6C29145A5C007C05F7 /* TileSquareBright.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FDEA6B29145A5C007C05F7 /* TileSquareBright.png */; };
 		80FDEA6D29145A5C007C05F7 /* TileSquareBright.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FDEA6B29145A5C007C05F7 /* TileSquareBright.png */; };
 		80FDEA6E29145A5C007C05F7 /* TileSquareBright.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FDEA6B29145A5C007C05F7 /* TileSquareBright.png */; };
-		80FDEA7029145E52007C05F7 /* Beamsplitter-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FDEA6F29145E52007C05F7 /* Beamsplitter-2.png */; };
-		80FDEA7129145E52007C05F7 /* Beamsplitter-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FDEA6F29145E52007C05F7 /* Beamsplitter-2.png */; };
-		80FDEA7229145E52007C05F7 /* Beamsplitter-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FDEA6F29145E52007C05F7 /* Beamsplitter-2.png */; };
 		80FDEA7429145EE4007C05F7 /* Beamsplitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FDEA7329145EE4007C05F7 /* Beamsplitter.png */; };
 		80FDEA7529145EE4007C05F7 /* Beamsplitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FDEA7329145EE4007C05F7 /* Beamsplitter.png */; };
 		80FDEA7629145EE4007C05F7 /* Beamsplitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FDEA7329145EE4007C05F7 /* Beamsplitter.png */; };
@@ -677,7 +692,6 @@
 		527C8E0C256F1310005BBBAA /* Tile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tile.m; sourceTree = "<group>"; };
 		527C8E0D256F1310005BBBAA /* Tile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tile.h; sourceTree = "<group>"; };
 		5284E5EA25AAA1320042F429 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
-		5286EA0925646CAF00B43209 /* TileSquareBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileSquareBlack.png; sourceTree = "<group>"; };
 		5286EA5C25646FBB00B43209 /* TileMirror.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileMirror.png; sourceTree = "<group>"; };
 		5286EA6D2564706B00B43209 /* TileJewelActivated09.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileJewelActivated09.png; sourceTree = "<group>"; };
 		5286EA702564706B00B43209 /* TileJewelActivated04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileJewelActivated04.png; sourceTree = "<group>"; };
@@ -735,13 +749,6 @@
 		529A511D27ACD57200FE0669 /* Mobile_Game_Melodic_Stinger_Dreamy_Synth_Level_Up_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Mobile_Game_Melodic_Stinger_Dreamy_Synth_Level_Up_2.wav; sourceTree = "<group>"; };
 		529B181B263CB77E005A3646 /* BMDGameCenterManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMDGameCenterManager.h; sourceTree = "<group>"; };
 		529B181C263CB77E005A3646 /* BMDGameCenterManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMDGameCenterManager.m; sourceTree = "<group>"; };
-		52A4EA9E25B2273A00E716B8 /* Border-Aspect-4-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Border-Aspect-4-3.png"; sourceTree = "<group>"; };
-		52A9A2A925717C550072F41E /* 39770_Light_SaberSciFiLowSwingFast_1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 39770_Light_SaberSciFiLowSwingFast_1.wav; sourceTree = "<group>"; };
-		52A9A2AB25717C550072F41E /* LaserQuick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = LaserQuick.wav; sourceTree = "<group>"; };
-		52A9A2AC25717C550072F41E /* LaserQuick2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = LaserQuick2.wav; sourceTree = "<group>"; };
-		52A9A2AD25717C550072F41E /* TapClink.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = TapClink.wav; sourceTree = "<group>"; };
-		52A9A2AE25717C550072F41E /* Click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Click.wav; sourceTree = "<group>"; };
-		52A9A2AF25717C550072F41E /* 39783_Light_SaberSciFiLowSwingSlow_4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 39783_Light_SaberSciFiLowSwingSlow_4.wav; sourceTree = "<group>"; };
 		52CFF40F258BC75D00DB31C1 /* GameControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameControls.h; sourceTree = "<group>"; };
 		52CFF410258BC75D00DB31C1 /* GameControls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameControls.m; sourceTree = "<group>"; };
 		52D3BC4C2626390F000C645F /* TileHint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TileHint.h; sourceTree = "<group>"; };
@@ -758,6 +765,29 @@
 		800E459A292EE45F0041976E /* BridgingHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgingHeader.swift; sourceTree = "<group>"; };
 		800ECE3E28DF86D400A7DC62 /* PackCompleted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PackCompleted.png; sourceTree = "<group>"; };
 		800EE45828E3B463004236A1 /* Optics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Optics.m; sourceTree = "<group>"; };
+		8011CE56297B1F6100E7CEAB /* Provenance.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Provenance.md; sourceTree = "<group>"; };
+		8011CE57297B267800E7CEAB /* Dreamstime - starrysky.jpg - Proof of License.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Dreamstime - starrysky.jpg - Proof of License.pdf"; sourceTree = "<group>"; };
+		8011CE5B297B28E500E7CEAB /* abstractBackground-2173070-Vecteezy.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "abstractBackground-2173070-Vecteezy.pdf"; sourceTree = "<group>"; };
+		8011CE5F297B299200E7CEAB /* fishLogo-13761701-Vecteezy.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "fishLogo-13761701-Vecteezy.pdf"; sourceTree = "<group>"; };
+		8011CE63297B2C0100E7CEAB /* noAds-9398585-vecteezy.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "noAds-9398585-vecteezy.pdf"; sourceTree = "<group>"; };
+		8011CE64297B2C0100E7CEAB /* nextArrow-11227990-vecteezy.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "nextArrow-11227990-vecteezy.pdf"; sourceTree = "<group>"; };
+		8011CE65297B2C0100E7CEAB /* backArrow-11569642-Vecteezy.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "backArrow-11569642-Vecteezy.pdf"; sourceTree = "<group>"; };
+		8011CE66297B2C0200E7CEAB /* puzzlePacks-512469-vecteezy.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "puzzlePacks-512469-vecteezy.pdf"; sourceTree = "<group>"; };
+		8011CE67297B2C0200E7CEAB /* replayIcon-4372691-vecteezy.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "replayIcon-4372691-vecteezy.pdf"; sourceTree = "<group>"; };
+		8011CE68297B2C0200E7CEAB /* settingsGear-9589999-vecteezy.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "settingsGear-9589999-vecteezy.pdf"; sourceTree = "<group>"; };
+		8011CE69297B2C0200E7CEAB /* shoppingCart-9385753-vecteezy.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "shoppingCart-9385753-vecteezy.pdf"; sourceTree = "<group>"; };
+		8011CE6A297B2C0200E7CEAB /* unlocked-12674672-vecteezy.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "unlocked-12674672-vecteezy.pdf"; sourceTree = "<group>"; };
+		8011CE6B297B2C0200E7CEAB /* helpButton-440213-Vecteezy.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "helpButton-440213-Vecteezy.pdf"; sourceTree = "<group>"; };
+		8011CE6C297B2C0200E7CEAB /* locked-12675441-vecteezy.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "locked-12675441-vecteezy.pdf"; sourceTree = "<group>"; };
+		8011CE6D297B2C0200E7CEAB /* lightBulb-11934419-vecteezy.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "lightBulb-11934419-vecteezy.pdf"; sourceTree = "<group>"; };
+		8011CE90297B2CEF00E7CEAB /* Provenance.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Provenance.md; sourceTree = "<group>"; };
+		8011CE91297B3E4400E7CEAB /* TapToRotate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TapToRotate.png; sourceTree = "<group>"; };
+		8011CE96297B419100E7CEAB /* Provenance.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Provenance.md; sourceTree = "<group>"; };
+		8011CE98297B41FA00E7CEAB /* Provenance.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Provenance.md; sourceTree = "<group>"; };
+		8011CE99297B8B3500E7CEAB /* 003577572-light-sabersci-fihighswingsfas.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "003577572-light-sabersci-fihighswingsfas.wav"; sourceTree = "<group>"; };
+		8011CE9A297B8B3500E7CEAB /* 003577603-light-sabersci-filowswingfast-.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "003577603-light-sabersci-filowswingfast-.wav"; sourceTree = "<group>"; };
+		8011CEA1297B8B3E00E7CEAB /* 085149494-puzzle-game-organic-wood-block.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "085149494-puzzle-game-organic-wood-block.wav"; sourceTree = "<group>"; };
+		8011CEA6297B8CCC00E7CEAB /* Pond5_Proof-of-purchase_6732927.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Pond5_Proof-of-purchase_6732927.pdf"; sourceTree = "<group>"; };
 		801670F828C4346500803D05 /* TapToRotateText.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TapToRotateText.png; sourceTree = "<group>"; };
 		801D0B0B28B4267F008D435B /* BMDPacksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMDPacksViewController.h; sourceTree = "<group>"; };
 		801D0B0C28B4267F008D435B /* BMDPacksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMDPacksViewController.m; sourceTree = "<group>"; };
@@ -791,7 +821,6 @@
 		8044DD912904908E0078942B /* cyanRectangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cyanRectangle.png; sourceTree = "<group>"; };
 		8044DD922904908E0078942B /* yellowRectangleSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowRectangleSelected.png; sourceTree = "<group>"; };
 		804660132978EDE00020B68C /* helpImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helpImage.png; sourceTree = "<group>"; };
-		805DB34327D1417700F9572A /* Beamsplitter-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Beamsplitter-1.png"; sourceTree = "<group>"; };
 		805DB34B27D1453F00F9572A /* Prism.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Prism.png; sourceTree = "<group>"; };
 		8064E6582902463A006EEC33 /* editedPuzzlePack.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = editedPuzzlePack.plist; sourceTree = "<group>"; };
 		8068338A292ECB1B00620AC1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -858,11 +887,9 @@
 		809FEABC2971176200B13351 /* 67412386-reward-license.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "67412386-reward-license.pdf"; sourceTree = "<group>"; };
 		809FEADB297117A600B13351 /* 67412387-mobile-game-melodic-stinger-dreamy-synth-level-up-2-license.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "67412387-mobile-game-melodic-stinger-dreamy-synth-level-up-2-license.pdf"; sourceTree = "<group>"; };
 		809FEADC297117A600B13351 /* 67412387-mobile-game-melodic-stinger-dreamy-synth-level-up-2-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "67412387-mobile-game-melodic-stinger-dreamy-synth-level-up-2-license.txt"; sourceTree = "<group>"; };
-		80A2DB522954256A00C790AD /* starrysky.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = starrysky.jpg; sourceTree = "<group>"; };
 		80A4F73A28D4D5ED007BDE13 /* demoPuzzlePackDictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = demoPuzzlePackDictionary.plist; sourceTree = "<group>"; };
 		80A4F73E28D4D855007BDE13 /* dailyPuzzlesPackDictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dailyPuzzlesPackDictionary.plist; sourceTree = "<group>"; };
 		80ADCC1E29557639002B231F /* backgroundLandscapeGrid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundLandscapeGrid.png; sourceTree = "<group>"; };
-		80B3DF67283ACA2100B54B7D /* TapToRotate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TapToRotate.png; sourceTree = "<group>"; };
 		80BB3CA428DBC42700C547D1 /* DragTileText.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DragTileText.png; sourceTree = "<group>"; };
 		80BE38AC292FFE4700076A7E /* FirebaseABTesting.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseABTesting.xcframework; sourceTree = "<group>"; };
 		80BE38B0292FFE5200076A7E /* FirebaseInAppMessagingSwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseInAppMessagingSwift.xcframework; sourceTree = "<group>"; };
@@ -888,12 +915,9 @@
 		80DFC2C228FB368000BE90C3 /* GridTile2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GridTile2.png; sourceTree = "<group>"; };
 		80E76F5D28AAAD7600F6D31D /* BMDPuzzleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMDPuzzleViewController.h; sourceTree = "<group>"; };
 		80E76F5E28AAAD7600F6D31D /* BMDPuzzleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMDPuzzleViewController.m; sourceTree = "<group>"; };
-		80F406F528F0B113006C4F82 /* Jewel-original.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Jewel-original.png"; sourceTree = "<group>"; };
 		80F406F928F0C110006C4F82 /* backgroundTextures.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = backgroundTextures.plist; sourceTree = "<group>"; };
-		80FD2F492914C76E004DF6E8 /* TileSquareBright-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TileSquareBright-1.png"; sourceTree = "<group>"; };
 		80FDEA6729145848007C05F7 /* TileSquareTranslucent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileSquareTranslucent.png; sourceTree = "<group>"; };
 		80FDEA6B29145A5C007C05F7 /* TileSquareBright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileSquareBright.png; sourceTree = "<group>"; };
-		80FDEA6F29145E52007C05F7 /* Beamsplitter-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Beamsplitter-2.png"; sourceTree = "<group>"; };
 		80FDEA7329145EE4007C05F7 /* Beamsplitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Beamsplitter.png; sourceTree = "<group>"; };
 		E8C58A70E8C346E000000001 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		E8F56360E8F5618000000001 /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
@@ -1136,20 +1160,16 @@
 		520E891F255C643B00C83B6E /* Tile Textures */ = {
 			isa = PBXGroup;
 			children = (
+				8011CE97297B41E400E7CEAB /* Licenses */,
 				80843525291370E400EAAAB3 /* TileOpaque.png */,
-				80FD2F492914C76E004DF6E8 /* TileSquareBright-1.png */,
 				80FDEA6B29145A5C007C05F7 /* TileSquareBright.png */,
 				80FDEA6729145848007C05F7 /* TileSquareTranslucent.png */,
 				805DB34B27D1453F00F9572A /* Prism.png */,
 				80FDEA7329145EE4007C05F7 /* Beamsplitter.png */,
-				80FDEA6F29145E52007C05F7 /* Beamsplitter-2.png */,
-				805DB34327D1417700F9572A /* Beamsplitter-1.png */,
 				5286EAFE2564715400B43209 /* TileSpectrumL0.png */,
 				5286EAF42564715400B43209 /* TileSpectrumR0.png */,
 				5286EA5C25646FBB00B43209 /* TileMirror.png */,
 				8023B2B32915AE9E00176960 /* Jewel.png */,
-				80F406F528F0B113006C4F82 /* Jewel-original.png */,
-				5286EA0925646CAF00B43209 /* TileSquareBlack.png */,
 			);
 			path = "Tile Textures";
 			sourceTree = "<group>";
@@ -1220,6 +1240,7 @@
 		5286EB6425648CC700B43209 /* Beam Textures */ = {
 			isa = PBXGroup;
 			children = (
+				8011CE95297B417900E7CEAB /* Licenses */,
 				526FBCAD2592695F001F5647 /* Beam-Angle00-01.png */,
 				526FBC912592695D001F5647 /* Beam-Angle00-02.png */,
 				526FBC922592695D001F5647 /* Beam-Angle00-03.png */,
@@ -1241,15 +1262,15 @@
 		5286EBA72564922100B43209 /* Background Textures */ = {
 			isa = PBXGroup;
 			children = (
+				8011CE8F297B2C2700E7CEAB /* Licenses */,
 				80BB3CA428DBC42700C547D1 /* DragTileText.png */,
-				80B3DF67283ACA2100B54B7D /* TapToRotate.png */,
+				8011CE91297B3E4400E7CEAB /* TapToRotate.png */,
 				801670F828C4346500803D05 /* TapToRotateText.png */,
 				8095C48127DB014E00E1740C /* GridTile.png */,
 				80DFC2C228FB368000BE90C3 /* GridTile2.png */,
 				808E3BC428FC5304009C1474 /* GridTileDot.png */,
 				520BBD29260A6BC20080EADC /* Background-Aspect-4-3.png */,
 				5266332525FBD8ED00776E9B /* single-arrow-1.png */,
-				52A4EA9E25B2273A00E716B8 /* Border-Aspect-4-3.png */,
 				5286EBB22564BCD200B43209 /* TileOutline.png */,
 			);
 			path = "Background Textures";
@@ -1275,7 +1296,6 @@
 				523239FA27AC736C00B5D6B0 /* Music Loops */,
 				529A511127ACD1B800FE0669 /* Stingers */,
 				80F406F228F08C62006C4F82 /* Misc Effects */,
-				80F406F128F08C3D006C4F82 /* Laser Effects */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -1327,6 +1347,48 @@
 				80C538E928DF349700E0606E /* TileCheckmark.png */,
 			);
 			path = "Foreground Textures";
+			sourceTree = "<group>";
+		};
+		8011CE55297B1F4700E7CEAB /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				8011CE56297B1F6100E7CEAB /* Provenance.md */,
+				8011CE57297B267800E7CEAB /* Dreamstime - starrysky.jpg - Proof of License.pdf */,
+				8011CE5B297B28E500E7CEAB /* abstractBackground-2173070-Vecteezy.pdf */,
+			);
+			path = Licenses;
+			sourceTree = "<group>";
+		};
+		8011CE8F297B2C2700E7CEAB /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				8011CE90297B2CEF00E7CEAB /* Provenance.md */,
+			);
+			path = Licenses;
+			sourceTree = "<group>";
+		};
+		8011CE95297B417900E7CEAB /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				8011CE96297B419100E7CEAB /* Provenance.md */,
+			);
+			path = Licenses;
+			sourceTree = "<group>";
+		};
+		8011CE97297B41E400E7CEAB /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				8011CE98297B41FA00E7CEAB /* Provenance.md */,
+			);
+			path = Licenses;
+			sourceTree = "<group>";
+		};
+		8011CEA5297B8CC000E7CEAB /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				8011CEA6297B8CCC00E7CEAB /* Pond5_Proof-of-purchase_6732927.pdf */,
+			);
+			path = Licenses;
 			sourceTree = "<group>";
 		};
 		803AFB6E2979CF9400BDB614 /* Licenses */ = {
@@ -1388,6 +1450,7 @@
 			isa = PBXGroup;
 			children = (
 				803AFB802979F9E900BDB614 /* Provenance.md */,
+				8011CE5F297B299200E7CEAB /* fishLogo-13761701-Vecteezy.pdf */,
 			);
 			name = Licenses;
 			sourceTree = "<group>";
@@ -1396,6 +1459,17 @@
 			isa = PBXGroup;
 			children = (
 				803AFB822979FB9700BDB614 /* Provenance.md */,
+				8011CE65297B2C0100E7CEAB /* backArrow-11569642-Vecteezy.pdf */,
+				8011CE6B297B2C0200E7CEAB /* helpButton-440213-Vecteezy.pdf */,
+				8011CE6D297B2C0200E7CEAB /* lightBulb-11934419-vecteezy.pdf */,
+				8011CE6C297B2C0200E7CEAB /* locked-12675441-vecteezy.pdf */,
+				8011CE64297B2C0100E7CEAB /* nextArrow-11227990-vecteezy.pdf */,
+				8011CE63297B2C0100E7CEAB /* noAds-9398585-vecteezy.pdf */,
+				8011CE66297B2C0200E7CEAB /* puzzlePacks-512469-vecteezy.pdf */,
+				8011CE67297B2C0200E7CEAB /* replayIcon-4372691-vecteezy.pdf */,
+				8011CE68297B2C0200E7CEAB /* settingsGear-9589999-vecteezy.pdf */,
+				8011CE69297B2C0200E7CEAB /* shoppingCart-9385753-vecteezy.pdf */,
+				8011CE6A297B2C0200E7CEAB /* unlocked-12674672-vecteezy.pdf */,
 			);
 			path = Licenses;
 			sourceTree = "<group>";
@@ -1403,7 +1477,7 @@
 		8065EA652900494A00E383D7 /* Screen Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
-				80A2DB522954256A00C790AD /* starrysky.jpg */,
+				8011CE55297B1F4700E7CEAB /* Licenses */,
 				80ADCC1E29557639002B231F /* backgroundLandscapeGrid.png */,
 			);
 			path = "Screen Backgrounds";
@@ -1474,22 +1548,13 @@
 			path = LaserGun;
 			sourceTree = "<group>";
 		};
-		80F406F128F08C3D006C4F82 /* Laser Effects */ = {
-			isa = PBXGroup;
-			children = (
-				52A9A2A925717C550072F41E /* 39770_Light_SaberSciFiLowSwingFast_1.wav */,
-				52A9A2AF25717C550072F41E /* 39783_Light_SaberSciFiLowSwingSlow_4.wav */,
-				52A9A2AB25717C550072F41E /* LaserQuick.wav */,
-				52A9A2AC25717C550072F41E /* LaserQuick2.wav */,
-			);
-			path = "Laser Effects";
-			sourceTree = "<group>";
-		};
 		80F406F228F08C62006C4F82 /* Misc Effects */ = {
 			isa = PBXGroup;
 			children = (
-				52A9A2AE25717C550072F41E /* Click.wav */,
-				52A9A2AD25717C550072F41E /* TapClink.wav */,
+				8011CEA5297B8CC000E7CEAB /* Licenses */,
+				8011CEA1297B8B3E00E7CEAB /* 085149494-puzzle-game-organic-wood-block.wav */,
+				8011CE99297B8B3500E7CEAB /* 003577572-light-sabersci-fihighswingsfas.wav */,
+				8011CE9A297B8B3500E7CEAB /* 003577603-light-sabersci-filowswingfast-.wav */,
 			);
 			path = "Misc Effects";
 			sourceTree = "<group>";
@@ -1661,7 +1726,6 @@
 				526FBCDD25926960001F5647 /* Beam-Angle00-08.png in Resources */,
 				80895494291DB77B009C4D02 /* NoAds.png in Resources */,
 				8023B2C92915BBDF00176960 /* JewelMagenta.png in Resources */,
-				52A9A2F625717F1F0072F41E /* LaserQuick.wav in Resources */,
 				529A511827ACD24200FE0669 /* win-game-puzzle-50.wav in Resources */,
 				3AFD65641F71A7240008A125 /* Main.storyboard in Resources */,
 				809FEA8729710BBE00B13351 /* NightDrive.wav in Resources */,
@@ -1673,6 +1737,7 @@
 				809FEACD2971176200B13351 /* 67410904-win-game-level-93-license.txt in Resources */,
 				8068338C292ECB1B00620AC1 /* GoogleService-Info.plist in Resources */,
 				8023B2D52915F54D00176960 /* JewelYellow.png in Resources */,
+				8011CE84297B2C0200E7CEAB /* unlocked-12674672-vecteezy.pdf in Resources */,
 				808E3BC628FC5304009C1474 /* GridTileDot.png in Resources */,
 				526FBCF825926960001F5647 /* Beam-Angle00-05.png in Resources */,
 				809FEAD92971176200B13351 /* 67412386-reward-license.pdf in Resources */,
@@ -1688,6 +1753,7 @@
 				809FEAD02971176200B13351 /* 67410901-win-game-level-50-license.txt in Resources */,
 				52994B3825DA13D700887B9C /* Rings_00012.png in Resources */,
 				800465FB2906FE4F0044345E /* AppIcons.xcassets in Resources */,
+				8011CE5D297B28E500E7CEAB /* abstractBackground-2173070-Vecteezy.pdf in Resources */,
 				809FEAC72971176200B13351 /* 67410903-win-game-level-52-license.txt in Resources */,
 				52994B5325DA13D700887B9C /* Rings_00016.png in Resources */,
 				52994B5F25DA13D700887B9C /* Rings_00000.png in Resources */,
@@ -1698,16 +1764,18 @@
 				526FBCE925926960001F5647 /* Beam-Angle00-09.png in Resources */,
 				526FBD2525926960001F5647 /* Beam-Angle00-14.png in Resources */,
 				52994B4125DA13D700887B9C /* Rings_00028.png in Resources */,
-				80FDEA7129145E52007C05F7 /* Beamsplitter-2.png in Resources */,
 				8023B2B52915AE9E00176960 /* Jewel.png in Resources */,
 				52994B7125DA13D700887B9C /* Rings_00013.png in Resources */,
 				80895498291DB7FE009C4D02 /* nextArrow.png in Resources */,
 				522D214827AC85D700A91252 /* PuzzleBackgroundTheme2.wav in Resources */,
+				8011CE8D297B2C0200E7CEAB /* lightBulb-11934419-vecteezy.pdf in Resources */,
 				809FEAD32971176200B13351 /* 67410904-win-game-level-93-license.pdf in Resources */,
 				529A511927ACD24200FE0669 /* win-game-puzzle-119.wav in Resources */,
+				8011CE75297B2C0200E7CEAB /* backArrow-11569642-Vecteezy.pdf in Resources */,
 				8044DD9A2904908E0078942B /* cyanRectangle.png in Resources */,
-				52A9A2C625717F070072F41E /* 39770_Light_SaberSciFiLowSwingFast_1.wav in Resources */,
+				8011CE9C297B8B3500E7CEAB /* 003577572-light-sabersci-fihighswingsfas.wav in Resources */,
 				52994B8325DA13D700887B9C /* Rings_00014.png in Resources */,
+				8011CE72297B2C0200E7CEAB /* nextArrow-11227990-vecteezy.pdf in Resources */,
 				80D4CA182965DD6B00AD28D7 /* helpButton.png in Resources */,
 				5284E5EC25AAA1320042F429 /* README.md in Resources */,
 				809DF29A28F2334E00AC4680 /* ringAnimations.plist in Resources */,
@@ -1715,9 +1783,11 @@
 				52994B6525DA13D700887B9C /* Rings_00026.png in Resources */,
 				809FEAA42971167200B13351 /* 67409516-intrigue-comedy-license.pdf in Resources */,
 				8044DD8D290486140078942B /* locked.png in Resources */,
+				8011CEA3297B8B3E00E7CEAB /* 085149494-puzzle-game-organic-wood-block.wav in Resources */,
 				526FBD2825926960001F5647 /* Beam-Angle00-01.png in Resources */,
 				80BF264327D723A000BF9736 /* LaserGun-7.png in Resources */,
 				52994B5C25DA13D700887B9C /* Rings_00022.png in Resources */,
+				8011CE6F297B2C0200E7CEAB /* noAds-9398585-vecteezy.pdf in Resources */,
 				5286EACB2564706B00B43209 /* TileJewelActivated08.png in Resources */,
 				8089548C291DB76B009C4D02 /* backArrow.png in Resources */,
 				80C3279F2918623400EBE438 /* CheckmarkInCircle.png in Resources */,
@@ -1727,9 +1797,9 @@
 				809FEAA12971167200B13351 /* 67409515-mystery-puzzle-loop-2-license.txt in Resources */,
 				5286EAC82564706B00B43209 /* TileJewelActivated12.png in Resources */,
 				80895488291DB661009C4D02 /* settingsGear.png in Resources */,
-				80A2DB542954256A00C790AD /* starrysky.jpg in Resources */,
 				52994B8C25DA13D700887B9C /* Rings_00004.png in Resources */,
 				80F406FB28F0C110006C4F82 /* backgroundTextures.plist in Resources */,
+				8011CE59297B267800E7CEAB /* Dreamstime - starrysky.jpg - Proof of License.pdf in Resources */,
 				80BF264927D723A000BF9736 /* LaserGun-2.png in Resources */,
 				5266332725FBD8ED00776E9B /* single-arrow-1.png in Resources */,
 				52994B5925DA13D700887B9C /* Rings_00011.png in Resources */,
@@ -1739,12 +1809,12 @@
 				80FDEA7529145EE4007C05F7 /* Beamsplitter.png in Resources */,
 				52994B3B25DA13D700887B9C /* Rings_00010.png in Resources */,
 				8023B2D12915C13300176960 /* JewelWhite.png in Resources */,
-				5286EA4225646E2400B43209 /* TileSquareBlack.png in Resources */,
 				52994B4D25DA13D700887B9C /* Rings_00007.png in Resources */,
 				5286EAB62564706B00B43209 /* TileJewelActivated14.png in Resources */,
 				52994B6225DA13D700887B9C /* Rings_00023.png in Resources */,
 				522D214927AC85DD00A91252 /* IntrigueComedy.wav in Resources */,
 				52994B8625DA13D700887B9C /* Rings_00024.png in Resources */,
+				8011CEA8297B8CCC00E7CEAB /* Pond5_Proof-of-purchase_6732927.pdf in Resources */,
 				809FEA8429710BBE00B13351 /* InternalCalculations.wav in Resources */,
 				8035E142295F5DEB001B65C3 /* replayIconWhite.png in Resources */,
 				52994B8025DA13D700887B9C /* Rings_00017.png in Resources */,
@@ -1763,8 +1833,8 @@
 				5286EA9B2564706B00B43209 /* TileJewelActivated03.png in Resources */,
 				52994B7425DA13D700887B9C /* Rings_00029.png in Resources */,
 				80A4F74028D4D855007BDE13 /* dailyPuzzlesPackDictionary.plist in Resources */,
-				52A9A2CE25717F0B0072F41E /* 39783_Light_SaberSciFiLowSwingSlow_4.wav in Resources */,
 				80BE77DF27E3CD9F00E2B4FD /* Assets.xcassets in Resources */,
+				8011CE87297B2C0200E7CEAB /* helpButton-440213-Vecteezy.pdf in Resources */,
 				808D86B5297527B00022B2FE /* puzzlePacks.png in Resources */,
 				5286EAB92564706B00B43209 /* TileJewelActivated10.png in Resources */,
 				52994B7D25DA13D700887B9C /* Rings_00025.png in Resources */,
@@ -1772,18 +1842,17 @@
 				52994B4725DA13D700887B9C /* Rings_00021.png in Resources */,
 				5286EAAD2564706B00B43209 /* TileJewelActivated01.png in Resources */,
 				52994B7A25DA13D700887B9C /* Rings_00009.png in Resources */,
-				52A9A30625717F260072F41E /* TapClink.wav in Resources */,
 				8023B2AE2915AD9B00176960 /* JewelGreen.png in Resources */,
+				8011CE7B297B2C0200E7CEAB /* replayIcon-4372691-vecteezy.pdf in Resources */,
 				8023B2BD2915B35A00176960 /* jewelTextures.plist in Resources */,
 				80C538EB28DF349700E0606E /* TileCheckmark.png in Resources */,
 				526FBCFE25926960001F5647 /* Beam-Angle00-13.png in Resources */,
-				80B3DF69283ACA2100B54B7D /* TapToRotate.png in Resources */,
 				52994B5625DA13D700887B9C /* Rings_00003.png in Resources */,
 				80BF264827D723A000BF9736 /* LaserGun-0.png in Resources */,
 				805DB34D27D1453F00F9572A /* Prism.png in Resources */,
 				526FBCEF25926960001F5647 /* Beam-Angle00-04.png in Resources */,
 				809FEA9229710C2500B13351 /* 70645766-night-drive-80s-license.txt in Resources */,
-				52A4EAA025B2273A00E716B8 /* Border-Aspect-4-3.png in Resources */,
+				8011CE81297B2C0200E7CEAB /* shoppingCart-9385753-vecteezy.pdf in Resources */,
 				5286EA952564706B00B43209 /* TileJewelActivated02.png in Resources */,
 				80DFC2C428FB368000BE90C3 /* GridTile2.png in Resources */,
 				529A511C27ACD54D00FE0669 /* Reward.wav in Resources */,
@@ -1791,13 +1860,14 @@
 				80BF264C27D723A000BF9736 /* LaserGun-11.png in Resources */,
 				80BF264727D723A000BF9736 /* LaserGun-3.png in Resources */,
 				8064E65A2902463A006EEC33 /* editedPuzzlePack.plist in Resources */,
+				8011CE61297B299200E7CEAB /* fishLogo-13761701-Vecteezy.pdf in Resources */,
 				526FBCD725926960001F5647 /* Beam-Angle00-03.png in Resources */,
 				526FBD5E25926960001F5647 /* Beam-Angle00-12.png in Resources */,
-				52A9A2FE25717F220072F41E /* LaserQuick2.wav in Resources */,
 				526FBD5225926960001F5647 /* Beam-Angle00-11.png in Resources */,
 				803AFB792979D12900BDB614 /* Provenance.xib in Resources */,
 				80BB3CA628DBC42700C547D1 /* DragTileText.png in Resources */,
 				5286EBEE2564BCD300B43209 /* TileOutline.png in Resources */,
+				8011CE78297B2C0200E7CEAB /* puzzlePacks-512469-vecteezy.pdf in Resources */,
 				52994B3E25DA13D700887B9C /* Rings_00005.png in Resources */,
 				803AFB712979CFB100BDB614 /* Fiverr - Proof of Doing - Laser Gun and some jewels.png in Resources */,
 				809FEAC12971176200B13351 /* 67412386-reward-license.txt in Resources */,
@@ -1813,22 +1883,23 @@
 				806B4ECF296C7D7F00FFD306 /* LoadingScreen.png in Resources */,
 				5286EA922564706B00B43209 /* TileJewelActivated06.png in Resources */,
 				809FEAAD2971167200B13351 /* 67409514-puzzle-background-theme-2-license.txt in Resources */,
+				8011CE93297B3E4400E7CEAB /* TapToRotate.png in Resources */,
 				806B4ED1296C7F5400FFD306 /* LaunchScreen.png in Resources */,
-				805DB34527D1417700F9572A /* Beamsplitter-1.png in Resources */,
-				52A9A2DE25717F140072F41E /* Click.wav in Resources */,
+				8011CE8A297B2C0200E7CEAB /* locked-12675441-vecteezy.pdf in Resources */,
 				52994B6B25DA13D700887B9C /* Rings_00006.png in Resources */,
 				80884C55292EDF03005B29FC /* run in Resources */,
 				8089549C291DB805009C4D02 /* lightBulb.png in Resources */,
-				80FD2F4B2914C76E004DF6E8 /* TileSquareBright-1.png in Resources */,
 				526FBD1C25926960001F5647 /* Beam-Angle00-10.png in Resources */,
 				80BF264527D723A000BF9736 /* LaserGun-9.png in Resources */,
 				52323A0027AC742C00B5D6B0 /* MysteryPuzzleLoop2.wav in Resources */,
 				809FEAA72971167200B13351 /* 67409516-intrigue-comedy-license.txt in Resources */,
+				8011CE9F297B8B3500E7CEAB /* 003577603-light-sabersci-filowswingfast-.wav in Resources */,
 				80BF264B27D723A000BF9736 /* LaserGun-8.png in Resources */,
 				80BF264627D723A000BF9736 /* LaserGun-10.png in Resources */,
 				5286EA8F2564706B00B43209 /* TileJewelActivated04.png in Resources */,
 				809FEAB02971167200B13351 /* 67409515-mystery-puzzle-loop-2-license.pdf in Resources */,
 				5286EABC2564706B00B43209 /* TileJewelActivated15.png in Resources */,
+				8011CE7E297B2C0200E7CEAB /* settingsGear-9589999-vecteezy.pdf in Resources */,
 				529A511627ACD24200FE0669 /* win-game-puzzle-52.wav in Resources */,
 				804660152978EDE10020B68C /* helpImage.png in Resources */,
 				808E49DE295E18A900D4D077 /* nextArrowWhite.png in Resources */,
@@ -1841,7 +1912,6 @@
 				806B4ED3296C821D00FFD306 /* Beamed2Logo.png in Resources */,
 				529A511727ACD24200FE0669 /* win-game-puzzle-93.wav in Resources */,
 				8044DD942904908E0078942B /* yellowRectangle.png in Resources */,
-				80F406F728F0B113006C4F82 /* Jewel-original.png in Resources */,
 				52994B6825DA13D700887B9C /* Rings_00008.png in Resources */,
 				52994B4A25DA13D700887B9C /* Rings_00019.png in Resources */,
 				529A511E27ACD57200FE0669 /* Mobile_Game_Melodic_Stinger_Dreamy_Synth_Level_Up_2.wav in Resources */,
@@ -1854,20 +1924,22 @@
 			files = (
 				8044DD9B2904908E0078942B /* cyanRectangle.png in Resources */,
 				809FEAC82971176200B13351 /* 67410903-win-game-level-52-license.txt in Resources */,
-				52A9A30225717F230072F41E /* LaserQuick2.wav in Resources */,
 				809FEA9929710C2500B13351 /* 70645767-internal-calculations-license.txt in Resources */,
 				809FEABF2971176200B13351 /* 67410905-win-game-level-119-license.txt in Resources */,
 				8044DD982904908E0078942B /* cyanRectangleSelected.png in Resources */,
-				80A2DB552954256A00C790AD /* starrysky.jpg in Resources */,
 				52994B8425DA13D700887B9C /* Rings_00014.png in Resources */,
+				8011CE5A297B267800E7CEAB /* Dreamstime - starrysky.jpg - Proof of License.pdf in Resources */,
 				52994B3C25DA13D700887B9C /* Rings_00010.png in Resources */,
+				8011CE73297B2C0200E7CEAB /* nextArrow-11227990-vecteezy.pdf in Resources */,
 				809FEAAE2971167200B13351 /* 67409514-puzzle-background-theme-2-license.txt in Resources */,
+				8011CE70297B2C0200E7CEAB /* noAds-9398585-vecteezy.pdf in Resources */,
 				526FBCD825926960001F5647 /* Beam-Angle00-03.png in Resources */,
 				5286EAC92564706B00B43209 /* TileJewelActivated12.png in Resources */,
-				5286EA0D25646CAF00B43209 /* TileSquareBlack.png in Resources */,
+				8011CE85297B2C0200E7CEAB /* unlocked-12674672-vecteezy.pdf in Resources */,
 				809B05CF2904E83A00081D46 /* grayRectangle.png in Resources */,
 				80895499291DB7FE009C4D02 /* nextArrow.png in Resources */,
 				526FBD1D25926960001F5647 /* Beam-Angle00-10.png in Resources */,
+				8011CEA0297B8B3500E7CEAB /* 003577603-light-sabersci-filowswingfast-.wav in Resources */,
 				52994B4B25DA13D700887B9C /* Rings_00019.png in Resources */,
 				5286EAA52564706B00B43209 /* TileJewelActivated05.png in Resources */,
 				5286EA9C2564706B00B43209 /* TileJewelActivated03.png in Resources */,
@@ -1876,26 +1948,27 @@
 				8023B2AF2915AD9B00176960 /* JewelGreen.png in Resources */,
 				52994B7E25DA13D700887B9C /* Rings_00025.png in Resources */,
 				5284E5ED25AAA1320042F429 /* README.md in Resources */,
+				8011CE82297B2C0200E7CEAB /* shoppingCart-9385753-vecteezy.pdf in Resources */,
 				809FEAA52971167200B13351 /* 67409516-intrigue-comedy-license.pdf in Resources */,
+				8011CE79297B2C0200E7CEAB /* puzzlePacks-512469-vecteezy.pdf in Resources */,
 				809FEADA2971176200B13351 /* 67412386-reward-license.pdf in Resources */,
 				808E49DF295E18A900D4D077 /* nextArrowWhite.png in Resources */,
 				5286EA9F2564706B00B43209 /* TileJewelActivated11.png in Resources */,
+				8011CEA9297B8CCC00E7CEAB /* Pond5_Proof-of-purchase_6732927.pdf in Resources */,
 				808D86B6297527B00022B2FE /* puzzlePacks.png in Resources */,
 				809FEA9329710C2500B13351 /* 70645766-night-drive-80s-license.txt in Resources */,
 				8023B2CA2915BBDF00176960 /* JewelMagenta.png in Resources */,
 				52994B5125DA13D700887B9C /* Rings_00027.png in Resources */,
 				80DFC2C528FB368000BE90C3 /* GridTile2.png in Resources */,
 				8089549D291DB805009C4D02 /* lightBulb.png in Resources */,
-				52A4EAA125B2273A00E716B8 /* Border-Aspect-4-3.png in Resources */,
 				809FEACE2971176200B13351 /* 67410904-win-game-level-93-license.txt in Resources */,
 				526FBCEA25926960001F5647 /* Beam-Angle00-09.png in Resources */,
+				8011CE8E297B2C0200E7CEAB /* lightBulb-11934419-vecteezy.pdf in Resources */,
 				808E49DC295E18A900D4D077 /* backArrowWhite.png in Resources */,
-				52A9A2D225717F0C0072F41E /* 39783_Light_SaberSciFiLowSwingSlow_4.wav in Resources */,
 				8023B2CE2915BD8300176960 /* JewelCyan.png in Resources */,
 				5286EA872564706B00B43209 /* TileJewelActivated09.png in Resources */,
 				8095C48427DB014E00E1740C /* GridTile.png in Resources */,
 				8023B2B22915AD9B00176960 /* JewelRed.png in Resources */,
-				52A9A30A25717F260072F41E /* TapClink.wav in Resources */,
 				809DF29728F22F9A00AC4680 /* beamAnimations.plist in Resources */,
 				801670FB28C4346500803D05 /* TapToRotateText.png in Resources */,
 				8089548D291DB76B009C4D02 /* backArrow.png in Resources */,
@@ -1903,10 +1976,8 @@
 				5286EA932564706B00B43209 /* TileJewelActivated06.png in Resources */,
 				5286EA902564706B00B43209 /* TileJewelActivated04.png in Resources */,
 				52994B7525DA13D700887B9C /* Rings_00029.png in Resources */,
-				80FDEA7229145E52007C05F7 /* Beamsplitter-2.png in Resources */,
 				80BE38B8292FFE5900076A7E /* InAppMessagingDisplayResources.bundle in Resources */,
 				526FBCFF25926960001F5647 /* Beam-Angle00-13.png in Resources */,
-				80B3DF6A283ACA2100B54B7D /* TapToRotate.png in Resources */,
 				809FEA9629710C2500B13351 /* 70645766-night-drive-80s-license.pdf in Resources */,
 				8023B2D22915C13300176960 /* JewelWhite.png in Resources */,
 				52994B3F25DA13D700887B9C /* Rings_00005.png in Resources */,
@@ -1914,22 +1985,26 @@
 				526FBCD225926960001F5647 /* Beam-Angle00-06.png in Resources */,
 				52994B8125DA13D700887B9C /* Rings_00017.png in Resources */,
 				809FEAC52971176200B13351 /* 67410903-win-game-level-52-license.pdf in Resources */,
+				8011CEA4297B8B3E00E7CEAB /* 085149494-puzzle-game-organic-wood-block.wav in Resources */,
 				809FEAA22971167200B13351 /* 67409515-mystery-puzzle-loop-2-license.txt in Resources */,
 				5286EAB12564706B00B43209 /* TileJewelActivated13.png in Resources */,
 				809DF29B28F2334E00AC4680 /* ringAnimations.plist in Resources */,
 				809FEAC22971176200B13351 /* 67412386-reward-license.txt in Resources */,
 				52994B4825DA13D700887B9C /* Rings_00021.png in Resources */,
 				526FBCE725926960001F5647 /* Beam-Angle00-07.png in Resources */,
+				8011CE8B297B2C0200E7CEAB /* locked-12675441-vecteezy.pdf in Resources */,
 				52994B5725DA13D700887B9C /* Rings_00003.png in Resources */,
 				52994B5D25DA13D700887B9C /* Rings_00022.png in Resources */,
 				52994B8A25DA13D700887B9C /* Rings_00018.png in Resources */,
 				8068338D292ECB1B00620AC1 /* GoogleService-Info.plist in Resources */,
 				80FDEA6E29145A5C007C05F7 /* TileSquareBright.png in Resources */,
 				809FEAA82971167200B13351 /* 67409516-intrigue-comedy-license.txt in Resources */,
+				8011CE94297B3E4400E7CEAB /* TapToRotate.png in Resources */,
 				809FEAE2297117A600B13351 /* 67412387-mobile-game-melodic-stinger-dreamy-synth-level-up-2-license.txt in Resources */,
 				52994B3925DA13D700887B9C /* Rings_00012.png in Resources */,
 				809FEACB2971176200B13351 /* 67410901-win-game-level-50-license.pdf in Resources */,
 				52994B6F25DA13D700887B9C /* Rings_00001.png in Resources */,
+				8011CE76297B2C0200E7CEAB /* backArrow-11569642-Vecteezy.pdf in Resources */,
 				809FEA9029710C2500B13351 /* 70645767-internal-calculations-license.pdf in Resources */,
 				52994B6925DA13D700887B9C /* Rings_00008.png in Resources */,
 				52994B6025DA13D700887B9C /* Rings_00000.png in Resources */,
@@ -1942,7 +2017,6 @@
 				80D4CA192965DD6B00AD28D7 /* helpButton.png in Resources */,
 				80A4F73D28D4D5ED007BDE13 /* demoPuzzlePackDictionary.plist in Resources */,
 				809FEA8529710BBE00B13351 /* InternalCalculations.wav in Resources */,
-				80F406F828F0B113006C4F82 /* Jewel-original.png in Resources */,
 				52994B8D25DA13D700887B9C /* Rings_00004.png in Resources */,
 				809FEAAB2971167200B13351 /* 67409514-puzzle-background-theme-2-license.pdf in Resources */,
 				8035E143295F5DEB001B65C3 /* replayIconWhite.png in Resources */,
@@ -1955,16 +2029,15 @@
 				8044DD9E2904908E0078942B /* yellowRectangleSelected.png in Resources */,
 				5286EBEF2564BCD300B43209 /* TileOutline.png in Resources */,
 				809FEAB12971167200B13351 /* 67409515-mystery-puzzle-loop-2-license.pdf in Resources */,
-				80FD2F4C2914C76E004DF6E8 /* TileSquareBright-1.png in Resources */,
 				809DF29328F1EFEE00AC4680 /* tileAnimations.plist in Resources */,
 				800ECE4128DF86D400A7DC62 /* PackCompleted.png in Resources */,
-				52A9A2FA25717F200072F41E /* LaserQuick.wav in Resources */,
+				8011CE88297B2C0200E7CEAB /* helpButton-440213-Vecteezy.pdf in Resources */,
 				8023B2C22915B7C100176960 /* JewelBlue.png in Resources */,
 				5286EAB72564706B00B43209 /* TileJewelActivated14.png in Resources */,
 				80A4F74128D4D855007BDE13 /* dailyPuzzlesPackDictionary.plist in Resources */,
 				5266332825FBD8ED00776E9B /* single-arrow-1.png in Resources */,
 				5286EAAE2564706B00B43209 /* TileJewelActivated01.png in Resources */,
-				52A9A2E225717F140072F41E /* Click.wav in Resources */,
+				8011CE7F297B2C0200E7CEAB /* settingsGear-9589999-vecteezy.pdf in Resources */,
 				526FBD5325926960001F5647 /* Beam-Angle00-11.png in Resources */,
 				809FEAD42971176200B13351 /* 67410904-win-game-level-93-license.pdf in Resources */,
 				80895491291DB773009C4D02 /* shoppingCart.png in Resources */,
@@ -1984,13 +2057,15 @@
 				52994B4225DA13D700887B9C /* Rings_00028.png in Resources */,
 				526FBD2925926960001F5647 /* Beam-Angle00-01.png in Resources */,
 				526FBCF925926960001F5647 /* Beam-Angle00-05.png in Resources */,
+				8011CE7C297B2C0200E7CEAB /* replayIcon-4372691-vecteezy.pdf in Resources */,
 				3A06FBA71F730C4000073097 /* Main.storyboard in Resources */,
 				804660162978EDE10020B68C /* helpImage.png in Resources */,
 				8064E65B2902463A006EEC33 /* editedPuzzlePack.plist in Resources */,
+				8011CE5E297B28E500E7CEAB /* abstractBackground-2173070-Vecteezy.pdf in Resources */,
 				5251ACDA279667DA00A50A7B /* paidHintPacksArray.plist in Resources */,
-				52A9A2CA25717F080072F41E /* 39770_Light_SaberSciFiLowSwingFast_1.wav in Resources */,
 				80FDEA6A29145848007C05F7 /* TileSquareTranslucent.png in Resources */,
 				8023B2B62915AE9E00176960 /* Jewel.png in Resources */,
+				8011CE62297B299200E7CEAB /* fishLogo-13761701-Vecteezy.pdf in Resources */,
 				80895495291DB77B009C4D02 /* NoAds.png in Resources */,
 				5286EABA2564706B00B43209 /* TileJewelActivated10.png in Resources */,
 				52994B5425DA13D700887B9C /* Rings_00016.png in Resources */,
@@ -2000,8 +2075,8 @@
 				5286EACC2564706B00B43209 /* TileJewelActivated08.png in Resources */,
 				80ADCC2129557639002B231F /* backgroundLandscapeGrid.png in Resources */,
 				52994B3625DA13D700887B9C /* Rings_00020.png in Resources */,
-				805DB34627D1417700F9572A /* Beamsplitter-1.png in Resources */,
 				52994B4525DA13D700887B9C /* Rings_00002.png in Resources */,
+				8011CE9D297B8B3500E7CEAB /* 003577572-light-sabersci-fihighswingsfas.wav in Resources */,
 				808C49D328D41210002A768C /* puzzlePacksArray.plist in Resources */,
 				52994B7825DA13D700887B9C /* Rings_00015.png in Resources */,
 				809FEAD72971176200B13351 /* 67410905-win-game-level-119-license.pdf in Resources */,
@@ -2025,15 +2100,17 @@
 				809FEA9729710C2500B13351 /* 70645767-internal-calculations-license.txt in Resources */,
 				809FEABD2971176200B13351 /* 67410905-win-game-level-119-license.txt in Resources */,
 				8044DD962904908E0078942B /* cyanRectangleSelected.png in Resources */,
-				52A9A2B725717C550072F41E /* TapClink.wav in Resources */,
-				80A2DB532954256A00C790AD /* starrysky.jpg in Resources */,
-				52A9A2B825717C550072F41E /* Click.wav in Resources */,
+				8011CE58297B267800E7CEAB /* Dreamstime - starrysky.jpg - Proof of License.pdf in Resources */,
+				8011CE71297B2C0200E7CEAB /* nextArrow-11227990-vecteezy.pdf in Resources */,
 				809FEAAC2971167200B13351 /* 67409514-puzzle-background-theme-2-license.txt in Resources */,
+				8011CE6E297B2C0200E7CEAB /* noAds-9398585-vecteezy.pdf in Resources */,
 				52994B7025DA13D700887B9C /* Rings_00013.png in Resources */,
 				52994B7325DA13D700887B9C /* Rings_00029.png in Resources */,
 				52994B6425DA13D700887B9C /* Rings_00026.png in Resources */,
+				8011CE83297B2C0200E7CEAB /* unlocked-12674672-vecteezy.pdf in Resources */,
 				5286EA8E2564706B00B43209 /* TileJewelActivated04.png in Resources */,
 				5286EA942564706B00B43209 /* TileJewelActivated02.png in Resources */,
+				8011CE9E297B8B3500E7CEAB /* 003577603-light-sabersci-filowswingfast-.wav in Resources */,
 				809B05CD2904E83A00081D46 /* grayRectangle.png in Resources */,
 				80895497291DB7FE009C4D02 /* nextArrow.png in Resources */,
 				52994B4925DA13D700887B9C /* Rings_00019.png in Resources */,
@@ -2043,19 +2120,22 @@
 				5251ACD8279667DA00A50A7B /* paidHintPacksArray.plist in Resources */,
 				5286EA852564706B00B43209 /* TileJewelActivated09.png in Resources */,
 				8023B2D42915F54D00176960 /* JewelYellow.png in Resources */,
+				8011CE80297B2C0200E7CEAB /* shoppingCart-9385753-vecteezy.pdf in Resources */,
 				8023B2AD2915AD9B00176960 /* JewelGreen.png in Resources */,
+				8011CE77297B2C0200E7CEAB /* puzzlePacks-512469-vecteezy.pdf in Resources */,
 				809FEAA32971167200B13351 /* 67409516-intrigue-comedy-license.pdf in Resources */,
 				809FEAD82971176200B13351 /* 67412386-reward-license.pdf in Resources */,
 				808E49DD295E18A900D4D077 /* nextArrowWhite.png in Resources */,
+				8011CEA7297B8CCC00E7CEAB /* Pond5_Proof-of-purchase_6732927.pdf in Resources */,
 				808D86B4297527B00022B2FE /* puzzlePacks.png in Resources */,
 				5286EAB22564706B00B43209 /* TileJewelActivated07.png in Resources */,
 				809FEA9129710C2500B13351 /* 70645766-night-drive-80s-license.txt in Resources */,
-				5286EA0B25646CAF00B43209 /* TileSquareBlack.png in Resources */,
 				80BB3CA528DBC42700C547D1 /* DragTileText.png in Resources */,
 				8023B2C82915BBDF00176960 /* JewelMagenta.png in Resources */,
 				52994B5225DA13D700887B9C /* Rings_00016.png in Resources */,
 				8089549B291DB805009C4D02 /* lightBulb.png in Resources */,
 				809FEACC2971176200B13351 /* 67410904-win-game-level-93-license.txt in Resources */,
+				8011CE8C297B2C0200E7CEAB /* lightBulb-11934419-vecteezy.pdf in Resources */,
 				80DFC2C328FB368000BE90C3 /* GridTile2.png in Resources */,
 				808E49DA295E18A900D4D077 /* backArrowWhite.png in Resources */,
 				526FBD1B25926960001F5647 /* Beam-Angle00-10.png in Resources */,
@@ -2066,37 +2146,35 @@
 				805DB34C27D1453F00F9572A /* Prism.png in Resources */,
 				5286EBED2564BCD300B43209 /* TileOutline.png in Resources */,
 				8023B2B02915AD9B00176960 /* JewelRed.png in Resources */,
-				52A4EA9F25B2273A00E716B8 /* Border-Aspect-4-3.png in Resources */,
 				3AFD655F1F71A71B0008A125 /* Main.storyboard in Resources */,
 				526FBCE825926960001F5647 /* Beam-Angle00-09.png in Resources */,
-				805DB34427D1417700F9572A /* Beamsplitter-1.png in Resources */,
 				809DF29528F22F9A00AC4680 /* beamAnimations.plist in Resources */,
 				8089548B291DB76B009C4D02 /* backArrow.png in Resources */,
 				5286EACA2564706B00B43209 /* TileJewelActivated08.png in Resources */,
-				52A9A2B325717C550072F41E /* 39770_Light_SaberSciFiLowSwingFast_1.wav in Resources */,
 				80BE38B6292FFE5900076A7E /* InAppMessagingDisplayResources.bundle in Resources */,
 				5286EA9A2564706B00B43209 /* TileJewelActivated03.png in Resources */,
 				809FEA9429710C2500B13351 /* 70645766-night-drive-80s-license.pdf in Resources */,
 				803AFB702979CFB100BDB614 /* Fiverr - Proof of Doing - Laser Gun and some jewels.png in Resources */,
-				80FDEA7029145E52007C05F7 /* Beamsplitter-2.png in Resources */,
 				801670F928C4346500803D05 /* TapToRotateText.png in Resources */,
-				80B3DF68283ACA2100B54B7D /* TapToRotate.png in Resources */,
 				809FEAC32971176200B13351 /* 67410903-win-game-level-52-license.pdf in Resources */,
+				8011CEA2297B8B3E00E7CEAB /* 085149494-puzzle-game-organic-wood-block.wav in Resources */,
 				809FEAA02971167200B13351 /* 67409515-mystery-puzzle-loop-2-license.txt in Resources */,
 				8023B2D02915C13300176960 /* JewelWhite.png in Resources */,
 				809FEAC02971176200B13351 /* 67412386-reward-license.txt in Resources */,
-				52A9A2B525717C550072F41E /* LaserQuick.wav in Resources */,
 				526FBCFD25926960001F5647 /* Beam-Angle00-13.png in Resources */,
+				8011CE89297B2C0200E7CEAB /* locked-12675441-vecteezy.pdf in Resources */,
 				526FBCD025926960001F5647 /* Beam-Angle00-06.png in Resources */,
 				809DF29928F2334E00AC4680 /* ringAnimations.plist in Resources */,
 				8068338B292ECB1B00620AC1 /* GoogleService-Info.plist in Resources */,
 				8095C48227DB014E00E1740C /* GridTile.png in Resources */,
 				526FBCE525926960001F5647 /* Beam-Angle00-07.png in Resources */,
 				809FEAA62971167200B13351 /* 67409516-intrigue-comedy-license.txt in Resources */,
+				8011CE92297B3E4400E7CEAB /* TapToRotate.png in Resources */,
 				809FEAE0297117A600B13351 /* 67412387-mobile-game-melodic-stinger-dreamy-synth-level-up-2-license.txt in Resources */,
 				809FEAC92971176200B13351 /* 67410901-win-game-level-50-license.pdf in Resources */,
 				52994B5525DA13D700887B9C /* Rings_00003.png in Resources */,
 				809FEA8E29710C2500B13351 /* 70645767-internal-calculations-license.pdf in Resources */,
+				8011CE74297B2C0200E7CEAB /* backArrow-11569642-Vecteezy.pdf in Resources */,
 				80FDEA6C29145A5C007C05F7 /* TileSquareBright.png in Resources */,
 				5286EAAC2564706B00B43209 /* TileJewelActivated01.png in Resources */,
 				52994B8825DA13D700887B9C /* Rings_00018.png in Resources */,
@@ -2117,20 +2195,19 @@
 				5286EA9D2564706B00B43209 /* TileJewelActivated11.png in Resources */,
 				808E3BC528FC5304009C1474 /* GridTileDot.png in Resources */,
 				809FEACF2971176200B13351 /* 67410901-win-game-level-50-license.txt in Resources */,
-				80F406F628F0B113006C4F82 /* Jewel-original.png in Resources */,
 				800ECE3F28DF86D400A7DC62 /* PackCompleted.png in Resources */,
 				809FEAAF2971167200B13351 /* 67409515-mystery-puzzle-loop-2-license.pdf in Resources */,
-				52A9A2B625717C550072F41E /* LaserQuick2.wav in Resources */,
 				80A4F73F28D4D855007BDE13 /* dailyPuzzlesPackDictionary.plist in Resources */,
 				8044DD9C2904908E0078942B /* yellowRectangleSelected.png in Resources */,
 				52994B3D25DA13D700887B9C /* Rings_00005.png in Resources */,
 				52994B3A25DA13D700887B9C /* Rings_00010.png in Resources */,
-				80FD2F4A2914C76E004DF6E8 /* TileSquareBright-1.png in Resources */,
+				8011CE86297B2C0200E7CEAB /* helpButton-440213-Vecteezy.pdf in Resources */,
 				52994B8525DA13D700887B9C /* Rings_00024.png in Resources */,
 				52994B6D25DA13D700887B9C /* Rings_00001.png in Resources */,
 				809DF29128F1EFEE00AC4680 /* tileAnimations.plist in Resources */,
 				8023B2C02915B7C100176960 /* JewelBlue.png in Resources */,
 				520BBD2A260A6BC20080EADC /* Background-Aspect-4-3.png in Resources */,
+				8011CE7D297B2C0200E7CEAB /* settingsGear-9589999-vecteezy.pdf in Resources */,
 				526FBD5125926960001F5647 /* Beam-Angle00-11.png in Resources */,
 				809FEAD22971176200B13351 /* 67410904-win-game-level-93-license.pdf in Resources */,
 				52994B6125DA13D700887B9C /* Rings_00023.png in Resources */,
@@ -2147,17 +2224,19 @@
 				80C538EA28DF349700E0606E /* TileCheckmark.png in Resources */,
 				526FBCF725926960001F5647 /* Beam-Angle00-05.png in Resources */,
 				809FEADD297117A600B13351 /* 67412387-mobile-game-melodic-stinger-dreamy-synth-level-up-2-license.pdf in Resources */,
-				52A9A2B925717C550072F41E /* 39783_Light_SaberSciFiLowSwingSlow_4.wav in Resources */,
 				52994B5B25DA13D700887B9C /* Rings_00022.png in Resources */,
 				8044DD932904908E0078942B /* yellowRectangle.png in Resources */,
 				52994B4F25DA13D700887B9C /* Rings_00027.png in Resources */,
+				8011CE7A297B2C0200E7CEAB /* replayIcon-4372691-vecteezy.pdf in Resources */,
 				52994B6725DA13D700887B9C /* Rings_00008.png in Resources */,
 				804660142978EDE00020B68C /* helpImage.png in Resources */,
 				8064E6592902463A006EEC33 /* editedPuzzlePack.plist in Resources */,
+				8011CE5C297B28E500E7CEAB /* abstractBackground-2173070-Vecteezy.pdf in Resources */,
 				52994B3725DA13D700887B9C /* Rings_00012.png in Resources */,
 				52994B7925DA13D700887B9C /* Rings_00009.png in Resources */,
 				52994B7C25DA13D700887B9C /* Rings_00025.png in Resources */,
 				80FDEA6829145848007C05F7 /* TileSquareTranslucent.png in Resources */,
+				8011CE60297B299200E7CEAB /* fishLogo-13761701-Vecteezy.pdf in Resources */,
 				80895493291DB77B009C4D02 /* NoAds.png in Resources */,
 				8023B2B42915AE9E00176960 /* Jewel.png in Resources */,
 				5286EB072564715400B43209 /* TileSpectrumR0.png in Resources */,
@@ -2169,6 +2248,7 @@
 				5286EB252564715400B43209 /* TileSpectrumL0.png in Resources */,
 				52994B4025DA13D700887B9C /* Rings_00028.png in Resources */,
 				52994B5E25DA13D700887B9C /* Rings_00000.png in Resources */,
+				8011CE9B297B8B3500E7CEAB /* 003577572-light-sabersci-fihighswingsfas.wav in Resources */,
 				52994B8B25DA13D700887B9C /* Rings_00004.png in Resources */,
 				808C49D128D41210002A768C /* puzzlePacksArray.plist in Resources */,
 				809FEAD52971176200B13351 /* 67410905-win-game-level-119-license.pdf in Resources */,

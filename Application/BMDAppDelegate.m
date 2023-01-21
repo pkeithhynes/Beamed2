@@ -1392,6 +1392,7 @@ CGFloat _screenHeightInPixels;
     else {
         player = laser2Player;
     }
+    laserSoundFlip = !laserSoundFlip;
     if ([[self getStringFromDefaults:@"soundsEnabled"] isEqualToString:@"YES"] && player != nil){
         [player play];
     }

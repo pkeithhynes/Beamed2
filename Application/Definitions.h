@@ -100,10 +100,14 @@
 #define kPaidHintsPacks @"paidHintPacksArray.plist"
 
 // File paths for sound effects
-#define kButtonClinkSoundEffect @"TapClink"
-#define kButtonClickSoundEffect @"Click"
-#define kLaserSound1 @"LaserQuick2"
-#define kLaserSound2 @"LaserQuick"
+#define kButtonClinkSoundEffect @"085149494-puzzle-game-organic-wood-block"
+#define kButtonClickSoundEffect @"085149494-puzzle-game-organic-wood-block"
+//#define kButtonClinkSoundEffect @"TapClink"
+//#define kButtonClickSoundEffect @"Click"
+#define kLaserSound1 @"003577572-light-sabersci-fihighswingsfas"
+#define kLaserSound2 @"003577603-light-sabersci-filowswingfast-"
+//#define kLaserSound1 @"LaserQuick2"
+//#define kLaserSound2 @"LaserQuick"
 #define kScreenCaptureJPEG @"beamedScreenCapture.jpg"
 #define kProductsPlist @"products"
 #define kProductUpgradeKey @"upgrade0001"
@@ -139,7 +143,6 @@ enum eBeamAnimations { BEAM_A_STEADY };
 enum eBeamAnimationContainers { BEAM_AC_GLOWWHITE_RECTANGLE_HORIZONTAL };
 enum eBackgroundTextures {  OVERLAY_TILE_OUTLINE,
                             TILE_BG,
-                            BORDER_ASPECT_4_3,
                             SINGLE_ARROW_1,
                             BACKGROUND_ASPECT_4_3,
                             TAP_TO_ROTATE,

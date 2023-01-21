@@ -514,7 +514,6 @@ extern void playSound(AVAudioPlayer *PLAYER);
             }
         }
         else {
-            //            borderRenderData = [background renderBorder:COLOR_WHITE];
             vc.nextArrow.hidden = YES;
             vc.backArrowWhite.hidden = YES;
             vc.replayIconWhite.hidden = YES;
@@ -525,7 +524,6 @@ extern void playSound(AVAudioPlayer *PLAYER);
     else if (puzzleCompletionCondition == USER_TOUCH){
         vc.hintButton.hidden = YES;
         vc.hintBulb.hidden = YES;
-        //        borderRenderData = [background renderBorder:COLOR_CYAN];
         [vc.nextButton setTitleColor:[UIColor cyanColor] forState:UIControlStateNormal];
         vc.nextButton.layer.borderColor = [UIColor cyanColor].CGColor;
         if (!puzzleCompletedButtonFlash && !packHasBeenCompleted){
@@ -4982,8 +4980,10 @@ extern void playSound(AVAudioPlayer *PLAYER);
                     // NOT a demoTile but with no matching TileHint
                     else {
                         // Play a clink sound to indicate motion to a new grid position
-//                        [appd.laser2Player play];
-                        [appd playSound:appd.clinkPlayer];
+                        if (!appd->laserSoundCurrentlyPlaying){
+                            [appd playLaserSound];
+                        }
+//                        [appd playSound:appd.clinkPlayer];
                         // Are we in editMode?
                         // tile.placed is only set to YES during gamePlay mode so disable placed flag if in editMode
                         if ([appd editModeIsEnabled]){

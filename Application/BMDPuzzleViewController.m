@@ -781,6 +781,7 @@
     helpButton.frame = helpRect;
     helpButton.enabled = YES;
     helpButton.hidden = [appd->optics allTilesArePlaced] || (rc.appCurrentGamePackType == PACKTYPE_DEMO);
+//    [helpButton addTarget:self action:@selector(replayIconPressed) forControlEvents:UIControlEventTouchUpInside];
     [helpButton addTarget:self action:@selector(helpButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     UIImage *helpImage = [UIImage imageNamed:@"helpButton.png"];
     [helpButton setBackgroundImage:helpImage forState:UIControlStateNormal];
