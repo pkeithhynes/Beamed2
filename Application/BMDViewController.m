@@ -383,7 +383,7 @@ Implementation of the cross-platform view controller
             dailyPuzzleButtonCheckmark.hidden = NO;
         }
         else {
-            [dailyPuzzleButton setTitle:@"Play Daily Puzzle" forState:UIControlStateNormal];
+            [dailyPuzzleButton setTitle:@"Daily Puzzle" forState:UIControlStateNormal];
             dailyPuzzleButton.enabled = YES;
             dailyPuzzleButtonCheckmark.hidden = YES;
         }
@@ -1089,7 +1089,7 @@ Implementation of the cross-platform view controller
         // Update moreHintPacksButton to show how many hints are left
         id numberOfHintsRemainingObject = [appd getObjectFromDefaults:@"numberOfHintsRemaining"];
         NSMutableAttributedString *hintTitle1, *hintTitle2;
-        NSString *hintTitle = [NSString stringWithFormat:@"More Hint Packs"];
+        NSString *hintTitle = [NSString stringWithFormat:@"More Hints"];
         hintTitle1 = [[NSMutableAttributedString alloc] initWithString:hintTitle];
 
         if (numberOfHintsRemainingObject == nil){
@@ -1550,8 +1550,8 @@ Implementation of the cross-platform view controller
         }
         case ASPECT_16_9: {
             // iPhone 8
-            logoHeight = 1.2*logoHeight;
-            logoWidth = 1.2*logoWidth;
+            logoHeight = 1.0*logoHeight;
+            logoWidth = 1.0*logoWidth;
             logoCx = 0.5*screenWidthInPixels/contentScaleFactor - 0.5*logoWidth;
             logoCy = 0.14*screenHeightInPixels/contentScaleFactor - 0.45*logoHeight;
             break;
@@ -1559,8 +1559,8 @@ Implementation of the cross-platform view controller
         case ASPECT_13_6:
         default:{
             // iPhone 14
-            logoHeight = 1.2*logoHeight;
-            logoWidth = 1.2*logoWidth;
+            logoHeight = 1.0*logoHeight;
+            logoWidth = 1.0*logoWidth;
             logoCx = 0.5*screenWidthInPixels/contentScaleFactor - 0.5*logoWidth;
             logoCy = 0.17*screenHeightInPixels/contentScaleFactor - 0.5*logoHeight;
             break;
@@ -1787,7 +1787,7 @@ Implementation of the cross-platform view controller
 
     
     //
-    // Add "More Puzzle Packs" button to homeView
+    // Add "More Puzzles" button to homeView
     //
     UIButton *morePuzzlePacksButton = [UIButton buttonWithType:UIButtonTypeCustom];
     switch (displayAspectRatio) {
@@ -1839,7 +1839,7 @@ Implementation of the cross-platform view controller
                             buttonWidth,
                             buttonHeight);
     morePuzzlePacksButton.frame = buttonRect;
-    [morePuzzlePacksButton setTitle:@"More Puzzle Packs" forState:UIControlStateNormal];
+    [morePuzzlePacksButton setTitle:@"More Puzzles" forState:UIControlStateNormal];
     [morePuzzlePacksButton addTarget:self action:@selector(morePuzzlePacksButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [morePuzzlePacksButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     morePuzzlePacksButton.showsTouchWhenHighlighted = YES;
