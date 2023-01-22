@@ -603,15 +603,15 @@
 		80BF264D27D723A000BF9736 /* LaserGun-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 80BF264027D723A000BF9736 /* LaserGun-1.png */; };
 		80BF264E27D723A000BF9736 /* LaserGun-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 80BF264127D723A000BF9736 /* LaserGun-6.png */; };
 		80BF264F27D723A000BF9736 /* LaserGun-12.png in Resources */ = {isa = PBXBuildFile; fileRef = 80BF264227D723A000BF9736 /* LaserGun-12.png */; };
-		80C17666297C7F890011EE75 /* Beamed2Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C17665297C7F890011EE75 /* Beamed2Logo.png */; };
-		80C17667297C7F890011EE75 /* Beamed2Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C17665297C7F890011EE75 /* Beamed2Logo.png */; };
-		80C17668297C7F890011EE75 /* Beamed2Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C17665297C7F890011EE75 /* Beamed2Logo.png */; };
-		80C1766A297C7F930011EE75 /* LoadingScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C17669297C7F930011EE75 /* LoadingScreen.png */; };
-		80C1766B297C7F930011EE75 /* LoadingScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C17669297C7F930011EE75 /* LoadingScreen.png */; };
-		80C1766C297C7F930011EE75 /* LoadingScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C17669297C7F930011EE75 /* LoadingScreen.png */; };
 		80C1766E297C9A0F0011EE75 /* backgroundLandscapeGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C1766D297C9A0F0011EE75 /* backgroundLandscapeGrid.png */; };
 		80C1766F297C9A0F0011EE75 /* backgroundLandscapeGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C1766D297C9A0F0011EE75 /* backgroundLandscapeGrid.png */; };
 		80C17670297C9A0F0011EE75 /* backgroundLandscapeGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C1766D297C9A0F0011EE75 /* backgroundLandscapeGrid.png */; };
+		80C206F6297D2F9C00FF0FD9 /* Beamed2Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C206F5297D2F9C00FF0FD9 /* Beamed2Logo.png */; };
+		80C206F7297D2F9C00FF0FD9 /* Beamed2Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C206F5297D2F9C00FF0FD9 /* Beamed2Logo.png */; };
+		80C206F8297D2F9C00FF0FD9 /* Beamed2Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C206F5297D2F9C00FF0FD9 /* Beamed2Logo.png */; };
+		80C206FA297D2FAA00FF0FD9 /* LoadingScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C206F9297D2FAA00FF0FD9 /* LoadingScreen.png */; };
+		80C206FB297D2FAA00FF0FD9 /* LoadingScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C206F9297D2FAA00FF0FD9 /* LoadingScreen.png */; };
+		80C206FC297D2FAA00FF0FD9 /* LoadingScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C206F9297D2FAA00FF0FD9 /* LoadingScreen.png */; };
 		80C3279E2918623400EBE438 /* CheckmarkInCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C3279D2918623400EBE438 /* CheckmarkInCircle.png */; };
 		80C3279F2918623400EBE438 /* CheckmarkInCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C3279D2918623400EBE438 /* CheckmarkInCircle.png */; };
 		80C327A02918623400EBE438 /* CheckmarkInCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C3279D2918623400EBE438 /* CheckmarkInCircle.png */; };
@@ -917,9 +917,9 @@
 		80BF264027D723A000BF9736 /* LaserGun-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaserGun-1.png"; sourceTree = "<group>"; };
 		80BF264127D723A000BF9736 /* LaserGun-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaserGun-6.png"; sourceTree = "<group>"; };
 		80BF264227D723A000BF9736 /* LaserGun-12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaserGun-12.png"; sourceTree = "<group>"; };
-		80C17665297C7F890011EE75 /* Beamed2Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Beamed2Logo.png; sourceTree = "<group>"; };
-		80C17669297C7F930011EE75 /* LoadingScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoadingScreen.png; sourceTree = "<group>"; };
 		80C1766D297C9A0F0011EE75 /* backgroundLandscapeGrid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundLandscapeGrid.png; sourceTree = "<group>"; };
+		80C206F5297D2F9C00FF0FD9 /* Beamed2Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Beamed2Logo.png; sourceTree = "<group>"; };
+		80C206F9297D2FAA00FF0FD9 /* LoadingScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoadingScreen.png; sourceTree = "<group>"; };
 		80C3279D2918623400EBE438 /* CheckmarkInCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckmarkInCircle.png; sourceTree = "<group>"; };
 		80C538E928DF349700E0606E /* TileCheckmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileCheckmark.png; sourceTree = "<group>"; };
 		80D4CA162965DD6B00AD28D7 /* helpButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helpButton.png; sourceTree = "<group>"; };
@@ -1343,8 +1343,8 @@
 			children = (
 				803AFB7F2979F9CC00BDB614 /* Licenses */,
 				806B4ED0296C7F5400FFD306 /* LaunchScreen.png */,
-				80C17665297C7F890011EE75 /* Beamed2Logo.png */,
-				80C17669297C7F930011EE75 /* LoadingScreen.png */,
+				80C206F9297D2FAA00FF0FD9 /* LoadingScreen.png */,
+				80C206F5297D2F9C00FF0FD9 /* Beamed2Logo.png */,
 				806B4ED2296C821D00FFD306 /* Beamed2Logo2.png */,
 				806B4ECE296C7D7F00FFD306 /* LoadingScreen2.png */,
 			);
@@ -1810,7 +1810,7 @@
 				5286EAA42564706B00B43209 /* TileJewelActivated05.png in Resources */,
 				80BF264E27D723A000BF9736 /* LaserGun-6.png in Resources */,
 				809FEAA12971167200B13351 /* 67409515-mystery-puzzle-loop-2-license.txt in Resources */,
-				80C1766B297C7F930011EE75 /* LoadingScreen.png in Resources */,
+				80C206FB297D2FAA00FF0FD9 /* LoadingScreen.png in Resources */,
 				5286EAC82564706B00B43209 /* TileJewelActivated12.png in Resources */,
 				80895488291DB661009C4D02 /* settingsGear.png in Resources */,
 				52994B8C25DA13D700887B9C /* Rings_00004.png in Resources */,
@@ -1872,7 +1872,6 @@
 				8011CE81297B2C0200E7CEAB /* shoppingCart-9385753-vecteezy.pdf in Resources */,
 				5286EA952564706B00B43209 /* TileJewelActivated02.png in Resources */,
 				80DFC2C428FB368000BE90C3 /* GridTile2.png in Resources */,
-				80C17667297C7F890011EE75 /* Beamed2Logo.png in Resources */,
 				529A511C27ACD54D00FE0669 /* Reward.wav in Resources */,
 				520BBD2B260A6BC20080EADC /* Background-Aspect-4-3.png in Resources */,
 				80BF264C27D723A000BF9736 /* LaserGun-11.png in Resources */,
@@ -1930,6 +1929,7 @@
 				806B4ED3296C821D00FFD306 /* Beamed2Logo2.png in Resources */,
 				529A511727ACD24200FE0669 /* win-game-puzzle-93.wav in Resources */,
 				8044DD942904908E0078942B /* yellowRectangle.png in Resources */,
+				80C206F7297D2F9C00FF0FD9 /* Beamed2Logo.png in Resources */,
 				52994B6825DA13D700887B9C /* Rings_00008.png in Resources */,
 				52994B4A25DA13D700887B9C /* Rings_00019.png in Resources */,
 				529A511E27ACD57200FE0669 /* Mobile_Game_Melodic_Stinger_Dreamy_Synth_Level_Up_2.wav in Resources */,
@@ -1990,7 +1990,6 @@
 				8023B2B22915AD9B00176960 /* JewelRed.png in Resources */,
 				809DF29728F22F9A00AC4680 /* beamAnimations.plist in Resources */,
 				801670FB28C4346500803D05 /* TapToRotateText.png in Resources */,
-				80C17668297C7F890011EE75 /* Beamed2Logo.png in Resources */,
 				8089548D291DB76B009C4D02 /* backArrow.png in Resources */,
 				52994B7225DA13D700887B9C /* Rings_00013.png in Resources */,
 				5286EA932564706B00B43209 /* TileJewelActivated06.png in Resources */,
@@ -2048,6 +2047,7 @@
 				809FEAD12971176200B13351 /* 67410901-win-game-level-50-license.txt in Resources */,
 				8044DD9E2904908E0078942B /* yellowRectangleSelected.png in Resources */,
 				5286EBEF2564BCD300B43209 /* TileOutline.png in Resources */,
+				80C206F8297D2F9C00FF0FD9 /* Beamed2Logo.png in Resources */,
 				809FEAB12971167200B13351 /* 67409515-mystery-puzzle-loop-2-license.pdf in Resources */,
 				809DF29328F1EFEE00AC4680 /* tileAnimations.plist in Resources */,
 				800ECE4128DF86D400A7DC62 /* PackCompleted.png in Resources */,
@@ -2093,8 +2093,8 @@
 				52994B6625DA13D700887B9C /* Rings_00026.png in Resources */,
 				520BBD2C260A6BC20080EADC /* Background-Aspect-4-3.png in Resources */,
 				5286EACC2564706B00B43209 /* TileJewelActivated08.png in Resources */,
-				80C1766C297C7F930011EE75 /* LoadingScreen.png in Resources */,
 				52994B3625DA13D700887B9C /* Rings_00020.png in Resources */,
+				80C206FC297D2FAA00FF0FD9 /* LoadingScreen.png in Resources */,
 				52994B4525DA13D700887B9C /* Rings_00002.png in Resources */,
 				8011CE9D297B8B3500E7CEAB /* 003577572-light-sabersci-fihighswingsfas.wav in Resources */,
 				808C49D328D41210002A768C /* puzzlePacksArray.plist in Resources */,
@@ -2165,7 +2165,6 @@
 				52994B7F25DA13D700887B9C /* Rings_00017.png in Resources */,
 				5284E5EB25AAA1320042F429 /* README.md in Resources */,
 				8023B2CC2915BD8300176960 /* JewelCyan.png in Resources */,
-				80C17666297C7F890011EE75 /* Beamed2Logo.png in Resources */,
 				805DB34C27D1453F00F9572A /* Prism.png in Resources */,
 				5286EBED2564BCD300B43209 /* TileOutline.png in Resources */,
 				8023B2B02915AD9B00176960 /* JewelRed.png in Resources */,
@@ -2223,6 +2222,7 @@
 				80A4F73F28D4D855007BDE13 /* dailyPuzzlesPackDictionary.plist in Resources */,
 				8044DD9C2904908E0078942B /* yellowRectangleSelected.png in Resources */,
 				52994B3D25DA13D700887B9C /* Rings_00005.png in Resources */,
+				80C206F6297D2F9C00FF0FD9 /* Beamed2Logo.png in Resources */,
 				52994B3A25DA13D700887B9C /* Rings_00010.png in Resources */,
 				8011CE86297B2C0200E7CEAB /* helpButton-440213-Vecteezy.pdf in Resources */,
 				52994B8525DA13D700887B9C /* Rings_00024.png in Resources */,
@@ -2268,8 +2268,8 @@
 				52994B8225DA13D700887B9C /* Rings_00014.png in Resources */,
 				5266332625FBD8ED00776E9B /* single-arrow-1.png in Resources */,
 				5286EB252564715400B43209 /* TileSpectrumL0.png in Resources */,
-				80C1766A297C7F930011EE75 /* LoadingScreen.png in Resources */,
 				52994B4025DA13D700887B9C /* Rings_00028.png in Resources */,
+				80C206FA297D2FAA00FF0FD9 /* LoadingScreen.png in Resources */,
 				52994B5E25DA13D700887B9C /* Rings_00000.png in Resources */,
 				8011CE9B297B8B3500E7CEAB /* 003577572-light-sabersci-fihighswingsfas.wav in Resources */,
 				52994B8B25DA13D700887B9C /* Rings_00004.png in Resources */,
