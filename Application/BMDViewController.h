@@ -45,6 +45,7 @@ API_AVAILABLE(ios(13.0))
     Background *background;
     Foreground *foreground;
     TextureRenderData *backgroundRenderDataImage;
+    TextureRenderData *logoRenderDataImage;
     TextureRenderData *backgroundAnimationImage;
     unsigned long animationFrame;
     long animationFrameMarker1, animationFrameMarker2;
@@ -168,6 +169,11 @@ API_AVAILABLE(ios(13.0))
     NSDate *lpuzzleStartTime;
     NSTimeInterval puzzleSolutionTime;
     GKAccessPoint *gamekitAccessPoint;
+    
+    // Logo size and position information for Metal rendering
+    CGFloat logoWidth, logoHeight;
+    CGFloat logoCx, logoCy;
+
 }
 
 @property (nonatomic, retain) BMDRenderer *renderer;
@@ -266,6 +272,10 @@ API_AVAILABLE(ios(13.0))
 @property (nonatomic) unsigned int numberOfMoves;
 @property (nonatomic, retain) GKAccessPoint *gamekitAccessPoint;
 
+@property (nonatomic) CGFloat logoWidth;
+@property (nonatomic) CGFloat logoHeight;
+@property (nonatomic) CGFloat logoCx;
+@property (nonatomic) CGFloat logoCy;
 
 @property (nonatomic) BOOL renderPuzzleON;
 @property (nonatomic) BOOL renderBackgroundON;

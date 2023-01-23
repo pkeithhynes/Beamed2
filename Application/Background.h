@@ -24,6 +24,7 @@ API_AVAILABLE(ios(13.0))
     TextureRenderData     *backgroundRenderDataOuter;
     TextureRenderData     *backgroundRenderDataInner;
     TextureRenderData     *backgroundRenderDataImage;
+    TextureRenderData     *logoRenderDataImage;
     TextureRenderData     *backgroundRenderAnimationImage;
     TextureRenderData     *unusedTileBackgroundRenderData;
     NSUInteger            animationFrame;            // Pointer to the current frame of the animation
@@ -31,6 +32,7 @@ API_AVAILABLE(ios(13.0))
 }
 
 - (TextureRenderData *)renderBackgroundImage:(unsigned int)backgroundColor;
+- (TextureRenderData *)renderLogoImage:(unsigned int)logoColor;
 - (TextureRenderData *)renderOverlayImage:(unsigned int)imageIndex color:(unsigned int)backgroundColor;
 - (TextureRenderData *)renderBackgroundAnimations:(uint16_t)frameCounter
                                   backgroundColor:(unsigned int)backgroundColor;

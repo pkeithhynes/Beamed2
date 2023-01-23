@@ -333,8 +333,15 @@ API_AVAILABLE(ios(13.0))
                 [self drawMetalTexture:backgroundImage withView:_view texturePositionInPixels:backgroundImage->texturePositionInPixels textureSizeInPixels:backgroundImage->textureDimensionsInPixels withPipelineState:backgroundImage->tileColor withRotationTransformation:NO];
             }
             
+            // Next draw a logo image
+            TextureRenderData *logoImage = [renderDictionary objectForKey:@"logoImage"];
+            if (logoImage != nil){
+                [self drawMetalTexture:logoImage withView:_view texturePositionInPixels:logoImage->texturePositionInPixels textureSizeInPixels:logoImage->textureDimensionsInPixels withPipelineState:logoImage->tileColor withRotationTransformation:NO];
+            }
+
+            
             // Render array of ring textures
-            [self renderRingTextures:[renderDictionary objectForKey:@"ringRenderArray"] withPipelineState:7];
+//            [self renderRingTextures:[renderDictionary objectForKey:@"ringRenderArray"] withPipelineState:7];
         }
         
         if (rootController.renderPuzzleON){

@@ -57,6 +57,7 @@ CGFloat _screenHeightInPixels;
 @synthesize tileAnimationContainers;
 @synthesize beamAnimationContainers;
 @synthesize ringAnimationContainers;
+@synthesize logoAnimationContainers;
 @synthesize gameDictionaries;
 @synthesize dailyPuzzleGamePuzzleDictionary;
 
@@ -1413,6 +1414,7 @@ CGFloat _screenHeightInPixels;
     tileAnimationContainers = [NSMutableArray arrayWithCapacity:1];
     beamAnimationContainers = [NSMutableArray arrayWithCapacity:1];
     ringAnimationContainers = [NSMutableArray arrayWithCapacity:1];
+    logoAnimationContainers = [NSMutableArray arrayWithCapacity:1];
 
     if ((tileAnimationContainers = [self fetchAnimationDataFromPlist:@"tileAnimations" fext:@"plist" animationContainers:tileAnimationContainers]) != nil)
         DLog("Tile animation initialization complete.\n");
@@ -1432,6 +1434,13 @@ CGFloat _screenHeightInPixels;
         DLog("Ring animation initialization complete.\n");
     else {
         DLog("Ring animation initialization failed.\n");
+        success = NO;
+    }
+    
+    if ((logoAnimationContainers = [self fetchAnimationDataFromPlist:@"logoAnimations" fext:@"plist" animationContainers:logoAnimationContainers]) != nil)
+        DLog("Logo animation initialization complete.\n");
+    else {
+        DLog("Logo animation initialization failed.\n");
         success = NO;
     }
     

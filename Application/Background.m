@@ -142,6 +142,25 @@
     return unusedTileBackgroundRenderData;
 }
 
+- (TextureRenderData *)renderLogoImage:(unsigned int)logoColor {
+    BMDAppDelegate *appDelegate = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
+    BMDViewController *rc = (BMDViewController*)[[(BMDAppDelegate *)[[UIApplication sharedApplication]delegate] window] rootViewController];
+
+    NSMutableArray *backgroundTextureDataArray = appDelegate.backgroundTextures;
+    TextureData *logoTextureData;
+    
+    logoTextureData = [backgroundTextureDataArray objectAtIndex:LOGO_IMAGE];
+
+    logoRenderDataImage = [[TextureRenderData alloc] init];
+    logoRenderDataImage.renderTexture = logoTextureData.texture;
+    logoRenderDataImage->texturePositionInPixels.x = rc.logoCx * rc.contentScaleFactor;
+    logoRenderDataImage->texturePositionInPixels.y = rc.logoCy * rc.contentScaleFactor;
+    logoRenderDataImage->textureDimensionsInPixels.x = rc.logoWidth * rc.contentScaleFactor;
+    logoRenderDataImage->textureDimensionsInPixels.y = rc.logoHeight * rc.contentScaleFactor;
+    logoRenderDataImage->tileColor = logoColor;
+    return logoRenderDataImage;
+}
+
 - (TextureRenderData *)renderBackgroundImage:(unsigned int)backgroundColor {
     BMDAppDelegate *appDelegate = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
     BMDViewController *rc = (BMDViewController*)[[(BMDAppDelegate *)[[UIApplication sharedApplication]delegate] window] rootViewController];

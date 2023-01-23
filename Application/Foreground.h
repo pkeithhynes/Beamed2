@@ -39,6 +39,14 @@ API_AVAILABLE(ios(13.0))
                               sizeX:(unsigned int)sizeInPixelsX
                               sizeY:(unsigned int)sizeInPixelsY
                           syncFrame:(BOOL)syncFrame;
+- (TextureRenderData *)renderLogoFrame:(TextureRenderData *)logoRenderData
+                            centerX:(CGFloat)centerX
+                            centerY:(CGFloat)centerY
+                              color:(unsigned int)colorNumber
+                              sizeX:(CGFloat)sizeInPixelsX
+                              sizeY:(CGFloat)sizeInPixelsY
+                             syncFrame:(BOOL)syncFrame
+                            stillFrame:(BOOL)stillFrame;
 
 @end
 

@@ -99,7 +99,8 @@ API_AVAILABLE(ios(13.0))
     NSMutableArray *tileAnimationContainers;
     NSMutableArray *beamAnimationContainers;
     NSMutableArray *ringAnimationContainers;
-    
+    NSMutableArray *logoAnimationContainers;
+
     // Game Logic
     NSMutableDictionary     *gameDictionaries;
     NSMutableArray          *packsArray;
@@ -140,6 +141,7 @@ API_AVAILABLE(ios(13.0))
 @property (nonatomic, retain) NSMutableArray  * _Nullable tileAnimationContainers;
 @property (nonatomic, retain) NSMutableArray  * _Nullable beamAnimationContainers;
 @property (nonatomic, retain) NSMutableArray  * _Nullable ringAnimationContainers;
+@property (nonatomic, retain) NSMutableArray  * _Nullable logoAnimationContainers;
 @property (nonatomic, retain) NSMutableDictionary * _Nonnull gameDictionaries;
 @property (nonatomic, retain) NSMutableDictionary * _Nonnull dailyPuzzleGamePuzzleDictionary;
 

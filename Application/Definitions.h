@@ -13,7 +13,7 @@
 #define ENABLE_PUZZLE_EDITOR NO  // YES Enables puzzle editing and playback, NO Disables puzzle editing and enables gameplay only
 #define ENABLE_GA YES           // YES enables Google Ananlytics
 #define FORCE_PUZZLE_EDITOR_AUTOGEN NO    // YES forces AutoGen mode when PE enabled
-#define ENABLE_HOME_SCREEN_ANIMATION NO
+#define ENABLE_HOME_SCREEN_ANIMATION YES
 
 // Coordinate systems
 // - All tiles are positioned on a grid ranging from 6x8 to 12x16
@@ -153,7 +153,8 @@ enum eBackgroundTextures {  OVERLAY_TILE_OUTLINE,
                             TILE_CHECKMARK,
                             PACK_COMPLETED,
                             PUZZLE_BACKGROUND_IMAGE1,
-                            HELP_IMAGE
+                            HELP_IMAGE,
+                            LOGO_IMAGE
 };
 enum eTextAlignment { ALIGN_LEFT, ALIGN_CENTER, ALIGN_RIGHT };
 // --- Various Animations

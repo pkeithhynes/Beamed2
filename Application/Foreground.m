@@ -160,6 +160,60 @@
     return foregroundArray;
 }
 
+// Return a frame from the logo animation
+- (TextureRenderData *)renderLogoFrame:(TextureRenderData *)logoRenderData
+                            centerX:(CGFloat)centerX
+                            centerY:(CGFloat)centerY
+                              color:(unsigned int)colorNumber
+                              sizeX:(CGFloat)sizeInPixelsX
+                              sizeY:(CGFloat)sizeInPixelsY
+                          syncFrame:(BOOL)syncFrame
+                            stillFrame:(BOOL)stillFrame
+{
+    BMDAppDelegate *appDelegate = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
+    BMDViewController *rc = (BMDViewController*)[[(BMDAppDelegate *)[[UIApplication sharedApplication]delegate] window] rootViewController];
+
+    NSMutableArray *logoTextureDataArray = appDelegate.logoAnimationContainers;
+    NSMutableArray *frameArray = [[[logoTextureDataArray objectAtIndex:0] objectAtIndex:0] objectAtIndex:0];
+    
+    if (stillFrame){
+        animationFrame = 0;
+    }
+    else {
+        if (syncFrame){
+            animationFrame = 0;
+        }
+        else {
+            animationFrame++;
+            if (animationFrame >= [frameArray count]){
+                animationFrame = 0;
+            }
+        }
+    }
+    
+    TextureData *logoTextureData;
+    
+    // Add ring texture
+    logoRenderData = [[TextureRenderData alloc] init];
+    logoRenderData->tileColor = colorNumber;
+    logoTextureData = [frameArray objectAtIndex:animationFrame];
+    
+    logoRenderData.renderTexture = logoTextureData.texture;
+    logoRenderData->textureGridPosition.x = 0;
+    logoRenderData->textureGridPosition.y = 0;
+    logoRenderData->textureDimensionsInPixels.x = sizeInPixelsX;
+    logoRenderData->textureDimensionsInPixels.y = sizeInPixelsY;
+    
+    logoRenderData->texturePositionInPixels.x = centerX;
+    logoRenderData->texturePositionInPixels.y = centerY;
+    
+    logoRenderData->tileShape = JEWEL;
+    logoRenderData->angle = ANGLE0;
+    logoRenderData->tile = nil;
+    
+    return logoRenderData;
+}
+
 // Render an array of rings that are not connected with any Jewel or Puzzle
 - (NSMutableArray *)renderRingArray:(NSMutableArray *)ringArray
                            numberOfRings:(unsigned int)numberOfRings
