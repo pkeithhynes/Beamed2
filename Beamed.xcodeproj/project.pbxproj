@@ -29,9 +29,6 @@
 		52237775256829BC00F81224 /* TextureData.m in Sources */ = {isa = PBXBuildFile; fileRef = 52237774256829BC00F81224 /* TextureData.m */; };
 		52237776256829BC00F81224 /* TextureData.m in Sources */ = {isa = PBXBuildFile; fileRef = 52237774256829BC00F81224 /* TextureData.m */; };
 		52237777256829BC00F81224 /* TextureData.m in Sources */ = {isa = PBXBuildFile; fileRef = 52237774256829BC00F81224 /* TextureData.m */; };
-		522D214827AC85D700A91252 /* PuzzleBackgroundTheme2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 523239FB27AC73DA00B5D6B0 /* PuzzleBackgroundTheme2.wav */; };
-		522D214927AC85DD00A91252 /* IntrigueComedy.wav in Resources */ = {isa = PBXBuildFile; fileRef = 523239FC27AC73DB00B5D6B0 /* IntrigueComedy.wav */; };
-		52323A0027AC742C00B5D6B0 /* MysteryPuzzleLoop2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 523239FF27AC742C00B5D6B0 /* MysteryPuzzleLoop2.wav */; };
 		5251ACD8279667DA00A50A7B /* paidHintPacksArray.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5251ACD7279667DA00A50A7B /* paidHintPacksArray.plist */; };
 		5251ACD9279667DA00A50A7B /* paidHintPacksArray.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5251ACD7279667DA00A50A7B /* paidHintPacksArray.plist */; };
 		5251ACDA279667DA00A50A7B /* paidHintPacksArray.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5251ACD7279667DA00A50A7B /* paidHintPacksArray.plist */; };
@@ -420,9 +417,7 @@
 		8068338B292ECB1B00620AC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8068338A292ECB1B00620AC1 /* GoogleService-Info.plist */; };
 		8068338C292ECB1B00620AC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8068338A292ECB1B00620AC1 /* GoogleService-Info.plist */; };
 		8068338D292ECB1B00620AC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8068338A292ECB1B00620AC1 /* GoogleService-Info.plist */; };
-		806B4ECF296C7D7F00FFD306 /* LoadingScreen2.png in Resources */ = {isa = PBXBuildFile; fileRef = 806B4ECE296C7D7F00FFD306 /* LoadingScreen2.png */; };
 		806B4ED1296C7F5400FFD306 /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 806B4ED0296C7F5400FFD306 /* LaunchScreen.png */; };
-		806B4ED3296C821D00FFD306 /* Beamed2Logo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 806B4ED2296C821D00FFD306 /* Beamed2Logo2.png */; };
 		80843526291370E400EAAAB3 /* TileOpaque.png in Resources */ = {isa = PBXBuildFile; fileRef = 80843525291370E400EAAAB3 /* TileOpaque.png */; };
 		80843527291370E400EAAAB3 /* TileOpaque.png in Resources */ = {isa = PBXBuildFile; fileRef = 80843525291370E400EAAAB3 /* TileOpaque.png */; };
 		80843528291370E400EAAAB3 /* TileOpaque.png in Resources */ = {isa = PBXBuildFile; fileRef = 80843525291370E400EAAAB3 /* TileOpaque.png */; };
@@ -722,9 +717,6 @@
 		521E14FB25951081009B3743 /* BeamTextureRenderData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeamTextureRenderData.m; sourceTree = "<group>"; };
 		52237773256829BC00F81224 /* TextureData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextureData.h; sourceTree = "<group>"; };
 		52237774256829BC00F81224 /* TextureData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextureData.m; sourceTree = "<group>"; };
-		523239FB27AC73DA00B5D6B0 /* PuzzleBackgroundTheme2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = PuzzleBackgroundTheme2.wav; sourceTree = "<group>"; };
-		523239FC27AC73DB00B5D6B0 /* IntrigueComedy.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = IntrigueComedy.wav; sourceTree = "<group>"; };
-		523239FF27AC742C00B5D6B0 /* MysteryPuzzleLoop2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = MysteryPuzzleLoop2.wav; sourceTree = "<group>"; };
 		523B0452278D2B5500E5F0CA /* Beamed-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Beamed-iOS.entitlements"; sourceTree = "<group>"; };
 		52435C922572CA95003BF5F5 /* Optics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Optics.h; sourceTree = "<group>"; };
 		5251ACD7279667DA00A50A7B /* paidHintPacksArray.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = paidHintPacksArray.plist; sourceTree = "<group>"; };
@@ -887,9 +879,7 @@
 		805DB34B27D1453F00F9572A /* Prism.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Prism.png; sourceTree = "<group>"; };
 		8064E6582902463A006EEC33 /* editedPuzzlePack.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = editedPuzzlePack.plist; sourceTree = "<group>"; };
 		8068338A292ECB1B00620AC1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		806B4ECE296C7D7F00FFD306 /* LoadingScreen2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoadingScreen2.png; sourceTree = "<group>"; };
 		806B4ED0296C7F5400FFD306 /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
-		806B4ED2296C821D00FFD306 /* Beamed2Logo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Beamed2Logo2.png; sourceTree = "<group>"; };
 		80843525291370E400EAAAB3 /* TileOpaque.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileOpaque.png; sourceTree = "<group>"; };
 		80884C34292ED3A9005B29FC /* VungleSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = VungleSDK.xcframework; path = ../../Downloads/vungle6121/VungleSDK.xcframework; sourceTree = SOURCE_ROOT; };
 		80884C3A292EDAB8005B29FC /* FirebaseCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseCore.xcframework; sourceTree = "<group>"; };
@@ -918,6 +908,7 @@
 		808998E428B6F143003D2345 /* BMDSettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMDSettingsViewController.m; sourceTree = "<group>"; };
 		808C49D028D41210002A768C /* puzzlePacksArray.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = puzzlePacksArray.plist; sourceTree = "<group>"; };
 		808D86B3297527B00022B2FE /* puzzlePacks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = puzzlePacks.png; sourceTree = "<group>"; };
+		808DC5D0297F083C00F1DD98 /* Provenance.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Provenance.md; sourceTree = "<group>"; };
 		808E3BC428FC5304009C1474 /* GridTileDot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GridTileDot.png; sourceTree = "<group>"; };
 		808E49D7295E18A900D4D077 /* backArrowWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backArrowWhite.png; sourceTree = "<group>"; };
 		808E49D8295E18A900D4D077 /* nextArrowWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nextArrowWhite.png; sourceTree = "<group>"; };
@@ -1263,9 +1254,6 @@
 			isa = PBXGroup;
 			children = (
 				809FEA8929710C0800B13351 /* Audio Licenses */,
-				523239FC27AC73DB00B5D6B0 /* IntrigueComedy.wav */,
-				523239FB27AC73DA00B5D6B0 /* PuzzleBackgroundTheme2.wav */,
-				523239FF27AC742C00B5D6B0 /* MysteryPuzzleLoop2.wav */,
 				809FEA8129710BBD00B13351 /* InternalCalculations.wav */,
 				809FEA8229710BBE00B13351 /* NightDrive.wav */,
 			);
@@ -1418,8 +1406,6 @@
 				806B4ED0296C7F5400FFD306 /* LaunchScreen.png */,
 				80C206F9297D2FAA00FF0FD9 /* LoadingScreen.png */,
 				80C206F5297D2F9C00FF0FD9 /* Beamed2Logo.png */,
-				806B4ED2296C821D00FFD306 /* Beamed2Logo2.png */,
-				806B4ECE296C7D7F00FFD306 /* LoadingScreen2.png */,
 			);
 			name = "Home Screen Textures";
 			sourceTree = "<group>";
@@ -1571,6 +1557,14 @@
 			path = "Screen Backgrounds";
 			sourceTree = "<group>";
 		};
+		808DC5CF297F082800F1DD98 /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				808DC5D0297F083C00F1DD98 /* Provenance.md */,
+			);
+			path = Licenses;
+			sourceTree = "<group>";
+		};
 		809FEA8929710C0800B13351 /* Audio Licenses */ = {
 			isa = PBXGroup;
 			children = (
@@ -1639,6 +1633,7 @@
 		80D07DD5297DDA1C00295271 /* Logo Textures */ = {
 			isa = PBXGroup;
 			children = (
+				808DC5CF297F082800F1DD98 /* Licenses */,
 				80D07E21297E5AC600295271 /* Beamed2Logo_00000.png */,
 				80D07E2A297E5AC700295271 /* Beamed2Logo_00001.png */,
 				80D07E29297E5AC700295271 /* Beamed2Logo_00002.png */,
@@ -1884,7 +1879,6 @@
 				8023B2B52915AE9E00176960 /* Jewel.png in Resources */,
 				52994B7125DA13D700887B9C /* Rings_00013.png in Resources */,
 				80895498291DB7FE009C4D02 /* nextArrow.png in Resources */,
-				522D214827AC85D700A91252 /* PuzzleBackgroundTheme2.wav in Resources */,
 				8011CE8D297B2C0200E7CEAB /* lightBulb-11934419-vecteezy.pdf in Resources */,
 				80D07E48297E5AC800295271 /* Beamed2Logo_00007.png in Resources */,
 				809FEAD32971176200B13351 /* 67410904-win-game-level-93-license.pdf in Resources */,
@@ -1934,7 +1928,6 @@
 				52994B4D25DA13D700887B9C /* Rings_00007.png in Resources */,
 				5286EAB62564706B00B43209 /* TileJewelActivated14.png in Resources */,
 				52994B6225DA13D700887B9C /* Rings_00023.png in Resources */,
-				522D214927AC85DD00A91252 /* IntrigueComedy.wav in Resources */,
 				52994B8625DA13D700887B9C /* Rings_00024.png in Resources */,
 				8011CEA8297B8CCC00E7CEAB /* Pond5_Proof-of-purchase_6732927.pdf in Resources */,
 				809FEA8429710BBE00B13351 /* InternalCalculations.wav in Resources */,
@@ -2009,7 +2002,6 @@
 				809FEAD62971176200B13351 /* 67410905-win-game-level-119-license.pdf in Resources */,
 				809FEACA2971176200B13351 /* 67410901-win-game-level-50-license.pdf in Resources */,
 				80843527291370E400EAAAB3 /* TileOpaque.png in Resources */,
-				806B4ECF296C7D7F00FFD306 /* LoadingScreen2.png in Resources */,
 				5286EA922564706B00B43209 /* TileJewelActivated06.png in Resources */,
 				809FEAAD2971167200B13351 /* 67409514-puzzle-background-theme-2-license.txt in Resources */,
 				8011CE93297B3E4400E7CEAB /* TapToRotate.png in Resources */,
@@ -2020,7 +2012,6 @@
 				8089549C291DB805009C4D02 /* lightBulb.png in Resources */,
 				526FBD1C25926960001F5647 /* Beam-Angle00-10.png in Resources */,
 				80BF264527D723A000BF9736 /* LaserGun-9.png in Resources */,
-				52323A0027AC742C00B5D6B0 /* MysteryPuzzleLoop2.wav in Resources */,
 				80D07E33297E5AC800295271 /* Beamed2Logo_00015.png in Resources */,
 				809FEAA72971167200B13351 /* 67409516-intrigue-comedy-license.txt in Resources */,
 				8011CE9F297B8B3500E7CEAB /* 003577603-light-sabersci-filowswingfast-.wav in Resources */,
@@ -2040,7 +2031,6 @@
 				5286EA9E2564706B00B43209 /* TileJewelActivated11.png in Resources */,
 				8023B2B12915AD9B00176960 /* JewelRed.png in Resources */,
 				80BE38B7292FFE5900076A7E /* InAppMessagingDisplayResources.bundle in Resources */,
-				806B4ED3296C821D00FFD306 /* Beamed2Logo2.png in Resources */,
 				529A511727ACD24200FE0669 /* win-game-puzzle-93.wav in Resources */,
 				8044DD942904908E0078942B /* yellowRectangle.png in Resources */,
 				80D07E3C297E5AC800295271 /* Beamed2Logo_00011.png in Resources */,

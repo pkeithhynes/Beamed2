@@ -1594,7 +1594,7 @@ Implementation of the cross-platform view controller
 //    homeView.opaque = YES;
     
     // Get the logo image size
-    UIImage *logoImage = [UIImage imageNamed:@"Beamed2Logo.png"];
+    UIImage *logoImage = [UIImage imageNamed:@"Beamed2Logo_00000.png"];
 //    UIImageView *logoImageView = [[UIImageView alloc] initWithImage:logoImage];
     CGSize logoSize = logoImage.size;
     logoWidth = screenWidthInPixels/contentScaleFactor;
