@@ -366,12 +366,16 @@ CGFloat _screenHeightInPixels;
             [kvStore removeObjectForKey:key];
         }
     }
+    [kvStore synchronize];
+    kvStore = [NSUbiquitousKeyValueStore defaultStore];
+    kvd = [kvStore dictionaryRepresentation];
 }
 
 
 // This method tests for the existence of a key in NSUbiquitoutKeyValueStore
 - (BOOL)existsKeyInNSUbiquitousKeyValueStore:(NSString *)key {
     NSUbiquitousKeyValueStore *cloudStore = [NSUbiquitousKeyValueStore defaultStore];
+//    id myObject = [cloudStore objectForKey:key];
     if ([cloudStore objectForKey:key] == nil) {
         return NO;
     }
@@ -400,6 +404,7 @@ CGFloat _screenHeightInPixels;
     // Use iCloud storage if permitted
     if ([[defaults objectForKey:@"permittedToUseiCloud"] isEqualToString:@"YES"]){
         [cloudStore setObject:object forKey:key];
+        [cloudStore synchronize];
     }
     // iCloud use not permitted so use local default storage
     else {
@@ -415,6 +420,7 @@ CGFloat _screenHeightInPixels;
     // Use iCloud storage if permitted
     if ([[defaults objectForKey:@"permittedToUseiCloud"] isEqualToString:@"YES"]){
         [cloudStore removeObjectForKey:key];
+        [cloudStore synchronize];
     }
     // iCloud use not permitted so use local default storage
     else {
@@ -430,6 +436,7 @@ CGFloat _screenHeightInPixels;
     // Use iCloud storage if permitted
     if ([[defaults objectForKey:@"permittedToUseiCloud"] isEqualToString:@"YES"]){
         [cloudStore setObject:[NSNumber numberWithUnsignedInt:number] forKey:key];
+        [cloudStore synchronize];
     }
     // iCloud use not permitted so use local default storage
     else {

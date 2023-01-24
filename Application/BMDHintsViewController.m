@@ -75,10 +75,12 @@
     unsigned int titleLabelSize;
     CGFloat buttonWidth, buttonHeight, homeButtonWidthToHeightRatio;
     CGFloat backButtonIconSizeInPoints = 60;
+    CGFloat settingsLabelY;
     switch (rc.displayAspectRatio) {
         case ASPECT_4_3:{
             // iPad (9th generation)
             titleLabelSize = 36;
+            settingsLabelY = 2.0*titleLabelSize;
             buttonWidth = 0.6*rc.screenWidthInPixels/rc.contentScaleFactor;
             buttonHeight = buttonWidth/8.0;
             homeButtonWidthToHeightRatio = 0.4;
@@ -88,6 +90,7 @@
         case ASPECT_10_7:{
             // iPad Air (5th generation)
             titleLabelSize = 36;
+            settingsLabelY = 2.0*titleLabelSize;
             buttonWidth = 0.6*rc.screenWidthInPixels/rc.contentScaleFactor;
             buttonHeight = buttonWidth/6.0;
             homeButtonWidthToHeightRatio = 0.4;
@@ -97,6 +100,7 @@
         case ASPECT_3_2: {
             // iPad Mini (6th generation)
             titleLabelSize = 36;
+            settingsLabelY = 2.0*titleLabelSize;
             buttonWidth = 0.6*rc.screenWidthInPixels/rc.contentScaleFactor;
             buttonHeight = buttonWidth/6.0;
             homeButtonWidthToHeightRatio = 0.4;
@@ -106,6 +110,7 @@
         case ASPECT_16_9: {
             // iPhone 8
             titleLabelSize = 24;
+            settingsLabelY = 1.0*titleLabelSize;
             buttonWidth = 0.8*rc.screenWidthInPixels/rc.contentScaleFactor;
             buttonHeight = buttonWidth/5.0;
             homeButtonWidthToHeightRatio = 0.5;
@@ -115,6 +120,7 @@
         case ASPECT_13_6: {
             // iPhone 14
             titleLabelSize = 24;
+            settingsLabelY = 2.0*titleLabelSize;
             buttonWidth = 0.8*rc.screenWidthInPixels/rc.contentScaleFactor;
             buttonHeight = buttonWidth/5.0;
             homeButtonWidthToHeightRatio = 0.5;
@@ -126,7 +132,6 @@
     // hintsViewLabel
     CGFloat w = 0.5*hintPacksFrame.size.width;
     CGFloat h = 1.5*titleLabelSize;
-    CGFloat settingsLabelY = 2.0*h;
     CGRect hintsLabelFrame = CGRectMake(0.5*hintPacksFrame.size.width - w/2.0,
                                         settingsLabelY,
                                         w,
