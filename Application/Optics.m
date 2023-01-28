@@ -549,13 +549,15 @@ extern void playSound(AVAudioPlayer *PLAYER);
     }
     
     // Fetch an array of Background Tile-sized Textures to render behind the Puzzle
-    if (puzzleHasBeenCompleted) {
-        backgroundRenderArray = [background renderBackgroundArray:backgroundRenderArray tileColor:7 numberOfUnplacedTiles:initialNumberOfUnplacedTiles
-                                                  puzzleCompleted:YES];
-    }
-    else {
-        backgroundRenderArray = [background renderBackgroundArray:backgroundRenderArray tileColor:0 numberOfUnplacedTiles:initialNumberOfUnplacedTiles
-                                                  puzzleCompleted:NO];
+    if (displayBackgroundArray){
+        if (puzzleHasBeenCompleted) {
+            backgroundRenderArray = [background renderBackgroundArray:backgroundRenderArray tileColor:7 numberOfUnplacedTiles:initialNumberOfUnplacedTiles
+                                                      puzzleCompleted:YES];
+        }
+        else {
+            backgroundRenderArray = [background renderBackgroundArray:backgroundRenderArray tileColor:0 numberOfUnplacedTiles:initialNumberOfUnplacedTiles
+                                                      puzzleCompleted:NO];
+        }
     }
     
     // Fetch beamsRenderArray that combines all beams of each RGB color into at most one beam BeamTextureRenderObject between each pair of tiles
@@ -679,7 +681,9 @@ extern void playSound(AVAudioPlayer *PLAYER);
     if (overlayRenderDataImage != nil){
         [renderDictionary setObject:overlayRenderDataImage forKey:@"overlayImage"];
     }
-    [renderDictionary setObject:backgroundRenderDataInner forKey:@"backgroundRenderDataInner"];
+    if (displayBackgroundArray){
+        [renderDictionary setObject:backgroundRenderDataInner forKey:@"backgroundRenderDataInner"];
+    }
     if (![appd autoGenIsEnabled]){
         [renderDictionary setObject:unusedTileBackgroundRenderData forKey:@"unusedTileBackgroundRenderData"];
     }
@@ -907,96 +911,67 @@ extern void playSound(AVAudioPlayer *PLAYER);
             puzzleCompletionCondition = ALL_JEWELS_ENERGIZED;
         }
         
+        // Normally display background array
+        displayBackgroundArray = YES;
+        
         //
         // Fetch arrayOfMessageLabels associated with a Demo Puzzle
         //
         if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
             NSArray *arrayOfMessageButtonsAndLabels = [[NSArray alloc] init];
             arrayOfMessageButtonsAndLabels = [puzzleDictionary objectForKey:@"arrayOfMessageButtonsAndLabels"];
+            
+            if ([[puzzleDictionary objectForKey:@"displayBackgroundArray"]boolValue] == NO){
+                displayBackgroundArray = NO;
+            }
+            
             if ([arrayOfMessageButtonsAndLabels count] > 0){
                 vc.demoMessageButtonsAndLabels = [[NSMutableArray alloc] initWithCapacity:1];
-                NSDictionary *messageLabelAspectRatioDictionary;
-                NSDictionary *messageLabelDictionary;
-                UIDemoLabel *label;
-                // Label and Button position and size
-                CGFloat labelX, labelY, propX, propY;
-                BOOL centerLabel = NO;
-                BOOL justifiedLabel = NO;
-                BOOL dragTile = NO;
-                BOOL tapTile = NO;
-                BOOL puzzleComplete = NO;
-                BOOL nextPuzzle = NO;
-                BOOL finalPuzzle = NO;
-                CGFloat labelW = (_puzzleDisplayWidthInPixels-0.3*_squareTileSideLengthInPixels)/rc.contentScaleFactor;
-                CGFloat labelH = (2.5*_squareTileSideLengthInPixels)/rc.contentScaleFactor;
-                CGRect labelFrame;
+                
+                // Retrieve messageLabelDictionary - the Dictionary associated with this label
+                NSDictionary *messageLabelDictionary, *messageLabelAspectRatioDictionary;
+                NSMutableArray *labelArray = [NSMutableArray arrayWithCapacity:1];
+                unsigned int labelIndex = 0;
                 NSEnumerator *arrayEnum = [arrayOfMessageButtonsAndLabels objectEnumerator];
-                while (messageLabelAspectRatioDictionary = [arrayEnum nextObject]){
+                while (messageLabelDictionary = [arrayEnum nextObject]){
+                    // Retrieve aspectRatioDictionary - Dictionary associated with this aspect ratio
                     switch (rc->displayAspectRatio) {
                         case ASPECT_4_3: {
                             // iPad (9th generation)
-                            messageLabelDictionary = [messageLabelAspectRatioDictionary objectForKey:@"ASPECT_4_3"];
+                            messageLabelAspectRatioDictionary = [messageLabelDictionary objectForKey:@"ASPECT_4_3"];
                             break;
                         }
                         case ASPECT_10_7: {
                             // iPad Air (5th generation)
-                            messageLabelDictionary = [messageLabelAspectRatioDictionary objectForKey:@"ASPECT_10_7"];
+                            messageLabelAspectRatioDictionary = [messageLabelDictionary objectForKey:@"ASPECT_10_7"];
                             break;
                         }
                         case ASPECT_3_2: {
                             // iPad Mini (6th generation)
-                            messageLabelDictionary = [messageLabelAspectRatioDictionary objectForKey:@"ASPECT_3_2"];
+                            messageLabelAspectRatioDictionary = [messageLabelDictionary objectForKey:@"ASPECT_3_2"];
                             break;
                         }
                         case ASPECT_16_9: {
                             // iPhone 8
-                            messageLabelDictionary = [messageLabelAspectRatioDictionary objectForKey:@"ASPECT_16_9"];
+                            messageLabelAspectRatioDictionary = [messageLabelDictionary objectForKey:@"ASPECT_16_9"];
                             break;
                         }
                         case ASPECT_13_6: {
                             // iPhone 14
-                            messageLabelDictionary = [messageLabelAspectRatioDictionary objectForKey:@"ASPECT_13_6"];
+                            messageLabelAspectRatioDictionary = [messageLabelDictionary objectForKey:@"ASPECT_13_6"];
                             break;
                         }
                     }
-                    if ([[messageLabelAspectRatioDictionary objectForKey:@"dragTile"] isEqualToNumber:[NSNumber numberWithInt:1]]) {
-                        dragTile = YES;
-                    }
-                    else {
-                        dragTile = NO;
-                    }
-                    if ([[messageLabelAspectRatioDictionary objectForKey:@"tapTile"] isEqualToNumber:[NSNumber numberWithInt:1]]) {
-                        tapTile = YES;
-                    }
-                    else {
-                        tapTile = NO;
-                    }
-                    if ([[messageLabelAspectRatioDictionary objectForKey:@"puzzleComplete"] isEqualToNumber:[NSNumber numberWithInt:1]]) {
-                        puzzleComplete = YES;
-                    }
-                    else {
-                        puzzleComplete = NO;
-                    }
-                    if ([[messageLabelAspectRatioDictionary objectForKey:@"nextPuzzle"] isEqualToNumber:[NSNumber numberWithInt:1]]) {
-                        nextPuzzle = YES;
-                    }
-                    else {
-                        nextPuzzle = NO;
-                    }
-                    if ([[messageLabelAspectRatioDictionary objectForKey:@"finalPuzzle"] isEqualToNumber:[NSNumber numberWithInt:1]]) {
-                        finalPuzzle = YES;
-                    }
-                    else {
-                        finalPuzzle = NO;
-                    }
-                    labelX = [[messageLabelDictionary objectForKey:@"labelOffsetXPoints"] floatValue];
-                    labelY = [[messageLabelDictionary objectForKey:@"labelOffsetYPoints"] floatValue];
-                    propX = [[messageLabelDictionary objectForKey:@"labelOffsetXProportion"] floatValue];
-                    propY = [[messageLabelDictionary objectForKey:@"labelOffsetYProportion"] floatValue];
-                    puzzleFontSize = [[messageLabelDictionary objectForKey:@"labelFontSize"] floatValue];
-                    centerLabel = [messageLabelDictionary objectForKey:@"centerLabel"];
-                    justifiedLabel = [messageLabelDictionary objectForKey:@"justifiedLabel"];
-                    if (centerLabel){
+                    // Label and Button position and size
+                    CGFloat labelX, labelY, propX, propY;
+                    CGFloat labelW = (_puzzleDisplayWidthInPixels-0.3*_squareTileSideLengthInPixels)/rc.contentScaleFactor;
+                    CGFloat labelH = (2.5*_squareTileSideLengthInPixels)/rc.contentScaleFactor;
+                    CGRect labelFrame;
+                    labelX = [[messageLabelAspectRatioDictionary objectForKey:@"labelOffsetXPoints"] floatValue];
+                    labelY = [[messageLabelAspectRatioDictionary objectForKey:@"labelOffsetYPoints"] floatValue];
+                    propX = [[messageLabelAspectRatioDictionary objectForKey:@"labelOffsetXProportion"] floatValue];
+                    propY = [[messageLabelAspectRatioDictionary objectForKey:@"labelOffsetYProportion"] floatValue];
+                    if ([[messageLabelAspectRatioDictionary objectForKey:@"centerLabel"]boolValue]){
                         labelFrame = CGRectMake((rc->screenWidthInPixels/rc->contentScaleFactor)/2.0-labelW/2.0,
                                                 propY*rc->screenHeightInPixels/rc->contentScaleFactor, labelW, labelH);
                     }
@@ -1004,41 +979,46 @@ extern void playSound(AVAudioPlayer *PLAYER);
                         labelFrame = CGRectMake(propX*rc->screenWidthInPixels/rc->contentScaleFactor,
                                                 propY*rc->screenHeightInPixels/rc->contentScaleFactor, labelW, labelH);
                     }
-                    
-                    // UIDemoLabel
-                    if (dragTile || tapTile || puzzleComplete){
-                        label = [[UIDemoLabel alloc]initWithFrame:labelFrame];
-                        if (centerLabel){
-                            [label setTextAlignment:NSTextAlignmentCenter];
-                        }
-                        else if (justifiedLabel){
-                            [label setTextAlignment:NSTextAlignmentJustified];
-                        }
-                        else {
-                            [label setTextAlignment:NSTextAlignmentNatural];
-                        }
-                        label.dragTile = dragTile;
-                        label.tapTile = tapTile;
-                        label.puzzleComplete = puzzleComplete;
-                        label.font = [UIFont fontWithName:@"PingFang SC Light" size:puzzleFontSize];
-                        label.text = [messageLabelDictionary objectForKey:@"labelText"];
-                        //                NSString *labelColor = [messageLabelDictionary objectForKey:@"labelColor"];
-                        label.textColor = [self getUIColorfromStringColor:[messageLabelDictionary objectForKey:@"labelColor"]];
-                        label.numberOfLines = 0;
-                        if (dragTile || tapTile || puzzleComplete){
-                            label.hidden = YES;
-                        }
-                        else {
-                            label.hidden = NO;
-                        }
-                        [vc.demoMessageButtonsAndLabels addObject:label];
-                        [vc.view addSubview:label];
+                    // Build UIDemoLabel
+                    UIDemoLabel *label = [[UIDemoLabel alloc]initWithFrame:labelFrame];
+                    [labelArray addObject:label];
+                    // Fetch booleans that determine how this label is used
+                    label.nextPuzzle = [[messageLabelDictionary objectForKey:@"nextPuzzle"]boolValue];
+                    label.dragTile = [[messageLabelDictionary objectForKey:@"dragTile"]boolValue];
+                    label.tapTile = [[messageLabelDictionary objectForKey:@"tapTile"]boolValue];
+                    label.puzzleComplete = [[messageLabelDictionary objectForKey:@"puzzleComplete"]boolValue];
+                    label.finalPuzzle = [[messageLabelDictionary objectForKey:@"finalPuzzle"]boolValue];
+                    // Fetch booleans that determine how this label is displayed
+                    label.centerTextInLabel = [[messageLabelAspectRatioDictionary objectForKey:@"centerTextInLabel"]boolValue];
+                    label.leftAlignTextInLabel = [[messageLabelAspectRatioDictionary objectForKey:@"leftAlignTextInLabel"]boolValue];
+                    if (label.centerTextInLabel){
+                        [label setTextAlignment:NSTextAlignmentCenter];
                     }
+                    else if (label.leftAlignTextInLabel){
+                        [label setTextAlignment:NSTextAlignmentLeft];
+                    }
+                    else {
+                        [label setTextAlignment:NSTextAlignmentNatural];
+                    }
+                    puzzleFontSize = [[messageLabelAspectRatioDictionary objectForKey:@"labelFontSize"] floatValue];
+                    label.font = [UIFont fontWithName:@"PingFang SC Regular" size:puzzleFontSize];
+                    label.text = [messageLabelAspectRatioDictionary objectForKey:@"labelText"];
+                    label.textColor = [self getUIColorfromStringColor:[messageLabelAspectRatioDictionary objectForKey:@"labelColor"]];
+                    label.numberOfLines = 0;
+                    if (label.dragTile || label.tapTile || label.puzzleComplete){
+                        label.hidden = YES;
+                    }
+                    else {
+                        label.hidden = NO;
+                    }
+                    [vc.demoMessageButtonsAndLabels addObject:label];
+                    [vc.view addSubview:label];
+                    labelIndex++;
                 }
             }
         }
         //
-        // End Demo Puzzle fetch
+        // End Demo-Specific Puzzle fetch
         //
         
         // Initialize the prism beam refracting matrices
@@ -1090,6 +1070,12 @@ extern void playSound(AVAudioPlayer *PLAYER);
             
             if (![self searchForTileAtSameGridPosition:tile array:tiles]){
                 [self putOpticsTile:tile array:tiles];
+            }
+            
+            // Allow Jewels to be initialized in the energized state for demonstration purposes
+            if (rc.appCurrentGamePackType == PACKTYPE_DEMO &&
+                [[jewelDictionary objectForKey:@"showEnergized"]boolValue] == YES){
+                tile->showEnergized = YES;
             }
         }
         

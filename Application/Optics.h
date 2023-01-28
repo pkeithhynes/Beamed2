@@ -87,6 +87,7 @@ API_AVAILABLE(ios(13.0))
     NSMutableArray             *renderArray;
     NSMutableDictionary         *renderDictionary;
     NSMutableArray             *tileRenderArray;
+    BOOL                        displayBackgroundArray;
     NSMutableArray             *backgroundRenderArray;
     NSMutableArray             *beamsRenderArray;
     NSMutableArray             *gridPositionsCrossedByMultipleCoincidentBeams;

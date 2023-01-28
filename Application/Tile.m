@@ -560,7 +560,7 @@ API_AVAILABLE(ios(13.0))
                 energized = YES;
                 currentAnimation = TILE_A_ENERGIZED;
             }
-            else {
+            else if (!showEnergized){
                 energized = NO;
                 if (currentAnimation != TILE_A_LIGHTSWEEP) {
                     currentAnimation = TILE_A_WAITING;
@@ -596,7 +596,7 @@ API_AVAILABLE(ios(13.0))
         energized = NO;
         showSpectrum = NO;
     }
-    else {
+    else if (!showEnergized){
         energized = NO;
         showSpectrum = NO;
         currentAnimation = TILE_A_WAITING;
@@ -661,6 +661,11 @@ API_AVAILABLE(ios(13.0))
         }
     }
     
+    // Handle showEnergized
+    if (tileShape==JEWEL && showEnergized==YES){
+        currentAnimation = TILE_A_ENERGIZED;
+    }
+    
     // Increment animationFrame, wrapping back to 0 if last animation
     NSMutableArray *frameArray = [[[tileTextureDataArray objectAtIndex:animationContainer] objectAtIndex:ANGLE0] objectAtIndex:currentAnimation];
     animationFrame++;
@@ -671,7 +676,8 @@ API_AVAILABLE(ios(13.0))
     TextureData *textureData;
     // This renders just the particle effect on top of the Jewel.
     // The Jewel itself is rendered by the renderTileBackground method
-    if (tileShape == JEWEL && energized) {
+    if ((tileShape == JEWEL && energized) ||
+        (tileShape == JEWEL && showEnergized)) {
         switch (tileColor){
             case COLOR_RED:{
                 textureData = [frameArray objectAtIndex:animationFrame];
@@ -735,7 +741,8 @@ API_AVAILABLE(ios(13.0))
     textureRenderData->textureGridPosition = gridPosition;
     textureRenderData->texturePositionInPixels = tilePositionInPixels;
     textureRenderData->textureDimensionsInPixels = tileDimensionsInPixels;
-    if (tileShape == JEWEL && energized){
+    if ((tileShape == JEWEL && energized) ||
+        (tileShape == JEWEL && showEnergized)){
         textureRenderData->textureDimensionsInPixels.x = 2.0*tileDimensionsInPixels.x;
         textureRenderData->textureDimensionsInPixels.y = 2.0*tileDimensionsInPixels.y;
         textureRenderData->texturePositionInPixels.x = tilePositionInPixels.x - 0.25*textureRenderData->textureDimensionsInPixels.x;

@@ -13,7 +13,10 @@
 @synthesize dragTile;
 @synthesize tapTile;
 @synthesize puzzleComplete;
-
+@synthesize nextPuzzle;
+@synthesize finalPuzzle;
+@synthesize centerTextInLabel;
+@synthesize leftAlignTextInLabel;
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -27,6 +30,10 @@
     dragTile = NO;
     tapTile = NO;
     puzzleComplete = NO;
+    nextPuzzle = NO;
+    finalPuzzle = NO;
+    centerTextInLabel = NO;
+    leftAlignTextInLabel = NO;
     return self;
 }
 

@@ -38,7 +38,7 @@
     NSEnumerator *tileEnum = [tiles objectEnumerator];
     Tile *aTile = nil;
     while (aTile = [tileEnum nextObject]) {
-        if (aTile->tileShape == TILE_AC_JEWEL && !aTile->energized) {
+        if (aTile->tileShape == TILE_AC_JEWEL && !aTile->energized && !aTile->showEnergized) {
             ringRenderData = [[TextureRenderData alloc] init];
             switch (aTile->tileColor){
                 case COLOR_RED:{

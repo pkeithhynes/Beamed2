@@ -15,11 +15,19 @@ NS_ASSUME_NONNULL_BEGIN
     BOOL dragTile;
     BOOL tapTile;
     BOOL puzzleComplete;
+    BOOL nextPuzzle;
+    BOOL finalPuzzle;
+    BOOL centerTextInLabel;
+    BOOL leftAlignTextInLabel;
 }
 
 @property (readwrite) BOOL dragTile;
 @property (readwrite) BOOL tapTile;
 @property (readwrite) BOOL puzzleComplete;
+@property (readwrite) BOOL nextPuzzle;
+@property (readwrite) BOOL finalPuzzle;
+@property (readwrite) BOOL centerTextInLabel;
+@property (readwrite) BOOL leftAlignTextInLabel;
 
 - (UIDemoLabel *)init;
 @end

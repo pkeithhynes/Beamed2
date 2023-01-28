@@ -58,6 +58,7 @@ API_AVAILABLE(ios(13.0))
     uint                tag;     // Optional nonzero quantity unique to each game puzzle
                                 // used to identify a particular Tile
     BOOL					energized;
+    BOOL                    showEnergized;
     NSMutableArray			*incomingBeams[3];
     TextureRenderData      *textureRenderData;
     TextureRenderData      *jewelBackgroundtextureRenderData;
