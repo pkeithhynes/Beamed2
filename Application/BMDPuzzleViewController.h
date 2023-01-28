@@ -87,6 +87,9 @@ API_AVAILABLE(ios(13.0))
     UILabel *puzzlesSolvedLabelStats;
     UILabel *pointsLabelStats;
     
+    // Array of labels in PACKTYPE_DEMO infoScreen
+    NSMutableArray *infoScreenLabelArray;
+    
     //
     // Supports UIStepper for setting gridSize
     //
@@ -164,6 +167,8 @@ API_AVAILABLE(ios(13.0))
 @property (nonatomic, retain) UIStepper *gridSizeStepper;
 
 @property (nonatomic, retain) NSMutableArray *demoMessageButtonsAndLabels;
+@property (nonatomic, retain) NSMutableArray *infoScreenLabelArray;
+
 
 @property (nonatomic, retain) NSMutableArray * _Nonnull allowableLaserGridPositionArray;
 @property (nonatomic, retain) NSMutableArray * _Nonnull allowableTileGridPositionArray;

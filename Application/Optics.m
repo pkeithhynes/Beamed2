@@ -73,6 +73,13 @@ extern void playSound(AVAudioPlayer *PLAYER);
         [self hideDemoTileDragLabel];
         [self hideDemoPuzzleCompleteLabel];
         [self hideDemoPuzzleNextButton];
+        // Hide and remove all labels from previous infoScreen
+        UIDemoLabel *label;
+        NSEnumerator *arrayEnum = [vc.infoScreenLabelArray objectEnumerator];
+        while (label = [arrayEnum nextObject]){
+            label.hidden = YES;
+        }
+        [vc.infoScreenLabelArray removeAllObjects];
     }
     
     // Build all Puzzle components from puzzleDictionary
@@ -116,6 +123,13 @@ extern void playSound(AVAudioPlayer *PLAYER);
             vc.replayIconWhite.hidden = NO;
             packHasBeenCompleted = NO;
         }
+    }
+    
+    // If we are in PACKTYPE_DEMO and the puzzle is of type infoScreen then show the nextArraw and
+    // the backArrowWhite buttons
+    if (rc.appCurrentGamePackType == PACKTYPE_DEMO && infoScreen){
+        vc.nextArrow.hidden = NO;
+        vc.backArrowWhite.hidden = NO;
     }
 }
 
@@ -276,6 +290,10 @@ extern void playSound(AVAudioPlayer *PLAYER);
     vc.replayIconWhite.hidden = YES;
     if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
         vc.backButton.hidden = YES;
+        if (infoScreen){
+            vc.backArrowWhite.hidden = NO;
+            vc.nextArrow.hidden = NO;
+        }
     }
     else {
         vc.backButton.hidden = NO;
@@ -345,7 +363,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
                 myTile->tilePositionInPixels = [self gridPositionToIntPixelPosition:myTile->gridPosition];
                 numberOfUnplacedTiles++;
             }
-         }
+        }
         
         // If a JEWEL is energized then draw the JEWEL background first, then add the activation animation atop that
         if (myTile->tileShape == JEWEL) {
@@ -416,8 +434,8 @@ extern void playSound(AVAudioPlayer *PLAYER);
                     movableTileRenderData = [background renderMovableTile:myTile->tilePositionInPixels placedUsingHint:myTile->placedUsingHint placedManuallyMatchesHint:myTile->placedManuallyMatchesHint];
                     [tileRenderArray addObject:movableTileRenderData];
                     // Finger pointing at one unplaced Tile
-//                    pointingFingerRenderData = [background renderPointingFinger:myTile->tilePositionInPixels angle:ANGLE135];
-//                    [tileRenderArray addObject:pointingFingerRenderData];
+                    //                    pointingFingerRenderData = [background renderPointingFinger:myTile->tilePositionInPixels angle:ANGLE135];
+                    //                    [tileRenderArray addObject:pointingFingerRenderData];
                     movableTileDragTextDisplayed = YES;
                 }
                 else if (myTile->placedUsingHint || myTile->placedManuallyMatchesHint){
@@ -436,18 +454,24 @@ extern void playSound(AVAudioPlayer *PLAYER);
     //
     // Fetch the Puzzle background image
     //
-    backgroundRenderDataImage = [background renderBackgroundImage:7];
+    if (displayBackgroundImage == YES){
+        backgroundRenderDataImage = [background renderBackgroundImage:7];
+    }
+    
+    //
+    // Fetch the help image
+    //
     overlayRenderDataImage = nil;
     if (rc.renderOverlayON){
         overlayRenderDataImage = [background renderOverlayImage:HELP_IMAGE color:7];
     }
-
+    
     //
     // Fetch the Gameplay inner and outer background colors
     //
-//    backgroundRenderDataOuter = [background renderBackgroundOuter:COLOR_BLUE];
+    //    backgroundRenderDataOuter = [background renderBackgroundOuter:COLOR_BLUE];
     backgroundRenderDataInner = [background renderBackgroundInner:COLOR_GRAY];
-
+    
     //
     // Fetch the Unused Tile background
     //
@@ -459,7 +483,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
     //
     // Fetch the Gameplay border
     //
-    if (puzzleCompletionCondition == ALL_JEWELS_ENERGIZED || puzzleCompletionCondition == TUTORIAL_PUZZLE_COMPLETE){
+    if (puzzleCompletionCondition == ALL_JEWELS_ENERGIZED || puzzleCompletionCondition == INFO_SCREEN){
         // Gameplay Mode
         if (![appd editModeIsEnabled]){
             vc.hintButton.hidden = [self allTilesArePlaced] || (rc.appCurrentGamePackType == PACKTYPE_DEMO);
@@ -514,11 +538,17 @@ extern void playSound(AVAudioPlayer *PLAYER);
             }
         }
         else {
-            vc.nextArrow.hidden = YES;
-            vc.backArrowWhite.hidden = YES;
-            vc.replayIconWhite.hidden = YES;
-            [vc.nextButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            vc.nextButton.layer.borderColor = [UIColor whiteColor].CGColor;
+            if (rc.appCurrentGamePackType == PACKTYPE_DEMO && infoScreen){
+                vc.backArrowWhite.hidden = NO;
+                vc.nextArrow.hidden = NO;
+            }
+            else {
+                vc.nextArrow.hidden = YES;
+                vc.backArrowWhite.hidden = YES;
+                vc.replayIconWhite.hidden = YES;
+                [vc.nextButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                vc.nextButton.layer.borderColor = [UIColor whiteColor].CGColor;
+            }
         }
     }
     else if (puzzleCompletionCondition == USER_TOUCH){
@@ -573,7 +603,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
         }
     }
     
-
+    
     // Fetch an array of various animations to render atop other screen elements.  For example expanding rings for
     // energized jewels.
     ringRenderArray = [foreground renderIdleJewelRingArray:ringRenderArray];
@@ -638,6 +668,10 @@ extern void playSound(AVAudioPlayer *PLAYER);
             vc.nextButton.hidden = YES;
             vc.nextArrow.hidden = YES;
             vc.backArrowWhite.hidden = YES;
+            if (infoScreen){
+                vc.backArrowWhite.hidden = NO;
+                vc.nextArrow.hidden = NO;
+            }
             vc.replayIconWhite.hidden = YES;
             vc.backButton.hidden = YES;
             vc.backArrow.hidden = YES;
@@ -677,7 +711,9 @@ extern void playSound(AVAudioPlayer *PLAYER);
     }
     
     // Add render arrays into the master renderDictionary
-    [renderDictionary setObject:backgroundRenderDataImage forKey:@"backgroundImage"];
+    if (displayBackgroundImage == YES){
+        [renderDictionary setObject:backgroundRenderDataImage forKey:@"backgroundImage"];
+    }
     if (overlayRenderDataImage != nil){
         [renderDictionary setObject:overlayRenderDataImage forKey:@"overlayImage"];
     }
@@ -913,7 +949,8 @@ extern void playSound(AVAudioPlayer *PLAYER);
         
         // Normally display background array
         displayBackgroundArray = YES;
-        
+        displayBackgroundImage = YES;
+
         //
         // Fetch arrayOfMessageLabels associated with a Demo Puzzle
         //
@@ -924,13 +961,20 @@ extern void playSound(AVAudioPlayer *PLAYER);
             if ([[puzzleDictionary objectForKey:@"displayBackgroundArray"]boolValue] == NO){
                 displayBackgroundArray = NO;
             }
+
+            if ([[puzzleDictionary objectForKey:@"displayBackgroundImage"]boolValue] == NO){
+                displayBackgroundImage = NO;
+            }
             
+            infoScreen = [[puzzleDictionary objectForKey:@"infoScreen"]boolValue];
+
+
             if ([arrayOfMessageButtonsAndLabels count] > 0){
                 vc.demoMessageButtonsAndLabels = [[NSMutableArray alloc] initWithCapacity:1];
                 
                 // Retrieve messageLabelDictionary - the Dictionary associated with this label
                 NSDictionary *messageLabelDictionary, *messageLabelAspectRatioDictionary;
-                NSMutableArray *labelArray = [NSMutableArray arrayWithCapacity:1];
+                vc.infoScreenLabelArray = [NSMutableArray arrayWithCapacity:1];
                 unsigned int labelIndex = 0;
                 NSEnumerator *arrayEnum = [arrayOfMessageButtonsAndLabels objectEnumerator];
                 while (messageLabelDictionary = [arrayEnum nextObject]){
@@ -962,26 +1006,53 @@ extern void playSound(AVAudioPlayer *PLAYER);
                             break;
                         }
                     }
-                    // Label and Button position and size
-                    CGFloat labelX, labelY, propX, propY;
-                    CGFloat labelW = (_puzzleDisplayWidthInPixels-0.3*_squareTileSideLengthInPixels)/rc.contentScaleFactor;
-                    CGFloat labelH = (2.5*_squareTileSideLengthInPixels)/rc.contentScaleFactor;
-                    CGRect labelFrame;
-                    labelX = [[messageLabelAspectRatioDictionary objectForKey:@"labelOffsetXPoints"] floatValue];
-                    labelY = [[messageLabelAspectRatioDictionary objectForKey:@"labelOffsetYPoints"] floatValue];
-                    propX = [[messageLabelAspectRatioDictionary objectForKey:@"labelOffsetXProportion"] floatValue];
-                    propY = [[messageLabelAspectRatioDictionary objectForKey:@"labelOffsetYProportion"] floatValue];
-                    if ([[messageLabelAspectRatioDictionary objectForKey:@"centerLabel"]boolValue]){
-                        labelFrame = CGRectMake((rc->screenWidthInPixels/rc->contentScaleFactor)/2.0-labelW/2.0,
-                                                propY*rc->screenHeightInPixels/rc->contentScaleFactor, labelW, labelH);
+
+                    CGFloat labelWidthPoints, labelHeightPoints, labelPosXPoints, labelPosYPoints, propX, propY;
+                    
+                    // Set label dimensions
+                    if ([messageLabelAspectRatioDictionary objectForKey:@"labelSizeXPoints"] != nil &&
+                        [messageLabelAspectRatioDictionary objectForKey:@"labelSizeYPoints"] != nil){
+                        // If keys exist then use @"labelSizeXPoints" and @"labelSizeYPoints"
+                        labelWidthPoints = [[messageLabelAspectRatioDictionary objectForKey:@"labelSizeXPoints"] floatValue];
+                        labelHeightPoints = [[messageLabelAspectRatioDictionary objectForKey:@"labelSizeYPoints"] floatValue];
                     }
                     else {
-                        labelFrame = CGRectMake(propX*rc->screenWidthInPixels/rc->contentScaleFactor,
-                                                propY*rc->screenHeightInPixels/rc->contentScaleFactor, labelW, labelH);
+                        // else choose sizes based on display and tile sizes
+                        labelWidthPoints = (_puzzleDisplayWidthInPixels-0.3*_squareTileSideLengthInPixels)/rc.contentScaleFactor;
+                        labelHeightPoints = (2.5*_squareTileSideLengthInPixels)/rc.contentScaleFactor;
                     }
+                    
+                    // Set label position
+                    if ([messageLabelAspectRatioDictionary objectForKey:@"labelOffsetXPoints"] != nil &&
+                        [messageLabelAspectRatioDictionary objectForKey:@"labelOffsetYPoints"] != nil){
+                        labelPosXPoints = [[messageLabelAspectRatioDictionary objectForKey:@"labelOffsetXPoints"] floatValue];
+                        labelPosYPoints = [[messageLabelAspectRatioDictionary objectForKey:@"labelOffsetYPoints"] floatValue];
+                    }
+                    else {
+                        propX = [[messageLabelAspectRatioDictionary objectForKey:@"labelOffsetXProportion"] floatValue];
+                        propY = [[messageLabelAspectRatioDictionary objectForKey:@"labelOffsetYProportion"] floatValue];
+                        labelPosXPoints = propX*rc->screenWidthInPixels/rc->contentScaleFactor;
+                        labelPosYPoints = propY*rc->screenHeightInPixels/rc->contentScaleFactor;
+                    }
+                    
+                    // Build labelFrame
+                    CGRect labelFrame;
+                    if ([[messageLabelAspectRatioDictionary objectForKey:@"centerLabel"]boolValue]){
+                        labelFrame = CGRectMake((rc->screenWidthInPixels/rc->contentScaleFactor)/2.0-labelWidthPoints/2.0,
+                                                labelPosYPoints,
+                                                labelWidthPoints,
+                                                labelHeightPoints);
+                    }
+                    else {
+                        labelFrame = CGRectMake(labelPosXPoints,
+                                                labelPosYPoints,
+                                                labelWidthPoints,
+                                                labelHeightPoints);
+                    }
+                    
                     // Build UIDemoLabel
                     UIDemoLabel *label = [[UIDemoLabel alloc]initWithFrame:labelFrame];
-                    [labelArray addObject:label];
+                    [vc.infoScreenLabelArray addObject:label];
                     // Fetch booleans that determine how this label is used
                     label.nextPuzzle = [[messageLabelDictionary objectForKey:@"nextPuzzle"]boolValue];
                     label.dragTile = [[messageLabelDictionary objectForKey:@"dragTile"]boolValue];
@@ -3776,6 +3847,17 @@ extern void playSound(AVAudioPlayer *PLAYER);
                 vc.backArrowWhite.hidden = YES;
                 vc.replayIconWhite.hidden = YES;
             }
+            else if (infoScreen){
+                vc.backArrowWhite.hidden = NO;
+                vc.nextArrow.hidden = NO;
+                vc.puzzleCompleteLabel.hidden = YES;
+                vc.puzzleCompleteMessage.hidden = YES;
+                puzzleHasBeenCompleted = NO;
+                puzzleHasBeenCompletedCelebration = NO;
+                vc.nextButton.hidden = YES;
+                vc.replayIconWhite.hidden = YES;
+                vc.backButton.hidden = YES;
+            }
             else {
                 vc.puzzleCompleteLabel.hidden = YES;
                 vc.puzzleCompleteMessage.hidden = YES;
@@ -3799,7 +3881,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
 - (BOOL)checkIfAllJewelsAreEnergized {
     Tile *myTile;
     NSEnumerator *tileEnum = [tiles objectEnumerator];
-    if (puzzleCompletionCondition == ALL_JEWELS_ENERGIZED || puzzleCompletionCondition == TUTORIAL_PUZZLE_COMPLETE){
+    if (puzzleCompletionCondition == ALL_JEWELS_ENERGIZED || puzzleCompletionCondition == INFO_SCREEN){
         // Handle gameplay scenario in which all Jewels must be energized to clear a puzzle
         BOOL completed = YES;
         int numberOfJewels = 0;

@@ -86,6 +86,8 @@
 @synthesize puzzleDictionary;
 @synthesize inputPuzzleDictionary;
 
+@synthesize infoScreenLabelArray;
+
 - (void)viewDidLoad {
     DLog("DEBUG1 - BMDPuzzleViewController.viewDidLoad");
     [super viewDidLoad];
@@ -1993,6 +1995,12 @@
     }
     // Puzzle Play
     else {
+        // If in PACKTYPE_DEMO and infoScreen then save the next puzzle when the nextPuzzle button is pressed
+        if (rc.appCurrentGamePackType == PACKTYPE_DEMO &&
+            self->appd->optics->infoScreen){
+            [self->appd->optics saveNextPuzzleToDefaults];
+        }
+        
         self->appd->optics->puzzleHasBeenCompletedCelebration = NO;
         [self->appd->optics dropAllTilesOffScreen];
         nextArrow.enabled = NO;
