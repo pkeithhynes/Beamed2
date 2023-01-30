@@ -1072,7 +1072,13 @@ extern void playSound(AVAudioPlayer *PLAYER);
                         [label setTextAlignment:NSTextAlignmentNatural];
                     }
                     puzzleFontSize = [[messageLabelAspectRatioDictionary objectForKey:@"labelFontSize"] floatValue];
-                    label.font = [UIFont fontWithName:@"PingFang SC Regular" size:puzzleFontSize];
+                    BOOL labelBold = [[messageLabelAspectRatioDictionary objectForKey:@"labelBold"] boolValue];
+                    if (labelBold){
+                        label.font = [UIFont fontWithName:@"PingFang SC Semibold" size:puzzleFontSize];
+                    }
+                    else {
+                        label.font = [UIFont fontWithName:@"PingFang SC Regular" size:puzzleFontSize];
+                    }
                     label.text = [messageLabelAspectRatioDictionary objectForKey:@"labelText"];
                     label.textColor = [self getUIColorfromStringColor:[messageLabelAspectRatioDictionary objectForKey:@"labelColor"]];
                     label.numberOfLines = 0;
