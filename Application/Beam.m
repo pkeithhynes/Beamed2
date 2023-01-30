@@ -12,15 +12,15 @@
 @implementation Beam
 
 
-- (Beam *)initWithGridParameters:(vector_int2)start
-                       direction:(enum eObjectAngle)direction
-                         visible:(BOOL)visible
-                          energy:(CGFloat)energy
-                          isRoot:(BOOL)isRoot
-                           color:(enum eBeamColors)color
-                       beamLevel:(int)level
-                       startTile:(Tile *)startT
-                         endTile:(Tile *)endT {
+- (Beam *)initWithStartingTile:(vector_int2)start
+                     direction:(enum eObjectAngle)direction
+                       visible:(BOOL)visible
+                        energy:(CGFloat)energy
+                        isRoot:(BOOL)isRoot
+                         color:(enum eBeamColors)color
+                     beamLevel:(int)level
+                     startTile:(Tile *)startT
+                       endTile:(Tile *)endT {
     BMDAppDelegate *appDelegate = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
     if (beamLevel < kNumberOfBeamLevels){
 //        DLog("Beam init level = %d", beamLevel);
@@ -45,6 +45,27 @@
     else {
         return nil;
     }
+}
+
+
+- (Beam *)initDemoBeam:(vector_int2)start
+             direction:(enum eObjectAngle)direction
+                 color:(enum eBeamColors)color
+             startTile:(Tile *)startT
+               endTile:(Tile *)endT {
+    BMDAppDelegate *appDelegate = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
+    beamStart = start;
+    beamAngle = direction;
+    startTile = startT;
+    endTile = endT;
+    beamVisible = YES;
+    beamColor = color;
+    textureRenderData = [[TextureRenderData alloc] init];
+    beamLevel = 1;
+    beamEnergy = 1.0;
+    animationContainer = BEAM_AC_GLOWWHITE_RECTANGLE_HORIZONTAL;
+    currentAnimation = BEAM_A_STEADY;
+    return self;
 }
 
 

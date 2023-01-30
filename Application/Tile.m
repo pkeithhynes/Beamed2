@@ -225,7 +225,7 @@ API_AVAILABLE(ios(13.0))
                 if (tileColor!=COLOR_OPAQUE && [self tileColorMatchesBeamColor:beam]) {
                     beam_start.x = gridPosition.x;
                     beam_start.y = gridPosition.y;
-                    myBeam = [[Beam alloc] initWithGridParameters:beam_start
+                    myBeam = [[Beam alloc] initWithStartingTile:beam_start
                                                         direction:beam->beamAngle
                                                           visible:YES
                                                            energy:1.0
@@ -254,7 +254,7 @@ API_AVAILABLE(ios(13.0))
                     showSpectrum = NO;
                 }
                 // Different colored beams bend differently
-                myBeam = [[Beam alloc] initWithGridParameters:beam_start
+                myBeam = [[Beam alloc] initWithStartingTile:beam_start
                                                     direction:optics->prismRefractionArray[color][direction][tileAngle]
                                                       visible:YES
                                                        energy:1.0
@@ -270,7 +270,7 @@ API_AVAILABLE(ios(13.0))
                 beam_start.y = gridPosition.y;
                 // Prism reflects at right angles only
                 if ( direction == (tileAngle + 1) % 8 ) {
-                    myBeam = [[Beam alloc] initWithGridParameters:beam_start
+                    myBeam = [[Beam alloc] initWithStartingTile:beam_start
                                                         direction:(direction + 2) % 8
                                                           visible:YES
                                                            energy:1.0
@@ -281,7 +281,7 @@ API_AVAILABLE(ios(13.0))
                     [optics putOpticsBeam:color beam:myBeam];
                 }
                 else if ( direction == (tileAngle - 1) % 8 ) {
-                    myBeam = [[Beam alloc] initWithGridParameters:beam_start
+                    myBeam = [[Beam alloc] initWithStartingTile:beam_start
                                                         direction:(direction - 2) % 8
                                                           visible:YES
                                                            energy:1.0
@@ -292,7 +292,7 @@ API_AVAILABLE(ios(13.0))
                     [optics putOpticsBeam:color beam:myBeam];
                 }
                 else if ( direction == (tileAngle + 3) % 8 ) {
-                    myBeam = [[Beam alloc] initWithGridParameters:beam_start
+                    myBeam = [[Beam alloc] initWithStartingTile:beam_start
                                                         direction:(direction - 2) % 8
                                                           visible:YES
                                                            energy:1.0
@@ -303,7 +303,7 @@ API_AVAILABLE(ios(13.0))
                     [optics putOpticsBeam:color beam:myBeam];
                 }
                 else if ( direction == (tileAngle - 3) % 8 ) {
-                    myBeam = [[Beam alloc] initWithGridParameters:beam_start
+                    myBeam = [[Beam alloc] initWithStartingTile:beam_start
                                                         direction:(direction + 2) % 8
                                                           visible:YES
                                                            energy:1.0
@@ -316,7 +316,7 @@ API_AVAILABLE(ios(13.0))
                 
                 // The prism adds one or more pass-through beams
                 if (direction==(tileAngle + 1) % 8 || direction==(tileAngle - 1) % 8 || direction==(tileAngle + 3) % 8 || direction==(tileAngle - 3) % 8) {
-                    myBeam = [[Beam alloc] initWithGridParameters:beam_start
+                    myBeam = [[Beam alloc] initWithStartingTile:beam_start
                                                         direction:beam->beamAngle
                                                           visible:YES
                                                            energy:1.0
@@ -332,7 +332,7 @@ API_AVAILABLE(ios(13.0))
                 else if ((int)direction==(int)tileAngle || (int)direction==((int)tileAngle+4)%8 ||
                          (int)direction==((int)tileAngle-6)%8 || (int)direction==((int)tileAngle+6)%8 ||
                          (int)direction==((int)tileAngle-2)%8 || (int)direction==((int)tileAngle+2)%8 ) {
-                    myBeam = [[Beam alloc] initWithGridParameters:beam_start
+                    myBeam = [[Beam alloc] initWithStartingTile:beam_start
                                                         direction:beam->beamAngle
                                                           visible:YES
                                                            energy:1.0
@@ -351,7 +351,7 @@ API_AVAILABLE(ios(13.0))
                 beam_start.x = gridPosition.x;
                 beam_start.y = gridPosition.y;
                 if ( ((int)tileAngle == (int)direction) || ( (tileAngle+4)%8 == direction) ) {
-                    myBeam = [[Beam alloc] initWithGridParameters:beam_start
+                    myBeam = [[Beam alloc] initWithStartingTile:beam_start
                                                         direction:(direction + 4) % 8
                                                           visible:YES
                                                            energy:1.0
@@ -362,7 +362,7 @@ API_AVAILABLE(ios(13.0))
                     [optics putOpticsBeam:color beam:myBeam];
                 }
                 else if ( direction == (tileAngle+1)%8 ) {
-                    myBeam = [[Beam alloc] initWithGridParameters:beam_start
+                    myBeam = [[Beam alloc] initWithStartingTile:beam_start
                                                         direction:(direction + 2) % 8
                                                           visible:YES
                                                            energy:1.0
@@ -373,7 +373,7 @@ API_AVAILABLE(ios(13.0))
                     [optics putOpticsBeam:color beam:myBeam];
                 }
                 else if ( direction == (tileAngle-1)%8 ) {
-                    myBeam = [[Beam alloc] initWithGridParameters:beam_start
+                    myBeam = [[Beam alloc] initWithStartingTile:beam_start
                                                         direction:(direction - 2) % 8
                                                           visible:YES
                                                            energy:1.0
@@ -384,7 +384,7 @@ API_AVAILABLE(ios(13.0))
                     [optics putOpticsBeam:color beam:myBeam];
                 }
                 else if ( direction == (tileAngle+3)%8 ) {
-                    myBeam = [[Beam alloc] initWithGridParameters:beam_start
+                    myBeam = [[Beam alloc] initWithStartingTile:beam_start
                                                         direction:(direction - 2) % 8
                                                           visible:YES
                                                            energy:1.0
@@ -395,7 +395,7 @@ API_AVAILABLE(ios(13.0))
                     [optics putOpticsBeam:color beam:myBeam];
                 }
                 else if ( direction == (tileAngle-3)%8 ) {
-                    myBeam = [[Beam alloc] initWithGridParameters:beam_start
+                    myBeam = [[Beam alloc] initWithStartingTile:beam_start
                                                         direction:(direction + 2) % 8
                                                           visible:YES
                                                            energy:1.0
@@ -777,6 +777,8 @@ API_AVAILABLE(ios(13.0))
     textureRenderData->spectrumAngle = spectrumAngle;
     
     if (tileShape == JEWEL && energized && puzzleCompleted && !puzzleHasBeenCompletedCelebration)
+        return nil;
+    else if (hidden)
         return nil;
     else
         return textureRenderData;

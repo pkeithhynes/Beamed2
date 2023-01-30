@@ -1214,6 +1214,9 @@ extern void playSound(AVAudioPlayer *PLAYER);
                 tile->tilePositionInPixels.y = (CGFloat)finalY*_squareTileSideLengthInPixels + _tileVerticalOffsetInPixels;
                 tile->tileAngle = tile->finalTileAngle;
             }
+            // Handle hidden Laser
+            BOOL hidden = [[laserDictionary objectForKey:@"hidden"] boolValue];
+            tile->hidden = hidden;
             [self putOpticsTile:tile array:tiles];
         }
         
@@ -1426,6 +1429,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
         }
         tile->finalGridPosition.x = finalX;
         tile->finalGridPosition.y = finalY;
+        tile->finalTileAngle = angle;
         tile->placed = NO;
         tile->placedUsingHint = NO;
         tile->placedManuallyMatchesHint = NO;
@@ -4120,7 +4124,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
     Tile *aTile;
     while (aTile = [tileEnum nextObject]) {
         if ((int)aTile->tileShape==(int)LASER && (int)aTile->tileColor==(int)color) {
-            rootBeam = [[Beam alloc] initWithGridParameters:aTile->gridPosition
+            rootBeam = [[Beam alloc] initWithStartingTile:aTile->gridPosition
                                 direction:(int)aTile->tileAngle
                                 visible:YES
                                 energy:1.0

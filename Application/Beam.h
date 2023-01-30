@@ -45,15 +45,20 @@ API_AVAILABLE(ios(13.0))
 	CGFloat			beamScale;
 }
 
-- (Beam *)initWithGridParameters:(vector_int2)start
-                         direction:(enum eObjectAngle)direction
-                         visible:(BOOL)visible
-                          energy:(CGFloat)energy
-                          isRoot:(BOOL)isRoot
-                           color:(enum eBeamColors)color
-                       beamLevel:(int)level
-                       startTile:(Tile *)startT
-                         endTile:(Tile *)endT;
+- (Beam *)initWithStartingTile:(vector_int2)start
+                     direction:(enum eObjectAngle)direction
+                       visible:(BOOL)visible
+                        energy:(CGFloat)energy
+                        isRoot:(BOOL)isRoot
+                         color:(enum eBeamColors)color
+                     beamLevel:(int)level
+                     startTile:(Tile *)startT
+                       endTile:(Tile *)endT;
+- (Beam *)initDemoBeam:(vector_int2)start
+             direction:(enum eObjectAngle)direction
+                 color:(enum eBeamColors)color
+             startTile:(Tile *)startT
+               endTile:(Tile *)endT;
 - (void)renderBeam:(NSMutableArray *)beamsRenderArray frameCounter:(uint16_t)animationFrame;
 - (BOOL)checkIfBeamInteractsWithTile;
 - (NSMutableDictionary *)checkIfBeamIntersectsGridPosition:(vector_int2)position;

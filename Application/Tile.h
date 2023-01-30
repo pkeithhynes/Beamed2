@@ -49,6 +49,7 @@ API_AVAILABLE(ios(13.0))
     enum eObjectAngle      initialTileAngle;
 
     vector_int2          tileDimensionsInPixels;
+    BOOL                hidden;
     BOOL                placed;                     // Means that the Tile was moved but not into a correct position
     BOOL                placedUsingHint;
     BOOL                placedManuallyMatchesHint;
