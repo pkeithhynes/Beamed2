@@ -107,7 +107,8 @@ extern void playSound(AVAudioPlayer *PLAYER);
     // Check if the puzzle that was just loaded is already completed.
     [self updateEnergizedStateForAllTiles];
     if ([self queryPuzzleCompleted]){
-        [self saveNextPuzzleToDefaults];
+        if (!infoScreen)
+            [self saveNextPuzzleToDefaults];
         if ([appd packHasBeenCompleted]){
             // Pack is complete
             vc.nextButton.hidden = YES;
@@ -4482,7 +4483,8 @@ extern void playSound(AVAudioPlayer *PLAYER);
     [self updateEnergizedStateForAllTiles];
     if (!puzzleHasBeenCompleted){
         if ([self queryPuzzleCompleted]){
-            [self saveNextPuzzleToDefaults];
+            if (!infoScreen)
+                [self saveNextPuzzleToDefaults];
             if ([appd packHasBeenCompleted]){
                 // Pack is complete
                 vc.nextButton.hidden = YES;
@@ -5139,7 +5141,8 @@ extern void playSound(AVAudioPlayer *PLAYER);
                     // Check for Puzzle completion
                     if (!puzzleHasBeenCompleted){
                         if ([self queryPuzzleCompleted]){
-                            [self saveNextPuzzleToDefaults];
+                            if (!infoScreen)
+                                [self saveNextPuzzleToDefaults];
                             if ([appd packHasBeenCompleted]){
                                 // Pack is complete
                                 vc.nextButton.hidden = YES;
@@ -5235,7 +5238,8 @@ extern void playSound(AVAudioPlayer *PLAYER);
                     // Check for Puzzle completion
                     if (!puzzleHasBeenCompleted){
                         if ([self queryPuzzleCompleted]){
-                            [self saveNextPuzzleToDefaults];
+                            if (!infoScreen)
+                                [self saveNextPuzzleToDefaults];
                             if ([appd packHasBeenCompleted]){
                                 // Pack is complete
                                 vc.nextButton.hidden = YES;
@@ -5368,7 +5372,8 @@ extern void playSound(AVAudioPlayer *PLAYER);
                 // Check for Puzzle completion
                 if (!puzzleHasBeenCompleted){
                     if ([self queryPuzzleCompleted]){
-                        [self saveNextPuzzleToDefaults];
+                        if (!infoScreen)
+                            [self saveNextPuzzleToDefaults];
                         if ([appd packHasBeenCompleted]){
                             // Pack is complete
                             vc.nextButton.hidden = YES;
