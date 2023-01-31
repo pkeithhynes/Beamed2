@@ -2012,6 +2012,10 @@
 			<integer>7</integer>
 			<key>displayBackgroundArray</key>
 			<true/>
+			<key>displayBackgroundImage</key>
+			<false/>
+			<key>infoScreen</key>
+			<true/>
 			<key>arrayOfMessageButtonsAndLabels</key>
 			<array>
 				<dict>
@@ -2020,7 +2024,7 @@
 						<key>labelText</key>
 						<string>Puzzles are played on a grid.</string>
 						<key>labelFontSize</key>
-						<integer>32</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
@@ -2101,21 +2105,21 @@
 					<key>ASPECT_4_3</key>
 					<dict>
 						<key>labelText</key>
-						<string>Lasers and Jewels are placed around the sides of the grid.</string>
+						<string>Lasers and Jewels are located around the edges of the grid.</string>
 						<key>labelFontSize</key>
-						<integer>32</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
 						<key>labelSizeXPoints</key>
-						<integer>600</integer>
+						<integer>400</integer>
 						<key>labelSizeYPoints</key>
 						<integer>150</integer>
 						<key>labelOffsetXProportion</key>
 						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.8</real>
+						<real>0.765</real>
 						<key>centerTextInLabel</key>
 						<true/>
 						<key>leftAlignTextInLabel</key>
@@ -2191,32 +2195,6 @@
 					<key>Angle</key>
 					<integer>0</integer>
 					<key>Color</key>
-					<integer>0</integer>
-					<key>finalTileAngle</key>
-					<integer>0</integer>
-					<key>finalX</key>
-					<integer>0</integer>
-					<key>finalY</key>
-					<integer>4</integer>
-					<key>fixed</key>
-					<integer>1</integer>
-					<key>gridPositionX</key>
-					<integer>0</integer>
-					<key>gridPositionY</key>
-					<integer>4</integer>
-					<key>placed</key>
-					<integer>0</integer>
-					<key>placedManuallyMatchesHint</key>
-					<integer>0</integer>
-					<key>placedUsingHint</key>
-					<integer>0</integer>
-					<key>tileShape</key>
-					<integer>4</integer>
-				</dict>
-				<dict>
-					<key>Angle</key>
-					<integer>0</integer>
-					<key>Color</key>
 					<integer>1</integer>
 					<key>finalTileAngle</key>
 					<integer>0</integer>
@@ -2230,32 +2208,6 @@
 					<integer>4</integer>
 					<key>gridPositionY</key>
 					<integer>0</integer>
-					<key>placed</key>
-					<integer>0</integer>
-					<key>placedManuallyMatchesHint</key>
-					<integer>0</integer>
-					<key>placedUsingHint</key>
-					<integer>0</integer>
-					<key>tileShape</key>
-					<integer>4</integer>
-				</dict>
-				<dict>
-					<key>Angle</key>
-					<integer>0</integer>
-					<key>Color</key>
-					<integer>2</integer>
-					<key>finalTileAngle</key>
-					<integer>0</integer>
-					<key>finalX</key>
-					<integer>6</integer>
-					<key>finalY</key>
-					<integer>2</integer>
-					<key>fixed</key>
-					<integer>1</integer>
-					<key>gridPositionX</key>
-					<integer>6</integer>
-					<key>gridPositionY</key>
-					<integer>2</integer>
 					<key>placed</key>
 					<integer>0</integer>
 					<key>placedManuallyMatchesHint</key>
@@ -2270,32 +2222,6 @@
 			<array>
 				<dict>
 					<key>Angle</key>
-					<integer>6</integer>
-					<key>Color</key>
-					<integer>0</integer>
-					<key>finalTileAngle</key>
-					<integer>6</integer>
-					<key>finalX</key>
-					<integer>5</integer>
-					<key>finalY</key>
-					<integer>8</integer>
-					<key>fixed</key>
-					<integer>1</integer>
-					<key>gridPositionX</key>
-					<integer>5</integer>
-					<key>gridPositionY</key>
-					<integer>8</integer>
-					<key>placed</key>
-					<integer>0</integer>
-					<key>placedManuallyMatchesHint</key>
-					<integer>0</integer>
-					<key>placedUsingHint</key>
-					<integer>0</integer>
-					<key>tileShape</key>
-					<integer>6</integer>
-				</dict>
-				<dict>
-					<key>Angle</key>
 					<integer>0</integer>
 					<key>Color</key>
 					<integer>1</integer>
@@ -2311,32 +2237,6 @@
 					<integer>0</integer>
 					<key>gridPositionY</key>
 					<integer>6</integer>
-					<key>placed</key>
-					<integer>0</integer>
-					<key>placedManuallyMatchesHint</key>
-					<integer>0</integer>
-					<key>placedUsingHint</key>
-					<integer>0</integer>
-					<key>tileShape</key>
-					<integer>6</integer>
-				</dict>
-				<dict>
-					<key>Angle</key>
-					<integer>2</integer>
-					<key>Color</key>
-					<integer>2</integer>
-					<key>finalTileAngle</key>
-					<integer>2</integer>
-					<key>finalX</key>
-					<integer>2</integer>
-					<key>finalY</key>
-					<integer>0</integer>
-					<key>fixed</key>
-					<integer>1</integer>
-					<key>gridPositionX</key>
-					<integer>2</integer>
-					<key>gridPositionY</key>
-					<integer>0</integer>
 					<key>placed</key>
 					<integer>0</integer>
 					<key>placedManuallyMatchesHint</key>
@@ -2349,6 +2249,292 @@
 			</array>
 			<key>arrayOfMirrorsDictionaries</key>
 			<array/>
+			<key>arrayOfPrismsDictionaries</key>
+			<array/>
+			<key>arrayOfRectanglesDictionaries</key>
+			<array/>
+			<key>puzzleCompletionCondition</key>
+			<integer>0</integer>
+			<key>puzzlePoints</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>gridSizeX</key>
+			<integer>5</integer>
+			<key>gridSizeY</key>
+			<integer>7</integer>
+			<key>displayBackgroundArray</key>
+			<true/>
+			<key>displayBackgroundImage</key>
+			<false/>
+			<key>infoScreen</key>
+			<true/>
+			<key>arrayOfMessageButtonsAndLabels</key>
+			<array>
+				<dict>
+					<key>ASPECT_4_3</key>
+					<dict>
+						<key>labelText</key>
+						<string>You place Mirrors on the grid to steer the right color Beams to each Jewel.</string>
+						<key>labelFontSize</key>
+						<integer>28</integer>
+						<key>labelColor</key>
+						<string>whiteColor</string>
+						<key>centerLabel</key>
+						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>600</integer>
+						<key>labelSizeYPoints</key>
+						<integer>150</integer>
+						<key>labelOffsetXProportion</key>
+						<real>0.185</real>
+						<key>labelOffsetYProportion</key>
+						<real>0.015</real>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
+					</dict>
+					<key>ASPECT_10_7</key>
+					<dict>
+						<key>labelText</key>
+						<string>Make every Jewel Sparkle!Drag the Mirror into the Red Beam</string>
+						<key>labelFontSize</key>
+						<integer>34</integer>
+						<key>labelColor</key>
+						<string>whiteColor</string>
+						<key>centerLabel</key>
+						<true/>
+						<key>labelOffsetXProportion</key>
+						<real>0.185</real>
+						<key>labelOffsetYProportion</key>
+						<real>0.015</real>
+					</dict>
+					<key>ASPECT_3_2</key>
+					<dict>
+						<key>labelText</key>
+						<string>Make every Jewel Sparkle!Drag the Mirror into the Red Beam</string>
+						<key>labelFontSize</key>
+						<integer>34</integer>
+						<key>labelColor</key>
+						<string>whiteColor</string>
+						<key>centerLabel</key>
+						<true/>
+						<key>labelOffsetXProportion</key>
+						<real>0.17</real>
+						<key>labelOffsetYProportion</key>
+						<real>0.015</real>
+					</dict>
+					<key>ASPECT_16_9</key>
+					<dict>
+						<key>labelText</key>
+						<string>Make every Jewel Sparkle!  Drag the Mirror into the Red Beam</string>
+						<key>labelFontSize</key>
+						<integer>20</integer>
+						<key>labelColor</key>
+						<string>whiteColor</string>
+						<key>centerLabel</key>
+						<true/>
+						<key>labelOffsetXProportion</key>
+						<real>0.1</real>
+						<key>labelOffsetYProportion</key>
+						<real>-0.01</real>
+					</dict>
+					<key>ASPECT_13_6</key>
+					<dict>
+						<key>labelText</key>
+						<string>Make every Jewel Sparkle!  Drag the Mirror into the Red Beam</string>
+						<key>labelFontSize</key>
+						<integer>22</integer>
+						<key>labelColor</key>
+						<string>whiteColor</string>
+						<key>centerLabel</key>
+						<true/>
+						<key>labelOffsetXProportion</key>
+						<real>0.275</real>
+						<key>labelOffsetYProportion</key>
+						<real>0.08500000000000001</real>
+					</dict>
+				</dict>
+				<dict>
+					<key>ASPECT_4_3</key>
+					<dict>
+						<key>labelText</key>
+						<string>A Mirror reflects the green Beam onto the green Jewel.  This solves the Puzzle.</string>
+						<key>labelFontSize</key>
+						<integer>28</integer>
+						<key>labelColor</key>
+						<string>whiteColor</string>
+						<key>centerLabel</key>
+						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>400</integer>
+						<key>labelSizeYPoints</key>
+						<integer>200</integer>
+						<key>labelOffsetXProportion</key>
+						<real>0.185</real>
+						<key>labelOffsetYProportion</key>
+						<real>0.765</real>
+						<key>centerTextInLabel</key>
+						<true/>
+						<key>leftAlignTextInLabel</key>
+						<false/>
+					</dict>
+					<key>ASPECT_10_7</key>
+					<dict>
+						<key>labelText</key>
+						<string>Make every Jewel Sparkle!Drag the Mirror into the Red Beam</string>
+						<key>labelFontSize</key>
+						<integer>34</integer>
+						<key>labelColor</key>
+						<string>whiteColor</string>
+						<key>centerLabel</key>
+						<true/>
+						<key>labelOffsetXProportion</key>
+						<real>0.185</real>
+						<key>labelOffsetYProportion</key>
+						<real>0.015</real>
+					</dict>
+					<key>ASPECT_3_2</key>
+					<dict>
+						<key>labelText</key>
+						<string>Make every Jewel Sparkle!Drag the Mirror into the Red Beam</string>
+						<key>labelFontSize</key>
+						<integer>34</integer>
+						<key>labelColor</key>
+						<string>whiteColor</string>
+						<key>centerLabel</key>
+						<true/>
+						<key>labelOffsetXProportion</key>
+						<real>0.17</real>
+						<key>labelOffsetYProportion</key>
+						<real>0.015</real>
+					</dict>
+					<key>ASPECT_16_9</key>
+					<dict>
+						<key>labelText</key>
+						<string>Make every Jewel Sparkle!  Drag the Mirror into the Red Beam</string>
+						<key>labelFontSize</key>
+						<integer>20</integer>
+						<key>labelColor</key>
+						<string>whiteColor</string>
+						<key>centerLabel</key>
+						<true/>
+						<key>labelOffsetXProportion</key>
+						<real>0.1</real>
+						<key>labelOffsetYProportion</key>
+						<real>-0.01</real>
+					</dict>
+					<key>ASPECT_13_6</key>
+					<dict>
+						<key>labelText</key>
+						<string>Make every Jewel Sparkle!  Drag the Mirror into the Red Beam</string>
+						<key>labelFontSize</key>
+						<integer>22</integer>
+						<key>labelColor</key>
+						<string>whiteColor</string>
+						<key>centerLabel</key>
+						<true/>
+						<key>labelOffsetXProportion</key>
+						<real>0.275</real>
+						<key>labelOffsetYProportion</key>
+						<real>0.08500000000000001</real>
+					</dict>
+				</dict>
+			</array>
+			<key>arrayOfBeamsplittersDictionaries</key>
+			<array/>
+			<key>arrayOfJewelsDictionaries</key>
+			<array>
+				<dict>
+					<key>Angle</key>
+					<integer>0</integer>
+					<key>Color</key>
+					<integer>1</integer>
+					<key>finalTileAngle</key>
+					<integer>0</integer>
+					<key>finalX</key>
+					<integer>4</integer>
+					<key>finalY</key>
+					<integer>0</integer>
+					<key>fixed</key>
+					<integer>1</integer>
+					<key>gridPositionX</key>
+					<integer>4</integer>
+					<key>gridPositionY</key>
+					<integer>0</integer>
+					<key>placed</key>
+					<integer>0</integer>
+					<key>placedManuallyMatchesHint</key>
+					<integer>0</integer>
+					<key>placedUsingHint</key>
+					<integer>0</integer>
+					<key>tileShape</key>
+					<integer>4</integer>
+				</dict>
+			</array>
+			<key>arrayOfLasersDictionaries</key>
+			<array>
+				<dict>
+					<key>Angle</key>
+					<integer>0</integer>
+					<key>Color</key>
+					<integer>1</integer>
+					<key>finalTileAngle</key>
+					<integer>0</integer>
+					<key>finalX</key>
+					<integer>0</integer>
+					<key>finalY</key>
+					<integer>6</integer>
+					<key>fixed</key>
+					<integer>1</integer>
+					<key>gridPositionX</key>
+					<integer>0</integer>
+					<key>gridPositionY</key>
+					<integer>6</integer>
+					<key>placed</key>
+					<integer>0</integer>
+					<key>placedManuallyMatchesHint</key>
+					<integer>0</integer>
+					<key>placedUsingHint</key>
+					<integer>0</integer>
+					<key>tileShape</key>
+					<integer>6</integer>
+				</dict>
+			</array>
+			<key>arrayOfMirrorsDictionaries</key>
+			<array>
+				<dict>
+					<key>Angle</key>
+					<integer>5</integer>
+					<key>Color</key>
+					<integer>7</integer>
+					<key>demoTile</key>
+					<integer>0</integer>
+					<key>demoTileAtFinalGridPosition</key>
+					<integer>0</integer>
+					<key>finalTileAngle</key>
+					<integer>5</integer>
+					<key>finalX</key>
+					<integer>4</integer>
+					<key>finalY</key>
+					<integer>6</integer>
+					<key>fixed</key>
+					<integer>1</integer>
+					<key>gridPositionX</key>
+					<integer>4</integer>
+					<key>gridPositionY</key>
+					<integer>6</integer>
+					<key>placed</key>
+					<integer>0</integer>
+					<key>placedManuallyMatchesHint</key>
+					<integer>0</integer>
+					<key>placedUsingHint</key>
+					<integer>0</integer>
+					<key>tileShape</key>
+					<integer>3</integer>
+				</dict>
+			</array>
 			<key>arrayOfPrismsDictionaries</key>
 			<array/>
 			<key>arrayOfRectanglesDictionaries</key>

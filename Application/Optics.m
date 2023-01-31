@@ -503,7 +503,8 @@ extern void playSound(AVAudioPlayer *PLAYER);
                 // in PACKTYPE_DEMO
                 vc.backButton.hidden = YES;
                 vc.nextButton.hidden = YES;
-                vc.backArrowWhite.hidden = YES;
+                if (infoScreen)
+                    vc.backArrowWhite.hidden = NO;
                 vc.replayIconWhite.hidden = YES;
             }
             if (!puzzleCompletedButtonFlash){
@@ -645,7 +646,8 @@ extern void playSound(AVAudioPlayer *PLAYER);
         else if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
             vc.nextButton.hidden = NO;
             vc.nextArrow.hidden = NO;
-            vc.backArrowWhite.hidden = YES;
+            if (infoScreen)
+                vc.backArrowWhite.hidden = NO;
             vc.replayIconWhite.hidden = YES;
             vc.backButton.hidden = YES;
             vc.hintButton.hidden = YES;
@@ -3854,7 +3856,8 @@ extern void playSound(AVAudioPlayer *PLAYER);
                 }
                 [self handlePuzzleCompletion:nil];
                 vc.nextArrow.hidden = NO;
-                vc.backArrowWhite.hidden = YES;
+                if (infoScreen)
+                    vc.backArrowWhite.hidden = NO;
                 vc.replayIconWhite.hidden = YES;
             }
             else if (infoScreen){

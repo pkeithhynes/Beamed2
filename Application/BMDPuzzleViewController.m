@@ -278,7 +278,8 @@
     rc.renderPuzzleON = YES;
     
     NSString *adFree = [appd getObjectFromDefaults:@"AD_FREE_PUZZLES"];
-    if (![adFree isEqualToString:@"YES"]){
+    if (![adFree isEqualToString:@"YES"] &&
+        self->rc.appCurrentGamePackType != PACKTYPE_DEMO){
         [puzzleView addSubview:rc.bannerAdView];
         [puzzleView bringSubviewToFront:rc.bannerAdView];
     }
@@ -2002,7 +2003,12 @@
         }
         
         self->appd->optics->puzzleHasBeenCompletedCelebration = NO;
-        [self->appd->optics dropAllTilesOffScreen];
+        
+        // If in PACKTYPE_DEMO and infoScreen then DON'T drop all Tiles off the screen
+        if (!(rc.appCurrentGamePackType == PACKTYPE_DEMO &&
+            self->appd->optics->infoScreen)){
+            [self->appd->optics dropAllTilesOffScreen];
+        }
         nextArrow.enabled = NO;
         replayIconWhite.enabled = NO;
         backArrowWhite.enabled = NO;
@@ -2010,7 +2016,8 @@
         NSTimer *timer = [NSTimer timerWithTimeInterval:1.0 repeats:NO block:^(NSTimer *time){
             self.puzzleSolvedView.hidden = YES;
             NSString *adFree = [self->appd getObjectFromDefaults:@"AD_FREE_PUZZLES"];
-            if (![adFree isEqualToString:@"YES"]){
+            if (![adFree isEqualToString:@"YES"] &&
+                self->rc.appCurrentGamePackType != PACKTYPE_DEMO){
                 [self->puzzleView addSubview:self->rc.bannerAdView];
                 [self->puzzleView bringSubviewToFront:self->rc.bannerAdView];
             }
