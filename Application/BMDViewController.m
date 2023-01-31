@@ -45,6 +45,7 @@ Implementation of the cross-platform view controller
 @synthesize dailyPuzzleButtonCheckmark;
 @synthesize moreHintPacksButton;
 @synthesize noAdsButton;
+@synthesize howToPlayButton;
 @synthesize removeAdsLabel;
 
 @synthesize packButtonsArray;
@@ -722,6 +723,15 @@ Implementation of the cross-platform view controller
     [self.rootView sendSubviewToBack:self->launchView];
     self->launchView.hidden = YES;
     self.rootView.layer.backgroundColor = [UIColor blackColor].CGColor;
+}
+
+
+// Run the "How to Play" guide
+- (void)howToPlayButtonPressed{
+    DLog("howToPlayButtonPressed");
+    // This button press causes How to Play Guide to start at the beginning
+    [appd saveDemoPuzzleNumber:0];
+    [self startDemoPuzzle];
 }
 
 
@@ -1669,7 +1679,7 @@ Implementation of the cross-platform view controller
             todaysDateLabelFontSizeHome = 16;
             buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
             buttonHeight = buttonWidth/8.0;
-            buttonCy = logoCy + logoHeight + 1.0*buttonHeight;
+            buttonCy = logoCy + logoHeight + 0.3*buttonHeight;
             dateLabelCy = buttonCy - 1.0*buttonWidth/8.0;
             break;
         }
@@ -2046,6 +2056,73 @@ Implementation of the cross-platform view controller
     scoresButton.alpha = 1.0;
     [homeView addSubview:scoresButton];
     [homeView bringSubviewToFront:scoresButton];
+    
+    //
+    // Add "howToPlay" button to homeView
+    //
+    howToPlayButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    int howToPlayButtonFontSize;
+    switch (displayAspectRatio) {
+        case ASPECT_4_3:{
+            // iPad (9th generation)
+            buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
+            buttonHeight = buttonWidth/10.0;
+            buttonCy = buttonCy + 1.5*buttonHeight;
+            howToPlayButtonFontSize = 28;
+            [howToPlayButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:howToPlayButtonFontSize]];
+            break;
+        }
+        case ASPECT_10_7:{
+            // iPad Air (5th generation)
+            buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
+            buttonHeight = buttonWidth/10.0;
+            buttonCy = buttonCy + 1.5*buttonHeight;
+            howToPlayButtonFontSize = 28;
+            [howToPlayButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:howToPlayButtonFontSize]];
+            break;
+        }
+        case ASPECT_3_2: {
+            // iPad Mini (6th generation)
+            buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
+            buttonHeight = buttonWidth/10.0;
+            buttonCy = buttonCy + 1.5*buttonHeight;
+            howToPlayButtonFontSize = 28;
+            [howToPlayButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:howToPlayButtonFontSize]];
+            break;
+        }
+        case ASPECT_16_9: {
+            // iPhone 8
+            buttonWidth = 0.8*screenWidthInPixels/contentScaleFactor;
+            buttonHeight = buttonWidth/10.0;
+            buttonCy = buttonCy + 1.75*buttonHeight;
+            howToPlayButtonFontSize = 16;
+            [howToPlayButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:howToPlayButtonFontSize]];
+            break;
+        }
+        case ASPECT_13_6: {
+            // iPhone 14
+            buttonWidth = 0.8*screenWidthInPixels/contentScaleFactor;
+            buttonHeight = buttonWidth/8.0;
+            buttonCy = buttonCy + 1.60*buttonHeight;
+            howToPlayButtonFontSize = 16;
+            [howToPlayButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:howToPlayButtonFontSize]];
+            break;
+        }
+    }
+    [howToPlayButton setBackgroundImage:btnImage forState:UIControlStateNormal];
+    [howToPlayButton setBackgroundImage:btnSelectedImage forState:UIControlStateHighlighted];
+    buttonRect = CGRectMake(buttonCx-buttonWidth/2.0,
+                            buttonCy,
+                            buttonWidth,
+                            buttonHeight);
+    howToPlayButton.frame = buttonRect;
+    [howToPlayButton setTitle:@"How to Play" forState:UIControlStateNormal];
+    [howToPlayButton addTarget:self action:@selector(howToPlayButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [howToPlayButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    howToPlayButton.showsTouchWhenHighlighted = YES;
+    howToPlayButton.alpha = 1.0;
+    [homeView addSubview:howToPlayButton];
+    [homeView bringSubviewToFront:howToPlayButton];
     
     //
     // Add "Settings Gear" button to homeView

@@ -29,7 +29,7 @@
 
 
 // Handle debug logging
-//#define DEBUG_MODE 1
+#define DEBUG_MODE 1
 #ifdef DEBUG_MODE
 #    define DLog(...) NSLog(@__VA_ARGS__)
 #else
