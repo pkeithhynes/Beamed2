@@ -2207,6 +2207,10 @@
             [appd->optics savePuzzleProgressToDefaults];
         }
         
+        // If exiting How to Play Guide then indicate that demo has been completed
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:@"YES" forKey:@"demoHasBeenCompleted"];
+
         // If not yet solved then store endTime for timeSegment
         long endTime = [[NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]] longValue];
         int currentPackNumber = -1;
