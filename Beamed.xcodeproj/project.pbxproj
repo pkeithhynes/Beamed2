@@ -304,8 +304,8 @@
 		80884C55292EDF03005B29FC /* run in Resources */ = {isa = PBXBuildFile; fileRef = 80884C53292EDF03005B29FC /* run */; };
 		80895487291DB661009C4D02 /* settingsGear.png in Resources */ = {isa = PBXBuildFile; fileRef = 80895486291DB661009C4D02 /* settingsGear.png */; };
 		80895488291DB661009C4D02 /* settingsGear.png in Resources */ = {isa = PBXBuildFile; fileRef = 80895486291DB661009C4D02 /* settingsGear.png */; };
-		8089548B291DB76B009C4D02 /* backArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8089548A291DB76B009C4D02 /* backArrow.png */; };
-		8089548C291DB76B009C4D02 /* backArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8089548A291DB76B009C4D02 /* backArrow.png */; };
+		8089548B291DB76B009C4D02 /* homeArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8089548A291DB76B009C4D02 /* homeArrow.png */; };
+		8089548C291DB76B009C4D02 /* homeArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8089548A291DB76B009C4D02 /* homeArrow.png */; };
 		8089548F291DB773009C4D02 /* shoppingCart.png in Resources */ = {isa = PBXBuildFile; fileRef = 8089548E291DB773009C4D02 /* shoppingCart.png */; };
 		80895490291DB773009C4D02 /* shoppingCart.png in Resources */ = {isa = PBXBuildFile; fileRef = 8089548E291DB773009C4D02 /* shoppingCart.png */; };
 		80895493291DB77B009C4D02 /* NoAds.png in Resources */ = {isa = PBXBuildFile; fileRef = 80895492291DB77B009C4D02 /* NoAds.png */; };
@@ -322,8 +322,8 @@
 		808D86B5297527B00022B2FE /* puzzlePacks.png in Resources */ = {isa = PBXBuildFile; fileRef = 808D86B3297527B00022B2FE /* puzzlePacks.png */; };
 		808E3BC528FC5304009C1474 /* GridTileDot.png in Resources */ = {isa = PBXBuildFile; fileRef = 808E3BC428FC5304009C1474 /* GridTileDot.png */; };
 		808E3BC628FC5304009C1474 /* GridTileDot.png in Resources */ = {isa = PBXBuildFile; fileRef = 808E3BC428FC5304009C1474 /* GridTileDot.png */; };
-		808E49DA295E18A900D4D077 /* backArrowWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 808E49D7295E18A900D4D077 /* backArrowWhite.png */; };
-		808E49DB295E18A900D4D077 /* backArrowWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 808E49D7295E18A900D4D077 /* backArrowWhite.png */; };
+		808E49DA295E18A900D4D077 /* homeArrowWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 808E49D7295E18A900D4D077 /* homeArrowWhite.png */; };
+		808E49DB295E18A900D4D077 /* homeArrowWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 808E49D7295E18A900D4D077 /* homeArrowWhite.png */; };
 		808E49DD295E18A900D4D077 /* nextArrowWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 808E49D8295E18A900D4D077 /* nextArrowWhite.png */; };
 		808E49DE295E18A900D4D077 /* nextArrowWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 808E49D8295E18A900D4D077 /* nextArrowWhite.png */; };
 		8095C48227DB014E00E1740C /* GridTile.png in Resources */ = {isa = PBXBuildFile; fileRef = 8095C48127DB014E00E1740C /* GridTile.png */; };
@@ -680,7 +680,7 @@
 		80884C53292EDF03005B29FC /* run */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = run; sourceTree = "<group>"; };
 		80884C57292EDF25005B29FC /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		80895486291DB661009C4D02 /* settingsGear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingsGear.png; sourceTree = "<group>"; };
-		8089548A291DB76B009C4D02 /* backArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backArrow.png; sourceTree = "<group>"; };
+		8089548A291DB76B009C4D02 /* homeArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeArrow.png; sourceTree = "<group>"; };
 		8089548E291DB773009C4D02 /* shoppingCart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shoppingCart.png; sourceTree = "<group>"; };
 		80895492291DB77B009C4D02 /* NoAds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoAds.png; sourceTree = "<group>"; };
 		80895496291DB7FE009C4D02 /* nextArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nextArrow.png; sourceTree = "<group>"; };
@@ -691,7 +691,7 @@
 		808D86B3297527B00022B2FE /* puzzlePacks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = puzzlePacks.png; sourceTree = "<group>"; };
 		808DC5D0297F083C00F1DD98 /* Provenance.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Provenance.md; sourceTree = "<group>"; };
 		808E3BC428FC5304009C1474 /* GridTileDot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GridTileDot.png; sourceTree = "<group>"; };
-		808E49D7295E18A900D4D077 /* backArrowWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backArrowWhite.png; sourceTree = "<group>"; };
+		808E49D7295E18A900D4D077 /* homeArrowWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeArrowWhite.png; sourceTree = "<group>"; };
 		808E49D8295E18A900D4D077 /* nextArrowWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nextArrowWhite.png; sourceTree = "<group>"; };
 		8095C48127DB014E00E1740C /* GridTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GridTile.png; sourceTree = "<group>"; };
 		809B05CC2904E83A00081D46 /* grayRectangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayRectangle.png; sourceTree = "<group>"; };
@@ -1145,7 +1145,7 @@
 			children = (
 				803AFB812979FB7600BDB614 /* Licenses */,
 				80D4CA162965DD6B00AD28D7 /* helpButton.png */,
-				808E49D7295E18A900D4D077 /* backArrowWhite.png */,
+				808E49D7295E18A900D4D077 /* homeArrowWhite.png */,
 				808E49D8295E18A900D4D077 /* nextArrowWhite.png */,
 				8035E140295F5DEB001B65C3 /* replayIconWhite.png */,
 				80895492291DB77B009C4D02 /* NoAds.png */,
@@ -1159,7 +1159,7 @@
 				8044DD8B290486140078942B /* locked.png */,
 				8089548E291DB773009C4D02 /* shoppingCart.png */,
 				8044DD7F29047FDC0078942B /* unlocked.png */,
-				8089548A291DB76B009C4D02 /* backArrow.png */,
+				8089548A291DB76B009C4D02 /* homeArrow.png */,
 				80895496291DB7FE009C4D02 /* nextArrow.png */,
 				808D86B3297527B00022B2FE /* puzzlePacks.png */,
 			);
@@ -1584,7 +1584,7 @@
 				809DF29228F1EFEE00AC4680 /* tileAnimations.plist in Resources */,
 				809B05CE2904E83A00081D46 /* grayRectangle.png in Resources */,
 				52994B8925DA13D700887B9C /* Rings_00018.png in Resources */,
-				808E49DB295E18A900D4D077 /* backArrowWhite.png in Resources */,
+				808E49DB295E18A900D4D077 /* homeArrowWhite.png in Resources */,
 				80FDEA6929145848007C05F7 /* TileSquareTranslucent.png in Resources */,
 				809FEACD2971176200B13351 /* 67410904-win-game-level-93-license.txt in Resources */,
 				8068338C292ECB1B00620AC1 /* GoogleService-Info.plist in Resources */,
@@ -1645,7 +1645,7 @@
 				52994B5C25DA13D700887B9C /* Rings_00022.png in Resources */,
 				8011CE6F297B2C0200E7CEAB /* noAds-9398585-vecteezy.pdf in Resources */,
 				5286EACB2564706B00B43209 /* TileJewelActivated08.png in Resources */,
-				8089548C291DB76B009C4D02 /* backArrow.png in Resources */,
+				8089548C291DB76B009C4D02 /* homeArrow.png in Resources */,
 				80D07E3F297E5AC800295271 /* Beamed2Logo_00006.png in Resources */,
 				80C3279F2918623400EBE438 /* CheckmarkInCircle.png in Resources */,
 				5286EA6525646FBB00B43209 /* TileMirror.png in Resources */,
@@ -1833,7 +1833,7 @@
 				8011CE8C297B2C0200E7CEAB /* lightBulb-11934419-vecteezy.pdf in Resources */,
 				80F31603297BAD5D003DCCDF /* backgroundLandscapeGrid4.png in Resources */,
 				80DFC2C328FB368000BE90C3 /* GridTile2.png in Resources */,
-				808E49DA295E18A900D4D077 /* backArrowWhite.png in Resources */,
+				808E49DA295E18A900D4D077 /* homeArrowWhite.png in Resources */,
 				526FBD1B25926960001F5647 /* Beam-Angle00-10.png in Resources */,
 				52994B4C25DA13D700887B9C /* Rings_00007.png in Resources */,
 				52994B7F25DA13D700887B9C /* Rings_00017.png in Resources */,
@@ -1845,7 +1845,7 @@
 				3AFD655F1F71A71B0008A125 /* Main.storyboard in Resources */,
 				526FBCE825926960001F5647 /* Beam-Angle00-09.png in Resources */,
 				809DF29528F22F9A00AC4680 /* beamAnimations.plist in Resources */,
-				8089548B291DB76B009C4D02 /* backArrow.png in Resources */,
+				8089548B291DB76B009C4D02 /* homeArrow.png in Resources */,
 				5286EACA2564706B00B43209 /* TileJewelActivated08.png in Resources */,
 				80BE38B6292FFE5900076A7E /* InAppMessagingDisplayResources.bundle in Resources */,
 				5286EA9A2564706B00B43209 /* TileJewelActivated03.png in Resources */,

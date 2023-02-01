@@ -206,18 +206,18 @@
     // backButton icon
     //
     // Create a back arrow icon at the left hand side
-    UIButton *backArrow = [UIButton buttonWithType:UIButtonTypeCustom];
-    CGRect backArrowRect = CGRectMake(h/2,
+    UIButton *homeArrow = [UIButton buttonWithType:UIButtonTypeCustom];
+    CGRect homeArrowRect = CGRectMake(h/2,
                                       titleFrame.origin.y,
                                       backButtonIconSizeInPoints,
                                       backButtonIconSizeInPoints);
-    backArrow.frame = backArrowRect;
-    backArrow.enabled = YES;
-    [backArrow addTarget:self action:@selector(backButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    UIImage *backArrowImage = [UIImage imageNamed:@"backArrow.png"];
-    [backArrow setBackgroundImage:backArrowImage forState:UIControlStateNormal];
-    [packsView addSubview:backArrow];
-    [packsView bringSubviewToFront:backArrow];
+    homeArrow.frame = homeArrowRect;
+    homeArrow.enabled = YES;
+    [homeArrow addTarget:self action:@selector(backButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    UIImage *homeArrowImage = [UIImage imageNamed:@"homeArrow.png"];
+    [homeArrow setBackgroundImage:homeArrowImage forState:UIControlStateNormal];
+    [packsView addSubview:homeArrow];
+    [packsView bringSubviewToFront:homeArrow];
 
     //
     // Load button images

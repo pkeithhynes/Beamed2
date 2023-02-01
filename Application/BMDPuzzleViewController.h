@@ -52,9 +52,9 @@ API_AVAILABLE(ios(13.0))
     UIButton *nextButton;
     UIButton *prevButton;
     UIButton *backButton;
-    UIButton *backArrow;
+    UIButton *homeArrow;
     UIButton *nextArrow;
-    UIButton *backArrowWhite;
+    UIButton *homeArrowWhite;
     UIButton *replayIconWhite;
     //
     // Prev, Back, Next buttons have different locations in edit mode or playback mode
@@ -130,9 +130,9 @@ API_AVAILABLE(ios(13.0))
 @property (nonatomic, retain) UIButton *nextButton;
 @property (nonatomic, retain) UIButton *prevButton;
 @property (nonatomic, retain) UIButton *backButton;
-@property (nonatomic, retain) UIButton *backArrow;
+@property (nonatomic, retain) UIButton *homeArrow;
 @property (nonatomic, retain) UIButton *nextArrow;
-@property (nonatomic, retain) UIButton *backArrowWhite;
+@property (nonatomic, retain) UIButton *homeArrowWhite;
 @property (nonatomic, retain) UIButton *replayIconWhite;
 
 @property (nonatomic) CGRect prevButtonRectEdit;

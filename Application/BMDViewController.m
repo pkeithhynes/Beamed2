@@ -774,7 +774,7 @@ Implementation of the cross-platform view controller
     CGFloat jewelWidth;
     int fontSize;
     CGFloat backButtonIconSizeInPoints = 60;
-    CGFloat backArrowPosX, backArrowPosY;
+    CGFloat homeArrowPosX, homeArrowPosY;
     CGPoint centerInPoints;
     CGFloat radius;
     CGFloat scoresLabelY;
@@ -790,8 +790,8 @@ Implementation of the cross-platform view controller
             jewelWidth = 0.15*screenWidthInPixels/contentScaleFactor;
             fontSize = 28;
             backButtonIconSizeInPoints = 60;
-            backArrowPosX = 48;
-            backArrowPosY = 162;
+            homeArrowPosX = 48;
+            homeArrowPosY = 162;
             centerInPoints = CGPointMake(0.50*screenWidthInPixels/contentScaleFactor, 0.40*screenHeightInPixels/contentScaleFactor);
             radius = 0.25*screenWidthInPixels/contentScaleFactor;
             break;
@@ -803,8 +803,8 @@ Implementation of the cross-platform view controller
             jewelWidth = 0.15*screenWidthInPixels/contentScaleFactor;
             fontSize = 20;
             backButtonIconSizeInPoints = 40;
-            backArrowPosX = 33;
-            backArrowPosY = 99;
+            homeArrowPosX = 33;
+            homeArrowPosY = 99;
             centerInPoints = CGPointMake(0.50*screenWidthInPixels/contentScaleFactor, 0.40*screenHeightInPixels/contentScaleFactor);
             radius = 0.30*screenWidthInPixels/contentScaleFactor;
             break;
@@ -817,8 +817,8 @@ Implementation of the cross-platform view controller
             jewelWidth = 0.15*screenWidthInPixels/contentScaleFactor;
             fontSize = 20;
             backButtonIconSizeInPoints = 40;
-            backArrowPosX = 33;
-            backArrowPosY = 99;
+            homeArrowPosX = 33;
+            homeArrowPosY = 99;
             centerInPoints = CGPointMake(0.50*screenWidthInPixels/contentScaleFactor, 0.40*screenHeightInPixels/contentScaleFactor);
             radius = 0.30*screenWidthInPixels/contentScaleFactor;
             break;
@@ -848,18 +848,18 @@ Implementation of the cross-platform view controller
     // backButton icon
     //
     // Create a back arrow icon at the left hand side
-    UIButton *backArrow = [UIButton buttonWithType:UIButtonTypeCustom];
-    CGRect backArrowRect = CGRectMake(backArrowPosX,
+    UIButton *homeArrow = [UIButton buttonWithType:UIButtonTypeCustom];
+    CGRect homeArrowRect = CGRectMake(homeArrowPosX,
                                       scoresLabelY,
                                       backButtonIconSizeInPoints,
                                       backButtonIconSizeInPoints);
-    backArrow.frame = backArrowRect;
-    backArrow.enabled = YES;
-    [backArrow addTarget:self action:@selector(backButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    UIImage *backArrowImage = [UIImage imageNamed:@"backArrow.png"];
-    [backArrow setBackgroundImage:backArrowImage forState:UIControlStateNormal];
-    [scoresView addSubview:backArrow];
-    [scoresView bringSubviewToFront:backArrow];
+    homeArrow.frame = homeArrowRect;
+    homeArrow.enabled = YES;
+    [homeArrow addTarget:self action:@selector(backButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    UIImage *homeArrowImage = [UIImage imageNamed:@"homeArrow.png"];
+    [homeArrow setBackgroundImage:homeArrowImage forState:UIControlStateNormal];
+    [scoresView addSubview:homeArrow];
+    [scoresView bringSubviewToFront:homeArrow];
     
     // Add Jewel Images
     

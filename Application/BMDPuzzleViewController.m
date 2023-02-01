@@ -48,9 +48,9 @@
 @synthesize nextButton;
 @synthesize prevButton;
 @synthesize backButton;
-@synthesize backArrow;
+@synthesize homeArrow;
 @synthesize nextArrow;
-@synthesize backArrowWhite;
+@synthesize homeArrowWhite;
 @synthesize replayIconWhite;
 
 @synthesize prevButtonRectEdit;
@@ -458,8 +458,8 @@
     nextButton.hidden = YES;
     nextArrow.hidden = YES;
     
-    // backArrowWhite
-    backArrowWhite.hidden = YES;
+    // homeArrowWhite
+    homeArrowWhite.hidden = YES;
     replayIconWhite.hidden = YES;
 
     // prevButton
@@ -676,29 +676,29 @@
     }
     
     //
-    // backArrow icon
+    // homeArrow icon
     //
     // Create a back arrow icon at the left hand side
-    backArrow = [UIButton buttonWithType:UIButtonTypeCustom];
-    CGRect backArrowRect = CGRectMake(posX,
+    homeArrow = [UIButton buttonWithType:UIButtonTypeCustom];
+    CGRect homeArrowRect = CGRectMake(posX,
                                       posY+1.25*height,
                                       backButtonIconSizeInPoints,
                                       backButtonIconSizeInPoints);
-    backArrow.frame = backArrowRect;
-    backArrow.enabled = YES;
+    homeArrow.frame = homeArrowRect;
+    homeArrow.enabled = YES;
     if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
-        backArrow.hidden = NO;
-//        backArrow.hidden = YES;
+        homeArrow.hidden = NO;
+//        homeArrow.hidden = YES;
     }
     else {
-        backArrow.hidden = NO;
+        homeArrow.hidden = NO;
     }
-    [backArrow addTarget:self action:@selector(backButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    UIImage *backArrowImage = [UIImage imageNamed:@"backArrow.png"];
-    [backArrow setBackgroundImage:backArrowImage forState:UIControlStateNormal];
+    [homeArrow addTarget:self action:@selector(backButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    UIImage *homeArrowImage = [UIImage imageNamed:@"homeArrow.png"];
+    [homeArrow setBackgroundImage:homeArrowImage forState:UIControlStateNormal];
     
-    [puzzleView addSubview:backArrow];
-    [puzzleView bringSubviewToFront:backArrow];
+    [puzzleView addSubview:homeArrow];
+    [puzzleView bringSubviewToFront:homeArrow];
 
     
     //
@@ -733,7 +733,7 @@
     //
     // Create a light bulb at the right hand side
     hintBulb = [UIButton buttonWithType:UIButtonTypeCustom];
-    posY = 1.1*backArrowRect.origin.y;
+    posY = 1.1*homeArrowRect.origin.y;
     CGRect hintRect = CGRectMake(rc.screenWidthInPixels/rc.contentScaleFactor-1.5*bulbSizeInPoints,
                                  posY-0.90*height,
                                  bulbSizeInPoints,
@@ -753,7 +753,7 @@
     //
     // help button
     //
-    // Create a help button at top center for iPhones and below the backArrow for iPads
+    // Create a help button at top center for iPhones and below the homeArrow for iPads
     helpButton = [UIButton buttonWithType:UIButtonTypeCustom];
     CGRect helpRect;
     switch (rc.displayAspectRatio) {
@@ -764,8 +764,8 @@
         case ASPECT_3_2: {
             // iPad Mini (6th generation)
             //
-            helpRect = CGRectMake(backArrowRect.origin.x,
-                                  backArrowRect.origin.y+1.5*backButtonIconSizeInPoints,
+            helpRect = CGRectMake(homeArrowRect.origin.x,
+                                  homeArrowRect.origin.y+1.5*backButtonIconSizeInPoints,
                                   backButtonIconSizeInPoints,
                                   backButtonIconSizeInPoints);
             break;
@@ -885,7 +885,7 @@
         case ASPECT_13_6: {
             // iPhone 8
         default:
-            settingsRect = CGRectMake(backArrowRect.origin.x+0.5*(helpRect.origin.x-backArrowRect.origin.x),
+            settingsRect = CGRectMake(homeArrowRect.origin.x+0.5*(helpRect.origin.x-homeArrowRect.origin.x),
                                       helpRect.origin.y,
                                       settingsGearIconSizeInPoints,
                                       settingsGearIconSizeInPoints);
@@ -989,24 +989,24 @@
     [puzzleView bringSubviewToFront:nextArrow];
 
     //
-    // backArrowWhite icon
+    // homeArrowWhite icon
     //
     // Create a white back arrow icon near the left hand side of the Unplaced Tiles Tray
-    backArrowWhite = [UIButton buttonWithType:UIButtonTypeCustom];
+    homeArrowWhite = [UIButton buttonWithType:UIButtonTypeCustom];
     centerX = 1.0/7.0*appd->optics->_safeAreaScreenWidthInPixels/rc.contentScaleFactor;
     centerY = appd->optics->gridTouchGestures.minUnplacedTilesBoundary.y/rc.contentScaleFactor;
-    CGRect backArrowWhiteRect = CGRectMake(centerX-arrowWidthInPoints/2.0,
+    CGRect homeArrowWhiteRect = CGRectMake(centerX-arrowWidthInPoints/2.0,
                                      centerY,
                                      arrowWidthInPoints,
                                      arrowWidthInPoints);
-    backArrowWhite.frame = backArrowWhiteRect;
-    backArrowWhite.enabled = YES;
-    backArrowWhite.hidden = YES;
-    [backArrowWhite addTarget:self action:@selector(backButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    UIImage *backArrowWhiteImage = [UIImage imageNamed:@"backArrowWhite.png"];
-    [backArrowWhite setBackgroundImage:backArrowWhiteImage forState:UIControlStateNormal];
-    [puzzleView addSubview:backArrowWhite];
-    [puzzleView bringSubviewToFront:backArrowWhite];
+    homeArrowWhite.frame = homeArrowWhiteRect;
+    homeArrowWhite.enabled = YES;
+    homeArrowWhite.hidden = YES;
+    [homeArrowWhite addTarget:self action:@selector(backButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    UIImage *homeArrowWhiteImage = [UIImage imageNamed:@"homeArrowWhite.png"];
+    [homeArrowWhite setBackgroundImage:homeArrowWhiteImage forState:UIControlStateNormal];
+    [puzzleView addSubview:homeArrowWhite];
+    [puzzleView bringSubviewToFront:homeArrowWhite];
 
     //
     // replayIconWhite icon
@@ -2012,7 +2012,7 @@
         }
         nextArrow.enabled = NO;
         replayIconWhite.enabled = NO;
-        backArrowWhite.enabled = NO;
+        homeArrowWhite.enabled = NO;
 
         NSTimer *timer = [NSTimer timerWithTimeInterval:1.0 repeats:NO block:^(NSTimer *time){
             self.puzzleSolvedView.hidden = YES;
@@ -2042,12 +2042,12 @@
             }
             self->nextButton.hidden = YES;
             self->nextArrow.hidden = YES;
-            self->backArrowWhite.hidden = YES;
+            self->homeArrowWhite.hidden = YES;
             self->replayIconWhite.hidden = YES;
             
             self->nextArrow.enabled = YES;
             self->replayIconWhite.enabled = YES;
-            self->backArrowWhite.enabled = YES;
+            self->homeArrowWhite.enabled = YES;
 
         }];
         [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
