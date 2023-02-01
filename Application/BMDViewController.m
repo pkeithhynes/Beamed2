@@ -221,7 +221,7 @@ Implementation of the cross-platform view controller
     DLog("renderBackground");
     animationFrame++;
     // Generate frame intervals from time intervals
-    unsigned int animationIntervalInFrames = 80;
+    unsigned int animationIntervalInFrames = 40;
     unsigned int animationDurationInFrames = 17;
 
     // Redraw the background every frameModulus frame

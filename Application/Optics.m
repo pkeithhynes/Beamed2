@@ -625,7 +625,12 @@ extern void playSound(AVAudioPlayer *PLAYER);
         vc.nextButton.hidden = YES;
         vc.nextArrow.hidden = YES;
         vc.backArrowWhite.hidden = NO;
-        vc.replayIconWhite.hidden = NO;
+        if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+            vc.replayIconWhite.hidden = YES;
+        }
+        else {
+            vc.replayIconWhite.hidden = NO;
+        }
         vc.backButton.hidden = NO;
         vc.backArrow.hidden = NO;
         vc.hintButton.hidden = YES;
