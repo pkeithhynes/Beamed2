@@ -51,6 +51,7 @@
 @synthesize homeArrow;
 @synthesize nextArrow;
 @synthesize homeArrowWhite;
+@synthesize prevArrowWhite;
 @synthesize replayIconWhite;
 
 @synthesize prevButtonRectEdit;
@@ -478,6 +479,7 @@
         hintBulb.hidden = NO;
         puzzleTitleLabel.hidden = NO;
         backButton.hidden = NO;
+        prevArrowWhite.hidden = YES;
     } else if (rc.appCurrentGamePackType == PACKTYPE_DAILY) {
         numberOfPuzzlesLabel.hidden = YES;
         numberOfPointsLabel.hidden = YES;
@@ -486,6 +488,7 @@
         hintBulb.hidden = NO;
         puzzleTitleLabel.hidden = NO;
         backButton.hidden = NO;
+        prevArrowWhite.hidden = YES;
     } else if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
         numberOfPuzzlesLabel.hidden = YES;
         numberOfPointsLabel.hidden = YES;
@@ -494,6 +497,12 @@
         hintBulb.hidden = YES;
         puzzleTitleLabel.hidden = NO;
         backButton.hidden = YES;
+        if ([appd fetchDemoPuzzleNumber] == 0){
+            prevArrowWhite.hidden = YES;
+        }
+        else {
+            prevArrowWhite.hidden = NO;
+        }
     }
     
 }
@@ -688,10 +697,11 @@
     homeArrow.enabled = YES;
     if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
         homeArrow.hidden = NO;
-//        homeArrow.hidden = YES;
+        prevArrowWhite.hidden = NO;
     }
     else {
         homeArrow.hidden = NO;
+        prevArrowWhite.hidden = YES;
     }
     [homeArrow addTarget:self action:@selector(backButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     UIImage *homeArrowImage = [UIImage imageNamed:@"homeArrow.png"];
@@ -991,7 +1001,7 @@
     //
     // homeArrowWhite icon
     //
-    // Create a white back arrow icon near the left hand side of the Unplaced Tiles Tray
+    // Create a white home arrow icon near the left hand side of the Unplaced Tiles Tray
     homeArrowWhite = [UIButton buttonWithType:UIButtonTypeCustom];
     centerX = 1.0/7.0*appd->optics->_safeAreaScreenWidthInPixels/rc.contentScaleFactor;
     centerY = appd->optics->gridTouchGestures.minUnplacedTilesBoundary.y/rc.contentScaleFactor;
@@ -1005,8 +1015,26 @@
     [homeArrowWhite addTarget:self action:@selector(backButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     UIImage *homeArrowWhiteImage = [UIImage imageNamed:@"homeArrowWhite.png"];
     [homeArrowWhite setBackgroundImage:homeArrowWhiteImage forState:UIControlStateNormal];
-    [puzzleView addSubview:homeArrowWhite];
-    [puzzleView bringSubviewToFront:homeArrowWhite];
+    if (rc.appCurrentGamePackType != PACKTYPE_DEMO){
+        [puzzleView addSubview:homeArrowWhite];
+        [puzzleView bringSubviewToFront:homeArrowWhite];
+    }
+
+    //
+    // prevArrowWhite icon
+    //
+    // Create a white prev arrow icon near the left hand side of the Unplaced Tiles Tray
+    prevArrowWhite = [UIButton buttonWithType:UIButtonTypeCustom];
+    prevArrowWhite.frame = homeArrowWhiteRect;
+    prevArrowWhite.enabled = YES;
+    prevArrowWhite.hidden = YES;
+    [prevArrowWhite addTarget:self action:@selector(prevButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    UIImage *prevArrowWhiteImage = [UIImage imageNamed:@"prevArrowWhite.png"];
+    [prevArrowWhite setBackgroundImage:prevArrowWhiteImage forState:UIControlStateNormal];
+    if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+        [puzzleView addSubview:prevArrowWhite];
+        [puzzleView bringSubviewToFront:prevArrowWhite];
+    }
 
     //
     // replayIconWhite icon
@@ -1657,6 +1685,12 @@
         [prevButton removeFromSuperview];
     }
     
+    // Remove prevArrowWhite
+    if (prevArrowWhite != nil){
+        [puzzleView sendSubviewToBack:prevArrowWhite];
+        [prevArrowWhite removeFromSuperview];
+    }
+    
     // Remove autoManualButton
     if (autoManualButton != nil){
         [puzzleView sendSubviewToBack:autoManualButton];
@@ -1997,6 +2031,15 @@
     }
     // Puzzle Play
     else {
+        if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+            if ([appd fetchDemoPuzzleNumber] == 0){
+                prevArrowWhite.hidden = YES;
+            }
+            else {
+                prevArrowWhite.hidden = NO;
+            }
+        }
+        
         // If in PACKTYPE_DEMO and infoScreen then save the next puzzle when the nextPuzzle button is pressed
         if (rc.appCurrentGamePackType == PACKTYPE_DEMO &&
             self->appd->optics->infoScreen){
@@ -2014,7 +2057,11 @@
         replayIconWhite.enabled = NO;
         homeArrowWhite.enabled = NO;
 
-        NSTimer *timer = [NSTimer timerWithTimeInterval:1.0 repeats:NO block:^(NSTimer *time){
+        NSTimeInterval delayTime = 1.0;
+        if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+            delayTime = 0.0;
+        }
+        NSTimer *timer = [NSTimer timerWithTimeInterval:delayTime repeats:NO block:^(NSTimer *time){
             self.puzzleSolvedView.hidden = YES;
             NSString *adFree = [self->appd getObjectFromDefaults:@"AD_FREE_PUZZLES"];
             if (![adFree isEqualToString:@"YES"] &&
@@ -2080,6 +2127,9 @@
                 }
             }
         }
+    }
+    else if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+        DLog("previous screen");
     }
 }
 

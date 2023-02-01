@@ -2111,9 +2111,9 @@
 		</dict>
 		<dict>
 			<key>gridSizeX</key>
-			<integer>5</integer>
+			<integer>6</integer>
 			<key>gridSizeY</key>
-			<integer>7</integer>
+			<integer>8</integer>
 			<key>displayBackgroundArray</key>
 			<true/>
 			<key>displayBackgroundImage</key>
@@ -2364,9 +2364,9 @@
 		</dict>
 		<dict>
 			<key>gridSizeX</key>
-			<integer>5</integer>
+			<integer>6</integer>
 			<key>gridSizeY</key>
-			<integer>7</integer>
+			<integer>8</integer>
 			<key>displayBackgroundArray</key>
 			<true/>
 			<key>displayBackgroundImage</key>

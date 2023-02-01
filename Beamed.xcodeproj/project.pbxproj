@@ -388,6 +388,8 @@
 		80A4F73C28D4D5ED007BDE13 /* demoPuzzlePackDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F73A28D4D5ED007BDE13 /* demoPuzzlePackDictionary.plist */; };
 		80A4F73F28D4D855007BDE13 /* dailyPuzzlesPackDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F73E28D4D855007BDE13 /* dailyPuzzlesPackDictionary.plist */; };
 		80A4F74028D4D855007BDE13 /* dailyPuzzlesPackDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80A4F73E28D4D855007BDE13 /* dailyPuzzlesPackDictionary.plist */; };
+		80BAB833298AFB4A00BF6B33 /* prevArrowWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 80BAB832298AFB4A00BF6B33 /* prevArrowWhite.png */; };
+		80BAB834298AFB4A00BF6B33 /* prevArrowWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 80BAB832298AFB4A00BF6B33 /* prevArrowWhite.png */; };
 		80BB3CA528DBC42700C547D1 /* DragTileText.png in Resources */ = {isa = PBXBuildFile; fileRef = 80BB3CA428DBC42700C547D1 /* DragTileText.png */; };
 		80BB3CA628DBC42700C547D1 /* DragTileText.png in Resources */ = {isa = PBXBuildFile; fileRef = 80BB3CA428DBC42700C547D1 /* DragTileText.png */; };
 		80BE38AD292FFE4700076A7E /* FirebaseABTesting.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80BE38AC292FFE4700076A7E /* FirebaseABTesting.xcframework */; };
@@ -724,6 +726,7 @@
 		809FEADC297117A600B13351 /* 67412387-mobile-game-melodic-stinger-dreamy-synth-level-up-2-license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "67412387-mobile-game-melodic-stinger-dreamy-synth-level-up-2-license.txt"; sourceTree = "<group>"; };
 		80A4F73A28D4D5ED007BDE13 /* demoPuzzlePackDictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = demoPuzzlePackDictionary.plist; sourceTree = "<group>"; };
 		80A4F73E28D4D855007BDE13 /* dailyPuzzlesPackDictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dailyPuzzlesPackDictionary.plist; sourceTree = "<group>"; };
+		80BAB832298AFB4A00BF6B33 /* prevArrowWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = prevArrowWhite.png; sourceTree = "<group>"; };
 		80BB3CA428DBC42700C547D1 /* DragTileText.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DragTileText.png; sourceTree = "<group>"; };
 		80BE38AC292FFE4700076A7E /* FirebaseABTesting.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseABTesting.xcframework; sourceTree = "<group>"; };
 		80BE38B0292FFE5200076A7E /* FirebaseInAppMessagingSwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseInAppMessagingSwift.xcframework; sourceTree = "<group>"; };
@@ -1147,6 +1150,7 @@
 				80D4CA162965DD6B00AD28D7 /* helpButton.png */,
 				808E49D7295E18A900D4D077 /* homeArrowWhite.png */,
 				808E49D8295E18A900D4D077 /* nextArrowWhite.png */,
+				80BAB832298AFB4A00BF6B33 /* prevArrowWhite.png */,
 				8035E140295F5DEB001B65C3 /* replayIconWhite.png */,
 				80895492291DB77B009C4D02 /* NoAds.png */,
 				80895486291DB661009C4D02 /* settingsGear.png */,
@@ -1724,6 +1728,7 @@
 				8011CE61297B299200E7CEAB /* fishLogo-13761701-Vecteezy.pdf in Resources */,
 				526FBCD725926960001F5647 /* Beam-Angle00-03.png in Resources */,
 				526FBD5E25926960001F5647 /* Beam-Angle00-12.png in Resources */,
+				80BAB834298AFB4A00BF6B33 /* prevArrowWhite.png in Resources */,
 				526FBD5225926960001F5647 /* Beam-Angle00-11.png in Resources */,
 				803AFB792979D12900BDB614 /* Provenance.xib in Resources */,
 				80BB3CA628DBC42700C547D1 /* DragTileText.png in Resources */,
@@ -1930,6 +1935,7 @@
 				526FBD2725926960001F5647 /* Beam-Angle00-01.png in Resources */,
 				80895487291DB661009C4D02 /* settingsGear.png in Resources */,
 				80C538EA28DF349700E0606E /* TileCheckmark.png in Resources */,
+				80BAB833298AFB4A00BF6B33 /* prevArrowWhite.png in Resources */,
 				526FBCF725926960001F5647 /* Beam-Angle00-05.png in Resources */,
 				809FEADD297117A600B13351 /* 67412387-mobile-game-melodic-stinger-dreamy-synth-level-up-2-license.pdf in Resources */,
 				52994B5B25DA13D700887B9C /* Rings_00022.png in Resources */,
