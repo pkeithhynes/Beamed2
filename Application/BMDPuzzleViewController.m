@@ -687,7 +687,8 @@
     backArrow.frame = backArrowRect;
     backArrow.enabled = YES;
     if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
-        backArrow.hidden = YES;
+        backArrow.hidden = NO;
+//        backArrow.hidden = YES;
     }
     else {
         backArrow.hidden = NO;

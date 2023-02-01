@@ -132,6 +132,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
     // If not of type infoScreen then just show nextArrow
     if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
         vc.backArrowWhite.hidden = NO;
+        vc.backArrow.hidden = NO;
         vc.replayIconWhite.hidden = YES;
         if (infoScreen){
             vc.nextArrow.hidden = NO;
@@ -298,6 +299,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
         vc.backButton.hidden = YES;
         vc.replayIconWhite.hidden = YES;
         vc.backArrowWhite.hidden = NO;
+        vc.backArrow.hidden = NO;
         if (infoScreen){
             vc.nextArrow.hidden = NO;
         }
@@ -508,6 +510,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
             else if (rc->appCurrentGamePackType == PACKTYPE_DEMO){
                 vc.backButton.hidden = YES;
                 vc.backArrowWhite.hidden = NO;
+                vc.backArrow.hidden = NO;
                 if (infoScreen){
                     vc.nextButton.hidden = NO;
                 }
@@ -548,6 +551,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
         else {
             if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
                 vc.backArrowWhite.hidden = NO;
+                vc.backArrow.hidden = NO;
                 vc.replayIconWhite.hidden = YES;
                 if (infoScreen){
                     vc.nextArrow.hidden = NO;
@@ -661,6 +665,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
         else if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
             vc.nextButton.hidden = NO;
             vc.nextArrow.hidden = NO;
+            vc.backArrow.hidden = NO;
             if (infoScreen)
                 vc.backArrowWhite.hidden = NO;
             vc.replayIconWhite.hidden = YES;
@@ -690,7 +695,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
             }
             vc.replayIconWhite.hidden = YES;
             vc.backButton.hidden = YES;
-            vc.backArrow.hidden = YES;
+            vc.backArrow.hidden = NO;
             vc.hintButton.hidden = YES;
             vc.hintBulb.hidden = YES;
         }
@@ -3863,6 +3868,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
         else if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
             vc.hintButton.hidden = YES;     // hints always hidden in PACKTYPE_DEMO
             vc.hintBulb.hidden = YES;
+            vc.backArrow.hidden = NO;
             if ([self checkIfAllJewelsAreEnergized]) {
                 puzzleCompleted = YES;
                 if (!puzzleHasBeenCompleted) {
@@ -4497,6 +4503,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
     [self updateEnergizedStateForAllTiles];
     if (!puzzleHasBeenCompleted){
         if ([self queryPuzzleCompleted]){
+            vc.backArrow.hidden = NO;
             if (!infoScreen)
                 [self saveNextPuzzleToDefaults];
             if ([appd packHasBeenCompleted]){
@@ -5155,6 +5162,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
                     // Check for Puzzle completion
                     if (!puzzleHasBeenCompleted){
                         if ([self queryPuzzleCompleted]){
+                            vc.backArrow.hidden = NO;
                             if (!infoScreen)
                                 [self saveNextPuzzleToDefaults];
                             if ([appd packHasBeenCompleted]){
@@ -5249,6 +5257,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
                     // Check for Puzzle completion
                     if (!puzzleHasBeenCompleted){
                         if ([self queryPuzzleCompleted]){
+                            vc.backArrow.hidden = NO;
                             if (!infoScreen)
                                 [self saveNextPuzzleToDefaults];
                             if ([appd packHasBeenCompleted]){
@@ -5383,6 +5392,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
                 // Check for Puzzle completion
                 if (!puzzleHasBeenCompleted){
                     if ([self queryPuzzleCompleted]){
+                        vc.backArrow.hidden = NO;
                         if (!infoScreen)
                             [self saveNextPuzzleToDefaults];
                         if ([appd packHasBeenCompleted]){

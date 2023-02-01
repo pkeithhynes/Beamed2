@@ -229,11 +229,6 @@ Implementation of the cross-platform view controller
     backgroundRenderDataImage = [background renderBackgroundImage:7];
     [backgroundRenderDictionary setObject:backgroundRenderDataImage forKey:@"backgroundImage"];
     
-    // Redraw the logo every frameModulus frames
-//    logoRenderDataImage = [background renderLogoImage:7];
-//    [backgroundRenderDictionary setObject:logoRenderDataImage forKey:@"logoImage"];
-    
-    
     // Initiate a new animation sequence every animationIntervalInFrames
     if (animationFrameMarker1 < 0 &&
         animationFrame % animationIntervalInFrames == 0){
