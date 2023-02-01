@@ -121,16 +121,21 @@ extern void playSound(AVAudioPlayer *PLAYER);
             vc.nextButton.hidden = NO;
             vc.nextArrow.hidden = NO;
             vc.backArrowWhite.hidden = NO;
-            vc.replayIconWhite.hidden = NO;
+            vc.replayIconWhite.hidden = (rc.appCurrentGamePackType == PACKTYPE_DEMO);
             packHasBeenCompleted = NO;
         }
     }
     
-    // If we are in PACKTYPE_DEMO and the puzzle is of type infoScreen then show the nextArraw and
+    // If we are in PACKTYPE_DEMO and the puzzle is of type infoScreen then show the nextArrow and
     // the backArrowWhite buttons
-    if (rc.appCurrentGamePackType == PACKTYPE_DEMO && infoScreen){
-        vc.nextArrow.hidden = NO;
+    //
+    // If not of type infoScreen then just show nextArrow
+    if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
         vc.backArrowWhite.hidden = NO;
+        vc.replayIconWhite.hidden = YES;
+        if (infoScreen){
+            vc.nextArrow.hidden = NO;
+        }
     }
 }
 
@@ -291,8 +296,9 @@ extern void playSound(AVAudioPlayer *PLAYER);
     vc.replayIconWhite.hidden = YES;
     if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
         vc.backButton.hidden = YES;
+        vc.replayIconWhite.hidden = YES;
+        vc.backArrowWhite.hidden = NO;
         if (infoScreen){
-            vc.backArrowWhite.hidden = NO;
             vc.nextArrow.hidden = NO;
         }
     }
@@ -500,12 +506,11 @@ extern void playSound(AVAudioPlayer *PLAYER);
                 vc.nextButton.layer.borderColor = [UIColor cyanColor].CGColor;
             }
             else if (rc->appCurrentGamePackType == PACKTYPE_DEMO){
-                // nextButton and backButton no longer used
-                // in PACKTYPE_DEMO
                 vc.backButton.hidden = YES;
-                vc.nextButton.hidden = YES;
-                if (infoScreen)
-                    vc.backArrowWhite.hidden = NO;
+                vc.backArrowWhite.hidden = NO;
+                if (infoScreen){
+                    vc.nextButton.hidden = NO;
+                }
                 vc.replayIconWhite.hidden = YES;
             }
             if (!puzzleCompletedButtonFlash){
@@ -518,6 +523,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
                     [vc enableFlash:vc.nextButton];
                 }
                 else if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+                    vc.replayIconWhite.hidden = YES;
                     // DO NOT enableFlash:vc.backButton
                     // DO NOT enableFlash:vc.nextButton
                 }
@@ -540,9 +546,12 @@ extern void playSound(AVAudioPlayer *PLAYER);
             }
         }
         else {
-            if (rc.appCurrentGamePackType == PACKTYPE_DEMO && infoScreen){
+            if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
                 vc.backArrowWhite.hidden = NO;
-                vc.nextArrow.hidden = NO;
+                vc.replayIconWhite.hidden = YES;
+                if (infoScreen){
+                    vc.nextArrow.hidden = NO;
+                }
             }
             else {
                 vc.nextArrow.hidden = YES;
@@ -670,9 +679,8 @@ extern void playSound(AVAudioPlayer *PLAYER);
         else if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
             vc.nextButton.hidden = YES;
             vc.nextArrow.hidden = YES;
-            vc.backArrowWhite.hidden = YES;
+            vc.backArrowWhite.hidden = NO;
             if (infoScreen){
-                vc.backArrowWhite.hidden = NO;
                 vc.nextArrow.hidden = NO;
             }
             vc.replayIconWhite.hidden = YES;
@@ -3856,9 +3864,10 @@ extern void playSound(AVAudioPlayer *PLAYER);
                     [appd playPuzzleCompleteSoundEffect];
                 }
                 [self handlePuzzleCompletion:nil];
-                vc.nextArrow.hidden = NO;
-                if (infoScreen)
-                    vc.backArrowWhite.hidden = NO;
+                vc.backArrowWhite.hidden = NO;
+                if (infoScreen){
+                    vc.nextArrow.hidden = NO;
+                }
                 vc.replayIconWhite.hidden = YES;
             }
             else if (infoScreen){
@@ -3879,7 +3888,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
                 puzzleHasBeenCompletedCelebration = NO;
                 vc.nextButton.hidden = YES;
                 vc.nextArrow.hidden = YES;
-                vc.backArrowWhite.hidden = YES;
+                vc.backArrowWhite.hidden = NO;
                 vc.replayIconWhite.hidden = YES;
                 vc.backButton.hidden = YES;
             }
@@ -5148,11 +5157,8 @@ extern void playSound(AVAudioPlayer *PLAYER);
                                 vc.nextButton.hidden = YES;
                                 vc.nextArrow.hidden = YES;
                                 vc.backArrowWhite.hidden = NO;
-                                vc.replayIconWhite.hidden = NO;
+                                vc.replayIconWhite.hidden = (rc.appCurrentGamePackType == PACKTYPE_DEMO);
                                 packHasBeenCompleted = YES;
-//                                if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
-//                                    rc.appCurrentGamePackType = PACKTYPE_MAIN;
-//                                }
                             }
                             else {
                                 vc.nextButton.hidden = NO;
@@ -5245,7 +5251,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
                                 vc.nextButton.hidden = YES;
                                 vc.nextArrow.hidden = YES;
                                 vc.backArrowWhite.hidden = NO;
-                                vc.replayIconWhite.hidden = NO;
+                                vc.replayIconWhite.hidden = (rc.appCurrentGamePackType == PACKTYPE_DEMO);
                                 packHasBeenCompleted = YES;
                             }
                             else {
@@ -5379,7 +5385,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
                             vc.nextButton.hidden = YES;
                             vc.nextArrow.hidden = YES;
                             vc.backArrowWhite.hidden = NO;
-                            vc.replayIconWhite.hidden = NO;
+                            vc.replayIconWhite.hidden = (rc.appCurrentGamePackType == PACKTYPE_DEMO);
                             packHasBeenCompleted = YES;
 //                            if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
 //                                rc.appCurrentGamePackType = PACKTYPE_MAIN;
