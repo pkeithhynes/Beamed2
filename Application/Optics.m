@@ -134,7 +134,10 @@ extern void playSound(AVAudioPlayer *PLAYER);
         vc.homeArrowWhite.hidden = YES;
         vc.homeArrow.hidden = NO;
         vc.replayIconWhite.hidden = YES;
-        if (infoScreen){
+        if ([appd packHasBeenCompleted]){
+            vc.nextArrow.hidden = YES;
+        }
+        else {
             vc.nextArrow.hidden = NO;
         }
     }
@@ -298,9 +301,11 @@ extern void playSound(AVAudioPlayer *PLAYER);
     if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
         vc.backButton.hidden = YES;
         vc.replayIconWhite.hidden = YES;
-//        vc.homeArrowWhite.hidden = NO;
         vc.homeArrow.hidden = NO;
-        if (infoScreen){
+        if ([appd packHasBeenCompleted]){
+            vc.nextArrow.hidden = YES;
+        }
+        else {
             vc.nextArrow.hidden = NO;
         }
     }
@@ -553,7 +558,10 @@ extern void playSound(AVAudioPlayer *PLAYER);
                 vc.homeArrowWhite.hidden = YES;
                 vc.homeArrow.hidden = NO;
                 vc.replayIconWhite.hidden = YES;
-                if (infoScreen){
+                if ([appd packHasBeenCompleted]){
+                    vc.nextArrow.hidden = YES;
+                }
+                else {
                     vc.nextArrow.hidden = NO;
                 }
             }
@@ -665,7 +673,12 @@ extern void playSound(AVAudioPlayer *PLAYER);
         }
         else if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
             vc.nextButton.hidden = NO;
-            vc.nextArrow.hidden = NO;
+            if ([appd packHasBeenCompleted]){
+                vc.nextArrow.hidden = YES;
+            }
+            else {
+                vc.nextArrow.hidden = NO;
+            }
             vc.homeArrow.hidden = NO;
             vc.homeArrowWhite.hidden = YES;
             vc.replayIconWhite.hidden = YES;
@@ -688,11 +701,13 @@ extern void playSound(AVAudioPlayer *PLAYER);
         }
         else if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
             vc.nextButton.hidden = YES;
-            vc.nextArrow.hidden = YES;
-            vc.homeArrowWhite.hidden = YES;
-            if (infoScreen){
+            if ([appd packHasBeenCompleted]){
+                vc.nextArrow.hidden = YES;
+            }
+            else {
                 vc.nextArrow.hidden = NO;
             }
+            vc.homeArrowWhite.hidden = YES;
             vc.replayIconWhite.hidden = YES;
             vc.backButton.hidden = YES;
             vc.homeArrow.hidden = NO;
@@ -1754,17 +1769,14 @@ extern void playSound(AVAudioPlayer *PLAYER);
         currentPuzzleNumber = [appd fetchDemoPuzzleNumber];
         nextPuzzleNumber = currentPuzzleNumber+1;
         
+        [appd saveDemoPuzzleNumber:nextPuzzleNumber];
         if (nextPuzzleNumber >= currentPackLength){
-            [appd saveDemoPuzzleNumber:currentPackLength];
             [defaults setObject:@"YES" forKey:@"demoHasBeenCompleted"];
             if (ENABLE_GA == YES){
                 [FIRAnalytics logEventWithName:kFIREventTutorialComplete
                                     parameters:@{
                 }];
             }
-        }
-        else {
-            [appd saveDemoPuzzleNumber:nextPuzzleNumber];
         }
     }
 }
@@ -3876,14 +3888,22 @@ extern void playSound(AVAudioPlayer *PLAYER);
                 }
                 [self handlePuzzleCompletion:nil];
                 vc.homeArrowWhite.hidden = YES;
-                if (infoScreen){
+                if ([appd packHasBeenCompleted]){
+                    vc.nextArrow.hidden = YES;
+                }
+                else {
                     vc.nextArrow.hidden = NO;
                 }
                 vc.replayIconWhite.hidden = YES;
             }
             else if (infoScreen){
                 vc.homeArrowWhite.hidden = YES;
-                vc.nextArrow.hidden = NO;
+                if ([appd packHasBeenCompleted]){
+                    vc.nextArrow.hidden = YES;
+                }
+                else {
+                    vc.nextArrow.hidden = NO;
+                }
                 vc.puzzleCompleteLabel.hidden = YES;
                 vc.puzzleCompleteMessage.hidden = YES;
                 puzzleHasBeenCompleted = NO;

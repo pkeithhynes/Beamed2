@@ -4176,7 +4176,7 @@
 			<key>displayBackgroundArray</key>
 			<true/>
 			<key>infoScreen</key>
-			<false/>
+			<true/>
 			<key>arrayOfMessageButtonsAndLabels</key>
 			<array>
 				<dict>

@@ -1074,7 +1074,8 @@ CGFloat _screenHeightInPixels;
         NSMutableDictionary *demoPackDictionary = [self fetchPackDictionaryFromPlist:kDemoPuzzlePackDictionary];
         unsigned int currentPackLength = [self countPuzzlesWithinPack:demoPackDictionary];
         unsigned int currentPuzzleNumber = [self fetchDemoPuzzleNumber];
-        if (currentPuzzleNumber >= currentPackLength){
+        // Note that puzzle numbers start at 0
+        if (currentPuzzleNumber+1 >= currentPackLength){
             return YES;
         }
         else {

@@ -457,7 +457,6 @@
     
     // nextButton
     nextButton.hidden = YES;
-    nextArrow.hidden = YES;
     
     // homeArrowWhite
     homeArrowWhite.hidden = YES;
@@ -480,6 +479,7 @@
         puzzleTitleLabel.hidden = NO;
         backButton.hidden = NO;
         prevArrowWhite.hidden = YES;
+        nextArrow.hidden = YES;
     } else if (rc.appCurrentGamePackType == PACKTYPE_DAILY) {
         numberOfPuzzlesLabel.hidden = YES;
         numberOfPointsLabel.hidden = YES;
@@ -489,6 +489,7 @@
         puzzleTitleLabel.hidden = NO;
         backButton.hidden = NO;
         prevArrowWhite.hidden = YES;
+        nextArrow.hidden = YES;
     } else if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
         numberOfPuzzlesLabel.hidden = YES;
         numberOfPointsLabel.hidden = YES;
@@ -497,11 +498,17 @@
         hintBulb.hidden = YES;
         puzzleTitleLabel.hidden = NO;
         backButton.hidden = YES;
-        if ([appd fetchDemoPuzzleNumber] == 0){
-            prevArrowWhite.hidden = YES;
+        if ([appd fetchDemoPuzzleNumber] > 0){
+            prevArrowWhite.hidden = NO;
         }
         else {
-            prevArrowWhite.hidden = NO;
+            prevArrowWhite.hidden = YES;
+        }
+        if ([appd packHasBeenCompleted]){
+            nextArrow.hidden = YES;
+        }
+        else {
+            nextArrow.hidden = NO;
         }
     }
     
@@ -1679,6 +1686,12 @@
         [nextButton removeFromSuperview];
     }
     
+    // Remove nextArrow
+    if (nextArrow != nil){
+        [puzzleView sendSubviewToBack:nextArrow];
+        [nextArrow removeFromSuperview];
+    }
+    
     // Remove prevButton
     if (prevButton != nil){
         [puzzleView sendSubviewToBack:prevButton];
@@ -1869,15 +1882,13 @@
 }
 
 - (void)nextPuzzle {
-    DLog("BMDPuzzleViewController.nextPuzzle");
     NSString *dictionaryName = [[NSString alloc] init];
-    unsigned int nextPuzzleNumber = [appd fetchCurrentPuzzleNumberForPack:[appd fetchCurrentPackNumber]];
     switch (rc.appCurrentGamePackType) {
         case PACKTYPE_MAIN:{
+            unsigned int nextPuzzleNumber = [appd fetchCurrentPuzzleNumberForPack:[appd fetchCurrentPackNumber]];
             if (nextPuzzleNumber <= [appd fetchCurrentPackLength]){
                 [appd playMusicLoop:appd.loop2Player];
                 [self setPuzzleLabel];
-//                [appd playSound:appd.puzzleBegin1_SoundFileObject];
                 [self startNewPuzzleInCurrentPack];
             }
             break;
@@ -2029,38 +2040,31 @@
             }
         }
     }
-    // Puzzle Play
-    else {
-        if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
-            if ([appd fetchDemoPuzzleNumber] == 0){
-                prevArrowWhite.hidden = YES;
-            }
-            else {
-                prevArrowWhite.hidden = NO;
-            }
-        }
-        
-        // If in PACKTYPE_DEMO and infoScreen then save the next puzzle when the nextPuzzle button is pressed
-        if (rc.appCurrentGamePackType == PACKTYPE_DEMO &&
-            self->appd->optics->infoScreen){
-            [self->appd->optics saveNextPuzzleToDefaults];
-        }
-        
+    // PACKTYPE_DEMO
+    else if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
         self->appd->optics->puzzleHasBeenCompletedCelebration = NO;
+        self.puzzleSolvedView.hidden = YES;
+        self->homeArrowWhite.hidden = YES;
+        self->replayIconWhite.hidden = YES;
         
-        // If in PACKTYPE_DEMO and infoScreen then DON'T drop all Tiles off the screen
-        if (!(rc.appCurrentGamePackType == PACKTYPE_DEMO &&
-            self->appd->optics->infoScreen)){
-            [self->appd->optics dropAllTilesOffScreen];
+        if (![appd packHasBeenCompleted]){
+            [self->appd->optics saveNextPuzzleToDefaults];
+            [self nextPuzzle];
         }
+        else {
+            self->nextArrow.hidden = YES;
+        }
+    }
+    // PACKTYPE_DAILY and PACKTYPE_MAIN
+    else {
+        self->appd->optics->puzzleHasBeenCompletedCelebration = NO;
+        [self->appd->optics dropAllTilesOffScreen];
+        
         nextArrow.enabled = NO;
         replayIconWhite.enabled = NO;
         homeArrowWhite.enabled = NO;
-
+        
         NSTimeInterval delayTime = 1.0;
-        if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
-            delayTime = 0.0;
-        }
         NSTimer *timer = [NSTimer timerWithTimeInterval:delayTime repeats:NO block:^(NSTimer *time){
             self.puzzleSolvedView.hidden = YES;
             NSString *adFree = [self->appd getObjectFromDefaults:@"AD_FREE_PUZZLES"];
@@ -2129,7 +2133,26 @@
         }
     }
     else if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
-        DLog("previous screen");
+        DLog("previous puzzle");
+        unsigned int demoPuzzleNumber = [appd fetchDemoPuzzleNumber];
+        NSMutableDictionary *puzzle = nil;
+        if (demoPuzzleNumber > 0){
+            demoPuzzleNumber--;
+            if ([self queryPuzzleExists:kDemoPuzzlePackDictionary puzzle:demoPuzzleNumber]){
+                puzzle = [appd fetchGamePuzzle:0 puzzleIndex:demoPuzzleNumber];
+                if (puzzle != nil){
+                    if (demoPuzzleNumber > 0){
+                        prevArrowWhite.hidden = NO;
+                    }
+                    else {
+                        prevArrowWhite.hidden = YES;
+                    }
+                    [appd saveDemoPuzzleNumber:demoPuzzleNumber];
+                    appd->optics = [Optics alloc];
+                    [appd->optics initWithDictionary:puzzle viewController:self];
+                }
+            }
+        }
     }
 }
 
