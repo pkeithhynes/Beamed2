@@ -105,6 +105,7 @@ API_AVAILABLE(ios(13.0))
     NSMutableDictionary *puzzleDictionary;
     
     NSMutableDictionary     *inputPuzzleDictionary;
+    
 }
 
 @property (nonatomic, retain) BMDHintsViewController *hintsViewController;
@@ -177,7 +178,6 @@ API_AVAILABLE(ios(13.0))
 @property (nonatomic, retain) NSMutableDictionary * _Nullable puzzleDictionary;
 
 @property (nonatomic, retain) NSMutableDictionary * _Nonnull inputPuzzleDictionary;
-
 
 
 

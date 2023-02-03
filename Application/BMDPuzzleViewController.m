@@ -494,8 +494,8 @@
         numberOfPuzzlesLabel.hidden = YES;
         numberOfPointsLabel.hidden = YES;
         todaysDateLabelPuzzle.hidden = YES;
-        hintButton.hidden = YES;
-        hintBulb.hidden = YES;
+        hintButton.hidden = !appd->optics->circleAroundHintsButton;
+        hintBulb.hidden = !appd->optics->circleAroundHintsButton;
         puzzleTitleLabel.hidden = NO;
         backButton.hidden = YES;
         if ([appd fetchDemoPuzzleNumber] > 0){
@@ -736,7 +736,8 @@
     [self setHintButtonLabel:appd.numberOfHintsRemaining];
     [hintButton addTarget:self action:@selector(hintButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     hintButton.showsTouchWhenHighlighted = YES;
-    hintButton.hidden = [appd->optics allTilesArePlaced] || (rc.appCurrentGamePackType == PACKTYPE_DEMO);
+    hintButton.hidden = [appd->optics allTilesArePlaced] ||
+                        ((rc.appCurrentGamePackType == PACKTYPE_DEMO) && !appd->optics->circleAroundHintsButton);
     [hintButton setTitleColor:[UIColor colorWithRed:251.0/255.0
                                               green:212.0/255.0
                                                blue:12.0/255.0
@@ -757,10 +758,19 @@
                                  bulbSizeInPoints);
     hintBulb.frame = hintRect;
     hintBulb.enabled = YES;
-    hintBulb.hidden = [appd->optics allTilesArePlaced] || (rc.appCurrentGamePackType == PACKTYPE_DEMO);
+    hintBulb.hidden = [appd->optics allTilesArePlaced] ||
+                        ((rc.appCurrentGamePackType == PACKTYPE_DEMO) && !appd->optics->circleAroundHintsButton);
     [hintBulb addTarget:self action:@selector(hintButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    UIImage *hintImage = [UIImage imageNamed:@"lightBulb.png"];
-    [hintBulb setBackgroundImage:hintImage forState:UIControlStateNormal];
+    hintBulb.hidden = [appd->optics allTilesArePlaced] ||
+                        ((rc.appCurrentGamePackType == PACKTYPE_DEMO) && !appd->optics->circleAroundHintsButton);
+    UIImage *hintImage = nil;
+    if (appd->optics->circleAroundHintsButton){
+        hintImage = [UIImage imageNamed:@"lightBulbInCircle.png"];
+    }
+    else {
+        hintImage = [UIImage imageNamed:@"lightBulb.png"];
+    }
+    [hintBulb setImage:hintImage forState:UIControlStateNormal];
 
     [puzzleView addSubview:hintBulb];
     [puzzleView bringSubviewToFront:hintBulb];
@@ -1727,6 +1737,18 @@
         [puzzleView sendSubviewToBack:puzzleCompleteLabel];
         [puzzleCompleteLabel removeFromSuperview];
     }
+    
+    // Remove hintButton
+    if (hintButton != nil){
+        [puzzleView sendSubviewToBack:hintButton];
+        [hintButton removeFromSuperview];
+    }
+    
+    // Remove hintBulb
+    if (hintBulb != nil){
+        [puzzleView sendSubviewToBack:hintBulb];
+        [hintBulb removeFromSuperview];
+    }
 }
 
 - (void)setHintButtonLabel:(unsigned int)hintsRemaining {
@@ -2536,6 +2558,10 @@
 - (void)hintButtonPressed {
     appd.numberOfHintsRemaining = [[appd getObjectFromDefaults:@"numberOfHintsRemaining"] intValue];
     if ([appd checkForEndlessHintsPurchased]){
+        [appd->optics startPositionTileForHint];
+        [appd playSound:appd.tapPlayer];
+    }
+    else if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
         [appd->optics startPositionTileForHint];
         [appd playSound:appd.tapPlayer];
     }

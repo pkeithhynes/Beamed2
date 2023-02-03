@@ -90,6 +90,7 @@ API_AVAILABLE(ios(13.0))
     BOOL                        displayBackgroundArray;
     BOOL                        displayBackgroundImage;
     BOOL                        infoScreen;
+    BOOL                        circleAroundHintsButton;
     NSMutableArray             *backgroundRenderArray;
     NSMutableArray             *beamsRenderArray;
     NSMutableArray             *gridPositionsCrossedByMultipleCoincidentBeams;

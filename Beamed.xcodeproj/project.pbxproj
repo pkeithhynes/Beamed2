@@ -462,6 +462,8 @@
 		80D07E60297E5AC800295271 /* Beamed2Logo_00003.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D07E2E297E5AC800295271 /* Beamed2Logo_00003.png */; };
 		80D4CA172965DD6B00AD28D7 /* helpButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D4CA162965DD6B00AD28D7 /* helpButton.png */; };
 		80D4CA182965DD6B00AD28D7 /* helpButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D4CA162965DD6B00AD28D7 /* helpButton.png */; };
+		80D8719A298C7847003A282C /* lightBulbInCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D87199298C7847003A282C /* lightBulbInCircle.png */; };
+		80D8719B298C7847003A282C /* lightBulbInCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D87199298C7847003A282C /* lightBulbInCircle.png */; };
 		80DFC2C328FB368000BE90C3 /* GridTile2.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DFC2C228FB368000BE90C3 /* GridTile2.png */; };
 		80DFC2C428FB368000BE90C3 /* GridTile2.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DFC2C228FB368000BE90C3 /* GridTile2.png */; };
 		80E76F5F28AAAD7600F6D31D /* BMDPuzzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E76F5E28AAAD7600F6D31D /* BMDPuzzleViewController.m */; };
@@ -770,6 +772,7 @@
 		80D07E2D297E5AC800295271 /* Beamed2Logo_00010.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Beamed2Logo_00010.png; sourceTree = "<group>"; };
 		80D07E2E297E5AC800295271 /* Beamed2Logo_00003.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Beamed2Logo_00003.png; sourceTree = "<group>"; };
 		80D4CA162965DD6B00AD28D7 /* helpButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helpButton.png; sourceTree = "<group>"; };
+		80D87199298C7847003A282C /* lightBulbInCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightBulbInCircle.png; sourceTree = "<group>"; };
 		80DFC2C228FB368000BE90C3 /* GridTile2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GridTile2.png; sourceTree = "<group>"; };
 		80E76F5D28AAAD7600F6D31D /* BMDPuzzleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMDPuzzleViewController.h; sourceTree = "<group>"; };
 		80E76F5E28AAAD7600F6D31D /* BMDPuzzleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMDPuzzleViewController.m; sourceTree = "<group>"; };
@@ -1156,6 +1159,7 @@
 				80895486291DB661009C4D02 /* settingsGear.png */,
 				809B05CC2904E83A00081D46 /* grayRectangle.png */,
 				8089549A291DB805009C4D02 /* lightBulb.png */,
+				80D87199298C7847003A282C /* lightBulbInCircle.png */,
 				8044DD912904908E0078942B /* cyanRectangle.png */,
 				8044DD902904908E0078942B /* cyanRectangleSelected.png */,
 				8044DD8F2904908E0078942B /* yellowRectangle.png */,
@@ -1623,6 +1627,7 @@
 				526FBD2525926960001F5647 /* Beam-Angle00-14.png in Resources */,
 				52994B4125DA13D700887B9C /* Rings_00028.png in Resources */,
 				8023B2B52915AE9E00176960 /* Jewel.png in Resources */,
+				80D8719B298C7847003A282C /* lightBulbInCircle.png in Resources */,
 				52994B7125DA13D700887B9C /* Rings_00013.png in Resources */,
 				80895498291DB7FE009C4D02 /* nextArrow.png in Resources */,
 				8011CE8D297B2C0200E7CEAB /* lightBulb-11934419-vecteezy.pdf in Resources */,
@@ -1879,6 +1884,7 @@
 				80D07E3B297E5AC800295271 /* Beamed2Logo_00011.png in Resources */,
 				52994B5525DA13D700887B9C /* Rings_00003.png in Resources */,
 				809FEA8E29710C2500B13351 /* 70645767-internal-calculations-license.pdf in Resources */,
+				80D8719A298C7847003A282C /* lightBulbInCircle.png in Resources */,
 				8011CE74297B2C0200E7CEAB /* backArrow-11569642-Vecteezy.pdf in Resources */,
 				80FDEA6C29145A5C007C05F7 /* TileSquareBright.png in Resources */,
 				80D07E59297E5AC800295271 /* Beamed2Logo_00008.png in Resources */,

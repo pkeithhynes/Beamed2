@@ -500,8 +500,10 @@ extern void playSound(AVAudioPlayer *PLAYER);
     if (puzzleCompletionCondition == ALL_JEWELS_ENERGIZED || puzzleCompletionCondition == INFO_SCREEN){
         // Gameplay Mode
         if (![appd editModeIsEnabled]){
-            vc.hintButton.hidden = [self allTilesArePlaced] || (rc.appCurrentGamePackType == PACKTYPE_DEMO);
-            vc.hintBulb.hidden = [self allTilesArePlaced] || (rc.appCurrentGamePackType == PACKTYPE_DEMO);
+            vc.hintButton.hidden = [self allTilesArePlaced] ||
+                                ((rc.appCurrentGamePackType == PACKTYPE_DEMO) && !circleAroundHintsButton);
+            vc.hintBulb.hidden = [self allTilesArePlaced] ||
+                                ((rc.appCurrentGamePackType == PACKTYPE_DEMO) && !circleAroundHintsButton);
         }
         if (puzzleHasBeenCompleted){
             if (rc->appCurrentGamePackType == PACKTYPE_DAILY){
@@ -683,8 +685,10 @@ extern void playSound(AVAudioPlayer *PLAYER);
             vc.homeArrowWhite.hidden = YES;
             vc.replayIconWhite.hidden = YES;
             vc.backButton.hidden = YES;
-            vc.hintButton.hidden = YES;
-            vc.hintBulb.hidden = YES;
+            vc.hintButton.hidden = [self allTilesArePlaced] ||
+                                ((rc.appCurrentGamePackType == PACKTYPE_DEMO) && !circleAroundHintsButton);
+            vc.hintBulb.hidden = [self allTilesArePlaced] ||
+                                ((rc.appCurrentGamePackType == PACKTYPE_DEMO) && !circleAroundHintsButton);
         }
     }
     // Puzzle is not complete
@@ -711,8 +715,10 @@ extern void playSound(AVAudioPlayer *PLAYER);
             vc.replayIconWhite.hidden = YES;
             vc.backButton.hidden = YES;
             vc.homeArrow.hidden = NO;
-            vc.hintButton.hidden = YES;
-            vc.hintBulb.hidden = YES;
+            vc.hintButton.hidden = [self allTilesArePlaced] ||
+                                ((rc.appCurrentGamePackType == PACKTYPE_DEMO) && !circleAroundHintsButton);
+            vc.hintBulb.hidden = [self allTilesArePlaced] ||
+                                ((rc.appCurrentGamePackType == PACKTYPE_DEMO) && !circleAroundHintsButton);
         }
         else if (rc.appCurrentGamePackType == PACKTYPE_DAILY){
             vc.nextButton.hidden = YES;
@@ -986,7 +992,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
         // Normally display background array
         displayBackgroundArray = YES;
         displayBackgroundImage = YES;
-
+        circleAroundHintsButton = NO;
         //
         // Fetch arrayOfMessageLabels associated with a Demo Puzzle
         //
@@ -1000,6 +1006,10 @@ extern void playSound(AVAudioPlayer *PLAYER);
 
             if ([[puzzleDictionary objectForKey:@"displayBackgroundImage"]boolValue] == NO){
                 displayBackgroundImage = NO;
+            }
+            
+            if ([[puzzleDictionary objectForKey:@"circleAroundHintsButton"]boolValue] == YES){
+                circleAroundHintsButton = YES;
             }
             
             infoScreen = [[puzzleDictionary objectForKey:@"infoScreen"]boolValue];
@@ -3878,8 +3888,10 @@ extern void playSound(AVAudioPlayer *PLAYER);
         }
         // Demo puzzles
         else if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
-            vc.hintButton.hidden = YES;     // hints always hidden in PACKTYPE_DEMO
-            vc.hintBulb.hidden = YES;
+            vc.hintButton.hidden = [self allTilesArePlaced] ||
+                                ((rc.appCurrentGamePackType == PACKTYPE_DEMO) && !circleAroundHintsButton);
+            vc.hintBulb.hidden = [self allTilesArePlaced] ||
+                                ((rc.appCurrentGamePackType == PACKTYPE_DEMO) && !circleAroundHintsButton);
             vc.homeArrow.hidden = NO;
             if ([self checkIfAllJewelsAreEnergized]) {
                 puzzleCompleted = YES;

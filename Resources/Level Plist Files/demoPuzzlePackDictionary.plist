@@ -4177,6 +4177,8 @@
 			<true/>
 			<key>infoScreen</key>
 			<true/>
+			<key>circleAroundHintsButton</key>
+			<true/>
 			<key>arrayOfMessageButtonsAndLabels</key>
 			<array>
 				<dict>
