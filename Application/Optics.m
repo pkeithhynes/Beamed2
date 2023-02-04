@@ -384,10 +384,15 @@ extern void playSound(AVAudioPlayer *PLAYER);
             tileRenderData = [myTile renderTileBackground];
             [tileRenderArray addObject:tileRenderData];
         }
+        
         // Render Tiles
-        tileRenderData = [myTile renderTile:1.0 paused:NO lightSweep:lightSweep puzzleCompleted:puzzleHasBeenCompleted puzzleCompletedCelebration:puzzleHasBeenCompletedCelebration];
-        if (tileRenderData){
-            [tileRenderArray addObject:tileRenderData];
+        if (myTile->tileShape != JEWEL ||
+            (myTile->tileShape == JEWEL && myTile->energized)){
+            // DO NOT RENDER a JEWEL that is not energized because it is handled by renderTileBackground
+            tileRenderData = [myTile renderTile:1.0 paused:NO lightSweep:lightSweep puzzleCompleted:puzzleHasBeenCompleted puzzleCompletedCelebration:puzzleHasBeenCompletedCelebration];
+            if (tileRenderData){
+                [tileRenderArray addObject:tileRenderData];
+            }
         }
         
         // Certain Tiles with demoTile == YES are used to demonstrate correct Tile positioning and include an arrow from their current grid position to their final grid position
