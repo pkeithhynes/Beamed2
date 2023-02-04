@@ -93,7 +93,7 @@ CGFloat _screenHeightInPixels;
 @synthesize puzzleComplete4_SoundFileObject;
 @synthesize loop1Player;
 @synthesize loop2Player;
-//@synthesize loop3Player;
+@synthesize loop3Player;
 
 @synthesize laser1Player;
 @synthesize laser2Player;
@@ -303,8 +303,23 @@ CGFloat _screenHeightInPixels;
     
     [rc updateTodaysDate];
     
-    // Resume Music Loop
-    [self playMusicLoop:loop1Player];
+    // Start appropriate music loop
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    id demoHasBeenCompletedObject = [defaults objectForKey:@"demoHasBeenCompleted"];
+    if (demoHasBeenCompletedObject != nil){
+        if ([demoHasBeenCompletedObject isEqualToString:@"YES"]){
+            [self playMusicLoop:loop1Player];
+        }
+        else {
+            [self playMusicLoop:loop3Player];
+        }
+    }
+    else if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+        [self playMusicLoop:loop3Player];
+    }
+    else {
+        [self playMusicLoop:loop1Player];
+    }
     
     DLog("<<< Calling applicationDidBecomeActive");
 }
@@ -314,6 +329,7 @@ CGFloat _screenHeightInPixels;
     DLog("Entering background.");
     [loop1Player pause];
     [loop2Player pause];
+    [loop3Player pause];
 }
 
 
@@ -1348,9 +1364,15 @@ CGFloat _screenHeightInPixels;
         if (!player.isPlaying){
             if (player == loop1Player){
                 [loop2Player pause];
+                [loop3Player pause];
             }
             else if (player == loop2Player){
                 [loop1Player pause];
+                [loop3Player pause];
+            }
+            else if (player == loop3Player){
+                [loop1Player pause];
+                [loop2Player pause];
             }
             [player play];
         }
@@ -1909,14 +1931,14 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     loop2Player.numberOfLoops = -1;
 
     //    Get Loop Music 3
-//    path = [[NSBundle mainBundle] pathForResource:kLoopMusic3 ofType:@"wav"];
-//    NSURL *loopMusic3 = [NSURL URLWithString:path];
-//    loop3Player = [[AVAudioPlayer alloc] initWithContentsOfURL:loopMusic3 error:nil];
-//    if(!loop3Player)
-//       DLog("error in playing music loop 3");
-//    loop3Player.delegate = self;
-//    loop3Player.numberOfLoops = -1;
-//
+    path = [[NSBundle mainBundle] pathForResource:kLoopMusic3 ofType:@"wav"];
+    NSURL *loopMusic3 = [NSURL URLWithString:path];
+    loop3Player = [[AVAudioPlayer alloc] initWithContentsOfURL:loopMusic3 error:nil];
+    if(!loop3Player)
+       DLog("error in playing music loop 3");
+    loop3Player.delegate = self;
+    loop3Player.numberOfLoops = -1;
+
 //    if (loop2Player.playing)
 //        DLog("loop2Player is playing");
 //    else

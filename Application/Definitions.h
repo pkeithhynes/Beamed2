@@ -114,6 +114,7 @@
 
 #define kLoopMusic1 @"InternalCalculations"
 #define kLoopMusic2 @"NightDrive"
+#define kLoopMusic3 @"MysteryPuzzleLoop2"
 
 #define kTilePlacedCorrectly @"Reward"
 #define kPuzzleBegin1 @"Mobile_Game_Melodic_Stinger_Dreamy_Synth_Level_Up_2"

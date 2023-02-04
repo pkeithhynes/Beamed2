@@ -393,7 +393,9 @@ extern void playSound(AVAudioPlayer *PLAYER);
         // Certain Tiles with demoTile == YES are used to demonstrate correct Tile positioning and include an arrow from their current grid position to their final grid position
         //
         // Show drag arrow and associated label
-        if (myTile->demoTile == YES && myTile->demoTileAtFinalGridPosition == NO){
+        if (myTile->demoTile == YES &&
+            myTile->demoTileAtFinalGridPosition == NO &&
+            dragTile == YES){
             arrowRenderData = [background renderTutorialTilePathArrow:myTile->gridPosition end:myTile->finalGridPosition textureRenderData:arrowRenderData];
             [self showDemoTileDragLabel];
             [self hideDemoTileTapLabel];
@@ -401,7 +403,12 @@ extern void playSound(AVAudioPlayer *PLAYER);
             [self hideDemoPuzzleNextButton];
         }
         // Show rotate image and associated label
-        else if (myTile->demoTile == YES && myTile->demoTileAtFinalGridPosition == YES && !myTile->placed && !myTile->placedManuallyMatchesHint && !myTile->placedUsingHint){
+        else if (myTile->demoTile == YES &&
+                 myTile->demoTileAtFinalGridPosition == YES &&
+                 tapTile == YES &&
+                 !myTile->placed &&
+                 !myTile->placedManuallyMatchesHint &&
+                 !myTile->placedUsingHint){
             // Tile occupies finalGridPosition
             myTile->gridPosition = myTile->finalGridPosition;
             tapDemoTilePromptRenderData = [background renderTapToRotatePrompt:myTile->tilePositionInPixels angle:myTile->tileAngle];
@@ -413,7 +420,9 @@ extern void playSound(AVAudioPlayer *PLAYER);
             [self hideDemoPuzzleCompleteLabel];
             [self hideDemoPuzzleNextButton];
         }
-        else if (myTile->demoTile == YES && myTile->demoTileAtFinalGridPosition == YES && (myTile->placed || myTile->placedManuallyMatchesHint || myTile->placedUsingHint)){
+        else if (myTile->demoTile == YES &&
+                 myTile->demoTileAtFinalGridPosition == YES &&
+                 (myTile->placed || myTile->placedManuallyMatchesHint || myTile->placedUsingHint)){
             [self hideDemoTileDragLabel];
             [self hideDemoTileTapLabel];
             [self showDemoPuzzleCompleteLabel];
@@ -1013,6 +1022,9 @@ extern void playSound(AVAudioPlayer *PLAYER);
             }
             
             infoScreen = [[puzzleDictionary objectForKey:@"infoScreen"]boolValue];
+            
+            dragTile = NO;
+            tapTile = NO;
 
 
             if ([arrayOfMessageButtonsAndLabels count] > 0){
@@ -1102,7 +1114,13 @@ extern void playSound(AVAudioPlayer *PLAYER);
                     // Fetch booleans that determine how this label is used
                     label.nextPuzzle = [[messageLabelDictionary objectForKey:@"nextPuzzle"]boolValue];
                     label.dragTile = [[messageLabelDictionary objectForKey:@"dragTile"]boolValue];
+                    if (label.dragTile){
+                        dragTile = YES;
+                    }
                     label.tapTile = [[messageLabelDictionary objectForKey:@"tapTile"]boolValue];
+                    if (label.tapTile){
+                        tapTile = YES;
+                    }
                     label.puzzleComplete = [[messageLabelDictionary objectForKey:@"puzzleComplete"]boolValue];
                     label.finalPuzzle = [[messageLabelDictionary objectForKey:@"finalPuzzle"]boolValue];
                     // Fetch booleans that determine how this label is displayed
@@ -4507,6 +4525,11 @@ extern void playSound(AVAudioPlayer *PLAYER);
     
     // Update the status of all TileHint objects in the array hints
     [self updateHintUsedStatusInHintsArray];
+    
+    // If a demo Tile is placed using a hint then set the appropriate boolean
+    if ([self demoTileAtFinalGridPosition:tile] == YES){
+        tile->demoTileAtFinalGridPosition = YES;
+    }
     
     // Update @"numberOfMoves" value in puzzleScoresArray
     int currentPackNumber = -1;

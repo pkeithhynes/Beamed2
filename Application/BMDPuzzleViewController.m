@@ -299,7 +299,7 @@
     }
     
     if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
-        [appd playMusicLoop:appd.loop1Player];
+        [appd playMusicLoop:appd.loop3Player];
     }
     else {
         [appd playMusicLoop:appd.loop2Player];
@@ -1084,7 +1084,7 @@
     puzzleCompleteLabel.font = [UIFont fontWithName:@"PingFang SC Semibold" size:puzzleCompleteFontSize];
     puzzleCompleteLabel.adjustsFontSizeToFitWidth = NO;
     puzzleCompleteLabel.textColor = [UIColor cyanColor];
-    puzzleCompleteLabel.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.75];
+    puzzleCompleteLabel.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.65];
     puzzleCompleteLabel.layer.masksToBounds = YES;
     puzzleCompleteLabel.layer.cornerRadius = 15;
     puzzleCompleteLabel.textAlignment = NSTextAlignmentCenter;
@@ -1921,7 +1921,7 @@
             int maxGamePuzzle = [appd countPuzzlesWithinPack:demoPuzzlePackDictionary];
             int currentDemoPuzzleNumber = [appd fetchDemoPuzzleNumber];
             if (currentDemoPuzzleNumber <= maxGamePuzzle && [self queryPuzzleExists:dictionaryName puzzle:[appd fetchDemoPuzzleNumber]]) {
-                [appd playMusicLoop:appd.loop1Player];
+                [appd playMusicLoop:appd.loop3Player];
                 [self setPuzzleLabel];
                 [self startNewPuzzleFromDictionary:[appd fetchDemoPuzzleNumber] dictionaryName:dictionaryName];
                 break;
@@ -2787,7 +2787,7 @@
     }
     
     if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
-        [appd playMusicLoop:appd.loop1Player];
+        [appd playMusicLoop:appd.loop3Player];
     }
     else {
         [appd playMusicLoop:appd.loop2Player];
@@ -2796,6 +2796,9 @@
 }
 
 - (void)handleUIApplicationWillResignActiveNotification {
+    [appd.loop1Player pause];
+    [appd.loop2Player pause];
+    [appd.loop3Player pause];
     DLog("DEBUG2: BMDPuzzleViewController handling UIApplicationWillResignActiveNotification");
     
     // Save progress before exiting

@@ -2225,9 +2225,9 @@
 						<key>labelOffsetYProportion</key>
 						<real>0.765</real>
 						<key>centerTextInLabel</key>
-						<true/>
-						<key>leftAlignTextInLabel</key>
 						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 					</dict>
 					<key>ASPECT_10_7</key>
 					<dict>
@@ -2387,11 +2387,11 @@
 						<key>centerLabel</key>
 						<true/>
 						<key>labelSizeXPoints</key>
-						<integer>600</integer>
+						<integer>450</integer>
 						<key>labelSizeYPoints</key>
 						<integer>150</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
 						<real>0.015</real>
 						<key>centerTextInLabel</key>
@@ -2480,9 +2480,9 @@
 						<key>labelOffsetYProportion</key>
 						<real>0.765</real>
 						<key>centerTextInLabel</key>
-						<true/>
-						<key>leftAlignTextInLabel</key>
 						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 					</dict>
 					<key>ASPECT_10_7</key>
 					<dict>
@@ -2654,7 +2654,7 @@
 			<key>gridSizeY</key>
 			<integer>8</integer>
 			<key>displayBackgroundImage</key>
-			<false/>
+			<true/>
 			<key>displayBackgroundArray</key>
 			<true/>
 			<key>infoScreen</key>
@@ -2673,11 +2673,11 @@
 						<key>centerLabel</key>
 						<true/>
 						<key>labelSizeXPoints</key>
-						<integer>600</integer>
+						<integer>450</integer>
 						<key>labelSizeYPoints</key>
-						<integer>50</integer>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
 						<real>0.015</real>
 					</dict>
@@ -2756,13 +2756,13 @@
 						<key>centerLabel</key>
 						<true/>
 						<key>labelSizeXPoints</key>
-						<integer>600</integer>
+						<integer>450</integer>
 						<key>labelSizeYPoints</key>
-						<integer>50</integer>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
+						<real>0.1</real>
 					</dict>
 					<key>ASPECT_10_7</key>
 					<dict>
@@ -2839,13 +2839,13 @@
 						<key>centerLabel</key>
 						<true/>
 						<key>labelSizeXPoints</key>
-						<integer>600</integer>
+						<integer>450</integer>
 						<key>labelSizeYPoints</key>
-						<integer>50</integer>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
 						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
+						<real>0.1</real>
 					</dict>
 					<key>ASPECT_10_7</key>
 					<dict>
@@ -2922,13 +2922,13 @@
 						<key>centerLabel</key>
 						<true/>
 						<key>labelSizeXPoints</key>
-						<integer>600</integer>
+						<integer>450</integer>
 						<key>labelSizeYPoints</key>
-						<integer>100</integer>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
 						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
+						<real>0.1</real>
 					</dict>
 					<key>ASPECT_10_7</key>
 					<dict>
@@ -3100,7 +3100,7 @@
 			<key>gridSizeY</key>
 			<integer>8</integer>
 			<key>displayBackgroundImage</key>
-			<false/>
+			<true/>
 			<key>displayBackgroundArray</key>
 			<true/>
 			<key>infoScreen</key>
@@ -3119,11 +3119,11 @@
 						<key>centerLabel</key>
 						<true/>
 						<key>labelSizeXPoints</key>
-						<integer>600</integer>
+						<integer>450</integer>
 						<key>labelSizeYPoints</key>
-						<integer>100</integer>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
 						<real>0.015</real>
 					</dict>
@@ -3202,13 +3202,13 @@
 						<key>centerLabel</key>
 						<true/>
 						<key>labelSizeXPoints</key>
-						<integer>600</integer>
+						<integer>450</integer>
 						<key>labelSizeYPoints</key>
-						<integer>100</integer>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
+						<real>0.1</real>
 					</dict>
 					<key>ASPECT_10_7</key>
 					<dict>
@@ -3285,11 +3285,11 @@
 						<key>centerLabel</key>
 						<true/>
 						<key>labelSizeXPoints</key>
-						<integer>600</integer>
+						<integer>450</integer>
 						<key>labelSizeYPoints</key>
-						<integer>100</integer>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.27</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
 						<real>0.08500000000000001</real>
 					</dict>
@@ -3360,7 +3360,7 @@
 					<key>ASPECT_4_3</key>
 					<dict>
 						<key>labelText</key>
-						<string>Finally let&apos;s try using a Prism.</string>
+						<string>Next let&apos;s try using a Prism.</string>
 						<key>labelFontSize</key>
 						<integer>28</integer>
 						<key>labelColor</key>
@@ -3368,9 +3368,9 @@
 						<key>centerLabel</key>
 						<true/>
 						<key>labelSizeXPoints</key>
-						<integer>600</integer>
+						<integer>450</integer>
 						<key>labelSizeYPoints</key>
-						<integer>100</integer>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
 						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
@@ -3576,7 +3576,7 @@
 			<key>gridSizeY</key>
 			<integer>8</integer>
 			<key>displayBackgroundImage</key>
-			<false/>
+			<true/>
 			<key>displayBackgroundArray</key>
 			<true/>
 			<key>infoScreen</key>
@@ -3594,12 +3594,16 @@
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 						<key>labelSizeXPoints</key>
-						<integer>600</integer>
+						<integer>450</integer>
 						<key>labelSizeYPoints</key>
-						<integer>100</integer>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
 						<real>0.015</real>
 					</dict>
@@ -3677,14 +3681,18 @@
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 						<key>labelSizeXPoints</key>
-						<integer>600</integer>
+						<integer>450</integer>
 						<key>labelSizeYPoints</key>
-						<integer>100</integer>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.165</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
+						<real>0.1</real>
 					</dict>
 					<key>ASPECT_10_7</key>
 					<dict>
@@ -3761,11 +3769,11 @@
 						<key>centerLabel</key>
 						<true/>
 						<key>labelSizeXPoints</key>
-						<integer>600</integer>
+						<integer>450</integer>
 						<key>labelSizeYPoints</key>
-						<integer>100</integer>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.28</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
 						<real>0.08500000000000001</real>
 					</dict>
@@ -3846,11 +3854,11 @@
 						<key>labelSizeXPoints</key>
 						<integer>400</integer>
 						<key>labelSizeYPoints</key>
-						<integer>150</integer>
+						<integer>200</integer>
 						<key>labelOffsetXProportion</key>
 						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.765</real>
+						<real>0.76</real>
 					</dict>
 					<key>ASPECT_10_7</key>
 					<dict>
@@ -4172,7 +4180,7 @@
 			<key>gridSizeY</key>
 			<integer>8</integer>
 			<key>displayBackgroundImage</key>
-			<false/>
+			<true/>
 			<key>displayBackgroundArray</key>
 			<true/>
 			<key>infoScreen</key>
@@ -4185,21 +4193,25 @@
 					<key>ASPECT_4_3</key>
 					<dict>
 						<key>labelText</key>
-						<string>Unused Mirrors are found below the grid.</string>
+						<string>Not sure what to do?  Tap the light bulb to get a hint.</string>
 						<key>labelFontSize</key>
 						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 						<key>labelSizeXPoints</key>
-						<integer>600</integer>
+						<integer>400</integer>
 						<key>labelSizeYPoints</key>
-						<integer>50</integer>
+						<integer>100</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.065</real>
 					</dict>
 					<key>ASPECT_10_7</key>
 					<dict>
@@ -4250,172 +4262,6 @@
 					<dict>
 						<key>labelText</key>
 						<string>Make every Jewel Sparkle!  Drag the Mirror into the Red Beam</string>
-						<key>labelFontSize</key>
-						<integer>22</integer>
-						<key>labelColor</key>
-						<string>whiteColor</string>
-						<key>centerLabel</key>
-						<true/>
-						<key>labelOffsetXProportion</key>
-						<real>0.275</real>
-						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
-					</dict>
-				</dict>
-				<dict>
-					<key>dragTile</key>
-					<integer>1</integer>
-					<key>ASPECT_4_3</key>
-					<dict>
-						<key>labelText</key>
-						<string>Drag the Mirror into the Red Beam.</string>
-						<key>labelFontSize</key>
-						<integer>28</integer>
-						<key>labelColor</key>
-						<string>whiteColor</string>
-						<key>centerLabel</key>
-						<true/>
-						<key>labelSizeXPoints</key>
-						<integer>600</integer>
-						<key>labelSizeYPoints</key>
-						<integer>50</integer>
-						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
-						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
-					</dict>
-					<key>ASPECT_10_7</key>
-					<dict>
-						<key>labelText</key>
-						<string>Make every Jewel Sparkle!Drag the Mirror into the Red Beam</string>
-						<key>labelFontSize</key>
-						<integer>34</integer>
-						<key>labelColor</key>
-						<string>whiteColor</string>
-						<key>centerLabel</key>
-						<true/>
-						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
-						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
-					</dict>
-					<key>ASPECT_3_2</key>
-					<dict>
-						<key>labelText</key>
-						<string>Make every Jewel Sparkle!Drag the Mirror into the Red Beam</string>
-						<key>labelFontSize</key>
-						<integer>34</integer>
-						<key>labelColor</key>
-						<string>whiteColor</string>
-						<key>centerLabel</key>
-						<true/>
-						<key>labelOffsetXProportion</key>
-						<real>0.17</real>
-						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
-					</dict>
-					<key>ASPECT_16_9</key>
-					<dict>
-						<key>labelText</key>
-						<string>Make every Jewel Sparkle!  Drag the Mirror into the Red Beam</string>
-						<key>labelFontSize</key>
-						<integer>20</integer>
-						<key>labelColor</key>
-						<string>whiteColor</string>
-						<key>centerLabel</key>
-						<true/>
-						<key>labelOffsetXProportion</key>
-						<real>0.1</real>
-						<key>labelOffsetYProportion</key>
-						<real>-0.01</real>
-					</dict>
-					<key>ASPECT_13_6</key>
-					<dict>
-						<key>labelText</key>
-						<string>Make every Jewel Sparkle!  Drag the Mirror into the Red Beam</string>
-						<key>labelFontSize</key>
-						<integer>22</integer>
-						<key>labelColor</key>
-						<string>whiteColor</string>
-						<key>centerLabel</key>
-						<true/>
-						<key>labelOffsetXProportion</key>
-						<real>0.275</real>
-						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
-					</dict>
-				</dict>
-				<dict>
-					<key>tapTile</key>
-					<integer>1</integer>
-					<key>ASPECT_4_3</key>
-					<dict>
-						<key>labelText</key>
-						<string>Tap the Mirror to rotate it into position.</string>
-						<key>labelFontSize</key>
-						<integer>28</integer>
-						<key>labelColor</key>
-						<string>whiteColor</string>
-						<key>centerLabel</key>
-						<true/>
-						<key>labelSizeXPoints</key>
-						<integer>600</integer>
-						<key>labelSizeYPoints</key>
-						<integer>50</integer>
-						<key>labelOffsetXProportion</key>
-						<real>0.275</real>
-						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
-					</dict>
-					<key>ASPECT_10_7</key>
-					<dict>
-						<key>labelText</key>
-						<string>Tap the Mirror to rotate</string>
-						<key>labelFontSize</key>
-						<integer>34</integer>
-						<key>labelColor</key>
-						<string>whiteColor</string>
-						<key>centerLabel</key>
-						<true/>
-						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
-						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
-					</dict>
-					<key>ASPECT_3_2</key>
-					<dict>
-						<key>labelText</key>
-						<string>Tap the Mirror to rotate</string>
-						<key>labelFontSize</key>
-						<integer>34</integer>
-						<key>labelColor</key>
-						<string>whiteColor</string>
-						<key>centerLabel</key>
-						<true/>
-						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
-						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
-					</dict>
-					<key>ASPECT_16_9</key>
-					<dict>
-						<key>labelText</key>
-						<string>Tap the Mirror to rotate</string>
-						<key>labelFontSize</key>
-						<integer>20</integer>
-						<key>labelColor</key>
-						<string>whiteColor</string>
-						<key>centerLabel</key>
-						<true/>
-						<key>labelOffsetXProportion</key>
-						<real>0.1</real>
-						<key>labelOffsetYProportion</key>
-						<real>-0.01</real>
-					</dict>
-					<key>ASPECT_13_6</key>
-					<dict>
-						<key>labelText</key>
-						<string>Tap the Mirror to rotate</string>
 						<key>labelFontSize</key>
 						<integer>22</integer>
 						<key>labelColor</key>
@@ -4434,26 +4280,30 @@
 					<key>ASPECT_4_3</key>
 					<dict>
 						<key>labelText</key>
-						<string>Mirrors are not the only kind of object you can place on the grid...</string>
+						<string>You start out with 10 free hints.  You can buy hint packs or earn a hint by watching a video.</string>
 						<key>labelFontSize</key>
 						<integer>28</integer>
 						<key>labelColor</key>
-						<string>whiteColor</string>
+						<string>cyanColor</string>
 						<key>centerLabel</key>
-						<true/>
+						<false/>
 						<key>labelSizeXPoints</key>
-						<integer>600</integer>
+						<integer>450</integer>
 						<key>labelSizeYPoints</key>
-						<integer>100</integer>
+						<integer>200</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.275</real>
+						<real>0.24</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
+						<real>0.76</real>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 					</dict>
 					<key>ASPECT_10_7</key>
 					<dict>
 						<key>labelText</key>
-						<string>Great!  Now let&apos;s try a Beam Splitter.</string>
+						<string>Make every Jewel Sparkle!Drag the Mirror into the Red Beam</string>
 						<key>labelFontSize</key>
 						<integer>34</integer>
 						<key>labelColor</key>
@@ -4468,7 +4318,7 @@
 					<key>ASPECT_3_2</key>
 					<dict>
 						<key>labelText</key>
-						<string>Great!  Now let&apos;s try a Beam Splitter.</string>
+						<string>Make every Jewel Sparkle!Drag the Mirror into the Red Beam</string>
 						<key>labelFontSize</key>
 						<integer>34</integer>
 						<key>labelColor</key>
@@ -4476,14 +4326,14 @@
 						<key>centerLabel</key>
 						<true/>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.17</real>
 						<key>labelOffsetYProportion</key>
 						<real>0.015</real>
 					</dict>
 					<key>ASPECT_16_9</key>
 					<dict>
 						<key>labelText</key>
-						<string>Great!  Now let&apos;s try a Beam Splitter.</string>
+						<string>Make every Jewel Sparkle!  Drag the Mirror into the Red Beam</string>
 						<key>labelFontSize</key>
 						<integer>20</integer>
 						<key>labelColor</key>
@@ -4498,7 +4348,7 @@
 					<key>ASPECT_13_6</key>
 					<dict>
 						<key>labelText</key>
-						<string>Great!  Now let&apos;s try a Beam Splitter.</string>
+						<string>Make every Jewel Sparkle!  Drag the Mirror into the Red Beam</string>
 						<key>labelFontSize</key>
 						<integer>22</integer>
 						<key>labelColor</key>
@@ -4526,13 +4376,39 @@
 					<key>finalX</key>
 					<integer>0</integer>
 					<key>finalY</key>
-					<integer>4</integer>
+					<integer>0</integer>
 					<key>fixed</key>
 					<integer>1</integer>
 					<key>gridPositionX</key>
 					<integer>0</integer>
 					<key>gridPositionY</key>
+					<integer>0</integer>
+					<key>placed</key>
+					<integer>0</integer>
+					<key>placedManuallyMatchesHint</key>
+					<integer>0</integer>
+					<key>placedUsingHint</key>
+					<integer>0</integer>
+					<key>tileShape</key>
 					<integer>4</integer>
+				</dict>
+				<dict>
+					<key>Angle</key>
+					<integer>0</integer>
+					<key>Color</key>
+					<integer>2</integer>
+					<key>finalTileAngle</key>
+					<integer>0</integer>
+					<key>finalX</key>
+					<integer>0</integer>
+					<key>finalY</key>
+					<integer>2</integer>
+					<key>fixed</key>
+					<integer>1</integer>
+					<key>gridPositionX</key>
+					<integer>0</integer>
+					<key>gridPositionY</key>
+					<integer>2</integer>
 					<key>placed</key>
 					<integer>0</integer>
 					<key>placedManuallyMatchesHint</key>
@@ -4571,30 +4447,56 @@
 					<key>tileShape</key>
 					<integer>6</integer>
 				</dict>
+				<dict>
+					<key>Angle</key>
+					<integer>0</integer>
+					<key>Color</key>
+					<integer>2</integer>
+					<key>finalTileAngle</key>
+					<integer>6</integer>
+					<key>finalX</key>
+					<integer>5</integer>
+					<key>finalY</key>
+					<integer>9</integer>
+					<key>fixed</key>
+					<integer>1</integer>
+					<key>gridPositionX</key>
+					<integer>5</integer>
+					<key>gridPositionY</key>
+					<integer>9</integer>
+					<key>placed</key>
+					<integer>0</integer>
+					<key>placedManuallyMatchesHint</key>
+					<integer>0</integer>
+					<key>placedUsingHint</key>
+					<integer>0</integer>
+					<key>tileShape</key>
+					<integer>6</integer>
+				</dict>
 			</array>
 			<key>arrayOfMirrorsDictionaries</key>
 			<array>
 				<dict>
 					<key>Angle</key>
-					<integer>5</integer>
+					<integer>4</integer>
 					<key>Color</key>
 					<integer>6</integer>
 					<key>finalTileAngle</key>
-					<integer>3</integer>
-					<key>finalX</key>
-					<integer>5</integer>
-					<key>finalY</key>
 					<integer>4</integer>
+					<key>finalX</key>
+					<integer>6</integer>
+					<key>finalY</key>
+					<integer>6</integer>
 					<key>fixed</key>
-					<integer>0</integer>
+					<integer>1</integer>
 					<key>demoTile</key>
 					<integer>1</integer>
 					<key>demoTileAtFinalGridPosition</key>
 					<integer>0</integer>
 					<key>gridPositionX</key>
-					<integer>5</integer>
+					<integer>6</integer>
 					<key>gridPositionY</key>
-					<integer>4</integer>
+					<integer>6</integer>
 					<key>placed</key>
 					<integer>0</integer>
 					<key>placedManuallyMatchesHint</key>
@@ -4606,7 +4508,38 @@
 				</dict>
 			</array>
 			<key>arrayOfPrismsDictionaries</key>
-			<array/>
+			<array>
+				<dict>
+					<key>Angle</key>
+					<integer>0</integer>
+					<key>Color</key>
+					<integer>6</integer>
+					<key>finalTileAngle</key>
+					<integer>0</integer>
+					<key>finalX</key>
+					<integer>5</integer>
+					<key>finalY</key>
+					<integer>7</integer>
+					<key>fixed</key>
+					<integer>0</integer>
+					<key>demoTile</key>
+					<integer>1</integer>
+					<key>demoTileAtFinalGridPosition</key>
+					<integer>0</integer>
+					<key>gridPositionX</key>
+					<integer>5</integer>
+					<key>gridPositionY</key>
+					<integer>7</integer>
+					<key>placed</key>
+					<integer>0</integer>
+					<key>placedManuallyMatchesHint</key>
+					<integer>0</integer>
+					<key>placedUsingHint</key>
+					<integer>0</integer>
+					<key>tileShape</key>
+					<integer>5</integer>
+				</dict>
+			</array>
 			<key>arrayOfRectanglesDictionaries</key>
 			<array/>
 			<key>puzzleCompletionCondition</key>

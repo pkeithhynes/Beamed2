@@ -161,10 +161,22 @@ Implementation of the cross-platform view controller
     DLog(">>> BMDViewController.viewDidAppear");
     [super viewDidAppear:animated];
     
-    // Start loop1Player
-    [appd playMusicLoop:appd.loop1Player];
-    
+
+    // Start appropriate music loop
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    id demoHasBeenCompletedObject = [defaults objectForKey:@"demoHasBeenCompleted"];
+    if (demoHasBeenCompletedObject != nil){
+        if ([demoHasBeenCompletedObject isEqualToString:@"YES"]){
+            [appd playMusicLoop:appd.loop1Player];
+        }
+        else {
+            [appd playMusicLoop:appd.loop3Player];
+        }
+    }
+    else {
+        [appd playMusicLoop:appd.loop3Player];
+    }
+    
     
     // No permittedToUseiCloud so ask the user if they wish to use iCloud to store defaults
     if ([[defaults objectForKey:@"permittedToUseiCloud"] isEqualToString:@"NOTHING"] && appd.currentiCloudToken != nil) {
@@ -724,6 +736,7 @@ Implementation of the cross-platform view controller
 // Run the "How to Play" guide
 - (void)howToPlayButtonPressed{
     DLog("howToPlayButtonPressed");
+    [appd playMusicLoop:appd.loop3Player];
     // This button press causes How to Play Guide to start at the beginning
     [appd saveDemoPuzzleNumber:0];
     [self startDemoPuzzle];

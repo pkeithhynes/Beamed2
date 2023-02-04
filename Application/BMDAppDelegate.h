@@ -50,7 +50,7 @@ API_AVAILABLE(ios(13.0))
 
     AVAudioPlayer   *loop1Player;
     AVAudioPlayer   *loop2Player;
-//    AVAudioPlayer   *loop3Player;
+    AVAudioPlayer   *loop3Player;
     
     AVAudioPlayer   *laser1Player;
     AVAudioPlayer   *laser2Player;
@@ -192,7 +192,7 @@ API_AVAILABLE(ios(13.0))
 @property (readonly)    SystemSoundID   loopMusic1_SoundFileObject;
 @property (nonatomic, retain) AVAudioPlayer * _Nullable loop1Player;
 @property (nonatomic, retain) AVAudioPlayer * _Nullable loop2Player;
-//@property (nonatomic, retain) AVAudioPlayer * _Nullable loop3Player;
+@property (nonatomic, retain) AVAudioPlayer * _Nullable loop3Player;
 
 @property (nonatomic, retain) AVAudioPlayer * _Nullable laser1Player;
 @property (nonatomic, retain) AVAudioPlayer * _Nullable laser2Player;
