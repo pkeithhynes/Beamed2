@@ -2679,7 +2679,7 @@
 						<key>labelOffsetXProportion</key>
 						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.09</real>
 					</dict>
 					<key>ASPECT_10_7</key>
 					<dict>
@@ -2754,15 +2754,15 @@
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
-						<true/>
+						<false/>
 						<key>labelSizeXPoints</key>
 						<integer>450</integer>
 						<key>labelSizeYPoints</key>
 						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.275</real>
+						<real>0.375</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.1</real>
+						<real>0.8</real>
 					</dict>
 					<key>ASPECT_10_7</key>
 					<dict>
@@ -2837,7 +2837,7 @@
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
-						<true/>
+						<false/>
 						<key>labelSizeXPoints</key>
 						<integer>450</integer>
 						<key>labelSizeYPoints</key>
@@ -2845,7 +2845,7 @@
 						<key>labelOffsetXProportion</key>
 						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.1</real>
+						<real>0.8</real>
 					</dict>
 					<key>ASPECT_10_7</key>
 					<dict>
@@ -2928,7 +2928,7 @@
 						<key>labelOffsetXProportion</key>
 						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.1</real>
+						<real>0.8</real>
 					</dict>
 					<key>ASPECT_10_7</key>
 					<dict>
@@ -3125,7 +3125,7 @@
 						<key>labelOffsetXProportion</key>
 						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.09</real>
 					</dict>
 					<key>ASPECT_10_7</key>
 					<dict>
@@ -3200,15 +3200,15 @@
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
-						<true/>
+						<false/>
 						<key>labelSizeXPoints</key>
-						<integer>450</integer>
+						<integer>375</integer>
 						<key>labelSizeYPoints</key>
 						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.275</real>
+						<real>0.35</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.1</real>
+						<real>0.8</real>
 					</dict>
 					<key>ASPECT_10_7</key>
 					<dict>
@@ -3283,7 +3283,7 @@
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
-						<true/>
+						<false/>
 						<key>labelSizeXPoints</key>
 						<integer>450</integer>
 						<key>labelSizeYPoints</key>
@@ -3291,7 +3291,7 @@
 						<key>labelOffsetXProportion</key>
 						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
+						<real>0.8</real>
 					</dict>
 					<key>ASPECT_10_7</key>
 					<dict>
@@ -3367,6 +3367,8 @@
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>centerTextInLabel</key>
+						<true/>
 						<key>labelSizeXPoints</key>
 						<integer>450</integer>
 						<key>labelSizeYPoints</key>
@@ -3374,7 +3376,7 @@
 						<key>labelOffsetXProportion</key>
 						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
+						<real>0.8</real>
 					</dict>
 					<key>ASPECT_10_7</key>
 					<dict>
@@ -3605,7 +3607,7 @@
 						<key>labelOffsetXProportion</key>
 						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.09</real>
 					</dict>
 					<key>ASPECT_10_7</key>
 					<dict>
@@ -3680,19 +3682,19 @@
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
-						<true/>
+						<false/>
 						<key>centerTextInLabel</key>
 						<false/>
 						<key>leftAlignTextInLabel</key>
 						<true/>
 						<key>labelSizeXPoints</key>
-						<integer>450</integer>
+						<integer>375</integer>
 						<key>labelSizeYPoints</key>
 						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.275</real>
+						<real>0.35</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.1</real>
+						<real>0.8</real>
 					</dict>
 					<key>ASPECT_10_7</key>
 					<dict>
@@ -3767,7 +3769,7 @@
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
-						<true/>
+						<false/>
 						<key>labelSizeXPoints</key>
 						<integer>450</integer>
 						<key>labelSizeYPoints</key>
@@ -3775,7 +3777,7 @@
 						<key>labelOffsetXProportion</key>
 						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
+						<real>0.8</real>
 					</dict>
 					<key>ASPECT_10_7</key>
 					<dict>
@@ -3852,13 +3854,13 @@
 						<key>centerLabel</key>
 						<true/>
 						<key>labelSizeXPoints</key>
-						<integer>400</integer>
+						<integer>450</integer>
 						<key>labelSizeYPoints</key>
-						<integer>200</integer>
+						<integer>120</integer>
 						<key>labelOffsetXProportion</key>
 						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.76</real>
+						<real>0.8</real>
 					</dict>
 					<key>ASPECT_10_7</key>
 					<dict>

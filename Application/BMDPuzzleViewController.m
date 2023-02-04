@@ -1937,6 +1937,7 @@
 // Button Press and Gesture Handler Methods Go Here
 //
 - (void)settingsButtonPressed {
+    [appd playSound:appd.tapPlayer];
     DLog("BMDPuzzleViewController.settingsButtonPressed");
     
     // Save progress before exiting
@@ -1985,6 +1986,7 @@
 }
 
 - (void)morePuzzlePacksButtonPressed {
+    [appd playSound:appd.tapPlayer];
     DLog("BMDPuzzleViewController.morePuzzlePacksButtonPressed");
     
     // Save progress before exiting
@@ -2033,6 +2035,7 @@
 }
 
 - (void)nextButtonPressed {
+    [appd playSound:appd.tapPlayer];
     // Puzzle Editor
     if ([appd editModeIsEnabled]){
         // Save the current puzzle before switching to the next puzzle in the pack
@@ -2128,6 +2131,7 @@
 }
 
 - (void)prevButtonPressed {
+    [appd playSound:appd.tapPlayer];
     DLog("prevButtonPressed");
     if ([appd editModeIsEnabled] && rc.appCurrentGamePackType == PACKTYPE_EDITOR){
         // Save the current puzzle before switching to the prev
@@ -2288,6 +2292,7 @@
 }
 
 - (void)backButtonPressed {
+    [appd playSound:appd.tapPlayer];
     // In autoGen the backButton generates new Puzzles
         
     if ([appd autoGenIsEnabled] == YES){
@@ -2556,6 +2561,7 @@
 }
 
 - (void)hintButtonPressed {
+    [appd playSound:appd.tapPlayer];
     appd.numberOfHintsRemaining = [[appd getObjectFromDefaults:@"numberOfHintsRemaining"] intValue];
     if ([appd checkForEndlessHintsPurchased]){
         [appd->optics startPositionTileForHint];
@@ -2627,6 +2633,7 @@
 }
 
 - (void)helpButtonPressed {
+    [appd playSound:appd.tapPlayer];
     wholeScreenButton.enabled = YES;
     wholeScreenButton.hidden = NO;
     rc.renderOverlayON = YES;

@@ -34,6 +34,7 @@ API_AVAILABLE(ios(13.0))
     
     UILabel *soundEffectsEnabledLabel;
     UILabel *musicEnabledLabel;
+    
 }
 
 @property (nonatomic, retain) UIView *settingsView;
@@ -52,6 +53,7 @@ API_AVAILABLE(ios(13.0))
 
 @property (nonatomic, retain) UILabel *soundEffectsEnabledLabel;
 @property (nonatomic, retain) UILabel *musicEnabledLabel;
+
 
 @end
 

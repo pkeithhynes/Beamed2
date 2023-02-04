@@ -808,10 +808,12 @@
 
 
 - (void)shareButtonPressed {
-
     NSMutableArray* sharedObjects=[NSMutableArray arrayWithObjects:@"http://beamed2.squarespace.com",
                                    @"Check out Beamed 2, a fun relaxing puzzle game I'm playing!",
                                    nil];
+
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:sharedObjects applicationActivities:nil];
+    
     NSArray* excludedActivityTypes = [NSArray arrayWithObjects:UIActivityTypeAirDrop,
                                       UIActivityTypeAssignToContact,
                                       UIActivityTypeAddToReadingList,
@@ -822,21 +824,47 @@
                                       UIActivityTypeOpenInIBooks,
                                       UIApplicationLaunchOptionsUserActivityTypeKey,
                                       nil];
-//    UIImage *img = [self captureScreenAsImage];
-//    [sharedObjects addObject:img];
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:sharedObjects applicationActivities:nil];
-    
-    UIPresentationController *pc = self.presentationController;
-    UIPresentationController *apopc = activityViewController.popoverPresentationController;
-
     activityViewController.excludedActivityTypes = excludedActivityTypes;
-//    activityViewController.modalPresentationStyle = UIModalPresentationPopover;
-    activityViewController.popoverPresentationController.sourceView = self.view;
-    activityViewController.popoverPresentationController.sourceView.translatesAutoresizingMaskIntoConstraints = NO;
-//    activityViewController.popoverPresentationController.sourceRect = CGRectMake(0, 0, 200, 200);
-//    activityViewController.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
-    [self presentViewController:activityViewController animated:YES completion:nil];
+    
+    if ([self deviceIsIPhone]){
+        // iPhone
+        [self presentViewController:activityViewController animated:YES completion:nil];
+    }
+    else {
+        // iPad
+        activityViewController.modalPresentationStyle = UIModalPresentationPopover;
+        activityViewController.popoverPresentationController.sourceView = settingsView;
+        
+        activityViewController.popoverPresentationController.sourceRect = CGRectMake(0.25*rc.safeFrame.size.width,
+                                                                                     0.25*rc.safeFrame.size.height,
+                                                                                     0,
+                                                                                     0);
+        activityViewController.popoverPresentationController.popoverLayoutMargins = UIEdgeInsetsZero;
+        activityViewController.popoverPresentationController.canOverlapSourceViewRect = NO;
+        [self presentViewController:activityViewController animated:YES completion:nil];
+    }
 }
+
+
+- (BOOL)deviceIsIPhone {
+    switch (rc.displayAspectRatio) {
+        case ASPECT_4_3:
+        case ASPECT_10_7:
+        case ASPECT_3_2:{
+            // iPads
+            return NO;
+            break;
+        }
+        case ASPECT_16_9:
+        case ASPECT_13_6:
+        default:{
+            // iPhones
+            return YES;
+            break;
+        }
+    }
+}
+
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller
           didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
@@ -845,6 +873,7 @@
    // Dismiss the mail compose view controller.
    [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 
 - (void)aboutButtonPressed {
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Beamed 2"
