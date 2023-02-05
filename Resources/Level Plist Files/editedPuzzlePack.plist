@@ -5,9 +5,7 @@
 	<key>AppStorePackCost</key>
 	<integer>0</integer>
 	<key>pack_name</key>
-	<string>Empty Puzzle</string>
-	<key>pack_number</key>
-	<integer>0</integer>
+	<string>Merely Mirrors Easy!</string>
 	<key>puzzles</key>
 	<array>
 		<dict>
