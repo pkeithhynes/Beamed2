@@ -998,16 +998,19 @@
     // nextArrow icon
     //
     // Create a next arrow icon near the right hand side of the Unplaced Tiles Tray
+    CGFloat homeArrowCenterX, nextArrowCenterX;
     CGFloat nextArrowHomeArrowCenterY;
+    CGFloat arrowWidthInPoints = 1.0/7.0*appd->optics->_safeAreaScreenWidthInPixels/rc.contentScaleFactor;
     switch (rc.displayAspectRatio) {
         case ASPECT_4_3:
-            // iPad (9th generation)
         case ASPECT_10_7:
-            // iPad Air (5th generation)
         case ASPECT_3_2: {
             // iPad Mini (6th generation)
             //
-            nextArrowHomeArrowCenterY = appd->optics->gridTouchGestures.minUnplacedTilesBoundary.y/rc.contentScaleFactor;
+            nextArrowCenterX = appd->optics->gridTouchGestures.maxPuzzleBoundary.x/rc.contentScaleFactor + 1.2*0.5*arrowWidthInPoints;
+            homeArrowCenterX = appd->optics->gridTouchGestures.minPuzzleBoundary.x/rc.contentScaleFactor - 1.2*0.5*arrowWidthInPoints;
+            // Adjust the Y position so that the top of the arrow and the top of the Tile are aligned
+            nextArrowHomeArrowCenterY = 0.994*appd->optics->gridTouchGestures.minUnplacedTilesBoundary.y/rc.contentScaleFactor;
             break;
         }
         case ASPECT_16_9:
@@ -1015,15 +1018,23 @@
         case ASPECT_13_6:
             // iPhone 8
         default: {
-            nextArrowHomeArrowCenterY = 1.025*(appd->optics->gridTouchGestures.maxUnplacedTilesBoundary.y/rc.contentScaleFactor);
+            homeArrowCenterX = 1.0/7.0*appd->optics->_safeAreaScreenWidthInPixels/rc.contentScaleFactor;
+            nextArrowCenterX = 6.0/7.0*appd->optics->_safeAreaScreenWidthInPixels/rc.contentScaleFactor;
+            if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+                // In the How to Play Guide the arrows are dropped low to make room for text
+                nextArrowHomeArrowCenterY =  1.025*(appd->optics->gridTouchGestures.maxUnplacedTilesBoundary.y/rc.contentScaleFactor);
+            }
+            else {
+                // In normal play the arrows are kept higher to avoind the banner ad
+                nextArrowHomeArrowCenterY = appd->optics->gridTouchGestures.minUnplacedTilesBoundary.y/rc.contentScaleFactor;
+            }
             break;
         }
     }
     nextArrow = [UIButton buttonWithType:UIButtonTypeCustom];
-    CGFloat arrowWidthInPoints = 1.0/7.0*appd->optics->_safeAreaScreenWidthInPixels/rc.contentScaleFactor;
-    CGFloat centerX = 6.0/7.0*appd->optics->_safeAreaScreenWidthInPixels/rc.contentScaleFactor;
+//    CGFloat centerX = 6.0/7.0*appd->optics->_safeAreaScreenWidthInPixels/rc.contentScaleFactor;
     CGFloat centerY = nextArrowHomeArrowCenterY;
-    CGRect nextArrowRect = CGRectMake(centerX-arrowWidthInPoints/2.0,
+    CGRect nextArrowRect = CGRectMake(nextArrowCenterX-arrowWidthInPoints/2.0,
                                      centerY,
                                      arrowWidthInPoints,
                                      arrowWidthInPoints);
@@ -1041,9 +1052,9 @@
     //
     // Create a white home arrow icon near the left hand side of the Unplaced Tiles Tray
     homeArrowWhite = [UIButton buttonWithType:UIButtonTypeCustom];
-    centerX = 1.0/7.0*appd->optics->_safeAreaScreenWidthInPixels/rc.contentScaleFactor;
+//    centerX = 1.0/7.0*appd->optics->_safeAreaScreenWidthInPixels/rc.contentScaleFactor;
     centerY = nextArrowHomeArrowCenterY;
-    CGRect homeArrowWhiteRect = CGRectMake(centerX-arrowWidthInPoints/2.0,
+    CGRect homeArrowWhiteRect = CGRectMake(homeArrowCenterX-arrowWidthInPoints/2.0,
                                      centerY,
                                      arrowWidthInPoints,
                                      arrowWidthInPoints);
@@ -1079,7 +1090,7 @@
     //
     // Create a white replay icon at the center of the Unplaced Tiles Tray
     replayIconWhite = [UIButton buttonWithType:UIButtonTypeCustom];
-    centerX = 3.5/7.0*appd->optics->_safeAreaScreenWidthInPixels/rc.contentScaleFactor;
+    CGFloat centerX = 3.5/7.0*appd->optics->_safeAreaScreenWidthInPixels/rc.contentScaleFactor;
     centerY = appd->optics->gridTouchGestures.minUnplacedTilesBoundary.y/rc.contentScaleFactor;
     CGRect replayIconWhiteRect = CGRectMake(centerX-arrowWidthInPoints/2.0,
                                      centerY,
@@ -2245,25 +2256,25 @@
         // Beams
         if (!usingExistingPuzzle){
             [puzzleDictionary setObject:[NSNumber numberWithInt:1] forKey:@"redBeam"];
-            [puzzleDictionary setObject:[NSNumber numberWithInt:1] forKey:@"greenBeam"];
-            [puzzleDictionary setObject:[NSNumber numberWithInt:1] forKey:@"blueBeam"];
+            [puzzleDictionary setObject:[NSNumber numberWithInt:0] forKey:@"greenBeam"];
+            [puzzleDictionary setObject:[NSNumber numberWithInt:0] forKey:@"blueBeam"];
         }
         //
         // Splitters
-        [puzzleDictionary setObject:[NSNumber numberWithInt:10] forKey:@"redSplitterCount"];
-        [puzzleDictionary setObject:[NSNumber numberWithInt:10] forKey:@"greenSplitterCount"];
-        [puzzleDictionary setObject:[NSNumber numberWithInt:10] forKey:@"blueSplitterCount"];
+        [puzzleDictionary setObject:[NSNumber numberWithInt:0] forKey:@"redSplitterCount"];
+        [puzzleDictionary setObject:[NSNumber numberWithInt:0] forKey:@"greenSplitterCount"];
+        [puzzleDictionary setObject:[NSNumber numberWithInt:0] forKey:@"blueSplitterCount"];
         //
         // Mirrors
         [puzzleDictionary setObject:[NSNumber numberWithInt:4] forKey:@"redMirrorCount"];
-        [puzzleDictionary setObject:[NSNumber numberWithInt:4] forKey:@"greenMirrorCount"];
-        [puzzleDictionary setObject:[NSNumber numberWithInt:4] forKey:@"blueMirrorCount"];
+        [puzzleDictionary setObject:[NSNumber numberWithInt:0] forKey:@"greenMirrorCount"];
+        [puzzleDictionary setObject:[NSNumber numberWithInt:0] forKey:@"blueMirrorCount"];
         //
         // Opaque Tiles
         [puzzleDictionary setObject:[NSNumber numberWithInt:1] forKey:@"opaqueTiles"];
         //
         // Translucent Tiles
-        [puzzleDictionary setObject:[NSNumber numberWithInt:1] forKey:@"translucentTiles"];
+        [puzzleDictionary setObject:[NSNumber numberWithInt:0] forKey:@"translucentTiles"];
         //
         // Puzzle Generation Count
         [puzzleDictionary setObject:[NSNumber numberWithInt:5] forKey:@"generationCount"];

@@ -648,7 +648,8 @@ extern void playSound(AVAudioPlayer *PLAYER);
     ringRenderArray = [foreground renderIdleJewelRingArray:ringRenderArray];
     
     // Check if we should mark the pack as complete
-    if (packHasBeenCompleted){
+    if (packHasBeenCompleted &&
+        rc.appCurrentGamePackType != PACKTYPE_DEMO){
         puzzleCompleteRenderArray = [foreground renderPackCompletedMarker:puzzleCompleteRenderArray];
         vc.nextButton.hidden = YES;
         vc.nextArrow.hidden = YES;
@@ -1852,11 +1853,11 @@ extern void playSound(AVAudioPlayer *PLAYER);
     // ************* Fetch batch processing parameters *************
     //
     // Puzzle Generation Count
-    int generationCount = 1;
+    int generationCount = 5;
     if ([vc.puzzleDictionary objectForKey:@"generationCount"] != nil){
         generationCount = [[vc.puzzleDictionary objectForKey:@"generationCount"]intValue];
     }
-    generationCount = 400;
+//    generationCount = 400;
     //
     // Grid Size
     if ([vc.puzzleDictionary objectForKey:@"gridSizeX"] && [vc.puzzleDictionary objectForKey:@"gridSizeY"]){
@@ -2998,15 +2999,15 @@ extern void playSound(AVAudioPlayer *PLAYER);
         return NO;
     }
     // Scan the number and placement of lasers to reject unsuitable candidate puzzles
-    if (![self checkWhetherLasersAreAcceptable]){
-        DLog("Puzzle Candidate Rejected.  Unacceptable laser beam configuration.");
-        return NO;
-    }
+//    if (![self checkWhetherLasersAreAcceptable]){
+//        DLog("Puzzle Candidate Rejected.  Unacceptable laser beam configuration.");
+//        return NO;
+//    }
     // Make sure that there are at least gameGrid.sizeY Jewels, else reject
-    if ([self jewelCount] < gameGrid.sizeY){
-        DLog("Puzzle Candidate Rejected.  Only %d Jewels.  Minumum allowed number is %d", [self jewelCount], gameGrid.sizeY);
-        return NO;
-    }
+//    if ([self jewelCount] < gameGrid.sizeY){
+//        DLog("Puzzle Candidate Rejected.  Only %d Jewels.  Minumum allowed number is %d", [self jewelCount], gameGrid.sizeY);
+//        return NO;
+//    }
     // Scan for non-energized Jewels to reject unsuitable candidate puzzles
     if ([self checkForNonEnergizedJewels]){
         DLog("Puzzle Candidate Rejected.  Non-energized Jewel.");

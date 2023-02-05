@@ -2397,7 +2397,7 @@
 						<key>labelOffsetXProportion</key>
 						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.765</real>
+						<real>0.758</real>
 						<key>centerTextInLabel</key>
 						<false/>
 						<key>leftAlignTextInLabel</key>
@@ -2670,7 +2670,7 @@
 						<key>labelOffsetXProportion</key>
 						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.765</real>
+						<real>0.758</real>
 						<key>centerTextInLabel</key>
 						<false/>
 						<key>leftAlignTextInLabel</key>
@@ -2693,7 +2693,7 @@
 						<key>labelOffsetXProportion</key>
 						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.755</real>
+						<real>0.745</real>
 						<key>centerTextInLabel</key>
 						<false/>
 						<key>leftAlignTextInLabel</key>
@@ -2716,7 +2716,7 @@
 						<key>labelOffsetXProportion</key>
 						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.745</real>
+						<real>0.738</real>
 						<key>centerTextInLabel</key>
 						<false/>
 						<key>leftAlignTextInLabel</key>
@@ -3021,7 +3021,7 @@
 						<key>labelOffsetXProportion</key>
 						<real>0.36</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.8</real>
+						<real>0.785</real>
 					</dict>
 					<key>ASPECT_3_2</key>
 					<dict>
@@ -3040,7 +3040,7 @@
 						<key>labelOffsetXProportion</key>
 						<real>0.34</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.8</real>
+						<real>0.78</real>
 					</dict>
 					<key>ASPECT_16_9</key>
 					<dict>
@@ -3120,7 +3120,7 @@
 						<key>labelOffsetXProportion</key>
 						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.8</real>
+						<real>0.785</real>
 					</dict>
 					<key>ASPECT_3_2</key>
 					<dict>
@@ -3139,7 +3139,7 @@
 						<key>labelOffsetXProportion</key>
 						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.8</real>
+						<real>0.78</real>
 					</dict>
 					<key>ASPECT_16_9</key>
 					<dict>
@@ -3219,7 +3219,7 @@
 						<key>labelOffsetXProportion</key>
 						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.8</real>
+						<real>0.785</real>
 					</dict>
 					<key>ASPECT_3_2</key>
 					<dict>
@@ -3420,30 +3420,38 @@
 						<key>labelText</key>
 						<string>Beamsplitters can reflect, split and combine Beams.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>450</integer>
+						<key>labelSizeYPoints</key>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.09</real>
 					</dict>
 					<key>ASPECT_3_2</key>
 					<dict>
 						<key>labelText</key>
 						<string>Beamsplitters can reflect, split and combine Beams.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>450</integer>
+						<key>labelSizeYPoints</key>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.09</real>
 					</dict>
 					<key>ASPECT_16_9</key>
 					<dict>
@@ -3509,32 +3517,40 @@
 					<key>ASPECT_10_7</key>
 					<dict>
 						<key>labelText</key>
-						<string>Drag the Splitter into the Blue Beam</string>
+						<string>Drag the Beamsplitter into the Blue Beam.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
-						<true/>
+						<false/>
+						<key>labelSizeXPoints</key>
+						<integer>375</integer>
+						<key>labelSizeYPoints</key>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.36</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.785</real>
 					</dict>
 					<key>ASPECT_3_2</key>
 					<dict>
 						<key>labelText</key>
-						<string>Drag the Splitter into the Blue Beam</string>
+						<string>Drag the Beamsplitter into the Blue Beam.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
-						<true/>
+						<false/>
+						<key>labelSizeXPoints</key>
+						<integer>375</integer>
+						<key>labelSizeYPoints</key>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.34</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.78</real>
 					</dict>
 					<key>ASPECT_16_9</key>
 					<dict>
@@ -3602,30 +3618,38 @@
 						<key>labelText</key>
 						<string>Tap the Splitter to rotate</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
-						<true/>
+						<false/>
+						<key>labelSizeXPoints</key>
+						<integer>450</integer>
+						<key>labelSizeYPoints</key>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.785</real>
 					</dict>
 					<key>ASPECT_3_2</key>
 					<dict>
 						<key>labelText</key>
 						<string>Tap the Splitter to rotate</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
-						<true/>
+						<false/>
+						<key>labelSizeXPoints</key>
+						<integer>450</integer>
+						<key>labelSizeYPoints</key>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.78</real>
 					</dict>
 					<key>ASPECT_16_9</key>
 					<dict>
@@ -3693,32 +3717,42 @@
 					<key>ASPECT_10_7</key>
 					<dict>
 						<key>labelText</key>
-						<string>Excellent - you made both Blue Jewels Sparkle!  Let&apos;s try a Prism.</string>
+						<string>Next let&apos;s try using a Prism.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>centerTextInLabel</key>
+						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>450</integer>
+						<key>labelSizeYPoints</key>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.785</real>
 					</dict>
 					<key>ASPECT_3_2</key>
 					<dict>
 						<key>labelText</key>
-						<string>Excellent - you made both Blue Jewels Sparkle!  Let&apos;s try a Prism.</string>
+						<string>Next let&apos;s try using a Prism.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>450</integer>
+						<key>labelSizeYPoints</key>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.775</real>
 					</dict>
 					<key>ASPECT_16_9</key>
 					<dict>
@@ -3932,62 +3966,78 @@
 					<key>ASPECT_10_7</key>
 					<dict>
 						<key>labelText</key>
-						<string>Drag the Splitter into the Blue Beam</string>
+						<string>Prisms bend each color of Beam differently.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>450</integer>
+						<key>labelSizeYPoints</key>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.09</real>
 					</dict>
 					<key>ASPECT_3_2</key>
 					<dict>
 						<key>labelText</key>
-						<string>Drag the Splitter into the Blue Beam</string>
+						<string>Prisms bend each color of Beam differently.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>450</integer>
+						<key>labelSizeYPoints</key>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.09</real>
 					</dict>
 					<key>ASPECT_16_9</key>
 					<dict>
 						<key>labelText</key>
-						<string>Drag the Splitter into the Blue Beam</string>
+						<string>Prisms bend each color of Beam differently.</string>
 						<key>labelFontSize</key>
 						<integer>20</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>300</integer>
+						<key>labelSizeYPoints</key>
+						<integer>100</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.1</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>-0.01</real>
+						<real>0.01</real>
 					</dict>
 					<key>ASPECT_13_6</key>
 					<dict>
 						<key>labelText</key>
-						<string>Drag the Splitter into the Blue Beam</string>
+						<string>Prisms bend each color of Beam differently.</string>
 						<key>labelFontSize</key>
-						<integer>22</integer>
+						<integer>20</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>300</integer>
+						<key>labelSizeYPoints</key>
+						<integer>100</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.275</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
+						<real>0.05</real>
 					</dict>
 				</dict>
 				<dict>
@@ -4019,62 +4069,78 @@
 					<key>ASPECT_10_7</key>
 					<dict>
 						<key>labelText</key>
-						<string>Drag the Prism into the White Beam</string>
+						<string>Drag the Prism into the White Beam.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
-						<true/>
+						<false/>
+						<key>labelSizeXPoints</key>
+						<integer>375</integer>
+						<key>labelSizeYPoints</key>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.36</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.785</real>
 					</dict>
 					<key>ASPECT_3_2</key>
 					<dict>
 						<key>labelText</key>
-						<string>Drag the Prism into the White Beam</string>
+						<string>Drag the Prism into the White Beam.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
-						<true/>
+						<false/>
+						<key>labelSizeXPoints</key>
+						<integer>375</integer>
+						<key>labelSizeYPoints</key>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.34</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.78</real>
 					</dict>
 					<key>ASPECT_16_9</key>
 					<dict>
 						<key>labelText</key>
-						<string>Drag the Prism into the White Beam</string>
+						<string>Drag the Prism into the White Beam.</string>
 						<key>labelFontSize</key>
 						<integer>20</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
-						<true/>
+						<false/>
+						<key>labelSizeXPoints</key>
+						<integer>200</integer>
+						<key>labelSizeYPoints</key>
+						<integer>100</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.1</real>
+						<real>0.34</real>
 						<key>labelOffsetYProportion</key>
-						<real>-0.01</real>
+						<real>0.77</real>
 					</dict>
 					<key>ASPECT_13_6</key>
 					<dict>
 						<key>labelText</key>
-						<string>Drag the Prism into the White Beam</string>
+						<string>Drag the Prism into the White Beam.</string>
 						<key>labelFontSize</key>
-						<integer>22</integer>
+						<integer>20</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
-						<true/>
+						<false/>
+						<key>labelSizeXPoints</key>
+						<integer>200</integer>
+						<key>labelSizeYPoints</key>
+						<integer>100</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.275</real>
+						<real>0.34</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
+						<real>0.745</real>
 					</dict>
 				</dict>
 				<dict>
@@ -4104,30 +4170,38 @@
 						<key>labelText</key>
 						<string>Tap the Prism to rotate</string>
 						<key>labelFontSize</key>
-						<integer>32</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
-						<true/>
+						<false/>
+						<key>labelSizeXPoints</key>
+						<integer>450</integer>
+						<key>labelSizeYPoints</key>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.785</real>
 					</dict>
 					<key>ASPECT_3_2</key>
 					<dict>
 						<key>labelText</key>
 						<string>Tap the Prism to rotate</string>
 						<key>labelFontSize</key>
-						<integer>32</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
-						<true/>
+						<false/>
+						<key>labelSizeXPoints</key>
+						<integer>450</integer>
+						<key>labelSizeYPoints</key>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.78</real>
 					</dict>
 					<key>ASPECT_16_9</key>
 					<dict>
@@ -4139,25 +4213,33 @@
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>300</integer>
+						<key>labelSizeYPoints</key>
+						<integer>100</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.1</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>-0.01</real>
+						<real>0.75</real>
 					</dict>
 					<key>ASPECT_13_6</key>
 					<dict>
 						<key>labelText</key>
 						<string>Tap the Prism to rotate</string>
 						<key>labelFontSize</key>
-						<integer>22</integer>
+						<integer>20</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>300</integer>
+						<key>labelSizeYPoints</key>
+						<integer>100</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.275</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
+						<real>0.75</real>
 					</dict>
 				</dict>
 				<dict>
@@ -4185,62 +4267,78 @@
 					<key>ASPECT_10_7</key>
 					<dict>
 						<key>labelText</key>
-						<string>Fantastic!  You made all of the Jewels Sparkle!</string>
+						<string>Prisms are used to combine colored Beams and to split them apart.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>450</integer>
+						<key>labelSizeYPoints</key>
+						<integer>120</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.78</real>
 					</dict>
 					<key>ASPECT_3_2</key>
 					<dict>
 						<key>labelText</key>
-						<string>Fantastic!  You made all of the Jewels Sparkle!</string>
+						<string>Prisms are used to combine colored Beams and to split them apart.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>450</integer>
+						<key>labelSizeYPoints</key>
+						<integer>120</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.775</real>
 					</dict>
 					<key>ASPECT_16_9</key>
 					<dict>
 						<key>labelText</key>
-						<string>Fantastic!  You made all of the Jewels Sparkle!</string>
+						<string>Prisms are used to combine colored Beams and to split them apart.</string>
 						<key>labelFontSize</key>
 						<integer>20</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>300</integer>
+						<key>labelSizeYPoints</key>
+						<integer>100</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.1</real>
+						<real>0.34</real>
 						<key>labelOffsetYProportion</key>
-						<real>-0.01</real>
+						<real>0.75</real>
 					</dict>
 					<key>ASPECT_13_6</key>
 					<dict>
 						<key>labelText</key>
-						<string>Fantastic!  You made all of the Jewels Sparkle!</string>
+						<string>Prisms are used to combine colored Beams and to split them apart.</string>
 						<key>labelFontSize</key>
-						<integer>22</integer>
+						<integer>20</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>300</integer>
+						<key>labelSizeYPoints</key>
+						<integer>100</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.275</real>
+						<real>0.34</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
+						<real>0.75</real>
 					</dict>
 				</dict>
 			</array>
@@ -4538,62 +4636,86 @@
 					<key>ASPECT_10_7</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!Drag the Mirror into the Red Beam</string>
+						<string>Not sure what to do?  Tap the light bulb to get a hint.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>400</integer>
+						<key>labelSizeYPoints</key>
+						<integer>100</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.065</real>
 					</dict>
 					<key>ASPECT_3_2</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!Drag the Mirror into the Red Beam</string>
+						<string>Not sure what to do?  Tap the light bulb to get a hint.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>400</integer>
+						<key>labelSizeYPoints</key>
+						<integer>100</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.17</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.065</real>
 					</dict>
 					<key>ASPECT_16_9</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!  Drag the Mirror into the Red Beam</string>
+						<string>Not sure what to do?  Tap the light bulb to get a hint.</string>
 						<key>labelFontSize</key>
 						<integer>20</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>300</integer>
+						<key>labelSizeYPoints</key>
+						<integer>100</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.1</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>-0.01</real>
+						<real>0.01</real>
 					</dict>
 					<key>ASPECT_13_6</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!  Drag the Mirror into the Red Beam</string>
+						<string>Not sure what to do?  Tap the light bulb to get a hint.</string>
 						<key>labelFontSize</key>
-						<integer>22</integer>
+						<integer>20</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>300</integer>
+						<key>labelSizeYPoints</key>
+						<integer>100</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.275</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
+						<real>0.05</real>
 					</dict>
 				</dict>
 				<dict>
@@ -4625,62 +4747,86 @@
 					<key>ASPECT_10_7</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!Drag the Mirror into the Red Beam</string>
+						<string>You start out with 10 free hints.  You can buy hint packs or earn a hint by watching a video.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
-						<string>whiteColor</string>
+						<string>cyanColor</string>
 						<key>centerLabel</key>
-						<true/>
+						<false/>
+						<key>labelSizeXPoints</key>
+						<integer>450</integer>
+						<key>labelSizeYPoints</key>
+						<integer>200</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.24</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.745</real>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 					</dict>
 					<key>ASPECT_3_2</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!Drag the Mirror into the Red Beam</string>
+						<string>You start out with 10 free hints.  You can buy hint packs or earn a hint by watching a video.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
-						<string>whiteColor</string>
+						<string>cyanColor</string>
 						<key>centerLabel</key>
-						<true/>
+						<false/>
+						<key>labelSizeXPoints</key>
+						<integer>450</integer>
+						<key>labelSizeYPoints</key>
+						<integer>200</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.17</real>
+						<real>0.24</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.738</real>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 					</dict>
 					<key>ASPECT_16_9</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!  Drag the Mirror into the Red Beam</string>
+						<string>You start out with 10 free hints.  You can buy hint packs or earn a hint by watching a video.</string>
 						<key>labelFontSize</key>
 						<integer>20</integer>
 						<key>labelColor</key>
-						<string>whiteColor</string>
+						<string>cyanColor</string>
 						<key>centerLabel</key>
-						<true/>
+						<false/>
+						<key>labelSizeXPoints</key>
+						<integer>275</integer>
+						<key>labelSizeYPoints</key>
+						<integer>200</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.1</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>-0.01</real>
+						<real>0.76</real>
 					</dict>
 					<key>ASPECT_13_6</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!  Drag the Mirror into the Red Beam</string>
+						<string>You start out with 10 free hints.  You can buy hint packs or earn a hint by watching a video.</string>
 						<key>labelFontSize</key>
-						<integer>22</integer>
+						<integer>20</integer>
 						<key>labelColor</key>
-						<string>whiteColor</string>
+						<string>cyanColor</string>
 						<key>centerLabel</key>
-						<true/>
+						<false/>
+						<key>labelSizeXPoints</key>
+						<integer>275</integer>
+						<key>labelSizeYPoints</key>
+						<integer>200</integer>
 						<key>labelOffsetXProportion</key>
 						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
+						<real>0.755</real>
 					</dict>
 				</dict>
 			</array>
