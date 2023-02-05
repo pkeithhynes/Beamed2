@@ -96,32 +96,52 @@
 					<key>ASPECT_16_9</key>
 					<dict>
 						<key>labelText</key>
-						<string>Next</string>
+						<string>How to Play</string>
 						<key>labelFontSize</key>
-						<integer>24</integer>
+						<integer>26</integer>
 						<key>labelColor</key>
 						<string>cyanColor</string>
+						<key>labelBold</key>
+						<true/>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>300</integer>
+						<key>labelSizeYPoints</key>
+						<integer>50</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.1</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.8</real>
+						<real>0.05</real>
+						<key>centerTextInLabel</key>
+						<true/>
+						<key>leftAlignTextInLabel</key>
+						<false/>
 					</dict>
 					<key>ASPECT_13_6</key>
 					<dict>
 						<key>labelText</key>
-						<string>Next</string>
+						<string>How to Play</string>
 						<key>labelFontSize</key>
-						<integer>24</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>cyanColor</string>
+						<key>labelBold</key>
+						<true/>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>300</integer>
+						<key>labelSizeYPoints</key>
+						<integer>50</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.275</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.8</real>
+						<real>0.05</real>
+						<key>centerTextInLabel</key>
+						<true/>
+						<key>leftAlignTextInLabel</key>
+						<false/>
 					</dict>
 				</dict>
 				<dict>
@@ -197,32 +217,48 @@
 					<key>ASPECT_16_9</key>
 					<dict>
 						<key>labelText</key>
-						<string>Next</string>
+						<string>A Jewel sparkles when it is hit by a Beam that matches its color, or by a combination of Beams that together match its color.</string>
 						<key>labelFontSize</key>
-						<integer>24</integer>
+						<integer>14</integer>
 						<key>labelColor</key>
-						<string>cyanColor</string>
+						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>300</integer>
+						<key>labelSizeYPoints</key>
+						<integer>100</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.1</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.8</real>
+						<real>0.13</real>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 					</dict>
 					<key>ASPECT_13_6</key>
 					<dict>
 						<key>labelText</key>
-						<string>Next</string>
+						<string>A Jewel sparkles when it is hit by a Beam that matches its color, or by a combination of Beams that together match its color.</string>
 						<key>labelFontSize</key>
-						<integer>24</integer>
+						<integer>16</integer>
 						<key>labelColor</key>
-						<string>cyanColor</string>
+						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>350</integer>
+						<key>labelSizeYPoints</key>
+						<integer>100</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.275</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.8</real>
+						<real>0.17</real>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 					</dict>
 				</dict>
 				<dict>
@@ -304,32 +340,52 @@
 					<key>ASPECT_16_9</key>
 					<dict>
 						<key>labelText</key>
-						<string>Next</string>
+						<string>A Puzzle is solved when every Jewel sparkles.</string>
 						<key>labelFontSize</key>
-						<integer>24</integer>
+						<integer>14</integer>
 						<key>labelColor</key>
 						<string>cyanColor</string>
+						<key>labelBold</key>
+						<true/>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>300</integer>
+						<key>labelSizeYPoints</key>
+						<integer>50</integer>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 						<key>labelOffsetXProportion</key>
-						<real>0.1</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.8</real>
+						<real>0.265</real>
 					</dict>
 					<key>ASPECT_13_6</key>
 					<dict>
 						<key>labelText</key>
-						<string>Next</string>
+						<string>A Puzzle is solved when every Jewel sparkles.</string>
 						<key>labelFontSize</key>
-						<integer>24</integer>
+						<integer>16</integer>
 						<key>labelColor</key>
 						<string>cyanColor</string>
+						<key>labelBold</key>
+						<true/>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>350</integer>
+						<key>labelSizeYPoints</key>
+						<integer>50</integer>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 						<key>labelOffsetXProportion</key>
-						<real>0.275</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.8</real>
+						<real>0.29</real>
 					</dict>
 				</dict>
 				<dict>
@@ -405,32 +461,48 @@
 					<key>ASPECT_16_9</key>
 					<dict>
 						<key>labelText</key>
-						<string>Next</string>
+						<string>Solid Beams make these Jewels sparkle.</string>
 						<key>labelFontSize</key>
-						<integer>24</integer>
+						<integer>14</integer>
 						<key>labelColor</key>
-						<string>cyanColor</string>
+						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>300</integer>
+						<key>labelSizeYPoints</key>
+						<integer>25</integer>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 						<key>labelOffsetXProportion</key>
-						<real>0.1</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.8</real>
+						<real>0.36</real>
 					</dict>
 					<key>ASPECT_13_6</key>
 					<dict>
 						<key>labelText</key>
-						<string>Next</string>
+						<string>Solid Beams make these Jewels sparkle.</string>
 						<key>labelFontSize</key>
-						<integer>24</integer>
+						<integer>16</integer>
 						<key>labelColor</key>
-						<string>cyanColor</string>
+						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>350</integer>
+						<key>labelSizeYPoints</key>
+						<integer>50</integer>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 						<key>labelOffsetXProportion</key>
-						<real>0.275</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.8</real>
+						<real>0.36</real>
 					</dict>
 				</dict>
 				<dict>
@@ -506,32 +578,48 @@
 					<key>ASPECT_16_9</key>
 					<dict>
 						<key>labelText</key>
-						<string>Next</string>
+						<string>Combinations of Red, Green and Blue Beams make these Jewels sparkle.</string>
 						<key>labelFontSize</key>
-						<integer>24</integer>
+						<integer>14</integer>
 						<key>labelColor</key>
-						<string>cyanColor</string>
+						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>300</integer>
+						<key>labelSizeYPoints</key>
+						<integer>45</integer>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 						<key>labelOffsetXProportion</key>
-						<real>0.1</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.8</real>
+						<real>0.5</real>
 					</dict>
 					<key>ASPECT_13_6</key>
 					<dict>
 						<key>labelText</key>
-						<string>Next</string>
+						<string>Combinations of Red, Green and Blue Beams make these Jewels sparkle.</string>
 						<key>labelFontSize</key>
-						<integer>24</integer>
+						<integer>16</integer>
 						<key>labelColor</key>
-						<string>cyanColor</string>
+						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>350</integer>
+						<key>labelSizeYPoints</key>
+						<integer>75</integer>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 						<key>labelOffsetXProportion</key>
-						<real>0.275</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.8</real>
+						<real>0.5</real>
 					</dict>
 				</dict>
 				<dict>
@@ -609,32 +697,48 @@
 					<key>ASPECT_16_9</key>
 					<dict>
 						<key>labelText</key>
-						<string>Next</string>
+						<string>These Jewels aren&apos;t sparkling.</string>
 						<key>labelFontSize</key>
-						<integer>24</integer>
+						<integer>14</integer>
 						<key>labelColor</key>
-						<string>cyanColor</string>
+						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>300</integer>
+						<key>labelSizeYPoints</key>
+						<integer>25</integer>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 						<key>labelOffsetXProportion</key>
-						<real>0.1</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.8</real>
+						<real>0.7</real>
 					</dict>
 					<key>ASPECT_13_6</key>
 					<dict>
 						<key>labelText</key>
-						<string>Next</string>
+						<string>These Jewels aren&apos;t sparkling.</string>
 						<key>labelFontSize</key>
-						<integer>24</integer>
+						<integer>16</integer>
 						<key>labelColor</key>
-						<string>cyanColor</string>
+						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>350</integer>
+						<key>labelSizeYPoints</key>
+						<integer>50</integer>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 						<key>labelOffsetXProportion</key>
-						<real>0.275</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.8</real>
+						<real>0.68</real>
 					</dict>
 				</dict>
 			</array>
@@ -2147,62 +2251,86 @@
 					<key>ASPECT_10_7</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!Drag the Mirror into the Red Beam</string>
+						<string>Puzzles are played on a grid.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>600</integer>
+						<key>labelSizeYPoints</key>
+						<integer>150</integer>
 						<key>labelOffsetXProportion</key>
 						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
 						<real>0.015</real>
+						<key>centerTextInLabel</key>
+						<true/>
 					</dict>
 					<key>ASPECT_3_2</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!Drag the Mirror into the Red Beam</string>
+						<string>Puzzles are played on a grid.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>600</integer>
+						<key>labelSizeYPoints</key>
+						<integer>150</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.17</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
 						<real>0.015</real>
+						<key>centerTextInLabel</key>
+						<true/>
 					</dict>
 					<key>ASPECT_16_9</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!  Drag the Mirror into the Red Beam</string>
+						<string>Puzzles are played on a grid.</string>
 						<key>labelFontSize</key>
 						<integer>20</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>300</integer>
+						<key>labelSizeYPoints</key>
+						<integer>100</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.1</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>-0.01</real>
+						<real>0.015</real>
+						<key>centerTextInLabel</key>
+						<true/>
 					</dict>
 					<key>ASPECT_13_6</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!  Drag the Mirror into the Red Beam</string>
+						<string>Puzzles are played on a grid.</string>
 						<key>labelFontSize</key>
-						<integer>22</integer>
+						<integer>20</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>300</integer>
+						<key>labelSizeYPoints</key>
+						<integer>100</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.275</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
+						<real>0.05</real>
+						<key>centerTextInLabel</key>
+						<true/>
 					</dict>
 				</dict>
 				<dict>
@@ -2232,62 +2360,94 @@
 					<key>ASPECT_10_7</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!Drag the Mirror into the Red Beam</string>
+						<string>Lasers and Jewels are located around the edges of the grid.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>400</integer>
+						<key>labelSizeYPoints</key>
+						<integer>150</integer>
 						<key>labelOffsetXProportion</key>
 						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.765</real>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 					</dict>
 					<key>ASPECT_3_2</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!Drag the Mirror into the Red Beam</string>
+						<string>Lasers and Jewels are located around the edges of the grid.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>400</integer>
+						<key>labelSizeYPoints</key>
+						<integer>150</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.17</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.765</real>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 					</dict>
 					<key>ASPECT_16_9</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!  Drag the Mirror into the Red Beam</string>
+						<string>Lasers and Jewels are located around the edges of the grid.</string>
 						<key>labelFontSize</key>
-						<integer>20</integer>
+						<integer>16</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>200</integer>
+						<key>labelSizeYPoints</key>
+						<integer>100</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.1</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>-0.01</real>
+						<real>0.765</real>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 					</dict>
 					<key>ASPECT_13_6</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!  Drag the Mirror into the Red Beam</string>
+						<string>Lasers and Jewels are located around the edges of the grid.</string>
 						<key>labelFontSize</key>
-						<integer>22</integer>
+						<integer>16</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>200</integer>
+						<key>labelSizeYPoints</key>
+						<integer>100</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.275</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
+						<real>0.74</real>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 					</dict>
 				</dict>
 			</array>
@@ -2402,62 +2562,94 @@
 					<key>ASPECT_10_7</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!Drag the Mirror into the Red Beam</string>
+						<string>Place Mirrors on the grid to steer the right color Beams to each Jewel.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>450</integer>
+						<key>labelSizeYPoints</key>
+						<integer>150</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
 						<real>0.015</real>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 					</dict>
 					<key>ASPECT_3_2</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!Drag the Mirror into the Red Beam</string>
+						<string>Place Mirrors on the grid to steer the right color Beams to each Jewel.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>450</integer>
+						<key>labelSizeYPoints</key>
+						<integer>150</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.17</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
 						<real>0.015</real>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 					</dict>
 					<key>ASPECT_16_9</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!  Drag the Mirror into the Red Beam</string>
+						<string>Place Mirrors on the grid to steer the right color Beams to each Jewel.</string>
 						<key>labelFontSize</key>
-						<integer>20</integer>
+						<integer>16</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>300</integer>
+						<key>labelSizeYPoints</key>
+						<integer>100</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.1</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>-0.01</real>
+						<real>0.01</real>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 					</dict>
 					<key>ASPECT_13_6</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!  Drag the Mirror into the Red Beam</string>
+						<string>Place Mirrors on the grid to steer the right color Beams to each Jewel.</string>
 						<key>labelFontSize</key>
-						<integer>22</integer>
+						<integer>16</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>300</integer>
+						<key>labelSizeYPoints</key>
+						<integer>100</integer>
 						<key>labelOffsetXProportion</key>
 						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
+						<real>0.05</real>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 					</dict>
 				</dict>
 				<dict>
@@ -2487,62 +2679,94 @@
 					<key>ASPECT_10_7</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!Drag the Mirror into the Red Beam</string>
+						<string>This Mirror reflects the green Beam onto the green Jewel.  The Puzzle is solved!</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>400</integer>
+						<key>labelSizeYPoints</key>
+						<integer>200</integer>
 						<key>labelOffsetXProportion</key>
 						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.755</real>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 					</dict>
 					<key>ASPECT_3_2</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!Drag the Mirror into the Red Beam</string>
+						<string>This Mirror reflects the green Beam onto the green Jewel.  The Puzzle is solved!</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>400</integer>
+						<key>labelSizeYPoints</key>
+						<integer>200</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.17</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.745</real>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 					</dict>
 					<key>ASPECT_16_9</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!  Drag the Mirror into the Red Beam</string>
+						<string>This Mirror reflects the green Beam onto the green Jewel.  The Puzzle is solved!</string>
 						<key>labelFontSize</key>
-						<integer>20</integer>
+						<integer>16</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>200</integer>
+						<key>labelSizeYPoints</key>
+						<integer>100</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.1</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>-0.01</real>
+						<real>0.765</real>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 					</dict>
 					<key>ASPECT_13_6</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!  Drag the Mirror into the Red Beam</string>
+						<string>This Mirror reflects the green Beam onto the green Jewel.  The Puzzle is solved!</string>
 						<key>labelFontSize</key>
-						<integer>22</integer>
+						<integer>16</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>200</integer>
+						<key>labelSizeYPoints</key>
+						<integer>100</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.275</real>
+						<real>0.185</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
+						<real>0.74</real>
+						<key>centerTextInLabel</key>
+						<false/>
+						<key>leftAlignTextInLabel</key>
+						<true/>
 					</dict>
 				</dict>
 			</array>
@@ -2684,62 +2908,59 @@
 					<key>ASPECT_10_7</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!Drag the Mirror into the Red Beam</string>
+						<string>Unused Mirrors are found below the grid.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>450</integer>
+						<key>labelSizeYPoints</key>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.09</real>
 					</dict>
 					<key>ASPECT_3_2</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!Drag the Mirror into the Red Beam</string>
+						<string>Unused Mirrors are found below the grid.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>450</integer>
+						<key>labelSizeYPoints</key>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.17</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.09</real>
 					</dict>
 					<key>ASPECT_16_9</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!  Drag the Mirror into the Red Beam</string>
+						<string>Unused Mirrors are found below the grid.</string>
 						<key>labelFontSize</key>
-						<integer>20</integer>
+						<integer>16</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
-						<key>labelOffsetXProportion</key>
-						<real>0.1</real>
-						<key>labelOffsetYProportion</key>
-						<real>-0.01</real>
-					</dict>
-					<key>ASPECT_13_6</key>
-					<dict>
-						<key>labelText</key>
-						<string>Make every Jewel Sparkle!  Drag the Mirror into the Red Beam</string>
-						<key>labelFontSize</key>
-						<integer>22</integer>
-						<key>labelColor</key>
-						<string>whiteColor</string>
-						<key>centerLabel</key>
-						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>300</integer>
+						<key>labelSizeYPoints</key>
+						<integer>100</integer>
 						<key>labelOffsetXProportion</key>
 						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
+						<real>0.01</real>
 					</dict>
 				</dict>
 				<dict>
@@ -2767,62 +2988,59 @@
 					<key>ASPECT_10_7</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!Drag the Mirror into the Red Beam</string>
+						<string>Drag the Mirror into the Red Beam.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
-						<true/>
+						<false/>
+						<key>labelSizeXPoints</key>
+						<integer>450</integer>
+						<key>labelSizeYPoints</key>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.36</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.8</real>
 					</dict>
 					<key>ASPECT_3_2</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!Drag the Mirror into the Red Beam</string>
+						<string>Drag the Mirror into the Red Beam.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
-						<true/>
+						<false/>
+						<key>labelSizeXPoints</key>
+						<integer>450</integer>
+						<key>labelSizeYPoints</key>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.17</real>
+						<real>0.34</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.8</real>
 					</dict>
 					<key>ASPECT_16_9</key>
 					<dict>
 						<key>labelText</key>
-						<string>Make every Jewel Sparkle!  Drag the Mirror into the Red Beam</string>
+						<string>Drag the Mirror into the Red Beam.</string>
 						<key>labelFontSize</key>
-						<integer>20</integer>
+						<integer>16</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
-						<true/>
+						<false/>
+						<key>labelSizeXPoints</key>
+						<integer>200</integer>
+						<key>labelSizeYPoints</key>
+						<integer>100</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.1</real>
+						<real>0.34</real>
 						<key>labelOffsetYProportion</key>
-						<real>-0.01</real>
-					</dict>
-					<key>ASPECT_13_6</key>
-					<dict>
-						<key>labelText</key>
-						<string>Make every Jewel Sparkle!  Drag the Mirror into the Red Beam</string>
-						<key>labelFontSize</key>
-						<integer>22</integer>
-						<key>labelColor</key>
-						<string>whiteColor</string>
-						<key>centerLabel</key>
-						<true/>
-						<key>labelOffsetXProportion</key>
-						<real>0.275</real>
-						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
+						<real>0.765</real>
 					</dict>
 				</dict>
 				<dict>
@@ -2850,62 +3068,59 @@
 					<key>ASPECT_10_7</key>
 					<dict>
 						<key>labelText</key>
-						<string>Tap the Mirror to rotate</string>
+						<string>Tap the Mirror to rotate it into position.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
-						<true/>
+						<false/>
+						<key>labelSizeXPoints</key>
+						<integer>450</integer>
+						<key>labelSizeYPoints</key>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.8</real>
 					</dict>
 					<key>ASPECT_3_2</key>
 					<dict>
 						<key>labelText</key>
-						<string>Tap the Mirror to rotate</string>
+						<string>Tap the Mirror to rotate it into position.</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
-						<true/>
+						<false/>
+						<key>labelSizeXPoints</key>
+						<integer>450</integer>
+						<key>labelSizeYPoints</key>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.8</real>
 					</dict>
 					<key>ASPECT_16_9</key>
 					<dict>
 						<key>labelText</key>
-						<string>Tap the Mirror to rotate</string>
+						<string>Tap the Mirror to rotate it into position.</string>
 						<key>labelFontSize</key>
-						<integer>20</integer>
+						<integer>16</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
-						<true/>
-						<key>labelOffsetXProportion</key>
-						<real>0.1</real>
-						<key>labelOffsetYProportion</key>
-						<real>-0.01</real>
-					</dict>
-					<key>ASPECT_13_6</key>
-					<dict>
-						<key>labelText</key>
-						<string>Tap the Mirror to rotate</string>
-						<key>labelFontSize</key>
-						<integer>22</integer>
-						<key>labelColor</key>
-						<string>whiteColor</string>
-						<key>centerLabel</key>
-						<true/>
+						<false/>
+						<key>labelSizeXPoints</key>
+						<integer>200</integer>
+						<key>labelSizeYPoints</key>
+						<integer>50</integer>
 						<key>labelOffsetXProportion</key>
 						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
+						<real>0.8</real>
 					</dict>
 				</dict>
 				<dict>
@@ -2933,62 +3148,59 @@
 					<key>ASPECT_10_7</key>
 					<dict>
 						<key>labelText</key>
-						<string>Great!  Now let&apos;s try a Beam Splitter.</string>
+						<string>Mirrors are not the only kind of object you can place on the grid...</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>450</integer>
+						<key>labelSizeYPoints</key>
+						<integer>80</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.8</real>
 					</dict>
 					<key>ASPECT_3_2</key>
 					<dict>
 						<key>labelText</key>
-						<string>Great!  Now let&apos;s try a Beam Splitter.</string>
+						<string>Mirrors are not the only kind of object you can place on the grid...</string>
 						<key>labelFontSize</key>
-						<integer>34</integer>
+						<integer>28</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>400</integer>
+						<key>labelSizeYPoints</key>
+						<integer>120</integer>
 						<key>labelOffsetXProportion</key>
-						<real>0.185</real>
+						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.015</real>
+						<real>0.775</real>
 					</dict>
 					<key>ASPECT_16_9</key>
 					<dict>
 						<key>labelText</key>
-						<string>Great!  Now let&apos;s try a Beam Splitter.</string>
+						<string>Mirrors are not the only kind of object you can place on the grid...</string>
 						<key>labelFontSize</key>
-						<integer>20</integer>
+						<integer>16</integer>
 						<key>labelColor</key>
 						<string>whiteColor</string>
 						<key>centerLabel</key>
 						<true/>
-						<key>labelOffsetXProportion</key>
-						<real>0.1</real>
-						<key>labelOffsetYProportion</key>
-						<real>-0.01</real>
-					</dict>
-					<key>ASPECT_13_6</key>
-					<dict>
-						<key>labelText</key>
-						<string>Great!  Now let&apos;s try a Beam Splitter.</string>
-						<key>labelFontSize</key>
-						<integer>22</integer>
-						<key>labelColor</key>
-						<string>whiteColor</string>
-						<key>centerLabel</key>
-						<true/>
+						<key>labelSizeXPoints</key>
+						<integer>200</integer>
+						<key>labelSizeYPoints</key>
+						<integer>100</integer>
 						<key>labelOffsetXProportion</key>
 						<real>0.275</real>
 						<key>labelOffsetYProportion</key>
-						<real>0.08500000000000001</real>
+						<real>0.775</real>
 					</dict>
 				</dict>
 			</array>

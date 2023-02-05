@@ -998,10 +998,31 @@
     // nextArrow icon
     //
     // Create a next arrow icon near the right hand side of the Unplaced Tiles Tray
+    CGFloat nextArrowHomeArrowCenterY;
+    switch (rc.displayAspectRatio) {
+        case ASPECT_4_3:
+            // iPad (9th generation)
+        case ASPECT_10_7:
+            // iPad Air (5th generation)
+        case ASPECT_3_2: {
+            // iPad Mini (6th generation)
+            //
+            nextArrowHomeArrowCenterY = appd->optics->gridTouchGestures.minUnplacedTilesBoundary.y/rc.contentScaleFactor;
+            break;
+        }
+        case ASPECT_16_9:
+            // iPhone 14
+        case ASPECT_13_6:
+            // iPhone 8
+        default: {
+            nextArrowHomeArrowCenterY = 1.025*(appd->optics->gridTouchGestures.maxUnplacedTilesBoundary.y/rc.contentScaleFactor);
+            break;
+        }
+    }
     nextArrow = [UIButton buttonWithType:UIButtonTypeCustom];
     CGFloat arrowWidthInPoints = 1.0/7.0*appd->optics->_safeAreaScreenWidthInPixels/rc.contentScaleFactor;
     CGFloat centerX = 6.0/7.0*appd->optics->_safeAreaScreenWidthInPixels/rc.contentScaleFactor;
-    CGFloat centerY = appd->optics->gridTouchGestures.minUnplacedTilesBoundary.y/rc.contentScaleFactor;
+    CGFloat centerY = nextArrowHomeArrowCenterY;
     CGRect nextArrowRect = CGRectMake(centerX-arrowWidthInPoints/2.0,
                                      centerY,
                                      arrowWidthInPoints,
@@ -1021,7 +1042,7 @@
     // Create a white home arrow icon near the left hand side of the Unplaced Tiles Tray
     homeArrowWhite = [UIButton buttonWithType:UIButtonTypeCustom];
     centerX = 1.0/7.0*appd->optics->_safeAreaScreenWidthInPixels/rc.contentScaleFactor;
-    centerY = appd->optics->gridTouchGestures.minUnplacedTilesBoundary.y/rc.contentScaleFactor;
+    centerY = nextArrowHomeArrowCenterY;
     CGRect homeArrowWhiteRect = CGRectMake(centerX-arrowWidthInPoints/2.0,
                                      centerY,
                                      arrowWidthInPoints,
@@ -1712,6 +1733,12 @@
     if (prevArrowWhite != nil){
         [puzzleView sendSubviewToBack:prevArrowWhite];
         [prevArrowWhite removeFromSuperview];
+    }
+    
+    // Remove homeArrow
+    if (homeArrow != nil){
+        [puzzleView sendSubviewToBack:homeArrow];
+        [homeArrow removeFromSuperview];
     }
     
     // Remove autoManualButton
