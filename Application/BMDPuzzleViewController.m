@@ -1787,6 +1787,24 @@
         [puzzleView sendSubviewToBack:hintBulb];
         [hintBulb removeFromSuperview];
     }
+    
+    // Remove puzzlePacksButton
+    if (puzzlePacksButton != nil){
+        [puzzleView sendSubviewToBack:puzzlePacksButton];
+        [puzzlePacksButton removeFromSuperview];
+    }
+    
+    // Remove helpButton
+    if (helpButton != nil){
+        [puzzleView sendSubviewToBack:helpButton];
+        [helpButton removeFromSuperview];
+    }
+    
+    // Remove settingsGearButton
+    if (settingsGearButton != nil){
+        [puzzleView sendSubviewToBack:settingsGearButton];
+        [settingsGearButton removeFromSuperview];
+    }
 }
 
 - (void)setHintButtonLabel:(unsigned int)hintsRemaining {

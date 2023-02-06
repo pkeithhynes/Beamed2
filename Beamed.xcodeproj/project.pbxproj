@@ -2217,7 +2217,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 0.20;
+				CURRENT_PROJECT_VERSION = 1.00;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = LK6X8L9DX6;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2236,7 +2236,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/GameAnalytics",
 				);
-				MARKETING_VERSION = 0.90;
+				MARKETING_VERSION = 1.00;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.squaretailsoftware.beamed;
@@ -2265,7 +2265,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMPRESS_PNG_FILES = YES;
-				CURRENT_PROJECT_VERSION = 0.20;
+				CURRENT_PROJECT_VERSION = 1.00;
 				DEVELOPMENT_TEAM = LK6X8L9DX6;
 				GCC_PREPROCESSOR_DEFINITIONS = TARGET_IOS;
 				INFOPLIST_FILE = Application/iOS/Info.plist;
@@ -2280,7 +2280,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/GameAnalytics",
 				);
-				MARKETING_VERSION = 0.90;
+				MARKETING_VERSION = 1.00;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.squaretailsoftware.beamed;
 				PRODUCT_NAME = Beamed;
