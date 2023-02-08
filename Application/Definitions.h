@@ -9,7 +9,7 @@
 
 #define METAL_RENDERER_FPS 24
 
-#define BUILD_VERSION "1.00"
+#define BUILD_VERSION "1.01"
 #define ENABLE_PUZZLE_EDITOR NO  // YES Enables puzzle editing and playback, NO Disables puzzle editing and enables gameplay only
 #define ENABLE_GA YES           // YES enables Google Ananlytics
 #define FORCE_PUZZLE_EDITOR_AUTOGEN NO    // YES forces AutoGen mode when PE enabled
