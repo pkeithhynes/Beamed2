@@ -255,7 +255,7 @@ API_AVAILABLE(ios(13.0))
 
 - (int)countTotalJewelsCollected;
 
-- (int)countTotalJewelsCollectedByColorKey:(NSString *)colorKey;
+- (int)countTotalJewelsCollectedByColorKey:(NSString *_Nonnull)colorKey;
 
 - (int)countPuzzlesSolved;
 
@@ -265,10 +265,9 @@ API_AVAILABLE(ios(13.0))
 
 - (NSMutableDictionary *_Nonnull)queryPuzzleJewelCountByColor:(int)puzzleNumber;
 
-- (NSMutableDictionary *)buildEmptyJewelCountDictionary;
+- (NSMutableDictionary *_Nonnull)buildEmptyJewelCountDictionary;
 
-- (long)fetchTotalSolutionTimeForAllPacks;
-
+- (BOOL)puzzleIsEmpty:(NSMutableDictionary *_Nullable)puzzle;
 
 //
 // StoreKit and Paid Puzzles
@@ -353,6 +352,8 @@ API_AVAILABLE(ios(13.0))
 - (BOOL)replaceEditedPuzzleInPackInDefaults:(unsigned int)index puzzle:(NSMutableDictionary *_Nonnull)puzzle;
 - (int)fetchEditedPuzzleIndexFromDefaults;
 - (void)saveEditedPuzzleIndexToDefaults:(unsigned int)index;
+- (BOOL)saveArrayOfPuzzlesToFile:(NSMutableArray *)puzzleArray fileName:(NSString *)fileName;
+- (BOOL)savePuzzlePackDictionaryToFile:(NSMutableDictionary *)pack  fileName:(NSString *)fileName;
 
 
 //

@@ -9,11 +9,16 @@
 
 #define METAL_RENDERER_FPS 24
 
-#define BUILD_VERSION "1.01"
-#define ENABLE_PUZZLE_EDITOR NO  // YES Enables puzzle editing and playback, NO Disables puzzle editing and enables gameplay only
-#define ENABLE_GA YES           // YES enables Google Ananlytics
+#define BUILD_VERSION "1.10"
+#define ENABLE_GA NO           // YES enables Google Analytics
+#define ENABLE_GAMECENTER NO           // YES enables GemCenter
 #define FORCE_PUZZLE_EDITOR_AUTOGEN NO    // YES forces AutoGen mode when PE enabled
 #define ENABLE_HOME_SCREEN_ANIMATION YES
+
+#define ENABLE_PUZZLE_EDITOR NO     // YES Enables puzzle editing and playback
+                                     // NO Disables puzzle editing and enables gameplay only
+#define ENABLE_PUZZLE_VERIFY NO     // YES Enables puzzle verification when ENABLE_PUZZLE_EDITOR == YES
+                                     // NO Disables puzzle verification
 
 // Coordinate systems
 // - All tiles are positioned on a grid ranging from 6x8 to 12x16
@@ -29,7 +34,7 @@
 
 
 // Handle debug logging
-//#define DEBUG_MODE 1
+#define DEBUG_MODE 1
 #ifdef DEBUG_MODE
 #    define DLog(...) NSLog(@__VA_ARGS__)
 #else

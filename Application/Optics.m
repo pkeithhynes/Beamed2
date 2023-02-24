@@ -35,7 +35,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
 //***********************************************************************
 
 // May be called with puzzleDictionary == nil in order to set up grid, foreground, background etc.
-- (void)initWithDictionary:(NSMutableDictionary *)puzzleDictionary viewController:(BMDPuzzleViewController *)puzzleViewController {
+- (BOOL)initWithDictionary:(NSMutableDictionary *)puzzleDictionary viewController:(BMDPuzzleViewController *)puzzleViewController {
     
     self.vc = puzzleViewController;
     rc = (BMDViewController*)[[(BMDAppDelegate *)[[UIApplication sharedApplication]delegate] window] rootViewController];
@@ -82,65 +82,79 @@ extern void playSound(AVAudioPlayer *PLAYER);
         [vc.infoScreenLabelArray removeAllObjects];
     }
     
-    // Build all Puzzle components from puzzleDictionary
-    [self buildPuzzleFromDictionary:puzzleDictionary showAllTiles:NO];
-    
-    tileCurrentlyBeingEdited = nil;
-    tileForRotation = nil;
-    tileUsedForDemoPlacement = nil;
-    
-    // Initialize Beams
-    [self updateAllBeams];
-    
-    puzzleHasBeenCompleted = NO;
-    packHasBeenCompleted = NO;
-    puzzleHasBeenCompletedCelebration = NO;
-    puzzleCompletedButtonFlash = NO;
-    puzzleViewControllerObjectsInitialized = NO;
-    
-    // Handle batch processing for Puzzle Generation here
-    id batchStartTag1 = [puzzleDictionary objectForKey:@"batchStart1"];
-    if ([batchStartTag1 intValue] == 1){
-        [self batchProcessor];
-    }
-    
-    // Check if the puzzle that was just loaded is already completed.
-    [self updateEnergizedStateForAllTiles];
-    if ([self queryPuzzleCompleted]){
-        if (!infoScreen)
-            [self saveNextPuzzleToDefaults];
-        if ([appd packHasBeenCompleted]){
-            // Pack is complete
-            vc.nextButton.hidden = YES;
-            vc.nextArrow.hidden = YES;
+    // Initialization when in Puzzle Play or Puzzle Editing
+    if (ENABLE_PUZZLE_VERIFY == NO){
+        // Build all Puzzle components from puzzleDictionary
+        [self buildPuzzleFromDictionary:puzzleDictionary showAllTiles:NO allTilesFixed:NO];
+        
+        tileCurrentlyBeingEdited = nil;
+        tileForRotation = nil;
+        tileUsedForDemoPlacement = nil;
+        
+        // Initialize Beams
+        [self updateAllBeams];
+        
+        puzzleHasBeenCompleted = NO;
+        packHasBeenCompleted = NO;
+        puzzleHasBeenCompletedCelebration = NO;
+        puzzleCompletedButtonFlash = NO;
+        puzzleViewControllerObjectsInitialized = NO;
+        
+        // Handle batch processing for Puzzle Generation here
+        id batchStartTag1 = [puzzleDictionary objectForKey:@"batchStart1"];
+        if ([batchStartTag1 intValue] == 1){
+            [self batchProcessor];
+        }
+        
+        // Check if the puzzle that was just loaded is already completed.
+        [self updateEnergizedStateForAllTiles];
+        if ([self queryPuzzleCompleted]){
+            if (!infoScreen)
+                [self saveNextPuzzleToDefaults];
+            if ([appd packHasBeenCompleted]){
+                // Pack is complete
+                vc.nextButton.hidden = YES;
+                vc.nextArrow.hidden = YES;
+                vc.homeArrowWhite.hidden = YES;
+                vc.replayIconWhite.hidden = YES;
+                packHasBeenCompleted = YES;
+            }
+            else {
+                vc.nextButton.hidden = NO;
+                vc.nextArrow.hidden = NO;
+                vc.homeArrowWhite.hidden = (rc.appCurrentGamePackType == PACKTYPE_DEMO);
+                vc.replayIconWhite.hidden = (rc.appCurrentGamePackType == PACKTYPE_DEMO);
+                packHasBeenCompleted = NO;
+            }
+        }
+        
+        // If we are in PACKTYPE_DEMO and the puzzle is of type infoScreen then show the nextArrow and
+        // the homeArrowWhite buttons
+        //
+        // If not of type infoScreen then just show nextArrow
+        if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
             vc.homeArrowWhite.hidden = YES;
+            vc.homeArrow.hidden = NO;
             vc.replayIconWhite.hidden = YES;
-            packHasBeenCompleted = YES;
+            if ([appd packHasBeenCompleted]){
+                vc.nextArrow.hidden = YES;
+            }
+            else {
+                vc.nextArrow.hidden = NO;
+            }
         }
-        else {
-            vc.nextButton.hidden = NO;
-            vc.nextArrow.hidden = NO;
-            vc.homeArrowWhite.hidden = (rc.appCurrentGamePackType == PACKTYPE_DEMO);
-            vc.replayIconWhite.hidden = (rc.appCurrentGamePackType == PACKTYPE_DEMO);
-            packHasBeenCompleted = NO;
-        }
+        return YES;
+    }
+    // Do Puzzle Verification
+    else {
+        // Build all Puzzle components from puzzleDictionary
+        [self buildPuzzleFromDictionary:puzzleDictionary showAllTiles:NO allTilesFixed:YES];
+        [self updateAllBeams];
+        [self updateEnergizedStateForAllTiles];
+        BOOL verified = [self checkIfAllJewelsAreEnergized];
+        return verified;
     }
     
-    // If we are in PACKTYPE_DEMO and the puzzle is of type infoScreen then show the nextArrow and
-    // the homeArrowWhite buttons
-    //
-    // If not of type infoScreen then just show nextArrow
-    if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
-        vc.homeArrowWhite.hidden = YES;
-        vc.homeArrow.hidden = NO;
-        vc.replayIconWhite.hidden = YES;
-        if ([appd packHasBeenCompleted]){
-            vc.nextArrow.hidden = YES;
-        }
-        else {
-            vc.nextArrow.hidden = NO;
-        }
-    }
 }
 
 - (void)setGridBasedOnPuzzleDictionary:(NSMutableDictionary *)puzzleDictionary {
@@ -334,463 +348,465 @@ extern void playSound(AVAudioPlayer *PLAYER);
         [self initializeVcObjects];
     }
     
-    
-    //    unsigned int puzzlesLeft = [appd queryNumberOfPuzzlesLeftInCurrentPack];
-    
-    
-    // Allocate and initialize render arrays and dictionaries
-    renderDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
-    renderArray = [[NSMutableArray alloc] initWithCapacity:1];
-    tileRenderArray = [[NSMutableArray alloc] initWithCapacity:1];
-    backgroundRenderArray = [[NSMutableArray alloc] initWithCapacity:1];
-    beamsRenderArray = [[NSMutableArray alloc] initWithCapacity:1];
-    gridPositionsCrossedByMultipleCoincidentBeams = [[NSMutableArray alloc] initWithCapacity:1];
-    ringRenderArray = [[NSMutableArray alloc] initWithCapacity:1];
-    puzzleCompleteRenderArray = [[NSMutableArray alloc] initWithCapacity:1];
-    
-    // Handle arrow from demo puzzle showing where Tile should be placed
-    arrowRenderData = [[TextureRenderData alloc] init];
-    
-    // Set up the background render data
-    borderRenderData = [[TextureRenderData alloc] init];
-    
-    // Update animationFrame and lightSweep
-    animationFrame++;
-    BOOL lightSweep = YES;
-    
-    // Fetch a render array of Tiles
-    Tile *myTile;
-    TextureRenderData *tileRenderData;
-    TextureRenderData *movableTileRenderData, *tapDemoTilePromptRenderData, *tapDemoTilePromptTextRenderData;
-    NSEnumerator *tilesEnum = [tiles objectEnumerator];
-    BOOL movableTileDragTextDisplayed = NO;
-    unsigned int numberOfUnplacedTiles = 0;
-    while (myTile = [tilesEnum nextObject]) {
-        //
-        // Count unplaced Tiles so that you can generate a correct sized background grid
-        //
-        if (!myTile->fixed && !(myTile->placedUsingHint || myTile->placedManuallyMatchesHint)){
-            // Arrange unplaced Tiles within the unplaced tiles area
-            if (myTile->gridPosition.y == masterGrid.sizeY){
-                // Organize tile placement here
-                myTile->gridPosition.x = numberOfUnplacedTiles+1;
-                myTile->tilePositionInPixels = [self gridPositionToIntPixelPosition:myTile->gridPosition];
-                numberOfUnplacedTiles++;
+    // Don't render puzzle during puzzle verification
+    if (ENABLE_PUZZLE_VERIFY == NO){
+        // Allocate and initialize render arrays and dictionaries
+        renderDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
+        renderArray = [[NSMutableArray alloc] initWithCapacity:1];
+        tileRenderArray = [[NSMutableArray alloc] initWithCapacity:1];
+        backgroundRenderArray = [[NSMutableArray alloc] initWithCapacity:1];
+        beamsRenderArray = [[NSMutableArray alloc] initWithCapacity:1];
+        gridPositionsCrossedByMultipleCoincidentBeams = [[NSMutableArray alloc] initWithCapacity:1];
+        ringRenderArray = [[NSMutableArray alloc] initWithCapacity:1];
+        puzzleCompleteRenderArray = [[NSMutableArray alloc] initWithCapacity:1];
+        
+        // Handle arrow from demo puzzle showing where Tile should be placed
+        arrowRenderData = [[TextureRenderData alloc] init];
+        
+        // Set up the background render data
+        borderRenderData = [[TextureRenderData alloc] init];
+        
+        // Update animationFrame and lightSweep
+        animationFrame++;
+        BOOL lightSweep = YES;
+        
+        // Fetch a render array of Tiles
+        Tile *myTile;
+        TextureRenderData *tileRenderData;
+        TextureRenderData *movableTileRenderData, *tapDemoTilePromptRenderData, *tapDemoTilePromptTextRenderData;
+        NSEnumerator *tilesEnum = [tiles objectEnumerator];
+        BOOL movableTileDragTextDisplayed = NO;
+        unsigned int numberOfUnplacedTiles = 0;
+        while (myTile = [tilesEnum nextObject]) {
+            //
+            // Count unplaced Tiles so that you can generate a correct sized background grid
+            //
+            if (!myTile->fixed && !(myTile->placedUsingHint || myTile->placedManuallyMatchesHint)){
+                // Arrange unplaced Tiles within the unplaced tiles area
+                if (myTile->gridPosition.y == masterGrid.sizeY){
+                    // Organize tile placement here
+                    myTile->gridPosition.x = numberOfUnplacedTiles+1;
+                    myTile->tilePositionInPixels = [self gridPositionToIntPixelPosition:myTile->gridPosition];
+                    numberOfUnplacedTiles++;
+                }
             }
-        }
-        
-        // If a JEWEL is energized then draw the JEWEL background first, then add the activation animation atop that
-        if (myTile->tileShape == JEWEL) {
-            tileRenderData = [myTile renderTileBackground];
-            [tileRenderArray addObject:tileRenderData];
-        }
-        
-        // Render Tiles
-        if (myTile->tileShape != JEWEL ||
-            (myTile->tileShape == JEWEL && myTile->energized)){
-            // DO NOT RENDER a JEWEL that is not energized because it is handled by renderTileBackground
-            tileRenderData = [myTile renderTile:1.0 paused:NO lightSweep:lightSweep puzzleCompleted:puzzleHasBeenCompleted puzzleCompletedCelebration:puzzleHasBeenCompletedCelebration];
-            if (tileRenderData){
+            
+            // If a JEWEL is energized then draw the JEWEL background first, then add the activation animation atop that
+            if (myTile->tileShape == JEWEL) {
+                tileRenderData = [myTile renderTileBackground];
                 [tileRenderArray addObject:tileRenderData];
             }
+            
+            // Render Tiles
+            if (myTile->tileShape != JEWEL ||
+                (myTile->tileShape == JEWEL && myTile->energized)){
+                // DO NOT RENDER a JEWEL that is not energized because it is handled by renderTileBackground
+                tileRenderData = [myTile renderTile:1.0 paused:NO lightSweep:lightSweep puzzleCompleted:puzzleHasBeenCompleted puzzleCompletedCelebration:puzzleHasBeenCompletedCelebration];
+                if (tileRenderData){
+                    [tileRenderArray addObject:tileRenderData];
+                }
+            }
+            
+            // Certain Tiles with demoTile == YES are used to demonstrate correct Tile positioning and include an arrow from their current grid position to their final grid position
+            //
+            // Show drag arrow and associated label
+            if (myTile->demoTile == YES &&
+                myTile->demoTileAtFinalGridPosition == NO &&
+                dragTile == YES){
+                arrowRenderData = [background renderTutorialTilePathArrow:myTile->gridPosition end:myTile->finalGridPosition textureRenderData:arrowRenderData];
+                [self showDemoTileDragLabel];
+                [self hideDemoTileTapLabel];
+                [self hideDemoPuzzleCompleteLabel];
+                [self hideDemoPuzzleNextButton];
+            }
+            // Show rotate image and associated label
+            else if (myTile->demoTile == YES &&
+                     myTile->demoTileAtFinalGridPosition == YES &&
+                     tapTile == YES &&
+                     !myTile->placed &&
+                     !myTile->placedManuallyMatchesHint &&
+                     !myTile->placedUsingHint){
+                // Tile occupies finalGridPosition
+                myTile->gridPosition = myTile->finalGridPosition;
+                tapDemoTilePromptRenderData = [background renderTapToRotatePrompt:myTile->tilePositionInPixels angle:myTile->tileAngle];
+                [tileRenderArray addObject:tapDemoTilePromptRenderData];
+                tapDemoTilePromptTextRenderData = [background renderTapToRotatePromptText:myTile->tilePositionInPixels angle:ANGLE180];
+                [tileRenderArray addObject:tapDemoTilePromptTextRenderData];
+                [self hideDemoTileDragLabel];
+                [self showDemoTileTapLabel];
+                [self hideDemoPuzzleCompleteLabel];
+                [self hideDemoPuzzleNextButton];
+            }
+            else if (myTile->demoTile == YES &&
+                     myTile->demoTileAtFinalGridPosition == YES &&
+                     (myTile->placed || myTile->placedManuallyMatchesHint || myTile->placedUsingHint)){
+                [self hideDemoTileDragLabel];
+                [self hideDemoTileTapLabel];
+                [self showDemoPuzzleCompleteLabel];
+                [self showDemoPuzzleNextButton];
+            }
+            
+            // The Tile that has most recently been dragged to a nonfinal position-angle has TAP_TO_ROTATE guide
+            if (rc.appCurrentGamePackType != PACKTYPE_DEMO &&
+                rc.appCurrentGamePackType != PACKTYPE_EDITOR &&
+                myTile == tileForRotation){
+                tapDemoTilePromptRenderData = [background renderTapToRotatePrompt:myTile->tilePositionInPixels angle:myTile->tileAngle];
+                [tileRenderArray addObject:tapDemoTilePromptRenderData];
+            }
+            
+            // Certain objects are wrapped in circles to indicate that they are moveable
+            if (!myTile->fixed ||
+                (([appd editModeIsEnabled] && !myTile->fixed && myTile != tileForRotation) ||
+                 (rc.appCurrentGamePackType == PACKTYPE_DEMO && !myTile->fixed & !myTile->demoTileAtFinalGridPosition))){
+                movableTileRenderData = [background renderMovableTile:myTile->tilePositionInPixels placedUsingHint:myTile->placedUsingHint placedManuallyMatchesHint:myTile->placedManuallyMatchesHint];
+                [tileRenderArray addObject:movableTileRenderData];
+            }
+            else if (![appd editModeIsEnabled] && (myTile->tileShape == PRISM ||
+                                                   myTile->tileShape == MIRROR ||
+                                                   myTile->tileShape == BEAMSPLITTER ||
+                                                   myTile->tileShape == LASER) &&
+                     ((!myTile->fixed && myTile->demoTileAtFinalGridPosition == NO) || myTile->placedUsingHint || myTile->placedManuallyMatchesHint)  && myTile != tileForRotation){
+                if (puzzleHasBeenCompleted == NO || puzzleHasBeenCompletedCelebration == YES){
+                    if (!movableTileDragTextDisplayed &&
+                        !myTile->fixed &&
+                        myTile->gridPosition.y == masterGrid.sizeY+1){
+                        // Yellow circle around one tile
+                        movableTileRenderData = [background renderMovableTile:myTile->tilePositionInPixels placedUsingHint:myTile->placedUsingHint placedManuallyMatchesHint:myTile->placedManuallyMatchesHint];
+                        [tileRenderArray addObject:movableTileRenderData];
+                        // Finger pointing at one unplaced Tile
+                        //                    pointingFingerRenderData = [background renderPointingFinger:myTile->tilePositionInPixels angle:ANGLE135];
+                        //                    [tileRenderArray addObject:pointingFingerRenderData];
+                        movableTileDragTextDisplayed = YES;
+                    }
+                    else if (myTile->placedUsingHint || myTile->placedManuallyMatchesHint){
+                        // Mark a Tile as either placed using a Hint or placed manually in a correct position
+                        movableTileRenderData = [background renderMovableTile:myTile->tilePositionInPixels placedUsingHint:myTile->placedUsingHint placedManuallyMatchesHint:myTile->placedManuallyMatchesHint];
+                        [tileRenderArray addObject:movableTileRenderData];
+                    }
+                }
+            }
         }
         
-        // Certain Tiles with demoTile == YES are used to demonstrate correct Tile positioning and include an arrow from their current grid position to their final grid position
+        if (initialNumberOfUnplacedTiles == 0){
+            initialNumberOfUnplacedTiles = numberOfUnplacedTiles;
+        }
+        
         //
-        // Show drag arrow and associated label
-        if (myTile->demoTile == YES &&
-            myTile->demoTileAtFinalGridPosition == NO &&
-            dragTile == YES){
-            arrowRenderData = [background renderTutorialTilePathArrow:myTile->gridPosition end:myTile->finalGridPosition textureRenderData:arrowRenderData];
-            [self showDemoTileDragLabel];
-            [self hideDemoTileTapLabel];
-            [self hideDemoPuzzleCompleteLabel];
-            [self hideDemoPuzzleNextButton];
-        }
-        // Show rotate image and associated label
-        else if (myTile->demoTile == YES &&
-                 myTile->demoTileAtFinalGridPosition == YES &&
-                 tapTile == YES &&
-                 !myTile->placed &&
-                 !myTile->placedManuallyMatchesHint &&
-                 !myTile->placedUsingHint){
-            // Tile occupies finalGridPosition
-            myTile->gridPosition = myTile->finalGridPosition;
-            tapDemoTilePromptRenderData = [background renderTapToRotatePrompt:myTile->tilePositionInPixels angle:myTile->tileAngle];
-            [tileRenderArray addObject:tapDemoTilePromptRenderData];
-            tapDemoTilePromptTextRenderData = [background renderTapToRotatePromptText:myTile->tilePositionInPixels angle:ANGLE180];
-            [tileRenderArray addObject:tapDemoTilePromptTextRenderData];
-            [self hideDemoTileDragLabel];
-            [self showDemoTileTapLabel];
-            [self hideDemoPuzzleCompleteLabel];
-            [self hideDemoPuzzleNextButton];
-        }
-        else if (myTile->demoTile == YES &&
-                 myTile->demoTileAtFinalGridPosition == YES &&
-                 (myTile->placed || myTile->placedManuallyMatchesHint || myTile->placedUsingHint)){
-            [self hideDemoTileDragLabel];
-            [self hideDemoTileTapLabel];
-            [self showDemoPuzzleCompleteLabel];
-            [self showDemoPuzzleNextButton];
+        // Fetch the Puzzle background image
+        //
+        if (displayBackgroundImage == YES){
+            backgroundRenderDataImage = [background renderBackgroundImage:7];
         }
         
-        // The Tile that has most recently been dragged to a nonfinal position-angle has TAP_TO_ROTATE guide
-        if (rc.appCurrentGamePackType != PACKTYPE_DEMO &&
-            rc.appCurrentGamePackType != PACKTYPE_EDITOR &&
-            myTile == tileForRotation){
-            tapDemoTilePromptRenderData = [background renderTapToRotatePrompt:myTile->tilePositionInPixels angle:myTile->tileAngle];
-            [tileRenderArray addObject:tapDemoTilePromptRenderData];
+        //
+        // Fetch the help image
+        //
+        overlayRenderDataImage = nil;
+        if (rc.renderOverlayON){
+            overlayRenderDataImage = [background renderOverlayImage:HELP_IMAGE color:7];
         }
         
-        // Certain objects are wrapped in circles to indicate that they are moveable
-        if (!myTile->fixed ||
-            (([appd editModeIsEnabled] && !myTile->fixed && myTile != tileForRotation) ||
-             (rc.appCurrentGamePackType == PACKTYPE_DEMO && !myTile->fixed & !myTile->demoTileAtFinalGridPosition))){
-            movableTileRenderData = [background renderMovableTile:myTile->tilePositionInPixels placedUsingHint:myTile->placedUsingHint placedManuallyMatchesHint:myTile->placedManuallyMatchesHint];
-            [tileRenderArray addObject:movableTileRenderData];
+        //
+        // Fetch the Gameplay inner and outer background colors
+        //
+        //    backgroundRenderDataOuter = [background renderBackgroundOuter:COLOR_BLUE];
+        backgroundRenderDataInner = [background renderBackgroundInner:COLOR_GRAY];
+        
+        //
+        // Fetch the Unused Tile background
+        //
+        if (![appd autoGenIsEnabled]){
+            unusedTileBackgroundRenderData = [background renderUnusedTileBackground:COLOR_GRAY numberOfUnplacedTiles:numberOfUnplacedTiles initialNumberOfUnplacedTiles:initialNumberOfUnplacedTiles];
         }
-        else if (![appd editModeIsEnabled] && (myTile->tileShape == PRISM ||
-                                               myTile->tileShape == MIRROR ||
-                                               myTile->tileShape == BEAMSPLITTER ||
-                                               myTile->tileShape == LASER) &&
-                 ((!myTile->fixed && myTile->demoTileAtFinalGridPosition == NO) || myTile->placedUsingHint || myTile->placedManuallyMatchesHint)  && myTile != tileForRotation){
-            if (puzzleHasBeenCompleted == NO || puzzleHasBeenCompletedCelebration == YES){
-                if (!movableTileDragTextDisplayed &&
-                    !myTile->fixed &&
-                    myTile->gridPosition.y == masterGrid.sizeY+1){
-                    // Yellow circle around one tile
-                    movableTileRenderData = [background renderMovableTile:myTile->tilePositionInPixels placedUsingHint:myTile->placedUsingHint placedManuallyMatchesHint:myTile->placedManuallyMatchesHint];
-                    [tileRenderArray addObject:movableTileRenderData];
-                    // Finger pointing at one unplaced Tile
-                    //                    pointingFingerRenderData = [background renderPointingFinger:myTile->tilePositionInPixels angle:ANGLE135];
-                    //                    [tileRenderArray addObject:pointingFingerRenderData];
-                    movableTileDragTextDisplayed = YES;
-                }
-                else if (myTile->placedUsingHint || myTile->placedManuallyMatchesHint){
-                    // Mark a Tile as either placed using a Hint or placed manually in a correct position
-                    movableTileRenderData = [background renderMovableTile:myTile->tilePositionInPixels placedUsingHint:myTile->placedUsingHint placedManuallyMatchesHint:myTile->placedManuallyMatchesHint];
-                    [tileRenderArray addObject:movableTileRenderData];
-                }
+        
+        // Handle changes to Gameplay and Tutorial screen when puzzleHasBeenCompleted
+        //
+        // Fetch the Gameplay border
+        //
+        if (puzzleCompletionCondition == ALL_JEWELS_ENERGIZED || puzzleCompletionCondition == INFO_SCREEN){
+            // Gameplay Mode
+            if (![appd editModeIsEnabled]){
+                vc.hintButton.hidden = [self allTilesArePlaced] ||
+                ((rc.appCurrentGamePackType == PACKTYPE_DEMO) && !circleAroundHintsButton);
+                vc.hintBulb.hidden = [self allTilesArePlaced] ||
+                ((rc.appCurrentGamePackType == PACKTYPE_DEMO) && !circleAroundHintsButton);
             }
-        }
-    }
-    
-    if (initialNumberOfUnplacedTiles == 0){
-        initialNumberOfUnplacedTiles = numberOfUnplacedTiles;
-    }
-    
-    //
-    // Fetch the Puzzle background image
-    //
-    if (displayBackgroundImage == YES){
-        backgroundRenderDataImage = [background renderBackgroundImage:7];
-    }
-    
-    //
-    // Fetch the help image
-    //
-    overlayRenderDataImage = nil;
-    if (rc.renderOverlayON){
-        overlayRenderDataImage = [background renderOverlayImage:HELP_IMAGE color:7];
-    }
-    
-    //
-    // Fetch the Gameplay inner and outer background colors
-    //
-    //    backgroundRenderDataOuter = [background renderBackgroundOuter:COLOR_BLUE];
-    backgroundRenderDataInner = [background renderBackgroundInner:COLOR_GRAY];
-    
-    //
-    // Fetch the Unused Tile background
-    //
-    if (![appd autoGenIsEnabled]){
-        unusedTileBackgroundRenderData = [background renderUnusedTileBackground:COLOR_GRAY numberOfUnplacedTiles:numberOfUnplacedTiles initialNumberOfUnplacedTiles:initialNumberOfUnplacedTiles];
-    }
-    
-    // Handle changes to Gameplay and Tutorial screen when puzzleHasBeenCompleted
-    //
-    // Fetch the Gameplay border
-    //
-    if (puzzleCompletionCondition == ALL_JEWELS_ENERGIZED || puzzleCompletionCondition == INFO_SCREEN){
-        // Gameplay Mode
-        if (![appd editModeIsEnabled]){
-            vc.hintButton.hidden = [self allTilesArePlaced] ||
-                                ((rc.appCurrentGamePackType == PACKTYPE_DEMO) && !circleAroundHintsButton);
-            vc.hintBulb.hidden = [self allTilesArePlaced] ||
-                                ((rc.appCurrentGamePackType == PACKTYPE_DEMO) && !circleAroundHintsButton);
-        }
-        if (puzzleHasBeenCompleted){
-            if (rc->appCurrentGamePackType == PACKTYPE_DAILY){
-                [vc.backButton setTitleColor:[UIColor cyanColor] forState:UIControlStateNormal];
-                vc.backButton.layer.borderColor = [UIColor cyanColor].CGColor;
-            }
-            else if (rc->appCurrentGamePackType == PACKTYPE_MAIN){
-                [vc.nextButton setTitleColor:[UIColor cyanColor] forState:UIControlStateNormal];
-                vc.nextButton.layer.borderColor = [UIColor cyanColor].CGColor;
-            }
-            else if (rc->appCurrentGamePackType == PACKTYPE_DEMO){
-                vc.backButton.hidden = YES;
-                vc.homeArrowWhite.hidden = YES;
-                vc.homeArrow.hidden = NO;
-                if (infoScreen){
-                    vc.nextButton.hidden = NO;
-                }
-                vc.replayIconWhite.hidden = YES;
-            }
-            if (!puzzleCompletedButtonFlash){
-                //  Play a confirmation sound and start flashing the nextButton or backButton
-                puzzleCompletedButtonFlash = YES;
+            if (puzzleHasBeenCompleted){
                 if (rc->appCurrentGamePackType == PACKTYPE_DAILY){
-                    [vc enableFlash:vc.backButton];
+                    [vc.backButton setTitleColor:[UIColor cyanColor] forState:UIControlStateNormal];
+                    vc.backButton.layer.borderColor = [UIColor cyanColor].CGColor;
                 }
-                else if (rc.appCurrentGamePackType == PACKTYPE_MAIN && ([appd queryNumberOfPuzzlesLeftInCurrentPack] == 0)){
-                    [vc enableFlash:vc.nextButton];
+                else if (rc->appCurrentGamePackType == PACKTYPE_MAIN){
+                    [vc.nextButton setTitleColor:[UIColor cyanColor] forState:UIControlStateNormal];
+                    vc.nextButton.layer.borderColor = [UIColor cyanColor].CGColor;
                 }
-                else if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
-                    vc.replayIconWhite.hidden = YES;
-                    // DO NOT enableFlash:vc.backButton
-                    // DO NOT enableFlash:vc.nextButton
-                }
-                else {
-                    if (rc.appCurrentGamePackType == PACKTYPE_MAIN && !packHasBeenCompleted){
-                        [vc enableFlash:vc.nextButton];
+                else if (rc->appCurrentGamePackType == PACKTYPE_DEMO){
+                    vc.backButton.hidden = YES;
+                    vc.homeArrowWhite.hidden = YES;
+                    vc.homeArrow.hidden = NO;
+                    if (infoScreen){
                         vc.nextButton.hidden = NO;
-                        vc.nextArrow.hidden = NO;
-                        vc.homeArrowWhite.hidden = NO;
-                        vc.replayIconWhite.hidden = NO;
+                    }
+                    vc.replayIconWhite.hidden = YES;
+                }
+                if (!puzzleCompletedButtonFlash){
+                    //  Play a confirmation sound and start flashing the nextButton or backButton
+                    puzzleCompletedButtonFlash = YES;
+                    if (rc->appCurrentGamePackType == PACKTYPE_DAILY){
+                        [vc enableFlash:vc.backButton];
+                    }
+                    else if (rc.appCurrentGamePackType == PACKTYPE_MAIN && ([appd queryNumberOfPuzzlesLeftInCurrentPack] == 0)){
+                        [vc enableFlash:vc.nextButton];
+                    }
+                    else if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+                        vc.replayIconWhite.hidden = YES;
+                        // DO NOT enableFlash:vc.backButton
+                        // DO NOT enableFlash:vc.nextButton
                     }
                     else {
-                        [vc enableFlash:vc.backButton];
-                        vc.nextButton.hidden = YES;
-                        vc.nextArrow.hidden = YES;
-                        vc.homeArrowWhite.hidden = NO;
-                        vc.replayIconWhite.hidden = NO;
+                        if (rc.appCurrentGamePackType == PACKTYPE_MAIN && !packHasBeenCompleted){
+                            [vc enableFlash:vc.nextButton];
+                            vc.nextButton.hidden = NO;
+                            vc.nextArrow.hidden = NO;
+                            vc.homeArrowWhite.hidden = NO;
+                            vc.replayIconWhite.hidden = NO;
+                        }
+                        else {
+                            [vc enableFlash:vc.backButton];
+                            vc.nextButton.hidden = YES;
+                            vc.nextArrow.hidden = YES;
+                            vc.homeArrowWhite.hidden = NO;
+                            vc.replayIconWhite.hidden = NO;
+                        }
                     }
                 }
+            }
+            else {
+                if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+                    vc.homeArrowWhite.hidden = YES;
+                    vc.homeArrow.hidden = NO;
+                    vc.replayIconWhite.hidden = YES;
+                    if ([appd packHasBeenCompleted]){
+                        vc.nextArrow.hidden = YES;
+                    }
+                    else {
+                        vc.nextArrow.hidden = NO;
+                    }
+                }
+                else {
+                    vc.nextArrow.hidden = YES;
+                    vc.homeArrowWhite.hidden = YES;
+                    vc.replayIconWhite.hidden = YES;
+                    [vc.nextButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                    vc.nextButton.layer.borderColor = [UIColor whiteColor].CGColor;
+                }
+            }
+        }
+        else if (puzzleCompletionCondition == USER_TOUCH){
+            vc.hintButton.hidden = YES;
+            vc.hintBulb.hidden = YES;
+            [vc.nextButton setTitleColor:[UIColor cyanColor] forState:UIControlStateNormal];
+            vc.nextButton.layer.borderColor = [UIColor cyanColor].CGColor;
+            if (!puzzleCompletedButtonFlash && !packHasBeenCompleted){
+                puzzleCompletedButtonFlash = YES;
+                [vc enableFlash:vc.nextButton];
+                vc.nextButton.hidden = NO;
+                vc.nextArrow.hidden = NO;
+                vc.homeArrowWhite.hidden = NO;
+                vc.replayIconWhite.hidden = NO;
+            }
+            else {
+                vc.nextButton.hidden = YES;
+                vc.nextArrow.hidden = YES;
+                vc.homeArrowWhite.hidden = NO;
+                vc.replayIconWhite.hidden = NO;
             }
         }
         else {
+            vc.hintButton.hidden = YES;
+            vc.hintBulb.hidden = YES;
+            [vc.nextButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            vc.nextButton.layer.borderColor = [UIColor whiteColor].CGColor;
+        }
+        
+        // Fetch an array of Background Tile-sized Textures to render behind the Puzzle
+        if (displayBackgroundArray){
+            if (puzzleHasBeenCompleted) {
+                backgroundRenderArray = [background renderBackgroundArray:backgroundRenderArray tileColor:7 numberOfUnplacedTiles:initialNumberOfUnplacedTiles
+                                                          puzzleCompleted:YES];
+            }
+            else {
+                backgroundRenderArray = [background renderBackgroundArray:backgroundRenderArray tileColor:0 numberOfUnplacedTiles:initialNumberOfUnplacedTiles
+                                                          puzzleCompleted:NO];
+            }
+        }
+        
+        // Fetch beamsRenderArray that combines all beams of each RGB color into at most one beam BeamTextureRenderObject between each pair of tiles
+        //
+        // Stop rendering beams when puzzle completed
+        if (!puzzleHasBeenCompleted || puzzleHasBeenCompletedCelebration == YES){
+            Beam *myBeam;
+            for (int ii=0; ii<3; ii++) {
+                NSEnumerator *beamsEnum = [beams[ii] objectEnumerator];
+                while (myBeam = [beamsEnum nextObject]) {
+                    [myBeam renderBeam:beamsRenderArray frameCounter:animationFrame];
+                }
+            }
+        }
+        
+        
+        // Fetch an array of various animations to render atop other screen elements.  For example expanding rings for
+        // energized jewels.
+        ringRenderArray = [foreground renderIdleJewelRingArray:ringRenderArray];
+        
+        // Check if we should mark the pack as complete
+        if (packHasBeenCompleted &&
+            rc.appCurrentGamePackType != PACKTYPE_DEMO){
+            puzzleCompleteRenderArray = [foreground renderPackCompletedMarker:puzzleCompleteRenderArray];
+            vc.nextButton.hidden = YES;
+            vc.nextArrow.hidden = YES;
+            vc.homeArrowWhite.hidden = NO;
             if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
-                vc.homeArrowWhite.hidden = YES;
-                vc.homeArrow.hidden = NO;
                 vc.replayIconWhite.hidden = YES;
+                vc.homeArrowWhite.hidden = YES;
+            }
+            else {
+                vc.replayIconWhite.hidden = NO;
+            }
+            vc.backButton.hidden = NO;
+            vc.homeArrow.hidden = NO;
+            vc.hintButton.hidden = YES;
+            vc.hintBulb.hidden = YES;
+        }
+        // Else check if we should mark the puzzle as complete
+        else if (puzzleHasBeenCompleted){
+            puzzleCompleteRenderArray = [foreground renderPuzzleCompletedMarker:puzzleCompleteRenderArray];
+            if (rc.appCurrentGamePackType == PACKTYPE_MAIN){
+                vc.nextButton.hidden = NO;
+                vc.nextArrow.hidden = NO;
+                vc.homeArrowWhite.hidden = NO;
+                vc.replayIconWhite.hidden = NO;
+                vc.backButton.hidden = NO;
+                vc.hintButton.hidden = YES;
+                vc.hintBulb.hidden = YES;
+            }
+            else if (rc.appCurrentGamePackType == PACKTYPE_DAILY){
+                vc.nextButton.hidden = YES;
+                vc.nextArrow.hidden = YES;
+                vc.homeArrowWhite.hidden = NO;
+                vc.replayIconWhite.hidden = NO;
+                vc.backButton.hidden = NO;
+                vc.homeArrow.hidden = NO;
+                vc.hintButton.hidden = YES;
+                vc.hintBulb.hidden = YES;
+            }
+            else if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+                vc.nextButton.hidden = NO;
                 if ([appd packHasBeenCompleted]){
                     vc.nextArrow.hidden = YES;
                 }
                 else {
                     vc.nextArrow.hidden = NO;
                 }
+                vc.homeArrow.hidden = NO;
+                vc.homeArrowWhite.hidden = YES;
+                vc.replayIconWhite.hidden = YES;
+                vc.backButton.hidden = YES;
+                vc.hintButton.hidden = [self allTilesArePlaced] ||
+                ((rc.appCurrentGamePackType == PACKTYPE_DEMO) && !circleAroundHintsButton);
+                vc.hintBulb.hidden = [self allTilesArePlaced] ||
+                ((rc.appCurrentGamePackType == PACKTYPE_DEMO) && !circleAroundHintsButton);
             }
-            else {
+        }
+        // Puzzle is not complete
+        else {
+            if (rc.appCurrentGamePackType == PACKTYPE_MAIN){
+                vc.nextButton.hidden = YES;
                 vc.nextArrow.hidden = YES;
                 vc.homeArrowWhite.hidden = YES;
                 vc.replayIconWhite.hidden = YES;
-                [vc.nextButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                vc.nextButton.layer.borderColor = [UIColor whiteColor].CGColor;
+                vc.backButton.hidden = NO;
+                vc.homeArrow.hidden = NO;
+                vc.hintButton.hidden = NO;
+                vc.hintBulb.hidden = NO;
+            }
+            else if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+                vc.nextButton.hidden = YES;
+                if ([appd packHasBeenCompleted]){
+                    vc.nextArrow.hidden = YES;
+                }
+                else {
+                    vc.nextArrow.hidden = NO;
+                }
+                vc.homeArrowWhite.hidden = YES;
+                vc.replayIconWhite.hidden = YES;
+                vc.backButton.hidden = YES;
+                vc.homeArrow.hidden = NO;
+                vc.hintButton.hidden = [self allTilesArePlaced] ||
+                ((rc.appCurrentGamePackType == PACKTYPE_DEMO) && !circleAroundHintsButton);
+                vc.hintBulb.hidden = [self allTilesArePlaced] ||
+                ((rc.appCurrentGamePackType == PACKTYPE_DEMO) && !circleAroundHintsButton);
+            }
+            else if (rc.appCurrentGamePackType == PACKTYPE_DAILY){
+                vc.nextButton.hidden = YES;
+                vc.nextArrow.hidden = YES;
+                vc.homeArrowWhite.hidden = YES;
+                vc.replayIconWhite.hidden = YES;
+                vc.backButton.hidden = NO;
+                vc.homeArrow.hidden = NO;
+                vc.hintButton.hidden = NO;
+                vc.hintBulb.hidden = NO;
             }
         }
-    }
-    else if (puzzleCompletionCondition == USER_TOUCH){
-        vc.hintButton.hidden = YES;
-        vc.hintBulb.hidden = YES;
-        [vc.nextButton setTitleColor:[UIColor cyanColor] forState:UIControlStateNormal];
-        vc.nextButton.layer.borderColor = [UIColor cyanColor].CGColor;
-        if (!puzzleCompletedButtonFlash && !packHasBeenCompleted){
-            puzzleCompletedButtonFlash = YES;
-            [vc enableFlash:vc.nextButton];
+        
+        // Set nextButton and backButton visibity in PE
+        if ([appd editModeIsEnabled]){
             vc.nextButton.hidden = NO;
-            vc.nextArrow.hidden = NO;
-            vc.homeArrowWhite.hidden = NO;
-            vc.replayIconWhite.hidden = NO;
-        }
-        else {
-            vc.nextButton.hidden = YES;
             vc.nextArrow.hidden = YES;
-            vc.homeArrowWhite.hidden = NO;
-            vc.replayIconWhite.hidden = NO;
+            vc.homeArrowWhite.hidden = YES;
+            vc.replayIconWhite.hidden = YES;
+            vc.backButton.hidden = NO;
         }
+        
+        
+        // Once the rendering is done update the Jewel counts in the View Controller
+        //    if (!puzzleHasBeenCompleted)
+        //        [rc setJewelCounts];
+        
+        // Return an array of game control tile images
+        gameControlTiles = [[NSMutableArray alloc] initWithCapacity:1];
+        if ([appd editModeIsEnabled] && ![appd autoGenIsEnabled]){
+            gameControlTiles = [gameControls renderGameControls:gameControlTiles];
+        }
+        
+        // Add render arrays into the master renderDictionary
+        if (displayBackgroundImage == YES){
+            [renderDictionary setObject:backgroundRenderDataImage forKey:@"backgroundImage"];
+        }
+        if (overlayRenderDataImage != nil){
+            [renderDictionary setObject:overlayRenderDataImage forKey:@"overlayImage"];
+        }
+        if (displayBackgroundArray){
+            [renderDictionary setObject:backgroundRenderDataInner forKey:@"backgroundRenderDataInner"];
+        }
+        if (![appd autoGenIsEnabled]){
+            [renderDictionary setObject:unusedTileBackgroundRenderData forKey:@"unusedTileBackgroundRenderData"];
+        }
+        [renderDictionary setObject:borderRenderData forKey:@"borderRenderData"];
+        [renderDictionary setObject:backgroundRenderArray forKey:@"backgroundRenderArray"];
+        [renderDictionary setObject:tileRenderArray forKey:@"tileRenderArray"];
+        [renderDictionary setObject:ringRenderArray forKey:@"ringRenderArray"];
+        [renderDictionary setObject:beamsRenderArray forKey:@"beamsRenderArray"];
+        [renderDictionary setObject:arrowRenderData forKey:@"arrowRenderData"];
+        [renderDictionary setObject:puzzleCompleteRenderArray forKey:@"puzzleCompleteRenderArray"];
+        if ([appd editModeIsEnabled]){
+            [renderDictionary setObject:gameControlTiles forKey:@"gameControlTiles"];
+        }
+        return renderDictionary;
     }
     else {
-        vc.hintButton.hidden = YES;
-        vc.hintBulb.hidden = YES;
-        [vc.nextButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        vc.nextButton.layer.borderColor = [UIColor whiteColor].CGColor;
+        return nil;
     }
-    
-    // Fetch an array of Background Tile-sized Textures to render behind the Puzzle
-    if (displayBackgroundArray){
-        if (puzzleHasBeenCompleted) {
-            backgroundRenderArray = [background renderBackgroundArray:backgroundRenderArray tileColor:7 numberOfUnplacedTiles:initialNumberOfUnplacedTiles
-                                                      puzzleCompleted:YES];
-        }
-        else {
-            backgroundRenderArray = [background renderBackgroundArray:backgroundRenderArray tileColor:0 numberOfUnplacedTiles:initialNumberOfUnplacedTiles
-                                                      puzzleCompleted:NO];
-        }
-    }
-    
-    // Fetch beamsRenderArray that combines all beams of each RGB color into at most one beam BeamTextureRenderObject between each pair of tiles
-    //
-    // Stop rendering beams when puzzle completed
-    if (!puzzleHasBeenCompleted || puzzleHasBeenCompletedCelebration == YES){
-        Beam *myBeam;
-        for (int ii=0; ii<3; ii++) {
-            NSEnumerator *beamsEnum = [beams[ii] objectEnumerator];
-            while (myBeam = [beamsEnum nextObject]) {
-                [myBeam renderBeam:beamsRenderArray frameCounter:animationFrame];
-            }
-        }
-    }
-    
-    
-    // Fetch an array of various animations to render atop other screen elements.  For example expanding rings for
-    // energized jewels.
-    ringRenderArray = [foreground renderIdleJewelRingArray:ringRenderArray];
-    
-    // Check if we should mark the pack as complete
-    if (packHasBeenCompleted &&
-        rc.appCurrentGamePackType != PACKTYPE_DEMO){
-        puzzleCompleteRenderArray = [foreground renderPackCompletedMarker:puzzleCompleteRenderArray];
-        vc.nextButton.hidden = YES;
-        vc.nextArrow.hidden = YES;
-        vc.homeArrowWhite.hidden = NO;
-        if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
-            vc.replayIconWhite.hidden = YES;
-            vc.homeArrowWhite.hidden = YES;
-        }
-        else {
-            vc.replayIconWhite.hidden = NO;
-        }
-        vc.backButton.hidden = NO;
-        vc.homeArrow.hidden = NO;
-        vc.hintButton.hidden = YES;
-        vc.hintBulb.hidden = YES;
-    }
-    // Else check if we should mark the puzzle as complete
-    else if (puzzleHasBeenCompleted){
-        puzzleCompleteRenderArray = [foreground renderPuzzleCompletedMarker:puzzleCompleteRenderArray];
-        if (rc.appCurrentGamePackType == PACKTYPE_MAIN){
-            vc.nextButton.hidden = NO;
-            vc.nextArrow.hidden = NO;
-            vc.homeArrowWhite.hidden = NO;
-            vc.replayIconWhite.hidden = NO;
-            vc.backButton.hidden = NO;
-            vc.hintButton.hidden = YES;
-            vc.hintBulb.hidden = YES;
-        }
-        else if (rc.appCurrentGamePackType == PACKTYPE_DAILY){
-            vc.nextButton.hidden = YES;
-            vc.nextArrow.hidden = YES;
-            vc.homeArrowWhite.hidden = NO;
-            vc.replayIconWhite.hidden = NO;
-            vc.backButton.hidden = NO;
-            vc.homeArrow.hidden = NO;
-            vc.hintButton.hidden = YES;
-            vc.hintBulb.hidden = YES;
-        }
-        else if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
-            vc.nextButton.hidden = NO;
-            if ([appd packHasBeenCompleted]){
-                vc.nextArrow.hidden = YES;
-            }
-            else {
-                vc.nextArrow.hidden = NO;
-            }
-            vc.homeArrow.hidden = NO;
-            vc.homeArrowWhite.hidden = YES;
-            vc.replayIconWhite.hidden = YES;
-            vc.backButton.hidden = YES;
-            vc.hintButton.hidden = [self allTilesArePlaced] ||
-                                ((rc.appCurrentGamePackType == PACKTYPE_DEMO) && !circleAroundHintsButton);
-            vc.hintBulb.hidden = [self allTilesArePlaced] ||
-                                ((rc.appCurrentGamePackType == PACKTYPE_DEMO) && !circleAroundHintsButton);
-        }
-    }
-    // Puzzle is not complete
-    else {
-        if (rc.appCurrentGamePackType == PACKTYPE_MAIN){
-            vc.nextButton.hidden = YES;
-            vc.nextArrow.hidden = YES;
-            vc.homeArrowWhite.hidden = YES;
-            vc.replayIconWhite.hidden = YES;
-            vc.backButton.hidden = NO;
-            vc.homeArrow.hidden = NO;
-            vc.hintButton.hidden = NO;
-            vc.hintBulb.hidden = NO;
-        }
-        else if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
-            vc.nextButton.hidden = YES;
-            if ([appd packHasBeenCompleted]){
-                vc.nextArrow.hidden = YES;
-            }
-            else {
-                vc.nextArrow.hidden = NO;
-            }
-            vc.homeArrowWhite.hidden = YES;
-            vc.replayIconWhite.hidden = YES;
-            vc.backButton.hidden = YES;
-            vc.homeArrow.hidden = NO;
-            vc.hintButton.hidden = [self allTilesArePlaced] ||
-                                ((rc.appCurrentGamePackType == PACKTYPE_DEMO) && !circleAroundHintsButton);
-            vc.hintBulb.hidden = [self allTilesArePlaced] ||
-                                ((rc.appCurrentGamePackType == PACKTYPE_DEMO) && !circleAroundHintsButton);
-        }
-        else if (rc.appCurrentGamePackType == PACKTYPE_DAILY){
-            vc.nextButton.hidden = YES;
-            vc.nextArrow.hidden = YES;
-            vc.homeArrowWhite.hidden = YES;
-            vc.replayIconWhite.hidden = YES;
-            vc.backButton.hidden = NO;
-            vc.homeArrow.hidden = NO;
-            vc.hintButton.hidden = NO;
-            vc.hintBulb.hidden = NO;
-        }
-    }
-    
-    // Set nextButton and backButton visibity in PE
-    if ([appd editModeIsEnabled]){
-        vc.nextButton.hidden = NO;
-        vc.nextArrow.hidden = YES;
-        vc.homeArrowWhite.hidden = YES;
-        vc.replayIconWhite.hidden = YES;
-        vc.backButton.hidden = NO;
-    }
-    
-    
-    // Once the rendering is done update the Jewel counts in the View Controller
-    //    if (!puzzleHasBeenCompleted)
-    //        [rc setJewelCounts];
-    
-    // Return an array of game control tile images
-    gameControlTiles = [[NSMutableArray alloc] initWithCapacity:1];
-    if ([appd editModeIsEnabled] && ![appd autoGenIsEnabled]){
-        gameControlTiles = [gameControls renderGameControls:gameControlTiles];
-    }
-    
-    // Add render arrays into the master renderDictionary
-    if (displayBackgroundImage == YES){
-        [renderDictionary setObject:backgroundRenderDataImage forKey:@"backgroundImage"];
-    }
-    if (overlayRenderDataImage != nil){
-        [renderDictionary setObject:overlayRenderDataImage forKey:@"overlayImage"];
-    }
-    if (displayBackgroundArray){
-        [renderDictionary setObject:backgroundRenderDataInner forKey:@"backgroundRenderDataInner"];
-    }
-    if (![appd autoGenIsEnabled]){
-        [renderDictionary setObject:unusedTileBackgroundRenderData forKey:@"unusedTileBackgroundRenderData"];
-    }
-    [renderDictionary setObject:borderRenderData forKey:@"borderRenderData"];
-    [renderDictionary setObject:backgroundRenderArray forKey:@"backgroundRenderArray"];
-    [renderDictionary setObject:tileRenderArray forKey:@"tileRenderArray"];
-    [renderDictionary setObject:ringRenderArray forKey:@"ringRenderArray"];
-    [renderDictionary setObject:beamsRenderArray forKey:@"beamsRenderArray"];
-    [renderDictionary setObject:arrowRenderData forKey:@"arrowRenderData"];
-    [renderDictionary setObject:puzzleCompleteRenderArray forKey:@"puzzleCompleteRenderArray"];
-    if ([appd editModeIsEnabled]){
-        [renderDictionary setObject:gameControlTiles forKey:@"gameControlTiles"];
-    }
-    return renderDictionary;
 }
 
 //***********************************************************************
@@ -994,7 +1010,9 @@ extern void playSound(AVAudioPlayer *PLAYER);
     return resetDictionary;
 }
 
-- (void)buildPuzzleFromDictionary:(NSMutableDictionary *)puzzleDictionary showAllTiles:(BOOL)showAll {
+- (void)buildPuzzleFromDictionary:(NSMutableDictionary *)puzzleDictionary
+                     showAllTiles:(BOOL)showAll
+                    allTilesFixed:(BOOL)allTilesFixed {
     if (puzzleDictionary != nil) {
         // Load the puzzleCompletionCondition value if present
         if ([puzzleDictionary objectForKey:@"puzzleCompletionCondition"]){
@@ -1193,7 +1211,8 @@ extern void playSound(AVAudioPlayer *PLAYER);
             BOOL placed = [[jewelDictionary objectForKey:@"placed"] isEqualToNumber:[NSNumber numberWithInt:1]];
             BOOL placedUsingHint = [[jewelDictionary objectForKey:@"placedUsingHint"] isEqualToNumber:[NSNumber numberWithInt:1]];
             BOOL placedManuallyMatchesHint = [[jewelDictionary objectForKey:@"placedManuallyMatchesHint"] isEqualToNumber:[NSNumber numberWithInt:1]];
-            BOOL fixed = [[jewelDictionary objectForKey:@"fixed"] isEqualToNumber:[NSNumber numberWithInt:1]];
+            BOOL fixed = [[jewelDictionary objectForKey:@"fixed"] isEqualToNumber:[NSNumber numberWithInt:1]]
+                            || allTilesFixed;
             
             int finalX = [[jewelDictionary objectForKey:@"finalX"] intValue];
             int finalY = [[jewelDictionary objectForKey:@"finalY"] intValue];
@@ -1234,7 +1253,9 @@ extern void playSound(AVAudioPlayer *PLAYER);
             BOOL placed = [[rectangleDictionary objectForKey:@"placed"] isEqualToNumber:[NSNumber numberWithInt:1]];
             BOOL placedUsingHint = [[rectangleDictionary objectForKey:@"placedUsingHint"] isEqualToNumber:[NSNumber numberWithInt:1]];
             BOOL placedManuallyMatchesHint = [[rectangleDictionary objectForKey:@"placedManuallyMatchesHint"] isEqualToNumber:[NSNumber numberWithInt:1]];
-            BOOL fixed = [[rectangleDictionary objectForKey:@"fixed"] isEqualToNumber:[NSNumber numberWithInt:1]];
+            BOOL fixed = [[rectangleDictionary objectForKey:@"fixed"] isEqualToNumber:[NSNumber numberWithInt:1]]
+            || allTilesFixed;
+
             
             int finalX = [[rectangleDictionary objectForKey:@"finalX"] intValue];
             int finalY = [[rectangleDictionary objectForKey:@"finalY"] intValue];
@@ -1270,7 +1291,9 @@ extern void playSound(AVAudioPlayer *PLAYER);
             BOOL placed = [[laserDictionary objectForKey:@"placed"] isEqualToNumber:[NSNumber numberWithInt:1]];
             BOOL placedUsingHint = [[laserDictionary objectForKey:@"placedUsingHint"] isEqualToNumber:[NSNumber numberWithInt:1]];
             BOOL placedManuallyMatchesHint = [[laserDictionary objectForKey:@"placedManuallyMatchesHint"] isEqualToNumber:[NSNumber numberWithInt:1]];
-            BOOL fixed = [[laserDictionary objectForKey:@"fixed"] isEqualToNumber:[NSNumber numberWithInt:1]];
+            BOOL fixed = [[laserDictionary objectForKey:@"fixed"] isEqualToNumber:[NSNumber numberWithInt:1]]
+                        || allTilesFixed;
+
             int finalX = [[laserDictionary objectForKey:@"finalX"] intValue];
             int finalY = [[laserDictionary objectForKey:@"finalY"] intValue];
             dimensions.x = _squareTileSideLengthInPixels;
@@ -1306,7 +1329,9 @@ extern void playSound(AVAudioPlayer *PLAYER);
             BOOL placed = [[mirrorDictionary objectForKey:@"placed"] isEqualToNumber:[NSNumber numberWithInt:1]];
             BOOL placedUsingHint = [[mirrorDictionary objectForKey:@"placedUsingHint"] isEqualToNumber:[NSNumber numberWithInt:1]];
             BOOL placedManuallyMatchesHint = [[mirrorDictionary objectForKey:@"placedManuallyMatchesHint"] isEqualToNumber:[NSNumber numberWithInt:1]];
-            BOOL fixed = [[mirrorDictionary objectForKey:@"fixed"] isEqualToNumber:[NSNumber numberWithInt:1]];
+            BOOL fixed = [[mirrorDictionary objectForKey:@"fixed"] isEqualToNumber:[NSNumber numberWithInt:1]]
+                        || allTilesFixed;
+
             
             int finalX = [[mirrorDictionary objectForKey:@"finalX"] intValue];
             int finalY = [[mirrorDictionary objectForKey:@"finalY"] intValue];
@@ -1342,7 +1367,9 @@ extern void playSound(AVAudioPlayer *PLAYER);
             BOOL placed = [[prismDictionary objectForKey:@"placed"] isEqualToNumber:[NSNumber numberWithInt:1]];
             BOOL placedUsingHint = [[prismDictionary objectForKey:@"placedUsingHint"] isEqualToNumber:[NSNumber numberWithInt:1]];
             BOOL placedManuallyMatchesHint = [[prismDictionary objectForKey:@"placedManuallyMatchesHint"] isEqualToNumber:[NSNumber numberWithInt:1]];
-            BOOL fixed = [[prismDictionary objectForKey:@"fixed"] isEqualToNumber:[NSNumber numberWithInt:1]];
+            BOOL fixed = [[prismDictionary objectForKey:@"fixed"] isEqualToNumber:[NSNumber numberWithInt:1]]
+                        || allTilesFixed;
+
             
             int finalX = [[prismDictionary objectForKey:@"finalX"] intValue];
             int finalY = [[prismDictionary objectForKey:@"finalY"] intValue];
@@ -1381,7 +1408,9 @@ extern void playSound(AVAudioPlayer *PLAYER);
             BOOL placed = [[beamsplitterDictionary objectForKey:@"placed"] isEqualToNumber:[NSNumber numberWithInt:1]];
             BOOL placedUsingHint = [[beamsplitterDictionary objectForKey:@"placedUsingHint"] isEqualToNumber:[NSNumber numberWithInt:1]];
             BOOL placedManuallyMatchesHint = [[beamsplitterDictionary objectForKey:@"placedManuallyMatchesHint"] isEqualToNumber:[NSNumber numberWithInt:1]];
-            BOOL fixed = [[beamsplitterDictionary objectForKey:@"fixed"] isEqualToNumber:[NSNumber numberWithInt:1]];
+            BOOL fixed = [[beamsplitterDictionary objectForKey:@"fixed"] isEqualToNumber:[NSNumber numberWithInt:1]]
+                        || allTilesFixed;
+
             
             int finalX = [[beamsplitterDictionary objectForKey:@"finalX"] intValue];
             int finalY = [[beamsplitterDictionary objectForKey:@"finalY"] intValue];
@@ -2013,7 +2042,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
             
             // Build all Puzzle components from puzzleDictionary
             //
-            [self buildPuzzleFromDictionary:vc.puzzleDictionary showAllTiles:NO];
+            [self buildPuzzleFromDictionary:vc.puzzleDictionary showAllTiles:NO allTilesFixed:NO];
             tileCurrentlyBeingEdited = nil;
             tileForRotation = nil;
             tileUsedForDemoPlacement = nil;
@@ -3033,18 +3062,6 @@ extern void playSound(AVAudioPlayer *PLAYER);
     return jewelCount;
 }
 
-//- (unsigned int)jewelCount{
-//    unsigned int count = 0;
-//    Tile *thisTile = nil;
-//    NSEnumerator *tileEnum = [tiles objectEnumerator];
-//    while (thisTile = [tileEnum nextObject]){
-//        if (thisTile->tileShape == JEWEL){
-//            count++;
-//        }
-//    }
-//    return count;
-//}
-
 - (BOOL)checkForNonEnergizedJewels{
     BOOL retVal = NO;
     Tile *thisTile = nil;
@@ -4011,9 +4028,9 @@ extern void playSound(AVAudioPlayer *PLAYER);
     
     // Update scores and solved puzzles
     if (rc.appCurrentGamePackType == PACKTYPE_MAIN){
-        int packNumber = [appd fetchCurrentPackNumber];
-        int puzzleNumber = [appd fetchCurrentPuzzleNumberForPack:packNumber];
-        int jewelCount = [appd queryPuzzleJewelCount:[appd fetchCurrentPuzzleNumberForPack:[appd fetchCurrentPackNumber]]];
+//        int packNumber = [appd fetchCurrentPackNumber];
+//        int puzzleNumber = [appd fetchCurrentPuzzleNumberForPack:packNumber];
+//        int jewelCount = [appd queryPuzzleJewelCount:[appd fetchCurrentPuzzleNumberForPack:[appd fetchCurrentPackNumber]]];
         NSMutableDictionary *jewelCountDictionary = [appd queryPuzzleJewelCountByColor:[appd fetchCurrentPuzzleNumberForPack:[appd fetchCurrentPackNumber]]];
         
         // Puzzle solved so update all scores and timeSegment values
@@ -4030,37 +4047,39 @@ extern void playSound(AVAudioPlayer *PLAYER);
                                   endTime:endTime
                                    solved:YES];
             
-            int totalPuzzlesSolved = [appd countPuzzlesSolved];
-            [appd.totalPuzzlesLeaderboard submitScore:totalPuzzlesSolved
-                                             context:0
-                                              player:[GKLocalPlayer localPlayer]
-                                   completionHandler:
-             ^(NSError *error) {
-                if (!error){
-                    DLog("[appd.totalPuzzlesLeaderboard submitScore] %d puzzles success", totalPuzzlesSolved);
-                } else {
-                    DLog("[appd.totalPuzzlesLeaderboard submitScore] %d puzzles failed", totalPuzzlesSolved);
-                }
-            }];
-            
-            int totalJewelsCollected = [appd countTotalJewelsCollected];
-            [appd.totalJewelsLeaderboard submitScore:totalJewelsCollected
-                                             context:0
-                                              player:[GKLocalPlayer localPlayer]
-                                   completionHandler:
-             ^(NSError *error) {
-                if (!error){
-                    DLog("[appd.totalJewelsLeaderboard submitScore] %d jewels success", totalJewelsCollected);
-                } else {
-                    DLog("[appd.totalJewelsLeaderboard submitScore] %d jewels failed", totalJewelsCollected);
-                }
-            }];
-            
+            if (ENABLE_GAMECENTER == YES){
+                int totalPuzzlesSolved = [appd countPuzzlesSolved];
+                [appd.totalPuzzlesLeaderboard submitScore:totalPuzzlesSolved
+                                                  context:0
+                                                   player:[GKLocalPlayer localPlayer]
+                                        completionHandler:
+                 ^(NSError *error) {
+                    if (!error){
+                        DLog("[appd.totalPuzzlesLeaderboard submitScore] %d puzzles success", totalPuzzlesSolved);
+                    } else {
+                        DLog("[appd.totalPuzzlesLeaderboard submitScore] %d puzzles failed", totalPuzzlesSolved);
+                    }
+                }];
+                
+                int totalJewelsCollected = [appd countTotalJewelsCollected];
+                [appd.totalJewelsLeaderboard submitScore:totalJewelsCollected
+                                                 context:0
+                                                  player:[GKLocalPlayer localPlayer]
+                                       completionHandler:
+                 ^(NSError *error) {
+                    if (!error){
+                        DLog("[appd.totalJewelsLeaderboard submitScore] %d jewels success", totalJewelsCollected);
+                    } else {
+                        DLog("[appd.totalJewelsLeaderboard submitScore] %d jewels failed", totalJewelsCollected);
+                    }
+                }];
+            }
+
             if (ENABLE_GA == YES){
                 [FIRAnalytics logEventWithName:@"puzzleSolved"
                                     parameters:@{
-                    @"packNumber":[NSString stringWithFormat:@"%d", currentPackNumber],
-                    @"puzzleNumber":[NSString stringWithFormat:@"%d", currentPuzzleNumber]
+                    @"packNumber": @(currentPackNumber),
+                    @"puzzleNumber":@(currentPuzzleNumber)
                 }];
             }
         }
@@ -4086,36 +4105,38 @@ extern void playSound(AVAudioPlayer *PLAYER);
                                   endTime:endTime
                                    solved:YES];
             
-            int totalPuzzlesSolved = [appd countPuzzlesSolved];
-            [appd.totalPuzzlesLeaderboard submitScore:totalPuzzlesSolved
-                                             context:0
-                                              player:[GKLocalPlayer localPlayer]
-                                   completionHandler:
-             ^(NSError *error) {
-                if (!error){
-                    DLog("[appd.totalPuzzlesLeaderboard submitScore] %d puzzles success", totalPuzzlesSolved);
-                } else {
-                    DLog("[appd.totalPuzzlesLeaderboard submitScore] %d puzzles failed", totalPuzzlesSolved);
-                }
-            }];
-            
-            int totalJewelsCollected = [appd countTotalJewelsCollected];
-            [appd.totalJewelsLeaderboard submitScore:totalJewelsCollected
-                                             context:0
-                                              player:[GKLocalPlayer localPlayer]
-                                   completionHandler:
-             ^(NSError *error) {
-                if (!error){
-                    DLog("[appd.totalJewelsLeaderboard submitScore] %d jewels success", totalJewelsCollected);
-                } else {
-                    DLog("[appd.totalJewelsLeaderboard submitScore] %d jewels failed", totalJewelsCollected);
-                }
-            }];
+            if (ENABLE_GAMECENTER == YES){
+                int totalPuzzlesSolved = [appd countPuzzlesSolved];
+                [appd.totalPuzzlesLeaderboard submitScore:totalPuzzlesSolved
+                                                  context:0
+                                                   player:[GKLocalPlayer localPlayer]
+                                        completionHandler:
+                 ^(NSError *error) {
+                    if (!error){
+                        DLog("[appd.totalPuzzlesLeaderboard submitScore] %d puzzles success", totalPuzzlesSolved);
+                    } else {
+                        DLog("[appd.totalPuzzlesLeaderboard submitScore] %d puzzles failed", totalPuzzlesSolved);
+                    }
+                }];
+                
+                int totalJewelsCollected = [appd countTotalJewelsCollected];
+                [appd.totalJewelsLeaderboard submitScore:totalJewelsCollected
+                                                 context:0
+                                                  player:[GKLocalPlayer localPlayer]
+                                       completionHandler:
+                 ^(NSError *error) {
+                    if (!error){
+                        DLog("[appd.totalJewelsLeaderboard submitScore] %d jewels success", totalJewelsCollected);
+                    } else {
+                        DLog("[appd.totalJewelsLeaderboard submitScore] %d jewels failed", totalJewelsCollected);
+                    }
+                }];
+            }
             
             if (ENABLE_GA == YES){
                 [FIRAnalytics logEventWithName:@"dailyPuzzleSolved"
                                     parameters:@{
-                    @"puzzleNumber":[NSString stringWithFormat:@"%d", [appd fetchDailyPuzzleNumber]]
+                    @"puzzleNumber":@([appd fetchDailyPuzzleNumber])
                 }];
             }
 
@@ -4275,10 +4296,10 @@ extern void playSound(AVAudioPlayer *PLAYER);
         { 0, 7, 7, 6, 0, 2, 1, 1 },
         { 2, 1, 0, 0, 7, 1, 3, 2 },
         { 3, 3, 2, 1, 1, 0, 2, 4 },
-        { 5, 4, 4, 3, 2, 2, 4, 3 },
+        { 5, 4, 4, 3, 2, 2, 1, 3 },
         { 4, 6, 5, 5, 4, 3, 3, 2 },
         { 3, 5, 7, 6, 6, 5, 4, 4 },
-        { 5, 4, 6, 0, 7, 7, 6, 4 },
+        { 5, 4, 6, 0, 7, 7, 6, 5 },
         { 6, 6, 5, 7, 1, 0, 0, 7 },
     };
     for (int jj=0; jj<=ANGLE315; jj++) {
@@ -4486,8 +4507,11 @@ extern void playSound(AVAudioPlayer *PLAYER);
         if (hint.hintUsed == NO){
             NSEnumerator *tilesEnum = [tiles objectEnumerator];
             while (tile = [tilesEnum nextObject]){
-                if (!tile->placedUsingHint && !tile->placedManuallyMatchesHint && !tile->fixed && tile->tileShape == hint.hintShape){
-                    // If the hintPosition is alread occupied then move the Tile currently at hintPosition to the original Tile position
+                if (!tile->placedUsingHint &&
+                    !tile->placedManuallyMatchesHint &&
+                    !tile->fixed &&
+                    tile->tileShape == hint.hintShape){
+                    // If the hintPosition is already occupied then move the Tile currently at hintPosition to the original Tile position
                     Tile *tileAtHintPosition = [self fetchTileAtGridPosition:hint.hintPosition];
                     // Only Lasers can stack - all other shapes require the Tile occupying the target location to move
                     if (tileAtHintPosition != nil && (tile->tileShape != LASER || tileAtHintPosition->tileShape != LASER)){

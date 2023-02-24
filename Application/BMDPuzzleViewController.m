@@ -48,6 +48,7 @@
 @synthesize nextButton;
 @synthesize prevButton;
 @synthesize backButton;
+@synthesize verifyButton;
 @synthesize homeArrow;
 @synthesize nextArrow;
 @synthesize homeArrowWhite;
@@ -100,12 +101,12 @@
     rc.renderBackgroundON = NO;
     rc.renderPuzzleON = NO;
     rc.renderOverlayON = NO;
-
+    
     // Set up puzzleView
     CGRect puzzleBounds = rc.rootView.bounds;
     puzzleView = [[MTKView alloc] initWithFrame:puzzleBounds device:MTLCreateSystemDefaultDevice()];
     self.view = puzzleView;
-        
+    
     puzzleView.enableSetNeedsDisplay = NO;
     puzzleView.preferredFramesPerSecond = METAL_RENDERER_FPS;
     puzzleView.presentsWithTransaction = NO;
@@ -123,12 +124,22 @@
     NSMutableDictionary *pack = nil;
     NSMutableDictionary *puzzle = nil;
     // Puzzle Play - Free and Paid Packs
-    if (rc.appCurrentGamePackType == PACKTYPE_MAIN){
+    if (rc.appCurrentGamePackType == PACKTYPE_MAIN &&
+        [appd editModeIsEnabled] == NO){
         unsigned int currentPackNumber = [appd fetchCurrentPackNumber];
         puzzle = [appd fetchCurrentPuzzleFromPackGameProgress:currentPackNumber];
+        if (puzzle == nil ||
+            [appd puzzleIsEmpty:puzzle] == YES){
+            // Handle case where no puzzle or an empty puzzle is stored
+            // Read puzzle from the main bundle
+            puzzle = [appd fetchCurrentPuzzleFromPackDictionary:currentPackNumber];
+            // Save the puzzle to PackGameProgress
+            [appd saveCurrentPuzzleToPackGameProgress:currentPackNumber puzzle:puzzle];
+        }
     }
     // Puzzle Play - Daily Puzzle
-    else if (rc.appCurrentGamePackType == PACKTYPE_DAILY){
+    else if (rc.appCurrentGamePackType == PACKTYPE_DAILY &&
+             [appd editModeIsEnabled] == NO){
         if ([self queryPuzzleExists:kDailyPuzzlesPackDictionary puzzle:appd.currentDailyPuzzleNumber]) {
             // If the Daily Puzzle has changed from the previously stored Daily Puzzle then load and store a new one
             if (appd.currentDailyPuzzleNumber != [appd fetchDailyPuzzleNumber]){
@@ -147,7 +158,8 @@
         }
     }
     // Puzzle Play - Demo Pack
-    else if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+    else if (rc.appCurrentGamePackType == PACKTYPE_DEMO &&
+             [appd editModeIsEnabled] == NO){
         DLog("rc.appCurrentGamePackType == PACKTYPE_DEMO");
         unsigned int demoPuzzleNumber = [appd fetchDemoPuzzleNumber];
         [appd saveDemoPuzzleNumber:demoPuzzleNumber];
@@ -193,7 +205,7 @@
          name: UIApplicationDidBecomeActiveNotification
          object: nil];
     }
-
+    
     
     // If not running the PE then start the selected puzzle
     if (rc.appCurrentGamePackType == PACKTYPE_MAIN ||
@@ -270,7 +282,6 @@
     
     // Start rendering
     rc.renderPuzzleON = YES;
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -1600,6 +1611,38 @@
     [puzzleView bringSubviewToFront:backButton];
     
     //
+    // verifyButton
+    //
+    verifyButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [verifyButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:prevHomeNextFontSize]];
+    // width unchanged
+    // height unchanged
+    // posY unchanged
+    posX = 0.5*rc.screenWidthInPixels/rc.contentScaleFactor + width/2.0;
+    posY = (CGFloat)(rc.safeFrame.origin.y + rc.safeFrame.size.height) - height*2.0;
+    backButtonRectEdit = CGRectMake(posX, posY, width, height);
+    backButtonRectPlay = CGRectMake(posX, posY, width, height);
+    if ([appd editModeIsEnabled]){
+        verifyButton.frame = backButtonRectEdit;
+    }
+    else {
+        verifyButton.frame = backButtonRectPlay;
+    }
+    verifyButton.layer.borderWidth = buttonBorderWidth;
+    verifyButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    [verifyButton setTitle:[NSString stringWithFormat:@"Verify"]
+                forState:UIControlStateNormal];
+    [verifyButton addTarget:self action:@selector(verifyButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    verifyButton.showsTouchWhenHighlighted = YES;
+    verifyButton.hidden = NO;
+    [verifyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [verifyButton setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];
+    if (ENABLE_PUZZLE_VERIFY == YES){
+        [puzzleView addSubview:verifyButton];
+        [puzzleView bringSubviewToFront:verifyButton];
+    }
+    
+    //
     // nextButton
     //
     nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -2238,6 +2281,76 @@
     }
 }
 
+- (void)verifyPuzzles {
+    DLog("verifyPuzzles");
+    NSMutableArray *puzzlePacksArray = nil, *puzzleArray = nil, *arrayOfFailingPuzzles;
+    NSMutableDictionary *packDictionary = nil, *puzzleDictionary = nil;
+    NSMutableDictionary *puzzleToVerify;
+    unsigned int packIndex = 0, puzzleIndex = 0;
+    if (appd.gameDictionaries != nil){
+        // Verify all puzzles in puzzlePacksArray.plist
+        puzzlePacksArray = [appd.gameDictionaries objectForKey:kPuzzlePacksArray];
+        if (puzzlePacksArray != nil && [puzzlePacksArray count] > 0){
+            NSEnumerator *puzzlePacksArrayEnum = [puzzlePacksArray objectEnumerator];
+            arrayOfFailingPuzzles = [NSMutableArray arrayWithCapacity:1];
+            while (packDictionary = [puzzlePacksArrayEnum nextObject]){
+                if (packDictionary != nil && [packDictionary count] > 0){
+                    puzzleArray = [packDictionary objectForKey:@"puzzles"];
+                    if (puzzleArray != nil && [puzzleArray count] > 0){
+                        NSEnumerator *puzzleArrayEnum = [puzzleArray objectEnumerator];
+                        puzzleIndex = 0;
+                        while (puzzleDictionary = [puzzleArrayEnum nextObject]){
+                            if (puzzleDictionary != nil && [puzzleDictionary count] > 0){
+                                puzzleToVerify = [NSMutableDictionary dictionaryWithDictionary:puzzleDictionary];
+                                appd->optics = [Optics alloc];
+                                BOOL puzzleValid = [appd->optics initWithDictionary:puzzleToVerify viewController:self];
+                                if (!puzzleValid){
+                                    DLog("Pack: %d. Puzzle: %d NOT valid", packIndex, puzzleIndex);
+                                    [puzzleToVerify setObject:[NSNumber numberWithInt:packIndex] forKey:@"packIndex"];
+                                    [puzzleToVerify setObject:[NSNumber numberWithInt:puzzleIndex] forKey:@"puzzleIndex"];
+                                    [arrayOfFailingPuzzles addObject:puzzleToVerify];
+                                }
+                            }
+                            puzzleIndex++;
+                        }
+                    }
+                }
+                packIndex++;
+            }
+        }
+        // Verify all puzzles in dailyPuzzlePacksDictionary.plist
+        packDictionary = nil;
+        puzzleArray = nil;
+        puzzleDictionary = nil;
+        packDictionary = [appd fetchPackDictionaryFromPlist:kDailyPuzzlesPackDictionary];
+        if (packDictionary != nil && [packDictionary count] > 0){
+            puzzleArray = [packDictionary objectForKey:@"puzzles"];
+            if (puzzleArray != nil && [puzzleArray count] > 0){
+                NSEnumerator *puzzleArrayEnum = [puzzleArray objectEnumerator];
+                puzzleIndex = 0;
+                while (puzzleDictionary = [puzzleArrayEnum nextObject]){
+                    if (puzzleDictionary != nil && [puzzleDictionary count] > 0){
+                        puzzleToVerify = [NSMutableDictionary dictionaryWithDictionary:puzzleDictionary];
+                        appd->optics = [Optics alloc];
+                        BOOL puzzleValid = [appd->optics initWithDictionary:puzzleToVerify viewController:self];
+                        if (!puzzleValid){
+                            DLog("Daily Puzzle: %d NOT valid", puzzleIndex);
+                            [puzzleToVerify setObject:[NSNumber numberWithInt:puzzleIndex] forKey:@"dailyPuzzleIndex"];
+                            [arrayOfFailingPuzzles addObject:puzzleToVerify];
+                        }
+                    }
+                    puzzleIndex++;
+                }
+                NSMutableDictionary *failedPuzzleDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
+                [failedPuzzleDictionary setObject:@"Failed Puzzles" forKey:@"pack_name"];
+                [failedPuzzleDictionary setObject:[NSNumber numberWithInt:0] forKey:@"AppStorePackCost"];
+                [failedPuzzleDictionary setObject:arrayOfFailingPuzzles forKey:@"puzzles"];
+                [appd savePuzzlePackDictionaryToFile:failedPuzzleDictionary fileName:@"failedPuzzleDictionary.plist"];
+            }
+        }
+    }
+}
+
 - (void)autoGeneratePuzzle {
     id batchStartTag1 = [puzzleDictionary objectForKey:@"batchStart1"];
     id batchEndTag1 = [puzzleDictionary objectForKey:@"batchEnd1"];
@@ -2359,6 +2472,7 @@
     else {
         [appd playSound:appd.tapPlayer];
         
+        
         // Save progress before exiting only if the puzzle has not been completed
         if ([appd->optics queryPuzzleCompleted] == NO){
             [appd->optics savePuzzleProgressToDefaults];
@@ -2367,7 +2481,7 @@
         // If exiting How to Play Guide then indicate that demo has been completed
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:@"YES" forKey:@"demoHasBeenCompleted"];
-
+        
         // If not yet solved then store endTime for timeSegment
         long endTime = [[NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]] longValue];
         int currentPackNumber = -1;
@@ -2380,11 +2494,11 @@
                               puzzleNumber:currentPuzzleNumber] == -1){
                 // Only puzzleSolutionStatus if Unsolved
                 [appd updatePuzzleScoresArray:currentPackNumber
-                                  puzzleNumber:currentPuzzleNumber
-                                numberOfJewels:emptyJewelCountDictionary
-                                     startTime:-1        // Do not change startTime
-                                       endTime:endTime
-                                        solved:NO];
+                                 puzzleNumber:currentPuzzleNumber
+                               numberOfJewels:emptyJewelCountDictionary
+                                    startTime:-1        // Do not change startTime
+                                      endTime:endTime
+                                       solved:NO];
             }
         }
         else if (rc.appCurrentGamePackType == PACKTYPE_DAILY) {
@@ -2394,11 +2508,11 @@
                               puzzleNumber:currentPuzzleNumber] == -1){
                 // Only puzzleSolutionStatus if Unsolved
                 [appd updatePuzzleScoresArray:currentPackNumber
-                                  puzzleNumber:currentPuzzleNumber
-                                numberOfJewels:emptyJewelCountDictionary
-                                     startTime:-1        // Do not change startTime
-                                       endTime:endTime
-                                        solved:NO];
+                                 puzzleNumber:currentPuzzleNumber
+                               numberOfJewels:emptyJewelCountDictionary
+                                    startTime:-1        // Do not change startTime
+                                      endTime:endTime
+                                       solved:NO];
             }
         }
         
@@ -2439,6 +2553,11 @@
 //        }
 
     }
+}
+
+- (void)verifyButtonPressed {
+    DLog("verifyButtonPressed");
+    [self verifyPuzzles];
 }
 
 - (void)saveButtonPressed {
@@ -2619,6 +2738,19 @@
 - (void)hintButtonPressed {
     [appd playSound:appd.tapPlayer];
     appd.numberOfHintsRemaining = [[appd getObjectFromDefaults:@"numberOfHintsRemaining"] intValue];
+    
+    if (ENABLE_GA == YES){
+        int currentPackNumber = [appd fetchCurrentPackNumber];
+        int currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
+        [FIRAnalytics logEventWithName:@"hintButtonPressed"
+                            parameters:@{
+            @"hintsRemaining":@(appd.numberOfHintsRemaining),
+            @"packNumber":@(currentPackNumber),
+            @"puzzleNumber":@(currentPuzzleNumber)
+        }];
+    }
+
+    
     if ([appd checkForEndlessHintsPurchased]){
         [appd->optics startPositionTileForHint];
         [appd playSound:appd.tapPlayer];
@@ -2899,6 +3031,11 @@
         }
     }
     
+}
+
+- (BOOL)puzzleIsEmpty:(NSMutableDictionary *)puzzle {
+    BOOL retVal = YES;
+    return retVal;
 }
 
 

@@ -52,6 +52,7 @@ API_AVAILABLE(ios(13.0))
     UIButton *nextButton;
     UIButton *prevButton;
     UIButton *backButton;
+    UIButton *verifyButton;
     UIButton *homeArrow;
     UIButton *nextArrow;
     UIButton *homeArrowWhite;
@@ -132,6 +133,7 @@ API_AVAILABLE(ios(13.0))
 @property (nonatomic, retain) UIButton *nextButton;
 @property (nonatomic, retain) UIButton *prevButton;
 @property (nonatomic, retain) UIButton *backButton;
+@property (nonatomic, retain) UIButton *verifyButton;
 @property (nonatomic, retain) UIButton *homeArrow;
 @property (nonatomic, retain) UIButton *nextArrow;
 @property (nonatomic, retain) UIButton *homeArrowWhite;

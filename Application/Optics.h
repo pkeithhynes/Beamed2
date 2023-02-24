@@ -208,14 +208,16 @@ API_AVAILABLE(ios(13.0))
 - (NSMutableDictionary *_Nonnull)generatePuzzleMirrors:(NSMutableDictionary *_Nonnull)puzzleDictionary;
 
 - (NSMutableDictionary *_Nullable)resetPuzzleDictionary:(NSMutableDictionary *_Nonnull)puzzleDictionary;
-- (void)buildPuzzleFromDictionary:(NSMutableDictionary *_Nullable)puzzleDictionary showAllTiles:(BOOL)showAll;
+- (void)buildPuzzleFromDictionary:(NSMutableDictionary *)puzzleDictionary
+                     showAllTiles:(BOOL)showAll
+                    allTilesFixed:(BOOL)allTilesFixed;
 - (NSMutableDictionary *_Nonnull)encodeAnEmptyPuzzleAsMutableDictionary:(NSMutableDictionary *_Nonnull)dictionary;
 - (NSMutableDictionary *_Nonnull)encodeCurrentPuzzleAsMutableDictionary:(NSMutableDictionary *_Nonnull)dictionary;
 - (void)savePuzzleProgressToDefaults;
 
 - (void)initRootBeam:(enum eBeamColors)COLOR rootBeam:(Beam *_Nonnull)rootBeam;
 
-- (void)initWithDictionary:(NSMutableDictionary *_Nullable)puzzleDictionary viewController:(BMDPuzzleViewController *_Nonnull)puzzleViewController;
+- (BOOL)initWithDictionary:(NSMutableDictionary *_Nullable)puzzleDictionary viewController:(BMDPuzzleViewController *_Nonnull)puzzleViewController;
 //- (void)initWithDictionary:(NSMutableDictionary *_Nullable)puzzleDictionary;
 
 - (void)putOpticsTile:(Tile *_Nonnull)tile array:(NSMutableArray *_Nonnull)array;

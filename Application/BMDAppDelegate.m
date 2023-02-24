@@ -758,6 +758,34 @@ CGFloat _screenHeightInPixels;
     return success;
 }
 
+// Save an array of puzzles to puzzleArray.plist, overwriting the current array in the process.
+- (BOOL)saveArrayOfPuzzlesToFile:(NSMutableArray *)puzzleArray fileName:(NSString *)fileName {
+    // Write the puzzle array to @"puzzleArray.plist"
+    BOOL retCode = FALSE;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:fileName];
+    if (filePath){
+        DLog("saveArrayOfPuzzlesToFile:  cp %s ~/dev/BeamedLevels\n", [filePath UTF8String]);
+        retCode = [puzzleArray writeToFile:filePath atomically:YES];
+    }
+    return retCode;
+}
+
+// Save the entire pack to File, overwriting the current pack in the process.
+- (BOOL)savePuzzlePackDictionaryToFile:(NSMutableDictionary *)pack  fileName:(NSString *)fileName {
+    // Write the puzzle to @"editedPuzzlePack.plist"
+    BOOL retCode = FALSE;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:fileName];
+    if (filePath){
+        DLog("savePuzzlePackDictionaryToFile:  cp %s ~/dev/BeamedLevels\n", [filePath UTF8String]);
+        retCode = [pack writeToFile:filePath atomically:YES];
+    }
+    return retCode;
+}
+
 // Save the entire pack to File, overwriting the current pack in the process.
 - (BOOL)saveEditedPackToFile:(NSMutableDictionary *)pack {
     // Write the puzzle to @"editedPuzzlePack.plist"
@@ -1075,6 +1103,18 @@ CGFloat _screenHeightInPixels;
 //
 // Pack and Puzzle Handling Methods
 //
+- (BOOL)puzzleIsEmpty:(NSMutableDictionary *)puzzle {
+    BOOL empty = NO;
+    NSMutableArray *arrayOfJewelsDictionaries = [puzzle objectForKey:@"arrayOfJewelsDictionaries"];
+    NSMutableArray *arrayOfLasersDictionaries = [puzzle objectForKey:@"arrayOfLasersDictionaries"];
+    if (arrayOfJewelsDictionaries == nil || [arrayOfJewelsDictionaries count] == 0){
+        empty = YES;
+    }
+    if (arrayOfLasersDictionaries == nil || [arrayOfLasersDictionaries count] == 0){
+        empty = YES;
+    }
+    return empty;
+}
 
 -(BOOL)packHasBeenCompleted {
     if (rc.appCurrentGamePackType == PACKTYPE_MAIN){
@@ -1313,13 +1353,29 @@ CGFloat _screenHeightInPixels;
     return puzzlePack;
 }
 
+//- (NSMutableDictionary *)fetchCurrentPuzzleFromPackGameProgress:(unsigned int)packNumber {
+//    NSMutableDictionary *currentPuzzleForCurrentPack = [NSMutableDictionary dictionaryWithCapacity:1];
+//    NSMutableDictionary *puzzlePacksProgressDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
+//    puzzlePacksProgressDictionary = [self getObjectFromDefaults:@"PacksProgressPuzzlesDictionary"];
+//    NSString *packIndexString = [NSString stringWithFormat:@"%06d", packNumber];
+//    currentPuzzleForCurrentPack = [puzzlePacksProgressDictionary objectForKey:packIndexString];
+//    return currentPuzzleForCurrentPack;
+//}
+
 - (NSMutableDictionary *)fetchCurrentPuzzleFromPackGameProgress:(unsigned int)packNumber {
-    NSMutableDictionary *currentPuzzleForCurrentPack = [NSMutableDictionary dictionaryWithCapacity:1];
-    NSMutableDictionary *puzzlePacksProgressDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
+    NSMutableDictionary *puzzlePacksProgressDictionary = nil;
     puzzlePacksProgressDictionary = [self getObjectFromDefaults:@"PacksProgressPuzzlesDictionary"];
-    NSString *packIndexString = [NSString stringWithFormat:@"%06d", packNumber];
-    currentPuzzleForCurrentPack = [puzzlePacksProgressDictionary objectForKey:packIndexString];
-    return currentPuzzleForCurrentPack;
+    if (puzzlePacksProgressDictionary != nil &&
+        [puzzlePacksProgressDictionary count] > 0){
+        NSString *packIndexString = [NSString stringWithFormat:@"%06d", packNumber];
+        NSMutableDictionary *currentPuzzle = nil;
+        currentPuzzle = [puzzlePacksProgressDictionary objectForKey:packIndexString];
+        if (currentPuzzle != nil &&
+            [currentPuzzle count] > 0){
+            return currentPuzzle;
+        }
+    }
+    return nil;
 }
 
 - (NSMutableDictionary *)fetchCurrentPuzzleFromPackDictionary:(unsigned int)packNumber {
@@ -2073,8 +2129,6 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
 
 - (void)authenticatePlayer {
     GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
-    BMDAppDelegate *del = (BMDAppDelegate*)[[UIApplication sharedApplication] delegate];
-
     [localPlayer setAuthenticateHandler:
      ^(UIViewController *viewController, NSError *error) {
         if (viewController != nil) {
@@ -2092,7 +2146,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
 
 - (void)loadLeaderboards {
     [GKLeaderboard loadLeaderboardsWithIDs:@[@"BEAMED2_TOTAL_PUZZLES_LEADERBOARD",
-                                             @"BEAMED2_TOTAL_JEWELS_LEADERBOARD"]
+        @"BEAMED2_TOTAL_JEWELS_LEADERBOARD"]
                          completionHandler:
      ^(NSArray<GKLeaderboard *> *leaderboards, NSError *error) {
         if (leaderboards != nil){
@@ -2338,15 +2392,66 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
         NSEnumerator *scoresEnum = [puzzleScoresArray objectEnumerator];
         NSMutableDictionary *scoreDictionary;
         while (scoreDictionary = [scoresEnum nextObject]) {
-            NSNumber *jewelsNum = [scoreDictionary objectForKey:[NSString stringWithFormat:@"numberOfJewels"]];
-            int jewels = [jewelsNum intValue];
-            if (jewels > 0){
-                numberOfJewels = numberOfJewels + jewels;
+            NSDictionary *numberOfJewelsDictionary = [scoreDictionary objectForKey:@"numberOfJewelsDictionary"];
+            if (numberOfJewelsDictionary != nil){
+                NSNumber *jewelsNum = [numberOfJewelsDictionary objectForKey:@"redCount"];
+                int jewels = [jewelsNum intValue];
+                if (jewels > 0){
+                    numberOfJewels = numberOfJewels + jewels;
+                }
+                jewelsNum = [numberOfJewelsDictionary objectForKey:@"greenCount"];
+                jewels = [jewelsNum intValue];
+                if (jewels > 0){
+                    numberOfJewels = numberOfJewels + jewels;
+                }
+                jewelsNum = [numberOfJewelsDictionary objectForKey:@"blueCount"];
+                jewels = [jewelsNum intValue];
+                if (jewels > 0){
+                    numberOfJewels = numberOfJewels + jewels;
+                }
+                jewelsNum = [numberOfJewelsDictionary objectForKey:@"yellowCount"];
+                jewels = [jewelsNum intValue];
+                if (jewels > 0){
+                    numberOfJewels = numberOfJewels + jewels;
+                }
+                jewelsNum = [numberOfJewelsDictionary objectForKey:@"cyanCount"];
+                jewels = [jewelsNum intValue];
+                if (jewels > 0){
+                    numberOfJewels = numberOfJewels + jewels;
+                }
+                jewelsNum = [numberOfJewelsDictionary objectForKey:@"magentaCount"];
+                jewels = [jewelsNum intValue];
+                if (jewels > 0){
+                    numberOfJewels = numberOfJewels + jewels;
+                }
+                jewelsNum = [numberOfJewelsDictionary objectForKey:@"whiteCount"];
+                jewels = [jewelsNum intValue];
+                if (jewels > 0){
+                    numberOfJewels = numberOfJewels + jewels;
+                }
             }
         }
     }
     return numberOfJewels;
 }
+
+//- (int)countTotalJewelsCollected {
+//    int numberOfJewels = 0;
+//    // Enumerate over puzzleScoresArray
+//    NSMutableArray *puzzleScoresArray = [self getArrayFromDefaults:@"puzzleScoresArray"];
+//    if (puzzleScoresArray != nil && [puzzleScoresArray count] > 0){
+//        NSEnumerator *scoresEnum = [puzzleScoresArray objectEnumerator];
+//        NSMutableDictionary *scoreDictionary;
+//        while (scoreDictionary = [scoresEnum nextObject]) {
+//            NSNumber *jewelsNum = [scoreDictionary objectForKey:[NSString stringWithFormat:@"numberOfJewels"]];
+//            int jewels = [jewelsNum intValue];
+//            if (jewels > 0){
+//                numberOfJewels = numberOfJewels + jewels;
+//            }
+//        }
+//    }
+//    return numberOfJewels;
+//}
 
 - (int)countPuzzlesSolved {
     int numberOfPuzzlesSolved = 0;

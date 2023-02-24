@@ -876,7 +876,7 @@
 
 
 - (void)aboutButtonPressed {
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Beamed 2"
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Beamed 2, version 1.10"
                                message:@"Copyright 2023\rSquaretail Software\rSan Diego CA"
                                preferredStyle:UIAlertControllerStyleAlert];
 

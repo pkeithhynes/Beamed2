@@ -326,6 +326,8 @@
 		808E49DB295E18A900D4D077 /* homeArrowWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 808E49D7295E18A900D4D077 /* homeArrowWhite.png */; };
 		808E49DD295E18A900D4D077 /* nextArrowWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 808E49D8295E18A900D4D077 /* nextArrowWhite.png */; };
 		808E49DE295E18A900D4D077 /* nextArrowWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 808E49D8295E18A900D4D077 /* nextArrowWhite.png */; };
+		8094B95E29A81AB00026228E /* failedPuzzleDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8094B95D29A81AB00026228E /* failedPuzzleDictionary.plist */; };
+		8094B95F29A81AB00026228E /* failedPuzzleDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8094B95D29A81AB00026228E /* failedPuzzleDictionary.plist */; };
 		8095C48227DB014E00E1740C /* GridTile.png in Resources */ = {isa = PBXBuildFile; fileRef = 8095C48127DB014E00E1740C /* GridTile.png */; };
 		8095C48327DB014E00E1740C /* GridTile.png in Resources */ = {isa = PBXBuildFile; fileRef = 8095C48127DB014E00E1740C /* GridTile.png */; };
 		809B05CD2904E83A00081D46 /* grayRectangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 809B05CC2904E83A00081D46 /* grayRectangle.png */; };
@@ -699,6 +701,7 @@
 		808E3BC428FC5304009C1474 /* GridTileDot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GridTileDot.png; sourceTree = "<group>"; };
 		808E49D7295E18A900D4D077 /* homeArrowWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeArrowWhite.png; sourceTree = "<group>"; };
 		808E49D8295E18A900D4D077 /* nextArrowWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nextArrowWhite.png; sourceTree = "<group>"; };
+		8094B95D29A81AB00026228E /* failedPuzzleDictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = failedPuzzleDictionary.plist; sourceTree = "<group>"; };
 		8095C48127DB014E00E1740C /* GridTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GridTile.png; sourceTree = "<group>"; };
 		809B05CC2904E83A00081D46 /* grayRectangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayRectangle.png; sourceTree = "<group>"; };
 		809DF29028F1EFEE00AC4680 /* tileAnimations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tileAnimations.plist; sourceTree = "<group>"; };
@@ -1083,6 +1086,7 @@
 				5251ACD7279667DA00A50A7B /* paidHintPacksArray.plist */,
 				80A4F73E28D4D855007BDE13 /* dailyPuzzlesPackDictionary.plist */,
 				8060060C2990486900460553 /* editedPuzzlePack.plist */,
+				8094B95D29A81AB00026228E /* failedPuzzleDictionary.plist */,
 			);
 			path = "Level Plist Files";
 			sourceTree = "<group>";
@@ -1594,6 +1598,7 @@
 				3AFD65641F71A7240008A125 /* Main.storyboard in Resources */,
 				809FEA8729710BBE00B13351 /* NightDrive.wav in Resources */,
 				809DF29228F1EFEE00AC4680 /* tileAnimations.plist in Resources */,
+				8094B95F29A81AB00026228E /* failedPuzzleDictionary.plist in Resources */,
 				809B05CE2904E83A00081D46 /* grayRectangle.png in Resources */,
 				52994B8925DA13D700887B9C /* Rings_00018.png in Resources */,
 				808E49DB295E18A900D4D077 /* homeArrowWhite.png in Resources */,
@@ -1990,6 +1995,7 @@
 				5286EAA32564706B00B43209 /* TileJewelActivated05.png in Resources */,
 				80C3279E2918623400EBE438 /* CheckmarkInCircle.png in Resources */,
 				5286EAB82564706B00B43209 /* TileJewelActivated10.png in Resources */,
+				8094B95E29A81AB00026228E /* failedPuzzleDictionary.plist in Resources */,
 				80D07E56297E5AC800295271 /* Beamed2Logo_00013.png in Resources */,
 				809FEA8629710BBE00B13351 /* NightDrive.wav in Resources */,
 			);
@@ -2227,7 +2233,7 @@
 				INFOPLIST_FILE = Application/iOS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Beamed 2";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.puzzle-games";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2236,7 +2242,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/GameAnalytics",
 				);
-				MARKETING_VERSION = 1.00;
+				MARKETING_VERSION = 1.10;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.squaretailsoftware.beamed;
@@ -2271,7 +2277,7 @@
 				INFOPLIST_FILE = Application/iOS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Beamed 2";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.puzzle-games";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2280,7 +2286,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/GameAnalytics",
 				);
-				MARKETING_VERSION = 1.00;
+				MARKETING_VERSION = 1.10;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.squaretailsoftware.beamed;
 				PRODUCT_NAME = Beamed;

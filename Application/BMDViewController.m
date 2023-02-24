@@ -1028,6 +1028,7 @@ Implementation of the cross-platform view controller
                                     cyanJewelCount+
                                     magentaJewelCount+
                                     whiteJewelCount;
+//    int testCountTotalJewelsCollected = [appd countTotalJewelsCollected];
     jewelsCollectedLabelRight.layer.borderColor = [UIColor clearColor].CGColor;
     jewelsCollectedLabelRight.layer.borderWidth = 1.0;
     jewelsCollectedLabelRight.text = [NSString stringWithString:[NSString stringWithFormat:@"%d", numberOfJewelsCollected]];
@@ -1664,11 +1665,11 @@ Implementation of the cross-platform view controller
     //
     // Add Game Center Access Point
     //
-    gamekitAccessPoint = [GKAccessPoint shared];
-    gamekitAccessPoint.location = GKAccessPointLocationTopTrailing;
-    gamekitAccessPoint.parentWindow = homeView.window;
-    gamekitAccessPoint.active = YES;
-    gamekitAccessPoint.showHighlights = YES;
+//    gamekitAccessPoint = [GKAccessPoint shared];
+//    gamekitAccessPoint.location = GKAccessPointLocationBottomTrailing;
+//    gamekitAccessPoint.parentWindow = homeView.window;
+//    gamekitAccessPoint.active = YES;
+//    gamekitAccessPoint.showHighlights = YES;
 
     appCurrentGamePackType = PACKTYPE_MAIN;
     //
