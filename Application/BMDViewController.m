@@ -416,7 +416,7 @@ Implementation of the cross-platform view controller
     //
     // Activate Game Center Access Point
     //
-    gamekitAccessPoint.active = YES;
+//    gamekitAccessPoint.active = YES;
 
     // Fetch the current pack name and number of puzzles left for the startPuzzle button
     NSMutableDictionary *packDictionary = [appd fetchPuzzlePack:[appd fetchCurrentPackNumber]];

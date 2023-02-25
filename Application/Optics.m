@@ -455,7 +455,11 @@ extern void playSound(AVAudioPlayer *PLAYER);
             }
             
             // Certain objects are wrapped in circles to indicate that they are moveable
-            if (!myTile->fixed ||
+            if (!myTile->fixed && puzzleHasBeenCompleted == YES){
+                movableTileRenderData = [background renderMovableTile:myTile->tilePositionInPixels placedUsingHint:myTile->placedUsingHint placedManuallyMatchesHint:YES];
+                [tileRenderArray addObject:movableTileRenderData];
+            }
+            else if (!myTile->fixed ||
                 (([appd editModeIsEnabled] && !myTile->fixed && myTile != tileForRotation) ||
                  (rc.appCurrentGamePackType == PACKTYPE_DEMO && !myTile->fixed & !myTile->demoTileAtFinalGridPosition))){
                 movableTileRenderData = [background renderMovableTile:myTile->tilePositionInPixels placedUsingHint:myTile->placedUsingHint placedManuallyMatchesHint:myTile->placedManuallyMatchesHint];
@@ -3878,7 +3882,8 @@ extern void playSound(AVAudioPlayer *PLAYER);
     if (puzzleCompletionCondition == ALL_JEWELS_ENERGIZED){
         // Main puzzles
         if (rc.appCurrentGamePackType == PACKTYPE_MAIN ||
-            (rc.appCurrentGamePackType == PACKTYPE_EDITOR && ![appd editModeIsEnabled])){
+            (rc.appCurrentGamePackType == PACKTYPE_EDITOR &&
+             ![appd editModeIsEnabled])){
             if ([self checkIfAllJewelsAreEnergized]) {
                 puzzleCompleted = YES;
                 if (!puzzleHasBeenCompleted) {
@@ -4018,6 +4023,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
 - (void)handlePuzzleCompletion:(NSString *)message {
 //    rc.puzzleSolvedView.hidden = NO;
     puzzleHasBeenCompleted = YES;
+    tileForRotation = nil;
     [self startPuzzleCompleteCelebration];
     
     // If this is the Daily Puzzle then make note that it is solved
@@ -5384,7 +5390,8 @@ extern void playSound(AVAudioPlayer *PLAYER);
                 [self checkIfTouchInUnplacedTileRegion]){
                 tileForRotation = nil;
             }
-            else if (![appd editModeIsEnabled]){
+            else if (![appd editModeIsEnabled] &&
+                     puzzleHasBeenCompleted == NO){
                 tileForRotation = tileCurrentlyBeingEdited;
             }
             tileCurrentlyBeingEdited = nil;
@@ -5412,11 +5419,13 @@ extern void playSound(AVAudioPlayer *PLAYER);
     if ([self checkIfTouchInPuzzleRegion] ||
         ([self checkIfTouchInEditorRegion] && [appd editModeIsEnabled]) ) {
         if (tileCurrentlyBeingEdited) {
-            // Tile has moved to a new grid location
+            // Has Tile moved to a new grid location?
             if ([self touchesEndedInNewGridLocation] == NO) {
-                // Tile has not moved to a new grid location
-                [self handleTileRotation];
-                [self resetAllColorBeams];
+                // Tile has NOT moved to a new grid location
+                if (puzzleHasBeenCompleted == NO){
+                    [self handleTileRotation];
+                    [self resetAllColorBeams];
+                }
                 
                 // Update @"numberOfMoves" value in puzzleScoresArray
                 int currentPackNumber = -1;
