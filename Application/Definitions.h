@@ -10,8 +10,8 @@
 #define METAL_RENDERER_FPS 24
 
 #define BUILD_VERSION "1.10"
-#define ENABLE_GA NO           // YES enables Google Analytics
-#define ENABLE_GAMECENTER NO           // YES enables GemCenter
+#define ENABLE_GA YES           // YES enables Google Analytics
+#define ENABLE_GAMECENTER YES           // YES enables GemCenter
 #define FORCE_PUZZLE_EDITOR_AUTOGEN NO    // YES forces AutoGen mode when PE enabled
 #define ENABLE_HOME_SCREEN_ANIMATION YES
 
@@ -34,7 +34,7 @@
 
 
 // Handle debug logging
-#define DEBUG_MODE 1
+//#define DEBUG_MODE 1
 #ifdef DEBUG_MODE
 #    define DLog(...) NSLog(@__VA_ARGS__)
 #else

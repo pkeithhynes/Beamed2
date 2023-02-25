@@ -2341,11 +2341,16 @@
                     }
                     puzzleIndex++;
                 }
-                NSMutableDictionary *failedPuzzleDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
-                [failedPuzzleDictionary setObject:@"Failed Puzzles" forKey:@"pack_name"];
-                [failedPuzzleDictionary setObject:[NSNumber numberWithInt:0] forKey:@"AppStorePackCost"];
-                [failedPuzzleDictionary setObject:arrayOfFailingPuzzles forKey:@"puzzles"];
-                [appd savePuzzlePackDictionaryToFile:failedPuzzleDictionary fileName:@"failedPuzzleDictionary.plist"];
+                if ([arrayOfFailingPuzzles count] > 0){
+                    NSMutableDictionary *failedPuzzleDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
+                    [failedPuzzleDictionary setObject:@"Failed Puzzles" forKey:@"pack_name"];
+                    [failedPuzzleDictionary setObject:[NSNumber numberWithInt:0] forKey:@"AppStorePackCost"];
+                    [failedPuzzleDictionary setObject:arrayOfFailingPuzzles forKey:@"puzzles"];
+                    [appd savePuzzlePackDictionaryToFile:failedPuzzleDictionary fileName:@"failedPuzzleDictionary.plist"];
+                }
+                else {
+                    DLog("All puzzles are correctly formed.");
+                }
             }
         }
     }
