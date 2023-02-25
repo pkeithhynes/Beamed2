@@ -4524,8 +4524,30 @@ extern void playSound(AVAudioPlayer *PLAYER);
                         tileAtHintPosition->gridPosition = tile->gridPosition;
                         tileAtHintPosition->tilePositionInPixels = tile->tilePositionInPixels;
                     }
+
                     // Start moving the Tile to the final hintPosition
                     vector_float2 final = [self gridPositionToPixelPosition:hint.hintPosition];
+                    if (ENABLE_GA == YES &&
+                        (rc.appCurrentGamePackType == PACKTYPE_MAIN ||
+                         rc.appCurrentGamePackType == PACKTYPE_DAILY)){
+                        int currentPackNumber, currentPuzzleNumber;
+                        if (rc.appCurrentGamePackType == PACKTYPE_MAIN){
+                            currentPackNumber = [appd fetchCurrentPackNumber];
+                            currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
+                        }
+                        else {
+                            currentPackNumber = -1;
+                            currentPuzzleNumber = [appd fetchDailyPuzzleNumber];
+                        }
+                        [FIRAnalytics logEventWithName:@"hintUsed"
+                                            parameters:@{
+                            @"packNumber": @(currentPackNumber),
+                            @"puzzleNumber":@(currentPuzzleNumber),
+                            @"posX":@(hint.hintPosition.x),
+                            @"posY":@(hint.hintPosition.y),
+                            @"tileShape":@(tile->tileShape)
+                        }];
+                    }
                     tile->tileAngle = hint.hintAngle;
                     tile->placedTileAngle = hint.hintAngle;
                     tile->placedUsingHint = YES;
