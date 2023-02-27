@@ -90,7 +90,9 @@
 }
 
 
-- (TextureRenderData *)renderUnusedTileBackground:(unsigned int)backgroundColor numberOfUnplacedTiles:(unsigned int)numberOfUnplacedTiles initialNumberOfUnplacedTiles:(unsigned int)initialNumberOfUnplacedTiles{
+- (TextureRenderData *)renderUnusedTileBackground:(unsigned int)backgroundColor
+                            numberOfUnplacedTiles:(unsigned int)numberOfUnplacedTiles
+                     initialNumberOfUnplacedTiles:(unsigned int)initialNumberOfUnplacedTiles{
     BMDAppDelegate *appDelegate = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
     Optics *optics = appDelegate->optics;
 
@@ -115,32 +117,32 @@
     return unusedTileBackgroundRenderData;
 }
 
-- (TextureRenderData *)renderUnusedTileBackground2:(unsigned int)backgroundColor numberOfUnplacedTiles:(unsigned int)numberOfUnplacedTiles initialNumberOfUnplacedTiles:(unsigned int)initialNumberOfUnplacedTiles{
-    BMDAppDelegate *appDelegate = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
-    Optics *optics = appDelegate->optics;
-
-    NSMutableArray *backgroundTextureDataArray = appDelegate.backgroundTextures;
-    TextureData *backgroundTextureData;
-    
-    backgroundTextureData = [backgroundTextureDataArray objectAtIndex:BACKGROUND_ASPECT_4_3];
-
-    unusedTileBackgroundRenderData = [[TextureRenderData alloc] init];
-    unusedTileBackgroundRenderData.renderTexture = backgroundTextureData.texture;
-    unusedTileBackgroundRenderData->texturePositionInPixels.x = optics->_tileHorizontalOffsetInPixels - optics->_puzzleGridLeftAndRightBorderWidthInPixels +
-        optics->_squareTileSideLengthInPixels*(initialNumberOfUnplacedTiles-numberOfUnplacedTiles);
-    unusedTileBackgroundRenderData->texturePositionInPixels.y = optics->_tileVerticalOffsetInPixels - optics->_puzzleGridTopAndBottomBorderWidthInPixels +
-        optics->_squareTileSideLengthInPixels*(optics->gameGrid.sizeY);
-    if (numberOfUnplacedTiles == 0){
-        unusedTileBackgroundRenderData->textureDimensionsInPixels.x = 0.0;
-    }
-    else {
-        unusedTileBackgroundRenderData->textureDimensionsInPixels.x = 1.0*optics->_squareTileSideLengthInPixels*numberOfUnplacedTiles + 2.0*optics->_puzzleGridLeftAndRightBorderWidthInPixels;
-    }
-    unusedTileBackgroundRenderData->textureDimensionsInPixels.y = optics->_squareTileSideLengthInPixels + 2.0*optics->_puzzleGridLeftAndRightBorderWidthInPixels;
-    unusedTileBackgroundRenderData->tileColor = backgroundColor;
-
-    return unusedTileBackgroundRenderData;
-}
+//- (TextureRenderData *)renderUnusedTileBackground2:(unsigned int)backgroundColor numberOfUnplacedTiles:(unsigned int)numberOfUnplacedTiles initialNumberOfUnplacedTiles:(unsigned int)initialNumberOfUnplacedTiles{
+//    BMDAppDelegate *appDelegate = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
+//    Optics *optics = appDelegate->optics;
+//
+//    NSMutableArray *backgroundTextureDataArray = appDelegate.backgroundTextures;
+//    TextureData *backgroundTextureData;
+//    
+//    backgroundTextureData = [backgroundTextureDataArray objectAtIndex:BACKGROUND_ASPECT_4_3];
+//
+//    unusedTileBackgroundRenderData = [[TextureRenderData alloc] init];
+//    unusedTileBackgroundRenderData.renderTexture = backgroundTextureData.texture;
+//    unusedTileBackgroundRenderData->texturePositionInPixels.x = optics->_tileHorizontalOffsetInPixels - optics->_puzzleGridLeftAndRightBorderWidthInPixels +
+//        optics->_squareTileSideLengthInPixels*(initialNumberOfUnplacedTiles-numberOfUnplacedTiles);
+//    unusedTileBackgroundRenderData->texturePositionInPixels.y = optics->_tileVerticalOffsetInPixels - optics->_puzzleGridTopAndBottomBorderWidthInPixels +
+//        optics->_squareTileSideLengthInPixels*(optics->gameGrid.sizeY);
+//    if (numberOfUnplacedTiles == 0){
+//        unusedTileBackgroundRenderData->textureDimensionsInPixels.x = 0.0;
+//    }
+//    else {
+//        unusedTileBackgroundRenderData->textureDimensionsInPixels.x = 1.0*optics->_squareTileSideLengthInPixels*numberOfUnplacedTiles + 2.0*optics->_puzzleGridLeftAndRightBorderWidthInPixels;
+//    }
+//    unusedTileBackgroundRenderData->textureDimensionsInPixels.y = optics->_squareTileSideLengthInPixels + 2.0*optics->_puzzleGridLeftAndRightBorderWidthInPixels;
+//    unusedTileBackgroundRenderData->tileColor = backgroundColor;
+//
+//    return unusedTileBackgroundRenderData;
+//}
 
 - (TextureRenderData *)renderLogoImage:(unsigned int)logoColor {
     BMDAppDelegate *appDelegate = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];

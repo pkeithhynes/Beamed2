@@ -388,6 +388,10 @@ extern void playSound(AVAudioPlayer *PLAYER);
                     myTile->gridPosition.x = numberOfUnplacedTiles+1;
                     myTile->tilePositionInPixels = [self gridPositionToIntPixelPosition:myTile->gridPosition];
                     numberOfUnplacedTiles++;
+                    // Get rid of rotation prompt if present
+                    if (myTile == tileForRotation){
+                        tileForRotation = nil;
+                    }
                 }
             }
             
@@ -519,7 +523,8 @@ extern void playSound(AVAudioPlayer *PLAYER);
         //
         // Fetch the Unused Tile background
         //
-        if (![appd autoGenIsEnabled]){
+        unusedTileBackgroundRenderData = nil;
+        if (![appd autoGenIsEnabled] && numberOfUnplacedTiles > 0){
             unusedTileBackgroundRenderData = [background renderUnusedTileBackground:COLOR_GRAY numberOfUnplacedTiles:numberOfUnplacedTiles initialNumberOfUnplacedTiles:initialNumberOfUnplacedTiles];
         }
         
@@ -636,11 +641,11 @@ extern void playSound(AVAudioPlayer *PLAYER);
         // Fetch an array of Background Tile-sized Textures to render behind the Puzzle
         if (displayBackgroundArray){
             if (puzzleHasBeenCompleted) {
-                backgroundRenderArray = [background renderBackgroundArray:backgroundRenderArray tileColor:7 numberOfUnplacedTiles:initialNumberOfUnplacedTiles
+                backgroundRenderArray = [background renderBackgroundArray:backgroundRenderArray tileColor:7 numberOfUnplacedTiles:numberOfUnplacedTiles
                                                           puzzleCompleted:YES];
             }
             else {
-                backgroundRenderArray = [background renderBackgroundArray:backgroundRenderArray tileColor:0 numberOfUnplacedTiles:initialNumberOfUnplacedTiles
+                backgroundRenderArray = [background renderBackgroundArray:backgroundRenderArray tileColor:0 numberOfUnplacedTiles:numberOfUnplacedTiles
                                                           puzzleCompleted:NO];
             }
         }
@@ -793,7 +798,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
         if (displayBackgroundArray){
             [renderDictionary setObject:backgroundRenderDataInner forKey:@"backgroundRenderDataInner"];
         }
-        if (![appd autoGenIsEnabled]){
+        if (![appd autoGenIsEnabled] && unusedTileBackgroundRenderData != nil){
             [renderDictionary setObject:unusedTileBackgroundRenderData forKey:@"unusedTileBackgroundRenderData"];
         }
         [renderDictionary setObject:borderRenderData forKey:@"borderRenderData"];
@@ -5413,7 +5418,8 @@ extern void playSound(AVAudioPlayer *PLAYER);
                 tileForRotation = nil;
             }
             else if (![appd editModeIsEnabled] &&
-                     puzzleHasBeenCompleted == NO){
+                     puzzleHasBeenCompleted == NO &&
+                     ![self checkIfTouchInUnplacedTileRegion]){
                 tileForRotation = tileCurrentlyBeingEdited;
             }
             tileCurrentlyBeingEdited = nil;
