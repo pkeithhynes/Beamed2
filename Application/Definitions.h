@@ -9,7 +9,7 @@
 
 #define METAL_RENDERER_FPS 24
 
-#define BUILD_VERSION "1.10"
+#define BUILD_VERSION "1.20"
 #define ENABLE_GA YES           // YES enables Google Analytics
 #define ENABLE_GAMECENTER YES           // YES enables GemCenter
 #define FORCE_PUZZLE_EDITOR_AUTOGEN NO    // YES forces AutoGen mode when PE enabled
