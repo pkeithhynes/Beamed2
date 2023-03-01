@@ -876,7 +876,11 @@
 
 
 - (void)aboutButtonPressed {
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Beamed 2, version 1.10"
+    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
+    NSString* versionString = [infoDict objectForKey:@"CFBundleShortVersionString"];
+    NSString* titleString = @"Beamed 2, version ";
+    titleString = [titleString stringByAppendingString:versionString];
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:titleString
                                message:@"Copyright 2023\rSquaretail Software\rSan Diego CA"
                                preferredStyle:UIAlertControllerStyleAlert];
 
