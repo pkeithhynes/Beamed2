@@ -45,6 +45,7 @@ Implementation of the cross-platform view controller
 @synthesize dailyPuzzleButtonCheckmark;
 @synthesize moreHintPacksButton;
 @synthesize noAdsButton;
+@synthesize reviewButton;
 @synthesize howToPlayButton;
 @synthesize removeAdsLabel;
 
@@ -488,6 +489,14 @@ Implementation of the cross-platform view controller
     else {
         noAdsButton.hidden = NO;
         removeAdsLabel.hidden = NO;
+    }
+    
+    // Update the reviewButton status
+    if ([appd reviewRequestIsAppropriate]){
+        reviewButton.alpha = 1.0;
+    }
+    else {
+        reviewButton.alpha = 0.5;
     }
 
     [self loadAppropriateSizeBannerAd];
@@ -2000,73 +2009,6 @@ Implementation of the cross-platform view controller
     [homeView bringSubviewToFront:moreHintPacksButton];
         
     //
-    // Add "Scores" button to homeView
-    //
-    UIButton *scoresButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    int scoresButtonFontSize;
-    switch (displayAspectRatio) {
-        case ASPECT_4_3:{
-            // iPad (9th generation)
-            buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
-            buttonHeight = buttonWidth/10.0;
-            buttonCy = buttonCy + 2.0*buttonHeight;
-            scoresButtonFontSize = 28;
-            [scoresButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:scoresButtonFontSize]];
-            break;
-        }
-        case ASPECT_10_7:{
-            // iPad Air (5th generation)
-            buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
-            buttonHeight = buttonWidth/10.0;
-            buttonCy = buttonCy + 2.0*buttonHeight;
-            scoresButtonFontSize = 28;
-            [scoresButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:scoresButtonFontSize]];
-            break;
-        }
-        case ASPECT_3_2: {
-            // iPad Mini (6th generation)
-            buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
-            buttonHeight = buttonWidth/10.0;
-            buttonCy = buttonCy + 2.0*buttonHeight;
-            scoresButtonFontSize = 28;
-            [scoresButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:scoresButtonFontSize]];
-            break;
-        }
-        case ASPECT_16_9: {
-            // iPhone 8
-            buttonWidth = 0.8*screenWidthInPixels/contentScaleFactor;
-            buttonHeight = buttonWidth/10.0;
-            buttonCy = buttonCy + 2.25*buttonHeight;
-            scoresButtonFontSize = 16;
-            [scoresButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:scoresButtonFontSize]];
-            break;
-        }
-        case ASPECT_13_6: {
-            // iPhone 14
-            buttonWidth = 0.8*screenWidthInPixels/contentScaleFactor;
-            buttonHeight = buttonWidth/8.0;
-            buttonCy = buttonCy + 1.85*buttonHeight;
-            scoresButtonFontSize = 16;
-            [scoresButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:scoresButtonFontSize]];
-            break;
-        }
-    }
-    [scoresButton setBackgroundImage:btnImage forState:UIControlStateNormal];
-    [scoresButton setBackgroundImage:btnSelectedImage forState:UIControlStateHighlighted];
-    buttonRect = CGRectMake(buttonCx-buttonWidth/2.0,
-                            buttonCy,
-                            buttonWidth,
-                            buttonHeight);
-    scoresButton.frame = buttonRect;
-    [scoresButton setTitle:@"Scores" forState:UIControlStateNormal];
-    [scoresButton addTarget:self action:@selector(scoresButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [scoresButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    scoresButton.showsTouchWhenHighlighted = YES;
-    scoresButton.alpha = 1.0;
-    [homeView addSubview:scoresButton];
-    [homeView bringSubviewToFront:scoresButton];
-    
-    //
     // Add "howToPlay" button to homeView
     //
     howToPlayButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -2076,7 +2018,7 @@ Implementation of the cross-platform view controller
             // iPad (9th generation)
             buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
             buttonHeight = buttonWidth/10.0;
-            buttonCy = buttonCy + 1.5*buttonHeight;
+            buttonCy = buttonCy + 2.0*buttonHeight;
             howToPlayButtonFontSize = 28;
             [howToPlayButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:howToPlayButtonFontSize]];
             break;
@@ -2085,7 +2027,7 @@ Implementation of the cross-platform view controller
             // iPad Air (5th generation)
             buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
             buttonHeight = buttonWidth/10.0;
-            buttonCy = buttonCy + 1.5*buttonHeight;
+            buttonCy = buttonCy + 2.0*buttonHeight;
             howToPlayButtonFontSize = 28;
             [howToPlayButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:howToPlayButtonFontSize]];
             break;
@@ -2094,7 +2036,7 @@ Implementation of the cross-platform view controller
             // iPad Mini (6th generation)
             buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
             buttonHeight = buttonWidth/10.0;
-            buttonCy = buttonCy + 1.5*buttonHeight;
+            buttonCy = buttonCy + 2.0*buttonHeight;
             howToPlayButtonFontSize = 28;
             [howToPlayButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:howToPlayButtonFontSize]];
             break;
@@ -2103,7 +2045,7 @@ Implementation of the cross-platform view controller
             // iPhone 8
             buttonWidth = 0.8*screenWidthInPixels/contentScaleFactor;
             buttonHeight = buttonWidth/10.0;
-            buttonCy = buttonCy + 1.75*buttonHeight;
+            buttonCy = buttonCy + 2.25*buttonHeight;
             howToPlayButtonFontSize = 16;
             [howToPlayButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:howToPlayButtonFontSize]];
             break;
@@ -2112,7 +2054,7 @@ Implementation of the cross-platform view controller
             // iPhone 14
             buttonWidth = 0.8*screenWidthInPixels/contentScaleFactor;
             buttonHeight = buttonWidth/8.0;
-            buttonCy = buttonCy + 1.60*buttonHeight;
+            buttonCy = buttonCy + 1.85*buttonHeight;
             howToPlayButtonFontSize = 16;
             [howToPlayButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:howToPlayButtonFontSize]];
             break;
@@ -2132,6 +2074,218 @@ Implementation of the cross-platform view controller
     howToPlayButton.alpha = 1.0;
     [homeView addSubview:howToPlayButton];
     [homeView bringSubviewToFront:howToPlayButton];
+    
+    //
+    // Add "Scores" button to homeView
+    //
+    // This button is narrower and left-aligned with previous buttons
+    //
+    UIButton *scoresButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    int scoresButtonFontSize;
+    CGFloat oldButtonLeft, oldButtonWidth, newButtonWidth, newButtonCx;
+    oldButtonWidth = buttonWidth;
+    newButtonWidth = 0.475*buttonWidth;
+    oldButtonLeft = buttonCx - 0.5*oldButtonWidth;
+    switch (displayAspectRatio) {
+        case ASPECT_4_3:{
+            // iPad (9th generation)
+            buttonHeight = buttonWidth/10.0;
+            buttonCy = buttonCy + 1.5*buttonHeight;
+            scoresButtonFontSize = 28;
+            [scoresButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:scoresButtonFontSize]];
+            break;
+        }
+        case ASPECT_10_7:{
+            // iPad Air (5th generation)
+            buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
+            buttonHeight = buttonWidth/10.0;
+            buttonCy = buttonCy + 1.5*buttonHeight;
+            scoresButtonFontSize = 28;
+            [scoresButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:scoresButtonFontSize]];
+            break;
+        }
+        case ASPECT_3_2: {
+            // iPad Mini (6th generation)
+            buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
+            buttonHeight = buttonWidth/10.0;
+            buttonCy = buttonCy + 1.5*buttonHeight;
+            scoresButtonFontSize = 28;
+            [scoresButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:scoresButtonFontSize]];
+            break;
+        }
+        case ASPECT_16_9: {
+            // iPhone 8
+            buttonWidth = 0.8*screenWidthInPixels/contentScaleFactor;
+            buttonHeight = buttonWidth/10.0;
+            buttonCy = buttonCy + 1.75*buttonHeight;
+            scoresButtonFontSize = 16;
+            [scoresButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:scoresButtonFontSize]];
+            break;
+        }
+        case ASPECT_13_6: {
+            // iPhone 14
+            buttonWidth = 0.8*screenWidthInPixels/contentScaleFactor;
+            buttonHeight = buttonWidth/8.0;
+            buttonCy = buttonCy + 1.60*buttonHeight;
+            scoresButtonFontSize = 16;
+            [scoresButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:scoresButtonFontSize]];
+            break;
+        }
+    }
+    newButtonCx = oldButtonLeft + 0.5*newButtonWidth;
+    [scoresButton setBackgroundImage:btnImage forState:UIControlStateNormal];
+    [scoresButton setBackgroundImage:btnSelectedImage forState:UIControlStateHighlighted];
+    buttonRect = CGRectMake(newButtonCx-newButtonWidth/2.0,
+                            buttonCy,
+                            newButtonWidth,
+                            buttonHeight);
+    scoresButton.frame = buttonRect;
+    [scoresButton setTitle:@"Scores" forState:UIControlStateNormal];
+    [scoresButton addTarget:self action:@selector(scoresButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [scoresButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    scoresButton.showsTouchWhenHighlighted = YES;
+    scoresButton.alpha = 1.0;
+    [homeView addSubview:scoresButton];
+    [homeView bringSubviewToFront:scoresButton];
+    
+    //
+    // Add "Review" button to homeView
+    //
+    // This button is narrower and right-aligned with previous buttons
+    //
+    reviewButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    int reviewButtonFontSize;
+    CGFloat oldButtonRight;
+    oldButtonRight = buttonCx + 0.5*buttonWidth;
+    switch (displayAspectRatio) {
+        case ASPECT_4_3:{
+            // iPad (9th generation)
+            buttonHeight = buttonWidth/10.0;
+            reviewButtonFontSize = 28;
+            [reviewButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:reviewButtonFontSize]];
+            break;
+        }
+        case ASPECT_10_7:{
+            // iPad Air (5th generation)
+            buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
+            buttonHeight = buttonWidth/10.0;
+            reviewButtonFontSize = 28;
+            [reviewButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:reviewButtonFontSize]];
+            break;
+        }
+        case ASPECT_3_2: {
+            // iPad Mini (6th generation)
+            buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
+            buttonHeight = buttonWidth/10.0;
+            reviewButtonFontSize = 28;
+            [reviewButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:reviewButtonFontSize]];
+            break;
+        }
+        case ASPECT_16_9: {
+            // iPhone 8
+            buttonWidth = 0.8*screenWidthInPixels/contentScaleFactor;
+            buttonHeight = buttonWidth/10.0;
+            reviewButtonFontSize = 16;
+            [reviewButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:reviewButtonFontSize]];
+            break;
+        }
+        case ASPECT_13_6: {
+            // iPhone 14
+            buttonWidth = 0.8*screenWidthInPixels/contentScaleFactor;
+            buttonHeight = buttonWidth/8.0;
+            reviewButtonFontSize = 16;
+            [reviewButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:reviewButtonFontSize]];
+            break;
+        }
+    }
+    newButtonCx = oldButtonRight - 0.5*newButtonWidth;
+    [reviewButton setBackgroundImage:btnImage forState:UIControlStateNormal];
+    [reviewButton setBackgroundImage:btnSelectedImage forState:UIControlStateHighlighted];
+    buttonRect = CGRectMake(newButtonCx-newButtonWidth/2.0,
+                            buttonCy,
+                            newButtonWidth,
+                            buttonHeight);
+    reviewButton.frame = buttonRect;
+    [reviewButton setTitle:@"Review" forState:UIControlStateNormal];
+    [reviewButton addTarget:self action:@selector(reviewButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [reviewButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    reviewButton.showsTouchWhenHighlighted = YES;
+    [homeView addSubview:reviewButton];
+    [homeView bringSubviewToFront:reviewButton];
+    
+    if ([appd reviewRequestIsAppropriate]){
+        reviewButton.alpha = 1.0;
+    }
+    else {
+        reviewButton.alpha = 0.5;
+    }
+    
+    //
+    // Add "Scores" button to homeView
+    //
+//    UIButton *scoresButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    int scoresButtonFontSize;
+//    switch (displayAspectRatio) {
+//        case ASPECT_4_3:{
+//            // iPad (9th generation)
+//            buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
+//            buttonHeight = buttonWidth/10.0;
+//            buttonCy = buttonCy + 1.5*buttonHeight;
+//            scoresButtonFontSize = 28;
+//            [scoresButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:scoresButtonFontSize]];
+//            break;
+//        }
+//        case ASPECT_10_7:{
+//            // iPad Air (5th generation)
+//            buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
+//            buttonHeight = buttonWidth/10.0;
+//            buttonCy = buttonCy + 1.5*buttonHeight;
+//            scoresButtonFontSize = 28;
+//            [scoresButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:scoresButtonFontSize]];
+//            break;
+//        }
+//        case ASPECT_3_2: {
+//            // iPad Mini (6th generation)
+//            buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
+//            buttonHeight = buttonWidth/10.0;
+//            buttonCy = buttonCy + 1.5*buttonHeight;
+//            scoresButtonFontSize = 28;
+//            [scoresButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:scoresButtonFontSize]];
+//            break;
+//        }
+//        case ASPECT_16_9: {
+//            // iPhone 8
+//            buttonWidth = 0.8*screenWidthInPixels/contentScaleFactor;
+//            buttonHeight = buttonWidth/10.0;
+//            buttonCy = buttonCy + 1.75*buttonHeight;
+//            scoresButtonFontSize = 16;
+//            [scoresButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:scoresButtonFontSize]];
+//            break;
+//        }
+//        case ASPECT_13_6: {
+//            // iPhone 14
+//            buttonWidth = 0.8*screenWidthInPixels/contentScaleFactor;
+//            buttonHeight = buttonWidth/8.0;
+//            buttonCy = buttonCy + 1.60*buttonHeight;
+//            scoresButtonFontSize = 16;
+//            [scoresButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:scoresButtonFontSize]];
+//            break;
+//        }
+//    }
+//    [scoresButton setBackgroundImage:btnImage forState:UIControlStateNormal];
+//    [scoresButton setBackgroundImage:btnSelectedImage forState:UIControlStateHighlighted];
+//    buttonRect = CGRectMake(buttonCx-buttonWidth/2.0,
+//                            buttonCy,
+//                            buttonWidth,
+//                            buttonHeight);
+//    scoresButton.frame = buttonRect;
+//    [scoresButton setTitle:@"Scores" forState:UIControlStateNormal];
+//    [scoresButton addTarget:self action:@selector(scoresButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+//    [scoresButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    scoresButton.showsTouchWhenHighlighted = YES;
+//    scoresButton.alpha = 1.0;
+//    [homeView addSubview:scoresButton];
+//    [homeView bringSubviewToFront:scoresButton];
     
     //
     // Add "Settings Gear" button to homeView
@@ -2419,22 +2573,23 @@ Implementation of the cross-platform view controller
 //}
 
 // Borrow this button temporarily to test out reviews
-- (void)noAdsButtonPressed {
+- (void)reviewButtonPressed {
     // Test out SKStoreReviewController
     if ([appd reviewRequestIsAppropriate]){
         NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
         NSString* versionString = [infoDict objectForKey:@"CFBundleShortVersionString"];
         [SKStoreReviewController requestReviewInScene:self.view.window.windowScene];
         [appd setObjectInDefaults:versionString forKey:kCFBundleShortVersionStringHasBeenReviewed];
+        reviewButton.alpha = 0.5;
     }
 }
 
-//- (void)noAdsButtonPressed {
-//    DLog("BMDViewController.noAdsButtonPressed");
-//    // View controller approach
-//    [appd playSound:appd.tapPlayer];
-//    [appd purchaseAdFreePuzzles];
-//}
+- (void)noAdsButtonPressed {
+    DLog("BMDViewController.noAdsButtonPressed");
+    // View controller approach
+    [appd playSound:appd.tapPlayer];
+    [appd purchaseAdFreePuzzles];
+}
 
 - (void)backButtonPressed{
     scoresView.hidden = YES;
