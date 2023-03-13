@@ -2418,12 +2418,23 @@ Implementation of the cross-platform view controller
 //    //    @[][1];
 //}
 
+// Borrow this button temporarily to test out reviews
 - (void)noAdsButtonPressed {
-    DLog("BMDViewController.noAdsButtonPressed");
-    // View controller approach
-    [appd playSound:appd.tapPlayer];
-    [appd purchaseAdFreePuzzles];
+    // Test out SKStoreReviewController
+    if ([appd reviewRequestIsAppropriate]){
+        NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
+        NSString* versionString = [infoDict objectForKey:@"CFBundleShortVersionString"];
+        [SKStoreReviewController requestReviewInScene:self.view.window.windowScene];
+        [appd setObjectInDefaults:versionString forKey:kCFBundleShortVersionStringHasBeenReviewed];
+    }
 }
+
+//- (void)noAdsButtonPressed {
+//    DLog("BMDViewController.noAdsButtonPressed");
+//    // View controller approach
+//    [appd playSound:appd.tapPlayer];
+//    [appd purchaseAdFreePuzzles];
+//}
 
 - (void)backButtonPressed{
     scoresView.hidden = YES;

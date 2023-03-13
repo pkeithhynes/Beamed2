@@ -2435,24 +2435,6 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     return numberOfJewels;
 }
 
-//- (int)countTotalJewelsCollected {
-//    int numberOfJewels = 0;
-//    // Enumerate over puzzleScoresArray
-//    NSMutableArray *puzzleScoresArray = [self getArrayFromDefaults:@"puzzleScoresArray"];
-//    if (puzzleScoresArray != nil && [puzzleScoresArray count] > 0){
-//        NSEnumerator *scoresEnum = [puzzleScoresArray objectEnumerator];
-//        NSMutableDictionary *scoreDictionary;
-//        while (scoreDictionary = [scoresEnum nextObject]) {
-//            NSNumber *jewelsNum = [scoreDictionary objectForKey:[NSString stringWithFormat:@"numberOfJewels"]];
-//            int jewels = [jewelsNum intValue];
-//            if (jewels > 0){
-//                numberOfJewels = numberOfJewels + jewels;
-//            }
-//        }
-//    }
-//    return numberOfJewels;
-//}
-
 - (int)countPuzzlesSolved {
     int numberOfPuzzlesSolved = 0;
     // Enumerate over puzzleScoresArray
@@ -2546,20 +2528,6 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     }
     return solutionTime;
 }
-
-    
-//- (long)fetchTotalSolutionTimeForAllPacks {
-//    long solutionTime = 0;
-//    int numberOfPacks = [self countNumberOfPacksInArray:kPuzzlePacksArray];
-//    for (int ii=0; ii<numberOfPacks; ii++){
-//        int numberOfPuzzles = [self countNumberOfPuzzlesWithinPack:ii InArray:kPuzzlePacksArray];
-//        for (int jj=0; jj<numberOfPuzzles; jj++){
-//            solutionTime = solutionTime + [self calculateSolutionTime:ii puzzleNumber:jj];
-//        }
-//    }
-//    return solutionTime;
-//}
-
 
 // +1   Puzzle is solved
 //  0   Puzzle is unsolved
@@ -2831,7 +2799,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
 
 
 //
-// StoreKit interface for purchasing puzzle and hint packs
+// StoreKit interface and supporting methods for purchasing puzzle and hint packs and handling reviews
 //
 - (void)completeAdFreePurchase {
     DLog("Purchased Ad Free Puzzles");
@@ -3159,6 +3127,36 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     }
 }
 
+- (BOOL)reviewRequestIsAppropriate {
+    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
+    NSString* versionString = [infoDict objectForKey:@"CFBundleShortVersionString"];
+    NSString* storedLatestVersionReviewedString = [self getObjectFromDefaults:kCFBundleShortVersionStringHasBeenReviewed];
+    if (storedLatestVersionReviewedString == nil){
+        return YES;
+    }
+    else if ([storedLatestVersionReviewedString isEqualToString:versionString] == NO)
+        return YES;
+    else
+        return NO;
+}
+
+- (BOOL)automatedReviewRequestIsAppropriate {
+    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
+    NSString* versionString = [infoDict objectForKey:@"CFBundleShortVersionString"];
+    NSString* storedLatestVersionReviewedString = [self getObjectFromDefaults:kCFBundleShortVersionStringHasBeenReviewed];
+    int totalPuzzlesSolved = [self countPuzzlesSolved];
+    if (storedLatestVersionReviewedString == nil &&
+        totalPuzzlesSolved > 0 &&
+        totalPuzzlesSolved % 5 == 0){
+        return YES;
+    }
+    else if ([storedLatestVersionReviewedString isEqualToString:versionString] == NO &&
+        totalPuzzlesSolved > 0 &&
+        totalPuzzlesSolved % 5 == 0)
+        return YES;
+    else
+        return NO;
+}
 
 //
 // Vungle Ad Network Methods

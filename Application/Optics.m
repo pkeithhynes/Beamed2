@@ -4026,7 +4026,6 @@ extern void playSound(AVAudioPlayer *PLAYER);
 }
 
 - (void)handlePuzzleCompletion:(NSString *)message {
-//    rc.puzzleSolvedView.hidden = NO;
     puzzleHasBeenCompleted = YES;
     tileForRotation = nil;
     [self startPuzzleCompleteCelebration];
@@ -4039,9 +4038,6 @@ extern void playSound(AVAudioPlayer *PLAYER);
     
     // Update scores and solved puzzles
     if (rc.appCurrentGamePackType == PACKTYPE_MAIN){
-//        int packNumber = [appd fetchCurrentPackNumber];
-//        int puzzleNumber = [appd fetchCurrentPuzzleNumberForPack:packNumber];
-//        int jewelCount = [appd queryPuzzleJewelCount:[appd fetchCurrentPuzzleNumberForPack:[appd fetchCurrentPackNumber]]];
         NSMutableDictionary *jewelCountDictionary = [appd queryPuzzleJewelCountByColor:[appd fetchCurrentPuzzleNumberForPack:[appd fetchCurrentPackNumber]]];
         
         // Puzzle solved so update all scores and timeSegment values
@@ -4159,6 +4155,16 @@ extern void playSound(AVAudioPlayer *PLAYER);
 
         [vc buildButtonsAndLabelsForPlay];
     }
+    
+    // Test out SKStoreReviewController
+    if (rc.appCurrentGamePackType == PACKTYPE_MAIN &&
+        [appd automatedReviewRequestIsAppropriate]){
+        NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
+        NSString* versionString = [infoDict objectForKey:@"CFBundleShortVersionString"];
+        [SKStoreReviewController requestReviewInScene:vc.view.window.windowScene];
+        [appd setObjectInDefaults:versionString forKey:kCFBundleShortVersionStringHasBeenReviewed];
+    }
+    
 }
 
 - (void)startPuzzleCompleteCelebration {

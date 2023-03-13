@@ -326,6 +326,8 @@ API_AVAILABLE(ios(13.0))
 - (BOOL)checkForEndlessHintsPurchased;
 - (void)setEndlessHintsPurchased;
 
+- (BOOL)reviewRequestIsAppropriate;
+- (BOOL)automatedReviewRequestIsAppropriate;
 
 //
 // Support Puzzle Editing
