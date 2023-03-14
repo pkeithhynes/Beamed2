@@ -462,6 +462,8 @@
 		80D07E5D297E5AC800295271 /* Beamed2Logo_00010.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D07E2D297E5AC800295271 /* Beamed2Logo_00010.png */; };
 		80D07E5F297E5AC800295271 /* Beamed2Logo_00003.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D07E2E297E5AC800295271 /* Beamed2Logo_00003.png */; };
 		80D07E60297E5AC800295271 /* Beamed2Logo_00003.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D07E2E297E5AC800295271 /* Beamed2Logo_00003.png */; };
+		80D0EE0029C0B775009F61CC /* JewelChest.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D0EDFF29C0B775009F61CC /* JewelChest.png */; };
+		80D0EE0129C0B775009F61CC /* JewelChest.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D0EDFF29C0B775009F61CC /* JewelChest.png */; };
 		80D4CA172965DD6B00AD28D7 /* helpButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D4CA162965DD6B00AD28D7 /* helpButton.png */; };
 		80D4CA182965DD6B00AD28D7 /* helpButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 80D4CA162965DD6B00AD28D7 /* helpButton.png */; };
 		80DFC2C328FB368000BE90C3 /* GridTile2.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DFC2C228FB368000BE90C3 /* GridTile2.png */; };
@@ -776,6 +778,7 @@
 		80D07E2C297E5AC700295271 /* Beamed2Logo_00008.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Beamed2Logo_00008.png; sourceTree = "<group>"; };
 		80D07E2D297E5AC800295271 /* Beamed2Logo_00010.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Beamed2Logo_00010.png; sourceTree = "<group>"; };
 		80D07E2E297E5AC800295271 /* Beamed2Logo_00003.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Beamed2Logo_00003.png; sourceTree = "<group>"; };
+		80D0EDFF29C0B775009F61CC /* JewelChest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JewelChest.png; sourceTree = "<group>"; };
 		80D4CA162965DD6B00AD28D7 /* helpButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helpButton.png; sourceTree = "<group>"; };
 		80DFC2C228FB368000BE90C3 /* GridTile2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GridTile2.png; sourceTree = "<group>"; };
 		80E76F5D28AAAD7600F6D31D /* BMDPuzzleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMDPuzzleViewController.h; sourceTree = "<group>"; };
@@ -1178,6 +1181,7 @@
 				8089548A291DB76B009C4D02 /* homeArrow.png */,
 				80895496291DB7FE009C4D02 /* nextArrow.png */,
 				808D86B3297527B00022B2FE /* puzzlePacks.png */,
+				80D0EDFF29C0B775009F61CC /* JewelChest.png */,
 			);
 			path = "Button Textures";
 			sourceTree = "<group>";
@@ -1727,6 +1731,7 @@
 				80D07E1C297DF1D500295271 /* logoAnimations.plist in Resources */,
 				8023B2BD2915B35A00176960 /* jewelTextures.plist in Resources */,
 				80C538EB28DF349700E0606E /* TileCheckmark.png in Resources */,
+				80D0EE0129C0B775009F61CC /* JewelChest.png in Resources */,
 				526FBCFE25926960001F5647 /* Beam-Angle00-13.png in Resources */,
 				52994B5625DA13D700887B9C /* Rings_00003.png in Resources */,
 				80BF264827D723A000BF9736 /* LaserGun-0.png in Resources */,
@@ -1897,6 +1902,7 @@
 				809FEA8E29710C2500B13351 /* 70645767-internal-calculations-license.pdf in Resources */,
 				80FA4A51298D949B00CE211E /* lightBulbInCircle.png in Resources */,
 				8011CE74297B2C0200E7CEAB /* backArrow-11569642-Vecteezy.pdf in Resources */,
+				80D0EE0029C0B775009F61CC /* JewelChest.png in Resources */,
 				80FDEA6C29145A5C007C05F7 /* TileSquareBright.png in Resources */,
 				80D07E59297E5AC800295271 /* Beamed2Logo_00008.png in Resources */,
 				5286EAAC2564706B00B43209 /* TileJewelActivated01.png in Resources */,

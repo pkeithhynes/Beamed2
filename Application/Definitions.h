@@ -9,7 +9,7 @@
 
 #define METAL_RENDERER_FPS 24
 
-#define ENABLE_GA NO           // YES enables Google Analytics
+#define ENABLE_GA YES           // YES enables Google Analytics
 #define ENABLE_GAMECENTER YES           // YES enables GemCenter
 #define ENABLE_REVIEW_REQUESTS YES      // YES enables a review request every 366/3 = 122 days
 #define FORCE_PUZZLE_EDITOR_AUTOGEN NO    // YES forces AutoGen mode when PE enabled

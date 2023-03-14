@@ -106,6 +106,7 @@ API_AVAILABLE(ios(13.0))
     UIButton *moreHintPacksButton;
     UIButton *noAdsButton;
     UIButton *reviewButton;
+    UIButton *dailyRewardButton;
     UIButton *howToPlayButton;
     UILabel *removeAdsLabel;
     NSMutableArray *packButtonsArray;
@@ -235,6 +236,7 @@ API_AVAILABLE(ios(13.0))
 @property (nonatomic, retain) UIButton *moreHintPacksButton;
 @property (nonatomic, retain) UIButton *noAdsButton;
 @property (nonatomic, retain) UIButton *reviewButton;
+@property (nonatomic, retain) UIButton *dailyRewardButton;
 @property (nonatomic, retain) UIButton *howToPlayButton;
 @property (nonatomic, retain) UILabel *removeAdsLabel;
 

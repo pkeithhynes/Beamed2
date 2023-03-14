@@ -13,14 +13,10 @@ Implementation of the cross-platform view controller
 
 @implementation BMDViewController {
     @public
-//    UIWindow *window;
     BMDAppDelegate *appd;
-
     CAGradientLayer *homeViewColorGradient;
     int gradientAnimationIndex;
     CGFloat yOffsetPrevBackNextInEditMode;
-    
-
 }
 
 @synthesize renderer;
@@ -29,7 +25,6 @@ Implementation of the cross-platform view controller
 @synthesize foreground;
 @synthesize ringRenderArray;
 
-//@synthesize nextButton;
 @synthesize prevButton;
 @synthesize backButton;
 @synthesize editPlayButton;
@@ -46,6 +41,7 @@ Implementation of the cross-platform view controller
 @synthesize moreHintPacksButton;
 @synthesize noAdsButton;
 @synthesize reviewButton;
+@synthesize dailyRewardButton;
 @synthesize howToPlayButton;
 @synthesize removeAdsLabel;
 
@@ -1663,6 +1659,7 @@ Implementation of the cross-platform view controller
             logoWidth = 1.0*logoWidth;
             logoCx = 0.5*screenWidthInPixels/contentScaleFactor - 0.5*logoWidth;
             logoCy = 0.17*screenHeightInPixels/contentScaleFactor - 0.5*logoHeight;
+            logoCy = 0.14*screenHeightInPixels/contentScaleFactor - 0.5*logoHeight;
             break;
         }
     }
@@ -1689,7 +1686,6 @@ Implementation of the cross-platform view controller
     CGFloat buttonCx = screenWidthInPixels/contentScaleFactor/2.0;
     CGFloat buttonCy, dateLabelCy;
     CGFloat todaysDateLabelFontSizeHome;
-    CGFloat objectCy;
     switch (displayAspectRatio) {
         case ASPECT_4_3:{
             // iPad (9th generation)
@@ -1739,6 +1735,7 @@ Implementation of the cross-platform view controller
             buttonWidth = 0.8*screenWidthInPixels/contentScaleFactor;
             buttonHeight = buttonWidth/6.0;
             buttonCy = logoCy + logoHeight + 1.0*buttonHeight;
+            buttonCy = logoCy + logoHeight + 1.2*buttonHeight;
             dateLabelCy = buttonCy - 0.9*buttonWidth/8.0;
             break;
         }
@@ -1777,7 +1774,58 @@ Implementation of the cross-platform view controller
     [homeView addSubview:dailyPuzzleButtonCheckmark];
     [homeView bringSubviewToFront:dailyPuzzleButtonCheckmark];
 
+    //
+    // Add "Daily Reward" button to homeView
+    //
+    NSNumber *dailyRewardReceivedDay = [appd getObjectFromDefaults:@"dailyRewardReceivedDay"];
+    NSNumber *todayLocal = [NSNumber numberWithUnsignedInt:[appd getLocalDaysSinceReferenceDate]];
+    if (dailyRewardReceivedDay == nil || dailyRewardReceivedDay != todayLocal){
+        dailyRewardButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        switch (displayAspectRatio) {
+            case ASPECT_4_3:{
+                // iPad (9th generation)
+                break;
+            }
+            case ASPECT_10_7:{
+                // iPad Air (5th generation)
+                break;
+            }
+            case ASPECT_3_2: {
+                // iPad Mini (6th generation)
+                break;
+            }
+            case ASPECT_16_9: {
+                // iPhone 8
+                break;
+            }
+            case ASPECT_13_6: {
+                // iPhone 14
+                break;
+            }
+        }
+        buttonWidth = 0.2*screenWidthInPixels/contentScaleFactor;
+        buttonHeight = 2.0*buttonWidth;
+        UIImage *noAdsImage = [UIImage imageNamed:@"JewelChest.png"];
+        [dailyRewardButton setBackgroundImage:noAdsImage forState:UIControlStateNormal];
+        buttonRect = CGRectMake(buttonCx-buttonWidth/2.0,
+                                buttonCy-0.5*buttonHeight,
+                                buttonWidth,
+                                buttonHeight);
+        dailyRewardButton.frame = buttonRect;
+        [dailyRewardButton addTarget:self action:@selector(noAdsButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        dailyRewardButton.showsTouchWhenHighlighted = YES;
+        dailyRewardButton.alpha = 1.0;
+        [homeView addSubview:dailyRewardButton];
+        [homeView bringSubviewToFront:dailyRewardButton];
+    }
+    else {
+        
+    }
 
+    
+
+    
+    
     // todaysDateLabelHome
     CGFloat w = buttonWidth;  CGFloat h = w/8;
     CGRect todaysDateLabelFrame = CGRectMake(buttonCx-buttonWidth/2.0, dateLabelCy, w, h);
@@ -1885,7 +1933,6 @@ Implementation of the cross-platform view controller
     [homeView addSubview:startPuzzleButtonCheckmark];
     [homeView bringSubviewToFront:startPuzzleButtonCheckmark];
 
-    
     //
     // Add "More Puzzles" button to homeView
     //
@@ -2439,8 +2486,8 @@ Implementation of the cross-platform view controller
             break;
         }
     }
-    UIImage *shoppingCartImage = [UIImage imageNamed:@"puzzlePacks.png"];
-    [puzzlePacksButton setBackgroundImage:shoppingCartImage forState:UIControlStateNormal];
+    UIImage *puzzleMazeImage = [UIImage imageNamed:@"puzzlePacks.png"];
+    [puzzlePacksButton setBackgroundImage:puzzleMazeImage forState:UIControlStateNormal];
     buttonRect = CGRectMake(buttonCx-buttonWidth/2.0+2.5*buttonWidth,
                             buttonCy,
                             buttonWidth,
