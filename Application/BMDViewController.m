@@ -1650,6 +1650,7 @@ Implementation of the cross-platform view controller
             logoWidth = 1.0*logoWidth;
             logoCx = 0.5*screenWidthInPixels/contentScaleFactor - 0.5*logoWidth;
             logoCy = 0.14*screenHeightInPixels/contentScaleFactor - 0.45*logoHeight;
+            logoCy = 0.11*screenHeightInPixels/contentScaleFactor - 0.60*logoHeight;
             break;
         }
         case ASPECT_13_6:
@@ -1658,7 +1659,7 @@ Implementation of the cross-platform view controller
             logoHeight = 1.0*logoHeight;
             logoWidth = 1.0*logoWidth;
             logoCx = 0.5*screenWidthInPixels/contentScaleFactor - 0.5*logoWidth;
-            logoCy = 0.17*screenHeightInPixels/contentScaleFactor - 0.5*logoHeight;
+//            logoCy = 0.17*screenHeightInPixels/contentScaleFactor - 0.5*logoHeight;
             logoCy = 0.14*screenHeightInPixels/contentScaleFactor - 0.5*logoHeight;
             break;
         }
@@ -1724,6 +1725,7 @@ Implementation of the cross-platform view controller
             buttonWidth = 0.8*screenWidthInPixels/contentScaleFactor;
             buttonHeight = buttonWidth/8.0;
             buttonCy = logoCy + logoHeight + 1.0*buttonHeight;
+            buttonCy = logoCy + logoHeight + 1.4*buttonHeight;
             dateLabelCy = logoCy + logoHeight - 1.1*buttonWidth/8.0;
             break;
         }
@@ -1735,7 +1737,7 @@ Implementation of the cross-platform view controller
             buttonWidth = 0.8*screenWidthInPixels/contentScaleFactor;
             buttonHeight = buttonWidth/6.0;
             buttonCy = logoCy + logoHeight + 1.0*buttonHeight;
-            buttonCy = logoCy + logoHeight + 1.2*buttonHeight;
+//            buttonCy = logoCy + logoHeight + 1.2*buttonHeight;
             dateLabelCy = buttonCy - 0.9*buttonWidth/8.0;
             break;
         }
@@ -1762,10 +1764,6 @@ Implementation of the cross-platform view controller
                                   buttonCy+buttonHeight/2.0-1.1*checkmarkHeight,
                                   checkmarkHeight,
                                   checkmarkHeight);
-//    CGRect checkRect = CGRectMake(buttonCx+buttonWidth/2.0-1.1*checkmarkHeight,
-//                                  buttonCy+buttonHeight/2.0-checkmarkHeight/2.0,
-//                                  checkmarkHeight,
-//                                  checkmarkHeight);
     dailyPuzzleButtonCheckmark.frame = checkRect;
     dailyPuzzleButtonCheckmark.enabled = YES;
     dailyPuzzleButtonCheckmark.hidden = YES;
@@ -1779,36 +1777,50 @@ Implementation of the cross-platform view controller
     //
     NSNumber *dailyRewardReceivedDay = [appd getObjectFromDefaults:@"dailyRewardReceivedDay"];
     NSNumber *todayLocal = [NSNumber numberWithUnsignedInt:[appd getLocalDaysSinceReferenceDate]];
+    CGFloat dailyAwardCy;
     if (dailyRewardReceivedDay == nil || dailyRewardReceivedDay != todayLocal){
         dailyRewardButton = [UIButton buttonWithType:UIButtonTypeCustom];
         switch (displayAspectRatio) {
             case ASPECT_4_3:{
                 // iPad (9th generation)
+                buttonWidth = 0.1*screenWidthInPixels/contentScaleFactor;
+                buttonHeight = buttonWidth;
+                dailyAwardCy = buttonCy + 1.2*buttonHeight;
                 break;
             }
             case ASPECT_10_7:{
                 // iPad Air (5th generation)
+                buttonWidth = 0.1*screenWidthInPixels/contentScaleFactor;
+                buttonHeight = buttonWidth;
+                dailyAwardCy = buttonCy + 1.5*buttonHeight;
                 break;
             }
             case ASPECT_3_2: {
                 // iPad Mini (6th generation)
+                buttonWidth = 0.1*screenWidthInPixels/contentScaleFactor;
+                buttonHeight = buttonWidth;
+                dailyAwardCy = buttonCy + 1.5*buttonHeight;
                 break;
             }
             case ASPECT_16_9: {
                 // iPhone 8
+                buttonWidth = 0.125*screenWidthInPixels/contentScaleFactor;
+                buttonHeight = buttonWidth;
+                dailyAwardCy = buttonCy - 1.15*buttonHeight;
                 break;
             }
             case ASPECT_13_6: {
                 // iPhone 14
+                buttonWidth = 0.125*screenWidthInPixels/contentScaleFactor;
+                buttonHeight = buttonWidth;
+                dailyAwardCy = buttonCy - 1.20*buttonHeight;
                 break;
             }
         }
-        buttonWidth = 0.2*screenWidthInPixels/contentScaleFactor;
-        buttonHeight = 2.0*buttonWidth;
-        UIImage *noAdsImage = [UIImage imageNamed:@"JewelChest.png"];
-        [dailyRewardButton setBackgroundImage:noAdsImage forState:UIControlStateNormal];
-        buttonRect = CGRectMake(buttonCx-buttonWidth/2.0,
-                                buttonCy-0.5*buttonHeight,
+        UIImage *awardImage = [UIImage imageNamed:@"award.png"];
+        [dailyRewardButton setBackgroundImage:awardImage forState:UIControlStateNormal];
+        buttonRect = CGRectMake(buttonCx-buttonWidth/2.0+2.5*buttonWidth,
+                                dailyAwardCy,
                                 buttonWidth,
                                 buttonHeight);
         dailyRewardButton.frame = buttonRect;
