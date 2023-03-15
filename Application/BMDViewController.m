@@ -1777,7 +1777,7 @@ Implementation of the cross-platform view controller
     //
     NSNumber *dailyRewardReceivedDay = [appd getObjectFromDefaults:@"dailyRewardReceivedDay"];
     NSNumber *todayLocal = [NSNumber numberWithUnsignedInt:[appd getLocalDaysSinceReferenceDate]];
-    CGFloat dailyAwardCy;
+    CGFloat dailyAwardCx, dailyAwardCy;
     if (dailyRewardReceivedDay == nil || dailyRewardReceivedDay != todayLocal){
         dailyRewardButton = [UIButton buttonWithType:UIButtonTypeCustom];
         switch (displayAspectRatio) {
@@ -1785,21 +1785,24 @@ Implementation of the cross-platform view controller
                 // iPad (9th generation)
                 buttonWidth = 0.1*screenWidthInPixels/contentScaleFactor;
                 buttonHeight = buttonWidth;
-                dailyAwardCy = buttonCy + 1.2*buttonHeight;
+                dailyAwardCy = buttonCy;
+                dailyAwardCx = buttonCx+3.5*buttonWidth;
                 break;
             }
             case ASPECT_10_7:{
                 // iPad Air (5th generation)
                 buttonWidth = 0.1*screenWidthInPixels/contentScaleFactor;
                 buttonHeight = buttonWidth;
-                dailyAwardCy = buttonCy + 1.5*buttonHeight;
+                dailyAwardCy = buttonCy;
+                dailyAwardCx = buttonCx+3.5*buttonWidth;
                 break;
             }
             case ASPECT_3_2: {
                 // iPad Mini (6th generation)
                 buttonWidth = 0.1*screenWidthInPixels/contentScaleFactor;
                 buttonHeight = buttonWidth;
-                dailyAwardCy = buttonCy + 1.5*buttonHeight;
+                dailyAwardCy = buttonCy;
+                dailyAwardCx = buttonCx+3.5*buttonWidth;
                 break;
             }
             case ASPECT_16_9: {
@@ -1807,6 +1810,7 @@ Implementation of the cross-platform view controller
                 buttonWidth = 0.125*screenWidthInPixels/contentScaleFactor;
                 buttonHeight = buttonWidth;
                 dailyAwardCy = buttonCy - 1.15*buttonHeight;
+                dailyAwardCx = buttonCx-buttonWidth/2.0+2.5*buttonWidth;
                 break;
             }
             case ASPECT_13_6: {
@@ -1814,12 +1818,13 @@ Implementation of the cross-platform view controller
                 buttonWidth = 0.125*screenWidthInPixels/contentScaleFactor;
                 buttonHeight = buttonWidth;
                 dailyAwardCy = buttonCy - 1.20*buttonHeight;
+                dailyAwardCx = buttonCx-buttonWidth/2.0+2.5*buttonWidth;
                 break;
             }
         }
         UIImage *awardImage = [UIImage imageNamed:@"award.png"];
         [dailyRewardButton setBackgroundImage:awardImage forState:UIControlStateNormal];
-        buttonRect = CGRectMake(buttonCx-buttonWidth/2.0+2.5*buttonWidth,
+        buttonRect = CGRectMake(dailyAwardCx,
                                 dailyAwardCy,
                                 buttonWidth,
                                 buttonHeight);
