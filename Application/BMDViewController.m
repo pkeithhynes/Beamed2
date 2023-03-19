@@ -459,11 +459,13 @@ Implementation of the cross-platform view controller
         if (dailyPuzzleCompletionDay != nil && dailyPuzzleCompletionDay == todayLocal){
             [dailyPuzzleButton setTitle:@"Daily Puzzle Completed!" forState:UIControlStateNormal];
             dailyPuzzleButtonCheckmark.hidden = NO;
+            [self disablePulse:dailyPuzzleButton];
         }
         else {
             [dailyPuzzleButton setTitle:@"Daily Puzzle" forState:UIControlStateNormal];
             dailyPuzzleButton.enabled = YES;
             dailyPuzzleButtonCheckmark.hidden = YES;
+            [self enableSlowPulse:dailyPuzzleButton alphaMin:0.4];
         }
     }
 
@@ -1829,9 +1831,10 @@ Implementation of the cross-platform view controller
                                 buttonWidth,
                                 buttonHeight);
         dailyRewardButton.frame = buttonRect;
-        [dailyRewardButton addTarget:self action:@selector(noAdsButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        [dailyRewardButton addTarget:self action:@selector(dailyRewardButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         dailyRewardButton.showsTouchWhenHighlighted = YES;
         dailyRewardButton.alpha = 1.0;
+        [self enablePulse:dailyRewardButton alphaMin:0.1];
         [homeView addSubview:dailyRewardButton];
         [homeView bringSubviewToFront:dailyRewardButton];
     }
@@ -2521,6 +2524,44 @@ Implementation of the cross-platform view controller
     [rootView bringSubviewToFront:homeView];
 }
 
+//
+// Methods to enable/disable button flash
+//
+
+- (void)enablePulse:(UIButton *)button alphaMin:(CGFloat)alphaMin{
+    button.hidden = NO;
+    button.alpha = 1.0f;
+    button.layer.borderColor = [UIColor clearColor].CGColor;
+    [UIView animateWithDuration:0.8 delay:0.0 options:
+     UIViewAnimationOptionCurveEaseInOut |
+     UIViewAnimationOptionRepeat |
+     UIViewAnimationOptionAutoreverse |
+     UIViewAnimationOptionAllowUserInteraction
+                     animations:^{button.alpha = alphaMin;}
+                     completion:^(BOOL finished){
+    }];
+}
+
+- (void)enableSlowPulse:(UIButton *)button alphaMin:(CGFloat)alphaMin{
+    button.hidden = NO;
+    button.alpha = 1.0f;
+    button.layer.borderColor = [UIColor clearColor].CGColor;
+    [UIView animateWithDuration:2.0 delay:1.0 options:
+     UIViewAnimationOptionCurveEaseInOut |
+     UIViewAnimationOptionRepeat |
+     UIViewAnimationOptionAutoreverse |
+     UIViewAnimationOptionAllowUserInteraction
+                     animations:^{button.alpha = alphaMin;}
+                     completion:^(BOOL finished){
+    }];
+}
+
+- (void)disablePulse:(UIButton *)button {
+    button.alpha = 1.0;
+    [button.layer removeAllAnimations];
+    button.layer.borderColor = [UIColor whiteColor].CGColor;
+}
+
 
 //
 // Button Handler Methods Go Here
@@ -2646,6 +2687,47 @@ Implementation of the cross-platform view controller
         [appd setObjectInDefaults:versionString forKey:kCFBundleShortVersionStringHasBeenReviewed];
         reviewButton.alpha = 0.5;
     }
+}
+
+- (void)dailyRewardButtonPressed {
+    DLog("BMDViewController.dailyRewardButtonPressed");
+    // View controller approach
+    [appd playSound:appd.tapPlayer];
+    [self disablePulse:dailyRewardButton];
+    dailyRewardButton.hidden = YES;
+    // Save todayLocal to indicate daily reward received
+    NSNumber *todayLocal = [NSNumber numberWithUnsignedInt:[appd getLocalDaysSinceReferenceDate]];
+    [appd setObjectInDefaults:todayLocal forKey:@"dailyRewardReceivedDay"];
+    // Determine how many free hints to award (1-3)
+    int uniformRandomIntegerLessThan100 = arc4random_uniform(100);
+    int numberOfHints = 1;
+    if (uniformRandomIntegerLessThan100 >= 95){
+        numberOfHints = 3;
+    }
+    else if (uniformRandomIntegerLessThan100 >= 80){
+        numberOfHints = 2;
+    }
+    // Reward with a free hint
+    [appd updateHintsRemainingDisplayAndStorage:numberOfHints];
+    // Display an alert to inform the player
+    NSString* titleString = @"Daily Reward";
+    NSString* messageString;
+    if (numberOfHints > 1){
+        messageString = [NSString stringWithFormat:@"You have been awarded %d free hints!", numberOfHints];
+    }
+    else {
+        messageString = @"You have been awarded 1 free hint!";
+
+    }
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:titleString
+                               message:messageString
+                               preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * action) {}];
+
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)noAdsButtonPressed {

@@ -2065,7 +2065,6 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     return (uint)localDaysSinceReferenceDate;
 }
 
-
 //
 // Utility methods to handle Endless Hints purchase and use
 //

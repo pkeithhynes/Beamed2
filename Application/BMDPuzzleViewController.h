@@ -43,7 +43,6 @@ API_AVAILABLE(ios(13.0))
     // Puzzle Play Buttons
     //
     UIButton *wholeScreenButton;
-    UILabel *wholeScreenFilter;
     UIButton *helpButton;
     UIButton *settingsGearButton;
     UIButton *puzzlePacksButton;
@@ -124,7 +123,6 @@ API_AVAILABLE(ios(13.0))
 @property (nonatomic, retain) UIButton *clearButton;
 
 @property (nonatomic, retain) UIButton *wholeScreenButton;
-@property (nonatomic, retain) UILabel *wholeScreenFilter;
 @property (nonatomic, retain) UIButton *settingsGearButton;
 @property (nonatomic, retain) UIButton *puzzlePacksButton;
 @property (nonatomic, retain) UIButton *helpButton;

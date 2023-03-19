@@ -2097,7 +2097,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
             //  MAGENTA + GREEN     15%
             //  CYAN + RED          15%
             //  RED + GREEN + BLUE  45%
-            BOOL multiColorBeam = YES;;
+            BOOL multiColorBeam = YES;
             int uniformRandomIntegerLessThan100 = arc4random_uniform(100);
             if (uniformRandomIntegerLessThan100 < 10){
                 // WHITE

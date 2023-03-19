@@ -39,7 +39,6 @@
 @synthesize clearButton;
 
 @synthesize wholeScreenButton;
-@synthesize wholeScreenFilter;
 @synthesize settingsGearButton;
 @synthesize puzzlePacksButton;
 @synthesize helpButton;
@@ -981,23 +980,6 @@
     [puzzleView addSubview:puzzlePacksButton];
     [puzzleView bringSubviewToFront:puzzlePacksButton];
     
-    //
-    // wholeScreenFilter
-    //
-    // Create a translucent filter (button) covering the entire screen
-//    CGRect wholeScreenFilterRect = CGRectMake(0,
-//                                              0,
-//                                              rc.screenWidthInPixels/rc.contentScaleFactor,
-//                                              rc.screenHeightInPixels/rc.contentScaleFactor);
-//    wholeScreenFilter = [[UILabel alloc]initWithFrame:wholeScreenFilterRect];
-//    wholeScreenFilter.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.75];
-//    wholeScreenFilter.layer.borderColor = [UIColor blackColor].CGColor;
-//    wholeScreenFilter.layer.borderWidth = 0.0;
-//    wholeScreenFilter.hidden = YES;
-//    [puzzleView addSubview:wholeScreenFilter];
-//    [puzzleView bringSubviewToFront:wholeScreenFilter];
-    
-
     // Add helpLabel and helpImageView on top of puzzlePacksButton and settingsGearButton
 //    [puzzleView addSubview:helpLabel];
 //    [puzzleView bringSubviewToFront:helpLabel];
@@ -2837,11 +2819,6 @@
     wholeScreenButton.hidden = YES;
     helpImageView.hidden = YES;
     rc.renderOverlayON = NO;
-}
-
-- (void)wholeScreenFilterPressed {
-    DLog("wholeScreenFilterPressed");
-    wholeScreenFilter.enabled = NO;
 }
 
 - (void)gridSizeStepperPressed {
