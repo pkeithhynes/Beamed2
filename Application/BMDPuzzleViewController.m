@@ -89,6 +89,8 @@
 
 @synthesize infoScreenLabelArray;
 
+@synthesize promptUserAboutHintButtonTimer;
+
 - (void)viewDidLoad {
     DLog("DEBUG1 - BMDPuzzleViewController.viewDidLoad");
     [super viewDidLoad];
@@ -2726,6 +2728,9 @@
     [appd playSound:appd.tapPlayer];
     appd.numberOfHintsRemaining = [[appd getObjectFromDefaults:@"numberOfHintsRemaining"] intValue];
     
+    NSNumber *todayLocal = [NSNumber numberWithUnsignedInt:[appd getLocalDaysSinceReferenceDate]];
+    [self->appd setObjectInDefaults:todayLocal forKey:@"hintUsedDay"];
+
     if (ENABLE_GA == YES){
         int currentPackNumber = [appd fetchCurrentPackNumber];
         int currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
@@ -2819,6 +2824,54 @@
     wholeScreenButton.hidden = YES;
     helpImageView.hidden = YES;
     rc.renderOverlayON = NO;
+}
+
+- (void)remindUserAboutHintButton {
+    // Display Hints button reminder
+    NSString* titleString = @"Stuck???";
+    NSString* messageString = @"Tap the Hints button to correctly place one tile.";
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:titleString
+                               message:messageString
+                               preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * action) {}];
+
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+
+    // dismissViewControllerAnimated after 5 seconds
+    NSTimeInterval delayTime = 8.0;
+    NSTimer *timer = [NSTimer timerWithTimeInterval:delayTime repeats:NO block:^(NSTimer *time){
+        [self dismissViewControllerAnimated:nil completion:^{}];
+    }];
+    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+}
+
+- (void)promptUserAboutHintButton {
+    // Display Hints button prompt
+    NSString* titleString = @"Stuck???";
+    NSString* messageString = @"Would you like a Hint?";
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:titleString
+                               message:messageString
+                               preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction* yesAction = [UIAlertAction actionWithTitle:@"Yes!" style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * action) {
+        [self->appd setObjectInDefaults:@"YES" forKey:@"acceptedHintPrompt"];
+        [self hintButtonPressed];
+    }];
+    [alert addAction:yesAction];
+    
+    
+    UIAlertAction* noAction = [UIAlertAction actionWithTitle:@"Not now" style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * action) {
+        // Do nothing
+        [self->appd setObjectInDefaults:@"YES" forKey:@"declinedHintPrompt"];
+    }];
+    [alert addAction:noAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)gridSizeStepperPressed {

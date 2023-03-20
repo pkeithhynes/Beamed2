@@ -106,6 +106,8 @@ API_AVAILABLE(ios(13.0))
     
     NSMutableDictionary     *inputPuzzleDictionary;
     
+    NSTimer *promptUserAboutHintButtonTimer;
+    
 }
 
 @property (nonatomic, retain) BMDHintsViewController *hintsViewController;
@@ -179,6 +181,8 @@ API_AVAILABLE(ios(13.0))
 
 @property (nonatomic, retain) NSMutableDictionary * _Nonnull inputPuzzleDictionary;
 
+@property (nonatomic, retain) NSTimer *promptUserAboutHintButtonTimer;
+
 
 
 - (void)buildButtonsAndLabelsForEdit;
@@ -194,6 +198,8 @@ API_AVAILABLE(ios(13.0))
 - (void)backButtonPressed;
 - (BOOL)queryPuzzleExists:(NSString *)dictionaryName puzzle:(unsigned int)puzzleIndex;
 - (BOOL)appendGeneratedPuzzle;
+- (void)promptUserAboutHintButton;
+
 @end
 
 NS_ASSUME_NONNULL_END

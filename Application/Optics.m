@@ -67,6 +67,23 @@ extern void playSound(AVAudioPlayer *PLAYER);
     lightSweepCounter = 0;
     hintWasRequested = NO;
     
+    if (rc.appCurrentGamePackType == PACKTYPE_MAIN &&
+        ![appd editModeIsEnabled]){
+        
+        NSNumber *todayLocal = [NSNumber numberWithUnsignedInt:[appd getLocalDaysSinceReferenceDate]];
+        NSNumber *hintUsedDay = [self->appd getObjectFromDefaults:@"hintUsedDay"];
+        if (hintUsedDay == nil ||
+            hintUsedDay != todayLocal){
+            // Test method promptUserAboutHintButton
+            NSTimeInterval delayTime = 10.0;
+            NSTimer *timer = [NSTimer timerWithTimeInterval:delayTime repeats:NO block:^(NSTimer *time){
+                [self.vc promptUserAboutHintButton];
+            }];
+            [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+        }
+        
+    }
+    
     // Clear any existing demoMessageButtonsAndLabels
     if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
         [self hideDemoTileTapLabel];
@@ -195,7 +212,6 @@ extern void playSound(AVAudioPlayer *PLAYER);
     masterGrid.sizeX = gameGrid.sizeX + 2;
     masterGrid.sizeY = gameGrid.sizeY + 2;
 }
-
 
 - (void)setScreenDimensionsAndBounds {
     // Display area values that are related to the physical device are managed by the Root UIViewController
@@ -3702,7 +3718,6 @@ extern void playSound(AVAudioPlayer *PLAYER);
     return nil;
 }
 
-
 - (BOOL)checkIfBeamHeadingIntoGridAfterStrikingMirror:(vector_int2)position
                       beamAngle:(int)beamAngle
                       mirrorAngle:(int)mirrorAngle{
@@ -5446,7 +5461,6 @@ extern void playSound(AVAudioPlayer *PLAYER);
     gridTouchGestures.ended = NO;
 }
 
-
 - (void)handleTileTap {
     TileHint *hint;
     // Touch in grid region?
@@ -5548,7 +5562,6 @@ extern void playSound(AVAudioPlayer *PLAYER);
         }
     }
 }
-
 
 
 @end
