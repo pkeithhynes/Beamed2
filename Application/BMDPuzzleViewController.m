@@ -2020,6 +2020,7 @@
 // Button Press and Gesture Handler Methods Go Here
 //
 - (void)settingsButtonPressed {
+    [self clearPromptUserAboutHintButtonTimer];
     [appd playSound:appd.tapPlayer];
     DLog("BMDPuzzleViewController.settingsButtonPressed");
     
@@ -2069,6 +2070,7 @@
 }
 
 - (void)morePuzzlePacksButtonPressed {
+    [self clearPromptUserAboutHintButtonTimer];
     [appd playSound:appd.tapPlayer];
     DLog("BMDPuzzleViewController.morePuzzlePacksButtonPressed");
     
@@ -2118,6 +2120,7 @@
 }
 
 - (void)nextButtonPressed {
+    [self clearPromptUserAboutHintButtonTimer];
     [appd playSound:appd.tapPlayer];
     // Puzzle Editor
     if ([appd editModeIsEnabled]){
@@ -2450,6 +2453,7 @@
 }
 
 - (void)backButtonPressed {
+    [self clearPromptUserAboutHintButtonTimer];
     [appd playSound:appd.tapPlayer];
     // In autoGen the backButton generates new Puzzles
         
@@ -2725,6 +2729,7 @@
 }
 
 - (void)hintButtonPressed {
+    [self clearPromptUserAboutHintButtonTimer];
     [appd playSound:appd.tapPlayer];
     appd.numberOfHintsRemaining = [[appd getObjectFromDefaults:@"numberOfHintsRemaining"] intValue];
     
@@ -2813,6 +2818,7 @@
 }
 
 - (void)helpButtonPressed {
+    [self clearPromptUserAboutHintButtonTimer];
     [appd playSound:appd.tapPlayer];
     wholeScreenButton.enabled = YES;
     wholeScreenButton.hidden = NO;
@@ -2826,27 +2832,27 @@
     rc.renderOverlayON = NO;
 }
 
-- (void)remindUserAboutHintButton {
-    // Display Hints button reminder
-    NSString* titleString = @"Stuck???";
-    NSString* messageString = @"Tap the Hints button to correctly place one tile.";
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:titleString
-                               message:messageString
-                               preferredStyle:UIAlertControllerStyleAlert];
-
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                   handler:^(UIAlertAction * action) {}];
-
-    [alert addAction:defaultAction];
-    [self presentViewController:alert animated:YES completion:nil];
-
-    // dismissViewControllerAnimated after 5 seconds
-    NSTimeInterval delayTime = 8.0;
-    NSTimer *timer = [NSTimer timerWithTimeInterval:delayTime repeats:NO block:^(NSTimer *time){
-        [self dismissViewControllerAnimated:nil completion:^{}];
-    }];
-    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-}
+//- (void)remindUserAboutHintButton {
+//    // Display Hints button reminder
+//    NSString* titleString = @"Stuck???";
+//    NSString* messageString = @"Tap the Hints button to correctly place one tile.";
+//    UIAlertController* alert = [UIAlertController alertControllerWithTitle:titleString
+//                               message:messageString
+//                               preferredStyle:UIAlertControllerStyleAlert];
+//
+//    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+//                                   handler:^(UIAlertAction * action) {}];
+//
+//    [alert addAction:defaultAction];
+//    [self presentViewController:alert animated:YES completion:nil];
+//
+//    // dismissViewControllerAnimated after 5 seconds
+//    NSTimeInterval delayTime = 8.0;
+//    NSTimer *timer = [NSTimer timerWithTimeInterval:delayTime repeats:NO block:^(NSTimer *time){
+//        [self dismissViewControllerAnimated:nil completion:^{}];
+//    }];
+//    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+//}
 
 - (void)promptUserAboutHintButton {
     // Display Hints button prompt
@@ -2860,6 +2866,16 @@
                                    handler:^(UIAlertAction * action) {
         [self->appd setObjectInDefaults:@"YES" forKey:@"acceptedHintPrompt"];
         [self hintButtonPressed];
+        NSString* titleString2 = @"There you go!";
+        NSString* messageString2 = @"Press the Hints button anytime to use a Hint or to get more Hints.";
+        UIAlertController* alert2 = [UIAlertController alertControllerWithTitle:titleString2
+                                                                        message:messageString2
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {
+        }];
+        [alert2 addAction:defaultAction];
+        [self presentViewController:alert2 animated:YES completion:nil];
     }];
     [alert addAction:yesAction];
     
@@ -2872,6 +2888,13 @@
     [alert addAction:noAction];
     
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)clearPromptUserAboutHintButtonTimer {
+    if (promptUserAboutHintButtonTimer != nil){
+        [promptUserAboutHintButtonTimer invalidate];
+        promptUserAboutHintButtonTimer = nil;
+    }
 }
 
 - (void)gridSizeStepperPressed {

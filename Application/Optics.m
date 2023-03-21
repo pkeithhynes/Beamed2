@@ -67,19 +67,21 @@ extern void playSound(AVAudioPlayer *PLAYER);
     lightSweepCounter = 0;
     hintWasRequested = NO;
     
-    if (rc.appCurrentGamePackType == PACKTYPE_MAIN &&
+
+    // Set up to promptUserAboutHintButton
+    if ((rc.appCurrentGamePackType == PACKTYPE_MAIN || rc.appCurrentGamePackType == PACKTYPE_DAILY) &&
         ![appd editModeIsEnabled]){
-        
         NSNumber *todayLocal = [NSNumber numberWithUnsignedInt:[appd getLocalDaysSinceReferenceDate]];
         NSNumber *hintUsedDay = [self->appd getObjectFromDefaults:@"hintUsedDay"];
         if (hintUsedDay == nil ||
             hintUsedDay != todayLocal){
-            // Test method promptUserAboutHintButton
+            // Set up NSTimer to trigger method promptUserAboutHintButton
+            [self.vc clearPromptUserAboutHintButtonTimer];
             NSTimeInterval delayTime = 10.0;
-            NSTimer *timer = [NSTimer timerWithTimeInterval:delayTime repeats:NO block:^(NSTimer *time){
+            vc.promptUserAboutHintButtonTimer = [NSTimer timerWithTimeInterval:delayTime repeats:NO block:^(NSTimer *time){
                 [self.vc promptUserAboutHintButton];
             }];
-            [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+            [[NSRunLoop currentRunLoop] addTimer:vc.promptUserAboutHintButtonTimer forMode:NSRunLoopCommonModes];
         }
         
     }
@@ -4043,6 +4045,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
 - (void)handlePuzzleCompletion:(NSString *)message {
     puzzleHasBeenCompleted = YES;
     tileForRotation = nil;
+    [self.vc clearPromptUserAboutHintButtonTimer];
     [self startPuzzleCompleteCelebration];
     
     // If this is the Daily Puzzle then make note that it is solved
@@ -4108,11 +4111,11 @@ extern void playSound(AVAudioPlayer *PLAYER);
         
         long solutionTime = [appd calculateSolutionTime:currentPackNumber puzzleNumber:[appd fetchCurrentPuzzleNumber]];
         DLog("solutionTime = %ld", solutionTime);
-        vc.puzzleCompleteLabel.text = [NSString stringWithFormat:@"Solved in %02d\:%02d", (int)solutionTime/60, (int)solutionTime%60];
+        vc.puzzleCompleteLabel.text = [NSString stringWithFormat:@"Solved in %02d:%02d", (int)solutionTime/60, (int)solutionTime%60];
 
     }
     else if (rc.appCurrentGamePackType == PACKTYPE_DAILY){
-        int jewelCount = [appd queryPuzzleJewelCountFromDictionary:[appd fetchDailyPuzzle:[appd fetchDailyPuzzleNumber]]];
+//        int jewelCount = [appd queryPuzzleJewelCountFromDictionary:[appd fetchDailyPuzzle:[appd fetchDailyPuzzleNumber]]];
         NSMutableDictionary *jewelCountDictionary = [appd queryPuzzleJewelCountByColor:[appd fetchCurrentPuzzleNumberForPack:[appd fetchCurrentPackNumber]]];
 
         long endTime = [[NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]] longValue];
@@ -4527,6 +4530,8 @@ extern void playSound(AVAudioPlayer *PLAYER);
     TileHint *hint;
     NSEnumerator *hintsEnum = [hints objectEnumerator];
     Tile *tile;
+    
+    [self.vc clearPromptUserAboutHintButtonTimer];
 
     vector_int2 center, dimensions;
     center.x = 0;
@@ -4997,6 +5002,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
 	for (ii=0; ii<3; ii++) {
 		[self resetAllBeams:(enum eBeamColors)ii];
 	}
+    [vc clearPromptUserAboutHintButtonTimer];
 }
 
 - (BOOL)checkIfTouchInEditorRegion {

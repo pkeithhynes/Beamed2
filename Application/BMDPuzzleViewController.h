@@ -199,6 +199,7 @@ API_AVAILABLE(ios(13.0))
 - (BOOL)queryPuzzleExists:(NSString *)dictionaryName puzzle:(unsigned int)puzzleIndex;
 - (BOOL)appendGeneratedPuzzle;
 - (void)promptUserAboutHintButton;
+- (void)clearPromptUserAboutHintButtonTimer;
 
 @end
 
