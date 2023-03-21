@@ -277,6 +277,10 @@
 		8044DD9D2904908E0078942B /* yellowRectangleSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 8044DD922904908E0078942B /* yellowRectangleSelected.png */; };
 		804660142978EDE00020B68C /* helpImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 804660132978EDE00020B68C /* helpImage.png */; };
 		804660152978EDE10020B68C /* helpImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 804660132978EDE00020B68C /* helpImage.png */; };
+		8058D1F429CA2654002828F4 /* award.png in Resources */ = {isa = PBXBuildFile; fileRef = 8058D1F329CA2654002828F4 /* award.png */; };
+		8058D1F529CA2654002828F4 /* award.png in Resources */ = {isa = PBXBuildFile; fileRef = 8058D1F329CA2654002828F4 /* award.png */; };
+		8058D1F729CA2B72002828F4 /* reward.png in Resources */ = {isa = PBXBuildFile; fileRef = 8058D1F629CA2B72002828F4 /* reward.png */; };
+		8058D1F829CA2B72002828F4 /* reward.png in Resources */ = {isa = PBXBuildFile; fileRef = 8058D1F629CA2B72002828F4 /* reward.png */; };
 		805DB34C27D1453F00F9572A /* Prism.png in Resources */ = {isa = PBXBuildFile; fileRef = 805DB34B27D1453F00F9572A /* Prism.png */; };
 		805DB34D27D1453F00F9572A /* Prism.png in Resources */ = {isa = PBXBuildFile; fileRef = 805DB34B27D1453F00F9572A /* Prism.png */; };
 		8060060D2990486900460553 /* editedPuzzlePack.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8060060C2990486900460553 /* editedPuzzlePack.plist */; };
@@ -316,8 +320,6 @@
 		8089549C291DB805009C4D02 /* lightBulb.png in Resources */ = {isa = PBXBuildFile; fileRef = 8089549A291DB805009C4D02 /* lightBulb.png */; };
 		808998E528B6F143003D2345 /* BMDSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 808998E428B6F143003D2345 /* BMDSettingsViewController.m */; };
 		808998E628B6F143003D2345 /* BMDSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 808998E428B6F143003D2345 /* BMDSettingsViewController.m */; };
-		8089DC0429C64962001116FC /* award.png in Resources */ = {isa = PBXBuildFile; fileRef = 8089DC0329C64962001116FC /* award.png */; };
-		8089DC0529C64962001116FC /* award.png in Resources */ = {isa = PBXBuildFile; fileRef = 8089DC0329C64962001116FC /* award.png */; };
 		808C49D128D41210002A768C /* puzzlePacksArray.plist in Resources */ = {isa = PBXBuildFile; fileRef = 808C49D028D41210002A768C /* puzzlePacksArray.plist */; };
 		808C49D228D41210002A768C /* puzzlePacksArray.plist in Resources */ = {isa = PBXBuildFile; fileRef = 808C49D028D41210002A768C /* puzzlePacksArray.plist */; };
 		808D86B4297527B00022B2FE /* puzzlePacks.png in Resources */ = {isa = PBXBuildFile; fileRef = 808D86B3297527B00022B2FE /* puzzlePacks.png */; };
@@ -668,6 +670,8 @@
 		8044DD922904908E0078942B /* yellowRectangleSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowRectangleSelected.png; sourceTree = "<group>"; };
 		804660132978EDE00020B68C /* helpImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helpImage.png; sourceTree = "<group>"; };
 		804F04782980BAA300A1B8E2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8058D1F329CA2654002828F4 /* award.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = award.png; sourceTree = "<group>"; };
+		8058D1F629CA2B72002828F4 /* reward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reward.png; sourceTree = "<group>"; };
 		805DB34B27D1453F00F9572A /* Prism.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Prism.png; sourceTree = "<group>"; };
 		8060060C2990486900460553 /* editedPuzzlePack.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = editedPuzzlePack.plist; sourceTree = "<group>"; };
 		8068338A292ECB1B00620AC1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -697,7 +701,6 @@
 		8089549A291DB805009C4D02 /* lightBulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightBulb.png; sourceTree = "<group>"; };
 		808998E328B6F143003D2345 /* BMDSettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMDSettingsViewController.h; sourceTree = "<group>"; };
 		808998E428B6F143003D2345 /* BMDSettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMDSettingsViewController.m; sourceTree = "<group>"; };
-		8089DC0329C64962001116FC /* award.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = award.png; sourceTree = "<group>"; };
 		808C49D028D41210002A768C /* puzzlePacksArray.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = puzzlePacksArray.plist; sourceTree = "<group>"; };
 		808D86B3297527B00022B2FE /* puzzlePacks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = puzzlePacks.png; sourceTree = "<group>"; };
 		808DC5D0297F083C00F1DD98 /* Provenance.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Provenance.md; sourceTree = "<group>"; };
@@ -1181,7 +1184,8 @@
 				8089548A291DB76B009C4D02 /* homeArrow.png */,
 				80895496291DB7FE009C4D02 /* nextArrow.png */,
 				808D86B3297527B00022B2FE /* puzzlePacks.png */,
-				8089DC0329C64962001116FC /* award.png */,
+				8058D1F329CA2654002828F4 /* award.png */,
+				8058D1F629CA2B72002828F4 /* reward.png */,
 			);
 			path = "Button Textures";
 			sourceTree = "<group>";
@@ -1680,6 +1684,7 @@
 				80895488291DB661009C4D02 /* settingsGear.png in Resources */,
 				52994B8C25DA13D700887B9C /* Rings_00004.png in Resources */,
 				80F406FB28F0C110006C4F82 /* backgroundTextures.plist in Resources */,
+				8058D1F829CA2B72002828F4 /* reward.png in Resources */,
 				8011CE59297B267800E7CEAB /* Dreamstime - starrysky.jpg - Proof of License.pdf in Resources */,
 				80BF264927D723A000BF9736 /* LaserGun-2.png in Resources */,
 				5266332725FBD8ED00776E9B /* single-arrow-1.png in Resources */,
@@ -1761,7 +1766,7 @@
 				809FEA8F29710C2500B13351 /* 70645767-internal-calculations-license.pdf in Resources */,
 				809FEA9529710C2500B13351 /* 70645766-night-drive-80s-license.pdf in Resources */,
 				8023B2CD2915BD8300176960 /* JewelCyan.png in Resources */,
-				8089DC0529C64962001116FC /* award.png in Resources */,
+				8058D1F529CA2654002828F4 /* award.png in Resources */,
 				801670FA28C4346500803D05 /* TapToRotateText.png in Resources */,
 				809FEADE297117A600B13351 /* 67412387-mobile-game-melodic-stinger-dreamy-synth-level-up-2-license.pdf in Resources */,
 				5286EAB32564706B00B43209 /* TileJewelActivated07.png in Resources */,
@@ -1815,6 +1820,7 @@
 			files = (
 				8044DD992904908E0078942B /* cyanRectangle.png in Resources */,
 				809FEAC62971176200B13351 /* 67410903-win-game-level-52-license.txt in Resources */,
+				8058D1F729CA2B72002828F4 /* reward.png in Resources */,
 				5286EAC72564706B00B43209 /* TileJewelActivated12.png in Resources */,
 				809FEA9729710C2500B13351 /* 70645767-internal-calculations-license.txt in Resources */,
 				809FEABD2971176200B13351 /* 67410905-win-game-level-119-license.txt in Resources */,
@@ -1943,7 +1949,7 @@
 				520BBD2A260A6BC20080EADC /* Background-Aspect-4-3.png in Resources */,
 				8011CE7D297B2C0200E7CEAB /* settingsGear-9589999-vecteezy.pdf in Resources */,
 				526FBD5125926960001F5647 /* Beam-Angle00-11.png in Resources */,
-				8089DC0429C64962001116FC /* award.png in Resources */,
+				8058D1F429CA2654002828F4 /* award.png in Resources */,
 				809FEAD22971176200B13351 /* 67410904-win-game-level-93-license.pdf in Resources */,
 				52994B6125DA13D700887B9C /* Rings_00023.png in Resources */,
 				8089548F291DB773009C4D02 /* shoppingCart.png in Resources */,

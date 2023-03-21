@@ -1785,26 +1785,26 @@ Implementation of the cross-platform view controller
         switch (displayAspectRatio) {
             case ASPECT_4_3:{
                 // iPad (9th generation)
-                buttonWidth = 0.1*screenWidthInPixels/contentScaleFactor;
+                buttonWidth = 0.125*screenWidthInPixels/contentScaleFactor;
                 buttonHeight = buttonWidth;
-                dailyAwardCy = buttonCy;
-                dailyAwardCx = buttonCx+3.5*buttonWidth;
+                dailyAwardCy = 0.9*buttonCy;
+                dailyAwardCx = buttonCx+2.5*buttonWidth;
                 break;
             }
             case ASPECT_10_7:{
                 // iPad Air (5th generation)
-                buttonWidth = 0.1*screenWidthInPixels/contentScaleFactor;
+                buttonWidth = 0.125*screenWidthInPixels/contentScaleFactor;
                 buttonHeight = buttonWidth;
-                dailyAwardCy = buttonCy;
-                dailyAwardCx = buttonCx+3.5*buttonWidth;
+                dailyAwardCy = 0.9*buttonCy;
+                dailyAwardCx = buttonCx+2.5*buttonWidth;
                 break;
             }
             case ASPECT_3_2: {
                 // iPad Mini (6th generation)
-                buttonWidth = 0.1*screenWidthInPixels/contentScaleFactor;
+                buttonWidth = 0.125*screenWidthInPixels/contentScaleFactor;
                 buttonHeight = buttonWidth;
-                dailyAwardCy = buttonCy;
-                dailyAwardCx = buttonCx+3.5*buttonWidth;
+                dailyAwardCy = 0.9*buttonCy;
+                dailyAwardCx = buttonCx+2.5*buttonWidth;
                 break;
             }
             case ASPECT_16_9: {
@@ -1824,8 +1824,8 @@ Implementation of the cross-platform view controller
                 break;
             }
         }
-        UIImage *awardImage = [UIImage imageNamed:@"award.png"];
-        [dailyRewardButton setBackgroundImage:awardImage forState:UIControlStateNormal];
+        UIImage *rewardImage = [UIImage imageNamed:@"reward.png"];
+        [dailyRewardButton setBackgroundImage:rewardImage forState:UIControlStateNormal];
         buttonRect = CGRectMake(dailyAwardCx,
                                 dailyAwardCy,
                                 buttonWidth,
