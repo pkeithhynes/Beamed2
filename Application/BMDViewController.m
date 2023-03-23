@@ -227,7 +227,7 @@ Implementation of the cross-platform view controller
 
 
 - (NSMutableDictionary *)renderBackground {
-    DLog("renderBackground");
+//    DLog("renderBackground");
     animationFrame++;
     // Generate frame intervals from time intervals
     unsigned int animationIntervalInFrames = 40;
@@ -2654,28 +2654,34 @@ Implementation of the cross-platform view controller
     [hintsViewController didMoveToParentViewController:self];
 }
 
-- (void)settingsButtonPressed {
-    DLog("BMDViewController.settingsButtonPressed");
-    // View controller approach
-    [appd playSound:appd.tapPlayer];
-    settingsViewController = [[BMDSettingsViewController alloc] init];
-    settingsViewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
-    
-//    [self presentViewController:settingsViewController animated:NO completion:nil];
-    
-    [self addChildViewController:settingsViewController];
-    [self.view addSubview:settingsViewController.view];
-    [settingsViewController didMoveToParentViewController:self];
-}
+//- (void)settingsButtonPressed {
+//    DLog("BMDViewController.settingsButtonPressed");
+//    // View controller approach
+//    [appd playSound:appd.tapPlayer];
+//    settingsViewController = [[BMDSettingsViewController alloc] init];
+//    settingsViewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
+//    [self addChildViewController:settingsViewController];
+//    [self.view addSubview:settingsViewController.view];
+//    [settingsViewController didMoveToParentViewController:self];
+//}
 
 // Uncomment when you want to use the settingsButton to test something such as:
 // - Crash handling
 // - Prompting for App Store review
-//- (void)settingsButtonPressed {
-//    [SKStoreReviewController requestReviewInScene:nil];
-//    // The following line was used to test Crashlytics
-//    //    @[][1];
-//}
+- (void)settingsButtonPressed {
+    BOOL supportsAlternateIcons = [UIApplication.sharedApplication supportsAlternateIcons];
+    [UIApplication.sharedApplication setAlternateIconName:@"AppIcon 3" completionHandler:^(NSError *error){
+        if (error == nil){
+            DLog("Success: icon changed");
+        }
+        else {
+            DLog("Failure with error");
+        }
+    }];
+    //    [SKStoreReviewController requestReviewInScene:nil];
+    // The following line was used to test Crashlytics
+    //    @[][1];
+}
 
 // Borrow this button temporarily to test out reviews
 - (void)reviewButtonPressed {
