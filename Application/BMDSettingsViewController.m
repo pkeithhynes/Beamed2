@@ -55,8 +55,6 @@
     settingsView.layer.cornerRadius = 25;
     settingsView.layer.masksToBounds = YES;
     
-    
-    
     // Set background color and graphic image
     settingsView.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.14 alpha:1.0];
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"backgroundLandscapeGrid" ofType:@"png"];

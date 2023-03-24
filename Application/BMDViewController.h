@@ -25,6 +25,7 @@ Header for the cross-platform view controller
 #import "BMDPacksViewController.h"
 #import "BMDPuzzleViewController.h"
 #import "BMDSettingsViewController.h"
+#import "BMDIconsViewController.h"
 #import "Foreground.h"
 #import "Background.h"
 #import "TextureRenderData.h"
@@ -69,6 +70,7 @@ API_AVAILABLE(ios(13.0))
     BMDPacksViewController *packsViewController;
     BMDPuzzleViewController *puzzleViewController;
     BMDSettingsViewController *settingsViewController;
+    BMDIconsViewController *iconsViewController;
 
 
     //
@@ -216,6 +218,7 @@ API_AVAILABLE(ios(13.0))
 @property (nonatomic, retain) BMDPacksViewController *packsViewController;
 @property (nonatomic, retain) BMDPuzzleViewController *puzzleViewController;
 @property (nonatomic, retain) BMDSettingsViewController *settingsViewController;
+@property (nonatomic, retain) BMDIconsViewController *iconsViewController;
 
 @property (nonatomic, retain) UIView *rootView;
 @property (nonatomic, retain) MTKView *homeView;

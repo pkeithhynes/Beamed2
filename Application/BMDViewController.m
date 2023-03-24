@@ -94,6 +94,7 @@ Implementation of the cross-platform view controller
 @synthesize packsViewController;
 @synthesize puzzleViewController;
 @synthesize settingsViewController;
+@synthesize iconsViewController;
 
 @synthesize rootView;
 @synthesize homeView;
@@ -2668,17 +2669,29 @@ Implementation of the cross-platform view controller
 // Uncomment when you want to use the settingsButton to test something such as:
 // - Crash handling
 // - Prompting for App Store review
+// - Switch to alternate icon
+// - Switch to BMDIconsViewController
 - (void)settingsButtonPressed {
-    BOOL supportsAlternateIcons = [UIApplication.sharedApplication supportsAlternateIcons];
-    [UIApplication.sharedApplication setAlternateIconName:@"AppIcon 3" completionHandler:^(NSError *error){
-        if (error == nil){
-            DLog("Success: icon changed");
-        }
-        else {
-            DLog("Failure with error");
-        }
-    }];
+    //
+    [appd playSound:appd.tapPlayer];
+    iconsViewController = [[BMDIconsViewController alloc] init];
+    iconsViewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    [self addChildViewController:iconsViewController];
+    [self.view addSubview:iconsViewController.view];
+    [iconsViewController didMoveToParentViewController:self];
+    //
+    //    BOOL supportsAlternateIcons = [UIApplication.sharedApplication supportsAlternateIcons];
+    //    [UIApplication.sharedApplication setAlternateIconName:@"AppIcon 3" completionHandler:^(NSError *error){
+    //        if (error == nil){
+    //            DLog("Success: icon changed");
+    //        }
+    //        else {
+    //            DLog("Failure with error");
+    //        }
+    //    }];
+    //
     //    [SKStoreReviewController requestReviewInScene:nil];
+    //
     // The following line was used to test Crashlytics
     //    @[][1];
 }
