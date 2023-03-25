@@ -6,127 +6,127 @@
 		<key>appIcon</key>
 		<string>AppIcon 1</string>
 		<key>iconImage</key>
-		<string>icon1.png</string>
+		<string>icon1rounded.png</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 2</string>
 		<key>iconImage</key>
-		<string>icon2.png</string>
+		<string>icon2rounded.png</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 3</string>
 		<key>iconImage</key>
-		<string>icon3.png</string>
+		<string>icon3rounded.png</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 4</string>
 		<key>iconImage</key>
-		<string>icon4.png</string>
+		<string>icon4rounded.png</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 5</string>
 		<key>iconImage</key>
-		<string>icon5.png</string>
+		<string>icon5rounded.png</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 6</string>
 		<key>iconImage</key>
-		<string>icon6.png</string>
+		<string>icon6rounded.png</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 7</string>
 		<key>iconImage</key>
-		<string>icon7.png</string>
+		<string>icon7rounded.png</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 8</string>
 		<key>iconImage</key>
-		<string>icon8.png</string>
+		<string>icon8rounded.png</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 9</string>
 		<key>iconImage</key>
-		<string>icon9.png</string>
+		<string>icon9rounded.png</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 10</string>
 		<key>iconImage</key>
-		<string>icon10.png</string>
+		<string>icon10rounded.png</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 11</string>
 		<key>iconImage</key>
-		<string>icon11.png</string>
+		<string>icon11rounded.png</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 12</string>
 		<key>iconImage</key>
-		<string>icon12.png</string>
+		<string>icon12rounded.png</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 13</string>
 		<key>iconImage</key>
-		<string>icon13.png</string>
+		<string>icon13rounded.png</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 14</string>
 		<key>iconImage</key>
-		<string>icon14.png</string>
+		<string>icon14rounded.png</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 15</string>
 		<key>iconImage</key>
-		<string>icon15.png</string>
+		<string>icon15rounded.png</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 16</string>
 		<key>iconImage</key>
-		<string>icon16.png</string>
+		<string>icon16rounded.png</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 17</string>
 		<key>iconImage</key>
-		<string>icon17.png</string>
+		<string>icon17rounded.png</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 18</string>
 		<key>iconImage</key>
-		<string>icon18.png</string>
+		<string>icon18rounded.png</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 19</string>
 		<key>iconImage</key>
-		<string>icon19.png</string>
+		<string>icon19rounded.png</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 20</string>
 		<key>iconImage</key>
-		<string>icon20.png</string>
+		<string>icon20rounded.png</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon</string>
 		<key>iconImage</key>
-		<string>icon0.png</string>
+		<string>icon0rounded.png</string>
 	</dict>
 </array>
 </plist>

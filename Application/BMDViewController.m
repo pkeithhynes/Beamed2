@@ -286,71 +286,6 @@ Implementation of the cross-platform view controller
     return backgroundRenderDictionary;
 }
 
-
-
-//- (NSMutableDictionary *)renderBackground {
-//    DLog("renderBackground");
-//    animationFrame++;
-//    // Generate frame intervals from time intervals
-//    unsigned int frameModulus = 2;
-//    unsigned int animationIntervalInFrames = timeBetweenAnimationsInSeconds * frameModulus * METAL_RENDERER_FPS;
-//    unsigned int animationDurationInFrames = animationDurationInSeconds * frameModulus * METAL_RENDERER_FPS;
-//
-//    if (animationFrame % frameModulus == 0){
-//        // Redraw the background every frameModulus frames
-//        [backgroundRenderDictionary removeAllObjects];
-//        backgroundRenderDataImage = [background renderBackgroundImage:7];
-//        [backgroundRenderDictionary setObject:backgroundRenderDataImage forKey:@"backgroundImage"];
-//
-//        // Initiate a new animation sequence every animationIntervalInFrames
-//        if (animationFrameMarker1 < 0 &&
-//            animationFrame % animationIntervalInFrames == 0){
-//            // Marks the end frame of animation
-//            animationFrameMarker1 = animationFrame + animationDurationInFrames;
-//            syncFrame = YES;
-//            // Clear out the previous animation and generate a new animation center point for next animation
-//            [ringRenderArray removeAllObjects];
-//            animationColor = (enum eTileColors)arc4random_uniform(7);
-//
-//            animationCenter.x = arc4random_uniform(screenWidthInPixels);
-//            animationCenter.y = screenHeightInPixels-0.7*arc4random_uniform(screenHeightInPixels);
-//
-//            // Proportion of the way from 0.3*screenHeightInPixels to 1.0*screenHeightInPixels
-//            CGFloat yProportion = animationCenter.y/(float)screenHeightInPixels;
-//            CGFloat maxWidth = (CGFloat)screenWidthInPixels;
-//            CGFloat actualWidth = yProportion*maxWidth;
-//
-//            animationScaleFactor = 0.2 + (yProportion-0.3)*0.3/0.7;
-//            animationSizeX = actualWidth;
-//            animationSizeY = animationScaleFactor*actualWidth;
-//        }
-//        // Generate the next animation frame
-//        else if (animationFrameMarker1 > 0 &&
-//                 animationFrame < animationFrameMarker1){
-//            // Add to the ringRenderArray
-//            ringRenderArray = [foreground renderRingArray:ringRenderArray
-//                                            numberOfRings:1
-//                                                  centerX:(unsigned int)animationCenter.x
-//                                                  centerY:(unsigned int)animationCenter.y
-//                                                    color:(enum eTileColors)animationColor
-//                                                    sizeX:animationSizeX
-//                                                    sizeY:animationSizeY
-//                                                syncFrame:syncFrame
-//            ];
-//            syncFrame = NO;
-//            [backgroundRenderDictionary setObject:ringRenderArray forKey:@"ringRenderArray"];
-//        }
-//        else if (animationFrameMarker1 > 0 &&
-//                 animationFrame >= animationFrameMarker1) {
-//            // Indicates no animation at the present time
-//            animationFrameMarker1 = -1;
-//        }
-//    }
-//    return backgroundRenderDictionary;
-//}
-
-
-
 - (void)refreshHomeView {
     homeView.hidden = NO;
     
@@ -498,6 +433,14 @@ Implementation of the cross-platform view controller
         reviewButton.alpha = 0.5;
     }
 
+    // Set the dailyRewardButton pulse if the reward is still available
+    NSNumber *dailyRewardReceivedDay = [appd getObjectFromDefaults:@"dailyRewardReceivedDay"];
+    todayLocal = [NSNumber numberWithUnsignedInt:[appd getLocalDaysSinceReferenceDate]];
+    if (dailyRewardReceivedDay == nil || dailyRewardReceivedDay != todayLocal){
+        [self enablePulse:dailyRewardButton alphaMin:0.1];
+    }
+
+    
     [self loadAppropriateSizeBannerAd];
 }
 
