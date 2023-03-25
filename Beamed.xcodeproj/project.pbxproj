@@ -295,6 +295,10 @@
 		8060060E2990486900460553 /* editedPuzzlePack.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8060060C2990486900460553 /* editedPuzzlePack.plist */; };
 		8068338B292ECB1B00620AC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8068338A292ECB1B00620AC1 /* GoogleService-Info.plist */; };
 		8068338C292ECB1B00620AC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8068338A292ECB1B00620AC1 /* GoogleService-Info.plist */; };
+		806B39E929CE9DC300EA3799 /* alternateIcons.plist in Resources */ = {isa = PBXBuildFile; fileRef = 806B39E829CE9DC300EA3799 /* alternateIcons.plist */; };
+		806B39EA29CE9DC300EA3799 /* alternateIcons.plist in Resources */ = {isa = PBXBuildFile; fileRef = 806B39E829CE9DC300EA3799 /* alternateIcons.plist */; };
+		806B39EC29CE9ED000EA3799 /* icon0.png in Resources */ = {isa = PBXBuildFile; fileRef = 806B39EB29CE9ED000EA3799 /* icon0.png */; };
+		806B39ED29CE9ED000EA3799 /* icon0.png in Resources */ = {isa = PBXBuildFile; fileRef = 806B39EB29CE9ED000EA3799 /* icon0.png */; };
 		806B4ED1296C7F5400FFD306 /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 806B4ED0296C7F5400FFD306 /* LaunchScreen.png */; };
 		80843526291370E400EAAAB3 /* TileOpaque.png in Resources */ = {isa = PBXBuildFile; fileRef = 80843525291370E400EAAAB3 /* TileOpaque.png */; };
 		80843527291370E400EAAAB3 /* TileOpaque.png in Resources */ = {isa = PBXBuildFile; fileRef = 80843525291370E400EAAAB3 /* TileOpaque.png */; };
@@ -722,6 +726,8 @@
 		805DB34B27D1453F00F9572A /* Prism.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Prism.png; sourceTree = "<group>"; };
 		8060060C2990486900460553 /* editedPuzzlePack.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = editedPuzzlePack.plist; sourceTree = "<group>"; };
 		8068338A292ECB1B00620AC1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		806B39E829CE9DC300EA3799 /* alternateIcons.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = alternateIcons.plist; sourceTree = "<group>"; };
+		806B39EB29CE9ED000EA3799 /* icon0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon0.png; sourceTree = "<group>"; };
 		806B4ED0296C7F5400FFD306 /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
 		80843525291370E400EAAAB3 /* TileOpaque.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileOpaque.png; sourceTree = "<group>"; };
 		80884C34292ED3A9005B29FC /* VungleSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = VungleSDK.xcframework; path = ../../Downloads/vungle6121/VungleSDK.xcframework; sourceTree = SOURCE_ROOT; };
@@ -1057,7 +1063,7 @@
 		520E8916255C5E2D00C83B6E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8019993229CCF95D001120C1 /* icons */,
+				8019993229CCF95D001120C1 /* alternateIcons */,
 				5270AFC72667BE0100F1CF81 /* Level Plist Files */,
 				80F406F328F08CC9006C4F82 /* Texture Plist Files */,
 				52A9A2A625717C0D0072F41E /* Audio */,
@@ -1322,9 +1328,10 @@
 			path = Licenses;
 			sourceTree = "<group>";
 		};
-		8019993229CCF95D001120C1 /* icons */ = {
+		8019993229CCF95D001120C1 /* alternateIcons */ = {
 			isa = PBXGroup;
 			children = (
+				806B39EB29CE9ED000EA3799 /* icon0.png */,
 				8019993329CCF9A6001120C1 /* icon1.png */,
 				8019993629CCF9D1001120C1 /* icon2.png */,
 				8019993929CCF9EA001120C1 /* icon3.png */,
@@ -1345,8 +1352,9 @@
 				80A940CC29CE1FB3003AD137 /* icon18.png */,
 				80A940CF29CE1FC6003AD137 /* icon19.png */,
 				80A940D229CE1FD7003AD137 /* icon20.png */,
+				806B39E829CE9DC300EA3799 /* alternateIcons.plist */,
 			);
-			path = icons;
+			path = alternateIcons;
 			sourceTree = "<group>";
 		};
 		803AFB6E2979CF9400BDB614 /* Licenses */ = {
@@ -1846,6 +1854,7 @@
 				80BF264827D723A000BF9736 /* LaserGun-0.png in Resources */,
 				805DB34D27D1453F00F9572A /* Prism.png in Resources */,
 				526FBCEF25926960001F5647 /* Beam-Angle00-04.png in Resources */,
+				806B39ED29CE9ED000EA3799 /* icon0.png in Resources */,
 				809FEA9229710C2500B13351 /* 70645766-night-drive-80s-license.txt in Resources */,
 				8011CE81297B2C0200E7CEAB /* shoppingCart-9385753-vecteezy.pdf in Resources */,
 				5286EA952564706B00B43209 /* TileJewelActivated02.png in Resources */,
@@ -1868,6 +1877,7 @@
 				803AFB712979CFB100BDB614 /* Fiverr - Proof of Doing - Laser Gun and some jewels.png in Resources */,
 				80D07E5D297E5AC800295271 /* Beamed2Logo_00010.png in Resources */,
 				80D07E4E297E5AC800295271 /* Beamed2Logo_00016.png in Resources */,
+				806B39EA29CE9DC300EA3799 /* alternateIcons.plist in Resources */,
 				809FEAC12971176200B13351 /* 67412386-reward-license.txt in Resources */,
 				809FEA8F29710C2500B13351 /* 70645767-internal-calculations-license.pdf in Resources */,
 				809FEA9529710C2500B13351 /* 70645766-night-drive-80s-license.pdf in Resources */,
@@ -2030,6 +2040,7 @@
 				80FDEA6C29145A5C007C05F7 /* TileSquareBright.png in Resources */,
 				80A940CD29CE1FB3003AD137 /* icon18.png in Resources */,
 				80D07E59297E5AC800295271 /* Beamed2Logo_00008.png in Resources */,
+				806B39EC29CE9ED000EA3799 /* icon0.png in Resources */,
 				5286EAAC2564706B00B43209 /* TileJewelActivated01.png in Resources */,
 				52994B8825DA13D700887B9C /* Rings_00018.png in Resources */,
 				80A940C729CE1F8F003AD137 /* icon16.png in Resources */,
@@ -2126,6 +2137,7 @@
 				5286EB252564715400B43209 /* TileSpectrumL0.png in Resources */,
 				52994B4025DA13D700887B9C /* Rings_00028.png in Resources */,
 				80C206FA297D2FAA00FF0FD9 /* LoadingScreen.png in Resources */,
+				806B39E929CE9DC300EA3799 /* alternateIcons.plist in Resources */,
 				52994B5E25DA13D700887B9C /* Rings_00000.png in Resources */,
 				8011CE9B297B8B3500E7CEAB /* 003577572-light-sabersci-fihighswingsfas.wav in Resources */,
 				80A940B829CE1F20003AD137 /* icon11.png in Resources */,

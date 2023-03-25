@@ -14,10 +14,13 @@ NS_ASSUME_NONNULL_BEGIN
     
 @public
     UIView *iconsView;
-
+    NSMutableArray *alternateIconsArray;
+    NSMutableArray *alternateIconsButtonsArray;
 }
 
 @property (nonatomic, retain) UIView *iconsView;
+@property (nonatomic, retain) NSMutableArray *alternateIconsArray;
+@property (nonatomic, retain) NSMutableArray *alternateIconsButtonsArray;
 
 @end
 

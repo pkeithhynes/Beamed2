@@ -23,6 +23,8 @@
 }
 
 @synthesize iconsView;
+@synthesize alternateIconsArray;
+@synthesize alternateIconsButtonsArray;
 
     
 - (void)viewDidLoad {
@@ -67,6 +69,7 @@
     CGFloat backButtonIconSizeInPoints = 60;
     CGFloat switchCx;
     CGFloat w, h, settingsLabelY;
+    unsigned int nrows, ncols, iconGridSizeInPoints, iconSizeInPoints;
     switch (rc.displayAspectRatio) {
         case ASPECT_4_3:{
             // iPad (9th generation)
@@ -80,6 +83,8 @@
             w = 0.8*settingsFrame.size.width;
             h = 1.5*titleLabelSize;
             settingsLabelY = 1.0*h;
+            nrows = 4;
+            ncols = 5;
             break;
         }
         case ASPECT_10_7:{
@@ -94,6 +99,8 @@
             w = 0.8*settingsFrame.size.width;
             h = 1.5*titleLabelSize;
             settingsLabelY = 2.0*h;
+            nrows = 4;
+            ncols = 5;
             break;
         }
         case ASPECT_3_2: {
@@ -108,6 +115,8 @@
             w = 0.8*settingsFrame.size.width;
             h = 1.5*titleLabelSize;
             settingsLabelY = 2.0*h;
+            nrows = 4;
+            ncols = 5;
             break;
         }
         case ASPECT_16_9: {
@@ -122,6 +131,8 @@
             w = 0.8*settingsFrame.size.width;
             h = 1.5*titleLabelSize;
             settingsLabelY = 2.0*h;
+            nrows = 5;
+            ncols = 4;
             break;
         }
         case ASPECT_13_6: {
@@ -136,10 +147,14 @@
             w = 0.8*settingsFrame.size.width;
             h = 1.5*titleLabelSize;
             settingsLabelY = 3.0*h;
+            nrows = 5;
+            ncols = 4;
             break;
         }
     }
-    
+    iconGridSizeInPoints = 0.8*settingsFrame.size.width/ncols;
+    iconSizeInPoints = 0.8*iconGridSizeInPoints;
+
     // Settings Label
     CGRect iconsLabelFrame = CGRectMake(0.5*settingsFrame.size.width - w/2.0,
                                            settingsLabelY,
@@ -150,10 +165,6 @@
     iconsPageLabel.numberOfLines = 0;
     iconsPageLabel.layer.borderColor = [UIColor clearColor].CGColor;
     iconsPageLabel.textColor = [UIColor cyanColor];
-//    iconsPageLabel.textColor = [UIColor colorWithRed:251.0/255.0
-//                                               green:212.0/255.0
-//                                                blue:40.0/255.0
-//                                               alpha:1.0];
     iconsPageLabel.layer.borderWidth = 1.0;
     [iconsPageLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:titleLabelSize]];
     iconsPageLabel.textAlignment = NSTextAlignmentCenter;
@@ -178,28 +189,55 @@
     [iconsView addSubview:homeArrow];
     [iconsView bringSubviewToFront:homeArrow];
     
-//    UIImageView *AppIcon1ImageView = [self createImageView:@"icon1.png"
-//                                                  width:100
-//                                                   posX:settingsFrame.size.width/2
-//                                                   posY:settingsFrame.size.height/2];
-//    [iconsView addSubview: AppIcon1ImageView];
-//    [iconsView bringSubviewToFront:AppIcon1ImageView];
-
+    
     //
-    // icon1 button
+    // Create array of icon UIButtons
     //
-    UIButton *icon1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    CGRect icon1ArrowRect = CGRectMake(settingsFrame.size.width/2,
-                                       settingsFrame.size.height/2,
-                                       100,
-                                       100);
-    icon1.frame = icon1ArrowRect;
-    icon1.enabled = YES;
-    [icon1 addTarget:self action:@selector(icon1ButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    UIImage *icon1Image = [UIImage imageNamed:@"icon8.png"];
-    [icon1 setBackgroundImage:icon1Image forState:UIControlStateNormal];
-    [iconsView addSubview:icon1];
-    [iconsView bringSubviewToFront:icon1];
+    alternateIconsArray = [self fetchAlternateIconsArray:alternateIconsArray];
+    alternateIconsButtonsArray = [NSMutableArray arrayWithCapacity:1];
+    if (alternateIconsArray != nil){
+        unsigned int gridX, gridY;
+        unsigned int posX, posY;
+        unsigned int arrayLen = (unsigned int)[alternateIconsArray count];
+        for (unsigned int idx=0; idx<arrayLen-1; idx++){
+            gridX = (idx % ncols);
+            gridY = (idx / ncols);
+            posX = (idx % ncols) * iconGridSizeInPoints + 0.1*settingsFrame.size.width;
+            posY = (idx / ncols) * iconGridSizeInPoints + settingsLabelY + 6.0*h;
+            UIButton *iconButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            CGRect iconRect = CGRectMake(posX+(iconGridSizeInPoints-iconSizeInPoints)/2.0,
+                                         posY+(iconGridSizeInPoints-iconSizeInPoints)/2.0,
+                                         iconSizeInPoints,
+                                         iconSizeInPoints);
+            iconButton.frame = iconRect;
+            iconButton.enabled = YES;
+            [iconButton addTarget:self action:@selector(iconButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+            NSMutableDictionary *iconDict = [NSMutableDictionary dictionaryWithDictionary:[alternateIconsArray objectAtIndex:idx]];
+            NSString *iconName = [iconDict objectForKey:@"appIcon"];
+            NSString *iconImageFileName = [iconDict objectForKey:@"iconImage"];
+            UIImage *iconImage = [UIImage imageNamed:iconImageFileName];
+            [iconButton setBackgroundImage:iconImage forState:UIControlStateNormal];
+            [iconsView addSubview:iconButton];
+            [iconsView bringSubviewToFront:iconButton];
+        }
+    }
+    
+    
+    //
+    // icon button
+    //
+//    UIButton *icon1 = [UIButton buttonWithType:UIButtonTypeCustom];
+//    CGRect icon1ArrowRect = CGRectMake(settingsFrame.size.width/2,
+//                                       settingsFrame.size.height/2,
+//                                       100,
+//                                       100);
+//    icon1.frame = icon1ArrowRect;
+//    icon1.enabled = YES;
+//    [icon1 addTarget:self action:@selector(icon1ButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+//    UIImage *icon1Image = [UIImage imageNamed:@"icon8.png"];
+//    [icon1 setBackgroundImage:icon1Image forState:UIControlStateNormal];
+//    [iconsView addSubview:icon1];
+//    [iconsView bringSubviewToFront:icon1];
 
 }
 
@@ -207,7 +245,7 @@
 // Button Handler Methods Go Here
 //
 
-- (void)icon1ButtonPressed {
+- (void)iconButtonPressed {
     BOOL supportsAlternateIcons = [UIApplication.sharedApplication supportsAlternateIcons];
     if (supportsAlternateIcons){
         [UIApplication.sharedApplication setAlternateIconName:@"AppIcon 8" completionHandler:^(NSError *error){
@@ -252,6 +290,15 @@
                                  width,
                                  height);
     return imageView;
+}
+
+- (NSMutableArray *)fetchAlternateIconsArray:(NSMutableArray *)alternateIconsArray {
+    NSString *filePath = [[NSBundle bundleForClass:[self class]]
+                          pathForResource:@"alternateIcons"
+                          ofType:@"plist"];
+    alternateIconsArray = [NSMutableArray arrayWithCapacity:1];
+    alternateIconsArray = [[NSMutableArray alloc] initWithContentsOfFile:filePath];
+    return alternateIconsArray;
 }
 
 @end

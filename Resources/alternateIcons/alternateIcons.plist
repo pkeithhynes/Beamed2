@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>appIcon</key>
+		<string>AppIcon 1</string>
+		<key>iconImage</key>
+		<string>icon1.png</string>
+	</dict>
+	<dict>
+		<key>appIcon</key>
+		<string>AppIcon 2</string>
+		<key>iconImage</key>
+		<string>icon2.png</string>
+	</dict>
+	<dict>
+		<key>appIcon</key>
+		<string>AppIcon 3</string>
+		<key>iconImage</key>
+		<string>icon3.png</string>
+	</dict>
+	<dict>
+		<key>appIcon</key>
+		<string>AppIcon 4</string>
+		<key>iconImage</key>
+		<string>icon4.png</string>
+	</dict>
+	<dict>
+		<key>appIcon</key>
+		<string>AppIcon 5</string>
+		<key>iconImage</key>
+		<string>icon5.png</string>
+	</dict>
+	<dict>
+		<key>appIcon</key>
+		<string>AppIcon 6</string>
+		<key>iconImage</key>
+		<string>icon6.png</string>
+	</dict>
+	<dict>
+		<key>appIcon</key>
+		<string>AppIcon 7</string>
+		<key>iconImage</key>
+		<string>icon7.png</string>
+	</dict>
+	<dict>
+		<key>appIcon</key>
+		<string>AppIcon 8</string>
+		<key>iconImage</key>
+		<string>icon8.png</string>
+	</dict>
+	<dict>
+		<key>appIcon</key>
+		<string>AppIcon 9</string>
+		<key>iconImage</key>
+		<string>icon9.png</string>
+	</dict>
+	<dict>
+		<key>appIcon</key>
+		<string>AppIcon 10</string>
+		<key>iconImage</key>
+		<string>icon10.png</string>
+	</dict>
+	<dict>
+		<key>appIcon</key>
+		<string>AppIcon 11</string>
+		<key>iconImage</key>
+		<string>icon11.png</string>
+	</dict>
+	<dict>
+		<key>appIcon</key>
+		<string>AppIcon 12</string>
+		<key>iconImage</key>
+		<string>icon12.png</string>
+	</dict>
+	<dict>
+		<key>appIcon</key>
+		<string>AppIcon 13</string>
+		<key>iconImage</key>
+		<string>icon13.png</string>
+	</dict>
+	<dict>
+		<key>appIcon</key>
+		<string>AppIcon 14</string>
+		<key>iconImage</key>
+		<string>icon14.png</string>
+	</dict>
+	<dict>
+		<key>appIcon</key>
+		<string>AppIcon 15</string>
+		<key>iconImage</key>
+		<string>icon15.png</string>
+	</dict>
+	<dict>
+		<key>appIcon</key>
+		<string>AppIcon 16</string>
+		<key>iconImage</key>
+		<string>icon16.png</string>
+	</dict>
+	<dict>
+		<key>appIcon</key>
+		<string>AppIcon 17</string>
+		<key>iconImage</key>
+		<string>icon17.png</string>
+	</dict>
+	<dict>
+		<key>appIcon</key>
+		<string>AppIcon 18</string>
+		<key>iconImage</key>
+		<string>icon18.png</string>
+	</dict>
+	<dict>
+		<key>appIcon</key>
+		<string>AppIcon 19</string>
+		<key>iconImage</key>
+		<string>icon19.png</string>
+	</dict>
+	<dict>
+		<key>appIcon</key>
+		<string>AppIcon 20</string>
+		<key>iconImage</key>
+		<string>icon20.png</string>
+	</dict>
+	<dict>
+		<key>appIcon</key>
+		<string>AppIcon</string>
+		<key>iconImage</key>
+		<string>icon0.png</string>
+	</dict>
+</array>
+</plist>
