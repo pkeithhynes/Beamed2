@@ -292,7 +292,9 @@ Implementation of the cross-platform view controller
     // Set background color and graphic image
     if (ENABLE_HOME_SCREEN_ANIMATION==NO){
         homeView.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.14 alpha:1.0];
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"backgroundLandscapeGrid" ofType:@"png"];
+//        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"neon-synthwave-cityscape-1" ofType:@"png"];
+//        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"backgroundLandscapeGrid" ofType:@"png"];
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"neon-synthwave-cityscape-1" ofType:@"png"];
         UIImage *sourceImage = [UIImage imageWithContentsOfFile:filePath];
         CGFloat imageWidth = (CGFloat)sourceImage.size.width;
         CGFloat imageHeight = (CGFloat)sourceImage.size.height;
@@ -708,7 +710,8 @@ Implementation of the cross-platform view controller
     
     // Set background color and graphic image
     scoresView.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.14 alpha:1.0];
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"backgroundLandscapeGrid" ofType:@"png"];
+//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"backgroundLandscapeGrid" ofType:@"png"];
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"neon-synthwave-cityscape-1" ofType:@"png"];
     UIImage *sourceImage = [UIImage imageWithContentsOfFile:filePath];
     CGFloat imageWidth = (CGFloat)sourceImage.size.width;
     CGFloat imageHeight = (CGFloat)sourceImage.size.height;
@@ -728,6 +731,18 @@ Implementation of the cross-platform view controller
     [scoresView addSubview:scoresViewBackground];
     [scoresView sendSubviewToBack:scoresViewBackground];
     
+    // Set filter frame to improve icon grid and text contrast
+    CGRect filterFrame = CGRectMake(0.05*self.view.frame.size.width,
+                                    0.05*self.view.frame.size.height,
+                                    0.9*self.view.frame.size.width,
+                                    0.9*self.view.frame.size.height);
+    UILabel *filterLabel = [[UILabel alloc] initWithFrame:filterFrame];
+    filterLabel.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.80];
+    filterLabel.layer.masksToBounds = YES;
+    filterLabel.layer.cornerRadius = 15;
+    [scoresView addSubview:filterLabel];
+    [scoresView bringSubviewToFront:filterLabel];
+
     NSString *adFree = [appd getObjectFromDefaults:@"AD_FREE_PUZZLES"];
     if (![adFree isEqualToString:@"YES"]){
         [scoresView addSubview:bannerAdView];

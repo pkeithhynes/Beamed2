@@ -185,6 +185,14 @@
 		63B42F161ED2063300859D09 /* BMDShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3AF7E9C11EB64A46003BB06D /* BMDShaders.metal */; };
 		63B42F181ED2063C00859D09 /* BMDShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3AF7E9C11EB64A46003BB06D /* BMDShaders.metal */; };
 		800465FB2906FE4F0044345E /* AppIcons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 800465FA2906FE4F0044345E /* AppIcons.xcassets */; };
+		800721D529D0073F004F93DE /* neon-synthwave-cityscape-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 800721D429D0073F004F93DE /* neon-synthwave-cityscape-1.png */; };
+		800721D629D0073F004F93DE /* neon-synthwave-cityscape-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 800721D429D0073F004F93DE /* neon-synthwave-cityscape-1.png */; };
+		800721D829D00AA2004F93DE /* neon-synthwave-cityscape-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 800721D729D00AA2004F93DE /* neon-synthwave-cityscape-2.png */; };
+		800721D929D00AA2004F93DE /* neon-synthwave-cityscape-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 800721D729D00AA2004F93DE /* neon-synthwave-cityscape-2.png */; };
+		800721DB29D00C03004F93DE /* neon-synthwave-cityscape-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 800721DA29D00C02004F93DE /* neon-synthwave-cityscape-3.png */; };
+		800721DC29D00C03004F93DE /* neon-synthwave-cityscape-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 800721DA29D00C02004F93DE /* neon-synthwave-cityscape-3.png */; };
+		800721DE29D01005004F93DE /* coffeeRobotNeon.png in Resources */ = {isa = PBXBuildFile; fileRef = 800721DD29D01005004F93DE /* coffeeRobotNeon.png */; };
+		800721DF29D01005004F93DE /* coffeeRobotNeon.png in Resources */ = {isa = PBXBuildFile; fileRef = 800721DD29D01005004F93DE /* coffeeRobotNeon.png */; };
 		800E459B292EE45F0041976E /* BridgingHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E459A292EE45F0041976E /* BridgingHeader.swift */; };
 		800E459C292EE45F0041976E /* BridgingHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E459A292EE45F0041976E /* BridgingHeader.swift */; };
 		800ECE3F28DF86D400A7DC62 /* PackCompleted.png in Resources */ = {isa = PBXBuildFile; fileRef = 800ECE3E28DF86D400A7DC62 /* PackCompleted.png */; };
@@ -667,6 +675,10 @@
 		52FD128925814C9600ECBE3D /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
 		52FD128A25814C9600ECBE3D /* Background.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Background.m; sourceTree = "<group>"; };
 		800465FA2906FE4F0044345E /* AppIcons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = AppIcons.xcassets; path = Assets.xcassets/AppIcons.xcassets; sourceTree = "<group>"; };
+		800721D429D0073F004F93DE /* neon-synthwave-cityscape-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "neon-synthwave-cityscape-1.png"; sourceTree = "<group>"; };
+		800721D729D00AA2004F93DE /* neon-synthwave-cityscape-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "neon-synthwave-cityscape-2.png"; sourceTree = "<group>"; };
+		800721DA29D00C02004F93DE /* neon-synthwave-cityscape-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "neon-synthwave-cityscape-3.png"; sourceTree = "<group>"; };
+		800721DD29D01005004F93DE /* coffeeRobotNeon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coffeeRobotNeon.png; sourceTree = "<group>"; };
 		800E4597292EE45F0041976E /* Beamed-macOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Beamed-macOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		800E4598292EE45F0041976E /* Beamed-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Beamed-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		800E4599292EE45F0041976E /* Beamed-tvOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Beamed-tvOS-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -1469,6 +1481,10 @@
 				80C1766D297C9A0F0011EE75 /* backgroundLandscapeGrid.png */,
 				80F31602297BAD5D003DCCDF /* backgroundLandscapeGrid4.png */,
 				80DC5B7B29CFAF4100C66781 /* coffeePinkNeon.png */,
+				800721DD29D01005004F93DE /* coffeeRobotNeon.png */,
+				800721D429D0073F004F93DE /* neon-synthwave-cityscape-1.png */,
+				800721D729D00AA2004F93DE /* neon-synthwave-cityscape-2.png */,
+				800721DA29D00C02004F93DE /* neon-synthwave-cityscape-3.png */,
 			);
 			path = "Screen Backgrounds";
 			sourceTree = "<group>";
@@ -1752,6 +1768,7 @@
 				80FDEA6929145848007C05F7 /* TileSquareTranslucent.png in Resources */,
 				809FEACD2971176200B13351 /* 67410904-win-game-level-93-license.txt in Resources */,
 				8068338C292ECB1B00620AC1 /* GoogleService-Info.plist in Resources */,
+				800721D929D00AA2004F93DE /* neon-synthwave-cityscape-2.png in Resources */,
 				8023B2D52915F54D00176960 /* JewelYellow.png in Resources */,
 				8011CE84297B2C0200E7CEAB /* unlocked-12674672-vecteezy.pdf in Resources */,
 				808E3BC628FC5304009C1474 /* GridTileDot.png in Resources */,
@@ -1876,6 +1893,7 @@
 				52994B7D25DA13D700887B9C /* Rings_00025.png in Resources */,
 				52994B4425DA13D700887B9C /* Rings_00002.png in Resources */,
 				80F31604297BAD5D003DCCDF /* backgroundLandscapeGrid4.png in Resources */,
+				800721DC29D00C03004F93DE /* neon-synthwave-cityscape-3.png in Resources */,
 				52994B4725DA13D700887B9C /* Rings_00021.png in Resources */,
 				80DC5BE029CFEBED00C66781 /* icon3rounded.png in Resources */,
 				5286EAAD2564706B00B43209 /* TileJewelActivated01.png in Resources */,
@@ -1912,6 +1930,7 @@
 				526FBD5225926960001F5647 /* Beam-Angle00-11.png in Resources */,
 				80DC5BA229CFE9C000C66781 /* 39centLayer.png in Resources */,
 				803AFB792979D12900BDB614 /* Provenance.xib in Resources */,
+				800721D629D0073F004F93DE /* neon-synthwave-cityscape-1.png in Resources */,
 				80BB3CA628DBC42700C547D1 /* DragTileText.png in Resources */,
 				80DC5C0829CFFBA800C66781 /* icon19rounded.png in Resources */,
 				5286EBEE2564BCD300B43209 /* TileOutline.png in Resources */,
@@ -1935,6 +1954,7 @@
 				809FEAD62971176200B13351 /* 67410905-win-game-level-119-license.pdf in Resources */,
 				809FEACA2971176200B13351 /* 67410901-win-game-level-50-license.pdf in Resources */,
 				80843527291370E400EAAAB3 /* TileOpaque.png in Resources */,
+				800721DF29D01005004F93DE /* coffeeRobotNeon.png in Resources */,
 				5286EA922564706B00B43209 /* TileJewelActivated06.png in Resources */,
 				809FEAAD2971167200B13351 /* 67409514-puzzle-background-theme-2-license.txt in Resources */,
 				8011CE93297B3E4400E7CEAB /* TapToRotate.png in Resources */,
@@ -1988,6 +2008,7 @@
 				8044DD992904908E0078942B /* cyanRectangle.png in Resources */,
 				809FEAC62971176200B13351 /* 67410903-win-game-level-52-license.txt in Resources */,
 				8058D1F729CA2B72002828F4 /* reward.png in Resources */,
+				800721DB29D00C03004F93DE /* neon-synthwave-cityscape-3.png in Resources */,
 				5286EAC72564706B00B43209 /* TileJewelActivated12.png in Resources */,
 				809FEA9729710C2500B13351 /* 70645767-internal-calculations-license.txt in Resources */,
 				80DC5BD529CFEBED00C66781 /* icon4rounded.png in Resources */,
@@ -2044,6 +2065,7 @@
 				808E49DA295E18A900D4D077 /* homeArrowWhite.png in Resources */,
 				526FBD1B25926960001F5647 /* Beam-Angle00-10.png in Resources */,
 				52994B4C25DA13D700887B9C /* Rings_00007.png in Resources */,
+				800721DE29D01005004F93DE /* coffeeRobotNeon.png in Resources */,
 				52994B7F25DA13D700887B9C /* Rings_00017.png in Resources */,
 				5284E5EB25AAA1320042F429 /* README.md in Resources */,
 				8023B2CC2915BD8300176960 /* JewelCyan.png in Resources */,
@@ -2131,6 +2153,7 @@
 				80C206F6297D2F9C00FF0FD9 /* Beamed2Logo.png in Resources */,
 				52994B3A25DA13D700887B9C /* Rings_00010.png in Resources */,
 				8011CE86297B2C0200E7CEAB /* helpButton-440213-Vecteezy.pdf in Resources */,
+				800721D829D00AA2004F93DE /* neon-synthwave-cityscape-2.png in Resources */,
 				52994B8525DA13D700887B9C /* Rings_00024.png in Resources */,
 				52994B6D25DA13D700887B9C /* Rings_00001.png in Resources */,
 				809DF29128F1EFEE00AC4680 /* tileAnimations.plist in Resources */,
@@ -2188,6 +2211,7 @@
 				5266332625FBD8ED00776E9B /* single-arrow-1.png in Resources */,
 				5286EB252564715400B43209 /* TileSpectrumL0.png in Resources */,
 				52994B4025DA13D700887B9C /* Rings_00028.png in Resources */,
+				800721D529D0073F004F93DE /* neon-synthwave-cityscape-1.png in Resources */,
 				80C206FA297D2FAA00FF0FD9 /* LoadingScreen.png in Resources */,
 				806B39E929CE9DC300EA3799 /* alternateIcons.plist in Resources */,
 				52994B5E25DA13D700887B9C /* Rings_00000.png in Resources */,

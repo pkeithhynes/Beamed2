@@ -46,7 +46,8 @@
         iconsView.layer.masksToBounds = YES;
         
         // Set background graphic image
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"coffeePinkNeon" ofType:@"png"];
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"coffeeRobotNeon" ofType:@"png"];
+//        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"coffeePinkNeon" ofType:@"png"];
         UIImage *sourceImage = [UIImage imageWithContentsOfFile:filePath];
         CGFloat imageWidth = (CGFloat)sourceImage.size.width;
         CGFloat imageHeight = (CGFloat)sourceImage.size.height;
@@ -63,9 +64,22 @@
         UIImageView *iconsViewBackground = [[UIImageView alloc]initWithImage:newImage];
         iconsViewBackground.contentMode = UIViewContentModeScaleAspectFill;
         iconsViewBackground.clipsToBounds = YES;
-        iconsViewBackground.alpha = 0.3;
+        iconsViewBackground.alpha = 1.0;
         [iconsView addSubview:iconsViewBackground];
         [iconsView bringSubviewToFront:iconsViewBackground];
+        
+        // Set filter frame to improve icon grid and text contrast
+        CGRect filterFrame = CGRectMake(0.05*self.view.frame.size.width,
+                                        0.05*self.view.frame.size.height,
+                                        0.9*self.view.frame.size.width,
+                                        0.9*self.view.frame.size.height);
+        UILabel *filterLabel = [[UILabel alloc] initWithFrame:filterFrame];
+        filterLabel.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.80];
+        filterLabel.layer.masksToBounds = YES;
+        filterLabel.layer.cornerRadius = 15;
+        [iconsView addSubview:filterLabel];
+        [iconsView bringSubviewToFront:filterLabel];
+
         
         CGFloat titleLabelSize, optionLabelSize, buttonHeight, buttonWidth, homeButtonWidthToHeightRatio;
         CGFloat backButtonIconSizeInPoints = 60;
@@ -263,6 +277,7 @@
 //
 
 - (void)iconButtonPressed:(UIButton *)sender {
+    [appd playSound:appd.tapPlayer];
     // Fetch the name of the selection App Icon
     unsigned int idx = (unsigned int)sender.tag;
     NSMutableDictionary *iconDict = [NSMutableDictionary dictionaryWithDictionary:[alternateIconsArray objectAtIndex:idx]];
