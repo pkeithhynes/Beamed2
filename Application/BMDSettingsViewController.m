@@ -78,6 +78,18 @@
     [settingsView addSubview:settingsViewBackground];
     [settingsView bringSubviewToFront:settingsViewBackground];
     
+    // Set filter frame to improve icon grid and text contrast
+    CGRect filterFrame = CGRectMake(0.05*self.view.frame.size.width,
+                                    0.05*self.view.frame.size.height,
+                                    0.9*self.view.frame.size.width,
+                                    0.9*self.view.frame.size.height);
+    UILabel *filterLabel = [[UILabel alloc] initWithFrame:filterFrame];
+    filterLabel.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.80];
+    filterLabel.layer.masksToBounds = YES;
+    filterLabel.layer.cornerRadius = 15;
+    [settingsView addSubview:filterLabel];
+    [settingsView bringSubviewToFront:filterLabel];
+
     CGFloat titleLabelSize, optionLabelSize, buttonHeight, buttonWidth, homeButtonWidthToHeightRatio;
     CGFloat backButtonIconSizeInPoints = 60;
     CGFloat switchCx;

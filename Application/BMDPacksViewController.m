@@ -185,7 +185,19 @@
     packsViewBackground.clipsToBounds = YES;
     [packsView addSubview:packsViewBackground];
     [packsView bringSubviewToFront:packsViewBackground];
-    
+
+    // Set filter frame to improve icon grid and text contrast
+    CGRect filterFrame = CGRectMake(0.05*self.view.frame.size.width,
+                                    0.05*self.view.frame.size.height,
+                                    0.9*self.view.frame.size.width,
+                                    0.9*self.view.frame.size.height);
+    UILabel *filterLabel = [[UILabel alloc] initWithFrame:filterFrame];
+    filterLabel.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.80];
+    filterLabel.layer.masksToBounds = YES;
+    filterLabel.layer.cornerRadius = 15;
+    [packsView addSubview:filterLabel];
+    [packsView bringSubviewToFront:filterLabel];
+
     // Create contentView
     contentView = [[UIView alloc] initWithFrame:puzzlePacksContentFrame];
     
