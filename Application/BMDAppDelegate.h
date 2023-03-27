@@ -127,6 +127,10 @@ API_AVAILABLE(ios(13.0))
     
     // Vungle is available
     BOOL        vungleIsLoaded;
+    
+    // YES means a StoreKit SKProductsRequest is issued in order to make a purchase
+    // NO means a StoreKit SKProductsRequest is issued for information only - no immediate purchase
+    BOOL        storeKitPurchaseRequested;
 }
 
 @property (strong, nonatomic) Optics * _Nonnull optics;
@@ -153,6 +157,8 @@ API_AVAILABLE(ios(13.0))
 @property (nonatomic) BOOL rootViewControllerHasLoaded;
 @property (nonatomic) id _Nullable currentiCloudToken;
 @property (nonatomic) BOOL permittedToUseiCloud;
+@property (nonatomic) BOOL storeKitPurchaseRequested;
+
 
 @property (readwrite) CFURLRef _Nullable tapSoundFileURLRef;
 @property (readwrite) CFURLRef _Nullable plopSoundFileURLRef;
@@ -280,6 +286,9 @@ API_AVAILABLE(ios(13.0))
 - (void)purchaseHintPack:(NSString *_Nonnull)productionId;
 - (void)purchaseAdFreePuzzles;
 - (void)restorePurchases;
+
+- (void)checkAdFreePuzzlesInfo;
+
 
 //
 // GameCenter

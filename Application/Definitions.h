@@ -162,6 +162,7 @@ enum eBackgroundTextures {  OVERLAY_TILE_OUTLINE,
                             PUZZLE_BACKGROUND_NEON_CITYSCAPE1,
                             PUZZLE_BACKGROUND_NEON_CITYSCAPE2,
                             PUZZLE_BACKGROUND_NEON_CITYSCAPE3,
+                            PUZZLE_BACKGROUND_NEON_CITYSCAPE4,
                             HELP_IMAGE,
                             LOGO_IMAGE
 };

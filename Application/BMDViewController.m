@@ -2630,13 +2630,15 @@ Implementation of the cross-platform view controller
 // - Switch to alternate icon
 // - Switch to BMDIconsViewController
 - (void)settingsButtonPressed {
+    [appd checkAdFreePuzzlesInfo];
     //
-    [appd playSound:appd.tapPlayer];
-    iconsViewController = [[BMDIconsViewController alloc] init];
-    iconsViewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
-    [self addChildViewController:iconsViewController];
-    [self.view addSubview:iconsViewController.view];
-    [iconsViewController didMoveToParentViewController:self];
+    //    [appd playSound:appd.tapPlayer];
+    //    iconsViewController = [[BMDIconsViewController alloc] init];
+    //    iconsViewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    //    [self addChildViewController:iconsViewController];
+    //    [self.view addSubview:iconsViewController.view];
+    //    [iconsViewController didMoveToParentViewController:self];
+    //
     //
     //    BOOL supportsAlternateIcons = [UIApplication.sharedApplication supportsAlternateIcons];
     //    [UIApplication.sharedApplication setAlternateIconName:@"AppIcon 3" completionHandler:^(NSError *error){

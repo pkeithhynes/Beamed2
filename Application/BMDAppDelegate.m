@@ -113,6 +113,8 @@ CGFloat _screenHeightInPixels;
 @synthesize totalPuzzlesLeaderboard;
 @synthesize totalJewelsLeaderboard;
 
+@synthesize storeKitPurchaseRequested;
+
 
 //
 // Methods to handle app life cycle
@@ -131,6 +133,9 @@ CGFloat _screenHeightInPixels;
     self.window.rootViewController = rc;
     window = [(BMDAppDelegate *)[[UIApplication sharedApplication]delegate] window];
 
+    // Default setting is that a purchase is not requested
+    storeKitPurchaseRequested = NO;
+    
     //
     // Initialize Vungle Ad Platform
     //
@@ -2933,6 +2938,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     DLog("Purchase puzzle pack with id %s", [productionId UTF8String]);
     if([SKPaymentQueue canMakePayments]){
         DLog("User can make payments");
+        storeKitPurchaseRequested = YES;
         SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:productionId]];
         productsRequest.delegate = self;
         [productsRequest start];
@@ -2946,6 +2952,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     DLog("Purchase hint pack with id %s", [productionId UTF8String]);
     if([SKPaymentQueue canMakePayments]){
         DLog("User can make payments");
+        storeKitPurchaseRequested = YES;
         SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:productionId]];
         productsRequest.delegate = self;
         [productsRequest start];
@@ -2961,6 +2968,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
         DLog("User requests to purchase ad free puzzles");
         if([SKPaymentQueue canMakePayments]){
             DLog("User can make payments");
+            storeKitPurchaseRequested = YES;
             NSString *removeAdsPermanentlyPI = nil;
             removeAdsPermanentlyPI = [[self class] removeAdsPermanentlyProductionIdentifier];
             if (removeAdsPermanentlyPI != nil){
@@ -2978,13 +2986,36 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     }
 }
 
+- (void)checkAdFreePuzzlesInfo {
+    NSString *adFree = [self getObjectFromDefaults:@"AD_FREE_PUZZLES"];
+    DLog("User requests information about ad free puzzles");
+    storeKitPurchaseRequested = NO;
+    NSString *removeAdsPermanentlyPI = nil;
+    removeAdsPermanentlyPI = [[self class] removeAdsPermanentlyProductionIdentifier];
+    if (removeAdsPermanentlyPI != nil){
+        SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:removeAdsPermanentlyPI]];
+        productsRequest.delegate = self;
+        [productsRequest start];
+    }
+}
+
+// Handler for response from product information request to StoreKit
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response{
     SKProduct *validProduct = nil;
     int count = (int)[response.products count];
     if(count > 0){
         validProduct = [response.products objectAtIndex:0];
         DLog("Products Available!");
-        [self purchase:validProduct];
+        if (storeKitPurchaseRequested){
+            storeKitPurchaseRequested = NO;     // Clear purchase request BOOL
+            [self purchase:validProduct];
+        }
+        else {
+            NSString *productIdentifier = [NSString stringWithString:validProduct.productIdentifier];
+            NSDecimalNumber *price = validProduct.price;
+            NSString *localizedTitle = [NSString stringWithString:validProduct.localizedTitle];
+            DLog("Product information here.");
+        }
     }
     else if(!validProduct){
         DLog("No products available");
