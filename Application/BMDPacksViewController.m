@@ -244,7 +244,14 @@
     //
     // Add pack selections buttons to packsView
     //
-    NSMutableArray *packsArray = [appd.gameDictionaries objectForKey:kPuzzlePacksArray];
+    NSMutableArray *packsArray;
+    if (appd.arrayOfPuzzlePacksInfo != nil &&
+        [appd.arrayOfPuzzlePacksInfo count] > 0){
+        packsArray = [NSMutableArray arrayWithArray:[NSArray arrayWithArray:appd.arrayOfPuzzlePacksInfo]];
+    }
+    else {
+        packsArray = [appd fetchPacksArray:@"paidHintPacksArray.plist"];
+    }
     NSEnumerator *packsEnum = [packsArray objectEnumerator];
     UIButton *packButton, *lockImage;
     CGFloat buttonCx = 0, buttonCy = 0;
@@ -255,11 +262,9 @@
     NSMutableDictionary *packDictionary;
     unsigned packDisplayIndex = 0;
     unsigned packIndex = 0;
+    NSString *packTitle;
     while (packDictionary = [packsEnum nextObject]){
-        // PKH pack_number {
-//        unsigned packNumber = [[packDictionary objectForKey:@"pack_number"]intValue];
         unsigned packNumber = packIndex;
-        // PKH pack_number }
         NSString *packTitle;
         packButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [packButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Light" size:[self querySmallFontSize]]];
@@ -332,22 +337,25 @@
                     [packButton setBackgroundImage:btnSelectedImageFree forState:UIControlStateHighlighted];
                     packTitle = [NSString stringWithFormat:@"%s -  %d left", [packName UTF8String], [appd queryNumberOfPuzzlesLeftInPack:packNumber]];
                 }
+                [packButton setTitle:packTitle forState:UIControlStateNormal];
                 [packButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                //                [self updateOnePackButtonTitle:[packIndex intValue] button:packButton];
             }
             else {
                 // This pack has not been purchased
                 lockImage.hidden = NO;
-                //                CGFloat lockHeight = 0.75*buttonHeight;
-                //                lockImage = [UIButton buttonWithType:UIButtonTypeCustom];
-                //                lockRect = CGRectMake(buttonCx+buttonWidth/2.0-1.1*lockHeight, buttonCy+buttonHeight/2.0-lockHeight/2.0, lockHeight, lockHeight);
-                //                lockImage.frame = lockRect;
-                //                [lockImage setBackgroundImage:btnImageLocked forState:UIControlStateNormal];
-                //                [lockImage setBackgroundImage:btnImageLocked forState:UIControlStateHighlighted];
                 [packButton setBackgroundImage:btnImagePaid forState:UIControlStateNormal];
                 [packButton setBackgroundImage:btnSelectedImagePaid forState:UIControlStateHighlighted];
                 [packButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                NSString *packTitle = [NSString stringWithFormat:@"$%1.2f - %s -  %d left", (float)packCost/100.0, [packName UTF8String], [appd queryNumberOfPuzzlesLeftInPack:packNumber]];
+                
+                if ([packDictionary objectForKey:@"formatted_price_string"]){
+                    NSString *packTitleBeginning = [packDictionary objectForKey:@"formatted_price_string"];
+                    NSString *packTitleMiddle = [packTitleBeginning stringByAppendingString:@" - "];
+                    packTitle = [packTitleMiddle stringByAppendingString:
+                                 packName];
+                }
+                else {
+                    packTitle = [NSString stringWithFormat:@"$%1.2f - %s -  %d left", (float)packCost/100.0, [packName UTF8String], [appd queryNumberOfPuzzlesLeftInPack:packNumber]];
+                }
                 [packButton setTitle:packTitle forState:UIControlStateNormal];
             }
         }
@@ -494,7 +502,15 @@
 
 - (void)updateAllPackTitles {
     // Update the label text for each pack button to reflect its current unsolved puzzle count
-    NSMutableArray *packsArray = [appd.gameDictionaries objectForKey:kPuzzlePacksArray];
+//    NSMutableArray *packsArray = [appd.gameDictionaries objectForKey:kPuzzlePacksArray];
+    NSMutableArray *packsArray;
+    if (appd.arrayOfPuzzlePacksInfo != nil &&
+        [appd.arrayOfPuzzlePacksInfo count] > 0){
+        packsArray = [NSMutableArray arrayWithArray:[NSArray arrayWithArray:appd.arrayOfPuzzlePacksInfo]];
+    }
+    else {
+        packsArray = [appd fetchPacksArray:@"paidHintPacksArray.plist"];
+    }
     NSEnumerator *packsEnum = [packsArray objectEnumerator];
     UIButton *packButton;
     NSString *packTitle;
@@ -540,7 +556,16 @@
                 }
                 // Packs that have NOT been purchased
                 else {
-                    packTitle = [NSString stringWithFormat:@"$%1.2f - %s", (float)packCost/100.0, [packName UTF8String]];
+//                    packTitle = [NSString stringWithFormat:@"$%1.2f - %s", (float)packCost/100.0, [packName UTF8String]];
+                    if ([packDictionary objectForKey:@"formatted_price_string"]){
+                        NSString *packTitleBeginning = [packDictionary objectForKey:@"formatted_price_string"];
+                        NSString *packTitleMiddle = [packTitleBeginning stringByAppendingString:@" - "];
+                        packTitle = [packTitleMiddle stringByAppendingString:
+                                     packName];
+                    }
+                    else {
+                        packTitle = [NSString stringWithFormat:@"$%1.2f - %s -  %d left", (float)packCost/100.0, [packName UTF8String], [appd queryNumberOfPuzzlesLeftInPack:packNumber]];
+                    }
                     packTitle1 = [[NSMutableAttributedString alloc] initWithString:packTitle];
                     packTitle = [NSString stringWithFormat:@" - %d left", unsolvedCount];
                     NSRange range1 = NSMakeRange(0, [packTitle length]);
@@ -715,20 +740,6 @@
         [self removeFromParentViewController];
     }
 }
-
-
-//- (void)backButtonPressed {
-//    DLog("backButtonPressed");
-//    [appd playSound:appd.tapPlayer];
-//    [(BMDViewController *)self.parentViewController refreshHomeView];
-//    [self willMoveToParentViewController:self.parentViewController];
-//    [self.view removeFromSuperview];
-//    [self removeFromParentViewController];
-//    rc.renderPuzzleON = NO;
-//    [rc refreshHomeView];
-//    [rc loadAppropriateSizeBannerAd];
-//    [rc startMainScreenMusicLoop];
-//}
 
 //
 // Utility Methods Go Here

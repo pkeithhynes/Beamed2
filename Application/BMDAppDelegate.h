@@ -133,6 +133,7 @@ API_AVAILABLE(ios(13.0))
     BOOL        storeKitPurchaseRequested;
     enum eSKProductsRequest productsRequestEnum;
     NSMutableArray *arrayOfPaidHintPacksInfo;
+    NSMutableArray *arrayOfPuzzlePacksInfo;
 }
 
 @property (strong, nonatomic) Optics * _Nonnull optics;
@@ -161,7 +162,8 @@ API_AVAILABLE(ios(13.0))
 @property (nonatomic) BOOL permittedToUseiCloud;
 @property (nonatomic) BOOL storeKitPurchaseRequested;
 @property (nonatomic) enum eSKProductsRequest productsRequestEnum;
-@property (nonatomic, retain) NSMutableArray *arrayOfPaidHintPacksInfo;
+@property (nonatomic, retain) NSMutableArray * _Nullable arrayOfPaidHintPacksInfo;
+@property (nonatomic, retain) NSMutableArray * _Nullable arrayOfPuzzlePacksInfo;
 
 
 @property (readwrite) CFURLRef _Nullable tapSoundFileURLRef;
@@ -294,7 +296,7 @@ API_AVAILABLE(ios(13.0))
 // In-app purchase information request methods
 - (void)requestAdFreePuzzlesInfo;
 - (void)requestHintPacksInfo;
-
+- (void)requestPuzzlePacksInfo;
 
 //
 // GameCenter

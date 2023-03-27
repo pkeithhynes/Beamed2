@@ -250,7 +250,6 @@
         NSNumber *hintIndex = [hintDictionary objectForKey:@"pack_number"];
         hintPackButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [hintPackButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Light" size:[self querySmallFontSize]+3]];
-//        [hintPackButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica" size:[self querySmallFontSize]+3]];
         [hintPackButton setBackgroundImage:btnImage forState:UIControlStateNormal];
         [hintPackButton setBackgroundImage:btnSelectedImage forState:UIControlStateHighlighted];
         [hintPacksButtonsArray insertObject:hintPackButton atIndex:[hintIndex integerValue]+1];

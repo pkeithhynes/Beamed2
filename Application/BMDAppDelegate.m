@@ -116,6 +116,7 @@ CGFloat _screenHeightInPixels;
 @synthesize storeKitPurchaseRequested;
 @synthesize productsRequestEnum;
 @synthesize arrayOfPaidHintPacksInfo;
+@synthesize arrayOfPuzzlePacksInfo;
 
 
 //
@@ -130,7 +131,7 @@ CGFloat _screenHeightInPixels;
     DLog(">>> Calling didFinishLaunchingWithOptions");
     
     // Init BMDViewController
-    [[BMDViewController alloc] init];
+    (void)[[BMDViewController alloc] init];
     rc = (BMDViewController*)[[(BMDAppDelegate *)[[UIApplication sharedApplication]delegate] window] rootViewController];
     self.window.rootViewController = rc;
     window = [(BMDAppDelegate *)[[UIApplication sharedApplication]delegate] window];
@@ -141,11 +142,14 @@ CGFloat _screenHeightInPixels;
     //
     // Request Current In-App Purchase Data from StoreKit
     //
-    // Paid Hints
-    arrayOfPaidHintPacksInfo = nil;
-    [self requestHintPacksInfo];
+    // Paid Puzzle Packs - completion handler calls requestHintPacksInfo
+    arrayOfPuzzlePacksInfo = nil;
+    [self requestPuzzlePacksInfo];
 
-
+    // Paid Hint Packs
+//    arrayOfPaidHintPacksInfo = nil;
+//    [self requestHintPacksInfo];
+    
     //
     // Initialize Vungle Ad Platform
     //
@@ -3030,6 +3034,27 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     }
 }
 
+- (void)requestPuzzlePacksInfo {
+    productsRequestEnum = REQ_INFO_PUZZLE_PACK;
+    // Initialize array that will receive results from StoreKit
+    arrayOfPuzzlePacksInfo = [NSMutableArray arrayWithCapacity:1];
+    NSMutableArray *puzzlePacksArray = [self fetchPacksArray:@"puzzlePacksArray.plist"];
+    NSEnumerator *puzzlePacksEnum = [puzzlePacksArray objectEnumerator];
+    NSSet *puzzlePacksSet = [NSSet set];
+    NSMutableDictionary *dict;
+    while (dict = [puzzlePacksEnum nextObject]){
+        if ([dict objectForKey:@"production_id"]){
+            puzzlePacksSet = [puzzlePacksSet setByAddingObject:[dict objectForKey:@"production_id"]];
+        }
+    }
+
+    if ([puzzlePacksSet count] > 0){
+        SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:puzzlePacksSet];
+        productsRequest.delegate = self;
+        [productsRequest start];
+    }
+}
+
 // Handler for response from product information request to StoreKit
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response{
     SKProduct *validProduct = nil;
@@ -3037,6 +3062,54 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     if(count > 0){
         validProduct = [response.products objectAtIndex:0];
         switch(productsRequestEnum){
+            case REQ_INFO_PUZZLE_PACK:{
+                // Traverse the puzzlePacksArray in order to create an output array with:
+                // 1) elements representing free puzzle packs which will be populated with stored data
+                // 2) elements with paid puzzle packs populated with StoreKit data
+                NSMutableArray *puzzlePacksArray = [self fetchPacksArray:@"puzzlePacksArray.plist"];
+                NSEnumerator *puzzlePacksEnum = [puzzlePacksArray objectEnumerator];
+                NSMutableDictionary *inputPuzzlePackDict;
+                NSMutableDictionary *outputPuzzlePackDict;
+                unsigned int idx = 0;
+                while (inputPuzzlePackDict = [puzzlePacksEnum nextObject]){
+                    outputPuzzlePackDict = [NSMutableDictionary dictionaryWithCapacity:1];
+                    [outputPuzzlePackDict setObject:[NSNumber numberWithUnsignedInt:idx] forKey:@"pack_number"];
+                    [outputPuzzlePackDict setObject:[inputPuzzlePackDict objectForKey:@"pack_name"] forKey:@"pack_name"];
+                    [outputPuzzlePackDict setObject:[inputPuzzlePackDict objectForKey:@"AppStorePackCost"] forKey:@"AppStorePackCost"];
+                    NSString *production_id = [inputPuzzlePackDict objectForKey:@"production_id"];
+                    if (production_id){
+                        [outputPuzzlePackDict setObject:production_id forKey:@"production_id"];
+                        // Find production_id in the array of SKProduct returned by StoreKit
+                        NSEnumerator *productsEnum = [response.products objectEnumerator];
+                        SKProduct *currentProduct;
+                        while (currentProduct = [productsEnum nextObject]){
+                            NSString *productIdentifier = currentProduct.productIdentifier;
+                            if ([productIdentifier isEqualToString:production_id]){
+                                [outputPuzzlePackDict setObject:currentProduct.localizedTitle forKey:@"pack_name"];
+                                [outputPuzzlePackDict setObject:currentProduct.localizedDescription forKey:@"pack_description"];
+                                [outputPuzzlePackDict setObject:currentProduct.price forKey:@"storekit_price"];
+                                unsigned int integerPrice = round([currentProduct.price floatValue]*100);
+                                [outputPuzzlePackDict setObject:[NSNumber numberWithInt:integerPrice] forKey:@"AppStorePackCost"];
+                                [outputPuzzlePackDict setObject:currentProduct.priceLocale forKey:@"price_locale"];
+                                // Create and store price formatted string!
+                                NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+                                [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+                                [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+                                [numberFormatter setLocale:currentProduct.priceLocale];
+                                NSString *formattedPriceString = [numberFormatter stringFromNumber:currentProduct.price];
+                                if (formattedPriceString){
+                                    [outputPuzzlePackDict setObject:formattedPriceString forKey:@"formatted_price_string"];
+                                }
+                            }
+                        }
+                    }
+                    [arrayOfPuzzlePacksInfo addObject:outputPuzzlePackDict];
+                    idx++;
+                }
+                productsRequestEnum = REQ_NIL;
+                [self requestHintPacksInfo];
+                break;
+            }
             case REQ_INFO_HINT_PACK:{
                 NSEnumerator *productsEnum = [response.products objectEnumerator];
                 SKProduct *currentProduct;
@@ -3067,7 +3140,6 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                 productsRequestEnum = REQ_NIL;
                 break;
             }
-            case REQ_INFO_PUZZLE_PACK:
             case REQ_INFO_AD_FREE:
             case REQ_INFO_ICON:{
                 NSString *productIdentifier = [NSString stringWithString:validProduct.productIdentifier];
