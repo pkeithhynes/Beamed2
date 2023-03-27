@@ -133,47 +133,130 @@
 #define kPuzzleComplete4 @"win-game-puzzle-50"
 
 // Enumerated types
-enum eDisplayAspectRatio { ASPECT_4_3, ASPECT_10_7, ASPECT_3_2, ASPECT_16_9, ASPECT_13_6 };
-//enum eDisplayAspectRatio { ASPECT_4_3, ASPECT_16_9, ASPECT_13_6 };
-enum eObjectAngle { ANGLE0, ANGLE45, ANGLE90, ANGLE135, ANGLE180, ANGLE225, ANGLE270, ANGLE315 };
-enum ePuzzleCompletionCondition { ALL_JEWELS_ENERGIZED, TILE_POSITIONING_AND_ROTATION, USER_TOUCH, INFO_SCREEN };
+enum eDisplayAspectRatio {
+    ASPECT_4_3,
+    ASPECT_10_7,
+    ASPECT_3_2,
+    ASPECT_16_9,
+    ASPECT_13_6 };
+enum eObjectAngle {
+    ANGLE0,
+    ANGLE45,
+    ANGLE90,
+    ANGLE135,
+    ANGLE180,
+    ANGLE225,
+    ANGLE270,
+    ANGLE315 };
+enum ePuzzleCompletionCondition {
+    ALL_JEWELS_ENERGIZED,
+    TILE_POSITIONING_AND_ROTATION,
+    USER_TOUCH,
+    INFO_SCREEN };
 // --- Tiles
-enum eTileShape { RECTANGLE, CIRCLE, BEAMSPLITTER, MIRROR, JEWEL, PRISM, LASER, BACKGROUND };
-enum eTileAnimations { TILE_A_WAITING, TILE_A_ENERGIZED, TILE_A_LIGHTSWEEP, TILE_A_STATIC };
-enum eTileAnimationContainers { TILE_AC_GLOWWHITE_RECTANGLE, TILE_AC_GLOWWHITE_CIRCLE, TILE_AC_BEAMSPLITTER, TILE_AC_MIRROR, TILE_AC_JEWEL, TILE_AC_AURA, TILE_AC_PRISM, TILE_AC_SPECTRUMR, TILE_AC_SPECTRUML, TILE_AC_LASER };
-enum eTileMotions { MOTION_NONE, MOTION_CIRCLE, MOTION_LINEAR, MOTION_DROP };
-enum eTileColors { COLOR_RED, COLOR_GREEN, COLOR_BLUE, COLOR_YELLOW, COLOR_MAGENTA, COLOR_CYAN, COLOR_WHITE, COLOR_OPAQUE, COLOR_GRAY, COLOR_ALL };
+enum eTileShape {
+    RECTANGLE,
+    CIRCLE,
+    BEAMSPLITTER,
+    MIRROR,
+    JEWEL,
+    PRISM,
+    LASER,
+    BACKGROUND };
+enum eTileAnimations {
+    TILE_A_WAITING,
+    TILE_A_ENERGIZED,
+    TILE_A_LIGHTSWEEP,
+    TILE_A_STATIC };
+enum eTileAnimationContainers {
+    TILE_AC_GLOWWHITE_RECTANGLE,
+    TILE_AC_GLOWWHITE_CIRCLE,
+    TILE_AC_BEAMSPLITTER,
+    TILE_AC_MIRROR,
+    TILE_AC_JEWEL,
+    TILE_AC_AURA,
+    TILE_AC_PRISM,
+    TILE_AC_SPECTRUMR,
+    TILE_AC_SPECTRUML,
+    TILE_AC_LASER };
+enum eTileMotions {
+    MOTION_NONE,
+    MOTION_CIRCLE,
+    MOTION_LINEAR,
+    MOTION_DROP };
+enum eTileColors {
+    COLOR_RED,
+    COLOR_GREEN,
+    COLOR_BLUE,
+    COLOR_YELLOW,
+    COLOR_MAGENTA,
+    COLOR_CYAN,
+    COLOR_WHITE,
+    COLOR_OPAQUE,
+    COLOR_GRAY,
+    COLOR_ALL };
 // --- Beams
-enum eBeamColors {BEAM_RED, BEAM_GREEN, BEAM_BLUE, BEAM_YELLOW, BEAM_MAGENTA, BEAM_CYAN, BEAM_WHITE };
+enum eBeamColors {
+    BEAM_RED,
+    BEAM_GREEN,
+    BEAM_BLUE,
+    BEAM_YELLOW,
+    BEAM_MAGENTA,
+    BEAM_CYAN,
+    BEAM_WHITE };
 enum eBeamAnimations { BEAM_A_STEADY };
 enum eBeamAnimationContainers { BEAM_AC_GLOWWHITE_RECTANGLE_HORIZONTAL };
-enum eBackgroundTextures {  OVERLAY_TILE_OUTLINE,
-                            TILE_BG,
-                            SINGLE_ARROW_1,
-                            BACKGROUND_ASPECT_4_3,
-                            TAP_TO_ROTATE,
-                            TAP_TO_ROTATE_TEXT,
-                            DRAG_TILE_TEXT,
-                            TILE_SQUARE_BRIGHT,
-                            TILE_SQUARE_TRANSLUCENT,
-                            TILE_CHECKMARK,
-                            PACK_COMPLETED,
-                            PUZZLE_BACKGROUND_IMAGE1,
-                            PUZZLE_BACKGROUND_NEON_CITYSCAPE1,
-                            PUZZLE_BACKGROUND_NEON_CITYSCAPE2,
-                            PUZZLE_BACKGROUND_NEON_CITYSCAPE3,
-                            PUZZLE_BACKGROUND_NEON_CITYSCAPE4,
-                            HELP_IMAGE,
-                            LOGO_IMAGE
+enum eBackgroundTextures {
+    OVERLAY_TILE_OUTLINE,
+    TILE_BG,
+    SINGLE_ARROW_1,
+    BACKGROUND_ASPECT_4_3,
+    TAP_TO_ROTATE,
+    TAP_TO_ROTATE_TEXT,
+    DRAG_TILE_TEXT,
+    TILE_SQUARE_BRIGHT,
+    TILE_SQUARE_TRANSLUCENT,
+    TILE_CHECKMARK,
+    PACK_COMPLETED,
+    PUZZLE_BACKGROUND_IMAGE1,
+    PUZZLE_BACKGROUND_NEON_CITYSCAPE1,
+    PUZZLE_BACKGROUND_NEON_CITYSCAPE2,
+    PUZZLE_BACKGROUND_NEON_CITYSCAPE3,
+    PUZZLE_BACKGROUND_NEON_CITYSCAPE4,
+    HELP_IMAGE,
+    LOGO_IMAGE
 };
-enum eTextAlignment { ALIGN_LEFT, ALIGN_CENTER, ALIGN_RIGHT };
+enum eTextAlignment {
+    ALIGN_LEFT,
+    ALIGN_CENTER,
+    ALIGN_RIGHT };
 // --- Various Animations
 enum eVariousAnimations { RING_EXPANDING };
 
 // --- App Pages
-enum eAppPageNumber { PAGE_HOME, PAGE_PACKS, PAGE_HINTS, PAGE_OPTIONS, PAGE_GAME, PAGE_EDIT};
+enum eAppPageNumber {
+    PAGE_HOME,
+    PAGE_PACKS,
+    PAGE_HINTS,
+    PAGE_OPTIONS,
+    PAGE_GAME,
+    PAGE_EDIT};
 // --- Game Packs
-enum eGamePackType {PACKTYPE_MAIN, PACKTYPE_DAILY, PACKTYPE_EDITOR, PACKTYPE_DEMO};
+enum eGamePackType {
+    PACKTYPE_MAIN,
+    PACKTYPE_DAILY,
+    PACKTYPE_EDITOR,
+    PACKTYPE_DEMO};
+
+// --- StoreKit SKProductsRequest detail indicating information request or purchase
+enum eSKProductsRequest {
+    REQ_NIL,
+    REQ_INFO_PUZZLE_PACK,
+    REQ_INFO_HINT_PACK,
+    REQ_INFO_AD_FREE,
+    REQ_INFO_ICON,
+    REQ_PURCHASE
+};
 
 // Vungle Ad Platform Constants
 #define vungleAppID @"62f0a11e710a2947ac9f4d53"

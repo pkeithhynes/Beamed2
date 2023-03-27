@@ -2630,7 +2630,7 @@ Implementation of the cross-platform view controller
 // - Switch to alternate icon
 // - Switch to BMDIconsViewController
 - (void)settingsButtonPressed {
-    [appd checkAdFreePuzzlesInfo];
+    [appd requestHintPacksInfo];
     //
     //    [appd playSound:appd.tapPlayer];
     //    iconsViewController = [[BMDIconsViewController alloc] init];

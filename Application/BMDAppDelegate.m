@@ -114,6 +114,8 @@ CGFloat _screenHeightInPixels;
 @synthesize totalJewelsLeaderboard;
 
 @synthesize storeKitPurchaseRequested;
+@synthesize productsRequestEnum;
+@synthesize arrayOfPaidHintPacksInfo;
 
 
 //
@@ -134,8 +136,16 @@ CGFloat _screenHeightInPixels;
     window = [(BMDAppDelegate *)[[UIApplication sharedApplication]delegate] window];
 
     // Default setting is that a purchase is not requested
-    storeKitPurchaseRequested = NO;
+    productsRequestEnum = REQ_NIL;
     
+    //
+    // Request Current In-App Purchase Data from StoreKit
+    //
+    // Paid Hints
+    arrayOfPaidHintPacksInfo = nil;
+    [self requestHintPacksInfo];
+
+
     //
     // Initialize Vungle Ad Platform
     //
@@ -2938,7 +2948,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     DLog("Purchase puzzle pack with id %s", [productionId UTF8String]);
     if([SKPaymentQueue canMakePayments]){
         DLog("User can make payments");
-        storeKitPurchaseRequested = YES;
+        productsRequestEnum = REQ_PURCHASE;
         SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:productionId]];
         productsRequest.delegate = self;
         [productsRequest start];
@@ -2952,7 +2962,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     DLog("Purchase hint pack with id %s", [productionId UTF8String]);
     if([SKPaymentQueue canMakePayments]){
         DLog("User can make payments");
-        storeKitPurchaseRequested = YES;
+        productsRequestEnum = REQ_PURCHASE;
         SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:productionId]];
         productsRequest.delegate = self;
         [productsRequest start];
@@ -2968,7 +2978,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
         DLog("User requests to purchase ad free puzzles");
         if([SKPaymentQueue canMakePayments]){
             DLog("User can make payments");
-            storeKitPurchaseRequested = YES;
+            productsRequestEnum = REQ_PURCHASE;
             NSString *removeAdsPermanentlyPI = nil;
             removeAdsPermanentlyPI = [[self class] removeAdsPermanentlyProductionIdentifier];
             if (removeAdsPermanentlyPI != nil){
@@ -2986,14 +2996,35 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     }
 }
 
-- (void)checkAdFreePuzzlesInfo {
-    NSString *adFree = [self getObjectFromDefaults:@"AD_FREE_PUZZLES"];
-    DLog("User requests information about ad free puzzles");
-    storeKitPurchaseRequested = NO;
+//
+// Methods to request information about StoreKit In-App Purchases go here
+//
+
+- (void)requestAdFreePuzzlesInfo {
+    productsRequestEnum = REQ_INFO_AD_FREE;
     NSString *removeAdsPermanentlyPI = nil;
     removeAdsPermanentlyPI = [[self class] removeAdsPermanentlyProductionIdentifier];
     if (removeAdsPermanentlyPI != nil){
         SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:removeAdsPermanentlyPI]];
+        productsRequest.delegate = self;
+        [productsRequest start];
+    }
+}
+
+- (void)requestHintPacksInfo {
+    productsRequestEnum = REQ_INFO_HINT_PACK;
+    // Initialize array that will receive results from StoreKit
+    arrayOfPaidHintPacksInfo = [NSMutableArray arrayWithCapacity:1];
+    NSMutableArray *hintPacksProductionID = [self fetchPacksArray:@"paidHintPacksArray.plist"];
+    NSEnumerator *hintPacksEnum = [hintPacksProductionID objectEnumerator];
+    id dict;
+    NSSet *hintPacksSet = [NSSet set];
+    while (dict = [hintPacksEnum nextObject]){
+        hintPacksSet = [hintPacksSet setByAddingObject:[dict objectForKey:@"production_id"]];
+    }
+
+    if ([hintPacksSet count] > 0){
+        SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:hintPacksSet];
         productsRequest.delegate = self;
         [productsRequest start];
     }
@@ -3005,16 +3036,56 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     int count = (int)[response.products count];
     if(count > 0){
         validProduct = [response.products objectAtIndex:0];
-        DLog("Products Available!");
-        if (storeKitPurchaseRequested){
-            storeKitPurchaseRequested = NO;     // Clear purchase request BOOL
-            [self purchase:validProduct];
-        }
-        else {
-            NSString *productIdentifier = [NSString stringWithString:validProduct.productIdentifier];
-            NSDecimalNumber *price = validProduct.price;
-            NSString *localizedTitle = [NSString stringWithString:validProduct.localizedTitle];
-            DLog("Product information here.");
+        switch(productsRequestEnum){
+            case REQ_INFO_HINT_PACK:{
+                NSEnumerator *productsEnum = [response.products objectEnumerator];
+                SKProduct *currentProduct;
+                NSMutableDictionary *currentProductInfoDict;
+                unsigned int idx = 0;
+                while (currentProduct = [productsEnum nextObject]){
+                    currentProductInfoDict = [NSMutableDictionary dictionaryWithCapacity:1];
+                    [currentProductInfoDict setObject:[NSNumber numberWithUnsignedInt:idx] forKey:@"pack_number"];
+                    [currentProductInfoDict setObject:currentProduct.localizedTitle forKey:@"pack_name"];
+                    [currentProductInfoDict setObject:currentProduct.localizedDescription forKey:@"pack_description"];
+                    [currentProductInfoDict setObject:currentProduct.productIdentifier forKey:@"production_id"];
+                    [currentProductInfoDict setObject:currentProduct.price forKey:@"storekit_price"];
+                    unsigned int integerPrice = round([currentProduct.price floatValue]*100);
+                    [currentProductInfoDict setObject:[NSNumber numberWithInt:integerPrice] forKey:@"AppStorePackCost"];
+                    [currentProductInfoDict setObject:currentProduct.priceLocale forKey:@"price_locale"];
+                    // Create and store price formatted string!
+                    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+                    [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+                    [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+                    [numberFormatter setLocale:currentProduct.priceLocale];
+                    NSString *formattedPriceString = [numberFormatter stringFromNumber:currentProduct.price];
+                    if (formattedPriceString){
+                        [currentProductInfoDict setObject:formattedPriceString forKey:@"formatted_price_string"];
+                    }
+                    [arrayOfPaidHintPacksInfo addObject:currentProductInfoDict];
+                    idx++;
+                }
+                productsRequestEnum = REQ_NIL;
+                break;
+            }
+            case REQ_INFO_PUZZLE_PACK:
+            case REQ_INFO_AD_FREE:
+            case REQ_INFO_ICON:{
+                NSString *productIdentifier = [NSString stringWithString:validProduct.productIdentifier];
+                NSDecimalNumber *price = validProduct.price;
+                NSString *localizedTitle = [NSString stringWithString:validProduct.localizedTitle];
+                productsRequestEnum = REQ_NIL;
+                break;
+            }
+            case REQ_PURCHASE:{
+                productsRequestEnum = REQ_NIL;
+                [self purchase:validProduct];
+                break;
+            }
+            case REQ_NIL:
+            default:{
+                productsRequestEnum = REQ_NIL;
+                break;
+            }
         }
     }
     else if(!validProduct){

@@ -195,7 +195,15 @@
     //
     // Add hint buttons to hintsView
     //
-    NSMutableArray *arrayOfPaidHintPacks = [appd fetchPacksArray:@"paidHintPacksArray.plist"];
+    // Use live StoreKit data if it is available
+    NSMutableArray *arrayOfPaidHintPacks;
+    if (appd.arrayOfPaidHintPacksInfo != nil &&
+        [appd.arrayOfPaidHintPacksInfo count] > 0){
+        arrayOfPaidHintPacks = [NSMutableArray arrayWithArray:[NSArray arrayWithArray:appd.arrayOfPaidHintPacksInfo]];
+    }
+    else {
+        arrayOfPaidHintPacks = [appd fetchPacksArray:@"paidHintPacksArray.plist"];
+    }
     NSEnumerator *hintsEnum = [arrayOfPaidHintPacks objectEnumerator];
     UIButton *hintPackButton;
     CGFloat buttonCx = 0, buttonCy = 0;
@@ -212,7 +220,8 @@
     // Add hint video reward button to hintsView
     //
     hintPackButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [hintPackButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Light" size:[self querySmallFontSize]+3]];
+//    [hintPackButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Light" size:[self querySmallFontSize]+3]];
+    [hintPackButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica" size:[self querySmallFontSize]+3]];
     [hintPackButton setBackgroundImage:btnImage forState:UIControlStateNormal];
     [hintPackButton setBackgroundImage:btnSelectedImage forState:UIControlStateHighlighted];
     [hintPacksButtonsArray insertObject:hintPackButton atIndex:0];
@@ -240,7 +249,8 @@
     while (hintDictionary = [hintsEnum nextObject]){
         NSNumber *hintIndex = [hintDictionary objectForKey:@"pack_number"];
         hintPackButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [hintPackButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Light" size:[self querySmallFontSize]+3]];
+//        [hintPackButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Light" size:[self querySmallFontSize]+3]];
+        [hintPackButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica" size:[self querySmallFontSize]+3]];
         [hintPackButton setBackgroundImage:btnImage forState:UIControlStateNormal];
         [hintPackButton setBackgroundImage:btnSelectedImage forState:UIControlStateHighlighted];
         [hintPacksButtonsArray insertObject:hintPackButton atIndex:[hintIndex integerValue]+1];
@@ -252,12 +262,22 @@
         long hintCost = [[hintDictionary objectForKey:@"AppStorePackCost"] integerValue];
         NSString *hintPackName = [hintDictionary objectForKey:@"pack_name"];
         // Hint pack buttons have a blue background
-//        hintPackButton.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.75 alpha:1.0];
         if (hintCost == 0){
             hintTitle = [NSString stringWithFormat:@"%s", [hintPackName UTF8String]];
         }
         else {
-            hintTitle = [NSString stringWithFormat:@"$%1.2f - %s", (float)hintCost/100.0, [hintPackName UTF8String]];
+            // Use formatted price string if it exists
+            if ([hintDictionary objectForKey:@"formatted_price_string"]){
+                NSString *hintTitleBeginning = [hintDictionary objectForKey:@"formatted_price_string"];
+                NSString *hintTitleMiddle = [hintTitleBeginning stringByAppendingString:@" - "];
+                hintTitle = [hintTitleMiddle stringByAppendingString:hintPackName];
+//                hintTitle = [NSString stringWithFormat:@"%s - %s",
+//                             [[hintDictionary objectForKey:@"formatted_price_string"] UTF8String],
+//                             [hintPackName UTF8String]];
+            }
+            else {
+                hintTitle = [NSString stringWithFormat:@"$%1.2f - %s", (float)hintCost/100.0, [hintPackName UTF8String]];
+            }
         }
         [hintPackButton setTitle:hintTitle forState:UIControlStateNormal];
 //        hintPackButton.layer.borderColor = [UIColor whiteColor].CGColor;

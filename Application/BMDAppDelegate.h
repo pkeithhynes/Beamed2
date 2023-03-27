@@ -131,6 +131,8 @@ API_AVAILABLE(ios(13.0))
     // YES means a StoreKit SKProductsRequest is issued in order to make a purchase
     // NO means a StoreKit SKProductsRequest is issued for information only - no immediate purchase
     BOOL        storeKitPurchaseRequested;
+    enum eSKProductsRequest productsRequestEnum;
+    NSMutableArray *arrayOfPaidHintPacksInfo;
 }
 
 @property (strong, nonatomic) Optics * _Nonnull optics;
@@ -158,6 +160,8 @@ API_AVAILABLE(ios(13.0))
 @property (nonatomic) id _Nullable currentiCloudToken;
 @property (nonatomic) BOOL permittedToUseiCloud;
 @property (nonatomic) BOOL storeKitPurchaseRequested;
+@property (nonatomic) enum eSKProductsRequest productsRequestEnum;
+@property (nonatomic, retain) NSMutableArray *arrayOfPaidHintPacksInfo;
 
 
 @property (readwrite) CFURLRef _Nullable tapSoundFileURLRef;
@@ -287,7 +291,9 @@ API_AVAILABLE(ios(13.0))
 - (void)purchaseAdFreePuzzles;
 - (void)restorePurchases;
 
-- (void)checkAdFreePuzzlesInfo;
+// In-app purchase information request methods
+- (void)requestAdFreePuzzlesInfo;
+- (void)requestHintPacksInfo;
 
 
 //
