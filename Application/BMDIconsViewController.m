@@ -43,7 +43,7 @@
         alternateIconsArray = [self fetchAlternateIconsArray:alternateIconsArray];
     }
 
-    alternateIconsArray = [self fetchAlternateIconsArray:alternateIconsArray];
+//    alternateIconsArray = [self fetchAlternateIconsArray:alternateIconsArray];
 
     
     if (alternateIconsArray != nil){
