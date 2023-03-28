@@ -278,21 +278,11 @@
 
 - (void)iconButtonPressed:(UIButton *)sender {
     [appd playSound:appd.tapPlayer];
-    // Fetch the name of the selection App Icon
+    // Fetch the productionId of the selection App Icon
     unsigned int idx = (unsigned int)sender.tag;
     NSMutableDictionary *iconDict = [NSMutableDictionary dictionaryWithDictionary:[alternateIconsArray objectAtIndex:idx]];
-    NSString *iconName = [iconDict objectForKey:@"appIcon"];
-    BOOL supportsAlternateIcons = [UIApplication.sharedApplication supportsAlternateIcons];
-    if (supportsAlternateIcons){
-        [UIApplication.sharedApplication setAlternateIconName:iconName completionHandler:^(NSError *error){
-            if (error == nil){
-                DLog("Success: icon changed");
-            }
-            else {
-                DLog("Failure with error");
-            }
-        }];
-    }
+    NSString *productionId = [iconDict objectForKey:@"production_id"];
+    [appd purchaseAltIcon:productionId];
 }
 
 - (void)backButtonPressed {
@@ -313,6 +303,23 @@
 //
 // Utility Methods Go Here
 //
+
+//- (void)completeAltIconPurchase:(unsigned int)idx {
+//    // Fetch the name of the selection App Icon
+//    NSMutableDictionary *iconDict = [NSMutableDictionary dictionaryWithDictionary:[alternateIconsArray objectAtIndex:idx]];
+//    NSString *iconName = [iconDict objectForKey:@"appIcon"];
+//    BOOL supportsAlternateIcons = [UIApplication.sharedApplication supportsAlternateIcons];
+//    if (supportsAlternateIcons){
+//        [UIApplication.sharedApplication setAlternateIconName:iconName completionHandler:^(NSError *error){
+//            if (error == nil){
+//                DLog("Success: icon changed");
+//            }
+//            else {
+//                DLog("Failure with error");
+//            }
+//        }];
+//    }
+//}
 
 - (UIImageView *)createImageView:(NSString *)imageFileName
                            width:(CGFloat)width

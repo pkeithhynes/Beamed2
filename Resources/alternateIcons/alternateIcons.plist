@@ -7,120 +7,160 @@
 		<string>AppIcon 1</string>
 		<key>iconImage</key>
 		<string>icon1rounded.png</string>
+		<key>production_id</key>
+		<string>BMD2_PAIDICON_AAAA0001</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 2</string>
 		<key>iconImage</key>
 		<string>icon2rounded.png</string>
+		<key>production_id</key>
+		<string>BMD2_PAIDICON_AAAA0002</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 3</string>
 		<key>iconImage</key>
 		<string>icon3rounded.png</string>
+		<key>production_id</key>
+		<string>BMD2_PAIDICON_AAAA0003</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 4</string>
 		<key>iconImage</key>
 		<string>icon4rounded.png</string>
+		<key>production_id</key>
+		<string>BMD2_PAIDICON_AAAA0004</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 5</string>
 		<key>iconImage</key>
 		<string>icon5rounded.png</string>
+		<key>production_id</key>
+		<string>BMD2_PAIDICON_AAAA0005</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 6</string>
 		<key>iconImage</key>
 		<string>icon6rounded.png</string>
+		<key>production_id</key>
+		<string>BMD2_PAIDICON_AAAA0006</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 7</string>
 		<key>iconImage</key>
 		<string>icon7rounded.png</string>
+		<key>production_id</key>
+		<string>BMD2_PAIDICON_AAAA0007</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 8</string>
 		<key>iconImage</key>
 		<string>icon8rounded.png</string>
+		<key>production_id</key>
+		<string>BMD2_PAIDICON_AAAA0008</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 9</string>
 		<key>iconImage</key>
 		<string>icon9rounded.png</string>
+		<key>production_id</key>
+		<string>BMD2_PAIDICON_AAAA0009</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 10</string>
 		<key>iconImage</key>
 		<string>icon10rounded.png</string>
+		<key>production_id</key>
+		<string>BMD2_PAIDICON_AAAA0010</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 11</string>
 		<key>iconImage</key>
 		<string>icon11rounded.png</string>
+		<key>production_id</key>
+		<string>BMD2_PAIDICON_AAAA0011</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 12</string>
 		<key>iconImage</key>
 		<string>icon12rounded.png</string>
+		<key>production_id</key>
+		<string>BMD2_PAIDICON_AAAA0012</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 13</string>
 		<key>iconImage</key>
 		<string>icon13rounded.png</string>
+		<key>production_id</key>
+		<string>BMD2_PAIDICON_AAAA0013</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 14</string>
 		<key>iconImage</key>
 		<string>icon14rounded.png</string>
+		<key>production_id</key>
+		<string>BMD2_PAIDICON_AAAA0014</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 15</string>
 		<key>iconImage</key>
 		<string>icon15rounded.png</string>
+		<key>production_id</key>
+		<string>BMD2_PAIDICON_AAAA0015</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 16</string>
 		<key>iconImage</key>
 		<string>icon16rounded.png</string>
+		<key>production_id</key>
+		<string>BMD2_PAIDICON_AAAA0016</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 17</string>
 		<key>iconImage</key>
 		<string>icon17rounded.png</string>
+		<key>production_id</key>
+		<string>BMD2_PAIDICON_AAAA0017</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 18</string>
 		<key>iconImage</key>
 		<string>icon18rounded.png</string>
+		<key>production_id</key>
+		<string>BMD2_PAIDICON_AAAA0018</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 19</string>
 		<key>iconImage</key>
 		<string>icon19rounded.png</string>
+		<key>production_id</key>
+		<string>BMD2_PAIDICON_AAAA0019</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>
 		<string>AppIcon 20</string>
 		<key>iconImage</key>
 		<string>icon20rounded.png</string>
+		<key>production_id</key>
+		<string>BMD2_PAIDICON_AAAA0020</string>
 	</dict>
 	<dict>
 		<key>appIcon</key>

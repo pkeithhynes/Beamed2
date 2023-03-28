@@ -2875,6 +2875,25 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     }
 }
 
+- (void)completeAltIconPurchase:(unsigned int)idx {
+    // Fetch the name of the selection App Icon
+    NSMutableArray *alternateIconsArray = [NSMutableArray arrayWithCapacity:1];
+    alternateIconsArray = [self fetchAlternateIconsArray:alternateIconsArray];
+    NSMutableDictionary *iconDict = [NSMutableDictionary dictionaryWithDictionary:[alternateIconsArray objectAtIndex:idx]];
+    NSString *iconName = [iconDict objectForKey:@"appIcon"];
+    BOOL supportsAlternateIcons = [UIApplication.sharedApplication supportsAlternateIcons];
+    if (supportsAlternateIcons){
+        [UIApplication.sharedApplication setAlternateIconName:iconName completionHandler:^(NSError *error){
+            if (error == nil){
+                DLog("Success: icon changed");
+            }
+            else {
+                DLog("Failure with error");
+            }
+        }];
+    }
+}
+
 - (void)updateHintsRemainingDisplayAndStorage:(int)newHints {
     if (![self checkForEndlessHintsPurchased]){
         if (newHints == -1000){
@@ -2964,6 +2983,20 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
 
 - (void)purchaseHintPack:(NSString *)productionId {
     DLog("Purchase hint pack with id %s", [productionId UTF8String]);
+    if([SKPaymentQueue canMakePayments]){
+        DLog("User can make payments");
+        productsRequestEnum = REQ_PURCHASE;
+        SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:productionId]];
+        productsRequest.delegate = self;
+        [productsRequest start];
+    }
+    else{
+        DLog("User cannot make payments, most likely due to parental controls");
+    }
+}
+
+- (void)purchaseAltIcon:(NSString *)productionId {
+    DLog("Purchase alt icon with id %s", [productionId UTF8String]);
     if([SKPaymentQueue canMakePayments]){
         DLog("User can make payments");
         productsRequestEnum = REQ_PURCHASE;
@@ -3075,7 +3108,6 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                     outputPuzzlePackDict = [NSMutableDictionary dictionaryWithCapacity:1];
                     [outputPuzzlePackDict setObject:[NSNumber numberWithUnsignedInt:idx] forKey:@"pack_number"];
                     [outputPuzzlePackDict setObject:[inputPuzzlePackDict objectForKey:@"pack_name"] forKey:@"pack_name"];
-                    [outputPuzzlePackDict setObject:[inputPuzzlePackDict objectForKey:@"AppStorePackCost"] forKey:@"AppStorePackCost"];
                     NSString *production_id = [inputPuzzlePackDict objectForKey:@"production_id"];
                     if (production_id){
                         [outputPuzzlePackDict setObject:production_id forKey:@"production_id"];
@@ -3085,7 +3117,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                         while (currentProduct = [productsEnum nextObject]){
                             NSString *productIdentifier = currentProduct.productIdentifier;
                             if ([productIdentifier isEqualToString:production_id]){
-                                [outputPuzzlePackDict setObject:currentProduct.localizedTitle forKey:@"pack_name"];
+//                                [outputPuzzlePackDict setObject:currentProduct.localizedTitle forKey:@"pack_name"];
                                 [outputPuzzlePackDict setObject:currentProduct.localizedDescription forKey:@"pack_description"];
                                 [outputPuzzlePackDict setObject:currentProduct.price forKey:@"storekit_price"];
                                 unsigned int integerPrice = round([currentProduct.price floatValue]*100);
@@ -3102,6 +3134,10 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                                 }
                             }
                         }
+                    }
+                    else {
+                        [outputPuzzlePackDict setObject:[inputPuzzlePackDict objectForKey:@"pack_name"] forKey:@"pack_name"];
+                        [outputPuzzlePackDict setObject:[inputPuzzlePackDict objectForKey:@"AppStorePackCost"] forKey:@"AppStorePackCost"];
                     }
                     [arrayOfPuzzlePacksInfo addObject:outputPuzzlePackDict];
                     idx++;
@@ -3178,8 +3214,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
 }
 
-- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
-{
+- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue {
     DLog("received restored transactions: %lu", (unsigned long)queue.transactions.count);
     for(SKPaymentTransaction *transaction in queue.transactions){
         if(transaction.transactionState == SKPaymentTransactionStateRestored){
@@ -3201,6 +3236,10 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
             }
             else if ((index = [self fetchIndexOfHintPackProductID:productID]) >= 0){
                 [self completeHintPackPurchase:index];
+                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+            }
+            else if ((index = [self fetchIndexOfAltIconProductID:productID]) >= 0){
+                [self completeAltIconPurchase:index];
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
             }
             else if ([removeAdsPermanentlyPI isEqualToString:productID]){
@@ -3236,6 +3275,27 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     return -1;
 }
 
+- (int)fetchIndexOfAltIconProductID:(NSString *)productId{
+    NSMutableArray *array = [self fetchPacksArray:@"altIcons.plist"];
+    NSDictionary *dict = nil;
+    for (int arrayIndex=0; arrayIndex<[array count]; arrayIndex++){
+        dict = [array objectAtIndex:arrayIndex];
+        if ([[dict objectForKey:@"production_id"]isEqualToString:productId]){
+            return arrayIndex;
+        }
+    }
+    return -1;
+}
+
+- (NSMutableArray *)fetchAlternateIconsArray:(NSMutableArray *)alternateIconsArray {
+    NSString *filePath = [[NSBundle bundleForClass:[self class]]
+                          pathForResource:@"alternateIcons"
+                          ofType:@"plist"];
+    alternateIconsArray = [NSMutableArray arrayWithCapacity:1];
+    alternateIconsArray = [[NSMutableArray alloc] initWithContentsOfFile:filePath];
+    return alternateIconsArray;
+}
+
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions{
     for(SKPaymentTransaction *transaction in transactions){
         //if you have multiple in app purchases in your app,
@@ -3265,6 +3325,10 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                     [self completeHintPackPurchase:index];
                     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
                 }
+                else if ((index = [self fetchIndexOfAltIconProductID:productID]) >= 0){
+                    [self completeAltIconPurchase:index];
+                    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+                }
                 else if ([removeAdsPermanentlyPI isEqualToString:productID]){
                     [self completeAdFreePurchase];
                     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
@@ -3279,6 +3343,10 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                 }
                 else if ((index = [self fetchIndexOfHintPackProductID:productID]) >= 0){
                     [self completeHintPackPurchase:index];
+                    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+                }
+                else if ((index = [self fetchIndexOfAltIconProductID:productID]) >= 0){
+                    [self completeAltIconPurchase:index];
                     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
                 }
                 else if ([removeAdsPermanentlyPI isEqualToString:productID]){

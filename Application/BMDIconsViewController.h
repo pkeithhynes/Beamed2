@@ -22,6 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, retain) NSMutableArray *alternateIconsArray;
 @property (nonatomic, retain) NSMutableArray *alternateIconsButtonsArray;
 
+
+- (void)completeAltIconPurchase:(unsigned int)idx;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -290,6 +290,7 @@ API_AVAILABLE(ios(13.0))
 - (void)updateHintsRemainingDisplayAndStorage:(int)newHints;
 - (void)purchasePuzzlePack:(NSString *_Nonnull)productionId;
 - (void)purchaseHintPack:(NSString *_Nonnull)productionId;
+- (void)purchaseAltIcon:(NSString *)productionId;
 - (void)purchaseAdFreePuzzles;
 - (void)restorePurchases;
 
