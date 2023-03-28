@@ -294,7 +294,7 @@ Implementation of the cross-platform view controller
         homeView.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.14 alpha:1.0];
 //        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"neon-synthwave-cityscape-1" ofType:@"png"];
 //        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"backgroundLandscapeGrid" ofType:@"png"];
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"neon-synthwave-cityscape-1" ofType:@"png"];
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"neon-synthwave-cityscape-3" ofType:@"png"];
         UIImage *sourceImage = [UIImage imageWithContentsOfFile:filePath];
         CGFloat imageWidth = (CGFloat)sourceImage.size.width;
         CGFloat imageHeight = (CGFloat)sourceImage.size.height;
@@ -711,7 +711,7 @@ Implementation of the cross-platform view controller
     // Set background color and graphic image
     scoresView.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.14 alpha:1.0];
 //    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"backgroundLandscapeGrid" ofType:@"png"];
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"neon-synthwave-cityscape-1" ofType:@"png"];
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"neon-synthwave-cityscape-3" ofType:@"png"];
     UIImage *sourceImage = [UIImage imageWithContentsOfFile:filePath];
     CGFloat imageWidth = (CGFloat)sourceImage.size.width;
     CGFloat imageHeight = (CGFloat)sourceImage.size.height;

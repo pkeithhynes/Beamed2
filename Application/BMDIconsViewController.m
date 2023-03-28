@@ -43,6 +43,9 @@
         alternateIconsArray = [self fetchAlternateIconsArray:alternateIconsArray];
     }
 
+    alternateIconsArray = [self fetchAlternateIconsArray:alternateIconsArray];
+
+    
     if (alternateIconsArray != nil){
         
         CGRect settingsFrame = rc.rootView.bounds;
@@ -93,7 +96,7 @@
         CGFloat backButtonIconSizeInPoints = 60;
         CGFloat switchCx;
         CGFloat w, h, backButtonY, settingsLabelY;
-        unsigned int nrows, ncols, iconGridSizeInPoints, iconSizeInPoints;
+        unsigned int nrows, ncols, iconGridSizeInPoints, iconSizeInPoints, iconsYoffset;
         switch (rc.displayAspectRatio) {
             case ASPECT_4_3:{
                 // iPad (9th generation)
@@ -108,8 +111,11 @@
                 h = 1.5*titleLabelSize;
                 backButtonY = 1.0*h;
                 settingsLabelY = 1.0*h;
-                nrows = 4;
-                ncols = 5;
+                nrows = 5;
+                ncols = 4;
+                iconGridSizeInPoints = 0.8*settingsFrame.size.width/nrows;
+                iconSizeInPoints = 0.8*iconGridSizeInPoints;
+                iconsYoffset = 2.5*h;
                 break;
             }
             case ASPECT_10_7:{
@@ -125,8 +131,11 @@
                 h = 1.5*titleLabelSize;
                 backButtonY = 1.0*h;
                 settingsLabelY = 2.0*h;
-                nrows = 4;
-                ncols = 5;
+                nrows = 5;
+                ncols = 4;
+                iconGridSizeInPoints = 0.8*settingsFrame.size.width/nrows;
+                iconSizeInPoints = 0.8*iconGridSizeInPoints;
+                iconsYoffset = 2.5*h;
                 break;
             }
             case ASPECT_3_2: {
@@ -142,8 +151,11 @@
                 h = 1.5*titleLabelSize;
                 backButtonY = 1.0*h;
                 settingsLabelY = 2.0*h;
-                nrows = 4;
-                ncols = 5;
+                nrows = 5;
+                ncols = 4;
+                iconGridSizeInPoints = 0.8*settingsFrame.size.width/nrows;
+                iconSizeInPoints = 0.8*iconGridSizeInPoints;
+                iconsYoffset = 2.5*h;
                 break;
             }
             case ASPECT_16_9: {
@@ -161,6 +173,9 @@
                 settingsLabelY = 2.0*h;
                 nrows = 5;
                 ncols = 4;
+                iconGridSizeInPoints = 0.8*settingsFrame.size.width/ncols;
+                iconSizeInPoints = 0.8*iconGridSizeInPoints;
+                iconsYoffset = 3.5*h;
                 break;
             }
             case ASPECT_13_6: {
@@ -178,11 +193,12 @@
                 settingsLabelY = 3.0*h;
                 nrows = 5;
                 ncols = 4;
+                iconGridSizeInPoints = 0.8*settingsFrame.size.width/ncols;
+                iconSizeInPoints = 0.8*iconGridSizeInPoints;
+                iconsYoffset = 3.5*h;
                 break;
             }
         }
-        iconGridSizeInPoints = 0.8*settingsFrame.size.width/ncols;
-        iconSizeInPoints = 0.8*iconGridSizeInPoints;
         
         //
         // backButton icon
@@ -229,8 +245,10 @@
         for (unsigned int idx=0; idx<arrayLen-1; idx++){
             gridX = (idx % ncols);
             gridY = (idx / ncols);
-            posX = (idx % ncols) * iconGridSizeInPoints + 0.1*settingsFrame.size.width;
-            posY = (idx / ncols) * iconGridSizeInPoints + settingsLabelY + 3.0*h;
+            CGFloat iconGridWidthInPoints = ncols * iconGridSizeInPoints;
+            CGFloat gapXinPoints = settingsFrame.size.width - iconGridWidthInPoints;
+            posX = (idx % ncols) * iconGridSizeInPoints + gapXinPoints/2.0;;
+            posY = (idx / ncols) * iconGridSizeInPoints + settingsLabelY + iconsYoffset;
             UIButton *iconButton = [UIButton buttonWithType:UIButtonTypeCustom];
             CGRect iconRect = CGRectMake(posX,
                                          posY,
@@ -291,7 +309,7 @@
                                      w,
                                      4.0*h);
         UILabel *iconsPageLabel2 = [[UILabel alloc] initWithFrame:iconsLabelFrame];
-        iconsPageLabel2.text = @"Your support allows me to keep improving Beamed 2.";
+        iconsPageLabel2.text = @"Watch for new icons every week!\nYour support allows me to keep improving Beamed 2.";
         iconsPageLabel2.numberOfLines = 0;
         iconsPageLabel2.layer.borderColor = [UIColor clearColor].CGColor;
         iconsPageLabel2.textColor = [UIColor cyanColor];
