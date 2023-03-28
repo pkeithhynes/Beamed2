@@ -68,6 +68,7 @@
 #define kAllPacksScoresDictionaryKey @"allPacksScoresDictionary"
 #define kPaidPuzzlePacksKey @"paidPuzzlePacksDictionary"
 #define kPaidHintPacksKey @"paidHintPacksDictionary"
+#define kPaidAltIconsKey @"paidAltIconsDictionary"
 
 // Paid puzzle pack identifiers
 #define kPaidPack1ProductIdentifier @"BMD2_PAIDLEVEL_AAAA0001"
@@ -106,6 +107,9 @@
 
 // File path for hints packs
 #define kPaidHintsPacks @"paidHintPacksArray.plist"
+
+// File path for alt icons
+#define kAltIconsPacks @"alternateIcons.plist"
 
 // File paths for sound effects
 #define kButtonClinkSoundEffect @"085149494-puzzle-game-organic-wood-block"

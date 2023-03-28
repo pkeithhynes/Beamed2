@@ -134,6 +134,7 @@ API_AVAILABLE(ios(13.0))
     enum eSKProductsRequest productsRequestEnum;
     NSMutableArray *arrayOfPaidHintPacksInfo;
     NSMutableArray *arrayOfPuzzlePacksInfo;
+    NSMutableArray *arrayOfAltIconsInfo;
 }
 
 @property (strong, nonatomic) Optics * _Nonnull optics;
@@ -164,6 +165,7 @@ API_AVAILABLE(ios(13.0))
 @property (nonatomic) enum eSKProductsRequest productsRequestEnum;
 @property (nonatomic, retain) NSMutableArray * _Nullable arrayOfPaidHintPacksInfo;
 @property (nonatomic, retain) NSMutableArray * _Nullable arrayOfPuzzlePacksInfo;
+@property (nonatomic, retain) NSMutableArray * _Nullable arrayOfAltIconsInfo;
 
 
 @property (readwrite) CFURLRef _Nullable tapSoundFileURLRef;

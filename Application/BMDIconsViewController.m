@@ -30,12 +30,20 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+
+    rc = (BMDViewController*)[[(BMDAppDelegate *)[[UIApplication sharedApplication]delegate] window] rootViewController];
+    appd = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    alternateIconsArray = [self fetchAlternateIconsArray:alternateIconsArray];
+    // Use live StoreKit data if it is available
+    if (appd.arrayOfAltIconsInfo != nil &&
+        [appd.arrayOfAltIconsInfo count] > 0){
+        alternateIconsArray = [NSMutableArray arrayWithArray:[NSArray arrayWithArray:appd.arrayOfAltIconsInfo]];
+    }
+    else {
+        alternateIconsArray = [self fetchAlternateIconsArray:alternateIconsArray];
+    }
+
     if (alternateIconsArray != nil){
-        
-        rc = (BMDViewController*)[[(BMDAppDelegate *)[[UIApplication sharedApplication]delegate] window] rootViewController];
-        appd = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
         
         CGRect settingsFrame = rc.rootView.bounds;
         
@@ -228,10 +236,6 @@
                                          posY,
                                          iconGridSizeInPoints,
                                          iconGridSizeInPoints);
-            //            CGRect iconRect = CGRectMake(posX+(iconGridSizeInPoints-iconSizeInPoints)/2.0,
-            //                                         posY+(iconGridSizeInPoints-iconSizeInPoints)/2.0,
-            //                                         iconSizeInPoints,
-            //                                         iconSizeInPoints);
             iconButton.frame = iconRect;
             iconButton.enabled = YES;
             iconButton.tag = idx;
@@ -240,13 +244,43 @@
             iconButton.layer.borderWidth = 0;
             iconButton.layer.cornerRadius = 15;
             iconButton.layer.borderColor = [UIColor grayColor].CGColor;
+            // The iconImage is used as the button background image
             NSString *iconImageFileName = [iconDict objectForKey:@"iconImage"];
             UIImage *iconBackgroundImage = [UIImage imageNamed:iconImageFileName];
             [iconButton setBackgroundImage:iconBackgroundImage forState:UIControlStateNormal];
-//            UIImage *iconImage = [UIImage imageNamed:@"goldenCrownSelectedLayer.png"];
-//            UIImage *iconImage = [UIImage imageNamed:@"goldenCrownLayer.png"];
-            UIImage *iconImage = [UIImage imageNamed:@"99centLayer.png"];
-            [iconButton setImage:iconImage forState:UIControlStateNormal];
+            
+            // The price or golden crown is used as the foreground image
+//            UIImage *iconImage = [UIImage imageNamed:@"99centLayer.png"];
+            //            UIImage *iconImage = [UIImage imageNamed:@"goldenCrownSelectedLayer.png"];
+            //            UIImage *iconImage = [UIImage imageNamed:@"goldenCrownLayer.png"];
+//            [iconButton setImage:iconImage forState:UIControlStateNormal];
+            
+            // Create a price label
+            CGRect priceFrame = CGRectMake(0,
+                                           0,
+                                           iconGridSizeInPoints/2.0,
+                                           iconGridSizeInPoints/3.5);
+//            CGRect priceFrame = CGRectMake(posX-iconGridSizeInPoints/2.0,
+//                                           posY-iconGridSizeInPoints/2.0,
+//                                           iconGridSizeInPoints/2.0,
+//                                           iconGridSizeInPoints/3.0);
+            UILabel *priceLabel = [[UILabel alloc] initWithFrame:priceFrame];
+            priceLabel.backgroundColor = [UIColor blackColor];
+            priceLabel.layer.masksToBounds = YES;
+            priceLabel.layer.cornerRadius = 5;
+            priceLabel.text = [iconDict objectForKey:@"formatted_price_string"];
+            priceLabel.adjustsFontSizeToFitWidth = YES;
+            priceLabel.textAlignment = NSTextAlignmentCenter;
+            priceLabel.textColor = [UIColor colorWithRed:251.0/255.0
+                                                   green:212.0/255.0
+                                                    blue:12.0/255.0
+                                                   alpha:1.0];
+            priceLabel.layer.borderColor = [UIColor cyanColor].CGColor;
+            priceLabel.layer.borderWidth = 1.0;
+            [iconButton addSubview:priceLabel];
+            [iconButton bringSubviewToFront:priceLabel];
+
+            
             [iconsView addSubview:iconButton];
             [iconsView bringSubviewToFront:iconButton];
         }
@@ -304,23 +338,6 @@
 // Utility Methods Go Here
 //
 
-//- (void)completeAltIconPurchase:(unsigned int)idx {
-//    // Fetch the name of the selection App Icon
-//    NSMutableDictionary *iconDict = [NSMutableDictionary dictionaryWithDictionary:[alternateIconsArray objectAtIndex:idx]];
-//    NSString *iconName = [iconDict objectForKey:@"appIcon"];
-//    BOOL supportsAlternateIcons = [UIApplication.sharedApplication supportsAlternateIcons];
-//    if (supportsAlternateIcons){
-//        [UIApplication.sharedApplication setAlternateIconName:iconName completionHandler:^(NSError *error){
-//            if (error == nil){
-//                DLog("Success: icon changed");
-//            }
-//            else {
-//                DLog("Failure with error");
-//            }
-//        }];
-//    }
-//}
-
 - (UIImageView *)createImageView:(NSString *)imageFileName
                            width:(CGFloat)width
                             posX:(CGFloat)posX
@@ -345,3 +362,4 @@
 }
 
 @end
+

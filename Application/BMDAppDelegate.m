@@ -15,18 +15,12 @@ Implementation of the iOS & tvOS application delegate
 #import <VungleSDK/VungleSDK.h>
 #import "Firebase.h"
 
-
 @import MetalKit;
 @import UIKit;
-
-//
-// Puzzle related storage
-//
 
 // Device screen dimensions
 CGFloat _screenWidthInPixels;
 CGFloat _screenHeightInPixels;
-
 
 @interface BMDAppDelegate() <SKProductsRequestDelegate, SKPaymentTransactionObserver>
 @end
@@ -38,8 +32,6 @@ CGFloat _screenHeightInPixels;
     id<MTLDevice> _device;
     id<MTLTexture> __strong _texture;
     MTKView *view;
-    
-//    BMDViewController *rc;
     
     // NSUserDefaults
     NSMutableDictionary *upgrades;
@@ -117,6 +109,7 @@ CGFloat _screenHeightInPixels;
 @synthesize productsRequestEnum;
 @synthesize arrayOfPaidHintPacksInfo;
 @synthesize arrayOfPuzzlePacksInfo;
+@synthesize arrayOfAltIconsInfo;
 
 
 //
@@ -125,7 +118,6 @@ CGFloat _screenHeightInPixels;
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithSettings:(NSDictionary *)launchSettings {
     return YES;
 }
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchSettings {
     DLog(">>> Calling didFinishLaunchingWithOptions");
@@ -262,7 +254,6 @@ CGFloat _screenHeightInPixels;
     return YES;
 }
 
-
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     DLog(">>> Calling applicationDidBecomeActive");
     
@@ -345,7 +336,6 @@ CGFloat _screenHeightInPixels;
     DLog("<<< Calling applicationDidBecomeActive");
 }
 
-
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     DLog("Entering background.");
     [loop1Player pause];
@@ -353,16 +343,6 @@ CGFloat _screenHeightInPixels;
     [loop3Player pause];
 }
 
-
-+ (NSString *)removeAdsPermanentlyProductionIdentifier
-{
-    static NSString *removeAdsPermanentlyPI;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        removeAdsPermanentlyPI = @"BMD2_REMOVE_ADS_PERM_AD0001";
-    });
-    return removeAdsPermanentlyPI;
-}
 
 //
 // Methods to handle NSDefaults and NSUbiquitousKeyValueStore
@@ -384,13 +364,11 @@ CGFloat _screenHeightInPixels;
     }
 }
 
-
 // Handle changes to key-value store made by this app running on a different device
 - (void)storeDidChange:id {
     DLog("storeDidChange");
     [[NSUbiquitousKeyValueStore defaultStore] synchronize];
 }
-
 
 // This method clears all keys-values out of NSUbiquitousKeyValueStore
 - (void)clearNSUbiquitousKeyValueStore {
@@ -408,7 +386,6 @@ CGFloat _screenHeightInPixels;
     kvd = [kvStore dictionaryRepresentation];
 }
 
-
 // This method tests for the existence of a key in NSUbiquitoutKeyValueStore
 - (BOOL)existsKeyInNSUbiquitousKeyValueStore:(NSString *)key {
     NSUbiquitousKeyValueStore *cloudStore = [NSUbiquitousKeyValueStore defaultStore];
@@ -421,7 +398,6 @@ CGFloat _screenHeightInPixels;
     }
 }
 
-
 // This method tests for the existence of a key in NSDefaults
 - (BOOL)existsKeyInDefaults:(NSString *)key {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -432,7 +408,6 @@ CGFloat _screenHeightInPixels;
         return YES;
     }
 }
-
 
 // Set object in local defaults or iCloud defaults
 - (void)setObjectInDefaults:(id)object forKey:(NSString *)key {
@@ -449,7 +424,6 @@ CGFloat _screenHeightInPixels;
     }
 }
 
-
 // Remove object in local defaults or iCloud defaults
 - (void)removeObjectInDefaultsForKey:(NSString *)key {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -465,7 +439,6 @@ CGFloat _screenHeightInPixels;
     }
 }
 
-
 // Set unsigned integer in local defaults or iCloud defaults
 - (void)setUnsignedIntInDefaults:(unsigned int)number forKey:(NSString *)key {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -480,7 +453,6 @@ CGFloat _screenHeightInPixels;
         [defaults setInteger:number forKey:key];
     }
 }
-
 
 // Get object from local defaults or iCloud defaults
 - (id)getObjectFromDefaults:(NSString *)key {
@@ -506,7 +478,6 @@ CGFloat _screenHeightInPixels;
     }
 }
 
-
 // Get object directly from iCloud defaults
 - (id)getObjectFromCloudDefaults:(NSString *)key {
     NSUbiquitousKeyValueStore *cloudStore = [NSUbiquitousKeyValueStore defaultStore];
@@ -518,7 +489,6 @@ CGFloat _screenHeightInPixels;
         return nil;
     }
 }
-
 
 // Read NSString from local defaults or iCloud defaults
 - (NSString *)getStringFromDefaults:(NSString *)key {
@@ -534,7 +504,6 @@ CGFloat _screenHeightInPixels;
     }
 }
 
-
 // Read NSDictionary from local defaults or iCloud defaults
 - (NSDictionary *)getDictionaryFromDefaults:(NSString *)key {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -548,7 +517,6 @@ CGFloat _screenHeightInPixels;
         return [defaults dictionaryForKey:key];
     }
 }
-
 
 // Read NSMutableArray from local defaults or iCloud defaults
 - (NSMutableArray *)getArrayFromDefaults:(NSString *)key {
@@ -569,7 +537,7 @@ CGFloat _screenHeightInPixels;
 
 
 //
-// Method specific to editModeEnabled
+// Methods specific to editMode and autoGeneration
 //
 - (BOOL)editModeIsEnabled {
     if (FORCE_PUZZLE_EDITOR_AUTOGEN){
@@ -584,10 +552,6 @@ CGFloat _screenHeightInPixels;
     }
 }
 
-
-//
-// Method specific to autoGenEnabled
-//
 - (BOOL)autoGenIsEnabled {
     if (ENABLE_PUZZLE_EDITOR == NO){
         return NO;
@@ -609,6 +573,7 @@ CGFloat _screenHeightInPixels;
         }
     }
 }
+
 
 //
 // Methods to handle tracking of Daily Puzzle progress
@@ -666,10 +631,7 @@ CGFloat _screenHeightInPixels;
             unsigned packNumber = 0;
             unsigned packIndex = 0;
             while (puzzlePack = [arrayEnum nextObject]){
-                // PKH pack_number {
-//                packNumber = [[puzzlePack objectForKey:@"pack_number"]intValue];
                 packNumber = packIndex;
-                // PKH pack_number }
                 NSString *packIndexString = [NSString stringWithFormat:@"%06d", packNumber];
                 [puzzlePacksProgressPuzzleNumbersDictionary setObject:[NSNumber numberWithInt:0]
                                                                forKey:packIndexString];
@@ -1080,6 +1042,9 @@ CGFloat _screenHeightInPixels;
     else if ([key isEqualToString:@"paidHintPacksArray.plist"]){
         filePath = [documentsDirectory stringByAppendingPathComponent:kPaidHintsPacks];
     }
+    else if ([key isEqualToString:@"alternateIcons.plist"]){
+        filePath = [documentsDirectory stringByAppendingPathComponent:kAltIconsPacks];
+    }
     else if ([key isEqualToString:@"backgroundTextures.plist"]){
         filePath = [documentsDirectory stringByAppendingPathComponent:kBackgroundTextures];
     }
@@ -1109,6 +1074,9 @@ CGFloat _screenHeightInPixels;
     else if ([key isEqualToString:@"paidHintPacksArray.plist"]){
         path = [[NSBundle mainBundle] pathForResource:@"paidHintPacksArray" ofType:@"plist"];
     }
+    else if ([key isEqualToString:@"alternateIcons.plist"]){
+        path = [[NSBundle mainBundle] pathForResource:@"alternateIcons" ofType:@"plist"];
+    }
     else if ([key isEqualToString:@"backgroundTextures.plist"]){
         path = [[NSBundle mainBundle] pathForResource:@"backgroundTextures" ofType:@"plist"];
     }
@@ -1124,6 +1092,7 @@ CGFloat _screenHeightInPixels;
 //
 // Pack and Puzzle Handling Methods
 //
+
 - (BOOL)puzzleIsEmpty:(NSMutableDictionary *)puzzle {
     BOOL empty = NO;
     NSMutableArray *arrayOfJewelsDictionaries = [puzzle objectForKey:@"arrayOfJewelsDictionaries"];
@@ -1241,6 +1210,17 @@ CGFloat _screenHeightInPixels;
     [self saveCurrentPuzzleNumberForPack:currentPack puzzleNumber:puzzleNumber];
 }
 
+- (int)fetchCurrentAltIconNumber {
+    // Return value of -1 means default icon
+    int currentAltIconNumber = [[self getObjectFromDefaults:@"currentAltIconNumber"] intValue];
+    return currentAltIconNumber;
+}
+
+- (void)saveCurrentAltIconNumber:(int)currentAltIconNumber {
+    // Input value of -1 means default icon
+    [self setObjectInDefaults:[NSNumber numberWithUnsignedInt:currentAltIconNumber] forKey:@"currentAltIconNumber"];
+}
+
 - (unsigned int)fetchCurrentPuzzleNumberForPack:(unsigned int)packNumber {
     NSMutableDictionary *puzzlePacksProgressPuzzleNumbersDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
     puzzlePacksProgressPuzzleNumbersDictionary = [self getObjectFromDefaults:@"PacksProgressNumbersDictionary"];
@@ -1265,28 +1245,6 @@ CGFloat _screenHeightInPixels;
     [puzzlePacksProgressDictionary setObject:puzzle forKey:packNumberString];
     [self setObjectInDefaults:puzzlePacksProgressDictionary forKey:@"PacksProgressPuzzlesDictionary"];
 }
-
-//- (BOOL)incrementPuzzleNumberForCurrentPack {
-//    BOOL retVal = NO;
-//    unsigned int currentPack = [self fetchCurrentPackNumber];
-//    unsigned int puzzleNumber = [self fetchCurrentPuzzleNumberForPack:currentPack];
-//    if (puzzleNumber < [self fetchCurrentPackLength]-1){
-//        [self saveCurrentPuzzleNumberForPack:currentPack puzzleNumber:(puzzleNumber+1)];
-//        retVal = YES;
-//    }
-//    return retVal;
-//}
-//
-//- (BOOL)decrementPuzzleNumberForCurrentPack {
-//    BOOL retVal = NO;
-//    unsigned int currentPack = [self fetchCurrentPackNumber];
-//    unsigned int puzzleNumber = [self fetchCurrentPuzzleNumberForPack:currentPack];
-//    if (puzzleNumber > [self fetchCurrentPackLength]-1){
-//        [self saveCurrentPuzzleNumberForPack:currentPack puzzleNumber:(puzzleNumber-1)];
-//        retVal = YES;
-//    }
-//    return retVal;
-//}
 
 - (unsigned int)queryNumberOfPuzzlesLeftInPack:(unsigned int)packNumber {
     unsigned int retVal = 0;
@@ -1373,15 +1331,6 @@ CGFloat _screenHeightInPixels;
     }
     return puzzlePack;
 }
-
-//- (NSMutableDictionary *)fetchCurrentPuzzleFromPackGameProgress:(unsigned int)packNumber {
-//    NSMutableDictionary *currentPuzzleForCurrentPack = [NSMutableDictionary dictionaryWithCapacity:1];
-//    NSMutableDictionary *puzzlePacksProgressDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
-//    puzzlePacksProgressDictionary = [self getObjectFromDefaults:@"PacksProgressPuzzlesDictionary"];
-//    NSString *packIndexString = [NSString stringWithFormat:@"%06d", packNumber];
-//    currentPuzzleForCurrentPack = [puzzlePacksProgressDictionary objectForKey:packIndexString];
-//    return currentPuzzleForCurrentPack;
-//}
 
 - (NSMutableDictionary *)fetchCurrentPuzzleFromPackGameProgress:(unsigned int)packNumber {
     NSMutableDictionary *puzzlePacksProgressDictionary = nil;
@@ -1491,7 +1440,6 @@ CGFloat _screenHeightInPixels;
     }
 }
 
-
 - (void)playLaserSound {
     AVAudioPlayer *player;
     if (laserSoundFlip){
@@ -1507,6 +1455,32 @@ CGFloat _screenHeightInPixels;
 }
 
 
+//
+// ***** Texture and Animation File Processing happens here *****
+//
+// Find lines within a text string which:
+//    1. are newline-terminated
+//    2. do not begin with the comment characters '//'
+// If such a line is found return a pointer to its first character as well as a count of characters (including the newline character)
+// Lines which begin with '//' cause a return value of zero
+int getTextureAndAnimationLine(char *instring, char *outstring, int sp, int max, BOOL *commentLine)
+{
+    int ii = 0;
+    while (ii != max) {
+        if (instring[sp+ii] == '\n')
+            break;
+        ii++;
+    }
+    outstring = instring+sp;        // outstring points to the start of the newline-terminated string
+    
+    if (instring[sp]=='/' && instring[sp+1]=='/') {
+        *commentLine = YES;                // comment string so *commentLine = YES
+    }
+    else {
+        *commentLine = NO;                // not comment string so *commentLine = NO
+    }
+    return ii+1;                    // return the number of characters in the string
+}
 
 - (BOOL)initAllTextures:(nonnull MTKView *)mtkView metalRenderer:(BMDRenderer *)metalRenderer {
     BOOL success = YES;
@@ -1569,36 +1543,6 @@ CGFloat _screenHeightInPixels;
     
     return success;
 }
-
-
-
-//
-// ***** Texture and Animation File Processing happens here *****
-//
-// Find lines within a text string which:
-//    1. are newline-terminated
-//    2. do not begin with the comment characters '//'
-// If such a line is found return a pointer to its first character as well as a count of characters (including the newline character)
-// Lines which begin with '//' cause a return value of zero
-int getTextureAndAnimationLine(char *instring, char *outstring, int sp, int max, BOOL *commentLine)
-{
-    int ii = 0;
-    while (ii != max) {
-        if (instring[sp+ii] == '\n')
-            break;
-        ii++;
-    }
-    outstring = instring+sp;        // outstring points to the start of the newline-terminated string
-    
-    if (instring[sp]=='/' && instring[sp+1]=='/') {
-        *commentLine = YES;                // comment string so *commentLine = YES
-    }
-    else {
-        *commentLine = NO;                // not comment string so *commentLine = NO
-    }
-    return ii+1;                    // return the number of characters in the string
-}
-
 
 // Find lines within a text NSString which:
 //    1. are newline-terminated
@@ -1846,10 +1790,12 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
 }
 //// ***** End Texture and Animation File Processing *****
 
+
 // ***** Create Haptics Patterns Here *****
 - (void)createHapticsPatterns {
     
 }
+
 
 // ***** Load Sound Effects Here *****
 - (void)loadSoundEffects {
@@ -2030,6 +1976,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
 }
 // ***** End Load Sound Effects *****
 
+
 //
 // Methods to handle Touches
 //
@@ -2086,6 +2033,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     return (uint)localDaysSinceReferenceDate;
 }
 
+
 //
 // Utility methods to handle Endless Hints purchase and use
 //
@@ -2099,11 +2047,9 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
 }
 
 
-
 //
 // Edit Mode Button Handlers
 //
-
 - (NSMutableString *)queryHintPackName:(NSMutableString *)name pack:(unsigned int)hintPack {
     NSMutableArray *arrayOfPaidHintPacks = [self fetchPacksArray:@"paidHintPacksArray.plist"];
     if ([arrayOfPaidHintPacks count] > hintPack){
@@ -2129,11 +2075,10 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
 }
 
 
-
 //
-// Scores and Game Center
+// Methods to keep score including updating and querying the puzzleScoresArray from defaults
+// Game Center
 //
-
 - (BOOL)isGameCenterAvailable {
     // Check for presence of GKLocalPlayer API.
     Class gcClass = (NSClassFromString(@"GKLocalPlayer"));
@@ -2145,7 +2090,6 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     
     return (gcClass && osVersionSupported);
 }
-
 
 - (void)authenticatePlayer {
     GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
@@ -2163,7 +2107,6 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     }];
 }
 
-
 - (void)loadLeaderboards {
     [GKLeaderboard loadLeaderboardsWithIDs:@[@"BEAMED2_TOTAL_PUZZLES_LEADERBOARD",
         @"BEAMED2_TOTAL_JEWELS_LEADERBOARD"]
@@ -2180,7 +2123,6 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     }];
 }
 
-
 - (void)loadTotalPuzzlesLeaderboard {
     [GKLeaderboard loadLeaderboardsWithIDs:@[@"BEAMED2_TOTAL_PUZZLES_LEADERBOARD"]
                          completionHandler:
@@ -2195,7 +2137,6 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     }];
 }
 
-
 - (void)loadTotalJewelsLeaderboard {
     [GKLeaderboard loadLeaderboardsWithIDs:@[@"BEAMED2_TOTAL_JEWELS_LEADERBOARD"]
                          completionHandler:
@@ -2209,7 +2150,6 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
         }
     }];
 }
-
 
 - (NSString *)queryCurrentGameDictionaryName {
     NSString *dictionaryName = [[NSString alloc] init];
@@ -2288,10 +2228,6 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     NSMutableDictionary *dictionary = [gameDictionaries objectForKey:key];
     return dictionary;
 }
-
-//
-// Methods to keep score including updating and querying the puzzleScoresArray from defaults
-//
 
 - (NSMutableDictionary *)queryPuzzleJewelCountByColor:(int)puzzleNumber {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithCapacity:1];
@@ -2967,6 +2903,43 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     [self setObjectInDefaults:paidPuzzlePacksDictionary forKey:kPaidPuzzlePacksKey];
 }
 
+- (BOOL)existPurchasedAltIcons {
+    NSDictionary *dictionary = [self getDictionaryFromDefaults:kPaidAltIconsKey];
+    if (dictionary){
+        return YES;
+    }
+    return NO;
+}
+  
+- (BOOL)queryPurchasedAltIcon:(unsigned int)iconNumber {
+    // Access the dictionary for purchased packs if it exists
+    NSDictionary *dictionary = [self getDictionaryFromDefaults:kPaidAltIconsKey];
+    if (dictionary) {
+        NSEnumerator *enumerator = [dictionary keyEnumerator];
+        id key;
+        NSInteger iconKeyNumber;
+        while((key = [enumerator nextObject])){
+            iconKeyNumber = [key integerValue];
+            if (iconKeyNumber == iconNumber){
+                return YES;
+            }
+        }
+    }
+    return NO;
+}
+
+- (void)savePurchasedAltIcon:(unsigned int)iconNumber {
+    // Access the dictionary for purchased packs if it exists
+    NSDictionary *dictionary = [self getDictionaryFromDefaults:kPaidAltIconsKey];
+    NSMutableDictionary *paidAltIconsDictionary = [[NSMutableDictionary alloc] init];
+    if (dictionary) {
+        // Initialize paidAltIconsDictionary if it exists
+        [paidAltIconsDictionary setDictionary:dictionary];
+    }
+    [paidAltIconsDictionary setObject:[NSNumber numberWithBool:YES] forKey:[NSString stringWithFormat:@"%06d", iconNumber]];
+    [self setObjectInDefaults:paidAltIconsDictionary forKey:kPaidAltIconsKey];
+}
+
 - (void)purchasePuzzlePack:(NSString *)productionId {
     DLog("Purchase puzzle pack with id %s", [productionId UTF8String]);
     if([SKPaymentQueue canMakePayments]){
@@ -3009,6 +2982,16 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     }
 }
 
++ (NSString *)removeAdsPermanentlyProductionIdentifier
+{
+    static NSString *removeAdsPermanentlyPI;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        removeAdsPermanentlyPI = @"BMD2_REMOVE_ADS_PERM_AD0001";
+    });
+    return removeAdsPermanentlyPI;
+}
+
 - (void)purchaseAdFreePuzzles {
     NSString *adFree = [self getObjectFromDefaults:@"AD_FREE_PUZZLES"];
     if (![adFree isEqualToString:@"YES"]){
@@ -3033,10 +3016,10 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     }
 }
 
+
 //
 // Methods to request information about StoreKit In-App Purchases go here
 //
-
 - (void)requestAdFreePuzzlesInfo {
     productsRequestEnum = REQ_INFO_AD_FREE;
     NSString *removeAdsPermanentlyPI = nil;
@@ -3080,9 +3063,28 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
             puzzlePacksSet = [puzzlePacksSet setByAddingObject:[dict objectForKey:@"production_id"]];
         }
     }
-
     if ([puzzlePacksSet count] > 0){
         SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:puzzlePacksSet];
+        productsRequest.delegate = self;
+        [productsRequest start];
+    }
+}
+
+- (void)requestAltIconsInfo {
+    productsRequestEnum = REQ_INFO_ICON;
+    // Initialize array that will receive results from StoreKit
+    arrayOfAltIconsInfo = [NSMutableArray arrayWithCapacity:1];
+    NSMutableArray *altIconsArray = [self fetchPacksArray:@"alternateIcons.plist"];
+    NSEnumerator *altIconsEnum = [altIconsArray objectEnumerator];
+    NSSet *altIconsSet = [NSSet set];
+    NSMutableDictionary *dict;
+    while (dict = [altIconsEnum nextObject]){
+        if ([dict objectForKey:@"production_id"]){
+            altIconsSet = [altIconsSet setByAddingObject:[dict objectForKey:@"production_id"]];
+        }
+    }
+    if ([altIconsSet count] > 0){
+        SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:altIconsSet];
         productsRequest.delegate = self;
         [productsRequest start];
     }
@@ -3143,6 +3145,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                     idx++;
                 }
                 productsRequestEnum = REQ_NIL;
+                arrayOfPaidHintPacksInfo = nil;
                 [self requestHintPacksInfo];
                 break;
             }
@@ -3174,13 +3177,59 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                     idx++;
                 }
                 productsRequestEnum = REQ_NIL;
+                arrayOfAltIconsInfo = nil;
+                [self requestAltIconsInfo];
                 break;
             }
-            case REQ_INFO_AD_FREE:
             case REQ_INFO_ICON:{
-                NSString *productIdentifier = [NSString stringWithString:validProduct.productIdentifier];
-                NSDecimalNumber *price = validProduct.price;
-                NSString *localizedTitle = [NSString stringWithString:validProduct.localizedTitle];
+                NSEnumerator *productsEnum = [response.products objectEnumerator];
+                SKProduct *currentProduct;
+                NSMutableDictionary *currentProductInfoDict;
+                NSMutableDictionary *bundleArrayCurrentItem;
+                NSMutableArray *altIconsBundleArray = [self fetchPacksArray:@"alternateIcons.plist"];
+                unsigned int idx = 0;
+                while (currentProduct = [productsEnum nextObject]){
+                    currentProductInfoDict = [NSMutableDictionary dictionaryWithCapacity:1];
+                    bundleArrayCurrentItem = [altIconsBundleArray objectAtIndex:idx];
+                    [currentProductInfoDict setObject:[bundleArrayCurrentItem objectForKey:@"appIcon"] forKey:@"appIcon"];
+                    [currentProductInfoDict setObject:[bundleArrayCurrentItem objectForKey:@"iconImage"] forKey:@"iconImage"];
+                    [currentProductInfoDict setObject:[NSNumber numberWithUnsignedInt:idx] forKey:@"icon_number"];
+                    [currentProductInfoDict setObject:currentProduct.localizedTitle forKey:@"icon_name"];
+                    [currentProductInfoDict setObject:currentProduct.localizedDescription forKey:@"icon_description"];
+                    [currentProductInfoDict setObject:currentProduct.productIdentifier forKey:@"production_id"];
+                    [currentProductInfoDict setObject:currentProduct.price forKey:@"storekit_price"];
+                    unsigned int integerPrice = round([currentProduct.price floatValue]*100);
+                    [currentProductInfoDict setObject:[NSNumber numberWithInt:integerPrice] forKey:@"AppStorePackCost"];
+                    [currentProductInfoDict setObject:currentProduct.priceLocale forKey:@"price_locale"];
+                    // Create and store price formatted string!
+                    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+                    [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+                    [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+                    [numberFormatter setLocale:currentProduct.priceLocale];
+                    NSString *formattedPriceString = [numberFormatter stringFromNumber:currentProduct.price];
+                    if (formattedPriceString){
+                        [currentProductInfoDict setObject:formattedPriceString forKey:@"formatted_price_string"];
+                    }
+                    [arrayOfAltIconsInfo addObject:currentProductInfoDict];
+                    idx++;
+                }
+                // Add default icon entry as last item if arrayOfAltIconsInfo is not empty
+                if (arrayOfAltIconsInfo != nil && [arrayOfAltIconsInfo count] > 0){
+                    currentProductInfoDict = [NSMutableDictionary dictionaryWithCapacity:1];
+                    NSMutableDictionary *dict = [altIconsBundleArray lastObject];
+                    [currentProductInfoDict setObject:[NSNumber numberWithUnsignedInt:idx] forKey:@"icon_number"];
+                    bundleArrayCurrentItem = [altIconsBundleArray objectAtIndex:idx];
+                    [currentProductInfoDict setObject:[bundleArrayCurrentItem objectForKey:@"appIcon"] forKey:@"appIcon"];
+                    [currentProductInfoDict setObject:[bundleArrayCurrentItem objectForKey:@"iconImage"] forKey:@"iconImage"];
+                    [arrayOfAltIconsInfo addObject:currentProductInfoDict];
+                }
+                productsRequestEnum = REQ_NIL;
+                break;
+            }
+            case REQ_INFO_AD_FREE:{
+//                NSString *productIdentifier = [NSString stringWithString:validProduct.productIdentifier];
+//                NSDecimalNumber *price = validProduct.price;
+//                NSString *localizedTitle = [NSString stringWithString:validProduct.localizedTitle];
                 productsRequestEnum = REQ_NIL;
                 break;
             }
@@ -3402,6 +3451,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
         return NO;
 }
 
+
 //
 // Vungle Ad Network Methods
 //
@@ -3510,6 +3560,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     }
 }
 
+
 //
 // Vungle Ad Network Callbacks
 //
@@ -3530,10 +3581,6 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
 
 - (void)vungleTrackClickForPlacementID:(nullable NSString *)placementID{
     DLog("vungleTrackClickForPlacementID %s", [placementID UTF8String]);
-    
-    // If Puzzle not yet solved then store endTime for timeSegment
-    long endTime = [[NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]] longValue];
-    int currentPackNumber = -1;
 }
 
 - (void)vungleRewardUserForPlacementID:(nullable NSString *)placementID{
