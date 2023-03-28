@@ -3276,7 +3276,8 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
 }
 
 - (int)fetchIndexOfAltIconProductID:(NSString *)productId{
-    NSMutableArray *array = [self fetchPacksArray:@"altIcons.plist"];
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:1];
+    array = [self fetchAlternateIconsArray:array];
     NSDictionary *dict = nil;
     for (int arrayIndex=0; arrayIndex<[array count]; arrayIndex++){
         dict = [array objectAtIndex:arrayIndex];
