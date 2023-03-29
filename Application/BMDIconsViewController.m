@@ -238,69 +238,76 @@
         //
         // Create and display a grid of icon UIButtons
         //
-        alternateIconsButtonsArray = [NSMutableArray arrayWithCapacity:1];
-        unsigned int gridX, gridY;
-        unsigned int posX, posY;
-        unsigned int arrayLen = (unsigned int)[alternateIconsArray count];
-        for (unsigned int idx=0; idx<arrayLen-1; idx++){
-            gridX = (idx % ncols);
-            gridY = (idx / ncols);
-            CGFloat iconGridWidthInPoints = ncols * iconGridSizeInPoints;
-            CGFloat gapXinPoints = settingsFrame.size.width - iconGridWidthInPoints;
-            posX = (idx % ncols) * iconGridSizeInPoints + gapXinPoints/2.0;;
-            posY = (idx / ncols) * iconGridSizeInPoints + settingsLabelY + iconsYoffset;
-            UIButton *iconButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            CGRect iconRect = CGRectMake(posX,
-                                         posY,
-                                         iconGridSizeInPoints,
-                                         iconGridSizeInPoints);
-            iconButton.frame = iconRect;
-            iconButton.enabled = YES;
-            iconButton.tag = idx;
-            [iconButton addTarget:self action:@selector(iconButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-            NSMutableDictionary *iconDict = [NSMutableDictionary dictionaryWithDictionary:[alternateIconsArray objectAtIndex:idx]];
-            iconButton.layer.borderWidth = 0;
-            iconButton.layer.cornerRadius = 15;
-            iconButton.layer.borderColor = [UIColor grayColor].CGColor;
-            // The iconImage is used as the button background image
-            NSString *iconImageFileName = [iconDict objectForKey:@"iconImage"];
-            UIImage *iconBackgroundImage = [UIImage imageNamed:iconImageFileName];
-            [iconButton setBackgroundImage:iconBackgroundImage forState:UIControlStateNormal];
-            
-            // The golden crown is used as the foreground image when the icon has been purchased
-            //            UIImage *iconImage = [UIImage imageNamed:@"goldenCrownSelectedLayer.png"];
-            if ([appd queryPurchasedAltIcon:idx]){
-                UIImage *iconImage = [UIImage imageNamed:@"goldenCrownLayer.png"];
-                [iconButton setImage:iconImage forState:UIControlStateNormal];
-            }
-            else {
-                // Create a price label
-                CGRect priceFrame = CGRectMake(0,
-                                               0,
-                                               iconGridSizeInPoints/2.0,
-                                               iconGridSizeInPoints/3.5);
-                UILabel *priceLabel = [[UILabel alloc] initWithFrame:priceFrame];
-                priceLabel.backgroundColor = [UIColor blackColor];
-                priceLabel.layer.masksToBounds = YES;
-                priceLabel.layer.cornerRadius = 5;
-                priceLabel.text = [iconDict objectForKey:@"formatted_price_string"];
-                priceLabel.adjustsFontSizeToFitWidth = YES;
-                priceLabel.textAlignment = NSTextAlignmentCenter;
-                priceLabel.textColor = [UIColor colorWithRed:251.0/255.0
-                                                       green:212.0/255.0
-                                                        blue:12.0/255.0
-                                                       alpha:1.0];
-                priceLabel.layer.borderColor = [UIColor cyanColor].CGColor;
-                priceLabel.layer.borderWidth = 1.0;
-                [iconButton addSubview:priceLabel];
-                [iconButton bringSubviewToFront:priceLabel];
-            }
-
-            [alternateIconsButtonsArray addObject:iconButton];
-            
-            [iconsView addSubview:iconButton];
-            [iconsView bringSubviewToFront:iconButton];
-        }
+        unsigned int posY = [self buildAltIconButtons:nrows
+                            ncols:ncols
+             iconGridSizeInPoints:iconGridSizeInPoints
+                    settingsFrame:settingsFrame
+                     iconsYoffset:iconsYoffset
+                   settingsLabelY:settingsLabelY];
+        
+//        alternateIconsButtonsArray = [NSMutableArray arrayWithCapacity:1];
+//        unsigned int gridX, gridY;
+//        unsigned int posX, posY;
+//        unsigned int arrayLen = (unsigned int)[alternateIconsArray count];
+//        for (unsigned int idx=0; idx<arrayLen-1; idx++){
+//            gridX = (idx % ncols);
+//            gridY = (idx / ncols);
+//            CGFloat iconGridWidthInPoints = ncols * iconGridSizeInPoints;
+//            CGFloat gapXinPoints = settingsFrame.size.width - iconGridWidthInPoints;
+//            posX = (idx % ncols) * iconGridSizeInPoints + gapXinPoints/2.0;;
+//            posY = (idx / ncols) * iconGridSizeInPoints + settingsLabelY + iconsYoffset;
+//            UIButton *iconButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//            CGRect iconRect = CGRectMake(posX,
+//                                         posY,
+//                                         iconGridSizeInPoints,
+//                                         iconGridSizeInPoints);
+//            iconButton.frame = iconRect;
+//            iconButton.enabled = YES;
+//            iconButton.tag = idx;
+//            [iconButton addTarget:self action:@selector(iconButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+//            NSMutableDictionary *iconDict = [NSMutableDictionary dictionaryWithDictionary:[alternateIconsArray objectAtIndex:idx]];
+//            iconButton.layer.borderWidth = 0;
+//            iconButton.layer.cornerRadius = 15;
+//            iconButton.layer.borderColor = [UIColor grayColor].CGColor;
+//            // The iconImage is used as the button background image
+//            NSString *iconImageFileName = [iconDict objectForKey:@"iconImage"];
+//            UIImage *iconBackgroundImage = [UIImage imageNamed:iconImageFileName];
+//            [iconButton setBackgroundImage:iconBackgroundImage forState:UIControlStateNormal];
+//
+//            // The golden crown is used as the foreground image when the icon has been purchased
+//            //            UIImage *iconImage = [UIImage imageNamed:@"goldenCrownSelectedLayer.png"];
+//            if ([appd queryPurchasedAltIcon:idx]){
+//                UIImage *iconImage = [UIImage imageNamed:@"goldenCrownLayer.png"];
+//                [iconButton setImage:iconImage forState:UIControlStateNormal];
+//            }
+//            else {
+//                // Create a price label
+//                CGRect priceFrame = CGRectMake(0,
+//                                               0,
+//                                               iconGridSizeInPoints/2.0,
+//                                               iconGridSizeInPoints/3.5);
+//                UILabel *priceLabel = [[UILabel alloc] initWithFrame:priceFrame];
+//                priceLabel.backgroundColor = [UIColor blackColor];
+//                priceLabel.layer.masksToBounds = YES;
+//                priceLabel.layer.cornerRadius = 5;
+//                priceLabel.text = [iconDict objectForKey:@"formatted_price_string"];
+//                priceLabel.adjustsFontSizeToFitWidth = YES;
+//                priceLabel.textAlignment = NSTextAlignmentCenter;
+//                priceLabel.textColor = [UIColor colorWithRed:251.0/255.0
+//                                                       green:212.0/255.0
+//                                                        blue:12.0/255.0
+//                                                       alpha:1.0];
+//                priceLabel.layer.borderColor = [UIColor cyanColor].CGColor;
+//                priceLabel.layer.borderWidth = 1.0;
+//                [iconButton addSubview:priceLabel];
+//                [iconButton bringSubviewToFront:priceLabel];
+//            }
+//
+//            [alternateIconsButtonsArray addObject:iconButton];
+//
+//            [iconsView addSubview:iconButton];
+//            [iconsView bringSubviewToFront:iconButton];
+//        }
         
         // Label 2
         iconsLabelFrame = CGRectMake(0.5*settingsFrame.size.width - w/2.0,
@@ -323,21 +330,98 @@
 }
 
 
-- (void)buildAltIconButtons {
-    if (alternateIconsButtonsArray != nil &&
+//
+// Utility Methods
+//
+
+- (void)removeEveryAltIconButton {
+    if (alternateIconsButtonsArray &&
         [alternateIconsButtonsArray count] > 0){
+        NSEnumerator *arrayEnum = [alternateIconsButtonsArray objectEnumerator];
         UIButton *iconButton;
-        unsigned int arrayLen = (unsigned int)[alternateIconsButtonsArray count];
-        for (unsigned int idx=0; idx<arrayLen-1; idx++){
-            iconButton = [alternateIconsButtonsArray objectAtIndex:idx];
-            // The golden crown is used as the foreground image when the icon has been purchased
-            //            UIImage *iconImage = [UIImage imageNamed:@"goldenCrownSelectedLayer.png"];
-            if ([appd queryPurchasedAltIcon:idx]){
-                UIImage *iconImage = [UIImage imageNamed:@"goldenCrownLayer.png"];
-                [iconButton setImage:iconImage forState:UIControlStateNormal];
-            }
+        while (iconButton = [arrayEnum nextObject]){
+            iconButton = nil;
         }
+        [alternateIconsButtonsArray removeAllObjects];
     }
+}
+
+- (unsigned int)buildAltIconButtons:(unsigned int)nrows
+                      ncols:(unsigned int)ncols
+       iconGridSizeInPoints:(unsigned int)iconGridSizeInPoints
+              settingsFrame:(CGRect)settingsFrame
+               iconsYoffset:(unsigned int)iconsYoffset
+             settingsLabelY:(CGFloat)settingsLabelY {
+    //
+    // Create and display a grid of icon UIButtons
+    //
+    // First clear out alternateIconsButtonsArray
+    [self removeEveryAltIconButton];
+    
+    alternateIconsButtonsArray = [NSMutableArray arrayWithCapacity:1];
+    unsigned int gridX, gridY;
+    unsigned int posX, posY;
+    unsigned int arrayLen = (unsigned int)[alternateIconsArray count];
+    for (unsigned int idx=0; idx<arrayLen-1; idx++){
+        gridX = (idx % ncols);
+        gridY = (idx / ncols);
+        CGFloat iconGridWidthInPoints = ncols * iconGridSizeInPoints;
+        CGFloat gapXinPoints = settingsFrame.size.width - iconGridWidthInPoints;
+        posX = (idx % ncols) * iconGridSizeInPoints + gapXinPoints/2.0;;
+        posY = (idx / ncols) * iconGridSizeInPoints + settingsLabelY + iconsYoffset;
+        UIButton *iconButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        CGRect iconRect = CGRectMake(posX,
+                                     posY,
+                                     iconGridSizeInPoints,
+                                     iconGridSizeInPoints);
+        iconButton.frame = iconRect;
+        iconButton.enabled = YES;
+        iconButton.tag = idx;
+        [iconButton addTarget:self action:@selector(iconButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        NSMutableDictionary *iconDict = [NSMutableDictionary dictionaryWithDictionary:[alternateIconsArray objectAtIndex:idx]];
+        iconButton.layer.borderWidth = 0;
+        iconButton.layer.cornerRadius = 15;
+        iconButton.layer.borderColor = [UIColor grayColor].CGColor;
+        // The iconImage is used as the button background image
+        NSString *iconImageFileName = [iconDict objectForKey:@"iconImage"];
+        UIImage *iconBackgroundImage = [UIImage imageNamed:iconImageFileName];
+        [iconButton setBackgroundImage:iconBackgroundImage forState:UIControlStateNormal];
+        
+        // The golden crown is used as the foreground image when the icon has been purchased
+        //            UIImage *iconImage = [UIImage imageNamed:@"goldenCrownSelectedLayer.png"];
+        if ([appd queryPurchasedAltIcon:idx]){
+            UIImage *iconImage = [UIImage imageNamed:@"goldenCrownLayer.png"];
+            [iconButton setImage:iconImage forState:UIControlStateNormal];
+        }
+        else {
+            // Create a price label
+            CGRect priceFrame = CGRectMake(0,
+                                           0,
+                                           iconGridSizeInPoints/2.0,
+                                           iconGridSizeInPoints/3.5);
+            UILabel *priceLabel = [[UILabel alloc] initWithFrame:priceFrame];
+            priceLabel.backgroundColor = [UIColor blackColor];
+            priceLabel.layer.masksToBounds = YES;
+            priceLabel.layer.cornerRadius = 5;
+            priceLabel.text = [iconDict objectForKey:@"formatted_price_string"];
+            priceLabel.adjustsFontSizeToFitWidth = YES;
+            priceLabel.textAlignment = NSTextAlignmentCenter;
+            priceLabel.textColor = [UIColor colorWithRed:251.0/255.0
+                                                   green:212.0/255.0
+                                                    blue:12.0/255.0
+                                                   alpha:1.0];
+            priceLabel.layer.borderColor = [UIColor cyanColor].CGColor;
+            priceLabel.layer.borderWidth = 1.0;
+            [iconButton addSubview:priceLabel];
+            [iconButton bringSubviewToFront:priceLabel];
+        }
+
+        [alternateIconsButtonsArray addObject:iconButton];
+        
+        [iconsView addSubview:iconButton];
+        [iconsView bringSubviewToFront:iconButton];
+    }
+    return posY;
 }
 
 
