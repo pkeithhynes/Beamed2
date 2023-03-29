@@ -12,7 +12,7 @@
 			<key>displayBackgroundArray</key>
 			<false/>
 			<key>displayBackgroundImage</key>
-			<false/>
+			<true/>
 			<key>infoScreen</key>
 			<true/>
 			<key>arrayOfMessageButtonsAndLabels</key>
@@ -2221,7 +2221,7 @@
 			<key>displayBackgroundArray</key>
 			<true/>
 			<key>displayBackgroundImage</key>
-			<false/>
+			<true/>
 			<key>infoScreen</key>
 			<true/>
 			<key>arrayOfMessageButtonsAndLabels</key>
@@ -2530,7 +2530,7 @@
 			<key>displayBackgroundArray</key>
 			<true/>
 			<key>displayBackgroundImage</key>
-			<false/>
+			<true/>
 			<key>infoScreen</key>
 			<true/>
 			<key>arrayOfMessageButtonsAndLabels</key>

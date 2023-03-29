@@ -246,7 +246,8 @@
                 [FIRAnalytics logEventWithName:kFIREventTutorialBegin
                                     parameters:@{
                 }];
-            }        }
+            }
+        }
         
         appd->optics = [Optics alloc];
         [appd->optics initWithDictionary:puzzle viewController:self];
@@ -2831,28 +2832,6 @@
     helpImageView.hidden = YES;
     rc.renderOverlayON = NO;
 }
-
-//- (void)remindUserAboutHintButton {
-//    // Display Hints button reminder
-//    NSString* titleString = @"Stuck???";
-//    NSString* messageString = @"Tap the Hints button to correctly place one tile.";
-//    UIAlertController* alert = [UIAlertController alertControllerWithTitle:titleString
-//                               message:messageString
-//                               preferredStyle:UIAlertControllerStyleAlert];
-//
-//    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-//                                   handler:^(UIAlertAction * action) {}];
-//
-//    [alert addAction:defaultAction];
-//    [self presentViewController:alert animated:YES completion:nil];
-//
-//    // dismissViewControllerAnimated after 5 seconds
-//    NSTimeInterval delayTime = 8.0;
-//    NSTimer *timer = [NSTimer timerWithTimeInterval:delayTime repeats:NO block:^(NSTimer *time){
-//        [self dismissViewControllerAnimated:nil completion:^{}];
-//    }];
-//    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-//}
 
 - (void)promptUserAboutHintButton {
     // Display Hints button prompt
