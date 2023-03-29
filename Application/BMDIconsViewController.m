@@ -267,11 +267,12 @@
             UIImage *iconBackgroundImage = [UIImage imageNamed:iconImageFileName];
             [iconButton setBackgroundImage:iconBackgroundImage forState:UIControlStateNormal];
             
-            // The price or golden crown is used as the foreground image
-//            UIImage *iconImage = [UIImage imageNamed:@"99centLayer.png"];
+            // The golden crown is used as the foreground image when the icon has been purchased
             //            UIImage *iconImage = [UIImage imageNamed:@"goldenCrownSelectedLayer.png"];
-            //            UIImage *iconImage = [UIImage imageNamed:@"goldenCrownLayer.png"];
-//            [iconButton setImage:iconImage forState:UIControlStateNormal];
+            if ([appd queryPurchasedAltIcon:idx]){
+                UIImage *iconImage = [UIImage imageNamed:@"goldenCrownLayer.png"];
+                [iconButton setImage:iconImage forState:UIControlStateNormal];
+            }
             
             // Create a price label
             CGRect priceFrame = CGRectMake(0,

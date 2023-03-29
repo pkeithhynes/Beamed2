@@ -2821,6 +2821,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     if (supportsAlternateIcons){
         [UIApplication.sharedApplication setAlternateIconName:iconName completionHandler:^(NSError *error){
             if (error == nil){
+                [self savePurchasedAltIcon:idx];
                 DLog("Success: icon changed");
             }
             else {
