@@ -528,6 +528,8 @@
 		80DD714229D4F0F200C0C48C /* neon-synthwave-cityscape-5.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DD714029D4F0F200C0C48C /* neon-synthwave-cityscape-5.png */; };
 		80DD714729D4F3EE00C0C48C /* reward.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DD714629D4F3EE00C0C48C /* reward.png */; };
 		80DD714829D4F3EE00C0C48C /* reward.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DD714629D4F3EE00C0C48C /* reward.png */; };
+		80DD714A29D637EE00C0C48C /* neon-synthwave-cityscape-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DD714929D637ED00C0C48C /* neon-synthwave-cityscape-6.png */; };
+		80DD714B29D637EE00C0C48C /* neon-synthwave-cityscape-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DD714929D637ED00C0C48C /* neon-synthwave-cityscape-6.png */; };
 		80DFC2C328FB368000BE90C3 /* GridTile2.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DFC2C228FB368000BE90C3 /* GridTile2.png */; };
 		80DFC2C428FB368000BE90C3 /* GridTile2.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DFC2C228FB368000BE90C3 /* GridTile2.png */; };
 		80E76F5F28AAAD7600F6D31D /* BMDPuzzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E76F5E28AAAD7600F6D31D /* BMDPuzzleViewController.m */; };
@@ -876,6 +878,7 @@
 		80DC5C0C29CFFD7500C66781 /* goldenCrownSelectedLayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goldenCrownSelectedLayer.png; sourceTree = "<group>"; };
 		80DD714029D4F0F200C0C48C /* neon-synthwave-cityscape-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "neon-synthwave-cityscape-5.png"; sourceTree = "<group>"; };
 		80DD714629D4F3EE00C0C48C /* reward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = reward.png; path = ../../../../AEWork/reward.png; sourceTree = "<group>"; };
+		80DD714929D637ED00C0C48C /* neon-synthwave-cityscape-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "neon-synthwave-cityscape-6.png"; sourceTree = "<group>"; };
 		80DFC2C228FB368000BE90C3 /* GridTile2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GridTile2.png; sourceTree = "<group>"; };
 		80E76F5D28AAAD7600F6D31D /* BMDPuzzleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMDPuzzleViewController.h; sourceTree = "<group>"; };
 		80E76F5E28AAAD7600F6D31D /* BMDPuzzleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMDPuzzleViewController.m; sourceTree = "<group>"; };
@@ -1477,6 +1480,7 @@
 				800721DA29D00C02004F93DE /* neon-synthwave-cityscape-3.png */,
 				80A3EDB029D018BD00ECFCA2 /* neon-synthwave-cityscape-4.png */,
 				80DD714029D4F0F200C0C48C /* neon-synthwave-cityscape-5.png */,
+				80DD714929D637ED00C0C48C /* neon-synthwave-cityscape-6.png */,
 			);
 			path = "Screen Backgrounds";
 			sourceTree = "<group>";
@@ -1904,6 +1908,7 @@
 				5286EA952564706B00B43209 /* TileJewelActivated02.png in Resources */,
 				80DFC2C428FB368000BE90C3 /* GridTile2.png in Resources */,
 				529A511C27ACD54D00FE0669 /* Reward.wav in Resources */,
+				80DD714B29D637EE00C0C48C /* neon-synthwave-cityscape-6.png in Resources */,
 				80DC5BD629CFEBED00C66781 /* icon4rounded.png in Resources */,
 				520BBD2B260A6BC20080EADC /* Background-Aspect-4-3.png in Resources */,
 				80BF264C27D723A000BF9736 /* LaserGun-11.png in Resources */,
@@ -2069,6 +2074,7 @@
 				803AFB702979CFB100BDB614 /* Fiverr - Proof of Doing - Laser Gun and some jewels.png in Resources */,
 				80D07E38297E5AC800295271 /* Beamed2Logo_00000.png in Resources */,
 				801670F928C4346500803D05 /* TapToRotateText.png in Resources */,
+				80DD714A29D637EE00C0C48C /* neon-synthwave-cityscape-6.png in Resources */,
 				809FEAC32971176200B13351 /* 67410903-win-game-level-52-license.pdf in Resources */,
 				8011CEA2297B8B3E00E7CEAB /* 085149494-puzzle-game-organic-wood-block.wav in Resources */,
 				80D07E4D297E5AC800295271 /* Beamed2Logo_00016.png in Resources */,

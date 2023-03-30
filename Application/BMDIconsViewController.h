@@ -16,11 +16,13 @@ NS_ASSUME_NONNULL_BEGIN
     UIView *iconsView;
     NSMutableArray *alternateIconsArray;
     NSMutableArray *alternateIconsButtonsArray;
+    NSMutableArray *alternateIconsPriceLabelArray;
 }
 
 @property (nonatomic, retain) UIView *iconsView;
 @property (nonatomic, retain) NSMutableArray *alternateIconsArray;
 @property (nonatomic, retain) NSMutableArray *alternateIconsButtonsArray;
+@property (nonatomic, retain) NSMutableArray *alternateIconsPriceLabelArray;
 
 
 - (void)completeAltIconPurchase:(unsigned int)idx;

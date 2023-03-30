@@ -2823,6 +2823,12 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
             if (error == nil){
                 [self saveCurrentAltIconNumber:idx];
                 [self savePurchasedAltIcon:idx];
+                NSMutableDictionary *notificationDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
+                [notificationDictionary setObject:[NSNumber numberWithInt:idx] forKey:@"idx"];
+                [[NSNotificationCenter defaultCenter]
+                 postNotificationName:@"altIconPurchased"
+                 object:nil
+                 userInfo:@{@"Status": notificationDictionary}];
                 DLog("Success: icon changed");
             }
             else {

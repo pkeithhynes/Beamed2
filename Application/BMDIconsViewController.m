@@ -30,6 +30,7 @@
 @synthesize iconsView;
 @synthesize alternateIconsArray;
 @synthesize alternateIconsButtonsArray;
+@synthesize alternateIconsPriceLabelArray;
 
     
 - (void)viewDidLoad {
@@ -38,6 +39,14 @@
 
     rc = (BMDViewController*)[[(BMDAppDelegate *)[[UIApplication sharedApplication]delegate] window] rootViewController];
     appd = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    // Register to receive notifications regarding Alt Icon purchases
+    [[NSNotificationCenter defaultCenter]
+     addObserver: self
+     selector: @selector (handleAltIconPurchased:)
+     name: @"altIconPurchased"
+     object: nil];
+
     
     // Use live StoreKit data if it is available
     if (appd.arrayOfAltIconsInfo != nil &&
@@ -272,9 +281,18 @@
         NSEnumerator *arrayEnum = [alternateIconsButtonsArray objectEnumerator];
         UIButton *iconButton;
         while (iconButton = [arrayEnum nextObject]){
+            iconButton.hidden = YES;
             iconButton = nil;
         }
         [alternateIconsButtonsArray removeAllObjects];
+        
+        arrayEnum = [alternateIconsPriceLabelArray objectEnumerator];
+        UILabel *priceLabel;
+        while (priceLabel = [arrayEnum nextObject]){
+            priceLabel.hidden = YES;
+            priceLabel = nil;
+        }
+        [alternateIconsPriceLabelArray removeAllObjects];
     }
 }
 
@@ -286,6 +304,7 @@
     [self removeEveryAltIconButton];
     
     alternateIconsButtonsArray = [NSMutableArray arrayWithCapacity:1];
+    alternateIconsPriceLabelArray = [NSMutableArray arrayWithCapacity:1];
     unsigned int gridX, gridY;
     unsigned int posX;
     unsigned int arrayLen = (unsigned int)[alternateIconsArray count];
@@ -315,7 +334,7 @@
         [iconButton setBackgroundImage:iconBackgroundImage forState:UIControlStateNormal];
         
         // The golden crown is used as the foreground image when the icon has been purchased
-        //            UIImage *iconImage = [UIImage imageNamed:@"goldenCrownSelectedLayer.png"];
+        UILabel *priceLabel = nil;
         if ([appd queryPurchasedAltIcon:idx]){
             UIImage *iconImage;
             if ([appd fetchCurrentAltIconNumber] == idx){
@@ -332,7 +351,7 @@
                                            0,
                                            iconGridSizeInPoints/2.0,
                                            iconGridSizeInPoints/3.5);
-            UILabel *priceLabel = [[UILabel alloc] initWithFrame:priceFrame];
+            priceLabel = [[UILabel alloc] initWithFrame:priceFrame];
             priceLabel.backgroundColor = [UIColor blackColor];
             priceLabel.layer.masksToBounds = YES;
             priceLabel.layer.cornerRadius = 5;
@@ -349,6 +368,9 @@
             [iconButton bringSubviewToFront:priceLabel];
         }
 
+        if (priceLabel){
+            [alternateIconsPriceLabelArray addObject:priceLabel];
+        }
         [alternateIconsButtonsArray addObject:iconButton];
         
         [iconsView addSubview:iconButton];
@@ -358,8 +380,19 @@
 
 
 //
-// Button Handler Methods Go Here
+// Handler Methods Go Here
 //
+
+- (void)handleAltIconPurchased:(NSNotification *) notification{
+    NSLog(@"%@",notification.object);
+    NSMutableDictionary *info = [NSMutableDictionary dictionaryWithDictionary:notification.userInfo];
+    NSMutableDictionary *status = [info objectForKey:@"Status"];
+    NSNumber *idxNumber = [status objectForKey:@"idx"];
+    int idx = [idxNumber intValue];
+    [self buildAltIconButtons];
+    DLog("handleAltIconPurchased");
+}
+
 
 - (void)iconButtonPressed:(UIButton *)sender {
     unsigned int idx = (unsigned int)sender.tag;
