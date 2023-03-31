@@ -3226,9 +3226,9 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                     currentProductInfoDict = [NSMutableDictionary dictionaryWithCapacity:1];
                     NSMutableDictionary *dict = [altIconsBundleArray lastObject];
                     [currentProductInfoDict setObject:[NSNumber numberWithUnsignedInt:idx] forKey:@"icon_number"];
-                    bundleArrayCurrentItem = [altIconsBundleArray objectAtIndex:idx];
-                    [currentProductInfoDict setObject:[bundleArrayCurrentItem objectForKey:@"appIcon"] forKey:@"appIcon"];
-                    [currentProductInfoDict setObject:[bundleArrayCurrentItem objectForKey:@"iconImage"] forKey:@"iconImage"];
+//                    bundleArrayCurrentItem = [altIconsBundleArray objectAtIndex:idx];
+                    [currentProductInfoDict setObject:[dict objectForKey:@"appIcon"] forKey:@"appIcon"];
+                    [currentProductInfoDict setObject:[dict objectForKey:@"iconImage"] forKey:@"iconImage"];
                     [arrayOfAltIconsInfo addObject:currentProductInfoDict];
                 }
                 productsRequestEnum = REQ_NIL;
