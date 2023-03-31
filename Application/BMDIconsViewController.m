@@ -208,7 +208,7 @@
                 ncols = 4;
                 iconGridSizeInPoints = 0.8*rc.rootView.bounds.size.width/ncols;
                 iconSizeInPoints = 0.8*iconGridSizeInPoints;
-                iconsYoffset = 3.5*h;
+                iconsYoffset = 3.0*h;
                 break;
             }
         }
@@ -235,9 +235,9 @@
         CGRect iconsLabelFrame = CGRectMake(0.5*rc.rootView.bounds.size.width - w/2.0,
                                             settingsLabelY,
                                             w,
-                                            2.0*h);
+                                            2.5*h);
         UILabel *iconsPageLabel1 = [[UILabel alloc] initWithFrame:iconsLabelFrame];
-        iconsPageLabel1.text = @"Buy me a Coffee for $0.99\n and get a new App icon!";
+        iconsPageLabel1.text = @"Buy me a Coffee and pick a fancy new App icon!";
         iconsPageLabel1.numberOfLines = 0;
         iconsPageLabel1.layer.borderColor = [UIColor clearColor].CGColor;
         iconsPageLabel1.textColor = [UIColor cyanColor];
@@ -257,7 +257,7 @@
                                      w,
                                      4.0*h);
         UILabel *iconsPageLabel2 = [[UILabel alloc] initWithFrame:iconsLabelFrame];
-        iconsPageLabel2.text = @"Watch for new icons every week!\nYour support allows me to keep improving Beamed 2.";
+        iconsPageLabel2.text = @"New icons every week!\n";
         iconsPageLabel2.numberOfLines = 0;
         iconsPageLabel2.layer.borderColor = [UIColor clearColor].CGColor;
         iconsPageLabel2.textColor = [UIColor cyanColor];
