@@ -57,6 +57,7 @@
         alternateIconsArray = [self fetchAlternateIconsArray:alternateIconsArray];
     }
 
+    // Uncomment to test Alt Icon layout
 //    alternateIconsArray = [self fetchAlternateIconsArray:alternateIconsArray];
 
     
@@ -313,7 +314,7 @@
         gridY = (idx / ncols);
         CGFloat iconGridWidthInPoints = ncols * iconGridSizeInPoints;
         CGFloat gapXinPoints = rc.rootView.bounds.size.width - iconGridWidthInPoints;
-        posX = (idx % ncols) * iconGridSizeInPoints + gapXinPoints/2.0;;
+        posX = (idx % ncols) * iconGridSizeInPoints + gapXinPoints/2.0;
         posY = (idx / ncols) * iconGridSizeInPoints + settingsLabelY + iconsYoffset;
         UIButton *iconButton = [UIButton buttonWithType:UIButtonTypeCustom];
         CGRect iconRect = CGRectMake(posX,
@@ -323,7 +324,7 @@
         iconButton.frame = iconRect;
         iconButton.enabled = YES;
         iconButton.tag = idx;
-        [iconButton addTarget:self action:@selector(iconButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [iconButton addTarget:self action:@selector(altIconButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         NSMutableDictionary *iconDict = [NSMutableDictionary dictionaryWithDictionary:[alternateIconsArray objectAtIndex:idx]];
         iconButton.layer.borderWidth = 0;
         iconButton.layer.cornerRadius = 15;
@@ -376,6 +377,36 @@
         [iconsView addSubview:iconButton];
         [iconsView bringSubviewToFront:iconButton];
     }
+    // The element of alternateIconsArray at position arrayLen-1 is the default App Icon
+    posX = rc.rootView.bounds.size.width/2.0 - iconGridSizeInPoints/2.0;
+    posY = posY + iconGridSizeInPoints;
+    UIButton *iconButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    CGRect iconRect = CGRectMake(posX,
+                                 posY,
+                                 iconGridSizeInPoints,
+                                 iconGridSizeInPoints);
+    iconButton.frame = iconRect;
+    iconButton.enabled = YES;
+    iconButton.tag = arrayLen - 1;
+    [iconButton addTarget:self action:@selector(defaultIconButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    NSMutableDictionary *iconDict = [NSMutableDictionary dictionaryWithDictionary:[alternateIconsArray objectAtIndex:arrayLen-1]];
+    iconButton.layer.borderWidth = 0;
+    iconButton.layer.cornerRadius = 15;
+    iconButton.layer.borderColor = [UIColor grayColor].CGColor;
+    // The iconImage is used as the button background image
+    NSString *iconImageFileName = [iconDict objectForKey:@"iconImage"];
+    UIImage *iconBackgroundImage = [UIImage imageNamed:iconImageFileName];
+    [iconButton setBackgroundImage:iconBackgroundImage forState:UIControlStateNormal];
+    // Check to see whether the default icon is also the current icon
+    if ([appd fetchCurrentAltIconNumber] == -1){
+        UIImage *iconImage;
+        iconImage = [UIImage imageNamed:@"selectedLayer.png"];
+        [iconButton setImage:iconImage forState:UIControlStateNormal];
+    }
+    [alternateIconsButtonsArray addObject:iconButton];
+    [iconsView addSubview:iconButton];
+    [iconsView bringSubviewToFront:iconButton];
+    
 }
 
 
@@ -393,8 +424,27 @@
     DLog("handleAltIconPurchased");
 }
 
+- (void)defaultIconButtonPressed:(UIButton *)sender {
+    DLog("Default Icon Button Pressed");
+    unsigned int arrayLen = (unsigned int)[alternateIconsArray count];
+    NSMutableDictionary *iconDict = [NSMutableDictionary dictionaryWithDictionary:[alternateIconsArray objectAtIndex:arrayLen-1]];
+    NSString *iconName = [iconDict objectForKey:@"appIcon"];
+    BOOL supportsAlternateIcons = [UIApplication.sharedApplication supportsAlternateIcons];
+    if (supportsAlternateIcons){
+        [UIApplication.sharedApplication setAlternateIconName:iconName completionHandler:^(NSError *error){
+            if (error == nil){
+                DLog("Success: icon changed");
+            }
+            else {
+                DLog("Failure with error");
+            }
+        }];
+    }
+    [appd saveCurrentAltIconNumber:-1];
+    [self buildAltIconButtons];
+}
 
-- (void)iconButtonPressed:(UIButton *)sender {
+- (void)altIconButtonPressed:(UIButton *)sender {
     unsigned int idx = (unsigned int)sender.tag;
     NSMutableDictionary *iconDict = [NSMutableDictionary dictionaryWithDictionary:[alternateIconsArray objectAtIndex:idx]];
     [appd playSound:appd.tapPlayer];

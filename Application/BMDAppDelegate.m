@@ -1212,8 +1212,13 @@ CGFloat _screenHeightInPixels;
 
 - (int)fetchCurrentAltIconNumber {
     // Return value of -1 means default icon
-    int currentAltIconNumber = [[self getObjectFromDefaults:@"currentAltIconNumber"] intValue];
-    return currentAltIconNumber;
+    if ([self getObjectFromDefaults:@"currentAltIconNumber"] == nil){
+        return -1;
+    }
+    else {
+        int currentAltIconNumber = [[self getObjectFromDefaults:@"currentAltIconNumber"] intValue];
+        return currentAltIconNumber;
+    }
 }
 
 - (void)saveCurrentAltIconNumber:(int)currentAltIconNumber {

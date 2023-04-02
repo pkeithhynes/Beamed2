@@ -338,6 +338,8 @@
 		808E49DB295E18A900D4D077 /* homeArrowWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 808E49D7295E18A900D4D077 /* homeArrowWhite.png */; };
 		808E49DD295E18A900D4D077 /* nextArrowWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 808E49D8295E18A900D4D077 /* nextArrowWhite.png */; };
 		808E49DE295E18A900D4D077 /* nextArrowWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 808E49D8295E18A900D4D077 /* nextArrowWhite.png */; };
+		8094471829DA27BD00C5BAFC /* selectedLayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 8094471729DA27BD00C5BAFC /* selectedLayer.png */; };
+		8094471929DA27BD00C5BAFC /* selectedLayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 8094471729DA27BD00C5BAFC /* selectedLayer.png */; };
 		8094B95E29A81AB00026228E /* failedPuzzleDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8094B95D29A81AB00026228E /* failedPuzzleDictionary.plist */; };
 		8094B95F29A81AB00026228E /* failedPuzzleDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8094B95D29A81AB00026228E /* failedPuzzleDictionary.plist */; };
 		8095C48227DB014E00E1740C /* GridTile.png in Resources */ = {isa = PBXBuildFile; fileRef = 8095C48127DB014E00E1740C /* GridTile.png */; };
@@ -776,6 +778,7 @@
 		808E3BC428FC5304009C1474 /* GridTileDot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GridTileDot.png; sourceTree = "<group>"; };
 		808E49D7295E18A900D4D077 /* homeArrowWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeArrowWhite.png; sourceTree = "<group>"; };
 		808E49D8295E18A900D4D077 /* nextArrowWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nextArrowWhite.png; sourceTree = "<group>"; };
+		8094471729DA27BD00C5BAFC /* selectedLayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selectedLayer.png; sourceTree = "<group>"; };
 		8094B95D29A81AB00026228E /* failedPuzzleDictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = failedPuzzleDictionary.plist; sourceTree = "<group>"; };
 		8095C48127DB014E00E1740C /* GridTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GridTile.png; sourceTree = "<group>"; };
 		809B05CC2904E83A00081D46 /* grayRectangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayRectangle.png; sourceTree = "<group>"; };
@@ -1588,6 +1591,7 @@
 			children = (
 				80DC5C0C29CFFD7500C66781 /* goldenCrownSelectedLayer.png */,
 				80DC5C0929CFFC7000C66781 /* goldenCrownLayer.png */,
+				8094471729DA27BD00C5BAFC /* selectedLayer.png */,
 			);
 			path = altIconLayers;
 			sourceTree = "<group>";
@@ -1775,6 +1779,7 @@
 				809FEABE2971176200B13351 /* 67410905-win-game-level-119-license.txt in Resources */,
 				526FBCD125926960001F5647 /* Beam-Angle00-06.png in Resources */,
 				809FEAD02971176200B13351 /* 67410901-win-game-level-50-license.txt in Resources */,
+				8094471929DA27BD00C5BAFC /* selectedLayer.png in Resources */,
 				52994B3825DA13D700887B9C /* Rings_00012.png in Resources */,
 				80D07E42297E5AC800295271 /* Beamed2Logo_00009.png in Resources */,
 				800465FB2906FE4F0044345E /* AppIcons.xcassets in Resources */,
@@ -2037,6 +2042,7 @@
 				809FEAD82971176200B13351 /* 67412386-reward-license.pdf in Resources */,
 				808E49DD295E18A900D4D077 /* nextArrowWhite.png in Resources */,
 				80FA4A54298DA10C00CE211E /* MysteryPuzzleLoop2.wav in Resources */,
+				8094471829DA27BD00C5BAFC /* selectedLayer.png in Resources */,
 				8011CEA7297B8CCC00E7CEAB /* Pond5_Proof-of-purchase_6732927.pdf in Resources */,
 				808D86B4297527B00022B2FE /* puzzlePacks.png in Resources */,
 				5286EAB22564706B00B43209 /* TileJewelActivated07.png in Resources */,
