@@ -110,7 +110,7 @@
         CGFloat backButtonIconSizeInPoints = 60;
         CGFloat switchCx;
         CGFloat w, h, backButtonY;
-        unsigned int iconSizeInPoints;
+//        unsigned int iconSizeInPoints;
         switch (rc.displayAspectRatio) {
             case ASPECT_4_3:{
                 // iPad (9th generation)
@@ -128,7 +128,7 @@
                 nrows = 5;
                 ncols = 4;
                 iconGridSizeInPoints = 0.8*rc.rootView.bounds.size.width/nrows;
-                iconSizeInPoints = 0.8*iconGridSizeInPoints;
+//                iconSizeInPoints = 0.8*iconGridSizeInPoints;
                 iconsYoffset = 2.5*h;
                 break;
             }
@@ -148,7 +148,7 @@
                 nrows = 5;
                 ncols = 4;
                 iconGridSizeInPoints = 0.8*rc.rootView.bounds.size.width/nrows;
-                iconSizeInPoints = 0.8*iconGridSizeInPoints;
+//                iconSizeInPoints = 0.8*iconGridSizeInPoints;
                 iconsYoffset = 2.5*h;
                 break;
             }
@@ -168,7 +168,7 @@
                 nrows = 5;
                 ncols = 4;
                 iconGridSizeInPoints = 0.8*rc.rootView.bounds.size.width/nrows;
-                iconSizeInPoints = 0.8*iconGridSizeInPoints;
+//                iconSizeInPoints = 0.8*iconGridSizeInPoints;
                 iconsYoffset = 2.5*h;
                 break;
             }
@@ -188,7 +188,7 @@
                 nrows = 5;
                 ncols = 4;
                 iconGridSizeInPoints = 0.8*rc.rootView.bounds.size.width/ncols;
-                iconSizeInPoints = 0.8*iconGridSizeInPoints;
+//                iconSizeInPoints = 0.8*iconGridSizeInPoints;
                 iconsYoffset = 3.5*h;
                 break;
             }
@@ -208,7 +208,7 @@
                 nrows = 5;
                 ncols = 4;
                 iconGridSizeInPoints = 0.8*rc.rootView.bounds.size.width/ncols;
-                iconSizeInPoints = 0.8*iconGridSizeInPoints;
+//                iconSizeInPoints = 0.8*iconGridSizeInPoints;
                 iconsYoffset = 3.0*h;
                 break;
             }
@@ -426,12 +426,9 @@
 
 - (void)defaultIconButtonPressed:(UIButton *)sender {
     DLog("Default Icon Button Pressed");
-    unsigned int arrayLen = (unsigned int)[alternateIconsArray count];
-    NSMutableDictionary *iconDict = [NSMutableDictionary dictionaryWithDictionary:[alternateIconsArray objectAtIndex:arrayLen-1]];
-    NSString *iconName = [iconDict objectForKey:@"appIcon"];
     BOOL supportsAlternateIcons = [UIApplication.sharedApplication supportsAlternateIcons];
     if (supportsAlternateIcons){
-        [UIApplication.sharedApplication setAlternateIconName:iconName completionHandler:^(NSError *error){
+        [UIApplication.sharedApplication setAlternateIconName:nil completionHandler:^(NSError *error){
             if (error == nil){
                 DLog("Success: icon changed");
             }
