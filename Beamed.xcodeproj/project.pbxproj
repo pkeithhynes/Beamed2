@@ -536,6 +536,8 @@
 		80DFC2C428FB368000BE90C3 /* GridTile2.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DFC2C228FB368000BE90C3 /* GridTile2.png */; };
 		80E76F5F28AAAD7600F6D31D /* BMDPuzzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E76F5E28AAAD7600F6D31D /* BMDPuzzleViewController.m */; };
 		80E76F6028AAAD7600F6D31D /* BMDPuzzleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E76F5E28AAAD7600F6D31D /* BMDPuzzleViewController.m */; };
+		80F197F129DBA757003B9C74 /* yellowRectangle2.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F197F029DBA756003B9C74 /* yellowRectangle2.png */; };
+		80F197F229DBA757003B9C74 /* yellowRectangle2.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F197F029DBA756003B9C74 /* yellowRectangle2.png */; };
 		80F31603297BAD5D003DCCDF /* backgroundLandscapeGrid4.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F31602297BAD5D003DCCDF /* backgroundLandscapeGrid4.png */; };
 		80F31604297BAD5D003DCCDF /* backgroundLandscapeGrid4.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F31602297BAD5D003DCCDF /* backgroundLandscapeGrid4.png */; };
 		80F3D5A229D38D1B009F5224 /* LoadingScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F3D5A129D38D1B009F5224 /* LoadingScreen.png */; };
@@ -885,6 +887,7 @@
 		80DFC2C228FB368000BE90C3 /* GridTile2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GridTile2.png; sourceTree = "<group>"; };
 		80E76F5D28AAAD7600F6D31D /* BMDPuzzleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMDPuzzleViewController.h; sourceTree = "<group>"; };
 		80E76F5E28AAAD7600F6D31D /* BMDPuzzleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMDPuzzleViewController.m; sourceTree = "<group>"; };
+		80F197F029DBA756003B9C74 /* yellowRectangle2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowRectangle2.png; sourceTree = "<group>"; };
 		80F31602297BAD5D003DCCDF /* backgroundLandscapeGrid4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundLandscapeGrid4.png; sourceTree = "<group>"; };
 		80F3D5A129D38D1B009F5224 /* LoadingScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoadingScreen.png; sourceTree = "<group>"; };
 		80F406F928F0C110006C4F82 /* backgroundTextures.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = backgroundTextures.plist; sourceTree = "<group>"; };
@@ -1281,6 +1284,7 @@
 				8044DD912904908E0078942B /* cyanRectangle.png */,
 				8044DD902904908E0078942B /* cyanRectangleSelected.png */,
 				8044DD8F2904908E0078942B /* yellowRectangle.png */,
+				80F197F029DBA756003B9C74 /* yellowRectangle2.png */,
 				8044DD922904908E0078942B /* yellowRectangleSelected.png */,
 				8044DD8B290486140078942B /* locked.png */,
 				8089548E291DB773009C4D02 /* shoppingCart.png */,
@@ -1956,6 +1960,7 @@
 				8011CE93297B3E4400E7CEAB /* TapToRotate.png in Resources */,
 				806B4ED1296C7F5400FFD306 /* LaunchScreen.png in Resources */,
 				80DC5BD229CFEBED00C66781 /* icon1rounded.png in Resources */,
+				80F197F229DBA757003B9C74 /* yellowRectangle2.png in Resources */,
 				8011CE8A297B2C0200E7CEAB /* locked-12675441-vecteezy.pdf in Resources */,
 				52994B6B25DA13D700887B9C /* Rings_00006.png in Resources */,
 				80884C55292EDF03005B29FC /* run in Resources */,
@@ -2103,6 +2108,7 @@
 				80D07E3B297E5AC800295271 /* Beamed2Logo_00011.png in Resources */,
 				52994B5525DA13D700887B9C /* Rings_00003.png in Resources */,
 				809FEA8E29710C2500B13351 /* 70645767-internal-calculations-license.pdf in Resources */,
+				80F197F129DBA757003B9C74 /* yellowRectangle2.png in Resources */,
 				80FA4A51298D949B00CE211E /* lightBulbInCircle.png in Resources */,
 				8011CE74297B2C0200E7CEAB /* backArrow-11569642-Vecteezy.pdf in Resources */,
 				80DD714729D4F3EE00C0C48C /* reward.png in Resources */,

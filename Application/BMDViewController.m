@@ -1915,62 +1915,123 @@ Implementation of the cross-platform view controller
     //
     // Add "More Puzzles" button to homeView
     //
-    UIButton *morePuzzlePacksButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    switch (displayAspectRatio) {
-        case ASPECT_4_3:{
-            // iPad (9th generation)
-            buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
-            buttonHeight = buttonWidth/8.0;
-            buttonCy = buttonCy + 2.25*buttonHeight;
-            [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:28]];
-            break;
+    BOOL testPKH = YES;
+    if (testPKH){
+        UIButton *selectAltIconsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        switch (displayAspectRatio) {
+            case ASPECT_4_3:{
+                // iPad (9th generation)
+                buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
+                buttonHeight = buttonWidth/8.0;
+                buttonCy = buttonCy + 2.25*buttonHeight;
+                [selectAltIconsButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:26]];
+                break;
+            }
+            case ASPECT_10_7:{
+                // iPad Air (5th generation)
+                buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
+                buttonHeight = buttonWidth/8.0;
+                buttonCy = buttonCy + 2.25*buttonHeight;
+                [selectAltIconsButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:26]];
+                break;
+            }
+            case ASPECT_3_2: {
+                // iPad Mini (6th generation)
+                buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
+                buttonHeight = buttonWidth/8.0;
+                buttonCy = buttonCy + 2.25*buttonHeight;
+                [selectAltIconsButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:26]];
+                break;
+            }
+            case ASPECT_16_9: {
+                // iPhone 8
+                buttonWidth = 0.8*screenWidthInPixels/contentScaleFactor;
+                buttonHeight = buttonWidth/10.0;
+                buttonCy = buttonCy + 2.75*buttonHeight;
+                [selectAltIconsButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:16]];
+                break;
+            }
+            case ASPECT_13_6: {
+                // iPhone 14
+                buttonWidth = 0.80*screenWidthInPixels/contentScaleFactor;
+                buttonHeight = buttonWidth/8.0;
+                buttonCy = buttonCy + 2.50*buttonHeight;
+                [selectAltIconsButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:16]];
+                break;
+            }
         }
-        case ASPECT_10_7:{
-            // iPad Air (5th generation)
-            buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
-            buttonHeight = buttonWidth/8.0;
-            buttonCy = buttonCy + 2.25*buttonHeight;
-            [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:28]];
-            break;
-        }
-        case ASPECT_3_2: {
-            // iPad Mini (6th generation)
-            buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
-            buttonHeight = buttonWidth/8.0;
-            buttonCy = buttonCy + 2.25*buttonHeight;
-            [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:28]];
-            break;
-        }
-        case ASPECT_16_9: {
-            // iPhone 8
-            buttonWidth = 0.8*screenWidthInPixels/contentScaleFactor;
-            buttonHeight = buttonWidth/10.0;
-            buttonCy = buttonCy + 2.75*buttonHeight;
-            [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:16]];
-            break;
-        }
-        case ASPECT_13_6: {
-            // iPhone 14
-            buttonWidth = 0.80*screenWidthInPixels/contentScaleFactor;
-            buttonHeight = buttonWidth/8.0;
-            buttonCy = buttonCy + 2.50*buttonHeight;
-            [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:16]];
-            break;
-        }
+        [selectAltIconsButton setBackgroundImage:btnImage forState:UIControlStateNormal];
+        [selectAltIconsButton setBackgroundImage:btnSelectedImage forState:UIControlStateHighlighted];
+        buttonRect = CGRectMake(buttonCx-buttonWidth/2.0,
+                                buttonCy,
+                                buttonWidth,
+                                buttonHeight);
+        selectAltIconsButton.frame = buttonRect;
+        [selectAltIconsButton setTitle:@"Get Icons at the Robot Diner!" forState:UIControlStateNormal];
+        [selectAltIconsButton addTarget:self action:@selector(selectAltIconsButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        [selectAltIconsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        selectAltIconsButton.showsTouchWhenHighlighted = YES;
+        [homeView addSubview:selectAltIconsButton];
+        [homeView bringSubviewToFront:selectAltIconsButton];
     }
-    [morePuzzlePacksButton setBackgroundImage:btnImage forState:UIControlStateNormal];
-    [morePuzzlePacksButton setBackgroundImage:btnSelectedImage forState:UIControlStateHighlighted];
-    buttonRect = CGRectMake(buttonCx-buttonWidth/2.0,
-                            buttonCy,
-                            buttonWidth,
-                            buttonHeight);
-    morePuzzlePacksButton.frame = buttonRect;
-    [morePuzzlePacksButton setTitle:@"More Puzzles" forState:UIControlStateNormal];
-    [morePuzzlePacksButton addTarget:self action:@selector(morePuzzlePacksButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [morePuzzlePacksButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    morePuzzlePacksButton.showsTouchWhenHighlighted = YES;
-    [homeView addSubview:morePuzzlePacksButton];
-    [homeView bringSubviewToFront:morePuzzlePacksButton];
+    else {
+        UIButton *morePuzzlePacksButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        switch (displayAspectRatio) {
+            case ASPECT_4_3:{
+                // iPad (9th generation)
+                buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
+                buttonHeight = buttonWidth/8.0;
+                buttonCy = buttonCy + 2.25*buttonHeight;
+                [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:28]];
+                break;
+            }
+            case ASPECT_10_7:{
+                // iPad Air (5th generation)
+                buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
+                buttonHeight = buttonWidth/8.0;
+                buttonCy = buttonCy + 2.25*buttonHeight;
+                [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:28]];
+                break;
+            }
+            case ASPECT_3_2: {
+                // iPad Mini (6th generation)
+                buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
+                buttonHeight = buttonWidth/8.0;
+                buttonCy = buttonCy + 2.25*buttonHeight;
+                [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:28]];
+                break;
+            }
+            case ASPECT_16_9: {
+                // iPhone 8
+                buttonWidth = 0.8*screenWidthInPixels/contentScaleFactor;
+                buttonHeight = buttonWidth/10.0;
+                buttonCy = buttonCy + 2.75*buttonHeight;
+                [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:16]];
+                break;
+            }
+            case ASPECT_13_6: {
+                // iPhone 14
+                buttonWidth = 0.80*screenWidthInPixels/contentScaleFactor;
+                buttonHeight = buttonWidth/8.0;
+                buttonCy = buttonCy + 2.50*buttonHeight;
+                [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:16]];
+                break;
+            }
+        }
+        [morePuzzlePacksButton setBackgroundImage:btnImage forState:UIControlStateNormal];
+        [morePuzzlePacksButton setBackgroundImage:btnSelectedImage forState:UIControlStateHighlighted];
+        buttonRect = CGRectMake(buttonCx-buttonWidth/2.0,
+                                buttonCy,
+                                buttonWidth,
+                                buttonHeight);
+        morePuzzlePacksButton.frame = buttonRect;
+        [morePuzzlePacksButton setTitle:@"More Puzzles" forState:UIControlStateNormal];
+        [morePuzzlePacksButton addTarget:self action:@selector(morePuzzlePacksButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        [morePuzzlePacksButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        morePuzzlePacksButton.showsTouchWhenHighlighted = YES;
+        [homeView addSubview:morePuzzlePacksButton];
+        [homeView bringSubviewToFront:morePuzzlePacksButton];
+    }
     
     //
     // Add "More Hint Packs" button to homeView
@@ -2613,48 +2674,57 @@ Implementation of the cross-platform view controller
     [hintsViewController didMoveToParentViewController:self];
 }
 
-//- (void)settingsButtonPressed {
-//    DLog("BMDViewController.settingsButtonPressed");
-//    // View controller approach
-//    [appd playSound:appd.tapPlayer];
-//    settingsViewController = [[BMDSettingsViewController alloc] init];
-//    settingsViewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
-//    [self addChildViewController:settingsViewController];
-//    [self.view addSubview:settingsViewController.view];
-//    [settingsViewController didMoveToParentViewController:self];
-//}
-
-// Uncomment when you want to use the settingsButton to test something such as:
-// - Crash handling
-// - Prompting for App Store review
-// - Switch to alternate icon
-// - Switch to BMDIconsViewController
-- (void)settingsButtonPressed {
-    //    [appd requestPuzzlePacksInfo];
-    //
+- (void)selectAltIconsButtonPressed {
     [appd playSound:appd.tapPlayer];
     iconsViewController = [[BMDIconsViewController alloc] init];
     iconsViewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
     [self addChildViewController:iconsViewController];
     [self.view addSubview:iconsViewController.view];
     [iconsViewController didMoveToParentViewController:self];
-    //
-    //
-    //    BOOL supportsAlternateIcons = [UIApplication.sharedApplication supportsAlternateIcons];
-    //    [UIApplication.sharedApplication setAlternateIconName:@"AppIcon 3" completionHandler:^(NSError *error){
-    //        if (error == nil){
-    //            DLog("Success: icon changed");
-    //        }
-    //        else {
-    //            DLog("Failure with error");
-    //        }
-    //    }];
-    //
-    //    [SKStoreReviewController requestReviewInScene:nil];
-    //
-    // The following line was used to test Crashlytics
-    //    @[][1];
 }
+
+- (void)settingsButtonPressed {
+    DLog("BMDViewController.settingsButtonPressed");
+    // View controller approach
+    [appd playSound:appd.tapPlayer];
+    settingsViewController = [[BMDSettingsViewController alloc] init];
+    settingsViewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    [self addChildViewController:settingsViewController];
+    [self.view addSubview:settingsViewController.view];
+    [settingsViewController didMoveToParentViewController:self];
+}
+
+// Uncomment when you want to use the settingsButton to test something such as:
+// - Crash handling
+// - Prompting for App Store review
+// - Switch to alternate icon
+// - Switch to BMDIconsViewController
+//- (void)settingsButtonPressed {
+//    //    [appd requestPuzzlePacksInfo];
+//    //
+//    [appd playSound:appd.tapPlayer];
+//    iconsViewController = [[BMDIconsViewController alloc] init];
+//    iconsViewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
+//    [self addChildViewController:iconsViewController];
+//    [self.view addSubview:iconsViewController.view];
+//    [iconsViewController didMoveToParentViewController:self];
+//    //
+//    //
+//    //    BOOL supportsAlternateIcons = [UIApplication.sharedApplication supportsAlternateIcons];
+//    //    [UIApplication.sharedApplication setAlternateIconName:@"AppIcon 3" completionHandler:^(NSError *error){
+//    //        if (error == nil){
+//    //            DLog("Success: icon changed");
+//    //        }
+//    //        else {
+//    //            DLog("Failure with error");
+//    //        }
+//    //    }];
+//    //
+//    //    [SKStoreReviewController requestReviewInScene:nil];
+//    //
+//    // The following line was used to test Crashlytics
+//    //    @[][1];
+//}
 
 // Borrow this button temporarily to test out reviews
 - (void)reviewButtonPressed {

@@ -171,7 +171,7 @@
     TextureData *backgroundTextureData;
     
 //    backgroundTextureData = [backgroundTextureDataArray objectAtIndex:PUZZLE_BACKGROUND_IMAGE1];
-    backgroundTextureData = [backgroundTextureDataArray objectAtIndex:PUZZLE_BACKGROUND_NEON_CITYSCAPE6];
+    backgroundTextureData = [backgroundTextureDataArray objectAtIndex:PUZZLE_BACKGROUND_NEON_CITYSCAPE1];
 
     backgroundRenderDataImage = [[TextureRenderData alloc] init];
     backgroundRenderDataImage.renderTexture = backgroundTextureData.texture;
