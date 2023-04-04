@@ -294,6 +294,8 @@
 		806B39E929CE9DC300EA3799 /* alternateIcons.plist in Resources */ = {isa = PBXBuildFile; fileRef = 806B39E829CE9DC300EA3799 /* alternateIcons.plist */; };
 		806B39EA29CE9DC300EA3799 /* alternateIcons.plist in Resources */ = {isa = PBXBuildFile; fileRef = 806B39E829CE9DC300EA3799 /* alternateIcons.plist */; };
 		806B4ED1296C7F5400FFD306 /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 806B4ED0296C7F5400FFD306 /* LaunchScreen.png */; };
+		806B9B0929DBE5C400FE91E1 /* RobotDinerSign.png in Resources */ = {isa = PBXBuildFile; fileRef = 806B9B0829DBE5C400FE91E1 /* RobotDinerSign.png */; };
+		806B9B0A29DBE5C400FE91E1 /* RobotDinerSign.png in Resources */ = {isa = PBXBuildFile; fileRef = 806B9B0829DBE5C400FE91E1 /* RobotDinerSign.png */; };
 		80843526291370E400EAAAB3 /* TileOpaque.png in Resources */ = {isa = PBXBuildFile; fileRef = 80843525291370E400EAAAB3 /* TileOpaque.png */; };
 		80843527291370E400EAAAB3 /* TileOpaque.png in Resources */ = {isa = PBXBuildFile; fileRef = 80843525291370E400EAAAB3 /* TileOpaque.png */; };
 		80884C35292ED3A9005B29FC /* VungleSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80884C34292ED3A9005B29FC /* VungleSDK.xcframework */; };
@@ -747,6 +749,7 @@
 		8068338A292ECB1B00620AC1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		806B39E829CE9DC300EA3799 /* alternateIcons.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = alternateIcons.plist; sourceTree = "<group>"; };
 		806B4ED0296C7F5400FFD306 /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
+		806B9B0829DBE5C400FE91E1 /* RobotDinerSign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RobotDinerSign.png; sourceTree = "<group>"; };
 		80843525291370E400EAAAB3 /* TileOpaque.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileOpaque.png; sourceTree = "<group>"; };
 		80884C34292ED3A9005B29FC /* VungleSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = VungleSDK.xcframework; path = ../../Downloads/vungle6121/VungleSDK.xcframework; sourceTree = SOURCE_ROOT; };
 		80884C3A292EDAB8005B29FC /* FirebaseCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseCore.xcframework; sourceTree = "<group>"; };
@@ -1283,6 +1286,7 @@
 				80FA4A50298D949B00CE211E /* lightBulbInCircle.png */,
 				8044DD912904908E0078942B /* cyanRectangle.png */,
 				8044DD902904908E0078942B /* cyanRectangleSelected.png */,
+				806B9B0829DBE5C400FE91E1 /* RobotDinerSign.png */,
 				8044DD8F2904908E0078942B /* yellowRectangle.png */,
 				80F197F029DBA756003B9C74 /* yellowRectangle2.png */,
 				8044DD922904908E0078942B /* yellowRectangleSelected.png */,
@@ -1931,6 +1935,7 @@
 				526FBD5225926960001F5647 /* Beam-Angle00-11.png in Resources */,
 				803AFB792979D12900BDB614 /* Provenance.xib in Resources */,
 				800721D629D0073F004F93DE /* neon-synthwave-cityscape-1.png in Resources */,
+				806B9B0A29DBE5C400FE91E1 /* RobotDinerSign.png in Resources */,
 				80BB3CA628DBC42700C547D1 /* DragTileText.png in Resources */,
 				80DC5C0829CFFBA800C66781 /* icon19rounded.png in Resources */,
 				5286EBEE2564BCD300B43209 /* TileOutline.png in Resources */,
@@ -2111,6 +2116,7 @@
 				80F197F129DBA757003B9C74 /* yellowRectangle2.png in Resources */,
 				80FA4A51298D949B00CE211E /* lightBulbInCircle.png in Resources */,
 				8011CE74297B2C0200E7CEAB /* backArrow-11569642-Vecteezy.pdf in Resources */,
+				806B9B0929DBE5C400FE91E1 /* RobotDinerSign.png in Resources */,
 				80DD714729D4F3EE00C0C48C /* reward.png in Resources */,
 				80DC5BE329CFEBED00C66781 /* icon6rounded.png in Resources */,
 				80DC5C0D29CFFD7500C66781 /* goldenCrownSelectedLayer.png in Resources */,
