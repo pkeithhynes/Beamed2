@@ -294,10 +294,12 @@
 		806B39E929CE9DC300EA3799 /* alternateIcons.plist in Resources */ = {isa = PBXBuildFile; fileRef = 806B39E829CE9DC300EA3799 /* alternateIcons.plist */; };
 		806B39EA29CE9DC300EA3799 /* alternateIcons.plist in Resources */ = {isa = PBXBuildFile; fileRef = 806B39E829CE9DC300EA3799 /* alternateIcons.plist */; };
 		806B4ED1296C7F5400FFD306 /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 806B4ED0296C7F5400FFD306 /* LaunchScreen.png */; };
-		806B9B0929DBE5C400FE91E1 /* RobotDinerSign.png in Resources */ = {isa = PBXBuildFile; fileRef = 806B9B0829DBE5C400FE91E1 /* RobotDinerSign.png */; };
-		806B9B0A29DBE5C400FE91E1 /* RobotDinerSign.png in Resources */ = {isa = PBXBuildFile; fileRef = 806B9B0829DBE5C400FE91E1 /* RobotDinerSign.png */; };
 		80843526291370E400EAAAB3 /* TileOpaque.png in Resources */ = {isa = PBXBuildFile; fileRef = 80843525291370E400EAAAB3 /* TileOpaque.png */; };
 		80843527291370E400EAAAB3 /* TileOpaque.png in Resources */ = {isa = PBXBuildFile; fileRef = 80843525291370E400EAAAB3 /* TileOpaque.png */; };
+		80861A4629DCE493002B596B /* RobotDinerSign.png in Resources */ = {isa = PBXBuildFile; fileRef = 80861A4529DCE493002B596B /* RobotDinerSign.png */; };
+		80861A4729DCE493002B596B /* RobotDinerSign.png in Resources */ = {isa = PBXBuildFile; fileRef = 80861A4529DCE493002B596B /* RobotDinerSign.png */; };
+		80861A4929DCF951002B596B /* PinkDailyRewardsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 80861A4829DCF951002B596B /* PinkDailyRewardsButton.png */; };
+		80861A4A29DCF951002B596B /* PinkDailyRewardsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 80861A4829DCF951002B596B /* PinkDailyRewardsButton.png */; };
 		80884C35292ED3A9005B29FC /* VungleSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80884C34292ED3A9005B29FC /* VungleSDK.xcframework */; };
 		80884C36292ED4CC005B29FC /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABBE2771F7319760080C72C /* MetalKit.framework */; };
 		80884C38292ED4CF005B29FC /* VungleSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80884C34292ED3A9005B29FC /* VungleSDK.xcframework */; };
@@ -530,8 +532,8 @@
 		80DC5C0E29CFFD7500C66781 /* goldenCrownSelectedLayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DC5C0C29CFFD7500C66781 /* goldenCrownSelectedLayer.png */; };
 		80DD714129D4F0F200C0C48C /* neon-synthwave-cityscape-5.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DD714029D4F0F200C0C48C /* neon-synthwave-cityscape-5.png */; };
 		80DD714229D4F0F200C0C48C /* neon-synthwave-cityscape-5.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DD714029D4F0F200C0C48C /* neon-synthwave-cityscape-5.png */; };
-		80DD714729D4F3EE00C0C48C /* reward.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DD714629D4F3EE00C0C48C /* reward.png */; };
-		80DD714829D4F3EE00C0C48C /* reward.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DD714629D4F3EE00C0C48C /* reward.png */; };
+		80DD714729D4F3EE00C0C48C /* reward1.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DD714629D4F3EE00C0C48C /* reward1.png */; };
+		80DD714829D4F3EE00C0C48C /* reward1.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DD714629D4F3EE00C0C48C /* reward1.png */; };
 		80DD714A29D637EE00C0C48C /* neon-synthwave-cityscape-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DD714929D637ED00C0C48C /* neon-synthwave-cityscape-6.png */; };
 		80DD714B29D637EE00C0C48C /* neon-synthwave-cityscape-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DD714929D637ED00C0C48C /* neon-synthwave-cityscape-6.png */; };
 		80DFC2C328FB368000BE90C3 /* GridTile2.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DFC2C228FB368000BE90C3 /* GridTile2.png */; };
@@ -749,8 +751,9 @@
 		8068338A292ECB1B00620AC1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		806B39E829CE9DC300EA3799 /* alternateIcons.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = alternateIcons.plist; sourceTree = "<group>"; };
 		806B4ED0296C7F5400FFD306 /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
-		806B9B0829DBE5C400FE91E1 /* RobotDinerSign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RobotDinerSign.png; sourceTree = "<group>"; };
 		80843525291370E400EAAAB3 /* TileOpaque.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileOpaque.png; sourceTree = "<group>"; };
+		80861A4529DCE493002B596B /* RobotDinerSign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RobotDinerSign.png; sourceTree = "<group>"; };
+		80861A4829DCF951002B596B /* PinkDailyRewardsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinkDailyRewardsButton.png; sourceTree = "<group>"; };
 		80884C34292ED3A9005B29FC /* VungleSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = VungleSDK.xcframework; path = ../../Downloads/vungle6121/VungleSDK.xcframework; sourceTree = SOURCE_ROOT; };
 		80884C3A292EDAB8005B29FC /* FirebaseCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseCore.xcframework; sourceTree = "<group>"; };
 		80884C3B292EDAB8005B29FC /* GoogleAppMeasurementIdentitySupport.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GoogleAppMeasurementIdentitySupport.xcframework; sourceTree = "<group>"; };
@@ -885,7 +888,7 @@
 		80DC5C0929CFFC7000C66781 /* goldenCrownLayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goldenCrownLayer.png; sourceTree = "<group>"; };
 		80DC5C0C29CFFD7500C66781 /* goldenCrownSelectedLayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goldenCrownSelectedLayer.png; sourceTree = "<group>"; };
 		80DD714029D4F0F200C0C48C /* neon-synthwave-cityscape-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "neon-synthwave-cityscape-5.png"; sourceTree = "<group>"; };
-		80DD714629D4F3EE00C0C48C /* reward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = reward.png; path = ../../../../AEWork/reward.png; sourceTree = "<group>"; };
+		80DD714629D4F3EE00C0C48C /* reward1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = reward1.png; path = ../../../../AEWork/reward1.png; sourceTree = "<group>"; };
 		80DD714929D637ED00C0C48C /* neon-synthwave-cityscape-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "neon-synthwave-cityscape-6.png"; sourceTree = "<group>"; };
 		80DFC2C228FB368000BE90C3 /* GridTile2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GridTile2.png; sourceTree = "<group>"; };
 		80E76F5D28AAAD7600F6D31D /* BMDPuzzleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMDPuzzleViewController.h; sourceTree = "<group>"; };
@@ -1286,7 +1289,7 @@
 				80FA4A50298D949B00CE211E /* lightBulbInCircle.png */,
 				8044DD912904908E0078942B /* cyanRectangle.png */,
 				8044DD902904908E0078942B /* cyanRectangleSelected.png */,
-				806B9B0829DBE5C400FE91E1 /* RobotDinerSign.png */,
+				80861A4529DCE493002B596B /* RobotDinerSign.png */,
 				8044DD8F2904908E0078942B /* yellowRectangle.png */,
 				80F197F029DBA756003B9C74 /* yellowRectangle2.png */,
 				8044DD922904908E0078942B /* yellowRectangleSelected.png */,
@@ -1296,7 +1299,8 @@
 				8089548A291DB76B009C4D02 /* homeArrow.png */,
 				80895496291DB7FE009C4D02 /* nextArrow.png */,
 				808D86B3297527B00022B2FE /* puzzlePacks.png */,
-				80DD714629D4F3EE00C0C48C /* reward.png */,
+				80861A4829DCF951002B596B /* PinkDailyRewardsButton.png */,
+				80DD714629D4F3EE00C0C48C /* reward1.png */,
 			);
 			path = "Button Textures";
 			sourceTree = "<group>";
@@ -1803,7 +1807,7 @@
 				526FBCE925926960001F5647 /* Beam-Angle00-09.png in Resources */,
 				80D07E54297E5AC800295271 /* Beamed2Logo_00001.png in Resources */,
 				526FBD2525926960001F5647 /* Beam-Angle00-14.png in Resources */,
-				80DD714829D4F3EE00C0C48C /* reward.png in Resources */,
+				80DD714829D4F3EE00C0C48C /* reward1.png in Resources */,
 				80FA4A55298DA10C00CE211E /* MysteryPuzzleLoop2.wav in Resources */,
 				80DC5C0229CFFBA800C66781 /* icon15rounded.png in Resources */,
 				52994B4125DA13D700887B9C /* Rings_00028.png in Resources */,
@@ -1935,7 +1939,7 @@
 				526FBD5225926960001F5647 /* Beam-Angle00-11.png in Resources */,
 				803AFB792979D12900BDB614 /* Provenance.xib in Resources */,
 				800721D629D0073F004F93DE /* neon-synthwave-cityscape-1.png in Resources */,
-				806B9B0A29DBE5C400FE91E1 /* RobotDinerSign.png in Resources */,
+				80861A4729DCE493002B596B /* RobotDinerSign.png in Resources */,
 				80BB3CA628DBC42700C547D1 /* DragTileText.png in Resources */,
 				80DC5C0829CFFBA800C66781 /* icon19rounded.png in Resources */,
 				5286EBEE2564BCD300B43209 /* TileOutline.png in Resources */,
@@ -1966,6 +1970,7 @@
 				806B4ED1296C7F5400FFD306 /* LaunchScreen.png in Resources */,
 				80DC5BD229CFEBED00C66781 /* icon1rounded.png in Resources */,
 				80F197F229DBA757003B9C74 /* yellowRectangle2.png in Resources */,
+				80861A4A29DCF951002B596B /* PinkDailyRewardsButton.png in Resources */,
 				8011CE8A297B2C0200E7CEAB /* locked-12675441-vecteezy.pdf in Resources */,
 				52994B6B25DA13D700887B9C /* Rings_00006.png in Resources */,
 				80884C55292EDF03005B29FC /* run in Resources */,
@@ -2116,8 +2121,8 @@
 				80F197F129DBA757003B9C74 /* yellowRectangle2.png in Resources */,
 				80FA4A51298D949B00CE211E /* lightBulbInCircle.png in Resources */,
 				8011CE74297B2C0200E7CEAB /* backArrow-11569642-Vecteezy.pdf in Resources */,
-				806B9B0929DBE5C400FE91E1 /* RobotDinerSign.png in Resources */,
-				80DD714729D4F3EE00C0C48C /* reward.png in Resources */,
+				80861A4629DCE493002B596B /* RobotDinerSign.png in Resources */,
+				80DD714729D4F3EE00C0C48C /* reward1.png in Resources */,
 				80DC5BE329CFEBED00C66781 /* icon6rounded.png in Resources */,
 				80DC5C0D29CFFD7500C66781 /* goldenCrownSelectedLayer.png in Resources */,
 				80FDEA6C29145A5C007C05F7 /* TileSquareBright.png in Resources */,
@@ -2176,6 +2181,7 @@
 				526FBCEE25926960001F5647 /* Beam-Angle00-04.png in Resources */,
 				80DC5BFB29CFFBA800C66781 /* icon13rounded.png in Resources */,
 				526FBCD325926960001F5647 /* Beam-Angle00-02.png in Resources */,
+				80861A4929DCF951002B596B /* PinkDailyRewardsButton.png in Resources */,
 				80D07E5F297E5AC800295271 /* Beamed2Logo_00003.png in Resources */,
 				526FBCDC25926960001F5647 /* Beam-Angle00-08.png in Resources */,
 				52994B6A25DA13D700887B9C /* Rings_00006.png in Resources */,

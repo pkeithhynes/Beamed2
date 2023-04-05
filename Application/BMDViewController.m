@@ -1651,7 +1651,7 @@ Implementation of the cross-platform view controller
     switch (displayAspectRatio) {
         case ASPECT_4_3:{
             // iPad (9th generation)
-            [dailyPuzzleButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:28]];
+            [dailyPuzzleButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
             todaysDateLabelFontSizeHome = 16;
             buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
             buttonHeight = buttonWidth/8.0;
@@ -1783,7 +1783,7 @@ Implementation of the cross-platform view controller
                 break;
             }
         }
-        UIImage *rewardImage = [UIImage imageNamed:@"reward.png"];
+        UIImage *rewardImage = [UIImage imageNamed:@"PinkDailyRewardsButton.png"];
         [dailyRewardButton setBackgroundImage:rewardImage forState:UIControlStateNormal];
         buttonRect = CGRectMake(dailyAwardCx,
                                 dailyAwardCy,
@@ -1830,7 +1830,7 @@ Implementation of the cross-platform view controller
             buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
             buttonHeight = buttonWidth/4.0;
             buttonCy = buttonCy + 0.6*buttonHeight;
-            [startPuzzleButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:28]];
+            [startPuzzleButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
             break;
         }
         case ASPECT_10_7:{
@@ -1912,19 +1912,20 @@ Implementation of the cross-platform view controller
     [homeView addSubview:startPuzzleButtonCheckmark];
     [homeView bringSubviewToFront:startPuzzleButtonCheckmark];
 
-    //
-    // Add "More Puzzles" button to homeView
-    //
+    UIButton *selectAltIconsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *robotDinerSquareButton = [UIButton buttonWithType:UIButtonTypeCustom];
     BOOL testPKH = YES;
     if (testPKH){
-        UIButton *selectAltIconsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        //
+        // Add "Get Icons at the Robot Diner!" button to homeView
+        //
         switch (displayAspectRatio) {
             case ASPECT_4_3:{
                 // iPad (9th generation)
                 buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
                 buttonHeight = buttonWidth/8.0;
                 buttonCy = buttonCy + 2.25*buttonHeight;
-                [selectAltIconsButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:26]];
+                [selectAltIconsButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
                 break;
             }
             case ASPECT_10_7:{
@@ -1932,7 +1933,7 @@ Implementation of the cross-platform view controller
                 buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
                 buttonHeight = buttonWidth/8.0;
                 buttonCy = buttonCy + 2.25*buttonHeight;
-                [selectAltIconsButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:26]];
+                [selectAltIconsButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
                 break;
             }
             case ASPECT_3_2: {
@@ -1940,7 +1941,7 @@ Implementation of the cross-platform view controller
                 buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
                 buttonHeight = buttonWidth/8.0;
                 buttonCy = buttonCy + 2.25*buttonHeight;
-                [selectAltIconsButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:26]];
+                [selectAltIconsButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
                 break;
             }
             case ASPECT_16_9: {
@@ -1967,14 +1968,32 @@ Implementation of the cross-platform view controller
                                 buttonWidth,
                                 buttonHeight);
         selectAltIconsButton.frame = buttonRect;
-        [selectAltIconsButton setTitle:@"Get Icons at the Robot Diner!" forState:UIControlStateNormal];
+        [selectAltIconsButton setTitle:@"Icon specials at the Robot Diner!" forState:UIControlStateNormal];
         [selectAltIconsButton addTarget:self action:@selector(selectAltIconsButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         [selectAltIconsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         selectAltIconsButton.showsTouchWhenHighlighted = YES;
         [homeView addSubview:selectAltIconsButton];
         [homeView bringSubviewToFront:selectAltIconsButton];
+        
+        // Add robotDinerSquareButton
+        UIImage *robotDinerButtonImage = [UIImage imageNamed:@"RobotDinerSign.png"];
+        [robotDinerSquareButton setBackgroundImage:robotDinerButtonImage forState:UIControlStateNormal];
+        [robotDinerSquareButton setBackgroundImage:robotDinerButtonImage forState:UIControlStateHighlighted];
+        CGFloat robotDinerSquareButtonWidth = 2.5*buttonHeight;
+        buttonRect = CGRectMake(buttonCx + 0.5*buttonWidth - 0.25*robotDinerSquareButtonWidth,
+                                buttonCy + 0.5*buttonHeight - 0.5*robotDinerSquareButtonWidth,
+                                robotDinerSquareButtonWidth,
+                                robotDinerSquareButtonWidth);
+        robotDinerSquareButton.frame = buttonRect;
+        [robotDinerSquareButton addTarget:self action:@selector(selectAltIconsButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        robotDinerSquareButton.showsTouchWhenHighlighted = YES;
+        [homeView addSubview:robotDinerSquareButton];
+        [homeView bringSubviewToFront:robotDinerSquareButton];
     }
     else {
+        //
+        // Add "More Puzzles" button to homeView
+        //
         UIButton *morePuzzlePacksButton = [UIButton buttonWithType:UIButtonTypeCustom];
         switch (displayAspectRatio) {
             case ASPECT_4_3:{
@@ -1982,7 +2001,7 @@ Implementation of the cross-platform view controller
                 buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
                 buttonHeight = buttonWidth/8.0;
                 buttonCy = buttonCy + 2.25*buttonHeight;
-                [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:28]];
+                [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
                 break;
             }
             case ASPECT_10_7:{
@@ -2043,7 +2062,7 @@ Implementation of the cross-platform view controller
             buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
             buttonHeight = buttonWidth/6.0;
             buttonCy = buttonCy + 1.0*buttonHeight;
-            [moreHintPacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:28]];
+            [moreHintPacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
             break;
         }
         case ASPECT_10_7:{
@@ -2106,7 +2125,7 @@ Implementation of the cross-platform view controller
             buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
             buttonHeight = buttonWidth/10.0;
             buttonCy = buttonCy + 2.0*buttonHeight;
-            howToPlayButtonFontSize = 28;
+            howToPlayButtonFontSize = 24;
             [howToPlayButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:howToPlayButtonFontSize]];
             break;
         }
@@ -2178,7 +2197,7 @@ Implementation of the cross-platform view controller
             // iPad (9th generation)
             buttonHeight = buttonWidth/10.0;
             buttonCy = buttonCy + 1.5*buttonHeight;
-            scoresButtonFontSize = 28;
+            scoresButtonFontSize = 24;
             [scoresButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:scoresButtonFontSize]];
             break;
         }
@@ -2248,7 +2267,7 @@ Implementation of the cross-platform view controller
         case ASPECT_4_3:{
             // iPad (9th generation)
             buttonHeight = buttonWidth/10.0;
-            reviewButtonFontSize = 28;
+            reviewButtonFontSize = 24;
             [reviewButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:reviewButtonFontSize]];
             break;
         }

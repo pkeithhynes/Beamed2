@@ -238,7 +238,7 @@
                                             w,
                                             2.5*h);
         UILabel *iconsPageLabel1 = [[UILabel alloc] initWithFrame:iconsLabelFrame];
-        iconsPageLabel1.text = @"Buy the dev team a Coffee and pick a fancy new App icon!";
+        iconsPageLabel1.text = @"Buy the dev team a snack and pick a fancy new App icon!";
         iconsPageLabel1.numberOfLines = 0;
         iconsPageLabel1.layer.borderColor = [UIColor clearColor].CGColor;
         iconsPageLabel1.textColor = [UIColor cyanColor];
