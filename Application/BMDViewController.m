@@ -17,6 +17,7 @@ Implementation of the cross-platform view controller
     CAGradientLayer *homeViewColorGradient;
     int gradientAnimationIndex;
     CGFloat yOffsetPrevBackNextInEditMode;
+    CGFloat stickerButtonSizePoints;
 }
 
 @synthesize renderer;
@@ -397,13 +398,13 @@ Implementation of the cross-platform view controller
         if (dailyPuzzleCompletionDay != nil && dailyPuzzleCompletionDay == todayLocal){
             [dailyPuzzleButton setTitle:@"Daily Puzzle Completed!" forState:UIControlStateNormal];
             dailyPuzzleButtonCheckmark.hidden = NO;
-            [self disablePulse:dailyPuzzleButton];
+//            [self disablePulse:dailyPuzzleButton];
         }
         else {
             [dailyPuzzleButton setTitle:@"Daily Puzzle" forState:UIControlStateNormal];
             dailyPuzzleButton.enabled = YES;
             dailyPuzzleButtonCheckmark.hidden = YES;
-            [self enableSlowPulse:dailyPuzzleButton alphaMin:0.4];
+//            [self enableSlowPulse:dailyPuzzleButton alphaMin:0.4];
         }
     }
 
@@ -439,7 +440,7 @@ Implementation of the cross-platform view controller
     NSNumber *dailyRewardReceivedDay = [appd getObjectFromDefaults:@"dailyRewardReceivedDay"];
     todayLocal = [NSNumber numberWithUnsignedInt:[appd getLocalDaysSinceReferenceDate]];
     if (dailyRewardReceivedDay == nil || dailyRewardReceivedDay != todayLocal){
-        [self enablePulse:dailyRewardButton alphaMin:0.1];
+        [self enableSlowPulse:dailyRewardButton alphaMin:0.1];
     }
 
     
@@ -1736,64 +1737,24 @@ Implementation of the cross-platform view controller
     //
     // Add "Daily Reward" button to homeView
     //
+    // Set the button size used by dailyRewardButton and robotDinerSquareButton
+    stickerButtonSizePoints = 2.5*buttonHeight;
     NSNumber *dailyRewardReceivedDay = [appd getObjectFromDefaults:@"dailyRewardReceivedDay"];
     NSNumber *todayLocal = [NSNumber numberWithUnsignedInt:[appd getLocalDaysSinceReferenceDate]];
     CGFloat dailyAwardCx, dailyAwardCy;
     if (dailyRewardReceivedDay == nil || dailyRewardReceivedDay != todayLocal){
         dailyRewardButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        switch (displayAspectRatio) {
-            case ASPECT_4_3:{
-                // iPad (9th generation)
-                buttonWidth = 0.125*screenWidthInPixels/contentScaleFactor;
-                buttonHeight = buttonWidth;
-                dailyAwardCy = 0.9*buttonCy;
-                dailyAwardCx = buttonCx+2.5*buttonWidth;
-                break;
-            }
-            case ASPECT_10_7:{
-                // iPad Air (5th generation)
-                buttonWidth = 0.125*screenWidthInPixels/contentScaleFactor;
-                buttonHeight = buttonWidth;
-                dailyAwardCy = 0.9*buttonCy;
-                dailyAwardCx = buttonCx+2.5*buttonWidth;
-                break;
-            }
-            case ASPECT_3_2: {
-                // iPad Mini (6th generation)
-                buttonWidth = 0.125*screenWidthInPixels/contentScaleFactor;
-                buttonHeight = buttonWidth;
-                dailyAwardCy = 0.9*buttonCy;
-                dailyAwardCx = buttonCx+2.5*buttonWidth;
-                break;
-            }
-            case ASPECT_16_9: {
-                // iPhone 8
-                buttonWidth = 0.125*screenWidthInPixels/contentScaleFactor;
-                buttonHeight = buttonWidth;
-                dailyAwardCy = buttonCy - 1.15*buttonHeight;
-                dailyAwardCx = buttonCx-buttonWidth/2.0+2.5*buttonWidth;
-                break;
-            }
-            case ASPECT_13_6: {
-                // iPhone 14
-                buttonWidth = 0.125*screenWidthInPixels/contentScaleFactor;
-                buttonHeight = buttonWidth;
-                dailyAwardCy = buttonCy - 1.20*buttonHeight;
-                dailyAwardCx = buttonCx-buttonWidth/2.0+2.5*buttonWidth;
-                break;
-            }
-        }
         UIImage *rewardImage = [UIImage imageNamed:@"PinkDailyRewardsButton.png"];
         [dailyRewardButton setBackgroundImage:rewardImage forState:UIControlStateNormal];
-        buttonRect = CGRectMake(dailyAwardCx,
-                                dailyAwardCy,
-                                buttonWidth,
-                                buttonHeight);
+        buttonRect = CGRectMake(buttonCx + 0.5*buttonWidth - 0.25*stickerButtonSizePoints,
+                                buttonCy + 0.5*buttonHeight - 0.5*stickerButtonSizePoints,
+                                stickerButtonSizePoints,
+                                stickerButtonSizePoints);
         dailyRewardButton.frame = buttonRect;
         [dailyRewardButton addTarget:self action:@selector(dailyRewardButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         dailyRewardButton.showsTouchWhenHighlighted = YES;
         dailyRewardButton.alpha = 1.0;
-        [self enablePulse:dailyRewardButton alphaMin:0.1];
+        [self enableSlowPulse:dailyRewardButton alphaMin:0.1];
         [homeView addSubview:dailyRewardButton];
         [homeView bringSubviewToFront:dailyRewardButton];
     }
@@ -1979,11 +1940,10 @@ Implementation of the cross-platform view controller
         UIImage *robotDinerButtonImage = [UIImage imageNamed:@"RobotDinerSign.png"];
         [robotDinerSquareButton setBackgroundImage:robotDinerButtonImage forState:UIControlStateNormal];
         [robotDinerSquareButton setBackgroundImage:robotDinerButtonImage forState:UIControlStateHighlighted];
-        CGFloat robotDinerSquareButtonWidth = 2.5*buttonHeight;
-        buttonRect = CGRectMake(buttonCx + 0.5*buttonWidth - 0.25*robotDinerSquareButtonWidth,
-                                buttonCy + 0.5*buttonHeight - 0.5*robotDinerSquareButtonWidth,
-                                robotDinerSquareButtonWidth,
-                                robotDinerSquareButtonWidth);
+        buttonRect = CGRectMake(buttonCx + 0.5*buttonWidth - 0.25*stickerButtonSizePoints,
+                                buttonCy + 0.5*buttonHeight - 0.5*stickerButtonSizePoints,
+                                stickerButtonSizePoints,
+                                stickerButtonSizePoints);
         robotDinerSquareButton.frame = buttonRect;
         [robotDinerSquareButton addTarget:self action:@selector(selectAltIconsButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         robotDinerSquareButton.showsTouchWhenHighlighted = YES;
