@@ -122,6 +122,16 @@ CGFloat _screenHeightInPixels;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchSettings {
     DLog(">>> Calling didFinishLaunchingWithOptions");
     
+    // Begin monitoring the Network and sending Notifications when changes in connectivity occur
+    [self startNetworkMonitoring];
+    
+    // Register to receive notifications regarding changes in connectivity
+    [[NSNotificationCenter defaultCenter]
+     addObserver: self
+     selector: @selector (handleNetworkConnectivityChanged:)
+     name: @"com.beamed.network.status-change"
+     object: nil];
+
     // Init BMDViewController
     (void)[[BMDViewController alloc] init];
     rc = (BMDViewController*)[[(BMDAppDelegate *)[[UIApplication sharedApplication]delegate] window] rootViewController];
@@ -341,6 +351,59 @@ CGFloat _screenHeightInPixels;
     [loop1Player pause];
     [loop2Player pause];
     [loop3Player pause];
+}
+
+
+//
+// Methods to handle Network Monitoring
+//
+- (void)startNetworkMonitoring {
+    dispatch_queue_attr_t attrs = dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_UTILITY, DISPATCH_QUEUE_PRIORITY_DEFAULT);
+    self.monitorQueue = dispatch_queue_create("com.beamed.network.monitor", attrs);
+    
+    self.monitor = nw_path_monitor_create();
+    nw_path_monitor_set_queue(self.monitor, self.monitorQueue);
+    nw_path_monitor_set_update_handler(self.monitor, ^(nw_path_t _Nonnull path) {
+        nw_path_status_t status = nw_path_get_status(path);
+        BOOL isWiFi = nw_path_uses_interface_type(path, nw_interface_type_wifi);
+        BOOL isCellular = nw_path_uses_interface_type(path, nw_interface_type_cellular);
+        BOOL isEthernet = nw_path_uses_interface_type(path, nw_interface_type_wired);
+        BOOL isExpensive = nw_path_is_expensive(path);
+        BOOL hasIPv4 = nw_path_has_ipv4(path);
+        BOOL hasIPv6 = nw_path_has_ipv6(path);
+        BOOL hasNewDNS = nw_path_has_dns(path);
+        
+        NSDictionary *userInfo = @{
+                                    @"isWiFi" : @(isWiFi),
+                                    @"isCellular" : @(isCellular),
+                                    @"isEthernet" : @(isEthernet),
+                                    @"status" : @(status),
+                                    @"isExpensive" : @(isExpensive),
+                                    @"hasIPv4" : @(hasIPv4),
+                                    @"hasIPv6" : @(hasIPv6),
+                                    @"hasNewDNS" : @(hasNewDNS)
+                                 };
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [NSNotificationCenter.defaultCenter postNotificationName:@"com.beamed.network.status-change" object:nil userInfo:userInfo];
+        });
+    });
+    nw_path_monitor_start(self.monitor);
+}
+
+- (void)stopNetworkMonitoring
+{
+    nw_path_monitor_cancel(self.monitor);
+}
+
+//
+// Handler Methods Go Here
+//
+
+- (void)handleNetworkConnectivityChanged:(NSNotification *) notification{
+    NSLog(@"%@",notification.object);
+    NSMutableDictionary *info = [NSMutableDictionary dictionaryWithDictionary:notification.userInfo];
+    DLog("handleNetworkConnectivityChanged");
 }
 
 

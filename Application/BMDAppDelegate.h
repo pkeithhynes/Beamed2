@@ -5,6 +5,9 @@ Abstract:
 Header for the iOS & tvOS application delegate
 */
 
+@import Foundation;
+@import Network;
+
 #import <UIKit/UIKit.h>
 #include <AudioToolbox/AudioToolbox.h>
 #include <AVFoundation/AVFoundation.h>
@@ -30,7 +33,7 @@ API_AVAILABLE(ios(13.0))
     Optics    *optics;
     UIWindow    *window;
     BMDViewController *rc;
-
+    
     // Sounds
     SystemSoundID   tapSoundFileObject;
     SystemSoundID   plopSoundFileObject;
@@ -139,6 +142,10 @@ API_AVAILABLE(ios(13.0))
 
 @property (strong, nonatomic) Optics * _Nonnull optics;
 @property (strong, nonatomic) BMDViewController *_Nonnull rc;
+
+// Network monitoring
+@property (nonatomic, strong) nw_path_monitor_t monitor;
+@property (nonatomic, strong) dispatch_queue_t monitorQueue;
 
 @property (strong, nonatomic) UIWindow * _Nonnull window;
 @property (strong, nonatomic) MTKView * _Nonnull view;
