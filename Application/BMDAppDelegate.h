@@ -138,14 +138,17 @@ API_AVAILABLE(ios(13.0))
     NSMutableArray *arrayOfPaidHintPacksInfo;
     NSMutableArray *arrayOfPuzzlePacksInfo;
     NSMutableArray *arrayOfAltIconsInfo;
+    
+    BOOL applicationIsConnectedToNetwork;
 }
 
 @property (strong, nonatomic) Optics * _Nonnull optics;
 @property (strong, nonatomic) BMDViewController *_Nonnull rc;
 
 // Network monitoring
-@property (nonatomic, strong) nw_path_monitor_t monitor;
-@property (nonatomic, strong) dispatch_queue_t monitorQueue;
+@property (nonatomic, strong) nw_path_monitor_t _Nonnull monitor;
+@property (nonatomic, strong) dispatch_queue_t _Nonnull monitorQueue;
+@property (nonatomic) BOOL applicationIsConnectedToNetwork;
 
 @property (strong, nonatomic) UIWindow * _Nonnull window;
 @property (strong, nonatomic) MTKView * _Nonnull view;

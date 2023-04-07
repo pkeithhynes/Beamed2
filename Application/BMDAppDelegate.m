@@ -122,10 +122,10 @@ CGFloat _screenHeightInPixels;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchSettings {
     DLog(">>> Calling didFinishLaunchingWithOptions");
     
-    // Begin monitoring the Network and sending Notifications when changes in connectivity occur
+    // - Begin monitoring the Network and sending Notifications when changes in connectivity occur
+    // - Register to receive notifications regarding changes in connectivity
+    applicationIsConnectedToNetwork = NO;
     [self startNetworkMonitoring];
-    
-    // Register to receive notifications regarding changes in connectivity
     [[NSNotificationCenter defaultCenter]
      addObserver: self
      selector: @selector (handleNetworkConnectivityChanged:)
@@ -145,13 +145,10 @@ CGFloat _screenHeightInPixels;
     // Request Current In-App Purchase Data from StoreKit
     //
     // Paid Puzzle Packs - completion handler calls requestHintPacksInfo
+    // Paid Hint Packs - completion handler calls requestAltIconsInfo
     arrayOfPuzzlePacksInfo = nil;
     [self requestPuzzlePacksInfo];
 
-    // Paid Hint Packs
-//    arrayOfPaidHintPacksInfo = nil;
-//    [self requestHintPacksInfo];
-    
     //
     // Initialize Vungle Ad Platform
     //
@@ -402,8 +399,21 @@ CGFloat _screenHeightInPixels;
 
 - (void)handleNetworkConnectivityChanged:(NSNotification *) notification{
     NSLog(@"%@",notification.object);
-    NSMutableDictionary *info = [NSMutableDictionary dictionaryWithDictionary:notification.userInfo];
-    DLog("handleNetworkConnectivityChanged");
+    NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:notification.userInfo];
+    if ([userInfo objectForKey:@"status"] != nil){
+        if ([[userInfo objectForKey:@"status"] intValue] == 1){
+            applicationIsConnectedToNetwork = YES;
+            DLog("Data Network Connected");
+        }
+        else {
+            applicationIsConnectedToNetwork = NO;
+            DLog("Data Network Disconnected");
+        }
+    }
+    else {
+        applicationIsConnectedToNetwork = NO;
+        DLog("Data Network Disconnected");
+    }
 }
 
 
@@ -3114,13 +3124,13 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
     NSMutableArray *hintPacksProductionID = [self fetchPacksArray:@"paidHintPacksArray.plist"];
     NSEnumerator *hintPacksEnum = [hintPacksProductionID objectEnumerator];
     id dict;
-    NSSet *hintPacksSet = [NSSet set];
+    NSSet *hintPacksProductionIdSet = [NSSet set];
     while (dict = [hintPacksEnum nextObject]){
-        hintPacksSet = [hintPacksSet setByAddingObject:[dict objectForKey:@"production_id"]];
+        hintPacksProductionIdSet = [hintPacksProductionIdSet setByAddingObject:[dict objectForKey:@"production_id"]];
     }
 
-    if ([hintPacksSet count] > 0){
-        SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:hintPacksSet];
+    if ([hintPacksProductionIdSet count] > 0){
+        SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:hintPacksProductionIdSet];
         productsRequest.delegate = self;
         [productsRequest start];
     }
