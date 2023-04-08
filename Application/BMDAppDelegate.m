@@ -111,6 +111,7 @@ CGFloat _screenHeightInPixels;
 @synthesize arrayOfPuzzlePacksInfo;
 @synthesize arrayOfAltIconsInfo;
 
+@synthesize applicationIsConnectedToNetwork;
 
 //
 // Methods to handle app life cycle
@@ -396,7 +397,6 @@ CGFloat _screenHeightInPixels;
 //
 // Handler Methods Go Here
 //
-
 - (void)handleNetworkConnectivityChanged:(NSNotification *) notification{
     NSLog(@"%@",notification.object);
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:notification.userInfo];
@@ -413,6 +413,23 @@ CGFloat _screenHeightInPixels;
     else {
         applicationIsConnectedToNetwork = NO;
         DLog("Data Network Disconnected");
+    }
+    [self updateStoreKitButtonAvailability];
+}
+
+- (void)updateStoreKitButtonAvailability {
+    // Update rc.selectAltIconsButton
+    if (rc != nil){
+        if (rc.selectAltIconsButton != nil){
+            if (applicationIsConnectedToNetwork){
+                rc.selectAltIconsButton.enabled = YES;
+                rc.robotDinerSquareButton.enabled = YES;
+            }
+            else {
+                rc.selectAltIconsButton.enabled = NO;
+                rc.robotDinerSquareButton.enabled = NO;
+            }
+        }
     }
 }
 

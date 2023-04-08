@@ -87,6 +87,11 @@ API_AVAILABLE(ios(13.0))
     UIImageView *logoView;
     UIImageView *puzzleSolvedView;
     //
+    // Buttons related to StoreKit
+    //
+    UIButton *selectAltIconsButton;
+    UIButton *robotDinerSquareButton;
+    //
     // Puzzle Editing Buttons
     //
     UIButton *editPlayButton;
@@ -247,6 +252,9 @@ API_AVAILABLE(ios(13.0))
 @property (nonatomic, retain) UIButton *saveButton;
 @property (nonatomic, retain) UIButton *deleteButton;
 @property (nonatomic, retain) UIButton *duplicateButton;
+
+@property (nonatomic, retain) UIButton *selectAltIconsButton;
+@property (nonatomic, retain) UIButton *robotDinerSquareButton;
 
 @property (nonatomic, retain) NSMutableArray *packButtonsArray;
 @property (nonatomic, retain) NSMutableArray *hintButtonsArray;

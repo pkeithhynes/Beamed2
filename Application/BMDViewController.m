@@ -125,6 +125,9 @@ Implementation of the cross-platform view controller
 @synthesize renderBackgroundON;
 @synthesize renderOverlayON;
 
+@synthesize selectAltIconsButton;
+@synthesize robotDinerSquareButton;
+
 - (void)viewDidLoad
 {
     DLog(">>> BMDViewController.viewDidLoad");
@@ -1830,8 +1833,8 @@ Implementation of the cross-platform view controller
     [homeView addSubview:startPuzzleButtonCheckmark];
     [homeView bringSubviewToFront:startPuzzleButtonCheckmark];
 
-    UIButton *selectAltIconsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIButton *robotDinerSquareButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    selectAltIconsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    robotDinerSquareButton = [UIButton buttonWithType:UIButtonTypeCustom];
     BOOL testPKH = YES;
     if (testPKH){
         //
