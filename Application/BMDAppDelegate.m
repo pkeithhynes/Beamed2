@@ -414,24 +414,24 @@ CGFloat _screenHeightInPixels;
         applicationIsConnectedToNetwork = NO;
         DLog("Data Network Disconnected");
     }
-    [self updateStoreKitButtonAvailability];
+//    [self updateStoreKitButtonAvailability];
 }
 
-- (void)updateStoreKitButtonAvailability {
-    // Update rc.selectAltIconsButton
-    if (rc != nil){
-        if (rc.selectAltIconsButton != nil){
-            if (applicationIsConnectedToNetwork){
-                rc.selectAltIconsButton.enabled = YES;
-                rc.robotDinerSquareButton.enabled = YES;
-            }
-            else {
-                rc.selectAltIconsButton.enabled = NO;
-                rc.robotDinerSquareButton.enabled = NO;
-            }
-        }
-    }
-}
+//- (void)updateStoreKitButtonAvailability {
+//    // Update rc.selectAltIconsButton
+//    if (rc != nil){
+//        if (rc.selectAltIconsButton != nil){
+//            if (applicationIsConnectedToNetwork){
+//                rc.selectAltIconsButton.enabled = YES;
+//                rc.robotDinerSquareButton.enabled = YES;
+//            }
+//            else {
+//                rc.selectAltIconsButton.enabled = NO;
+//                rc.robotDinerSquareButton.enabled = NO;
+//            }
+//        }
+//    }
+//}
 
 
 //

@@ -46,6 +46,13 @@
      name: @"com.beamed.network.status-change"
      object: nil];
     
+    // Detect when app gains focus so you can refresh Alt Icons
+    [[NSNotificationCenter defaultCenter]
+     addObserver: self
+     selector: @selector (handleUIApplicationDidBecomeActiveNotification)
+     name: UIApplicationDidBecomeActiveNotification
+     object: nil];
+
     // Register to receive notifications regarding Alt Icon purchases
     [[NSNotificationCenter defaultCenter]
      addObserver: self
@@ -281,25 +288,6 @@
 // Utility Methods
 //
 
-- (void)handleNetworkConnectivityChanged:(NSNotification *) notification{
-    NSLog(@"%@",notification.object);
-    NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:notification.userInfo];
-    if ([userInfo objectForKey:@"status"] != nil){
-        if ([[userInfo objectForKey:@"status"] intValue] == 1){
-            [self updateEveryUnpurchasedAltIconButton:YES];
-            DLog("Data Network Connected");
-        }
-        else {
-            [self updateEveryUnpurchasedAltIconButton:NO];
-            DLog("Data Network Disconnected");
-        }
-    }
-    else {
-        [self updateEveryUnpurchasedAltIconButton:NO];
-        DLog("Data Network Disconnected");
-    }
-}
-
 - (void)removeEveryAltIconButton {
     if (alternateIconsButtonsArray &&
         [alternateIconsButtonsArray count] > 0){
@@ -389,6 +377,11 @@
         
         // The golden crown is used as the foreground image when the icon has been purchased
         UILabel *priceLabel = nil;
+        CGRect priceFrame = CGRectMake(0,
+                                       0,
+                                       iconGridSizeInPoints/2.0,
+                                       iconGridSizeInPoints/3.5);
+        priceLabel = [[UILabel alloc] initWithFrame:priceFrame];
         if ([appd queryPurchasedAltIcon:idx]){
             UIImage *iconImage;
             if ([appd fetchCurrentAltIconNumber] == idx){
@@ -398,14 +391,9 @@
                 iconImage = [UIImage imageNamed:@"goldenCrownLayer.png"];
             }
             [iconButton setImage:iconImage forState:UIControlStateNormal];
+            priceLabel.hidden = YES;
         }
         else {
-            // Create a price label
-            CGRect priceFrame = CGRectMake(0,
-                                           0,
-                                           iconGridSizeInPoints/2.0,
-                                           iconGridSizeInPoints/3.5);
-            priceLabel = [[UILabel alloc] initWithFrame:priceFrame];
             priceLabel.backgroundColor = [UIColor blackColor];
             priceLabel.layer.masksToBounds = YES;
             priceLabel.layer.cornerRadius = 5;
@@ -426,6 +414,16 @@
             [alternateIconsPriceLabelArray addObject:priceLabel];
         }
         [alternateIconsButtonsArray addObject:iconButton];
+
+        // Handle Data Network Connectivity
+        if (appd.applicationIsConnectedToNetwork){
+            iconButton.enabled = YES;
+            priceLabel.enabled = YES;
+        }
+        else {
+            iconButton.enabled = NO;
+            priceLabel.enabled = NO;
+        }
         
         [iconsView addSubview:iconButton];
         [iconsView bringSubviewToFront:iconButton];
@@ -465,6 +463,33 @@
 //
 // Handler Methods Go Here
 //
+- (void)handleUIApplicationDidBecomeActiveNotification {
+    if (appd.applicationIsConnectedToNetwork){
+        [self updateEveryUnpurchasedAltIconButton:YES];
+    }
+    else {
+        [self updateEveryUnpurchasedAltIconButton:NO];
+    }
+}
+
+- (void)handleNetworkConnectivityChanged:(NSNotification *) notification{
+    NSLog(@"%@",notification.object);
+    NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:notification.userInfo];
+    if ([userInfo objectForKey:@"status"] != nil){
+        if ([[userInfo objectForKey:@"status"] intValue] == 1){
+            [self updateEveryUnpurchasedAltIconButton:YES];
+            DLog("Data Network Connected");
+        }
+        else {
+            [self updateEveryUnpurchasedAltIconButton:NO];
+            DLog("Data Network Disconnected");
+        }
+    }
+    else {
+        [self updateEveryUnpurchasedAltIconButton:NO];
+        DLog("Data Network Disconnected");
+    }
+}
 
 - (void)handleAltIconPurchased:(NSNotification *) notification{
     NSLog(@"%@",notification.object);
