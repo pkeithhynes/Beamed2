@@ -40,6 +40,12 @@
     rc = (BMDViewController*)[[(BMDAppDelegate *)[[UIApplication sharedApplication]delegate] window] rootViewController];
     appd = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
     
+    [[NSNotificationCenter defaultCenter]
+     addObserver: self
+     selector: @selector (handleNetworkConnectivityChanged:)
+     name: @"com.beamed.network.status-change"
+     object: nil];
+    
     // Register to receive notifications regarding Alt Icon purchases
     [[NSNotificationCenter defaultCenter]
      addObserver: self
@@ -275,6 +281,25 @@
 // Utility Methods
 //
 
+- (void)handleNetworkConnectivityChanged:(NSNotification *) notification{
+    NSLog(@"%@",notification.object);
+    NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:notification.userInfo];
+    if ([userInfo objectForKey:@"status"] != nil){
+        if ([[userInfo objectForKey:@"status"] intValue] == 1){
+            [self updateEveryUnpurchasedAltIconButton:YES];
+            DLog("Data Network Connected");
+        }
+        else {
+            [self updateEveryUnpurchasedAltIconButton:NO];
+            DLog("Data Network Disconnected");
+        }
+    }
+    else {
+        [self updateEveryUnpurchasedAltIconButton:NO];
+        DLog("Data Network Disconnected");
+    }
+}
+
 - (void)removeEveryAltIconButton {
     if (alternateIconsButtonsArray &&
         [alternateIconsButtonsArray count] > 0){
@@ -293,6 +318,35 @@
             priceLabel = nil;
         }
         [alternateIconsPriceLabelArray removeAllObjects];
+    }
+}
+
+- (void)updateEveryUnpurchasedAltIconButton:(BOOL)enable {
+    if (alternateIconsButtonsArray &&
+        [alternateIconsButtonsArray count] > 0){
+        
+        unsigned int arrayLen = (unsigned int)[alternateIconsArray count];
+        NSEnumerator *arrayEnum = [alternateIconsButtonsArray objectEnumerator];
+        UIButton *iconButton;
+        int idx = 0;
+        while (iconButton = [arrayEnum nextObject]){
+            if (![appd queryPurchasedAltIcon:idx] &&
+                idx != arrayLen-1){
+                iconButton.enabled = enable;
+            }
+            idx++;
+        }
+        
+        arrayEnum = [alternateIconsPriceLabelArray objectEnumerator];
+        UILabel *priceLabel;
+        idx = 0;
+        while (priceLabel = [arrayEnum nextObject]){
+            if (![appd queryPurchasedAltIcon:idx] &&
+                idx != arrayLen-1){
+                priceLabel.enabled = enable;
+            }
+            idx++;
+        }
     }
 }
 
@@ -407,7 +461,6 @@
     [iconsView bringSubviewToFront:iconButton];
     
 }
-
 
 //
 // Handler Methods Go Here
