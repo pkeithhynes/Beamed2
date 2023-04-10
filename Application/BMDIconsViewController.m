@@ -65,8 +65,15 @@
         [appd.arrayOfAltIconsInfo count] > 0){
         alternateIconsArray = [NSMutableArray arrayWithArray:[NSArray arrayWithArray:appd.arrayOfAltIconsInfo]];
     }
+    else if (!appd.storeKitDataHasBeenReceived && appd.productsRequestEnum == REQ_NIL){
+        appd.arrayOfPuzzlePacksInfo = nil;
+        [appd requestPuzzlePacksInfo];
+        alternateIconsArray = [NSMutableArray arrayWithCapacity:1];
+        alternateIconsArray = [self fetchPurchasedAlternateIconsArray:alternateIconsArray];
+    }
     else {
-        alternateIconsArray = [self fetchAlternateIconsArray:alternateIconsArray];
+        alternateIconsArray = [NSMutableArray arrayWithCapacity:1];
+        alternateIconsArray = [self fetchPurchasedAlternateIconsArray:alternateIconsArray];
     }
 
     // Uncomment to test Alt Icon layout
@@ -577,6 +584,23 @@
                                  width,
                                  height);
     return imageView;
+}
+
+- (NSMutableArray *)fetchPurchasedAlternateIconsArray:(NSMutableArray *)alternateIconsArray {
+    NSMutableArray *alternateIconsArrayFromPlist = [NSMutableArray arrayWithCapacity:1];
+    alternateIconsArrayFromPlist = [self fetchAlternateIconsArray:alternateIconsArrayFromPlist];
+    NSEnumerator *arrayEnum = [alternateIconsArrayFromPlist objectEnumerator];
+    NSMutableDictionary *dict;
+    unsigned int idx = 0;
+    unsigned int arrayLen = (unsigned int)[alternateIconsArrayFromPlist count];
+    while (dict = [arrayEnum nextObject]){
+        if ([appd queryPurchasedAltIcon:idx] ||
+            idx == arrayLen-1){
+            [alternateIconsArray addObject:dict];
+        }
+        idx++;
+    }
+    return alternateIconsArray;
 }
 
 - (NSMutableArray *)fetchAlternateIconsArray:(NSMutableArray *)alternateIconsArray {

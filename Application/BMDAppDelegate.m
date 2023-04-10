@@ -112,6 +112,7 @@ CGFloat _screenHeightInPixels;
 @synthesize arrayOfAltIconsInfo;
 
 @synthesize applicationIsConnectedToNetwork;
+@synthesize storeKitDataHasBeenReceived;
 
 //
 // Methods to handle app life cycle
@@ -126,6 +127,7 @@ CGFloat _screenHeightInPixels;
     // - Begin monitoring the Network and sending Notifications when changes in connectivity occur
     // - Register to receive notifications regarding changes in connectivity
     applicationIsConnectedToNetwork = NO;
+    storeKitDataHasBeenReceived = NO;
     [self startNetworkMonitoring];
     [[NSNotificationCenter defaultCenter]
      addObserver: self
@@ -142,14 +144,6 @@ CGFloat _screenHeightInPixels;
     // Default setting is that a purchase is not requested
     productsRequestEnum = REQ_NIL;
     
-    //
-    // Request Current In-App Purchase Data from StoreKit
-    //
-    // Paid Puzzle Packs - completion handler calls requestHintPacksInfo
-    // Paid Hint Packs - completion handler calls requestAltIconsInfo
-    arrayOfPuzzlePacksInfo = nil;
-    [self requestPuzzlePacksInfo];
-
     //
     // Initialize Vungle Ad Platform
     //
@@ -219,6 +213,16 @@ CGFloat _screenHeightInPixels;
 
     rootViewControllerHasLoaded = NO;
     
+    //
+    // Request Current In-App Purchase Data from StoreKit
+    //
+    // Paid Puzzle Packs - completion handler calls requestHintPacksInfo
+    // Paid Hint Packs - completion handler calls requestAltIconsInfo
+    if (applicationIsConnectedToNetwork == YES){
+        arrayOfPuzzlePacksInfo = nil;
+        [self requestPuzzlePacksInfo];
+    }
+
     // If there is no local record of Pack purchases then query StoreKit to find out
     // what Packs have been purchased
 //    if (![self existPurchasedPacks]){
@@ -404,6 +408,11 @@ CGFloat _screenHeightInPixels;
         if ([[userInfo objectForKey:@"status"] intValue] == 1){
             applicationIsConnectedToNetwork = YES;
             DLog("Data Network Connected");
+            // If the StoreKit data has not been received yet request it now.
+            if (!storeKitDataHasBeenReceived && productsRequestEnum == REQ_NIL){
+                arrayOfPuzzlePacksInfo = nil;
+                [self requestPuzzlePacksInfo];
+            }
         }
         else {
             applicationIsConnectedToNetwork = NO;
@@ -3247,7 +3256,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                     [arrayOfPuzzlePacksInfo addObject:outputPuzzlePackDict];
                     idx++;
                 }
-                productsRequestEnum = REQ_NIL;
+//                productsRequestEnum = REQ_NIL;
                 arrayOfPaidHintPacksInfo = nil;
                 [self requestHintPacksInfo];
                 break;
@@ -3279,7 +3288,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                     [arrayOfPaidHintPacksInfo addObject:currentProductInfoDict];
                     idx++;
                 }
-                productsRequestEnum = REQ_NIL;
+//                productsRequestEnum = REQ_NIL;
                 arrayOfAltIconsInfo = nil;
                 [self requestAltIconsInfo];
                 break;
@@ -3326,6 +3335,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                     [currentProductInfoDict setObject:[dict objectForKey:@"iconImage"] forKey:@"iconImage"];
                     [arrayOfAltIconsInfo addObject:currentProductInfoDict];
                 }
+                storeKitDataHasBeenReceived = YES;
                 productsRequestEnum = REQ_NIL;
                 break;
             }

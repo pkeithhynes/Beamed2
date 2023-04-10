@@ -135,11 +135,12 @@ API_AVAILABLE(ios(13.0))
     // NO means a StoreKit SKProductsRequest is issued for information only - no immediate purchase
     BOOL        storeKitPurchaseRequested;
     enum eSKProductsRequest productsRequestEnum;
+    BOOL applicationIsConnectedToNetwork;
+    BOOL storeKitDataHasBeenReceived;
     NSMutableArray *arrayOfPaidHintPacksInfo;
     NSMutableArray *arrayOfPuzzlePacksInfo;
     NSMutableArray *arrayOfAltIconsInfo;
     
-    BOOL applicationIsConnectedToNetwork;
 }
 
 @property (strong, nonatomic) Optics * _Nonnull optics;
@@ -149,6 +150,7 @@ API_AVAILABLE(ios(13.0))
 @property (nonatomic, strong) nw_path_monitor_t _Nonnull monitor;
 @property (nonatomic, strong) dispatch_queue_t _Nonnull monitorQueue;
 @property (nonatomic) BOOL applicationIsConnectedToNetwork;
+@property (nonatomic) BOOL storeKitDataHasBeenReceived;
 
 @property (strong, nonatomic) UIWindow * _Nonnull window;
 @property (strong, nonatomic) MTKView * _Nonnull view;
