@@ -423,7 +423,6 @@ CGFloat _screenHeightInPixels;
         applicationIsConnectedToNetwork = NO;
         DLog("Data Network Disconnected");
     }
-//    [self updateStoreKitButtonAvailability];
 }
 
 //- (void)updateStoreKitButtonAvailability {
@@ -3336,6 +3335,11 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                     [arrayOfAltIconsInfo addObject:currentProductInfoDict];
                 }
                 storeKitDataHasBeenReceived = YES;
+                // Notify everyone that the StoreKit data has been received
+                [[NSNotificationCenter defaultCenter]
+                 postNotificationName:@"storeKitDataReceived"
+                 object:nil
+                 userInfo:nil];
                 productsRequestEnum = REQ_NIL;
                 break;
             }

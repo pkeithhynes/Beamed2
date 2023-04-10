@@ -42,6 +42,12 @@
     
     [[NSNotificationCenter defaultCenter]
      addObserver: self
+     selector: @selector (handleStoreKitDataReceived:)
+     name: @"storeKitDataReceived"
+     object: nil];
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver: self
      selector: @selector (handleNetworkConnectivityChanged:)
      name: @"com.beamed.network.status-change"
      object: nil];
@@ -65,7 +71,9 @@
         [appd.arrayOfAltIconsInfo count] > 0){
         alternateIconsArray = [NSMutableArray arrayWithArray:[NSArray arrayWithArray:appd.arrayOfAltIconsInfo]];
     }
-    else if (!appd.storeKitDataHasBeenReceived && appd.productsRequestEnum == REQ_NIL){
+    else if (appd.applicationIsConnectedToNetwork &&
+             !appd.storeKitDataHasBeenReceived &&
+             appd.productsRequestEnum == REQ_NIL){
         appd.arrayOfPuzzlePacksInfo = nil;
         [appd requestPuzzlePacksInfo];
         alternateIconsArray = [NSMutableArray arrayWithCapacity:1];
@@ -476,6 +484,19 @@
     }
     else {
         [self updateEveryUnpurchasedAltIconButton:NO];
+    }
+}
+
+- (void)handleStoreKitDataReceived:(NSNotification *) notification{
+    // Use live StoreKit data if it is available
+    if (appd.arrayOfAltIconsInfo != nil &&
+        [appd.arrayOfAltIconsInfo count] > 0){
+        alternateIconsArray = [NSMutableArray arrayWithArray:[NSArray arrayWithArray:appd.arrayOfAltIconsInfo]];
+        [self buildAltIconButtons];
+        DLog("handleStoreKitDataReceived: success in displaying alt icons");
+    }
+    else {
+        DLog("handleStoreKitDataReceived: failure in displaying alt icons");
     }
 }
 
