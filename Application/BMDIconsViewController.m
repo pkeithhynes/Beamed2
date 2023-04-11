@@ -83,8 +83,13 @@
     // else use the Alt Icon plist from the app bundle
     else {
         alternateIconsArray = [NSMutableArray arrayWithCapacity:1];
-        alternateIconsArray = [self fetchPurchasedAlternateIconsArray:alternateIconsArray];
+        alternateIconsArray = [self fetchAlternateIconsArray:alternateIconsArray];
     }
+    
+    // Debug layout - show all icons in bundle plist
+//    alternateIconsArray = [NSMutableArray arrayWithCapacity:1];
+//    alternateIconsArray = [self fetchAlternateIconsArray:alternateIconsArray];
+
 
     if (alternateIconsArray != nil){
                 
@@ -255,7 +260,7 @@
                                             w,
                                             2.5*h);
         UILabel *iconsPageLabel1 = [[UILabel alloc] initWithFrame:iconsLabelFrame];
-        iconsPageLabel1.text = @"Buy the dev team a snack and choose a fancy new App icon for yourself!";
+        iconsPageLabel1.text = @"Buy us a snack and choose a fancy new App icon for yourself!";
         iconsPageLabel1.numberOfLines = 0;
         iconsPageLabel1.layer.borderColor = [UIColor clearColor].CGColor;
         iconsPageLabel1.textColor = [UIColor cyanColor];
@@ -273,7 +278,7 @@
         iconsLabelFrame = CGRectMake(0.5*rc.rootView.bounds.size.width - w/2.0,
                                      posY + 2.0*h,
                                      w,
-                                     4.0*h);
+                                     1.0*h);
         UILabel *iconsPageLabel2 = [[UILabel alloc] initWithFrame:iconsLabelFrame];
         iconsPageLabel2.text = @"New icons every week!\n";
         iconsPageLabel2.numberOfLines = 0;
