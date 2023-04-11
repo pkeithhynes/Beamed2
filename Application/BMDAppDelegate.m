@@ -387,7 +387,10 @@ CGFloat _screenHeightInPixels;
                                  };
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [NSNotificationCenter.defaultCenter postNotificationName:@"com.beamed.network.status-change" object:nil userInfo:userInfo];
+            [NSNotificationCenter.defaultCenter
+             postNotificationName:@"com.beamed.network.status-change"
+             object:nil
+             userInfo:userInfo];
         });
     });
     nw_path_monitor_start(self.monitor);
@@ -2927,11 +2930,15 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                 [self saveCurrentAltIconNumber:idx];
                 [self savePurchasedAltIcon:idx];
                 NSMutableDictionary *notificationDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
-                [notificationDictionary setObject:[NSNumber numberWithInt:idx] forKey:@"idx"];
-                [[NSNotificationCenter defaultCenter]
-                 postNotificationName:@"altIconPurchased"
-                 object:nil
-                 userInfo:@{@"Status": notificationDictionary}];
+                [notificationDictionary setObject:[NSNumber
+                                                   numberWithInt:idx] forKey:@"idx"];
+                dispatch_async(dispatch_get_main_queue(),^{
+                    [[NSNotificationCenter defaultCenter]
+                     postNotificationName:@"altIconPurchased"
+                     object:nil
+                     userInfo:@{@"Status": notificationDictionary}];
+                });
+
                 DLog("Success: icon changed");
             }
             else {
@@ -3336,10 +3343,12 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                 }
                 storeKitDataHasBeenReceived = YES;
                 // Notify everyone that the StoreKit data has been received
-                [[NSNotificationCenter defaultCenter]
-                 postNotificationName:@"storeKitDataReceived"
-                 object:nil
-                 userInfo:nil];
+                dispatch_async(dispatch_get_main_queue(),^{
+                    [[NSNotificationCenter defaultCenter]
+                     postNotificationName:@"storeKitDataReceived"
+                     object:nil
+                     userInfo:nil];
+                });
                 productsRequestEnum = REQ_NIL;
                 break;
             }
