@@ -25,7 +25,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, retain) NSMutableArray *alternateIconsPriceLabelArray;
 
 
-- (void)completeAltIconPurchase:(unsigned int)idx;
 
 @end
 

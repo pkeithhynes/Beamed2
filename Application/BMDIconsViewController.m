@@ -40,6 +40,9 @@
     rc = (BMDViewController*)[[(BMDAppDelegate *)[[UIApplication sharedApplication]delegate] window] rootViewController];
     appd = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
     
+    // No banner ads in this UIViewController
+    [appd vungleCloseBannerAd];
+    
     [[NSNotificationCenter defaultCenter]
      addObserver: self
      selector: @selector (handleStoreKitDataReceived:)
@@ -217,8 +220,8 @@
             }
             case ASPECT_13_6: {
                 // iPhone 14
-                titleLabelSize = 22;
-                optionLabelSize = 22;
+                titleLabelSize = 20;
+                optionLabelSize = 20;
                 backButtonIconSizeInPoints = 40;
                 buttonWidth = 0.8*rc.rootView.bounds.size.width;
                 buttonHeight = buttonWidth/8.0;
@@ -260,7 +263,7 @@
                                             w,
                                             2.5*h);
         UILabel *iconsPageLabel1 = [[UILabel alloc] initWithFrame:iconsLabelFrame];
-        iconsPageLabel1.text = @"Buy us a snack and choose a fancy new App icon for yourself!";
+        iconsPageLabel1.text = @"Buy us a snack and choose a new App Icon for yourself!";
         iconsPageLabel1.numberOfLines = 0;
         iconsPageLabel1.layer.borderColor = [UIColor clearColor].CGColor;
         iconsPageLabel1.textColor = [UIColor cyanColor];
