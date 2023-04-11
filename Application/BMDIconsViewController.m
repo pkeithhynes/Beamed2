@@ -71,6 +71,7 @@
         [appd.arrayOfAltIconsInfo count] > 0){
         alternateIconsArray = [NSMutableArray arrayWithArray:[NSArray arrayWithArray:appd.arrayOfAltIconsInfo]];
     }
+    // else try to load it from StoreKit if Data Network is connected
     else if (appd.applicationIsConnectedToNetwork &&
              !appd.storeKitDataHasBeenReceived &&
              appd.productsRequestEnum == REQ_NIL){
@@ -79,18 +80,14 @@
         alternateIconsArray = [NSMutableArray arrayWithCapacity:1];
         alternateIconsArray = [self fetchPurchasedAlternateIconsArray:alternateIconsArray];
     }
+    // else use the Alt Icon plist from the app bundle
     else {
         alternateIconsArray = [NSMutableArray arrayWithCapacity:1];
         alternateIconsArray = [self fetchPurchasedAlternateIconsArray:alternateIconsArray];
     }
 
-    // Uncomment to test Alt Icon layout
-//    alternateIconsArray = [self fetchAlternateIconsArray:alternateIconsArray];
-
-    
     if (alternateIconsArray != nil){
-        
-        
+                
         iconsView = [[UIView alloc] initWithFrame:rc.rootView.bounds];
         self.view = iconsView;
         iconsView.backgroundColor = [UIColor blackColor];
@@ -99,7 +96,6 @@
         
         // Set background graphic image
         NSString *filePath = [[NSBundle mainBundle] pathForResource:@"coffeeRobotNeon" ofType:@"png"];
-//        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"coffeePinkNeon" ofType:@"png"];
         UIImage *sourceImage = [UIImage imageWithContentsOfFile:filePath];
         CGFloat imageWidth = (CGFloat)sourceImage.size.width;
         CGFloat imageHeight = (CGFloat)sourceImage.size.height;
@@ -137,7 +133,6 @@
         CGFloat backButtonIconSizeInPoints = 60;
         CGFloat switchCx;
         CGFloat w, h, backButtonY;
-//        unsigned int iconSizeInPoints;
         switch (rc.displayAspectRatio) {
             case ASPECT_4_3:{
                 // iPad (9th generation)
@@ -155,7 +150,6 @@
                 nrows = 5;
                 ncols = 4;
                 iconGridSizeInPoints = 0.8*rc.rootView.bounds.size.width/nrows;
-//                iconSizeInPoints = 0.8*iconGridSizeInPoints;
                 iconsYoffset = 2.5*h;
                 break;
             }
@@ -175,7 +169,6 @@
                 nrows = 5;
                 ncols = 4;
                 iconGridSizeInPoints = 0.8*rc.rootView.bounds.size.width/nrows;
-//                iconSizeInPoints = 0.8*iconGridSizeInPoints;
                 iconsYoffset = 2.5*h;
                 break;
             }
@@ -195,7 +188,6 @@
                 nrows = 5;
                 ncols = 4;
                 iconGridSizeInPoints = 0.8*rc.rootView.bounds.size.width/nrows;
-//                iconSizeInPoints = 0.8*iconGridSizeInPoints;
                 iconsYoffset = 2.5*h;
                 break;
             }
@@ -215,7 +207,6 @@
                 nrows = 5;
                 ncols = 4;
                 iconGridSizeInPoints = 0.8*rc.rootView.bounds.size.width/ncols;
-//                iconSizeInPoints = 0.8*iconGridSizeInPoints;
                 iconsYoffset = 3.5*h;
                 break;
             }
@@ -235,7 +226,6 @@
                 nrows = 5;
                 ncols = 4;
                 iconGridSizeInPoints = 0.8*rc.rootView.bounds.size.width/ncols;
-//                iconSizeInPoints = 0.8*iconGridSizeInPoints;
                 iconsYoffset = 3.0*h;
                 break;
             }
@@ -430,22 +420,19 @@
         }
         [alternateIconsButtonsArray addObject:iconButton];
 
-        // Handle Data Network Connectivity
-        if (appd.applicationIsConnectedToNetwork){
-            iconButton.enabled = YES;
-            priceLabel.enabled = YES;
-        }
-        else {
-            iconButton.enabled = NO;
-            priceLabel.enabled = NO;
-        }
-        
         [iconsView addSubview:iconButton];
         [iconsView bringSubviewToFront:iconButton];
     }
     // The element of alternateIconsArray at position arrayLen-1 is the default App Icon
     posX = rc.rootView.bounds.size.width/2.0 - iconGridSizeInPoints/2.0;
-    posY = posY + iconGridSizeInPoints;
+    // If the array contains more than just the default icon
+    if (arrayLen > 1){
+        posY = posY + iconGridSizeInPoints;
+    }
+    // If only the default icon is in the array adjust posY accordingly
+    else {
+        posY = iconGridSizeInPoints + settingsLabelY + iconsYoffset;
+    }
     UIButton *iconButton = [UIButton buttonWithType:UIButtonTypeCustom];
     CGRect iconRect = CGRectMake(posX,
                                  posY,
