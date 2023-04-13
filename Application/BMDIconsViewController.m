@@ -279,11 +279,11 @@
         
         // Label 2
         iconsLabelFrame = CGRectMake(0.5*rc.rootView.bounds.size.width - w/2.0,
-                                     posY + 2.0*h,
+                                     posY + 2.5*h,
                                      w,
                                      1.0*h);
         UILabel *iconsPageLabel2 = [[UILabel alloc] initWithFrame:iconsLabelFrame];
-        iconsPageLabel2.text = @"New icons every week!";
+        iconsPageLabel2.text = @"New icons released every week!";
         iconsPageLabel2.numberOfLines = 0;
         iconsPageLabel2.layer.borderColor = [UIColor clearColor].CGColor;
         iconsPageLabel2.textColor = [UIColor cyanColor];
