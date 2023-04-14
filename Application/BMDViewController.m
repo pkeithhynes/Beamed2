@@ -1151,7 +1151,7 @@ Implementation of the cross-platform view controller
         // Update moreHintPacksButton to show how many hints are left
         id numberOfHintsRemainingObject = [appd getObjectFromDefaults:@"numberOfHintsRemaining"];
         NSMutableAttributedString *hintTitle1, *hintTitle2;
-        NSString *hintTitle = [NSString stringWithFormat:@"More Hints"];
+        NSString *hintTitle = [NSString stringWithFormat:@"Hints"];
         hintTitle1 = [[NSMutableAttributedString alloc] initWithString:hintTitle];
 
         if (numberOfHintsRemainingObject == nil){
@@ -1835,92 +1835,92 @@ Implementation of the cross-platform view controller
 
     selectAltIconsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     robotDinerSquareButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    BOOL testPKH = YES;
-    if (testPKH){
-        //
-        // Add "Get Icons at the Robot Diner!" button to homeView
-        //
-        switch (displayAspectRatio) {
-            case ASPECT_4_3:{
-                // iPad (9th generation)
-                buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
-                buttonHeight = buttonWidth/8.0;
-                buttonCy = buttonCy + 2.25*buttonHeight;
-                [selectAltIconsButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
-                break;
-            }
-            case ASPECT_10_7:{
-                // iPad Air (5th generation)
-                buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
-                buttonHeight = buttonWidth/8.0;
-                buttonCy = buttonCy + 2.25*buttonHeight;
-                [selectAltIconsButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
-                break;
-            }
-            case ASPECT_3_2: {
-                // iPad Mini (6th generation)
-                buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
-                buttonHeight = buttonWidth/8.0;
-                buttonCy = buttonCy + 2.25*buttonHeight;
-                [selectAltIconsButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
-                break;
-            }
-            case ASPECT_16_9: {
-                // iPhone 8
-                buttonWidth = 0.8*screenWidthInPixels/contentScaleFactor;
-                buttonHeight = buttonWidth/10.0;
-                buttonCy = buttonCy + 2.75*buttonHeight;
-                [selectAltIconsButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:16]];
-                break;
-            }
-            case ASPECT_13_6: {
-                // iPhone 14
-                buttonWidth = 0.80*screenWidthInPixels/contentScaleFactor;
-                buttonHeight = buttonWidth/8.0;
-                buttonCy = buttonCy + 2.50*buttonHeight;
-                [selectAltIconsButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:16]];
-                break;
-            }
+    //
+    // Add "Get Icons at the Robot Diner!" button to homeView
+    //
+    switch (displayAspectRatio) {
+        case ASPECT_4_3:{
+            // iPad (9th generation)
+            buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
+            buttonHeight = buttonWidth/8.0;
+            buttonCy = buttonCy + 2.25*buttonHeight;
+            [selectAltIconsButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
+            break;
         }
-        [selectAltIconsButton setBackgroundImage:btnImage forState:UIControlStateNormal];
-        [selectAltIconsButton setBackgroundImage:btnSelectedImage forState:UIControlStateHighlighted];
-        buttonRect = CGRectMake(buttonCx-buttonWidth/2.0,
-                                buttonCy,
-                                buttonWidth,
-                                buttonHeight);
-        selectAltIconsButton.frame = buttonRect;
-        [selectAltIconsButton setTitle:@"Icon specials at the Robot Diner!" forState:UIControlStateNormal];
-        [selectAltIconsButton addTarget:self action:@selector(selectAltIconsButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-        [selectAltIconsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        selectAltIconsButton.showsTouchWhenHighlighted = YES;
-        [homeView addSubview:selectAltIconsButton];
-        [homeView bringSubviewToFront:selectAltIconsButton];
-        
-        // Add robotDinerSquareButton
-        UIImage *robotDinerButtonImage = [UIImage imageNamed:@"RobotDinerSign.png"];
-        [robotDinerSquareButton setBackgroundImage:robotDinerButtonImage forState:UIControlStateNormal];
-        [robotDinerSquareButton setBackgroundImage:robotDinerButtonImage forState:UIControlStateHighlighted];
-        buttonRect = CGRectMake(buttonCx + 0.5*buttonWidth - stickerButtonAdditionalXoffsetPoints,
-                                buttonCy + 0.5*buttonHeight - 0.5*stickerButtonSizePoints,
-                                stickerButtonSizePoints,
-                                stickerButtonSizePoints);
-        robotDinerSquareButton.frame = buttonRect;
-        [robotDinerSquareButton addTarget:self action:@selector(selectAltIconsButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-        robotDinerSquareButton.showsTouchWhenHighlighted = YES;
-        [homeView addSubview:robotDinerSquareButton];
-        [homeView bringSubviewToFront:robotDinerSquareButton];
+        case ASPECT_10_7:{
+            // iPad Air (5th generation)
+            buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
+            buttonHeight = buttonWidth/8.0;
+            buttonCy = buttonCy + 2.25*buttonHeight;
+            [selectAltIconsButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
+            break;
+        }
+        case ASPECT_3_2: {
+            // iPad Mini (6th generation)
+            buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
+            buttonHeight = buttonWidth/8.0;
+            buttonCy = buttonCy + 2.25*buttonHeight;
+            [selectAltIconsButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
+            break;
+        }
+        case ASPECT_16_9: {
+            // iPhone 8
+            buttonWidth = 0.8*screenWidthInPixels/contentScaleFactor;
+            buttonHeight = buttonWidth/10.0;
+            buttonCy = buttonCy + 2.75*buttonHeight;
+            [selectAltIconsButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:16]];
+            break;
+        }
+        case ASPECT_13_6: {
+            // iPhone 14
+            buttonWidth = 0.80*screenWidthInPixels/contentScaleFactor;
+            buttonHeight = buttonWidth/8.0;
+            buttonCy = buttonCy + 2.50*buttonHeight;
+            [selectAltIconsButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:16]];
+            break;
+        }
     }
-    else {
-        //
-        // Add "More Puzzles" button to homeView
-        //
+    [selectAltIconsButton setBackgroundImage:btnImage forState:UIControlStateNormal];
+    [selectAltIconsButton setBackgroundImage:btnSelectedImage forState:UIControlStateHighlighted];
+    buttonRect = CGRectMake(buttonCx-buttonWidth/2.0,
+                            buttonCy,
+                            buttonWidth,
+                            buttonHeight);
+    selectAltIconsButton.frame = buttonRect;
+    [selectAltIconsButton setTitle:@"Icon specials at the Robot Diner!" forState:UIControlStateNormal];
+    [selectAltIconsButton addTarget:self action:@selector(selectAltIconsButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [selectAltIconsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    selectAltIconsButton.showsTouchWhenHighlighted = YES;
+    [homeView addSubview:selectAltIconsButton];
+    [homeView bringSubviewToFront:selectAltIconsButton];
+    
+    // Add robotDinerSquareButton
+    UIImage *robotDinerButtonImage = [UIImage imageNamed:@"RobotDinerSign.png"];
+    [robotDinerSquareButton setBackgroundImage:robotDinerButtonImage forState:UIControlStateNormal];
+    [robotDinerSquareButton setBackgroundImage:robotDinerButtonImage forState:UIControlStateHighlighted];
+    buttonRect = CGRectMake(buttonCx + 0.5*buttonWidth - stickerButtonAdditionalXoffsetPoints,
+                            buttonCy + 0.5*buttonHeight - 0.5*stickerButtonSizePoints,
+                            stickerButtonSizePoints,
+                            stickerButtonSizePoints);
+    robotDinerSquareButton.frame = buttonRect;
+    [robotDinerSquareButton addTarget:self action:@selector(selectAltIconsButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    robotDinerSquareButton.showsTouchWhenHighlighted = YES;
+    [homeView addSubview:robotDinerSquareButton];
+    [homeView bringSubviewToFront:robotDinerSquareButton];
+    
+    
+    //
+    // Add "More Puzzles" button to homeView
+    //
+//    if (NO){
         UIButton *morePuzzlePacksButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        CGFloat oldButtonLeft, oldButtonWidth, newButtonWidth, newButtonCx;
         switch (displayAspectRatio) {
             case ASPECT_4_3:{
                 // iPad (9th generation)
                 buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
                 buttonHeight = buttonWidth/8.0;
-                buttonCy = buttonCy + 2.25*buttonHeight;
+                buttonCy = buttonCy + 1.5*buttonHeight;
                 [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
                 break;
             }
@@ -1957,20 +1957,29 @@ Implementation of the cross-platform view controller
                 break;
             }
         }
+        oldButtonWidth = buttonWidth;
+        newButtonWidth = 0.475*buttonWidth;
+        oldButtonLeft = buttonCx - 0.5*oldButtonWidth;
+        newButtonCx = oldButtonLeft + 0.5*newButtonWidth;
         [morePuzzlePacksButton setBackgroundImage:btnImage forState:UIControlStateNormal];
         [morePuzzlePacksButton setBackgroundImage:btnSelectedImage forState:UIControlStateHighlighted];
-        buttonRect = CGRectMake(buttonCx-buttonWidth/2.0,
+        buttonRect = CGRectMake(newButtonCx-newButtonWidth/2.0,
                                 buttonCy,
-                                buttonWidth,
+                                newButtonWidth,
                                 buttonHeight);
+//        buttonRect = CGRectMake(buttonCx-buttonWidth/2.0,
+//                                buttonCy,
+//                                buttonWidth,
+//                                buttonHeight);
         morePuzzlePacksButton.frame = buttonRect;
-        [morePuzzlePacksButton setTitle:@"More Puzzles" forState:UIControlStateNormal];
+        [morePuzzlePacksButton setTitle:@"Puzzles" forState:UIControlStateNormal];
         [morePuzzlePacksButton addTarget:self action:@selector(morePuzzlePacksButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         [morePuzzlePacksButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         morePuzzlePacksButton.showsTouchWhenHighlighted = YES;
         [homeView addSubview:morePuzzlePacksButton];
         [homeView bringSubviewToFront:morePuzzlePacksButton];
-    }
+//    }
+
     
     //
     // Add "More Hint Packs" button to homeView
@@ -1980,8 +1989,8 @@ Implementation of the cross-platform view controller
         case ASPECT_4_3:{
             // iPad (9th generation)
             buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
-            buttonHeight = buttonWidth/6.0;
-            buttonCy = buttonCy + 1.0*buttonHeight;
+            buttonHeight = buttonWidth/3.0;
+//            buttonCy = buttonCy + 1.0*buttonHeight;
             [moreHintPacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
             break;
         }
@@ -2018,12 +2027,19 @@ Implementation of the cross-platform view controller
             break;
         }
     }
+    CGFloat oldButtonRight;
+    oldButtonRight = buttonCx + 0.5*buttonWidth;
+    newButtonCx = oldButtonRight - 0.5*newButtonWidth;
     [moreHintPacksButton setBackgroundImage:btnImage forState:UIControlStateNormal];
     [moreHintPacksButton setBackgroundImage:btnSelectedImage forState:UIControlStateHighlighted];
-    buttonRect = CGRectMake(buttonCx-buttonWidth/2.0,
+    buttonRect = CGRectMake(newButtonCx-newButtonWidth/2.0,
                             buttonCy,
-                            buttonWidth,
+                            newButtonWidth,
                             buttonHeight);
+//    buttonRect = CGRectMake(buttonCx-buttonWidth/2.0,
+//                            buttonCy,
+//                            buttonWidth,
+//                            buttonHeight);
     moreHintPacksButton.frame = buttonRect;
     moreHintPacksButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     moreHintPacksButton.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -2102,7 +2118,7 @@ Implementation of the cross-platform view controller
     //
     UIButton *scoresButton = [UIButton buttonWithType:UIButtonTypeCustom];
     int scoresButtonFontSize;
-    CGFloat oldButtonLeft, oldButtonWidth, newButtonWidth, newButtonCx;
+//    CGFloat oldButtonLeft, oldButtonWidth, newButtonWidth, newButtonCx;
     oldButtonWidth = buttonWidth;
     newButtonWidth = 0.475*buttonWidth;
     oldButtonLeft = buttonCx - 0.5*oldButtonWidth;
@@ -2174,7 +2190,6 @@ Implementation of the cross-platform view controller
     // This button is narrower and right-aligned with previous buttons
     //
     reviewButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    CGFloat oldButtonRight;
     oldButtonRight = buttonCx + 0.5*buttonWidth;
     switch (displayAspectRatio) {
         case ASPECT_4_3:{
