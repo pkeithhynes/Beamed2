@@ -1912,74 +1912,68 @@ Implementation of the cross-platform view controller
     //
     // Add "More Puzzles" button to homeView
     //
-//    if (NO){
-        UIButton *morePuzzlePacksButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        CGFloat oldButtonLeft, oldButtonWidth, newButtonWidth, newButtonCx;
-        switch (displayAspectRatio) {
-            case ASPECT_4_3:{
-                // iPad (9th generation)
-                buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
-                buttonHeight = buttonWidth/8.0;
-                buttonCy = buttonCy + 1.5*buttonHeight;
-                [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
-                break;
-            }
-            case ASPECT_10_7:{
-                // iPad Air (5th generation)
-                buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
-                buttonHeight = buttonWidth/8.0;
-                buttonCy = buttonCy + 2.25*buttonHeight;
-                [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
-                break;
-            }
-            case ASPECT_3_2: {
-                // iPad Mini (6th generation)
-                buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
-                buttonHeight = buttonWidth/8.0;
-                buttonCy = buttonCy + 2.25*buttonHeight;
-                [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
-                break;
-            }
-            case ASPECT_16_9: {
-                // iPhone 8
-                buttonWidth = 0.8*screenWidthInPixels/contentScaleFactor;
-                buttonHeight = buttonWidth/10.0;
-                buttonCy = buttonCy + 2.75*buttonHeight;
-                [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:16]];
-                break;
-            }
-            case ASPECT_13_6: {
-                // iPhone 14
-                buttonWidth = 0.80*screenWidthInPixels/contentScaleFactor;
-                buttonHeight = buttonWidth/8.0;
-                buttonCy = buttonCy + 2.50*buttonHeight;
-                [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:16]];
-                break;
-            }
+    UIButton *morePuzzlePacksButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    CGFloat oldButtonLeft, oldButtonWidth, newButtonWidth, newButtonCx;
+    switch (displayAspectRatio) {
+        case ASPECT_4_3:{
+            // iPad (9th generation)
+            buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
+            buttonHeight = buttonWidth/5.0;
+            buttonCy = buttonCy + 0.8*buttonHeight;
+            [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
+            break;
         }
-        oldButtonWidth = buttonWidth;
-        newButtonWidth = 0.475*buttonWidth;
-        oldButtonLeft = buttonCx - 0.5*oldButtonWidth;
-        newButtonCx = oldButtonLeft + 0.5*newButtonWidth;
-        [morePuzzlePacksButton setBackgroundImage:btnImage forState:UIControlStateNormal];
-        [morePuzzlePacksButton setBackgroundImage:btnSelectedImage forState:UIControlStateHighlighted];
-        buttonRect = CGRectMake(newButtonCx-newButtonWidth/2.0,
-                                buttonCy,
-                                newButtonWidth,
-                                buttonHeight);
-//        buttonRect = CGRectMake(buttonCx-buttonWidth/2.0,
-//                                buttonCy,
-//                                buttonWidth,
-//                                buttonHeight);
-        morePuzzlePacksButton.frame = buttonRect;
-        [morePuzzlePacksButton setTitle:@"Puzzles" forState:UIControlStateNormal];
-        [morePuzzlePacksButton addTarget:self action:@selector(morePuzzlePacksButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-        [morePuzzlePacksButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        morePuzzlePacksButton.showsTouchWhenHighlighted = YES;
-        [homeView addSubview:morePuzzlePacksButton];
-        [homeView bringSubviewToFront:morePuzzlePacksButton];
-//    }
-
+        case ASPECT_10_7:{
+            // iPad Air (5th generation)
+            buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
+            buttonHeight = buttonWidth/8.0;
+            buttonCy = buttonCy + 2.25*buttonHeight;
+            [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
+            break;
+        }
+        case ASPECT_3_2: {
+            // iPad Mini (6th generation)
+            buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
+            buttonHeight = buttonWidth/8.0;
+            buttonCy = buttonCy + 2.25*buttonHeight;
+            [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
+            break;
+        }
+        case ASPECT_16_9: {
+            // iPhone 8
+            buttonWidth = 0.8*screenWidthInPixels/contentScaleFactor;
+            buttonHeight = buttonWidth/10.0;
+            buttonCy = buttonCy + 2.75*buttonHeight;
+            [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:16]];
+            break;
+        }
+        case ASPECT_13_6: {
+            // iPhone 14
+            buttonWidth = 0.80*screenWidthInPixels/contentScaleFactor;
+            buttonHeight = buttonWidth/8.0;
+            buttonCy = buttonCy + 2.50*buttonHeight;
+            [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:16]];
+            break;
+        }
+    }
+    oldButtonWidth = buttonWidth;
+    newButtonWidth = 0.475*buttonWidth;
+    oldButtonLeft = buttonCx - 0.5*oldButtonWidth;
+    newButtonCx = oldButtonLeft + 0.5*newButtonWidth;
+    [morePuzzlePacksButton setBackgroundImage:btnImage forState:UIControlStateNormal];
+    [morePuzzlePacksButton setBackgroundImage:btnSelectedImage forState:UIControlStateHighlighted];
+    buttonRect = CGRectMake(newButtonCx-newButtonWidth/2.0,
+                            buttonCy,
+                            newButtonWidth,
+                            buttonHeight);
+    morePuzzlePacksButton.frame = buttonRect;
+    [morePuzzlePacksButton setTitle:@"Puzzles" forState:UIControlStateNormal];
+    [morePuzzlePacksButton addTarget:self action:@selector(morePuzzlePacksButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [morePuzzlePacksButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    morePuzzlePacksButton.showsTouchWhenHighlighted = YES;
+    [homeView addSubview:morePuzzlePacksButton];
+    [homeView bringSubviewToFront:morePuzzlePacksButton];
+    
     
     //
     // Add "More Hint Packs" button to homeView
@@ -1989,8 +1983,7 @@ Implementation of the cross-platform view controller
         case ASPECT_4_3:{
             // iPad (9th generation)
             buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
-            buttonHeight = buttonWidth/3.0;
-//            buttonCy = buttonCy + 1.0*buttonHeight;
+            buttonHeight = buttonWidth/5.0;
             [moreHintPacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
             break;
         }
@@ -2036,10 +2029,6 @@ Implementation of the cross-platform view controller
                             buttonCy,
                             newButtonWidth,
                             buttonHeight);
-//    buttonRect = CGRectMake(buttonCx-buttonWidth/2.0,
-//                            buttonCy,
-//                            buttonWidth,
-//                            buttonHeight);
     moreHintPacksButton.frame = buttonRect;
     moreHintPacksButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     moreHintPacksButton.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -2059,7 +2048,7 @@ Implementation of the cross-platform view controller
             // iPad (9th generation)
             buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
             buttonHeight = buttonWidth/10.0;
-            buttonCy = buttonCy + 2.0*buttonHeight;
+            buttonCy = buttonCy + 2.4*buttonHeight;
             [howToPlayButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
             break;
         }
