@@ -1843,7 +1843,7 @@ Implementation of the cross-platform view controller
             // iPad (9th generation)
             buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
             buttonHeight = buttonWidth/8.0;
-            buttonCy = buttonCy + 2.25*buttonHeight;
+            buttonCy = buttonCy + 2.15*buttonHeight;
             [selectAltIconsButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
             break;
         }
@@ -1859,7 +1859,7 @@ Implementation of the cross-platform view controller
             // iPad Mini (6th generation)
             buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
             buttonHeight = buttonWidth/8.0;
-            buttonCy = buttonCy + 2.25*buttonHeight;
+            buttonCy = buttonCy + 2.5*buttonHeight;
             [selectAltIconsButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
             break;
         }
@@ -1910,7 +1910,7 @@ Implementation of the cross-platform view controller
     
     
     //
-    // Add "More Puzzles" button to homeView
+    // Add "Puzzles" button to homeView
     //
     UIButton *morePuzzlePacksButton = [UIButton buttonWithType:UIButtonTypeCustom];
     CGFloat oldButtonLeft, oldButtonWidth, newButtonWidth, newButtonCx;
@@ -1919,23 +1919,23 @@ Implementation of the cross-platform view controller
             // iPad (9th generation)
             buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
             buttonHeight = buttonWidth/5.0;
-            buttonCy = buttonCy + 0.8*buttonHeight;
+            buttonCy = buttonCy + 0.725*buttonHeight;
             [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
             break;
         }
         case ASPECT_10_7:{
             // iPad Air (5th generation)
             buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
-            buttonHeight = buttonWidth/8.0;
-            buttonCy = buttonCy + 2.25*buttonHeight;
+            buttonHeight = buttonWidth/5.0;
+            buttonCy = buttonCy + 0.75*buttonHeight;
             [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
             break;
         }
-        case ASPECT_3_2: {
+        case ASPECT_3_2:{
             // iPad Mini (6th generation)
             buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
-            buttonHeight = buttonWidth/8.0;
-            buttonCy = buttonCy + 2.25*buttonHeight;
+            buttonHeight = buttonWidth/5.0;
+            buttonCy = buttonCy + 0.85*buttonHeight;
             [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
             break;
         }
@@ -1976,30 +1976,16 @@ Implementation of the cross-platform view controller
     
     
     //
-    // Add "More Hint Packs" button to homeView
+    // Add "Hints" button to homeView
     //
     moreHintPacksButton = [UIButton buttonWithType:UIButtonTypeCustom];
     switch (displayAspectRatio) {
-        case ASPECT_4_3:{
+        case ASPECT_4_3:
+        case ASPECT_10_7:
+        case ASPECT_3_2:{
             // iPad (9th generation)
             buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
             buttonHeight = buttonWidth/5.0;
-            [moreHintPacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
-            break;
-        }
-        case ASPECT_10_7:{
-            // iPad Air (5th generation)
-            buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
-            buttonHeight = buttonWidth/6.0;
-            buttonCy = buttonCy + 1.0*buttonHeight;
-            [moreHintPacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
-            break;
-        }
-        case ASPECT_3_2: {
-            // iPad Mini (6th generation)
-            buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
-            buttonHeight = buttonWidth/6.0;
-            buttonCy = buttonCy + 1.0*buttonHeight;
             [moreHintPacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
             break;
         }
@@ -2064,7 +2050,7 @@ Implementation of the cross-platform view controller
             // iPad Mini (6th generation)
             buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
             buttonHeight = buttonWidth/10.0;
-            buttonCy = buttonCy + 2.0*buttonHeight;
+            buttonCy = buttonCy + 2.5*buttonHeight;
             [howToPlayButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
             break;
         }
