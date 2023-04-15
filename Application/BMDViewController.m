@@ -1927,7 +1927,7 @@ Implementation of the cross-platform view controller
             // iPad Air (5th generation)
             buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
             buttonHeight = buttonWidth/5.0;
-            buttonCy = buttonCy + 0.75*buttonHeight;
+            buttonCy = buttonCy + 0.80*buttonHeight;
             [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
             break;
         }
@@ -2042,7 +2042,7 @@ Implementation of the cross-platform view controller
             // iPad Air (5th generation)
             buttonWidth = 0.6*screenWidthInPixels/contentScaleFactor;
             buttonHeight = buttonWidth/10.0;
-            buttonCy = buttonCy + 2.0*buttonHeight;
+            buttonCy = buttonCy + 2.4*buttonHeight;
             [howToPlayButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
             break;
         }

@@ -78,7 +78,7 @@
                                     0.9*self.view.frame.size.width,
                                     0.9*self.view.frame.size.height);
     UILabel *filterLabel = [[UILabel alloc] initWithFrame:filterFrame];
-    filterLabel.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.80];
+    filterLabel.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.60];
     filterLabel.layer.masksToBounds = YES;
     filterLabel.layer.cornerRadius = 15;
     [hintsView addSubview:filterLabel];

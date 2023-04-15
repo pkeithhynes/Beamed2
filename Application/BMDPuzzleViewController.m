@@ -119,6 +119,19 @@
     [rc.renderer mtkView:puzzleView drawableSizeWillChange:puzzleView.drawableSize];
     puzzleView.delegate = rc.renderer;
     
+    // Set filter frame to improve icon grid and text contrast
+    CGRect filterFrame = CGRectMake(0.05*self.view.frame.size.width,
+                                    0.05*self.view.frame.size.height,
+                                    0.9*self.view.frame.size.width,
+                                    0.9*self.view.frame.size.height);
+    UILabel *filterLabel = [[UILabel alloc] initWithFrame:filterFrame];
+    filterLabel.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.60];
+    filterLabel.layer.masksToBounds = YES;
+    filterLabel.layer.cornerRadius = 15;
+    [puzzleView addSubview:filterLabel];
+    [puzzleView bringSubviewToFront:filterLabel];
+
+    
     // Load Textures
     [appd initAllTextures:puzzleView metalRenderer:rc.renderer];
     
@@ -646,7 +659,7 @@
             break;
         }
     }
-    
+        
     //
     // puzzleTitleLabel
     //
