@@ -3077,6 +3077,17 @@ extern void playSound(AVAudioPlayer *PLAYER);
     return retVal;
 }
 
+- (BOOL)testWhetherPuzzleIsValid:(NSMutableDictionary *)puzzleCandidate{
+    BOOL retVal = YES;
+    // Reject any puzzle with a Jewel not on the perimeter
+    NSMutableArray *arrayOfAllowableJewelPositions = [NSMutableArray arrayWithCapacity:1];
+    arrayOfAllowableJewelPositions = [self generateArrayOfPeripheralGridPositions:arrayOfAllowableJewelPositions];
+    // Reject any puzzle with a Laser not on the perimeter OR on a corner
+    NSMutableArray *arrayOfAllowableLaserPositions = [NSMutableArray arrayWithCapacity:1];
+    arrayOfAllowableLaserPositions = [self generateArrayOfAllowableGridPositionsForLasers:arrayOfAllowableLaserPositions];
+    return retVal;
+}
+
 - (unsigned int)jewelCount{
     unsigned int jewelCount = 0;
     Tile *thisTile = nil;
@@ -3263,6 +3274,27 @@ extern void playSound(AVAudioPlayer *PLAYER);
                     [allowableGridPosition setObject:[NSNumber numberWithInt:gridPosition.y] forKey:@"y"];
                     [allowableGridPositionArray addObject:allowableGridPosition];
                 }
+            }
+        }
+    }
+    return allowableGridPositionArray;
+}
+
+- (NSMutableArray *)generateArrayOfPeripheralGridPositions:(NSMutableArray *)allowableGridPositionArray {
+    // Initialize in case not empty
+    NSMutableDictionary *allowableGridPosition;
+    allowableGridPositionArray = [NSMutableArray arrayWithCapacity:1];
+    vector_int2 gridPosition;
+    for (gridPosition.x=0; gridPosition.x<masterGrid.sizeX; gridPosition.x++){
+        for (gridPosition.y=0; gridPosition.y<masterGrid.sizeY; gridPosition.y++){
+            if ( (gridPosition.x == 0 ||
+                  gridPosition.x == masterGrid.sizeX-1 ||
+                  gridPosition.y == 0 ||
+                  gridPosition.y == masterGrid.sizeY-1)){
+                allowableGridPosition = [[NSMutableDictionary alloc] initWithCapacity:1];
+                [allowableGridPosition setObject:[NSNumber numberWithInt:gridPosition.x] forKey:@"x"];
+                [allowableGridPosition setObject:[NSNumber numberWithInt:gridPosition.y] forKey:@"y"];
+                [allowableGridPositionArray addObject:allowableGridPosition];
             }
         }
     }
