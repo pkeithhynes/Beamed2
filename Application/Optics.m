@@ -3077,17 +3077,6 @@ extern void playSound(AVAudioPlayer *PLAYER);
     return retVal;
 }
 
-- (BOOL)testWhetherPuzzleIsValid:(NSMutableDictionary *)puzzleCandidate{
-    BOOL retVal = YES;
-    // Reject any puzzle with a Jewel not on the perimeter
-    NSMutableArray *arrayOfAllowableJewelPositions = [NSMutableArray arrayWithCapacity:1];
-    arrayOfAllowableJewelPositions = [self generateArrayOfPeripheralGridPositions:arrayOfAllowableJewelPositions];
-    // Reject any puzzle with a Laser not on the perimeter OR on a corner
-    NSMutableArray *arrayOfAllowableLaserPositions = [NSMutableArray arrayWithCapacity:1];
-    arrayOfAllowableLaserPositions = [self generateArrayOfAllowableGridPositionsForLasers:arrayOfAllowableLaserPositions];
-    return retVal;
-}
-
 - (unsigned int)jewelCount{
     unsigned int jewelCount = 0;
     Tile *thisTile = nil;

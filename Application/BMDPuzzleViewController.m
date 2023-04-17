@@ -142,7 +142,12 @@
         [appd editModeIsEnabled] == NO){
         unsigned int currentPackNumber = [appd fetchCurrentPackNumber];
         puzzle = [appd fetchCurrentPuzzleFromPackGameProgress:currentPackNumber];
+        
+        // Test puzzle for validity here
+        BOOL puzzleIsValid = [self testWhetherPuzzleIsValid:puzzle];
+        
         if (puzzle == nil ||
+            !puzzleIsValid ||
             [appd puzzleIsEmpty:puzzle] == YES){
             // Handle case where no puzzle or an empty puzzle is stored
             // Read puzzle from the main bundle
@@ -2029,6 +2034,76 @@
         }
     }
 }
+
+- (BOOL)testWhetherPuzzleIsValid:(NSMutableDictionary *)puzzleCandidate{
+    BOOL retVal = YES;
+    // Reject any puzzle with a Jewel not on the perimeter
+    NSMutableArray *arrayOfAllowableJewelPositions = [NSMutableArray arrayWithCapacity:1];
+    arrayOfAllowableJewelPositions = [self generateArrayOfPeripheralGridPositions:puzzleCandidate
+                                                       allowableGridPositionArray:arrayOfAllowableJewelPositions];
+    return retVal;
+}
+
+
+
+- (NSMutableArray *)generateArrayOfPeripheralGridPositions:(NSMutableDictionary *)puzzle
+                                allowableGridPositionArray:(NSMutableArray *)allowableGridPositionArray {
+    // Establish puzzle grid size
+    vector_int2 gridSize, masterGridSize;
+    // If puzzle is nil set gridSize to default
+    if (puzzle == nil || [puzzle count] == 0){
+        gridSize.x = kDefaultGridStartingSizeX;
+        gridSize.y = kDefaultGridStartingSizeY;
+    }
+    else {
+        // Grid Configuration may be defined in puzzleDictionary
+        // BOTH gridSizeX and gridSizeY must be defined
+        if ([puzzle objectForKey:@"gridSizeX"] && [puzzle objectForKey:@"gridSizeY"]){
+            gridSize.x = [[puzzle objectForKey:@"gridSizeX"] intValue];
+            gridSize.y = [[puzzle objectForKey:@"gridSizeY"] intValue];
+        }
+        else {
+            gridSize.x = kDefaultGridStartingSizeX;
+            gridSize.y = kDefaultGridStartingSizeY;
+        }
+    }
+    // Enforce acceptable range of values for grid size
+    if (gridSize.x < kDefaultGridMinSizeX){
+        gridSize.x = kDefaultGridMinSizeX;
+    }
+    if (gridSize.x > kDefaultGridMaxSizeX){
+        gridSize.x = kDefaultGridMaxSizeX;
+    }
+    if (gridSize.y < kDefaultGridMinSizeY){
+        gridSize.y = kDefaultGridMinSizeY;
+    }
+    if (gridSize.y > kDefaultGridMaxSizeY){
+        gridSize.y = kDefaultGridMaxSizeY;
+    }
+    masterGridSize.x = gridSize.x + 2;
+    masterGridSize.y = gridSize.y + 2;
+
+    // Initialize in case not empty
+    NSMutableDictionary *allowableGridPosition;
+    allowableGridPositionArray = [NSMutableArray arrayWithCapacity:1];
+    vector_int2 gridPosition;
+    for (gridPosition.x=0; gridPosition.x<masterGridSize.x; gridPosition.x++){
+        for (gridPosition.y=0; gridPosition.y<masterGridSize.y; gridPosition.y++){
+            if ( (gridPosition.x == 0 ||
+                  gridPosition.x == masterGridSize.x-1 ||
+                  gridPosition.y == 0 ||
+                  gridPosition.y == masterGridSize.y-1)){
+                allowableGridPosition = [[NSMutableDictionary alloc] initWithCapacity:1];
+                [allowableGridPosition setObject:[NSNumber numberWithInt:gridPosition.x] forKey:@"x"];
+                [allowableGridPosition setObject:[NSNumber numberWithInt:gridPosition.y] forKey:@"y"];
+                [allowableGridPositionArray addObject:allowableGridPosition];
+            }
+        }
+    }
+    return allowableGridPositionArray;
+}
+
+
 
 //
 // Button Press and Gesture Handler Methods Go Here
