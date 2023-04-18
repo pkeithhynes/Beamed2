@@ -1942,16 +1942,16 @@ Implementation of the cross-platform view controller
         case ASPECT_16_9: {
             // iPhone 8
             buttonWidth = 0.8*screenWidthInPixels/contentScaleFactor;
-            buttonHeight = buttonWidth/10.0;
-            buttonCy = buttonCy + 2.75*buttonHeight;
+            buttonHeight = buttonWidth/6.0;
+            buttonCy = buttonCy + 1.00*buttonHeight;
             [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:16]];
             break;
         }
         case ASPECT_13_6: {
             // iPhone 14
             buttonWidth = 0.80*screenWidthInPixels/contentScaleFactor;
-            buttonHeight = buttonWidth/8.0;
-            buttonCy = buttonCy + 2.50*buttonHeight;
+            buttonHeight = buttonWidth/6.0;
+            buttonCy = buttonCy + 1.10*buttonHeight;
             [morePuzzlePacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:16]];
             break;
         }

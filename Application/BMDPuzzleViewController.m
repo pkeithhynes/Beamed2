@@ -2058,76 +2058,102 @@
     if ([arrayOfAllowableJewelPositions count] > 0){
         // Fetch the array of Jewel Dictionaries
         NSArray *arrayOfJewelsDictionaries = [NSArray arrayWithArray:[puzzleCandidate objectForKey:@"arrayOfJewelsDictionaries"]];
-        if (arrayOfJewelsDictionaries != nil &&
-            [arrayOfJewelsDictionaries count] > 0){
-            NSEnumerator *arrayEnum = [arrayOfJewelsDictionaries objectEnumerator];
-            NSMutableDictionary *jewelDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
-            // Examine the position of every Jewel
-            while (jewelDictionary = [arrayEnum nextObject]){
-                if (jewelDictionary != nil &&
-                    [jewelDictionary count] > 0){
-                    unsigned int finalX = [[jewelDictionary objectForKey:@"finalX"] unsignedIntValue];
-                    unsigned int finalY = [[jewelDictionary objectForKey:@"finalY"] unsignedIntValue];
-                    NSEnumerator *allowablePositionEnum = [arrayOfAllowableJewelPositions objectEnumerator];
-                    NSMutableDictionary *allowablePositionDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
-                    // For each Jewel check to see if it matches an allowable grid position
-                    BOOL allowablePositionFound = NO;
-                    while (allowablePositionDictionary = [allowablePositionEnum nextObject]){
-                        if (allowablePositionDictionary != nil &&
-                            [allowablePositionDictionary count] > 0){
-                            unsigned int posX = [[allowablePositionDictionary objectForKey:@"x"] unsignedIntValue];
-                            unsigned int posY = [[allowablePositionDictionary objectForKey:@"y"] unsignedIntValue];
-                            if (finalX == posX &&
-                                finalY == posY){
-                                allowablePositionFound = YES;
+        if (arrayOfJewelsDictionaries != nil){
+            if ([arrayOfJewelsDictionaries count] > 0){
+                NSEnumerator *arrayEnum = [arrayOfJewelsDictionaries objectEnumerator];
+                NSMutableDictionary *jewelDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
+                // Examine the position of every Jewel
+                while (jewelDictionary = [arrayEnum nextObject]){
+                    if (jewelDictionary != nil &&
+                        [jewelDictionary count] > 0){
+                        unsigned int finalX = [[jewelDictionary objectForKey:@"finalX"] unsignedIntValue];
+                        unsigned int finalY = [[jewelDictionary objectForKey:@"finalY"] unsignedIntValue];
+                        NSEnumerator *allowablePositionEnum = [arrayOfAllowableJewelPositions objectEnumerator];
+                        NSMutableDictionary *allowablePositionDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
+                        // For each Jewel check to see if it matches an allowable grid position
+                        BOOL allowablePositionFound = NO;
+                        while (allowablePositionDictionary = [allowablePositionEnum nextObject]){
+                            if (allowablePositionDictionary != nil &&
+                                [allowablePositionDictionary count] > 0){
+                                unsigned int posX = [[allowablePositionDictionary objectForKey:@"x"] unsignedIntValue];
+                                unsigned int posY = [[allowablePositionDictionary objectForKey:@"y"] unsignedIntValue];
+                                if (finalX == posX &&
+                                    finalY == posY){
+                                    allowablePositionFound = YES;
+                                }
                             }
                         }
-                    }
-                    if (allowablePositionFound == NO){
-                        return NO;
+                        if (allowablePositionFound == NO){
+                            return NO;
+                        }
                     }
                 }
             }
+            else {
+                // If no Jewels then this is an invalid puzzle
+                return NO;
+            }
+        }
+        else {
+            // If no Jewels then this is an invalid puzzle
+            return NO;
         }
     }
-    
+    else {
+        // If no allowable Jewel positions then this is an invalid puzzle
+        return NO;
+    }
+
     //
     // Reject any puzzle with a Laser not on the perimeter
     //
     if ([arrayOfAllowableJewelPositions count] > 0){
         // Fetch the array of Laser Dictionaries
         NSArray *arrayOfLasersDictionaries = [NSArray arrayWithArray:[puzzleCandidate objectForKey:@"arrayOfLasersDictionaries"]];
-        if (arrayOfLasersDictionaries != nil &&
-            [arrayOfLasersDictionaries count] > 0){
-            NSEnumerator *arrayEnum = [arrayOfLasersDictionaries objectEnumerator];
-            NSMutableDictionary *laserDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
-            // Examine the position of every Laser
-            while (laserDictionary = [arrayEnum nextObject]){
-                if (laserDictionary != nil &&
-                    [laserDictionary count] > 0){
-                    unsigned int finalX = [[laserDictionary objectForKey:@"finalX"] unsignedIntValue];
-                    unsigned int finalY = [[laserDictionary objectForKey:@"finalY"] unsignedIntValue];
-                    NSEnumerator *allowablePositionEnum = [arrayOfAllowableJewelPositions objectEnumerator];
-                    NSMutableDictionary *allowablePositionDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
-                    // For each Jewel check to see if it matches an allowable grid position
-                    BOOL allowablePositionFound = NO;
-                    while (allowablePositionDictionary = [allowablePositionEnum nextObject]){
-                        if (allowablePositionDictionary != nil &&
-                            [allowablePositionDictionary count] > 0){
-                            unsigned int posX = [[allowablePositionDictionary objectForKey:@"x"] unsignedIntValue];
-                            unsigned int posY = [[allowablePositionDictionary objectForKey:@"y"] unsignedIntValue];
-                            if (finalX == posX &&
-                                finalY == posY){
-                                allowablePositionFound = YES;
+        if (arrayOfLasersDictionaries != nil){
+            if ([arrayOfLasersDictionaries count] > 0){
+                NSEnumerator *arrayEnum = [arrayOfLasersDictionaries objectEnumerator];
+                NSMutableDictionary *laserDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
+                // Examine the position of every Laser
+                while (laserDictionary = [arrayEnum nextObject]){
+                    if (laserDictionary != nil &&
+                        [laserDictionary count] > 0){
+                        unsigned int finalX = [[laserDictionary objectForKey:@"finalX"] unsignedIntValue];
+                        unsigned int finalY = [[laserDictionary objectForKey:@"finalY"] unsignedIntValue];
+                        NSEnumerator *allowablePositionEnum = [arrayOfAllowableJewelPositions objectEnumerator];
+                        NSMutableDictionary *allowablePositionDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
+                        // For each Jewel check to see if it matches an allowable grid position
+                        BOOL allowablePositionFound = NO;
+                        while (allowablePositionDictionary = [allowablePositionEnum nextObject]){
+                            if (allowablePositionDictionary != nil &&
+                                [allowablePositionDictionary count] > 0){
+                                unsigned int posX = [[allowablePositionDictionary objectForKey:@"x"] unsignedIntValue];
+                                unsigned int posY = [[allowablePositionDictionary objectForKey:@"y"] unsignedIntValue];
+                                if (finalX == posX &&
+                                    finalY == posY){
+                                    allowablePositionFound = YES;
+                                }
                             }
                         }
-                    }
-                    if (allowablePositionFound == NO){
-                        return NO;
+                        if (allowablePositionFound == NO){
+                            return NO;
+                        }
                     }
                 }
             }
+            else {
+                // If no Lasers then this is an invalid puzzle
+                return NO;
+            }
         }
+        else {
+            // If no Lasers then this is an invalid puzzle
+            return NO;
+        }
+    }
+    else {
+        // If no allowable Laser positions then this is an invalid puzzle
+        return NO;
     }
 
     return YES;
