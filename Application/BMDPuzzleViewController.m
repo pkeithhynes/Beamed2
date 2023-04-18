@@ -145,9 +145,9 @@
         
         // Test puzzle for validity here
         BOOL puzzleIsValid = [self testWhetherPuzzleIsValid:puzzle];
-        
-        if (puzzle == nil ||
-            !puzzleIsValid ||
+        // If puzzle not valid then load a fresh copy from the bundle and save it to progress data
+        if (!puzzleIsValid ||
+            puzzle == nil ||
             [appd puzzleIsEmpty:puzzle] == YES){
             // Handle case where no puzzle or an empty puzzle is stored
             // Read puzzle from the main bundle
@@ -173,6 +173,18 @@
             else {
                 // Fetch the stored version of the daily puzzle, which may include partial completion by the player
                 puzzle = [appd fetchDailyPuzzle:appd.currentDailyPuzzleNumber];
+                // Test stored puzzle for validity here
+                BOOL puzzleIsValid = [self testWhetherPuzzleIsValid:puzzle];
+                // If puzzle not valid then load a fresh copy from the bundle and save it to progress data
+                if (!puzzleIsValid){
+                    // Save the new daily puzzle number
+                    [appd saveDailyPuzzleNumber:appd.currentDailyPuzzleNumber];
+                    // Load a new Daily Puzzle from the main bundle (not pack parameter not used for daily puzzle)
+                    puzzle = [appd fetchGamePuzzle:0 puzzleIndex:[appd fetchPackIndexForPackNumber:
+                                                                  appd.currentDailyPuzzleNumber]];
+                    // Save the new daily puzzle
+                    [appd saveDailyPuzzle:appd.currentDailyPuzzleNumber puzzle:puzzle];
+                }
             }
         }
     }
@@ -2078,6 +2090,46 @@
             }
         }
     }
+    
+    //
+    // Reject any puzzle with a Laser not on the perimeter
+    //
+    if ([arrayOfAllowableJewelPositions count] > 0){
+        // Fetch the array of Laser Dictionaries
+        NSArray *arrayOfLasersDictionaries = [NSArray arrayWithArray:[puzzleCandidate objectForKey:@"arrayOfLasersDictionaries"]];
+        if (arrayOfLasersDictionaries != nil &&
+            [arrayOfLasersDictionaries count] > 0){
+            NSEnumerator *arrayEnum = [arrayOfLasersDictionaries objectEnumerator];
+            NSMutableDictionary *laserDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
+            // Examine the position of every Laser
+            while (laserDictionary = [arrayEnum nextObject]){
+                if (laserDictionary != nil &&
+                    [laserDictionary count] > 0){
+                    unsigned int finalX = [[laserDictionary objectForKey:@"finalX"] unsignedIntValue];
+                    unsigned int finalY = [[laserDictionary objectForKey:@"finalY"] unsignedIntValue];
+                    NSEnumerator *allowablePositionEnum = [arrayOfAllowableJewelPositions objectEnumerator];
+                    NSMutableDictionary *allowablePositionDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
+                    // For each Jewel check to see if it matches an allowable grid position
+                    BOOL allowablePositionFound = NO;
+                    while (allowablePositionDictionary = [allowablePositionEnum nextObject]){
+                        if (allowablePositionDictionary != nil &&
+                            [allowablePositionDictionary count] > 0){
+                            unsigned int posX = [[allowablePositionDictionary objectForKey:@"x"] unsignedIntValue];
+                            unsigned int posY = [[allowablePositionDictionary objectForKey:@"y"] unsignedIntValue];
+                            if (finalX == posX &&
+                                finalY == posY){
+                                allowablePositionFound = YES;
+                            }
+                        }
+                    }
+                    if (allowablePositionFound == NO){
+                        return NO;
+                    }
+                }
+            }
+        }
+    }
+
     return YES;
 }
 

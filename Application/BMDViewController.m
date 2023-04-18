@@ -1993,7 +1993,6 @@ Implementation of the cross-platform view controller
             // iPhone 8
             buttonWidth = 0.8*screenWidthInPixels/contentScaleFactor;
             buttonHeight = buttonWidth/6.0;
-            buttonCy = buttonCy + 0.9*buttonHeight;
             [moreHintPacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:16]];
             break;
         }
@@ -2001,7 +2000,6 @@ Implementation of the cross-platform view controller
             // iPhone 14
             buttonWidth = 0.8*screenWidthInPixels/contentScaleFactor;
             buttonHeight = buttonWidth/6.0;
-            buttonCy = buttonCy + 1.1*buttonHeight;
             [moreHintPacksButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:16]];
             break;
         }
