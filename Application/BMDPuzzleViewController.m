@@ -2036,12 +2036,49 @@
 }
 
 - (BOOL)testWhetherPuzzleIsValid:(NSMutableDictionary *)puzzleCandidate{
-    BOOL retVal = YES;
+    //
     // Reject any puzzle with a Jewel not on the perimeter
+    //
+    // First generate an array containing all peripheral positions
     NSMutableArray *arrayOfAllowableJewelPositions = [NSMutableArray arrayWithCapacity:1];
     arrayOfAllowableJewelPositions = [self generateArrayOfPeripheralGridPositions:puzzleCandidate
                                                        allowableGridPositionArray:arrayOfAllowableJewelPositions];
-    return retVal;
+    if ([arrayOfAllowableJewelPositions count] > 0){
+        // Fetch the array of Jewel Dictionaries
+        NSArray *arrayOfJewelsDictionaries = [NSArray arrayWithArray:[puzzleCandidate objectForKey:@"arrayOfJewelsDictionaries"]];
+        if (arrayOfJewelsDictionaries != nil &&
+            [arrayOfJewelsDictionaries count] > 0){
+            NSEnumerator *arrayEnum = [arrayOfJewelsDictionaries objectEnumerator];
+            NSMutableDictionary *jewelDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
+            // Examine the position of every Jewel
+            while (jewelDictionary = [arrayEnum nextObject]){
+                if (jewelDictionary != nil &&
+                    [jewelDictionary count] > 0){
+                    unsigned int finalX = [[jewelDictionary objectForKey:@"finalX"] unsignedIntValue];
+                    unsigned int finalY = [[jewelDictionary objectForKey:@"finalY"] unsignedIntValue];
+                    NSEnumerator *allowablePositionEnum = [arrayOfAllowableJewelPositions objectEnumerator];
+                    NSMutableDictionary *allowablePositionDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
+                    // For each Jewel check to see if it matches an allowable grid position
+                    BOOL allowablePositionFound = NO;
+                    while (allowablePositionDictionary = [allowablePositionEnum nextObject]){
+                        if (allowablePositionDictionary != nil &&
+                            [allowablePositionDictionary count] > 0){
+                            unsigned int posX = [[allowablePositionDictionary objectForKey:@"x"] unsignedIntValue];
+                            unsigned int posY = [[allowablePositionDictionary objectForKey:@"y"] unsignedIntValue];
+                            if (finalX == posX &&
+                                finalY == posY){
+                                allowablePositionFound = YES;
+                            }
+                        }
+                    }
+                    if (allowablePositionFound == NO){
+                        return NO;
+                    }
+                }
+            }
+        }
+    }
+    return YES;
 }
 
 
