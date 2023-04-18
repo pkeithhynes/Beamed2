@@ -442,9 +442,9 @@ Implementation of the cross-platform view controller
     // Set the dailyRewardButton pulse if the reward is still available
     NSNumber *dailyRewardReceivedDay = [appd getObjectFromDefaults:@"dailyRewardReceivedDay"];
     todayLocal = [NSNumber numberWithUnsignedInt:[appd getLocalDaysSinceReferenceDate]];
-    if (dailyRewardReceivedDay == nil || dailyRewardReceivedDay != todayLocal){
-        [self enableSlowPulse:dailyRewardButton alphaMin:0.1];
-    }
+//    if (dailyRewardReceivedDay == nil || dailyRewardReceivedDay != todayLocal){
+//        [self enableSlowPulse:dailyRewardButton alphaMin:0.1];
+//    }
 
     
     [self loadAppropriateSizeBannerAd];
@@ -1739,7 +1739,7 @@ Implementation of the cross-platform view controller
         [dailyRewardButton addTarget:self action:@selector(dailyRewardButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         dailyRewardButton.showsTouchWhenHighlighted = YES;
         dailyRewardButton.alpha = 1.0;
-        [self enableSlowPulse:dailyRewardButton alphaMin:0.1];
+//        [self enableSlowPulse:dailyRewardButton alphaMin:0.1];
         [homeView addSubview:dailyRewardButton];
         [homeView bringSubviewToFront:dailyRewardButton];
     }

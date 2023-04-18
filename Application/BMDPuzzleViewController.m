@@ -128,8 +128,8 @@
     filterLabel.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.60];
     filterLabel.layer.masksToBounds = YES;
     filterLabel.layer.cornerRadius = 15;
-    [puzzleView addSubview:filterLabel];
-    [puzzleView bringSubviewToFront:filterLabel];
+//    [puzzleView addSubview:filterLabel];
+//    [puzzleView bringSubviewToFront:filterLabel];
 
     
     // Load Textures
@@ -347,6 +347,9 @@
     else {
         [appd playMusicLoop:appd.loop2Player];
     }
+    
+    // Start rendering
+    rc.renderPuzzleON = YES;
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
@@ -3227,7 +3230,11 @@
     else {
         [appd playMusicLoop:appd.loop2Player];
     }
-
+    
+    self.view = puzzleView;
+    
+    // Start rendering
+    rc.renderPuzzleON = YES;
 }
 
 - (void)handleUIApplicationWillResignActiveNotification {

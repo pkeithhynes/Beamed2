@@ -343,7 +343,7 @@ CGFloat _screenHeightInPixels;
         [self playMusicLoop:loop1Player];
     }
     
-    [rc refreshHomeView];
+//    [rc refreshHomeView];
     
     DLog("<<< Calling applicationDidBecomeActive");
 }
