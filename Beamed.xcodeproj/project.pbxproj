@@ -241,7 +241,6 @@
 		801670FA28C4346500803D05 /* TapToRotateText.png in Resources */ = {isa = PBXBuildFile; fileRef = 801670F828C4346500803D05 /* TapToRotateText.png */; };
 		801D0B0D28B4267F008D435B /* BMDPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801D0B0C28B4267F008D435B /* BMDPacksViewController.m */; };
 		801D0B0E28B4267F008D435B /* BMDPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801D0B0C28B4267F008D435B /* BMDPacksViewController.m */; };
-		801DFE6229EFA88D00D0036E /* OpaqueFilter.png in Resources */ = {isa = PBXBuildFile; fileRef = 801DFE6029EFA88D00D0036E /* OpaqueFilter.png */; };
 		801DFE6329EFA88D00D0036E /* TranslucentFilter.png in Resources */ = {isa = PBXBuildFile; fileRef = 801DFE6129EFA88D00D0036E /* TranslucentFilter.png */; };
 		8023B2AD2915AD9B00176960 /* JewelGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 8023B2AB2915AD9B00176960 /* JewelGreen.png */; };
 		8023B2AE2915AD9B00176960 /* JewelGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 8023B2AB2915AD9B00176960 /* JewelGreen.png */; };
@@ -718,7 +717,6 @@
 		801670F828C4346500803D05 /* TapToRotateText.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TapToRotateText.png; sourceTree = "<group>"; };
 		801D0B0B28B4267F008D435B /* BMDPacksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMDPacksViewController.h; sourceTree = "<group>"; };
 		801D0B0C28B4267F008D435B /* BMDPacksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMDPacksViewController.m; sourceTree = "<group>"; };
-		801DFE6029EFA88D00D0036E /* OpaqueFilter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OpaqueFilter.png; sourceTree = "<group>"; };
 		801DFE6129EFA88D00D0036E /* TranslucentFilter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TranslucentFilter.png; sourceTree = "<group>"; };
 		8023B2AB2915AD9B00176960 /* JewelGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JewelGreen.png; sourceTree = "<group>"; };
 		8023B2AC2915AD9B00176960 /* JewelRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JewelRed.png; sourceTree = "<group>"; };
@@ -1408,7 +1406,6 @@
 		801DFE5F29EFA87400D0036E /* Filter Textures */ = {
 			isa = PBXGroup;
 			children = (
-				801DFE6029EFA88D00D0036E /* OpaqueFilter.png */,
 				801DFE6129EFA88D00D0036E /* TranslucentFilter.png */,
 			);
 			path = "Filter Textures";
@@ -2224,7 +2221,6 @@
 				8011CE5C297B28E500E7CEAB /* abstractBackground-2173070-Vecteezy.pdf in Resources */,
 				52994B3725DA13D700887B9C /* Rings_00012.png in Resources */,
 				80D07E3E297E5AC800295271 /* Beamed2Logo_00006.png in Resources */,
-				801DFE6229EFA88D00D0036E /* OpaqueFilter.png in Resources */,
 				52994B7925DA13D700887B9C /* Rings_00009.png in Resources */,
 				52994B7C25DA13D700887B9C /* Rings_00025.png in Resources */,
 				80D07E4A297E5AC800295271 /* Beamed2Logo_00012.png in Resources */,
