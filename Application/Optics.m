@@ -522,6 +522,11 @@ extern void playSound(AVAudioPlayer *PLAYER);
         //
         if (displayBackgroundImage == YES){
             backgroundRenderDataImage = [background renderBackgroundImage:7];
+            //
+            // Fetch the translucent filter image
+            //
+            backgroundRenderDataFilterImage = nil;
+            backgroundRenderDataFilterImage = [background renderFilterImage:FILTER_IMAGE color:7];
         }
         
         //
@@ -809,6 +814,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
         // Add render arrays into the master renderDictionary
         if (displayBackgroundImage == YES){
             [renderDictionary setObject:backgroundRenderDataImage forKey:@"backgroundImage"];
+            [renderDictionary setObject:backgroundRenderDataFilterImage forKey:@"backgroundFilterImage"];
         }
         if (overlayRenderDataImage != nil){
             [renderDictionary setObject:overlayRenderDataImage forKey:@"overlayImage"];

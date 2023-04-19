@@ -109,6 +109,7 @@ API_AVAILABLE(ios(13.0))
     Foreground                *foreground;
     TextureRenderData          *backgroundRenderDataImage;
     TextureRenderData          *overlayRenderDataImage;
+    TextureRenderData          *backgroundRenderDataFilterImage;
     TextureRenderData          *backgroundRenderDataInner;
     TextureRenderData          *backgroundRenderDataOuter;
     TextureRenderData          *unusedTileBackgroundRenderData;

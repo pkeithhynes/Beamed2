@@ -354,6 +354,7 @@
 		8095C48327DB014E00E1740C /* GridTile.png in Resources */ = {isa = PBXBuildFile; fileRef = 8095C48127DB014E00E1740C /* GridTile.png */; };
 		809B05CD2904E83A00081D46 /* grayRectangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 809B05CC2904E83A00081D46 /* grayRectangle.png */; };
 		809B05CE2904E83A00081D46 /* grayRectangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 809B05CC2904E83A00081D46 /* grayRectangle.png */; };
+		809C36E429F072C1001C154C /* TranslucentFilter.png in Resources */ = {isa = PBXBuildFile; fileRef = 801DFE6129EFA88D00D0036E /* TranslucentFilter.png */; };
 		809DF29128F1EFEE00AC4680 /* tileAnimations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 809DF29028F1EFEE00AC4680 /* tileAnimations.plist */; };
 		809DF29228F1EFEE00AC4680 /* tileAnimations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 809DF29028F1EFEE00AC4680 /* tileAnimations.plist */; };
 		809DF29528F22F9A00AC4680 /* beamAnimations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 809DF29428F22F9A00AC4680 /* beamAnimations.plist */; };
@@ -1891,6 +1892,7 @@
 				80DC5BFA29CFFBA800C66781 /* icon20rounded.png in Resources */,
 				8044DD8229047FDD0078942B /* unlocked.png in Resources */,
 				809DF29628F22F9A00AC4680 /* beamAnimations.plist in Resources */,
+				809C36E429F072C1001C154C /* TranslucentFilter.png in Resources */,
 				80BF264D27D723A000BF9736 /* LaserGun-1.png in Resources */,
 				526FBCE625926960001F5647 /* Beam-Angle00-07.png in Resources */,
 				5286EA862564706B00B43209 /* TileJewelActivated09.png in Resources */,

@@ -359,6 +359,12 @@ API_AVAILABLE(ios(13.0))
                 [self drawMetalTexture:backgroundImage withView:_view texturePositionInPixels:backgroundImage->texturePositionInPixels textureSizeInPixels:backgroundImage->textureDimensionsInPixels withPipelineState:backgroundImage->tileColor withRotationTransformation:NO];
             }
 
+            // Draw a filter image on top of the background image but behind the Gameplay area
+            TextureRenderData *backgroundFilterImage = [renderDictionary objectForKey:@"backgroundFilterImage"];
+            if (backgroundFilterImage != nil){
+                [self drawMetalTexture:backgroundFilterImage withView:_view texturePositionInPixels:backgroundFilterImage->texturePositionInPixels textureSizeInPixels:backgroundFilterImage->textureDimensionsInPixels withPipelineState:backgroundFilterImage->tileColor withRotationTransformation:NO];
+            }
+
             // Draw an outer background behind the Gameplay area where the Lasers and Jewels appear
             TextureRenderData *backgroundOuter = [renderDictionary objectForKey:@"backgroundRenderDataOuter"];
             if (backgroundOuter != nil){
