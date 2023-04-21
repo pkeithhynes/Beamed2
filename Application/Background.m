@@ -197,10 +197,11 @@
 
     backgroundRenderDataImage = [[TextureRenderData alloc] init];
     backgroundRenderDataImage.renderTexture = backgroundTextureData.texture;
-    backgroundRenderDataImage->textureDimensionsInPixels.x = appDelegate->optics->_masterGridWidthInPixels;
-    backgroundRenderDataImage->textureDimensionsInPixels.y = appDelegate->optics->_masterGridHeightInPixels;
-    backgroundRenderDataImage->texturePositionInPixels.x = appDelegate->optics->_masterGridHorizontalOffsetInPixels;
-    backgroundRenderDataImage->texturePositionInPixels.y = appDelegate->optics->_masterGridVerticalOffsetInPixels;
+    backgroundRenderDataImage->textureDimensionsInPixels.x = 0.98*appDelegate->optics->_masterGridWidthInPixels;
+    backgroundRenderDataImage->textureDimensionsInPixels.y = 0.98*appDelegate->optics->_masterGridHeightInPixels;
+    backgroundRenderDataImage->texturePositionInPixels.x = appDelegate->optics->_masterGridHorizontalOffsetInPixels + 0.01*appDelegate->optics->_masterGridWidthInPixels;
+    backgroundRenderDataImage->texturePositionInPixels.y = appDelegate->optics->_masterGridVerticalOffsetInPixels
+    + 0.01*appDelegate->optics->_masterGridHeightInPixels;
     backgroundRenderDataImage->tileColor = backgroundColor;
     return backgroundRenderDataImage;
 }

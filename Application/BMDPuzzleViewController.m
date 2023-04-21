@@ -41,6 +41,7 @@
 @synthesize wholeScreenButton;
 @synthesize settingsGearButton;
 @synthesize puzzlePacksButton;
+@synthesize robotDinerButton;
 @synthesize helpButton;
 @synthesize hintButton;
 @synthesize hintBulb;
@@ -569,7 +570,8 @@
     CGFloat prevHomeNextFontSize;
     CGFloat backButtonIconSizeInPoints = 60;
     CGFloat settingsGearIconSizeInPoints = 66;
-    CGFloat shoppingCartIconSizeInPoints = 66;
+    CGFloat puzzlePacksIconSizeInPoints = 66;
+    CGFloat robotDinerIconSizeInPoints = 66;
     int scoreFontSize;
 
     switch (rc.displayAspectRatio) {
@@ -590,8 +592,9 @@
             backButtonIconSizeInPoints = 60;
             bulbSizeInPoints = 60;
             settingsGearIconSizeInPoints = 66;
-            shoppingCartIconSizeInPoints = 62;
-            
+            puzzlePacksIconSizeInPoints = 62;
+            robotDinerIconSizeInPoints = 68;
+
             jewelChestButtonSizeInPoints = 140;
             completedPuzzleButtonSizeInPoints = 140;
             scoreFontSize = 14;
@@ -619,8 +622,9 @@
             backButtonIconSizeInPoints = 40;
             bulbSizeInPoints = 40;
             settingsGearIconSizeInPoints = 44;
-            shoppingCartIconSizeInPoints = 42;
-            
+            puzzlePacksIconSizeInPoints = 42;
+            robotDinerIconSizeInPoints = 42;
+
             jewelChestButtonSizeInPoints = 90;
             completedPuzzleButtonSizeInPoints = 90;
             scoreFontSize = 10;
@@ -649,7 +653,8 @@
             backButtonIconSizeInPoints = 40;
             bulbSizeInPoints = 40;
             settingsGearIconSizeInPoints = 44;
-            shoppingCartIconSizeInPoints = 42;
+            puzzlePacksIconSizeInPoints = 42;
+            robotDinerIconSizeInPoints = 46;
 
             jewelChestButtonSizeInPoints = 90;
             completedPuzzleButtonSizeInPoints = 90;
@@ -835,7 +840,7 @@
         case ASPECT_13_6: {
             // iPhone 8
         default:
-            helpRect = CGRectMake(0.5*rc.screenWidthInPixels/rc.contentScaleFactor-0.5*hintRect.size.width,
+            helpRect = CGRectMake(0.4*rc.screenWidthInPixels/rc.contentScaleFactor-0.5*hintRect.size.width,
                                          hintRect.origin.y,
                                          hintRect.size.width,
                                          hintRect.size.height);
@@ -963,10 +968,10 @@
     [puzzleView bringSubviewToFront:settingsGearButton];
 
     //
-    // Add "Shopping Cart" button to homeView
+    // Add "Puzzle Packs" button to homeView
     //
     puzzlePacksButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    CGRect shoppingRect;
+    CGRect puzzleRect;
     switch (rc.displayAspectRatio) {
         case ASPECT_4_3:
             // iPad (9th generation)
@@ -975,10 +980,10 @@
         case ASPECT_3_2: {
             // iPad Mini (6th generation)
             //
-            shoppingRect = CGRectMake(settingsRect.origin.x,
-                                      settingsRect.origin.y+1.5*shoppingCartIconSizeInPoints,
-                                      shoppingCartIconSizeInPoints,
-                                      shoppingCartIconSizeInPoints);
+            puzzleRect = CGRectMake(settingsRect.origin.x,
+                                      settingsRect.origin.y+1.5*puzzlePacksIconSizeInPoints,
+                                      puzzlePacksIconSizeInPoints,
+                                      puzzlePacksIconSizeInPoints);
             break;
         }
         case ASPECT_16_9:
@@ -986,26 +991,65 @@
         case ASPECT_13_6: {
             // iPhone 8
         default:
-            shoppingRect = CGRectMake(helpRect.origin.x+0.5*(hintRect.origin.x-helpRect.origin.x),
+            puzzleRect = CGRectMake(helpRect.origin.x+0.667*(hintRect.origin.x-helpRect.origin.x),
                                       helpRect.origin.y,
-                                      shoppingCartIconSizeInPoints,
-                                      shoppingCartIconSizeInPoints);
+                                      puzzlePacksIconSizeInPoints,
+                                      puzzlePacksIconSizeInPoints);
             break;
         }
     }
-    puzzlePacksButton.frame = shoppingRect;
+    puzzlePacksButton.frame = puzzleRect;
     puzzlePacksButton.enabled = YES;
     puzzlePacksButton.hidden = [appd->optics allTilesArePlaced] || (rc.appCurrentGamePackType == PACKTYPE_DEMO);
     [puzzlePacksButton addTarget:self action:@selector(morePuzzlePacksButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    UIImage *shoppingCartImage = [UIImage imageNamed:@"puzzlePacks.png"];
-    [puzzlePacksButton setBackgroundImage:shoppingCartImage forState:UIControlStateNormal];
+    UIImage *puzzlePacksImage = [UIImage imageNamed:@"puzzlePacks.png"];
+    [puzzlePacksButton setBackgroundImage:puzzlePacksImage forState:UIControlStateNormal];
     puzzlePacksButton.alpha = 1.0;
     [puzzleView addSubview:puzzlePacksButton];
     [puzzleView bringSubviewToFront:puzzlePacksButton];
     
-    // Add helpLabel and helpImageView on top of puzzlePacksButton and settingsGearButton
-//    [puzzleView addSubview:helpLabel];
-//    [puzzleView bringSubviewToFront:helpLabel];
+    //
+    // Add "Robot Diner" button to homeView
+    //
+    robotDinerButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    CGRect robotDinerRect;
+    switch (rc.displayAspectRatio) {
+        case ASPECT_4_3:
+            // iPad (9th generation)
+        case ASPECT_10_7:
+            // iPad Air (5th generation)
+        case ASPECT_3_2: {
+            // iPad Mini (6th generation)
+            //
+            robotDinerRect = CGRectMake(puzzleRect.origin.x,
+                                        puzzleRect.origin.y+1.5*robotDinerIconSizeInPoints,
+                                        robotDinerIconSizeInPoints,
+                                        robotDinerIconSizeInPoints);
+            break;
+        }
+        case ASPECT_16_9:
+            // iPhone 14
+        case ASPECT_13_6: {
+            // iPhone 8
+        default:
+            robotDinerRect = CGRectMake(helpRect.origin.x+0.5*(puzzleRect.origin.x-helpRect.origin.x),
+                                      helpRect.origin.y,
+                                      robotDinerIconSizeInPoints,
+                                      robotDinerIconSizeInPoints);
+            break;
+        }
+    }
+    robotDinerButton.frame = robotDinerRect;
+    robotDinerButton.enabled = YES;
+    robotDinerButton.hidden = [appd->optics allTilesArePlaced] || (rc.appCurrentGamePackType == PACKTYPE_DEMO);
+    [robotDinerButton addTarget:self action:@selector(robotDinerButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    UIImage *robotDinerImage = [UIImage imageNamed:@"RobotDinerSign.png"];
+    [robotDinerButton setBackgroundImage:robotDinerImage forState:UIControlStateNormal];
+    robotDinerButton.alpha = 1.0;
+    [puzzleView addSubview:robotDinerButton];
+    [puzzleView bringSubviewToFront:robotDinerButton];
+    
+    // Add helpImageView on top of puzzlePacksButton and settingsGearButton
     [puzzleView addSubview:helpImageView];
     [puzzleView bringSubviewToFront:helpImageView];
 
@@ -2261,6 +2305,56 @@
     [self addChildViewController:rc.settingsViewController];
     [self.view addSubview:rc.settingsViewController.view];
     [rc.settingsViewController didMoveToParentViewController:self];
+}
+
+- (void)robotDinerButtonPressed {
+    [self clearPromptUserAboutHintButtonTimer];
+    [appd playSound:appd.tapPlayer];
+    DLog("BMDPuzzleViewController.robotDinerButtonPressed");
+    
+    // Save progress before exiting
+    [appd->optics savePuzzleProgressToDefaults];
+    
+    // If not yet solved then store endTime for timeSegment
+    long endTime = [[NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]] longValue];
+    int currentPackNumber = -1;
+    int currentPuzzleNumber = 0;
+    NSMutableDictionary *emptyJewelCountDictionary = [appd buildEmptyJewelCountDictionary];
+    if (rc.appCurrentGamePackType == PACKTYPE_MAIN){
+        currentPackNumber = [appd fetchCurrentPackNumber];
+        currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
+        if ([appd puzzleSolutionStatus:currentPackNumber
+                          puzzleNumber:currentPuzzleNumber] == -1){
+            [appd updatePuzzleScoresArray:currentPackNumber
+                             puzzleNumber:currentPuzzleNumber
+                           numberOfJewels:emptyJewelCountDictionary
+                                startTime:-1        // Do not change startTime
+                                  endTime:endTime
+                                   solved:NO];
+        }
+    }
+    else if (rc.appCurrentGamePackType == PACKTYPE_DAILY) {
+        currentPackNumber = -1;
+        currentPuzzleNumber = [appd fetchDailyPuzzleNumber];
+        if ([appd puzzleSolutionStatus:currentPackNumber
+                          puzzleNumber:currentPuzzleNumber] == -1){
+            [appd updatePuzzleScoresArray:currentPackNumber
+                             puzzleNumber:currentPuzzleNumber
+                           numberOfJewels:emptyJewelCountDictionary
+                                startTime:-1        // Do not change startTime
+                                  endTime:endTime
+                                   solved:NO];
+        }
+    }
+    
+    // Pause loop2Player
+    [appd.loop2Player pause];
+
+    // Transfer control to settingsViewController
+    rc.iconsViewController = [[BMDIconsViewController alloc] init];
+    [self addChildViewController:rc.iconsViewController];
+    [self.view addSubview:rc.iconsViewController.view];
+    [rc.iconsViewController didMoveToParentViewController:self];
 }
 
 - (void)morePuzzlePacksButtonPressed {

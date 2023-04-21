@@ -46,6 +46,7 @@ API_AVAILABLE(ios(13.0))
     UIButton *helpButton;
     UIButton *settingsGearButton;
     UIButton *puzzlePacksButton;
+    UIButton *robotDinerButton;
     UIButton *hintButton;
     UIButton *hintBulb;
     UIButton *nextButton;
@@ -127,6 +128,7 @@ API_AVAILABLE(ios(13.0))
 @property (nonatomic, retain) UIButton *wholeScreenButton;
 @property (nonatomic, retain) UIButton *settingsGearButton;
 @property (nonatomic, retain) UIButton *puzzlePacksButton;
+@property (nonatomic, retain) UIButton *robotDinerButton;
 @property (nonatomic, retain) UIButton *helpButton;
 @property (nonatomic, retain) UIButton *hintButton;
 @property (nonatomic, retain) UIButton *hintBulb;
