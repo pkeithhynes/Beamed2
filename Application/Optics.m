@@ -4201,13 +4201,23 @@ extern void playSound(AVAudioPlayer *PLAYER);
         [vc buildButtonsAndLabelsForPlay];
     }
     
-    // Test out SKStoreReviewController
+    // Trigger SKStoreReviewController if appropriate
     if (rc.appCurrentGamePackType == PACKTYPE_MAIN &&
         [appd automatedReviewRequestIsAppropriate]){
         NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
         NSString* versionString = [infoDict objectForKey:@"CFBundleShortVersionString"];
         [SKStoreReviewController requestReviewInScene:vc.view.window.windowScene];
         [appd setObjectInDefaults:versionString forKey:kCFBundleShortVersionStringHasBeenReviewed];
+    }
+    // If review not triggered then possibly trigger a visit to the Robot Cafe
+    else if (rc.appCurrentGamePackType == PACKTYPE_MAIN &&
+             [appd automatedRobotCafeIsAppropriate]){
+        [appd playSound:appd.tapPlayer];
+        rc.iconsViewController = [[BMDIconsViewController alloc] init];
+        rc.iconsViewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
+        [vc addChildViewController:rc.iconsViewController];
+        [vc.view addSubview:rc.iconsViewController.view];
+        [rc.iconsViewController didMoveToParentViewController:vc];
     }
     
 }

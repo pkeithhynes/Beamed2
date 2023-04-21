@@ -3577,6 +3577,11 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
         return NO;
 }
 
+- (BOOL)automatedRobotCafeIsAppropriate {
+    return YES;
+}
+
+
 
 //
 // Vungle Ad Network Methods

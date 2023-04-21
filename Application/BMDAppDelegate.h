@@ -364,6 +364,7 @@ API_AVAILABLE(ios(13.0))
 
 - (BOOL)reviewRequestIsAppropriate;
 - (BOOL)automatedReviewRequestIsAppropriate;
+- (BOOL)automatedRobotCafeIsAppropriate;
 
 //
 // Support Puzzle Editing
