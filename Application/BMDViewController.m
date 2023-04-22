@@ -2640,4 +2640,11 @@ Implementation of the cross-platform view controller
     [self refreshHomeView];
 }
 
+// Handle Puzzle Button press from BMDPacksViewController here
+
+- (void)startNewPuzzleFromPacksViewController {
+    DLog("Start a new puzzle");
+    [self startPuzzleButtonPressed];
+}
+
 @end

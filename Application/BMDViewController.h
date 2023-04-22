@@ -326,4 +326,6 @@ API_AVAILABLE(ios(13.0))
 
 - (NSMutableDictionary *)renderBackground;
 
+- (void)startNewPuzzleFromPacksViewController;
+
 @end

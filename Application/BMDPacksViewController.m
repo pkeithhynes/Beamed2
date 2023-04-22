@@ -591,8 +591,6 @@
     NSMutableArray *array = [appd.gameDictionaries objectForKey:kPuzzlePacksArray];
     if ([array count] > packIndex){
         NSMutableDictionary *packDictionary = [array objectAtIndex:packIndex];
-        // PKH pack_number {
-//        unsigned int packNumber = [[packDictionary objectForKey:@"pack_number"]intValue];
         unsigned int packNumber = packIndex;
         // PKH pack_number }
         long packCost = [[packDictionary objectForKey:@"AppStorePackCost"] integerValue];
@@ -607,26 +605,26 @@
             unsigned int packNumber = [appd fetchPackNumberForPackIndex:(unsigned int)sender.tag];
             appd.currentPack = packNumber;
             [appd saveCurrentPackNumber:packNumber];
-
-            // Remove puzzleViewController from rc
-            NSArray *children = [NSArray arrayWithArray:rc.childViewControllers];
-            if (children != nil){
-                BMDPuzzleViewController *puzzleVC = [children objectAtIndex:0];
-                if (puzzleVC != nil &&
-                    [puzzleVC isKindOfClass:[BMDPuzzleViewController class]]){
-                    // Remove packsView and packsViewController from puzzleViewController
-                    [packsView removeFromSuperview];
-                    [self removeFromParentViewController];
-                    [puzzleVC.view removeFromSuperview];
-                    [puzzleVC removeFromParentViewController];
-                }
+            
+            // Handle the various possible calling chains
+            if ([self.parentViewController isKindOfClass:[BMDViewController class]]){
+                [self willMoveToParentViewController:self.parentViewController];
+                [rc startNewPuzzleFromPacksViewController];
+                [self.view removeFromSuperview];
+                [self removeFromParentViewController];
+            }
+            else if ([self.parentViewController isKindOfClass:[BMDPuzzleViewController class]]){
+                
+            }
+            else {
+                
             }
             
-            rc.appCurrentGamePackType = PACKTYPE_MAIN;
-            rc.puzzleViewController = [[BMDPuzzleViewController alloc]init];
-            [rc addChildViewController:rc.puzzleViewController];
-            [rc.view addSubview:rc.puzzleViewController.view];
-            [rc.puzzleViewController didMoveToParentViewController:rc];
+//            rc.appCurrentGamePackType = PACKTYPE_MAIN;
+//            rc.puzzleViewController = [[BMDPuzzleViewController alloc]init];
+//            [rc addChildViewController:rc.puzzleViewController];
+//            [rc.view addSubview:rc.puzzleViewController.view];
+//            [rc.puzzleViewController didMoveToParentViewController:rc];
             
         }
         else {
@@ -644,20 +642,6 @@
                 appd.currentPack = packNumber;
                 [appd saveCurrentPackNumber:packNumber];
                 
-                // Remove puzzleViewController from rc
-                NSArray *children = [NSArray arrayWithArray:rc.childViewControllers];
-                if (children != nil){
-                    BMDPuzzleViewController *puzzleVC = [children objectAtIndex:0];
-                    if (puzzleVC != nil &&
-                        [puzzleVC isKindOfClass:[BMDPuzzleViewController class]]){
-                        // Remove packsView and packsViewController from puzzleViewController
-                        [packsView removeFromSuperview];
-                        [self removeFromParentViewController];
-                        [puzzleVC.view removeFromSuperview];
-                        [puzzleVC removeFromParentViewController];
-                    }
-                }
-
                 rc.appCurrentGamePackType = PACKTYPE_MAIN;
                 rc.puzzleViewController = [[BMDPuzzleViewController alloc]init];
                 [rc addChildViewController:rc.puzzleViewController];
@@ -672,6 +656,64 @@
     }
 }
 
+
+//- (void)puzzlePackButtonPressed:(UIButton *)sender {
+//    [appd playSound:appd.tapPlayer];
+//    unsigned int packIndex = (unsigned int)sender.tag;
+//    NSMutableArray *array = [appd.gameDictionaries objectForKey:kPuzzlePacksArray];
+//    if ([array count] > packIndex){
+//        NSMutableDictionary *packDictionary = [array objectAtIndex:packIndex];
+//        unsigned int packNumber = packIndex;
+//        // PKH pack_number }
+//        long packCost = [[packDictionary objectForKey:@"AppStorePackCost"] integerValue];
+//        NSString *packName = [packDictionary objectForKey:@"pack_name"];
+//        NSString *productionId = [packDictionary objectForKey:@"production_id"];
+//        if (packCost == 0){
+//            // Free pack
+//            rc.startPuzzleButton.backgroundColor = [UIColor clearColor];
+//            rc.startPuzzleButton.layer.borderColor = [UIColor whiteColor].CGColor;
+//            [rc.startPuzzleButton setTitle:packName forState:UIControlStateNormal];
+//
+//            unsigned int packNumber = [appd fetchPackNumberForPackIndex:(unsigned int)sender.tag];
+//            appd.currentPack = packNumber;
+//            [appd saveCurrentPackNumber:packNumber];
+//
+//            rc.appCurrentGamePackType = PACKTYPE_MAIN;
+//            rc.puzzleViewController = [[BMDPuzzleViewController alloc]init];
+//            [rc addChildViewController:rc.puzzleViewController];
+//            [rc.view addSubview:rc.puzzleViewController.view];
+//            [rc.puzzleViewController didMoveToParentViewController:rc];
+//
+//        }
+//        else {
+//            if (![appd queryPurchasedPuzzlePack:(int)packNumber]){
+//                // Paid pack - unpurchased
+//                [appd purchasePuzzlePack:productionId];
+//            }
+//            else {
+//                // Paid pack - purchased
+//                rc.startPuzzleButton.backgroundColor = [UIColor clearColor];
+//                rc.startPuzzleButton.layer.borderColor = [UIColor whiteColor].CGColor;
+//                [rc.startPuzzleButton setTitle:packName forState:UIControlStateNormal];
+//
+//                unsigned int packNumber = [appd fetchPackNumberForPackIndex:(unsigned int)sender.tag];
+//                appd.currentPack = packNumber;
+//                [appd saveCurrentPackNumber:packNumber];
+//
+//                rc.appCurrentGamePackType = PACKTYPE_MAIN;
+//                rc.puzzleViewController = [[BMDPuzzleViewController alloc]init];
+//                [rc addChildViewController:rc.puzzleViewController];
+//                [rc.view addSubview:rc.puzzleViewController.view];
+//                [rc.puzzleViewController didMoveToParentViewController:rc];
+//            }
+//        }
+//        DLog("puzzlePackButtonPressed %d", packIndex);
+//        [self unHighlightAllPacks];
+//        [self highlightCurrentlySelectedPack];
+//        [self updateAllPackTitles];
+//    }
+//}
+//
 - (void)backButtonPressed {
     DLog("BMDPacksViewController.backButtonPressed");
     [appd playSound:appd.tapPlayer];
