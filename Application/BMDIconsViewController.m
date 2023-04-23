@@ -8,6 +8,7 @@
 
 #import "BMDIconsViewController.h"
 #import "BMDAppDelegate.h"
+#import "BMDPuzzleViewController.h"
 #import "Firebase.h"
 
 @import UIKit;
@@ -19,6 +20,7 @@
 
 @implementation BMDIconsViewController{
     BMDViewController *rc;
+    BMDPuzzleViewController *vc;
     BMDAppDelegate *appd;
     
     // Values needed for alt icon grid layout
@@ -586,48 +588,62 @@
         [rc startMainScreenMusicLoop];
     }
     else if ([self.parentViewController isKindOfClass:[BMDPuzzleViewController class]]){
-        // If not yet solved then store startTime for timeSegment
-        long startTime = [[NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]] longValue];
-        int currentPackNumber = -1;
-        int currentPuzzleNumber = 0;
-        NSMutableDictionary *emptyJewelCountDictionary = [appd buildEmptyJewelCountDictionary];
-        if (rc.appCurrentGamePackType == PACKTYPE_MAIN){
-            currentPackNumber = [appd fetchCurrentPackNumber];
-            currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
-            if ([appd puzzleSolutionStatus:currentPackNumber
-                              puzzleNumber:currentPuzzleNumber] == -1){
-                [appd updatePuzzleScoresArray:currentPackNumber
-                                 puzzleNumber:currentPuzzleNumber
-                               numberOfJewels:emptyJewelCountDictionary
-                                    startTime:startTime        // New segment startTime
-                                      endTime:-1
-                                       solved:NO];
-            }
-        }
-        else if (rc.appCurrentGamePackType == PACKTYPE_DAILY) {
-            currentPackNumber = -1;
-            currentPuzzleNumber = [appd fetchDailyPuzzleNumber];
-            if ([appd puzzleSolutionStatus:currentPackNumber
-                              puzzleNumber:currentPuzzleNumber] == -1){
-                [appd updatePuzzleScoresArray:currentPackNumber
-                                 puzzleNumber:currentPuzzleNumber
-                               numberOfJewels:emptyJewelCountDictionary
-                                    startTime:startTime        // New segment startTime
-                                      endTime:-1
-                                       solved:NO];
-            }
-        }
         
-        if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
-            [appd playMusicLoop:appd.loop1Player];
+        // If puzzleHasBeenCompleted then we are here because the user pressed nextButton and we want them
+        // to buy an icon.  Go to the next puzzle after this.
+        if (appd->optics->puzzleHasBeenCompleted == YES){
+            vc = (BMDPuzzleViewController *)self.parentViewController;
+
+            // PKH - try code like BMDViewController startPuzzleButtonPressed here
+
+            [self willMoveToParentViewController:self.parentViewController];
+            [self.view removeFromSuperview];
+            [self removeFromParentViewController];
         }
         else {
-            [appd playMusicLoop:appd.loop2Player];
+            // If not yet solved then store startTime for timeSegment
+            long startTime = [[NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]] longValue];
+            int currentPackNumber = -1;
+            int currentPuzzleNumber = 0;
+            NSMutableDictionary *emptyJewelCountDictionary = [appd buildEmptyJewelCountDictionary];
+            if (rc.appCurrentGamePackType == PACKTYPE_MAIN){
+                currentPackNumber = [appd fetchCurrentPackNumber];
+                currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
+                if ([appd puzzleSolutionStatus:currentPackNumber
+                                  puzzleNumber:currentPuzzleNumber] == -1){
+                    [appd updatePuzzleScoresArray:currentPackNumber
+                                     puzzleNumber:currentPuzzleNumber
+                                   numberOfJewels:emptyJewelCountDictionary
+                                        startTime:startTime        // New segment startTime
+                                          endTime:-1
+                                           solved:NO];
+                }
+            }
+            else if (rc.appCurrentGamePackType == PACKTYPE_DAILY) {
+                currentPackNumber = -1;
+                currentPuzzleNumber = [appd fetchDailyPuzzleNumber];
+                if ([appd puzzleSolutionStatus:currentPackNumber
+                                  puzzleNumber:currentPuzzleNumber] == -1){
+                    [appd updatePuzzleScoresArray:currentPackNumber
+                                     puzzleNumber:currentPuzzleNumber
+                                   numberOfJewels:emptyJewelCountDictionary
+                                        startTime:startTime        // New segment startTime
+                                          endTime:-1
+                                           solved:NO];
+                }
+            }
+            
+            if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+                [appd playMusicLoop:appd.loop1Player];
+            }
+            else {
+                [appd playMusicLoop:appd.loop2Player];
+            }
+            
+            [self willMoveToParentViewController:self.parentViewController];
+            [self.view removeFromSuperview];
+            [self removeFromParentViewController];
         }
-        
-        [self willMoveToParentViewController:self.parentViewController];
-        [self.view removeFromSuperview];
-        [self removeFromParentViewController];
     }
     else{
         DLog("backButtonPressed parentViewController is unknown");

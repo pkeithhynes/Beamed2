@@ -614,10 +614,13 @@
                 [self removeFromParentViewController];
             }
             else if ([self.parentViewController isKindOfClass:[BMDPuzzleViewController class]]){
-                
+                [self willMoveToParentViewController:self.parentViewController];
+                [self.parentViewController viewDidLoad];
+                [self.view removeFromSuperview];
+                [self removeFromParentViewController];
             }
             else {
-                
+                DLog("puzzlePackButtonPressed: unknown parentViewController");
             }
             
 //            rc.appCurrentGamePackType = PACKTYPE_MAIN;
@@ -642,11 +645,28 @@
                 appd.currentPack = packNumber;
                 [appd saveCurrentPackNumber:packNumber];
                 
-                rc.appCurrentGamePackType = PACKTYPE_MAIN;
-                rc.puzzleViewController = [[BMDPuzzleViewController alloc]init];
-                [rc addChildViewController:rc.puzzleViewController];
-                [rc.view addSubview:rc.puzzleViewController.view];
-                [rc.puzzleViewController didMoveToParentViewController:rc];
+                // Handle the various possible calling chains
+                if ([self.parentViewController isKindOfClass:[BMDViewController class]]){
+                    [self willMoveToParentViewController:self.parentViewController];
+                    [rc startNewPuzzleFromPacksViewController];
+                    [self.view removeFromSuperview];
+                    [self removeFromParentViewController];
+                }
+                else if ([self.parentViewController isKindOfClass:[BMDPuzzleViewController class]]){
+                    [self willMoveToParentViewController:self.parentViewController];
+                    [self.parentViewController viewDidLoad];
+                    [self.view removeFromSuperview];
+                    [self removeFromParentViewController];
+                }
+                else {
+                    DLog("puzzlePackButtonPressed: unknown parentViewController");
+                }
+                
+//                rc.appCurrentGamePackType = PACKTYPE_MAIN;
+//                rc.puzzleViewController = [[BMDPuzzleViewController alloc]init];
+//                [rc addChildViewController:rc.puzzleViewController];
+//                [rc.view addSubview:rc.puzzleViewController.view];
+//                [rc.puzzleViewController didMoveToParentViewController:rc];
             }
         }
         DLog("puzzlePackButtonPressed %d", packIndex);

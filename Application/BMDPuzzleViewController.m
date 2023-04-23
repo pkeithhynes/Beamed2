@@ -2350,7 +2350,7 @@
     // Pause loop2Player
     [appd.loop2Player pause];
 
-    // Transfer control to settingsViewController
+    // Transfer control to BMDIconsViewController
     rc.iconsViewController = [[BMDIconsViewController alloc] init];
     [self addChildViewController:rc.iconsViewController];
     [self.view addSubview:rc.iconsViewController.view];
@@ -2485,7 +2485,12 @@
             }
             currentPackLength = [self->appd fetchCurrentPackLength];
             if (currentPuzzleNumber < currentPackLength){
-                [self nextPuzzle];
+                if (currentPuzzleNumber % 2 == 0){
+                    [self robotDinerButtonPressed];
+                }
+                else {
+                    [self nextPuzzle];
+                }
             }
             else {
                 DLog("nextButton should not be visible, and yet here we are 2.");
