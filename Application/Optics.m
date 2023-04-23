@@ -526,7 +526,24 @@ extern void playSound(AVAudioPlayer *PLAYER);
             // Fetch the translucent filter image
             //
             backgroundRenderDataFilterImage = nil;
-            backgroundRenderDataFilterImage = [background renderFilterImage:FILTER_IMAGE color:7];
+            if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+                // In PACKTYPE_DEMO cover most of the screen with the filter
+                backgroundRenderDataFilterImage = [background renderFilterImage:FILTER_IMAGE
+                                                                          color:7
+                                                                          sizeX:0.90*_screenWidthInPixels
+                                                                          sizeY:0.90*_screenHeightInPixels
+                                                                           posX:0.05*_screenWidthInPixels
+                                                                           posY:0.05*_screenHeightInPixels];
+            }
+            else {
+                // Else just cover the puzzle grid
+                backgroundRenderDataFilterImage = [background renderFilterImage:FILTER_IMAGE
+                                                                          color:7
+                                                                          sizeX:0.98*_masterGridWidthInPixels
+                                                                          sizeY:0.98*_masterGridHeightInPixels
+                                                                           posX:_masterGridHorizontalOffsetInPixels+0.01*_masterGridWidthInPixels
+                                                                           posY:_masterGridVerticalOffsetInPixels+0.01*_masterGridHeightInPixels];
+            }
         }
         
         //

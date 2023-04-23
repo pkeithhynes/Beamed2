@@ -206,6 +206,33 @@
     return backgroundRenderDataImage;
 }
 
+- (TextureRenderData *)renderFilterImage:(unsigned int)imageIndex
+                                   color:(unsigned int)backgroundColor
+                                   sizeX:(unsigned int)sizeX
+                                   sizeY:(unsigned int)sizeY
+                                   posX:(unsigned int)posX
+                                   posY:(unsigned int)posY {
+    BMDAppDelegate *appDelegate = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
+    BMDViewController *rc = (BMDViewController*)[[(BMDAppDelegate *)[[UIApplication sharedApplication]delegate] window] rootViewController];
+
+    NSMutableArray *backgroundTextureDataArray = appDelegate.backgroundTextures;
+    TextureData *backgroundTextureData;
+    
+    backgroundTextureData = [backgroundTextureDataArray objectAtIndex:imageIndex];
+    int width = (int)backgroundTextureData.texture.width;
+    int height = (int)backgroundTextureData.texture.height;
+    float heightToWidthRatio = (float)height/(float)width;
+
+    backgroundRenderDataImage = [[TextureRenderData alloc] init];
+    backgroundRenderDataImage.renderTexture = backgroundTextureData.texture;
+    backgroundRenderDataImage->textureDimensionsInPixels.x = sizeX;
+    backgroundRenderDataImage->textureDimensionsInPixels.y = sizeY;
+    backgroundRenderDataImage->texturePositionInPixels.x = posX;
+    backgroundRenderDataImage->texturePositionInPixels.y = posY;
+    backgroundRenderDataImage->tileColor = backgroundColor;
+    return backgroundRenderDataImage;
+}
+
 - (TextureRenderData *)renderOverlayImage:(unsigned int)imageIndex color:(unsigned int)backgroundColor {
     BMDAppDelegate *appDelegate = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
     BMDViewController *rc = (BMDViewController*)[[(BMDAppDelegate *)[[UIApplication sharedApplication]delegate] window] rootViewController];

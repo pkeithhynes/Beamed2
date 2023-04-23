@@ -595,8 +595,10 @@
             vc = (BMDPuzzleViewController *)self.parentViewController;
 
             // PKH - try code like BMDViewController startPuzzleButtonPressed here
+            int currentPackNumber = [appd fetchCurrentPackNumber];
+            int currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
 
-            [self willMoveToParentViewController:self.parentViewController];
+            [rc startNewPuzzleFromPacksViewController];
             [self.view removeFromSuperview];
             [self removeFromParentViewController];
         }

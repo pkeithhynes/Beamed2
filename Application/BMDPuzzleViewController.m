@@ -125,10 +125,14 @@
     
     NSMutableDictionary *pack = nil;
     NSMutableDictionary *puzzle = nil;
+    
+    NSLog(@"%@", [[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] allKeys]);
+    
     // Puzzle Play - Free and Paid Packs
     if (rc.appCurrentGamePackType == PACKTYPE_MAIN &&
         [appd editModeIsEnabled] == NO){
         unsigned int currentPackNumber = [appd fetchCurrentPackNumber];
+        unsigned int currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
         puzzle = [appd fetchCurrentPuzzleFromPackGameProgress:currentPackNumber];
         
         // Test puzzle for validity here
@@ -2307,6 +2311,21 @@
     [rc.settingsViewController didMoveToParentViewController:self];
 }
 
+- (void)goToTheRobotDiner {
+    [self clearPromptUserAboutHintButtonTimer];
+    [appd playSound:appd.tapPlayer];
+    DLog("BMDPuzzleViewController.goToTheRobotDiner");
+    
+    // Pause loop2Player
+    [appd.loop2Player pause];
+
+    // Transfer control to BMDIconsViewController
+    rc.iconsViewController = [[BMDIconsViewController alloc] init];
+    [self addChildViewController:rc.iconsViewController];
+    [self.view addSubview:rc.iconsViewController.view];
+    [rc.iconsViewController didMoveToParentViewController:self];
+}
+
 - (void)robotDinerButtonPressed {
     [self clearPromptUserAboutHintButtonTimer];
     [appd playSound:appd.tapPlayer];
@@ -2485,8 +2504,9 @@
             }
             currentPackLength = [self->appd fetchCurrentPackLength];
             if (currentPuzzleNumber < currentPackLength){
-                if (currentPuzzleNumber % 2 == 0){
-                    [self robotDinerButtonPressed];
+                if (currentPuzzleNumber % 2 == 0 &&
+                    self->rc.appCurrentGamePackType == PACKTYPE_MAIN){
+                    [self goToTheRobotDiner];
                 }
                 else {
                     [self nextPuzzle];

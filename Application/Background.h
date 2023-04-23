@@ -35,6 +35,12 @@ API_AVAILABLE(ios(13.0))
 - (TextureRenderData *)renderLogoImage:(unsigned int)logoColor;
 - (TextureRenderData *)renderOverlayImage:(unsigned int)imageIndex color:(unsigned int)backgroundColor;
 - (TextureRenderData *)renderFilterImage:(unsigned int)imageIndex color:(unsigned int)backgroundColor;
+- (TextureRenderData *)renderFilterImage:(unsigned int)imageIndex
+                                   color:(unsigned int)backgroundColor
+                                   sizeX:(unsigned int)sizeX
+                                   sizeY:(unsigned int)sizeY
+                                   posX:(unsigned int)posX
+                                    posY:(unsigned int)posY;
 - (TextureRenderData *)renderBackgroundAnimations:(uint16_t)frameCounter
                                   backgroundColor:(unsigned int)backgroundColor;
 - (TextureRenderData *)renderBackgroundInner:(unsigned int)backgroundColor;
