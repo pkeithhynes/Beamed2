@@ -593,11 +593,14 @@
         // to buy an icon.  Go to the next puzzle after this.
         if (appd->optics->puzzleHasBeenCompleted == YES){
             vc = (BMDPuzzleViewController *)self.parentViewController;
+            [vc.puzzleView releaseDrawables];
 
             // PKH - try code like BMDViewController startPuzzleButtonPressed here
             int currentPackNumber = [appd fetchCurrentPackNumber];
             int currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
 
+            [vc.view removeFromSuperview];
+            [vc removeFromParentViewController];
             [rc startNewPuzzleFromPacksViewController];
             [self.view removeFromSuperview];
             [self removeFromParentViewController];
