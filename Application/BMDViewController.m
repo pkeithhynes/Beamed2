@@ -155,6 +155,14 @@ Implementation of the cross-platform view controller
         [appd authenticatePlayer];
     }
     
+    // Detect when app gains focus so you can refresh screen appropriately
+    [[NSNotificationCenter defaultCenter]
+     addObserver: self
+     selector: @selector (handleUIApplicationDidBecomeActiveNotification)
+     name: UIApplicationDidBecomeActiveNotification
+     object: nil];
+
+
 }
 
 
@@ -292,6 +300,14 @@ Implementation of the cross-platform view controller
 
 - (void)refreshHomeView {
     homeView.hidden = NO;
+    
+    // If there is a puzzleViewController from previous activity then remove it as well as its view
+//    if (puzzleViewController != nil){
+//        puzzleViewController.view.hidden = YES;
+//        [homeView sendSubviewToBack:puzzleViewController.view];
+//        [puzzleViewController.view removeFromSuperview];
+//        [puzzleViewController removeFromParentViewController];
+//    }
     
     // Set background color and graphic image
     if (ENABLE_HOME_SCREEN_ANIMATION==NO){
@@ -2434,6 +2450,11 @@ Implementation of the cross-platform view controller
 //
 // Button Handler Methods Go Here
 //
+
+- (void)handleUIApplicationDidBecomeActiveNotification {
+    DLog(">>> BMDViewCOntroller.handleUIApplicationDidBecomeActiveNotification");
+    [self refreshHomeView];
+}
 
 - (void)startPuzzleButtonPressed {
     // View controller approach

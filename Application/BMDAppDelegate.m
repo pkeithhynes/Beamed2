@@ -268,13 +268,11 @@ CGFloat _screenHeightInPixels;
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     DLog(">>> Calling applicationDidBecomeActive");
-    
-    
-    currentiCloudToken = nil;
     //
     // iCloud initialization
     //
-    
+    currentiCloudToken = nil;
+
     // Uncomment to clear out NSUbiquitousKeyValueStore
 //    [self clearNSUbiquitousKeyValueStore];
     

@@ -2828,7 +2828,7 @@
             DLog("backButtonPressed parentViewController is BMDViewController");
             [puzzleView releaseDrawables];
             [self willMoveToParentViewController:self.parentViewController];
-            [puzzleView removeFromSuperview];
+            [self.view removeFromSuperview];
             [self removeFromParentViewController];
             rc.renderPuzzleON = NO;
             rc.renderOverlayON = NO;
@@ -2841,7 +2841,7 @@
             puzzleView.paused = YES;
             [puzzleView releaseDrawables];
             [self willMoveToParentViewController:self.parentViewController];
-            [puzzleView removeFromSuperview];
+            [self.view removeFromSuperview];
             [self removeFromParentViewController];
             rc.renderPuzzleON = NO;
             rc.renderOverlayON = NO;
