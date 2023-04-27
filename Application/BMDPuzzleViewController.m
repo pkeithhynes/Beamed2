@@ -221,12 +221,12 @@
          selector: @selector (handleUIApplicationWillResignActiveNotification)
          name: UIApplicationWillResignActiveNotification
          object: nil];
-        // Detect when app gains focus so you can restore puzzle timeSegment to reenable timing
-        [[NSNotificationCenter defaultCenter]
-         addObserver: self
-         selector: @selector (handleUIApplicationDidBecomeActiveNotification)
-         name: UIApplicationDidBecomeActiveNotification
-         object: nil];
+//        // Detect when app gains focus so you can restore puzzle timeSegment to reenable timing
+//        [[NSNotificationCenter defaultCenter]
+//         addObserver: self
+//         selector: @selector (handleUIApplicationDidBecomeActiveNotification)
+//         name: UIApplicationDidBecomeActiveNotification
+//         object: nil];
     }
     
     
@@ -2266,6 +2266,12 @@
     [appd playSound:appd.tapPlayer];
     DLog("BMDPuzzleViewController.settingsButtonPressed");
     
+    // Remove this observer.  It is only active when the BMDPuzzleViewController active.
+    [[NSNotificationCenter defaultCenter]
+     removeObserver:self
+     name:UIApplicationWillResignActiveNotification
+     object:nil];
+    
     // Save progress before exiting
     [appd->optics savePuzzleProgressToDefaults];
     
@@ -2316,6 +2322,12 @@
     [appd playSound:appd.tapPlayer];
     DLog("BMDPuzzleViewController.goToTheRobotDiner");
     
+    // Remove this observer.  It is only active when the BMDPuzzleViewController active.
+    [[NSNotificationCenter defaultCenter]
+     removeObserver:self
+     name:UIApplicationWillResignActiveNotification
+     object:nil];
+    
     // Pause loop2Player
     [appd.loop2Player pause];
 
@@ -2331,6 +2343,12 @@
     [appd playSound:appd.tapPlayer];
     DLog("BMDPuzzleViewController.robotDinerButtonPressed");
     
+    // Remove this observer.  It is only active when the BMDPuzzleViewController active.
+    [[NSNotificationCenter defaultCenter]
+     removeObserver:self
+     name:UIApplicationWillResignActiveNotification
+     object:nil];
+
     // Save progress before exiting
     [appd->optics savePuzzleProgressToDefaults];
     
@@ -2380,6 +2398,12 @@
     [self clearPromptUserAboutHintButtonTimer];
     [appd playSound:appd.tapPlayer];
     DLog("BMDPuzzleViewController.morePuzzlePacksButtonPressed");
+    
+    // Remove this observer.  It is only active when the BMDPuzzleViewController active.
+    [[NSNotificationCenter defaultCenter]
+     removeObserver:self
+     name:UIApplicationWillResignActiveNotification
+     object:nil];
     
     // Save progress before exiting
     [appd->optics savePuzzleProgressToDefaults];
@@ -2778,6 +2802,11 @@
     else {
         [appd playSound:appd.tapPlayer];
         
+        // Remove this observer.  It is only active when the BMDPuzzleViewController active.
+        [[NSNotificationCenter defaultCenter]
+         removeObserver:self
+         name:UIApplicationWillResignActiveNotification
+         object:nil];
         
         // Save progress before exiting only if the puzzle has not been completed
         if ([appd->optics queryPuzzleCompleted] == NO){
@@ -3083,10 +3112,15 @@
         [appd playSound:appd.tapPlayer];
     }
     else {
+        // Remove this observer.  It is only active when the BMDPuzzleViewController active.
+        [[NSNotificationCenter defaultCenter]
+         removeObserver:self
+         name:UIApplicationWillResignActiveNotification
+         object:nil];
+        
         // Save progress before exiting
         [appd->optics savePuzzleProgressToDefaults];
 
-        
         // If not yet solved then store endTime for timeSegment
         long endTime = [[NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]] longValue];
         int currentPackNumber = -1;
@@ -3295,9 +3329,19 @@
     }
 }
 
+//
+//  Handle app become inactive/active
+//
+
 - (void)handleUIApplicationDidBecomeActiveNotification {
     DLog("DEBUG2: BMDPuzzleViewController handling handleUIApplicationDidBecomeActiveNotification");
     
+    // Remove this observer.  It is only active when the application has resigned activity.
+    [[NSNotificationCenter defaultCenter]
+     removeObserver:self
+     name:UIApplicationDidBecomeActiveNotification
+     object:nil];
+
     // If not yet solved then store startTime for timeSegment
     long startTime = [[NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]] longValue];
     int currentPackNumber = -1;
@@ -3343,6 +3387,7 @@
     rc.renderPuzzleON = YES;
 }
 
+
 - (void)handleUIApplicationWillResignActiveNotification {
     [appd.loop1Player pause];
     [appd.loop2Player pause];
@@ -3384,6 +3429,13 @@
         }
     }
     
+    // Detect when app gains focus so you can restore puzzle timeSegment to reenable timing
+    [[NSNotificationCenter defaultCenter]
+     addObserver: self
+     selector: @selector (handleUIApplicationDidBecomeActiveNotification)
+     name: UIApplicationDidBecomeActiveNotification
+     object: nil];
+
 }
 
 - (BOOL)puzzleIsEmpty:(NSMutableDictionary *)puzzle {
