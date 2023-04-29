@@ -301,14 +301,6 @@ Implementation of the cross-platform view controller
 - (void)refreshHomeView {
     homeView.hidden = NO;
     
-    // If there is a puzzleViewController from previous activity then remove it as well as its view
-//    if (puzzleViewController != nil){
-//        puzzleViewController.view.hidden = YES;
-//        [homeView sendSubviewToBack:puzzleViewController.view];
-//        [puzzleViewController.view removeFromSuperview];
-//        [puzzleViewController removeFromParentViewController];
-//    }
-    
     // Set background color and graphic image
     if (ENABLE_HOME_SCREEN_ANIMATION==NO){
         homeView.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.14 alpha:1.0];

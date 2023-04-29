@@ -408,7 +408,7 @@ CGFloat _screenHeightInPixels;
     if ([userInfo objectForKey:@"status"] != nil){
         if ([[userInfo objectForKey:@"status"] intValue] == 1){
             applicationIsConnectedToNetwork = YES;
-            DLog("Data Network Connected");
+            DLog("Data Network Connected - AppDelegate");
             // If the StoreKit data has not been received yet request it now.
             if (!storeKitDataHasBeenReceived && productsRequestEnum == REQ_NIL){
                 arrayOfPuzzlePacksInfo = nil;
@@ -417,12 +417,12 @@ CGFloat _screenHeightInPixels;
         }
         else {
             applicationIsConnectedToNetwork = NO;
-            DLog("Data Network Disconnected");
+            DLog("Data Network Disconnected - AppDelegate");
         }
     }
     else {
         applicationIsConnectedToNetwork = NO;
-        DLog("Data Network Disconnected");
+        DLog("Data Network Disconnected - AppDelegate");
     }
 }
 
