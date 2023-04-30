@@ -329,34 +329,34 @@
     }
 }
 
-- (void)updateEveryUnpurchasedAltIconButton:(BOOL)enable {
-    if (alternateIconsButtonsArray &&
-        [alternateIconsButtonsArray count] > 0){
-        
-        unsigned int arrayLen = (unsigned int)[alternateIconsArray count];
-        NSEnumerator *arrayEnum = [alternateIconsButtonsArray objectEnumerator];
-        UIButton *iconButton;
-        int idx = 0;
-        while (iconButton = [arrayEnum nextObject]){
-            if (![appd queryPurchasedAltIcon:idx] &&
-                idx != arrayLen-1){
-                iconButton.enabled = enable;
-            }
-            idx++;
-        }
-        
-        arrayEnum = [alternateIconsPriceLabelArray objectEnumerator];
-        UILabel *priceLabel;
-        idx = 0;
-        while (priceLabel = [arrayEnum nextObject]){
-            if (![appd queryPurchasedAltIcon:idx] &&
-                idx != arrayLen-1){
-                priceLabel.enabled = enable;
-            }
-            idx++;
-        }
-    }
-}
+//- (void)updateEveryUnpurchasedAltIconButton:(BOOL)enable {
+//    if (alternateIconsButtonsArray &&
+//        [alternateIconsButtonsArray count] > 0){
+//        
+//        unsigned int arrayLen = (unsigned int)[alternateIconsArray count];
+//        NSEnumerator *arrayEnum = [alternateIconsButtonsArray objectEnumerator];
+//        UIButton *iconButton;
+//        int idx = 0;
+//        while (iconButton = [arrayEnum nextObject]){
+//            if (![appd queryPurchasedAltIcon:idx] &&
+//                idx != arrayLen-1){
+//                iconButton.enabled = enable;
+//            }
+//            idx++;
+//        }
+//        
+//        arrayEnum = [alternateIconsPriceLabelArray objectEnumerator];
+//        UILabel *priceLabel;
+//        idx = 0;
+//        while (priceLabel = [arrayEnum nextObject]){
+//            if (![appd queryPurchasedAltIcon:idx] &&
+//                idx != arrayLen-1){
+//                priceLabel.enabled = enable;
+//            }
+//            idx++;
+//        }
+//    }
+//}
 
 
 - (void)buildAltIconButtons {
