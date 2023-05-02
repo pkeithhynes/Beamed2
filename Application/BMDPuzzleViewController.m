@@ -2528,8 +2528,14 @@
             }
             currentPackLength = [self->appd fetchCurrentPackLength];
             if (currentPuzzleNumber < currentPackLength){
-                if (currentPuzzleNumber % 2 == 0 &&
+                if (![self->appd existPurchasedAltIcons] &&
+                    currentPuzzleNumber % kSendToRobotDinerNoIconPurchase == 0 &&
                     self->rc.appCurrentGamePackType == PACKTYPE_MAIN){
+                    [self goToTheRobotDiner];
+                }
+                else if ([self->appd existPurchasedAltIcons] &&
+                         currentPuzzleNumber % kSendToRobotDinerYesIconPurchase == 0 &&
+                         self->rc.appCurrentGamePackType == PACKTYPE_MAIN){
                     [self goToTheRobotDiner];
                 }
                 else {

@@ -91,6 +91,11 @@
 // Initial free hints
 #define kInitialFreeHints 10
 
+// How frequently we send players to the Robot Diner after puzzle completion
+#define kSendToRobotDinerNoIconPurchase 2
+#define kSendToRobotDinerYesIconPurchase 5
+
+
 // Scoring constants
 #define kPointsPerJewel 100
 #define kPointsPerTile  25

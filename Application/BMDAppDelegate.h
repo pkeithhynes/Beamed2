@@ -300,6 +300,7 @@ API_AVAILABLE(ios(13.0))
 //
 - (BOOL)queryPurchasedPuzzlePack:(unsigned int)packNumber;
 - (BOOL)queryPurchasedAltIcon:(unsigned int)iconNumber;
+- (BOOL)existPurchasedAltIcons;
 - (void)saveCurrentAltIconNumber:(int)currentAltIconNumber;
 - (int)fetchCurrentAltIconNumber;
 - (NSMutableString *_Nullable)queryPuzzlePackName:(NSMutableString *_Nonnull)name pack:(unsigned int)packIndex;
