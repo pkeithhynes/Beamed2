@@ -23,6 +23,8 @@
     BMDViewController *rc;
     BMDAppDelegate *appd;
     BOOL playRewardedAd;
+    CGRect hintsLabelFrame, hintPacksFrame;
+    CGFloat buttonWidth, buttonHeight;
 }
 
 @synthesize hintsView;
@@ -37,10 +39,16 @@
     
     rc = (BMDViewController*)[[(BMDAppDelegate *)[[UIApplication sharedApplication]delegate] window] rootViewController];
     appd = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver: self
+     selector: @selector (handleNetworkConnectivityChanged:)
+     name: @"com.beamed.network.status-change"
+     object: nil];
 
     playRewardedAd = NO;
     
-    CGRect hintPacksFrame = rc.rootView.bounds;
+    hintPacksFrame = rc.rootView.bounds;
     
     // Create hintsView
     hintsView = [[UIView alloc] initWithFrame:hintPacksFrame];
@@ -51,7 +59,6 @@
 
     // Set background color and graphic image
     hintsView.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.14 alpha:1.0];
-//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"backgroundLandscapeGrid" ofType:@"png"];
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"neon-synthwave-cityscape-1" ofType:@"png"];
     UIImage *sourceImage = [UIImage imageWithContentsOfFile:filePath];
     CGFloat imageWidth = (CGFloat)sourceImage.size.width;
@@ -86,7 +93,7 @@
 
     // Set up fonts and button sizes based on device display aspect ratio
     unsigned int titleLabelSize;
-    CGFloat buttonWidth, buttonHeight, homeButtonWidthToHeightRatio;
+    CGFloat homeButtonWidthToHeightRatio;
     CGFloat backButtonIconSizeInPoints = 60;
     CGFloat settingsLabelY;
     switch (rc.displayAspectRatio) {
@@ -145,7 +152,7 @@
     // hintsViewLabel
     CGFloat w = 0.5*hintPacksFrame.size.width;
     CGFloat h = 1.5*titleLabelSize;
-    CGRect hintsLabelFrame = CGRectMake(0.5*hintPacksFrame.size.width - w/2.0,
+    hintsLabelFrame = CGRectMake(0.5*hintPacksFrame.size.width - w/2.0,
                                         settingsLabelY,
                                         w,
                                         h);
@@ -194,14 +201,16 @@
     [self buildHintButtons:hintsLabelFrame
             hintPacksFrame:hintPacksFrame
                buttonWidth:buttonWidth
-              buttonHeight:buttonHeight];
+              buttonHeight:buttonHeight
+                   enabled:appd.applicationIsConnectedToNetwork];
 }
 
 
 - (void)buildHintButtons:(CGRect)hintsLabelFrame
           hintPacksFrame:(CGRect)hintPacksFrame
              buttonWidth:(CGFloat)buttonWidth
-            buttonHeight:(CGFloat)buttonHeight {
+            buttonHeight:(CGFloat)buttonHeight
+                 enabled:(BOOL)enabled {
     //
     // Add hint buttons to hintsView
     //
@@ -248,6 +257,7 @@
     hintPackButton.showsTouchWhenHighlighted = YES;
     [hintPackButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [hintPackButton setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];
+    hintPackButton.enabled = enabled;
 //    w = buttonWidth;  h = w/8;
     [hintsView addSubview:hintPackButton];
     [hintsView bringSubviewToFront:hintPackButton];
@@ -295,6 +305,7 @@
         hintPackButton.showsTouchWhenHighlighted = YES;
         [hintPackButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [hintPackButton setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];
+        hintPackButton.enabled = enabled;
 //        w = buttonWidth;  h = w/8;
         [hintsView addSubview:hintPackButton];
         [hintsView bringSubviewToFront:hintPackButton];
@@ -540,5 +551,22 @@
         [self removeFromParentViewController];
     }
 }
+
+- (void)handleNetworkConnectivityChanged:(NSNotification *) notification{
+    NSLog(@"handleNetworkConnectivityChanged - %@",notification.object);
+    // First clear out all existing Hint buttons
+    [self removeEveryHintButton];
+    NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:notification.userInfo];
+    [self buildHintButtons:hintsLabelFrame
+            hintPacksFrame:hintPacksFrame
+               buttonWidth:buttonWidth
+              buttonHeight:buttonHeight
+                   enabled:appd.applicationIsConnectedToNetwork];
+}
+
+- (void)removeEveryHintButton {
+    
+}
+
 
 @end
