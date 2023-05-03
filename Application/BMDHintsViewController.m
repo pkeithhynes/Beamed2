@@ -30,6 +30,7 @@
 @synthesize hintsView;
 @synthesize hintsViewLabel;
 @synthesize hintPacksButtonsArray;
+@synthesize hintButtonsArray;
 
 
 - (void)viewDidLoad {
@@ -211,6 +212,10 @@
              buttonWidth:(CGFloat)buttonWidth
             buttonHeight:(CGFloat)buttonHeight
                  enabled:(BOOL)enabled {
+    // First clear out all existing Hint buttons
+    [self removeEveryHintButton];
+    hintButtonsArray = [NSMutableArray arrayWithCapacity:1];
+    
     //
     // Add hint buttons to hintsView
     //
@@ -240,7 +245,6 @@
     //
     hintPackButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [hintPackButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Light" size:[self querySmallFontSize]+3]];
-//    [hintPackButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica" size:[self querySmallFontSize]+3]];
     [hintPackButton setBackgroundImage:btnImage forState:UIControlStateNormal];
     [hintPackButton setBackgroundImage:btnSelectedImage forState:UIControlStateHighlighted];
     [hintPacksButtonsArray insertObject:hintPackButton atIndex:0];
@@ -251,14 +255,13 @@
     hintPackButton.layer.borderWidth = 0.0f;
     NSString *hintTitle = [NSString stringWithFormat:@"Watch Video for 1 Hint"];
     [hintPackButton setTitle:hintTitle forState:UIControlStateNormal];
-//    hintPackButton.layer.borderColor = [UIColor whiteColor].CGColor;
     hintPackButton.tag = 0;
     [hintPackButton addTarget:self action:@selector(hintRewardVideoButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     hintPackButton.showsTouchWhenHighlighted = YES;
     [hintPackButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [hintPackButton setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];
     hintPackButton.enabled = enabled;
-//    w = buttonWidth;  h = w/8;
+    [hintButtonsArray addObject:hintPackButton];
     [hintsView addSubview:hintPackButton];
     [hintsView bringSubviewToFront:hintPackButton];
 
@@ -290,23 +293,19 @@
                 NSString *hintTitleBeginning = [hintDictionary objectForKey:@"formatted_price_string"];
                 NSString *hintTitleMiddle = [hintTitleBeginning stringByAppendingString:@" - "];
                 hintTitle = [hintTitleMiddle stringByAppendingString:hintPackName];
-//                hintTitle = [NSString stringWithFormat:@"%s - %s",
-//                             [[hintDictionary objectForKey:@"formatted_price_string"] UTF8String],
-//                             [hintPackName UTF8String]];
             }
             else {
                 hintTitle = [NSString stringWithFormat:@"$%1.2f - %s", (float)hintCost/100.0, [hintPackName UTF8String]];
             }
         }
         [hintPackButton setTitle:hintTitle forState:UIControlStateNormal];
-//        hintPackButton.layer.borderColor = [UIColor whiteColor].CGColor;
         hintPackButton.tag = [hintIndex integerValue] + 1;
         [hintPackButton addTarget:self action:@selector(hintPackButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         hintPackButton.showsTouchWhenHighlighted = YES;
         [hintPackButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [hintPackButton setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];
         hintPackButton.enabled = enabled;
-//        w = buttonWidth;  h = w/8;
+        [hintButtonsArray addObject:hintPackButton];
         [hintsView addSubview:hintPackButton];
         [hintsView bringSubviewToFront:hintPackButton];
     }
@@ -554,9 +553,7 @@
 
 - (void)handleNetworkConnectivityChanged:(NSNotification *) notification{
     NSLog(@"handleNetworkConnectivityChanged - %@",notification.object);
-    // First clear out all existing Hint buttons
-    [self removeEveryHintButton];
-    NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:notification.userInfo];
+//    NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:notification.userInfo];
     [self buildHintButtons:hintsLabelFrame
             hintPacksFrame:hintPacksFrame
                buttonWidth:buttonWidth
@@ -565,7 +562,16 @@
 }
 
 - (void)removeEveryHintButton {
-    
+    if (hintButtonsArray &&
+        [hintButtonsArray count] > 0){
+        NSEnumerator *arrayEnum = [hintButtonsArray objectEnumerator];
+        UIButton *hintButton;
+        while (hintButton = [arrayEnum nextObject]){
+            hintButton.hidden = YES;
+            hintButton = nil;
+        }
+        [hintButtonsArray removeAllObjects];
+    }
 }
 
 

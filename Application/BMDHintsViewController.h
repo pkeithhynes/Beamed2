@@ -17,12 +17,14 @@ API_AVAILABLE(ios(13.0))
     UIView *hintsView;
     UILabel *hintsViewLabel;
     NSMutableArray *hintPacksButtonsArray;
+    NSMutableArray *hintButtonsArray;
 
 }
 
 @property (nonatomic, retain) UIView *hintsView;
 @property (nonatomic, retain) UIView *hintsViewLabel;
 @property (nonatomic, retain) NSMutableArray *hintPacksButtonsArray;
+@property (nonatomic, retain) NSMutableArray *hintButtonsArray;
 
 - (void)updateHintsViewLabel;
 - (void)backButtonPressed;
