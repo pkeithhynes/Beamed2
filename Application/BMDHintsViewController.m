@@ -191,7 +191,17 @@
     [hintsView addSubview:homeArrow];
     [hintsView bringSubviewToFront:homeArrow];
 
-    
+    [self buildHintButtons:hintsLabelFrame
+            hintPacksFrame:hintPacksFrame
+               buttonWidth:buttonWidth
+              buttonHeight:buttonHeight];
+}
+
+
+- (void)buildHintButtons:(CGRect)hintsLabelFrame
+          hintPacksFrame:(CGRect)hintPacksFrame
+             buttonWidth:(CGFloat)buttonWidth
+            buttonHeight:(CGFloat)buttonHeight {
     //
     // Add hint buttons to hintsView
     //
@@ -238,7 +248,7 @@
     hintPackButton.showsTouchWhenHighlighted = YES;
     [hintPackButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [hintPackButton setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];
-    w = buttonWidth;  h = w/8;
+//    w = buttonWidth;  h = w/8;
     [hintsView addSubview:hintPackButton];
     [hintsView bringSubviewToFront:hintPackButton];
 
@@ -285,12 +295,12 @@
         hintPackButton.showsTouchWhenHighlighted = YES;
         [hintPackButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [hintPackButton setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];
-        w = buttonWidth;  h = w/8;
+//        w = buttonWidth;  h = w/8;
         [hintsView addSubview:hintPackButton];
         [hintsView bringSubviewToFront:hintPackButton];
     }
-    
 }
+
 
 - (void)viewDidAppear:(BOOL)animated {
     DLog("BMDHintsViewController.viewDidAppear");
