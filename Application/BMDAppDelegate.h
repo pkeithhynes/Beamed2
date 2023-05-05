@@ -140,7 +140,10 @@ API_AVAILABLE(ios(13.0))
     NSMutableArray *arrayOfPaidHintPacksInfo;
     NSMutableArray *arrayOfPuzzlePacksInfo;
     NSMutableArray *arrayOfAltIconsInfo;
-    
+    BOOL arrayOfPaidHintPacksInfoValid;
+    BOOL arrayOfPuzzlePacksInfoValid;
+    BOOL arrayOfAltIconsInfoValid;
+
 }
 
 @property (strong, nonatomic) Optics * _Nonnull optics;

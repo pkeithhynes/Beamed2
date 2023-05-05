@@ -552,7 +552,7 @@
 }
 
 - (void)handleNetworkConnectivityChanged:(NSNotification *) notification{
-    NSLog(@"handleNetworkConnectivityChanged - %@",notification.object);
+    NSLog(@"Hints - handleNetworkConnectivityChanged - %@",notification.object);
 //    NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:notification.userInfo];
     [self buildHintButtons:hintsLabelFrame
             hintPacksFrame:hintPacksFrame

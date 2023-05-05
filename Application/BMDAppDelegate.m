@@ -218,17 +218,14 @@ CGFloat _screenHeightInPixels;
     //
     // Paid Puzzle Packs - completion handler calls requestHintPacksInfo
     // Paid Hint Packs - completion handler calls requestAltIconsInfo
+    arrayOfPuzzlePacksInfoValid = NO;
+    arrayOfPaidHintPacksInfoValid = NO;
+    arrayOfAltIconsInfoValid = NO;
     if (applicationIsConnectedToNetwork == YES){
         arrayOfPuzzlePacksInfo = nil;
         [self requestPuzzlePacksInfo];
     }
 
-    // If there is no local record of Pack purchases then query StoreKit to find out
-    // what Packs have been purchased
-//    if (![self existPurchasedPacks]){
-//        [self restorePurchases];
-//    }
-    
     // Establish default values for certain keys
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *defaultsDict = @{@"permittedToUseiCloud":@"NOTHING",
@@ -403,7 +400,7 @@ CGFloat _screenHeightInPixels;
 // Handler Methods Go Here
 //
 - (void)handleNetworkConnectivityChanged:(NSNotification *) notification{
-    NSLog(@"%@",notification.object);
+    NSLog(@"AppDelegate - handleNetworkConnectivityChanged - %@",notification.object);
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:notification.userInfo];
     if ([userInfo objectForKey:@"status"] != nil){
         if ([[userInfo objectForKey:@"status"] intValue] == 1){
@@ -3168,6 +3165,9 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
 
 - (void)requestPuzzlePacksInfo {
     productsRequestEnum = REQ_INFO_PUZZLE_PACK;
+    arrayOfPuzzlePacksInfoValid = NO;
+    arrayOfPaidHintPacksInfoValid = NO;
+    arrayOfAltIconsInfoValid = NO;
     // Initialize array that will receive results from StoreKit
     arrayOfPuzzlePacksInfo = [NSMutableArray arrayWithCapacity:1];
     NSMutableArray *puzzlePacksArray = [self fetchPacksArray:@"puzzlePacksArray.plist"];
@@ -3235,7 +3235,6 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                         while (currentProduct = [productsEnum nextObject]){
                             NSString *productIdentifier = currentProduct.productIdentifier;
                             if ([productIdentifier isEqualToString:production_id]){
-//                                [outputPuzzlePackDict setObject:currentProduct.localizedTitle forKey:@"pack_name"];
                                 [outputPuzzlePackDict setObject:currentProduct.localizedDescription forKey:@"pack_description"];
                                 [outputPuzzlePackDict setObject:currentProduct.price forKey:@"storekit_price"];
                                 unsigned int integerPrice = round([currentProduct.price floatValue]*100);
@@ -3260,7 +3259,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                     [arrayOfPuzzlePacksInfo addObject:outputPuzzlePackDict];
                     idx++;
                 }
-//                productsRequestEnum = REQ_NIL;
+                arrayOfPuzzlePacksInfoValid = YES;
                 arrayOfPaidHintPacksInfo = nil;
                 [self requestHintPacksInfo];
                 break;
@@ -3292,8 +3291,8 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                     [arrayOfPaidHintPacksInfo addObject:currentProductInfoDict];
                     idx++;
                 }
-//                productsRequestEnum = REQ_NIL;
                 arrayOfAltIconsInfo = nil;
+                arrayOfPaidHintPacksInfoValid = YES;
                 [self requestAltIconsInfo];
                 break;
             }
@@ -3334,12 +3333,13 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                     currentProductInfoDict = [NSMutableDictionary dictionaryWithCapacity:1];
                     NSMutableDictionary *dict = [altIconsBundleArray lastObject];
                     [currentProductInfoDict setObject:[NSNumber numberWithUnsignedInt:idx] forKey:@"icon_number"];
-//                    bundleArrayCurrentItem = [altIconsBundleArray objectAtIndex:idx];
                     [currentProductInfoDict setObject:[dict objectForKey:@"appIcon"] forKey:@"appIcon"];
                     [currentProductInfoDict setObject:[dict objectForKey:@"iconImage"] forKey:@"iconImage"];
                     [arrayOfAltIconsInfo addObject:currentProductInfoDict];
                 }
                 storeKitDataHasBeenReceived = YES;
+                arrayOfAltIconsInfoValid = YES;
+                productsRequestEnum = REQ_NIL;
                 // Notify everyone that the StoreKit data has been received
                 dispatch_async(dispatch_get_main_queue(),^{
                     [[NSNotificationCenter defaultCenter]
@@ -3347,13 +3347,9 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                      object:nil
                      userInfo:nil];
                 });
-                productsRequestEnum = REQ_NIL;
                 break;
             }
             case REQ_INFO_AD_FREE:{
-//                NSString *productIdentifier = [NSString stringWithString:validProduct.productIdentifier];
-//                NSDecimalNumber *price = validProduct.price;
-//                NSString *localizedTitle = [NSString stringWithString:validProduct.localizedTitle];
                 productsRequestEnum = REQ_NIL;
                 break;
             }

@@ -307,7 +307,6 @@
 //
 // Utility Methods
 //
-
 - (void)removeEveryAltIconButton {
     if (alternateIconsButtonsArray &&
         [alternateIconsButtonsArray count] > 0){
@@ -328,36 +327,6 @@
         [alternateIconsPriceLabelArray removeAllObjects];
     }
 }
-
-//- (void)updateEveryUnpurchasedAltIconButton:(BOOL)enable {
-//    if (alternateIconsButtonsArray &&
-//        [alternateIconsButtonsArray count] > 0){
-//        
-//        unsigned int arrayLen = (unsigned int)[alternateIconsArray count];
-//        NSEnumerator *arrayEnum = [alternateIconsButtonsArray objectEnumerator];
-//        UIButton *iconButton;
-//        int idx = 0;
-//        while (iconButton = [arrayEnum nextObject]){
-//            if (![appd queryPurchasedAltIcon:idx] &&
-//                idx != arrayLen-1){
-//                iconButton.enabled = enable;
-//            }
-//            idx++;
-//        }
-//        
-//        arrayEnum = [alternateIconsPriceLabelArray objectEnumerator];
-//        UILabel *priceLabel;
-//        idx = 0;
-//        while (priceLabel = [arrayEnum nextObject]){
-//            if (![appd queryPurchasedAltIcon:idx] &&
-//                idx != arrayLen-1){
-//                priceLabel.enabled = enable;
-//            }
-//            idx++;
-//        }
-//    }
-//}
-
 
 - (void)buildAltIconButtons {
     //
@@ -496,127 +465,6 @@
     [iconsView bringSubviewToFront:iconButton];
 }
 
-
-
-//- (void)buildAltIconButtons {
-//    //
-//    // Create and display a grid of icon UIButtons
-//    //
-//    // First clear out alternateIconsButtonsArray
-//    [self removeEveryAltIconButton];
-//
-//    alternateIconsButtonsArray = [NSMutableArray arrayWithCapacity:1];
-//    alternateIconsPriceLabelArray = [NSMutableArray arrayWithCapacity:1];
-//    unsigned int gridX, gridY;
-//    unsigned int posX;
-//    unsigned int arrayLen = (unsigned int)[alternateIconsArray count];
-//    for (unsigned int idx=0; idx<arrayLen-1; idx++){
-//        gridX = (idx % ncols);
-//        gridY = (idx / ncols);
-//        CGFloat iconGridWidthInPoints = ncols * iconGridSizeInPoints;
-//        CGFloat gapXinPoints = rc.rootView.bounds.size.width - iconGridWidthInPoints;
-//        posX = (idx % ncols) * iconGridSizeInPoints + gapXinPoints/2.0;
-//        posY = (idx / ncols) * iconGridSizeInPoints + settingsLabelY + iconsYoffset;
-//        UIButton *iconButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//        CGRect iconRect = CGRectMake(posX,
-//                                     posY,
-//                                     iconGridSizeInPoints,
-//                                     iconGridSizeInPoints);
-//        iconButton.frame = iconRect;
-//        iconButton.enabled = YES;
-//        iconButton.tag = idx;
-//        [iconButton addTarget:self action:@selector(altIconButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-//        NSMutableDictionary *iconDict = [NSMutableDictionary dictionaryWithDictionary:[alternateIconsArray objectAtIndex:idx]];
-//        iconButton.layer.borderWidth = 0;
-//        iconButton.layer.cornerRadius = 15;
-//        iconButton.layer.borderColor = [UIColor grayColor].CGColor;
-//        // The iconImage is used as the button background image
-//        NSString *iconImageFileName = [iconDict objectForKey:@"iconImage"];
-//        UIImage *iconBackgroundImage = [UIImage imageNamed:iconImageFileName];
-//        [iconButton setBackgroundImage:iconBackgroundImage forState:UIControlStateNormal];
-//
-//        // The golden crown is used as the foreground image when the icon has been purchased
-//        UILabel *priceLabel = nil;
-//        CGRect priceFrame = CGRectMake(0,
-//                                       0,
-//                                       iconGridSizeInPoints/2.0,
-//                                       iconGridSizeInPoints/3.5);
-//        priceLabel = [[UILabel alloc] initWithFrame:priceFrame];
-//        if ([appd queryPurchasedAltIcon:idx]){
-//            UIImage *iconImage;
-//            if ([appd fetchCurrentAltIconNumber] == idx){
-//                iconImage = [UIImage imageNamed:@"goldenCrownSelectedLayer.png"];
-//            }
-//            else {
-//                iconImage = [UIImage imageNamed:@"goldenCrownLayer.png"];
-//            }
-//            [iconButton setImage:iconImage forState:UIControlStateNormal];
-//            priceLabel.hidden = YES;
-//        }
-//        else {
-//            priceLabel.backgroundColor = [UIColor blackColor];
-//            priceLabel.layer.masksToBounds = YES;
-//            priceLabel.layer.cornerRadius = 5;
-//            priceLabel.text = [iconDict objectForKey:@"formatted_price_string"];
-//            priceLabel.adjustsFontSizeToFitWidth = YES;
-//            priceLabel.textAlignment = NSTextAlignmentCenter;
-//            priceLabel.textColor = [UIColor colorWithRed:251.0/255.0
-//                                                   green:212.0/255.0
-//                                                    blue:12.0/255.0
-//                                                   alpha:1.0];
-//            priceLabel.layer.borderColor = [UIColor cyanColor].CGColor;
-//            priceLabel.layer.borderWidth = 1.0;
-//            [iconButton addSubview:priceLabel];
-//            [iconButton bringSubviewToFront:priceLabel];
-//        }
-//
-//        if (priceLabel){
-//            [alternateIconsPriceLabelArray addObject:priceLabel];
-//        }
-//        [alternateIconsButtonsArray addObject:iconButton];
-//
-//        [iconsView addSubview:iconButton];
-//        [iconsView bringSubviewToFront:iconButton];
-//    }
-//    // The element of alternateIconsArray at position arrayLen-1 is the default App Icon
-//    posX = rc.rootView.bounds.size.width/2.0 - iconGridSizeInPoints/2.0;
-//    // If the array contains more than just the default icon
-//    if (arrayLen > 1){
-//        posY = posY + iconGridSizeInPoints;
-//    }
-//    // If only the default icon is in the array adjust posY accordingly
-//    else {
-//        posY = iconGridSizeInPoints + settingsLabelY + iconsYoffset;
-//    }
-//    UIButton *iconButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    CGRect iconRect = CGRectMake(posX,
-//                                 posY,
-//                                 iconGridSizeInPoints,
-//                                 iconGridSizeInPoints);
-//    iconButton.frame = iconRect;
-//    iconButton.enabled = YES;
-//    iconButton.tag = arrayLen - 1;
-//    [iconButton addTarget:self action:@selector(defaultIconButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-//    NSMutableDictionary *iconDict = [NSMutableDictionary dictionaryWithDictionary:[alternateIconsArray objectAtIndex:arrayLen-1]];
-//    iconButton.layer.borderWidth = 0;
-//    iconButton.layer.cornerRadius = 15;
-//    iconButton.layer.borderColor = [UIColor grayColor].CGColor;
-//    // The iconImage is used as the button background image
-//    NSString *iconImageFileName = [iconDict objectForKey:@"iconImage"];
-//    UIImage *iconBackgroundImage = [UIImage imageNamed:iconImageFileName];
-//    [iconButton setBackgroundImage:iconBackgroundImage forState:UIControlStateNormal];
-//    // Check to see whether the default icon is also the current icon
-//    if ([appd fetchCurrentAltIconNumber] == -1){
-//        UIImage *iconImage;
-//        iconImage = [UIImage imageNamed:@"selectedLayer.png"];
-//        [iconButton setImage:iconImage forState:UIControlStateNormal];
-//    }
-//    [alternateIconsButtonsArray addObject:iconButton];
-//    [iconsView addSubview:iconButton];
-//    [iconsView bringSubviewToFront:iconButton];
-//
-//}
-
 //
 // Handler Methods Go Here
 //
@@ -645,7 +493,7 @@
 }
 
 - (void)handleNetworkConnectivityChanged:(NSNotification *) notification{
-    NSLog(@"%@",notification.object);
+    NSLog(@"Icons - handleNetworkConnectivityChanged - %@",notification.object);
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:notification.userInfo];
 //    if ([userInfo objectForKey:@"status"] != nil){
 //        if ([[userInfo objectForKey:@"status"] intValue] == 1){
@@ -697,6 +545,19 @@
     [appd playSound:appd.tapPlayer];
     if (![appd queryPurchasedAltIcon:idx]){
         // Alt Icon not yet purchased
+        
+        // Create and start in-app purchase indicator spinner
+        UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
+        CGFloat spinnerSquareSize = rc.rootView.bounds.size.width/5.0;
+        spinner.frame = CGRectMake(rc.rootView.bounds.size.width/2.0-spinnerSquareSize/2.0,
+                                   rc.rootView.bounds.size.height/2.0-spinnerSquareSize/2.0,
+                                   spinnerSquareSize,
+                                   spinnerSquareSize);
+        [spinner startAnimating];
+        [iconsView addSubview:spinner];
+        [iconsView bringSubviewToFront:spinner];
+        
+        // Start purchase
         NSString *productionId = [iconDict objectForKey:@"production_id"];
         [appd purchaseAltIcon:productionId];
     }
@@ -800,26 +661,6 @@
     }
 }
 
-
-//- (void)backButtonPressed {
-//    DLog("BMDIconsViewController.backButtonPressed");
-//    [appd playSound:appd.tapPlayer];
-//    DLog("backButtonPressed parentViewController is BMDViewController");
-//    [rc refreshHomeView];
-//    [self willMoveToParentViewController:self.parentViewController];
-//    [self.view removeFromSuperview];
-//    [self removeFromParentViewController];
-//    rc.renderPuzzleON = NO;
-//    rc.renderOverlayON = NO;
-//    [rc refreshHomeView];
-//    [rc loadAppropriateSizeBannerAd];
-//    [rc startMainScreenMusicLoop];
-//}
-
-//
-// Utility Methods Go Here
-//
-
 - (UIImageView *)createImageView:(NSString *)imageFileName
                            width:(CGFloat)width
                             posX:(CGFloat)posX
@@ -857,23 +698,6 @@
     }
     return alternateIconsArray;
 }
-
-//- (NSMutableArray *)fetchPurchasedAlternateIconsArray:(NSMutableArray *)alternateIconsArray {
-//    NSMutableArray *alternateIconsArrayFromPlist = [NSMutableArray arrayWithCapacity:1];
-//    alternateIconsArrayFromPlist = [self fetchAlternateIconsArray:alternateIconsArrayFromPlist];
-//    NSEnumerator *arrayEnum = [alternateIconsArrayFromPlist objectEnumerator];
-//    NSMutableDictionary *dict;
-//    unsigned int idx = 0;
-//    unsigned int arrayLen = (unsigned int)[alternateIconsArrayFromPlist count];
-//    while (dict = [arrayEnum nextObject]){
-//        if ([appd queryPurchasedAltIcon:idx] ||
-//            idx == arrayLen-1){
-//            [alternateIconsArray addObject:dict];
-//        }
-//        idx++;
-//    }
-//    return alternateIconsArray;
-//}
 
 - (NSMutableArray *)fetchAlternateIconsArray:(NSMutableArray *)alternateIconsArray {
     NSString *filePath = [[NSBundle bundleForClass:[self class]]
