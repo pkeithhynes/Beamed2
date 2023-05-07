@@ -149,16 +149,20 @@ CGFloat _screenHeightInPixels;
     //
     NSError* error;
     NSString* appID = vungleAppID;
-    VungleSDK* sdk = [VungleSDK sharedSDK];
-    if (![sdk startWithAppId:appID error:&error]) {
-        if (error) {
-            DLog("Error encountered starting the VungleSDK: %@", error);
+    if (ENABLE_VUNGLE_ADS){
+        VungleSDK* sdk = [VungleSDK sharedSDK];
+        if (![sdk startWithAppId:appID error:&error]) {
+            if (error) {
+                DLog("Error encountered starting the VungleSDK: %@", error);
+            }
         }
     }
     
     // Attach
     vungleIsLoaded = NO;
-    [[VungleSDK sharedSDK] setDelegate:(id<VungleSDKDelegate> _Nullable)self];
+    if (ENABLE_VUNGLE_ADS){
+        [[VungleSDK sharedSDK] setDelegate:(id<VungleSDKDelegate> _Nullable)self];
+    }
 
     
     // Determine the screen dimensions and set up the viewable area
@@ -221,7 +225,10 @@ CGFloat _screenHeightInPixels;
     arrayOfPuzzlePacksInfoValid = NO;
     arrayOfPaidHintPacksInfoValid = NO;
     arrayOfAltIconsInfoValid = NO;
-    if (applicationIsConnectedToNetwork == YES){
+    // If the StoreKit data has not been received yet request it now.
+    if (!storeKitDataHasBeenReceived &&
+        productsRequestEnum == REQ_NIL &&
+        applicationIsConnectedToNetwork){
         arrayOfPuzzlePacksInfo = nil;
         [self requestPuzzlePacksInfo];
     }
@@ -3341,12 +3348,12 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                 arrayOfAltIconsInfoValid = YES;
                 productsRequestEnum = REQ_NIL;
                 // Notify everyone that the StoreKit data has been received
-                dispatch_async(dispatch_get_main_queue(),^{
-                    [[NSNotificationCenter defaultCenter]
-                     postNotificationName:@"storeKitDataReceived"
-                     object:nil
-                     userInfo:nil];
-                });
+//                dispatch_async(dispatch_get_main_queue(),^{
+//                    [[NSNotificationCenter defaultCenter]
+//                     postNotificationName:@"storeKitDataReceived"
+//                     object:nil
+//                     userInfo:nil];
+//                });
                 break;
             }
             case REQ_INFO_AD_FREE:{
@@ -3581,107 +3588,119 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
 // Vungle Ad Network Methods
 //
 - (void)vungleSDKDidInitialize{
-    DLog("Vungle Ad Network Initialized");
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    vungleIsLoaded = YES;
-    // Cache Vungle Rewarded Ad
-    [self vungleLoadRewardedAd];
-    // Load Vungle Banner Ad
-    if (vungleIsLoaded &&
-        ([[defaults objectForKey:@"demoHasBeenCompleted"] isEqualToString:@"YES"] ||
-         TARGET_OS_SIMULATOR) &&
-        rc.appCurrentPageNumber == PAGE_HOME){
-        switch (rc.displayAspectRatio) {
-            case ASPECT_4_3:
-                // iPad (9th generation)
-            case ASPECT_10_7:
-                // iPad Air (5th generation)
-            case ASPECT_3_2: {
-                // iPad Mini (6th generation)
-                [self vungleLoadBannerLeaderboardAd];
-                break;
-            }
-            case ASPECT_16_9:
-            case ASPECT_13_6:
-            default: {
-                // iPhones
-                [self vungleLoadBannerAd];
-                break;
+    if (ENABLE_VUNGLE_ADS){
+        
+        DLog("Vungle Ad Network Initialized");
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        vungleIsLoaded = YES;
+        // Cache Vungle Rewarded Ad
+        [self vungleLoadRewardedAd];
+        // Load Vungle Banner Ad
+        if (vungleIsLoaded &&
+            ([[defaults objectForKey:@"demoHasBeenCompleted"] isEqualToString:@"YES"] ||
+             TARGET_OS_SIMULATOR) &&
+            rc.appCurrentPageNumber == PAGE_HOME){
+            switch (rc.displayAspectRatio) {
+                case ASPECT_4_3:
+                    // iPad (9th generation)
+                case ASPECT_10_7:
+                    // iPad Air (5th generation)
+                case ASPECT_3_2: {
+                    // iPad Mini (6th generation)
+                    [self vungleLoadBannerLeaderboardAd];
+                    break;
+                }
+                case ASPECT_16_9:
+                case ASPECT_13_6:
+                default: {
+                    // iPhones
+                    [self vungleLoadBannerAd];
+                    break;
+                }
             }
         }
     }
 }
 
 - (void)vungleLoadBannerAd{
-    DLog("vungleLoadBannerAd");
-    NSString *adFree = [self getObjectFromDefaults:@"AD_FREE_PUZZLES"];
-    if ([adFree isEqualToString:@"YES"]){
-        DLog("User purchased Ad Free Puzzles");
-    }
-    else {
-        NSError *error;
-        if (rc.bannerAdView != nil){
-            [rc.bannerAdView removeFromSuperview];
-            rc.bannerAdView = nil;
-        }
-        VungleSDK* sdk = [VungleSDK sharedSDK];
-        if (![sdk loadPlacementWithID:vunglePlacementBanner withSize:VungleAdSizeBanner error:&error]) {
-            if (error) {
-                DLog("Error occurred in loadPlacementWithID: %@", error);
-            }
+    if (ENABLE_VUNGLE_ADS){
+        
+        DLog("vungleLoadBannerAd");
+        NSString *adFree = [self getObjectFromDefaults:@"AD_FREE_PUZZLES"];
+        if ([adFree isEqualToString:@"YES"]){
+            DLog("User purchased Ad Free Puzzles");
         }
         else {
-            DLog("vungleLoadBannerAd: success");
+            NSError *error;
+            if (rc.bannerAdView != nil){
+                [rc.bannerAdView removeFromSuperview];
+                rc.bannerAdView = nil;
+            }
+            VungleSDK* sdk = [VungleSDK sharedSDK];
+            if (![sdk loadPlacementWithID:vunglePlacementBanner withSize:VungleAdSizeBanner error:&error]) {
+                if (error) {
+                    DLog("Error occurred in loadPlacementWithID: %@", error);
+                }
+            }
+            else {
+                DLog("vungleLoadBannerAd: success");
+            }
         }
     }
 }
 
 - (void)vungleLoadBannerLeaderboardAd{
-    NSString *adFree = [self getObjectFromDefaults:@"AD_FREE_PUZZLES"];
-    if ([adFree isEqualToString:@"YES"]){
-        DLog("User purchased Ad Free Puzzles");
-    }
-    else {
-        DLog("vungleLoadBannerLeaderboardAd");
-        NSError *error;
-        if (rc.bannerAdView != nil){
-            [rc.bannerAdView removeFromSuperview];
-            rc.bannerAdView = nil;
-        }
-        VungleSDK* sdk = [VungleSDK sharedSDK];
-        if (![sdk loadPlacementWithID:vunglePlacementBannerLeaderboard withSize:VungleAdSizeBannerLeaderboard error:&error]) {
-            if (error) {
-                DLog("Error occurred in loadPlacementWithID: %@", error);
-            }
+    if (ENABLE_VUNGLE_ADS){
+        NSString *adFree = [self getObjectFromDefaults:@"AD_FREE_PUZZLES"];
+        if ([adFree isEqualToString:@"YES"]){
+            DLog("User purchased Ad Free Puzzles");
         }
         else {
-            DLog("vungleLoadBannerLeaderboardAd: success");
+            DLog("vungleLoadBannerLeaderboardAd");
+            NSError *error;
+            if (rc.bannerAdView != nil){
+                [rc.bannerAdView removeFromSuperview];
+                rc.bannerAdView = nil;
+            }
+            VungleSDK* sdk = [VungleSDK sharedSDK];
+            if (![sdk loadPlacementWithID:vunglePlacementBannerLeaderboard withSize:VungleAdSizeBannerLeaderboard error:&error]) {
+                if (error) {
+                    DLog("Error occurred in loadPlacementWithID: %@", error);
+                }
+            }
+            else {
+                DLog("vungleLoadBannerLeaderboardAd: success");
+            }
         }
     }
 }
 
 - (void)vungleLoadRewardedAd{
-    NSError *error;
-    VungleSDK* sdk = [VungleSDK sharedSDK];
-    if (![sdk loadPlacementWithID:vunglePlacementRewardedHint error:&error]) {
-        DLog("vungleLoadRewardedAd: not a success");
-        if (error) {
-            DLog("Error occurred in loadPlacementWithID: %@", error);
+    if (ENABLE_VUNGLE_ADS){
+        NSError *error;
+        VungleSDK* sdk = [VungleSDK sharedSDK];
+        if (![sdk loadPlacementWithID:vunglePlacementRewardedHint error:&error]) {
+            DLog("vungleLoadRewardedAd: not a success");
+            if (error) {
+                DLog("Error occurred in loadPlacementWithID: %@", error);
+            }
         }
-    }
-    else {
-        DLog("vungleLoadRewardedAd: success");
+        else {
+            DLog("vungleLoadRewardedAd: success");
+        }
     }
 }
 
 - (void)vungleCloseBannerAd {
-    DLog("vungleCloseBannerAd");
-    VungleSDK* sdk = [VungleSDK sharedSDK];
-    [sdk finishDisplayingAd:vunglePlacementBanner];
-    [sdk finishDisplayingAd:vunglePlacementBannerLeaderboard];
-    if (rc.bannerAdView != nil){
-        [rc.bannerAdView removeFromSuperview];
-        rc.bannerAdView = nil;
+    if (ENABLE_VUNGLE_ADS){
+        DLog("vungleCloseBannerAd");
+        VungleSDK* sdk = [VungleSDK sharedSDK];
+        [sdk finishDisplayingAd:vunglePlacementBanner];
+        [sdk finishDisplayingAd:vunglePlacementBannerLeaderboard];
+        if (rc.bannerAdView != nil){
+            [rc.bannerAdView removeFromSuperview];
+            rc.bannerAdView = nil;
+        }
     }
 }
 
@@ -3690,59 +3709,68 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
 // Vungle Ad Network Callbacks
 //
 - (void)vungleWillShowAdForPlacementID:(nullable NSString *)placementID{
-    DLog("vungleWillShowAdForPlacementID %s", [placementID UTF8String]);
-    if ([placementID isEqualToString:vunglePlacementRewardedHint]){
-        // Nothing right now
+    if (ENABLE_VUNGLE_ADS){
+        DLog("vungleWillShowAdForPlacementID %s", [placementID UTF8String]);
+        if ([placementID isEqualToString:vunglePlacementRewardedHint]){
+            // Nothing right now
+        }
     }
 }
 
 - (void)vungleDidCloseAdForPlacementID:(nonnull NSString *)placementID{
-    if ([placementID isEqualToString:vunglePlacementRewardedHint]){
-        // Cache Vungle Rewarded Ad
-        DLog("vungleDidCloseAdForPlacementID %s", [placementID UTF8String]);
-        [self vungleLoadRewardedAd];
+    if (ENABLE_VUNGLE_ADS){
+        if ([placementID isEqualToString:vunglePlacementRewardedHint]){
+            // Cache Vungle Rewarded Ad
+            DLog("vungleDidCloseAdForPlacementID %s", [placementID UTF8String]);
+            [self vungleLoadRewardedAd];
+        }
     }
 }
 
 - (void)vungleTrackClickForPlacementID:(nullable NSString *)placementID{
-    DLog("vungleTrackClickForPlacementID %s", [placementID UTF8String]);
+    if (ENABLE_VUNGLE_ADS){
+        DLog("vungleTrackClickForPlacementID %s", [placementID UTF8String]);
+    }
 }
 
 - (void)vungleRewardUserForPlacementID:(nullable NSString *)placementID{
-    DLog("vungleRewardUserForPlacementID %s", [placementID UTF8String]);
-    [self updateHintsRemainingDisplayAndStorage:1];
+    if (ENABLE_VUNGLE_ADS){
+        DLog("vungleRewardUserForPlacementID %s", [placementID UTF8String]);
+        [self updateHintsRemainingDisplayAndStorage:1];
+    }
 }
 
 - (void)vungleAdPlayabilityUpdate:(BOOL)isAdPlayable placementID:(NSString *)placementID error:(nullable NSError *)error {
-    DLog("vungleAdPlayabilityUpdate: %s", [placementID UTF8String]);
-    VungleSDK* sdk = [VungleSDK sharedSDK];
-    
-    // Banner Ads
-    if ([placementID isEqualToString:vunglePlacementBanner] ||
-        [placementID isEqualToString:vunglePlacementBannerLeaderboard]){
-        if (rc.bannerAdView == nil &&
-            [sdk isAdCachedForPlacementID:placementID] &&
-            rc.renderPuzzleON == NO){
-            DLog("addAdViewToView: %s", [placementID UTF8String]);
-            NSError *adError;
-            [rc buildVungleAdView];
-            if (![sdk addAdViewToView:rc.bannerAdView withOptions:nil placementID:placementID error:&adError]) {
-                if (adError) {
-                    DLog("Error encountered in addAdViewToView: %@", adError);
+    if (ENABLE_VUNGLE_ADS){
+        DLog("vungleAdPlayabilityUpdate: %s", [placementID UTF8String]);
+        VungleSDK* sdk = [VungleSDK sharedSDK];
+        
+        // Banner Ads
+        if ([placementID isEqualToString:vunglePlacementBanner] ||
+            [placementID isEqualToString:vunglePlacementBannerLeaderboard]){
+            if (rc.bannerAdView == nil &&
+                [sdk isAdCachedForPlacementID:placementID] &&
+                rc.renderPuzzleON == NO){
+                DLog("addAdViewToView: %s", [placementID UTF8String]);
+                NSError *adError;
+                [rc buildVungleAdView];
+                if (![sdk addAdViewToView:rc.bannerAdView withOptions:nil placementID:placementID error:&adError]) {
+                    if (adError) {
+                        DLog("Error encountered in addAdViewToView: %@", adError);
+                    }
                 }
             }
         }
+        // Interstitial Rewarded Ad
+        else if ([placementID isEqualToString:vunglePlacementRewardedHint]){
+            //        if ([sdk isAdCachedForPlacementID:placementID]){
+            //            [self vunglePlayRewardedAd];
+            //        }
+        }
+        else {
+            DLog("placementID %s does not match any active ads", [placementID UTF8String]);
+        }
     }
-    // Interstitial Rewarded Ad
-    else if ([placementID isEqualToString:vunglePlacementRewardedHint]){
-//        if ([sdk isAdCachedForPlacementID:placementID]){
-//            [self vunglePlayRewardedAd];
-//        }
-    }
-    else {
-        DLog("placementID %s does not match any active ads", [placementID UTF8String]);
-    }
-    
 }
 
 

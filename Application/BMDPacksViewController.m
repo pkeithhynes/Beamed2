@@ -21,6 +21,7 @@
     CGRect puzzlePacksFrame;
     CGFloat buttonWidth, buttonHeight, buttonCy;
     UIImage *btnImageFree, *btnSelectedImageFree, *btnImageLocked, *btnImagePaid, *btnSelectedImagePaid;
+    BOOL latchApplicationIsConnectedToNetwork;
 }
 
 @synthesize packsView;
@@ -37,16 +38,12 @@
     rc = (BMDViewController*)[[(BMDAppDelegate *)[[UIApplication sharedApplication]delegate] window] rootViewController];
     appd = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    [[NSNotificationCenter defaultCenter]
-     addObserver: self
-     selector: @selector (handleNetworkConnectivityChanged:)
-     name: @"com.beamed.network.status-change"
-     object: nil];
+    latchApplicationIsConnectedToNetwork = appd.applicationIsConnectedToNetwork;
     
     [[NSNotificationCenter defaultCenter]
      addObserver: self
-     selector: @selector (handleStoreKitDataReceived:)
-     name: @"storeKitDataReceived"
+     selector: @selector(handleNetworkConnectivityChanged:)
+     name: @"com.beamed.network.status-change"
      object: nil];
     
     CGRect homeFrame = rc.rootView.bounds;
@@ -287,13 +284,15 @@
 }
 
 - (void)buildPackSelectionButtons {
+    DLog("> buildPackSelectionButtons");
     // First remove any existing buttons
     [self removeEveryPackButton];
     //
     // Add pack selections buttons to packsView
     //
-    NSMutableArray *packsArray;
-    if (appd->arrayOfPuzzlePacksInfoValid  &&
+    NSMutableArray *packsArray = [NSMutableArray arrayWithCapacity:1];
+    if (appd.storeKitDataHasBeenReceived &&
+        appd->arrayOfPuzzlePacksInfoValid  &&
         appd.arrayOfPuzzlePacksInfo != nil &&
         [appd.arrayOfPuzzlePacksInfo count] > 0){
         packsArray = [NSMutableArray arrayWithArray:[NSArray arrayWithArray:appd.arrayOfPuzzlePacksInfo]];
@@ -301,72 +300,47 @@
     else {
         packsArray = [appd fetchPacksArray:@"puzzlePacksArray.plist"];
     }
-    NSEnumerator *packsEnum = [packsArray objectEnumerator];
-    UIButton *packButton, *lockImage;
-    CGFloat buttonCx = 0;
-    buttonCy = 0;
-    CGFloat packsButtonY = 0.0;
-    CGRect buttonRect, lockRect;
-    puzzlePacksButtonsArray = [NSMutableArray arrayWithCapacity:1];
-    puzzlePacksLockIconsArray = [NSMutableArray arrayWithCapacity:1];
-    NSMutableDictionary *packDictionary;
-    unsigned packDisplayIndex = 0;
-    unsigned packIndex = 0;
-    while (packDictionary = [packsEnum nextObject]){
-        unsigned packNumber = packIndex;
-        NSString *packTitle;
-        packButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [packButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Light" size:[self querySmallFontSize]]];
-        [puzzlePacksButtonsArray insertObject:packButton atIndex:packIndex];
-        buttonCx = puzzlePacksFrame.size.width/2.0;
-        buttonCy = packsButtonY + (1.2*(float)(packDisplayIndex))*buttonHeight;
-        buttonRect = CGRectMake(buttonCx-buttonWidth/2.0, buttonCy, buttonWidth, buttonHeight);
-        packButton.frame = buttonRect;
-        packButton.layer.borderWidth = 0.0f;
-        
-        lockImage = nil;
-        CGFloat lockHeight = 0.75*buttonHeight;
-        lockImage = [UIButton buttonWithType:UIButtonTypeCustom];
-        [puzzlePacksLockIconsArray insertObject:lockImage atIndex:packIndex];
-        lockRect = CGRectMake(buttonCx+buttonWidth/2.0-1.1*lockHeight, buttonCy+buttonHeight/2.0-lockHeight/2.0, lockHeight, lockHeight);
-        lockImage.frame = lockRect;
-        [lockImage setBackgroundImage:btnImageLocked forState:UIControlStateNormal];
-        [lockImage setBackgroundImage:btnImageLocked forState:UIControlStateHighlighted];
-        lockImage.hidden = YES;
-        
-        long packCost = [[packDictionary objectForKey:@"AppStorePackCost"] integerValue];
-        NSString *packName = [packDictionary objectForKey:@"pack_name"];
-        UIImage *btnImagePackCompleted = [UIImage imageNamed:@"grayRectangle.png"];
-        UIImage *packButtonCheckMarkImage = nil;
-        if (packCost == 0){
-            // Free Pack
-            [packButton setBackgroundImage:btnImageFree forState:UIControlStateNormal];
-            if ([appd queryNumberOfPuzzlesLeftInPack:packNumber] == 0){
-                // All puzzles solved
-                [packButton setBackgroundImage:btnImagePackCompleted forState:UIControlStateNormal];
-                [packButton setBackgroundImage:btnImagePackCompleted forState:UIControlStateHighlighted];
-                packTitle = [NSString stringWithFormat:@"%s", [packName UTF8String]];
-                packButtonCheckMarkImage = [UIImage imageNamed:@"CheckmarkInCircle.png"];
-            }
-            else if ([appd queryNumberOfPuzzlesLeftInPack:packNumber] == 1){
-                // One puzzle left
-                [packButton setBackgroundImage:btnSelectedImageFree forState:UIControlStateHighlighted];
-                [packButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                packTitle = [NSString stringWithFormat:@"%s -  %d left", [packName UTF8String], [appd queryNumberOfPuzzlesLeftInPack:packNumber]];
-            }
-            else {
-                // > 1 puzzle left
-                [packButton setBackgroundImage:btnSelectedImageFree forState:UIControlStateHighlighted];
-                [packButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                packTitle = [NSString stringWithFormat:@"%s -  %d left", [packName UTF8String], [appd queryNumberOfPuzzlesLeftInPack:packNumber]];
-            }
-            [packButton setTitle:packTitle forState:UIControlStateNormal];
-            packButton.enabled = YES;
-        }
-        else {
-            // Paid Pack
-            if ([appd queryPurchasedPuzzlePack:packNumber]){
-                // This pack has been purchased
+    if ([packsArray count] > 0){
+        NSEnumerator *packsEnum = [packsArray objectEnumerator];
+        UIButton *packButton, *lockImage;
+        CGFloat buttonCx = 0;
+        buttonCy = 0;
+        CGFloat packsButtonY = 0.0;
+        CGRect buttonRect, lockRect;
+        puzzlePacksButtonsArray = [NSMutableArray arrayWithCapacity:1];
+        puzzlePacksLockIconsArray = [NSMutableArray arrayWithCapacity:1];
+        NSMutableDictionary *packDictionary;
+        unsigned packDisplayIndex = 0;
+        unsigned packIndex = 0;
+        while (packDictionary = [packsEnum nextObject]){
+            unsigned packNumber = packIndex;
+            NSString *packTitle;
+            packButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            [packButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Light" size:[self querySmallFontSize]]];
+            [puzzlePacksButtonsArray insertObject:packButton atIndex:packIndex];
+            buttonCx = puzzlePacksFrame.size.width/2.0;
+            buttonCy = packsButtonY + (1.2*(float)(packDisplayIndex))*buttonHeight;
+            buttonRect = CGRectMake(buttonCx-buttonWidth/2.0, buttonCy, buttonWidth, buttonHeight);
+            packButton.frame = buttonRect;
+            packButton.layer.borderWidth = 0.0f;
+            
+            lockImage = nil;
+            CGFloat lockHeight = 0.75*buttonHeight;
+            lockImage = [UIButton buttonWithType:UIButtonTypeCustom];
+            [puzzlePacksLockIconsArray insertObject:lockImage atIndex:packIndex];
+            lockRect = CGRectMake(buttonCx+buttonWidth/2.0-1.1*lockHeight, buttonCy+buttonHeight/2.0-lockHeight/2.0, lockHeight, lockHeight);
+            lockImage.frame = lockRect;
+            [lockImage setBackgroundImage:btnImageLocked forState:UIControlStateNormal];
+            [lockImage setBackgroundImage:btnImageLocked forState:UIControlStateHighlighted];
+            lockImage.hidden = YES;
+            
+            long packCost = [[packDictionary objectForKey:@"AppStorePackCost"] integerValue];
+            NSString *packName = [packDictionary objectForKey:@"pack_name"];
+            UIImage *btnImagePackCompleted = [UIImage imageNamed:@"grayRectangle.png"];
+            UIImage *packButtonCheckMarkImage = nil;
+            if (packCost == 0){
+                // Free Pack
+                [packButton setBackgroundImage:btnImageFree forState:UIControlStateNormal];
                 if ([appd queryNumberOfPuzzlesLeftInPack:packNumber] == 0){
                     // All puzzles solved
                     [packButton setBackgroundImage:btnImagePackCompleted forState:UIControlStateNormal];
@@ -376,67 +350,96 @@
                 }
                 else if ([appd queryNumberOfPuzzlesLeftInPack:packNumber] == 1){
                     // One puzzle left
-                    [packButton setBackgroundImage:btnImageFree forState:UIControlStateNormal];
                     [packButton setBackgroundImage:btnSelectedImageFree forState:UIControlStateHighlighted];
+                    [packButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                     packTitle = [NSString stringWithFormat:@"%s -  %d left", [packName UTF8String], [appd queryNumberOfPuzzlesLeftInPack:packNumber]];
                 }
                 else {
                     // > 1 puzzle left
-                    [packButton setBackgroundImage:btnImageFree forState:UIControlStateNormal];
                     [packButton setBackgroundImage:btnSelectedImageFree forState:UIControlStateHighlighted];
+                    [packButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                     packTitle = [NSString stringWithFormat:@"%s -  %d left", [packName UTF8String], [appd queryNumberOfPuzzlesLeftInPack:packNumber]];
                 }
                 [packButton setTitle:packTitle forState:UIControlStateNormal];
-                [packButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                 packButton.enabled = YES;
             }
             else {
-                // This pack has not been purchased
-                lockImage.hidden = NO;
-                [packButton setBackgroundImage:btnImagePaid forState:UIControlStateNormal];
-                [packButton setBackgroundImage:btnSelectedImagePaid forState:UIControlStateHighlighted];
-                [packButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                
-                if ([packDictionary objectForKey:@"formatted_price_string"] &&
-                    appd.applicationIsConnectedToNetwork){
-                    NSString *packTitleBeginning = [packDictionary objectForKey:@"formatted_price_string"];
-                    NSString *packTitleMiddle = [packTitleBeginning stringByAppendingString:@" - "];
-                    packTitle = [packTitleMiddle stringByAppendingString:
-                                 packName];
+                // Paid Pack
+                if ([appd queryPurchasedPuzzlePack:packNumber]){
+                    // This pack has been purchased
+                    if ([appd queryNumberOfPuzzlesLeftInPack:packNumber] == 0){
+                        // All puzzles solved
+                        [packButton setBackgroundImage:btnImagePackCompleted forState:UIControlStateNormal];
+                        [packButton setBackgroundImage:btnImagePackCompleted forState:UIControlStateHighlighted];
+                        packTitle = [NSString stringWithFormat:@"%s", [packName UTF8String]];
+                        packButtonCheckMarkImage = [UIImage imageNamed:@"CheckmarkInCircle.png"];
+                    }
+                    else if ([appd queryNumberOfPuzzlesLeftInPack:packNumber] == 1){
+                        // One puzzle left
+                        [packButton setBackgroundImage:btnImageFree forState:UIControlStateNormal];
+                        [packButton setBackgroundImage:btnSelectedImageFree forState:UIControlStateHighlighted];
+                        packTitle = [NSString stringWithFormat:@"%s -  %d left", [packName UTF8String], [appd queryNumberOfPuzzlesLeftInPack:packNumber]];
+                    }
+                    else {
+                        // > 1 puzzle left
+                        [packButton setBackgroundImage:btnImageFree forState:UIControlStateNormal];
+                        [packButton setBackgroundImage:btnSelectedImageFree forState:UIControlStateHighlighted];
+                        packTitle = [NSString stringWithFormat:@"%s -  %d left", [packName UTF8String], [appd queryNumberOfPuzzlesLeftInPack:packNumber]];
+                    }
+                    [packButton setTitle:packTitle forState:UIControlStateNormal];
+                    [packButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                    packButton.enabled = YES;
                 }
                 else {
-                    packTitle = [NSString stringWithFormat:@"%s -  %d left", [packName UTF8String], [appd queryNumberOfPuzzlesLeftInPack:packNumber]];
+                    // This pack has not been purchased
+                    lockImage.hidden = NO;
+                    [packButton setBackgroundImage:btnImagePaid forState:UIControlStateNormal];
+                    [packButton setBackgroundImage:btnSelectedImagePaid forState:UIControlStateHighlighted];
+                    [packButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                    
+                    if (appd.storeKitDataHasBeenReceived &&
+                        [packDictionary objectForKey:@"formatted_price_string"] &&
+                        appd.applicationIsConnectedToNetwork){
+                        NSString *packTitleBeginning = [packDictionary objectForKey:@"formatted_price_string"];
+                        NSString *packTitleMiddle = [packTitleBeginning stringByAppendingString:@" - "];
+                        packTitle = [packTitleMiddle stringByAppendingString:
+                                     packName];
+                    }
+                    else {
+                        packTitle = [NSString stringWithFormat:@"%s -  %d left", [packName UTF8String], [appd queryNumberOfPuzzlesLeftInPack:packNumber]];
+                    }
+                    [packButton setTitle:packTitle forState:UIControlStateNormal];
+                    packButton.enabled = appd.applicationIsConnectedToNetwork;
                 }
-                [packButton setTitle:packTitle forState:UIControlStateNormal];
-                packButton.enabled = appd.applicationIsConnectedToNetwork;
             }
+            if ([appd queryNumberOfPuzzlesLeftInPack:packNumber] > 0){
+                packButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+                packButton.tag = packIndex;
+                [packButton addTarget:self action:@selector(puzzlePackButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+                packButton.showsTouchWhenHighlighted = YES;
+                [packButton setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];
+                [contentView addSubview:packButton];
+                [contentView bringSubviewToFront:packButton];
+                if (lockImage != nil){
+                    [contentView addSubview:lockImage];
+                    [contentView bringSubviewToFront:lockImage];
+                }
+                if (packButtonCheckMarkImage != nil){
+                    CGFloat checkmarkHeight = 0.75*buttonHeight;
+                    UIButton *checkmarkImage = [UIButton buttonWithType:UIButtonTypeCustom];
+                    CGRect checkmarkRect = CGRectMake(buttonCx+buttonWidth/2.0-1.1*checkmarkHeight, buttonCy+buttonHeight/2.0-checkmarkHeight/2.0, checkmarkHeight, checkmarkHeight);
+                    checkmarkImage.frame = checkmarkRect;
+                    [checkmarkImage setBackgroundImage:packButtonCheckMarkImage forState:UIControlStateNormal];
+                    [checkmarkImage setBackgroundImage:packButtonCheckMarkImage forState:UIControlStateHighlighted];
+                    [contentView addSubview:checkmarkImage];
+                    [contentView bringSubviewToFront:checkmarkImage];
+                }
+                packDisplayIndex++;
+            }
+            packIndex++;
         }
-        if ([appd queryNumberOfPuzzlesLeftInPack:packNumber] > 0){
-            packButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-            packButton.tag = packIndex;
-            [packButton addTarget:self action:@selector(puzzlePackButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-            packButton.showsTouchWhenHighlighted = YES;
-            [packButton setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];
-            [contentView addSubview:packButton];
-            [contentView bringSubviewToFront:packButton];
-            if (lockImage != nil){
-                [contentView addSubview:lockImage];
-                [contentView bringSubviewToFront:lockImage];
-            }
-            if (packButtonCheckMarkImage != nil){
-                CGFloat checkmarkHeight = 0.75*buttonHeight;
-                UIButton *checkmarkImage = [UIButton buttonWithType:UIButtonTypeCustom];
-                CGRect checkmarkRect = CGRectMake(buttonCx+buttonWidth/2.0-1.1*checkmarkHeight, buttonCy+buttonHeight/2.0-checkmarkHeight/2.0, checkmarkHeight, checkmarkHeight);
-                checkmarkImage.frame = checkmarkRect;
-                [checkmarkImage setBackgroundImage:packButtonCheckMarkImage forState:UIControlStateNormal];
-                [checkmarkImage setBackgroundImage:packButtonCheckMarkImage forState:UIControlStateHighlighted];
-                [contentView addSubview:checkmarkImage];
-                [contentView bringSubviewToFront:checkmarkImage];
-            }
-            packDisplayIndex++;
-        }
-        packIndex++;
     }
+    DLog("< buildPackSelectionButtons");
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -522,87 +525,93 @@
 }
 
 - (void)updateAllPackTitles {
+    DLog("> updateAllPackTitles");
     // Update the label text for each pack button to reflect its current unsolved puzzle count
 //    NSMutableArray *packsArray = [appd.gameDictionaries objectForKey:kPuzzlePacksArray];
     NSMutableArray *packsArray;
-    if (appd.arrayOfPuzzlePacksInfo != nil &&
+    if (appd.storeKitDataHasBeenReceived &&
+        appd.arrayOfPuzzlePacksInfo != nil &&
         [appd.arrayOfPuzzlePacksInfo count] > 0){
         packsArray = [NSMutableArray arrayWithArray:[NSArray arrayWithArray:appd.arrayOfPuzzlePacksInfo]];
     }
     else {
         packsArray = [appd fetchPacksArray:@"puzzlePacksArray.plist"];
     }
-    NSEnumerator *packsEnum = [packsArray objectEnumerator];
-    UIButton *packButton;
-    NSString *packTitle;
-    NSMutableAttributedString *packTitle1, *packTitle2;
-    NSMutableDictionary *packDictionary;
-    unsigned packDisplayIndex = 0;
-    while (packDictionary = [packsEnum nextObject]){
-        // PKH pack_number {
-//        unsigned int packNumber = [[packDictionary objectForKey:@"pack_number"]intValue];
-        unsigned int packNumber = packDisplayIndex;
-        // PKH pack_number }
-        unsigned int unsolvedCount = [appd queryNumberOfPuzzlesLeftInPack:packNumber];
-        long packCost = [[packDictionary objectForKey:@"AppStorePackCost"] integerValue];
-        if ([puzzlePacksButtonsArray count] > packDisplayIndex){
-            packButton = [puzzlePacksButtonsArray objectAtIndex:packDisplayIndex];
-            NSString *packName = [packDictionary objectForKey:@"pack_name"];
-            // Free Packs
-            if (packCost == 0){
-                [self updateOnePackButtonTitle:packDisplayIndex
-                                    packNumber:packNumber
-                                        button:packButton];
-                if (unsolvedCount == 0){
-                    packButton.backgroundColor = [UIColor clearColor];
-                    packButton.enabled = NO;
-                }
-                else {
-                    packButton.enabled = YES;
-                }
-            }
-            // Paid Packs
-            else {
-                // Packs that have been purchased
-                if ([appd queryPurchasedPuzzlePack:packNumber]){
+    if ([packsArray count] > 0){
+        NSEnumerator *packsEnum = [packsArray objectEnumerator];
+        UIButton *packButton;
+        NSString *packTitle;
+        NSMutableDictionary *packDictionary;
+        unsigned packDisplayIndex = 0;
+        while (packDictionary = [packsEnum nextObject]){
+            // PKH pack_number {
+            //        unsigned int packNumber = [[packDictionary objectForKey:@"pack_number"]intValue];
+            unsigned int packNumber = packDisplayIndex;
+            // PKH pack_number }
+            unsigned int unsolvedCount = [appd queryNumberOfPuzzlesLeftInPack:packNumber];
+            long packCost = [[packDictionary objectForKey:@"AppStorePackCost"] integerValue];
+            if ([puzzlePacksButtonsArray count] > packDisplayIndex){
+                packButton = [puzzlePacksButtonsArray objectAtIndex:packDisplayIndex];
+                NSString *packName = [packDictionary objectForKey:@"pack_name"];
+                // Free Packs
+                if (packCost == 0){
                     [self updateOnePackButtonTitle:packDisplayIndex
                                         packNumber:packNumber
                                             button:packButton];
                     if (unsolvedCount == 0){
+                        packButton.backgroundColor = [UIColor clearColor];
                         packButton.enabled = NO;
                     }
                     else {
                         packButton.enabled = YES;
                     }
                 }
-                // Packs that have NOT been purchased
+                // Paid Packs
                 else {
-                    if ([packDictionary objectForKey:@"formatted_price_string"] &&
-                        appd.applicationIsConnectedToNetwork){
-                        NSString *packTitleBeginning = [packDictionary objectForKey:@"formatted_price_string"];
-                        NSString *packTitleMiddle = [packTitleBeginning stringByAppendingString:@" - "];
-                        packTitle = [packTitleMiddle stringByAppendingString:
-                                     packName];
-                        NSString *packTitle1 = [NSString stringWithFormat:@" - %d left", unsolvedCount];
-                        packTitle = [packTitle stringByAppendingString:packTitle1];
+                    // Packs that have been purchased
+                    if ([appd queryPurchasedPuzzlePack:packNumber]){
+                        [self updateOnePackButtonTitle:packDisplayIndex
+                                            packNumber:packNumber
+                                                button:packButton];
+                        if (unsolvedCount == 0){
+                            packButton.enabled = NO;
+                        }
+                        else {
+                            packButton.enabled = YES;
+                        }
                     }
+                    // Packs that have NOT been purchased
                     else {
-                        packTitle = [NSString stringWithFormat:@"%s -  %d left", [packName UTF8String], [appd queryNumberOfPuzzlesLeftInPack:packNumber]];
+                        if (appd.storeKitDataHasBeenReceived &&
+                            [packDictionary objectForKey:@"formatted_price_string"] &&
+                            appd.applicationIsConnectedToNetwork){
+                            NSString *packTitleBeginning = [packDictionary objectForKey:@"formatted_price_string"];
+                            NSString *packTitleMiddle = [packTitleBeginning stringByAppendingString:@" - "];
+                            packTitle = [packTitleMiddle stringByAppendingString:
+                                         packName];
+                            NSString *packTitle1 = [NSString stringWithFormat:@" - %d left", unsolvedCount];
+                            packTitle = [packTitle stringByAppendingString:packTitle1];
+                        }
+                        else {
+                            packTitle = [NSString stringWithFormat:@"%s -  %d left", [packName UTF8String], [appd queryNumberOfPuzzlesLeftInPack:packNumber]];
+                        }
+                        //                    packTitle1 = [[NSMutableAttributedString alloc] initWithString:packTitle];
+                        //                    packTitle = [NSString stringWithFormat:@" - %d left", unsolvedCount];
+                        //                    NSRange range1 = NSMakeRange(0, [packTitle length]);
+                        //                    packTitle2 = [[NSMutableAttributedString alloc] initWithString:packTitle];
+                        //                    [packTitle2 addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFang SC Semibold" size:[self querySmallFontSize]] range:range1];
+                        //                    [packTitle1 appendAttributedString:packTitle2];
+                        packButton.enabled = appd.applicationIsConnectedToNetwork;
+                        //                    [packButton setAttributedTitle:packTitle1 forState:UIControlStateNormal];
+                        [packButton setTitle:packTitle forState:UIControlStateNormal];
                     }
-//                    packTitle1 = [[NSMutableAttributedString alloc] initWithString:packTitle];
-//                    packTitle = [NSString stringWithFormat:@" - %d left", unsolvedCount];
-//                    NSRange range1 = NSMakeRange(0, [packTitle length]);
-//                    packTitle2 = [[NSMutableAttributedString alloc] initWithString:packTitle];
-//                    [packTitle2 addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFang SC Semibold" size:[self querySmallFontSize]] range:range1];
-//                    [packTitle1 appendAttributedString:packTitle2];
-                    packButton.enabled = appd.applicationIsConnectedToNetwork;
-//                    [packButton setAttributedTitle:packTitle1 forState:UIControlStateNormal];
-                    [packButton setTitle:packTitle forState:UIControlStateNormal];
                 }
             }
+            packDisplayIndex++;
         }
-        packDisplayIndex++;
     }
+    DLog("< updateAllPackTitles");
+
 }
 
 //
@@ -824,17 +833,21 @@
 }
 
 
-- (void)handleNetworkConnectivityChanged:(NSNotification *) notification{
+- (void)handleNetworkConnectivityChanged:(NSNotification *)notification{
     NSLog(@"Packs - handleNetworkConnectivityChanged - %@",notification.object);
-    if (!appd.applicationIsConnectedToNetwork){
-        [self buildPackSelectionButtons];
+    NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:notification.userInfo];
+    if ([userInfo objectForKey:@"status"] != nil){
+        if ([[userInfo objectForKey:@"status"] intValue] == 1 &&
+            latchApplicationIsConnectedToNetwork == NO){
+            latchApplicationIsConnectedToNetwork = YES;
+            [self updateAllPackTitles];
+        }
+        else if ([[userInfo objectForKey:@"status"] intValue] != 1 &&
+                 latchApplicationIsConnectedToNetwork == YES){
+            latchApplicationIsConnectedToNetwork = NO;
+            [self updateAllPackTitles];
+        }
     }
-}
-
-
-- (void)handleStoreKitDataReceived:(NSNotification *) notification{
-    NSLog(@"Packs - handleStoreKitDataReceived - %@",notification.object);
-    [self buildPackSelectionButtons];
 }
 
 

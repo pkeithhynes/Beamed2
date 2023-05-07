@@ -45,11 +45,11 @@
     // No banner ads in this UIViewController
     [appd vungleCloseBannerAd];
     
-    [[NSNotificationCenter defaultCenter]
-     addObserver: self
-     selector: @selector (handleStoreKitDataReceived:)
-     name: @"storeKitDataReceived"
-     object: nil];
+//    [[NSNotificationCenter defaultCenter]
+//     addObserver: self
+//     selector: @selector (handleStoreKitDataReceived:)
+//     name: @"storeKitDataReceived"
+//     object: nil];
     
     [[NSNotificationCenter defaultCenter]
      addObserver: self
