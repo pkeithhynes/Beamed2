@@ -202,16 +202,14 @@
     [self buildHintButtons:hintsLabelFrame
             hintPacksFrame:hintPacksFrame
                buttonWidth:buttonWidth
-              buttonHeight:buttonHeight
-                   enabled:appd.applicationIsConnectedToNetwork];
+              buttonHeight:buttonHeight];
 }
 
 
 - (void)buildHintButtons:(CGRect)hintsLabelFrame
           hintPacksFrame:(CGRect)hintPacksFrame
              buttonWidth:(CGFloat)buttonWidth
-            buttonHeight:(CGFloat)buttonHeight
-                 enabled:(BOOL)enabled {
+            buttonHeight:(CGFloat)buttonHeight {
     // First clear out all existing Hint buttons
     [self removeEveryHintButton];
     hintButtonsArray = [NSMutableArray arrayWithCapacity:1];
@@ -221,93 +219,97 @@
     //
     // Use live StoreKit data if it is available
     NSMutableArray *arrayOfPaidHintPacks;
-    if (appd.arrayOfPaidHintPacksInfo != nil &&
+    if (appd.storeKitDataHasBeenReceived &&
+        appd.arrayOfPaidHintPacksInfo != nil &&
         [appd.arrayOfPaidHintPacksInfo count] > 0){
         arrayOfPaidHintPacks = [NSMutableArray arrayWithArray:[NSArray arrayWithArray:appd.arrayOfPaidHintPacksInfo]];
     }
     else {
         arrayOfPaidHintPacks = [appd fetchPacksArray:@"paidHintPacksArray.plist"];
     }
-    NSEnumerator *hintsEnum = [arrayOfPaidHintPacks objectEnumerator];
-    UIButton *hintPackButton;
-    CGFloat buttonCx = 0, buttonCy = 0;
-    CGFloat hintsButtonY = hintsLabelFrame.origin.y + hintsLabelFrame.size.height/2.0;
-    hintPacksButtonsArray = [NSMutableArray arrayWithCapacity:1];
-    
-    //
-    // Load button images
-    //
-    UIImage *btnImage = [UIImage imageNamed:@"yellowRectangle.png"];
-    UIImage *btnSelectedImage = [UIImage imageNamed:@"yellowRectangleSelected.png"];
-
-    //
-    // Add hint video reward button to hintsView
-    //
-    hintPackButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [hintPackButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Light" size:[self querySmallFontSize]+3]];
-    [hintPackButton setBackgroundImage:btnImage forState:UIControlStateNormal];
-    [hintPackButton setBackgroundImage:btnSelectedImage forState:UIControlStateHighlighted];
-    [hintPacksButtonsArray insertObject:hintPackButton atIndex:0];
-    buttonCx = hintPacksFrame.size.width/2.0;
-    buttonCy = hintsButtonY + buttonHeight;
-    CGRect buttonRect = CGRectMake(buttonCx-buttonWidth/2.0, buttonCy, buttonWidth, buttonHeight);
-    hintPackButton.frame = buttonRect;
-    hintPackButton.layer.borderWidth = 0.0f;
-    NSString *hintTitle = [NSString stringWithFormat:@"Watch Video for 1 Hint"];
-    [hintPackButton setTitle:hintTitle forState:UIControlStateNormal];
-    hintPackButton.tag = 0;
-    [hintPackButton addTarget:self action:@selector(hintRewardVideoButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    hintPackButton.showsTouchWhenHighlighted = YES;
-    [hintPackButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [hintPackButton setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];
-    hintPackButton.enabled = enabled;
-    [hintButtonsArray addObject:hintPackButton];
-    [hintsView addSubview:hintPackButton];
-    [hintsView bringSubviewToFront:hintPackButton];
-
-    //
-    // Add hint purchase buttons to hintsView
-    //
-    NSMutableDictionary *hintDictionary;
-    while (hintDictionary = [hintsEnum nextObject]){
-        NSNumber *hintIndex = [hintDictionary objectForKey:@"pack_number"];
+    if ([arrayOfPaidHintPacks count] > 0){
+        NSEnumerator *hintsEnum = [arrayOfPaidHintPacks objectEnumerator];
+        UIButton *hintPackButton;
+        CGFloat buttonCx = 0, buttonCy = 0;
+        CGFloat hintsButtonY = hintsLabelFrame.origin.y + hintsLabelFrame.size.height/2.0;
+        hintPacksButtonsArray = [NSMutableArray arrayWithCapacity:1];
+        
+        //
+        // Load button images
+        //
+        UIImage *btnImage = [UIImage imageNamed:@"yellowRectangle.png"];
+        UIImage *btnSelectedImage = [UIImage imageNamed:@"yellowRectangleSelected.png"];
+        
+        //
+        // Add hint video reward button to hintsView
+        //
         hintPackButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [hintPackButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Light" size:[self querySmallFontSize]+3]];
         [hintPackButton setBackgroundImage:btnImage forState:UIControlStateNormal];
         [hintPackButton setBackgroundImage:btnSelectedImage forState:UIControlStateHighlighted];
-        [hintPacksButtonsArray insertObject:hintPackButton atIndex:[hintIndex integerValue]+1];
+        [hintPacksButtonsArray insertObject:hintPackButton atIndex:0];
         buttonCx = hintPacksFrame.size.width/2.0;
-        buttonCy = hintsButtonY + buttonHeight +(1.2*(float)([hintIndex integerValue] + 1))*buttonHeight;
-        buttonRect = CGRectMake(buttonCx-buttonWidth/2.0, buttonCy, buttonWidth, buttonHeight);
+        buttonCy = hintsButtonY + buttonHeight;
+        CGRect buttonRect = CGRectMake(buttonCx-buttonWidth/2.0, buttonCy, buttonWidth, buttonHeight);
         hintPackButton.frame = buttonRect;
-        hintPackButton.layer.borderWidth = 1.0f;
-        long hintCost = [[hintDictionary objectForKey:@"AppStorePackCost"] integerValue];
-        NSString *hintPackName = [hintDictionary objectForKey:@"pack_name"];
-        // Hint pack buttons have a blue background
-        if (hintCost == 0){
-            hintTitle = [NSString stringWithFormat:@"%s", [hintPackName UTF8String]];
-        }
-        else {
-            // Use formatted price string if it exists
-            if ([hintDictionary objectForKey:@"formatted_price_string"]){
-                NSString *hintTitleBeginning = [hintDictionary objectForKey:@"formatted_price_string"];
-                NSString *hintTitleMiddle = [hintTitleBeginning stringByAppendingString:@" - "];
-                hintTitle = [hintTitleMiddle stringByAppendingString:hintPackName];
-            }
-            else {
-                hintTitle = [NSString stringWithFormat:@"$%1.2f - %s", (float)hintCost/100.0, [hintPackName UTF8String]];
-            }
-        }
+        hintPackButton.layer.borderWidth = 0.0f;
+        NSString *hintTitle = [NSString stringWithFormat:@"Watch Video for 1 Hint"];
         [hintPackButton setTitle:hintTitle forState:UIControlStateNormal];
-        hintPackButton.tag = [hintIndex integerValue] + 1;
-        [hintPackButton addTarget:self action:@selector(hintPackButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        hintPackButton.tag = 0;
+        [hintPackButton addTarget:self action:@selector(hintRewardVideoButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         hintPackButton.showsTouchWhenHighlighted = YES;
         [hintPackButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [hintPackButton setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];
-        hintPackButton.enabled = enabled;
+        hintPackButton.enabled = appd.applicationIsConnectedToNetwork;
         [hintButtonsArray addObject:hintPackButton];
         [hintsView addSubview:hintPackButton];
         [hintsView bringSubviewToFront:hintPackButton];
+        
+        //
+        // Add hint purchase buttons to hintsView
+        //
+        NSMutableDictionary *hintDictionary;
+        while (hintDictionary = [hintsEnum nextObject]){
+            NSNumber *hintIndex = [hintDictionary objectForKey:@"pack_number"];
+            hintPackButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            [hintPackButton.titleLabel setFont:[UIFont fontWithName:@"PingFang SC Light" size:[self querySmallFontSize]+3]];
+            [hintPackButton setBackgroundImage:btnImage forState:UIControlStateNormal];
+            [hintPackButton setBackgroundImage:btnSelectedImage forState:UIControlStateHighlighted];
+            [hintPacksButtonsArray insertObject:hintPackButton atIndex:[hintIndex integerValue]+1];
+            buttonCx = hintPacksFrame.size.width/2.0;
+            buttonCy = hintsButtonY + buttonHeight +(1.2*(float)([hintIndex integerValue] + 1))*buttonHeight;
+            buttonRect = CGRectMake(buttonCx-buttonWidth/2.0, buttonCy, buttonWidth, buttonHeight);
+            hintPackButton.frame = buttonRect;
+            hintPackButton.layer.borderWidth = 1.0f;
+            long hintCost = [[hintDictionary objectForKey:@"AppStorePackCost"] integerValue];
+            NSString *hintPackName = [hintDictionary objectForKey:@"pack_name"];
+            // Hint pack buttons have a blue background
+            if (hintCost == 0){
+                hintTitle = [NSString stringWithFormat:@"%s", [hintPackName UTF8String]];
+            }
+            else {
+                // Use formatted price string if it exists
+                if ([hintDictionary objectForKey:@"formatted_price_string"] &&
+                    appd.applicationIsConnectedToNetwork){
+                    NSString *hintTitleBeginning = [hintDictionary objectForKey:@"formatted_price_string"];
+                    NSString *hintTitleMiddle = [hintTitleBeginning stringByAppendingString:@" - "];
+                    hintTitle = [hintTitleMiddle stringByAppendingString:hintPackName];
+                }
+                else {
+                    hintTitle = [NSString stringWithFormat:@"%s", [hintPackName UTF8String]];
+                }
+            }
+            [hintPackButton setTitle:hintTitle forState:UIControlStateNormal];
+            hintPackButton.tag = [hintIndex integerValue] + 1;
+            [hintPackButton addTarget:self action:@selector(hintPackButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            hintPackButton.showsTouchWhenHighlighted = YES;
+            [hintPackButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [hintPackButton setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];
+            hintPackButton.enabled = appd.applicationIsConnectedToNetwork;
+            [hintButtonsArray addObject:hintPackButton];
+            [hintsView addSubview:hintPackButton];
+            [hintsView bringSubviewToFront:hintPackButton];
+        }
     }
 }
 
@@ -551,16 +553,6 @@
     }
 }
 
-- (void)handleNetworkConnectivityChanged:(NSNotification *) notification{
-    NSLog(@"Hints - handleNetworkConnectivityChanged - %@",notification.object);
-//    NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:notification.userInfo];
-    [self buildHintButtons:hintsLabelFrame
-            hintPacksFrame:hintPacksFrame
-               buttonWidth:buttonWidth
-              buttonHeight:buttonHeight
-                   enabled:appd.applicationIsConnectedToNetwork];
-}
-
 - (void)removeEveryHintButton {
     if (hintButtonsArray &&
         [hintButtonsArray count] > 0){
@@ -572,6 +564,14 @@
         }
         [hintButtonsArray removeAllObjects];
     }
+}
+
+- (void)handleNetworkConnectivityChanged:(NSNotification *) notification{
+    NSLog(@"Hints - handleNetworkConnectivityChanged - %@",notification.object);
+    [self buildHintButtons:hintsLabelFrame
+            hintPacksFrame:hintPacksFrame
+               buttonWidth:buttonWidth
+              buttonHeight:buttonHeight];
 }
 
 

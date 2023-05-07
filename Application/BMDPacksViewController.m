@@ -595,14 +595,7 @@
                         else {
                             packTitle = [NSString stringWithFormat:@"%s -  %d left", [packName UTF8String], [appd queryNumberOfPuzzlesLeftInPack:packNumber]];
                         }
-                        //                    packTitle1 = [[NSMutableAttributedString alloc] initWithString:packTitle];
-                        //                    packTitle = [NSString stringWithFormat:@" - %d left", unsolvedCount];
-                        //                    NSRange range1 = NSMakeRange(0, [packTitle length]);
-                        //                    packTitle2 = [[NSMutableAttributedString alloc] initWithString:packTitle];
-                        //                    [packTitle2 addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFang SC Semibold" size:[self querySmallFontSize]] range:range1];
-                        //                    [packTitle1 appendAttributedString:packTitle2];
                         packButton.enabled = appd.applicationIsConnectedToNetwork;
-                        //                    [packButton setAttributedTitle:packTitle1 forState:UIControlStateNormal];
                         [packButton setTitle:packTitle forState:UIControlStateNormal];
                     }
                 }
