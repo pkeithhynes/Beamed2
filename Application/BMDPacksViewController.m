@@ -45,7 +45,7 @@
     
     [[NSNotificationCenter defaultCenter]
      addObserver: self
-     selector: @selector (handleNetworkConnectivityChanged:)
+     selector: @selector (handleStoreKitDataReceived:)
      name: @"storeKitDataReceived"
      object: nil];
     
@@ -800,11 +800,6 @@
 }
 
 
-- (void)handleNetworkConnectivityChanged:(NSNotification *) notification{
-    NSLog(@"Packs - handleNetworkConnectivityChanged - %@",notification.object);
-    [self buildPackSelectionButtons];
-}
-
 - (void)removeEveryPackButton {
     if (puzzlePacksButtonsArray &&
         [puzzlePacksButtonsArray count] > 0){
@@ -827,6 +822,21 @@
         [puzzlePacksLockIconsArray removeAllObjects];
     }
 }
+
+
+- (void)handleNetworkConnectivityChanged:(NSNotification *) notification{
+    NSLog(@"Packs - handleNetworkConnectivityChanged - %@",notification.object);
+    if (!appd.applicationIsConnectedToNetwork){
+        [self buildPackSelectionButtons];
+    }
+}
+
+
+- (void)handleStoreKitDataReceived:(NSNotification *) notification{
+    NSLog(@"Packs - handleStoreKitDataReceived - %@",notification.object);
+    [self buildPackSelectionButtons];
+}
+
 
 
 @end
