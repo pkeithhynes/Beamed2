@@ -43,6 +43,12 @@
      name: @"com.beamed.network.status-change"
      object: nil];
     
+    [[NSNotificationCenter defaultCenter]
+     addObserver: self
+     selector: @selector (handleNetworkConnectivityChanged:)
+     name: @"storeKitDataReceived"
+     object: nil];
+    
     CGRect homeFrame = rc.rootView.bounds;
     
     puzzlePacksFrame = CGRectMake(homeFrame.origin.x,
