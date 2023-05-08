@@ -189,11 +189,13 @@ Implementation of the cross-platform view controller
     
     
     // No permittedToUseiCloud so ask the user if they wish to use iCloud to store defaults
-    if ([[defaults objectForKey:@"permittedToUseiCloud"] isEqualToString:@"NOTHING"] && appd.currentiCloudToken != nil) {
+    if ([[defaults objectForKey:@"permittedToUseiCloud"] isEqualToString:@"NOTHING"]
+        && appd.applicationIsConnectedToNetwork
+        && appd.currentiCloudToken != nil) {
         [self chooseWhetherToUseiCloudStorage];
     }
     else {
-        // We have no iCloud token so inform user we will run locally
+        // We have no iCloud token or are not connected to a network so inform user we will run locally
         if ([[defaults objectForKey:@"permittedToUseiCloud"] isEqualToString:@"NOTHING"] && appd.currentiCloudToken == nil){
             [defaults setObject:@"NO" forKey:@"permittedToUseiCloud"];
             [self iCloudStorageUnreachable];
@@ -459,33 +461,37 @@ Implementation of the cross-platform view controller
 }
 
 - (void)loadAppropriateSizeBannerAd {
-    DLog("Is Vungle Ad Network Initialized?");
-    NSString *adFree = [appd getObjectFromDefaults:@"AD_FREE_PUZZLES"];
-    if ([adFree isEqualToString:@"YES"]){
-        DLog("User purchased Ad Free Puzzles");
-    }
-    else {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        // Load Vungle Banner Ad
-        if (appd->vungleIsLoaded &&
-            ([[defaults objectForKey:@"demoHasBeenCompleted"] isEqualToString:@"YES"] ||
-             TARGET_OS_SIMULATOR)){
-            switch (displayAspectRatio) {
-                case ASPECT_4_3:
-                    // iPad (9th generation)
-                case ASPECT_10_7:
-                    // iPad Air (5th generation)
-                case ASPECT_3_2: {
-                    // iPad Mini (6th generation)
-                    [appd vungleLoadBannerLeaderboardAd];
-                    break;
-                }
-                case ASPECT_16_9:
-                case ASPECT_13_6:
-                default: {
-                    // iPhones
-                    [appd vungleLoadBannerAd];
-                    break;
+    if (ENABLE_VUNGLE_ADS == YES){
+        DLog("Is Vungle Ad Network Initialized?");
+        NSString *adFree = nil;
+        adFree = [appd getObjectFromDefaults:@"AD_FREE_PUZZLES"];
+        if (adFree != nil &&
+            [adFree isEqualToString:@"YES"]){
+            DLog("User purchased Ad Free Puzzles");
+        }
+        else if (appd.applicationIsConnectedToNetwork){
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            // Load Vungle Banner Ad
+            if (appd->vungleIsLoaded &&
+                ([[defaults objectForKey:@"demoHasBeenCompleted"] isEqualToString:@"YES"] ||
+                 TARGET_OS_SIMULATOR)){
+                switch (displayAspectRatio) {
+                    case ASPECT_4_3:
+                        // iPad (9th generation)
+                    case ASPECT_10_7:
+                        // iPad Air (5th generation)
+                    case ASPECT_3_2: {
+                        // iPad Mini (6th generation)
+                        [appd vungleLoadBannerLeaderboardAd];
+                        break;
+                    }
+                    case ASPECT_16_9:
+                    case ASPECT_13_6:
+                    default: {
+                        // iPhones
+                        [appd vungleLoadBannerAd];
+                        break;
+                    }
                 }
             }
         }
@@ -504,9 +510,9 @@ Implementation of the cross-platform view controller
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Choose Storage Option"
                                                                    message:@"Should documents be stored in iCloud and available on all your devices?"
                                                             preferredStyle:UIAlertControllerStyleAlert];
-
+    
     UIAlertAction* yesAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction * action) {
+                                                      handler:^(UIAlertAction * action) {
         [defaults setObject:@"YES" forKey:@"permittedToUseiCloud"];
         [defaults setObject:@"NO" forKey:@"firstLaunchOfThisApp"];
         if ([self->appd existsKeyInNSUbiquitousKeyValueStore:@"PacksProgressPuzzlesDictionary"] == NO){
@@ -540,7 +546,7 @@ Implementation of the cross-platform view controller
     [alert addAction:yesAction];
     
     UIAlertAction* noAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction * action) {
+                                                     handler:^(UIAlertAction * action) {
         [defaults setObject:@"NO" forKey:@"permittedToUseiCloud"];
         [defaults setObject:@"NO" forKey:@"firstLaunchOfThisApp"];
         if ([self->appd existsKeyInDefaults:@"PacksProgressPuzzlesDictionary"] == NO){
@@ -572,7 +578,7 @@ Implementation of the cross-platform view controller
         }
     }];
     [alert addAction:noAction];
-
+    
     [self presentViewController:alert animated:YES completion:nil];
 }
 

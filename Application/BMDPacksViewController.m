@@ -280,7 +280,9 @@
     [packsView bringSubviewToFront:scrollView];
     
     [self highlightCurrentlySelectedPack];
-    [rc loadAppropriateSizeBannerAd];
+    if (ENABLE_VUNGLE_ADS){
+        [rc loadAppropriateSizeBannerAd];
+    }
 }
 
 - (void)buildPackSelectionButtons {
@@ -404,12 +406,13 @@
                         NSString *packTitleMiddle = [packTitleBeginning stringByAppendingString:@" - "];
                         packTitle = [packTitleMiddle stringByAppendingString:
                                      packName];
+                        packButton.enabled = YES;
                     }
                     else {
                         packTitle = [NSString stringWithFormat:@"%s -  %d left", [packName UTF8String], [appd queryNumberOfPuzzlesLeftInPack:packNumber]];
+                        packButton.enabled = NO;
                     }
                     [packButton setTitle:packTitle forState:UIControlStateNormal];
-                    packButton.enabled = appd.applicationIsConnectedToNetwork;
                 }
             }
             if ([appd queryNumberOfPuzzlesLeftInPack:packNumber] > 0){
@@ -591,11 +594,12 @@
                                          packName];
                             NSString *packTitle1 = [NSString stringWithFormat:@" - %d left", unsolvedCount];
                             packTitle = [packTitle stringByAppendingString:packTitle1];
+                            packButton.enabled = YES;
                         }
                         else {
                             packTitle = [NSString stringWithFormat:@"%s -  %d left", [packName UTF8String], [appd queryNumberOfPuzzlesLeftInPack:packNumber]];
+                            packButton.enabled = NO;
                         }
-                        packButton.enabled = appd.applicationIsConnectedToNetwork;
                         [packButton setTitle:packTitle forState:UIControlStateNormal];
                     }
                 }
@@ -708,7 +712,9 @@
         rc.renderPuzzleON = NO;
         rc.renderOverlayON = NO;
         [rc refreshHomeView];
-        [rc loadAppropriateSizeBannerAd];
+        if (ENABLE_VUNGLE_ADS){
+            [rc loadAppropriateSizeBannerAd];
+        }
         [rc startMainScreenMusicLoop];
     }
     else if ([self.parentViewController isKindOfClass:[BMDPuzzleViewController class]]){
