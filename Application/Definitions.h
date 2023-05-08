@@ -15,7 +15,7 @@
 #define FORCE_PUZZLE_EDITOR_AUTOGEN NO    // YES forces AutoGen mode when PE enabled
 #define ENABLE_HOME_SCREEN_ANIMATION YES
 
-#define ENABLE_VUNGLE_ADS NO
+#define ENABLE_VUNGLE_ADS YES
 
 #define ENABLE_PUZZLE_EDITOR NO     // YES Enables puzzle editing and playback
                                      // NO Disables puzzle editing and enables gameplay only
