@@ -12,7 +12,7 @@ Implementation of the cross-platform view controller
 
 
 @implementation BMDViewController {
-    @public
+@public
     BMDAppDelegate *appd;
     CAGradientLayer *homeViewColorGradient;
     int gradientAnimationIndex;
@@ -101,6 +101,7 @@ Implementation of the cross-platform view controller
 @synthesize homeView;
 @synthesize bannerAdView;
 @synthesize scoresView;
+@synthesize spinnerView;
 
 @synthesize logoView;
 @synthesize puzzleSolvedView;
@@ -131,19 +132,19 @@ Implementation of the cross-platform view controller
 - (void)viewDidLoad
 {
     DLog(">>> BMDViewController.viewDidLoad");
-
+    
     [super viewDidLoad];
-
+    
     appd = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
-
+    
     self.renderPuzzleON = NO;           // MetalKit Puzzle rendering is initially disabled
     self.renderBackgroundON = NO;       // MetalKit Background rendering is initially disabled
     self.renderOverlayON = NO;
-
+    
     [self setupPhysicalDeviceDisplay];
     
     [self setupViewsButtonsLabels];
-
+    
     // Notify that we have loaded
     appd.rootViewControllerHasLoaded = YES;
     
@@ -161,8 +162,8 @@ Implementation of the cross-platform view controller
      selector: @selector (handleUIApplicationDidBecomeActiveNotification)
      name: UIApplicationDidBecomeActiveNotification
      object: nil];
-
-
+    
+    
 }
 
 
@@ -171,7 +172,7 @@ Implementation of the cross-platform view controller
     DLog(">>> BMDViewController.viewDidAppear");
     [super viewDidAppear:animated];
     
-
+    
     // Start appropriate music loop
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     id demoHasBeenCompletedObject = [defaults objectForKey:@"demoHasBeenCompleted"];
@@ -242,12 +243,12 @@ Implementation of the cross-platform view controller
 
 
 - (NSMutableDictionary *)renderBackground {
-//    DLog("renderBackground");
+    //    DLog("renderBackground");
     animationFrame++;
     // Generate frame intervals from time intervals
     unsigned int animationIntervalInFrames = 40;
     unsigned int animationDurationInFrames = 17;
-
+    
     // Redraw the background every frameModulus frame
     [backgroundRenderDictionary removeAllObjects];
     backgroundRenderDataImage = [background renderBackgroundImage:7];
@@ -266,7 +267,7 @@ Implementation of the cross-platform view controller
                                                 syncFrame:syncFrame
                                                stillFrame:YES];
         [backgroundRenderDictionary setObject:logoRenderDataImage forKey:@"logoImage"];
-
+        
         // Marks the end frame of animation
         animationFrameMarker1 = animationFrame + animationDurationInFrames;
     }
@@ -306,8 +307,8 @@ Implementation of the cross-platform view controller
     // Set background color and graphic image
     if (ENABLE_HOME_SCREEN_ANIMATION==NO){
         homeView.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.14 alpha:1.0];
-//        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"neon-synthwave-cityscape-1" ofType:@"png"];
-//        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"backgroundLandscapeGrid" ofType:@"png"];
+        //        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"neon-synthwave-cityscape-1" ofType:@"png"];
+        //        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"backgroundLandscapeGrid" ofType:@"png"];
         NSString *filePath = [[NSBundle mainBundle] pathForResource:@"neon-synthwave-cityscape-3" ofType:@"png"];
         UIImage *sourceImage = [UIImage imageWithContentsOfFile:filePath];
         CGFloat imageWidth = (CGFloat)sourceImage.size.width;
@@ -365,8 +366,8 @@ Implementation of the cross-platform view controller
     //
     // Activate Game Center Access Point
     //
-//    gamekitAccessPoint.active = YES;
-
+    //    gamekitAccessPoint.active = YES;
+    
     // Fetch the current pack name and number of puzzles left for the startPuzzle button
     NSMutableDictionary *packDictionary = [appd fetchPuzzlePack:[appd fetchCurrentPackNumber]];
     NSString *packName = [packDictionary objectForKey:@"pack_name"];
@@ -395,10 +396,10 @@ Implementation of the cross-platform view controller
         [packTitle1 appendAttributedString:packTitle2];
     }
     [startPuzzleButton setAttributedTitle:packTitle1 forState:UIControlStateNormal];
-
+    
     // Start loop1Player
     [appd playMusicLoop:appd.loop1Player];
-
+    
     // Update the dailyPuzzleButton
     NSNumber *dailyPuzzleCompletionDay = [appd getObjectFromDefaults:@"dailyPuzzleCompletionDay"];
     NSNumber *todayLocal = [NSNumber numberWithUnsignedInt:[appd getLocalDaysSinceReferenceDate]];
@@ -411,24 +412,24 @@ Implementation of the cross-platform view controller
         if (dailyPuzzleCompletionDay != nil && dailyPuzzleCompletionDay == todayLocal){
             [dailyPuzzleButton setTitle:@"Daily Puzzle Completed!" forState:UIControlStateNormal];
             dailyPuzzleButtonCheckmark.hidden = NO;
-//            [self disablePulse:dailyPuzzleButton];
+            //            [self disablePulse:dailyPuzzleButton];
         }
         else {
             [dailyPuzzleButton setTitle:@"Daily Puzzle" forState:UIControlStateNormal];
             dailyPuzzleButton.enabled = YES;
             dailyPuzzleButtonCheckmark.hidden = YES;
-//            [self enableSlowPulse:dailyPuzzleButton alphaMin:0.4];
+            //            [self enableSlowPulse:dailyPuzzleButton alphaMin:0.4];
         }
     }
-
+    
     // Update moreHintPacksButton to show how many hints are left
     [self updateMoreHintPacksButton];
     
     // Update packAndPuzzleNumbersLabel
-//    packAndPuzzleNumbersLabel.text = [NSString stringWithFormat:@"Pack: %d,  Puzzle: %d",
-//                                      [appd fetchCurrentPackNumber],
-//                                      [appd fetchCurrentPuzzleNumber]
-//    ];
+    //    packAndPuzzleNumbersLabel.text = [NSString stringWithFormat:@"Pack: %d,  Puzzle: %d",
+    //                                      [appd fetchCurrentPackNumber],
+    //                                      [appd fetchCurrentPuzzleNumber]
+    //    ];
     
     // Update the noAdsButton status
     NSString *adFreeStatus = [appd getObjectFromDefaults:@"AD_FREE_PUZZLES"];
@@ -448,14 +449,14 @@ Implementation of the cross-platform view controller
     else {
         reviewButton.alpha = 0.5;
     }
-
+    
     // Set the dailyRewardButton pulse if the reward is still available
     NSNumber *dailyRewardReceivedDay = [appd getObjectFromDefaults:@"dailyRewardReceivedDay"];
     todayLocal = [NSNumber numberWithUnsignedInt:[appd getLocalDaysSinceReferenceDate]];
-//    if (dailyRewardReceivedDay == nil || dailyRewardReceivedDay != todayLocal){
-//        [self enableSlowPulse:dailyRewardButton alphaMin:0.1];
-//    }
-
+    //    if (dailyRewardReceivedDay == nil || dailyRewardReceivedDay != todayLocal){
+    //        [self enableSlowPulse:dailyRewardButton alphaMin:0.1];
+    //    }
+    
     
     [self loadAppropriateSizeBannerAd];
 }
@@ -591,9 +592,9 @@ Implementation of the cross-platform view controller
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"iCloud Unreachable"
                                                                    message:@"Beamed 2 using local storage."
                                                             preferredStyle:UIAlertControllerStyleAlert];
-
+    
     UIAlertAction* localAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction * action) {
+                                                        handler:^(UIAlertAction * action) {
         [defaults setObject:@"NO" forKey:@"permittedToUseiCloud"];
         [defaults setObject:@"NO" forKey:@"firstLaunchOfThisApp"];
         if ([self->appd existsKeyInDefaults:@"PacksProgressPuzzlesDictionary"] == NO){
@@ -629,10 +630,10 @@ Implementation of the cross-platform view controller
             [self hideLaunchScreen];
             [self loadAppropriateSizeBannerAd];
         }
-//        self->appCurrentGamePackType = PACKTYPE_MAIN;
-//        [self refreshHomeView];
-//        [self hideLaunchScreen];
-//        [self loadAppropriateSizeBannerAd];
+        //        self->appCurrentGamePackType = PACKTYPE_MAIN;
+        //        [self refreshHomeView];
+        //        [self hideLaunchScreen];
+        //        [self loadAppropriateSizeBannerAd];
     }];
     [alert addAction:localAction];
     
@@ -651,7 +652,7 @@ Implementation of the cross-platform view controller
 // Show the launch screen while the application is processing and not ready for user input
 - (void)showLaunchScreen{
     UIImage *launchImage = [UIImage imageNamed:@"LoadingScreen.png"];
-//    UIImage *launchImage = [UIImage imageNamed:@"LoadingScreen.png"];
+    //    UIImage *launchImage = [UIImage imageNamed:@"LoadingScreen.png"];
     UIImageView *launchImageView = [[UIImageView alloc] initWithImage:launchImage];
     CGSize launchSize = launchImage.size;
     CGFloat launchWidth = screenWidthInPixels/contentScaleFactor;
@@ -688,7 +689,7 @@ Implementation of the cross-platform view controller
     launchView = [[UIView alloc] initWithFrame:launchFrame];
     launchView.backgroundColor = [UIColor blackColor];
     launchView.alpha = 1.0;
-
+    
     [launchView addSubview: launchImageView];
     [launchView bringSubviewToFront:launchImageView];
     [rootView addSubview:launchView];
@@ -728,7 +729,7 @@ Implementation of the cross-platform view controller
     
     // Set background color and graphic image
     scoresView.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.14 alpha:1.0];
-//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"backgroundLandscapeGrid" ofType:@"png"];
+    //    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"backgroundLandscapeGrid" ofType:@"png"];
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"neon-synthwave-cityscape-3" ofType:@"png"];
     UIImage *sourceImage = [UIImage imageWithContentsOfFile:filePath];
     CGFloat imageWidth = (CGFloat)sourceImage.size.width;
@@ -760,7 +761,7 @@ Implementation of the cross-platform view controller
     filterLabel.layer.cornerRadius = 15;
     [scoresView addSubview:filterLabel];
     [scoresView bringSubviewToFront:filterLabel];
-
+    
     NSString *adFree = [appd getObjectFromDefaults:@"AD_FREE_PUZZLES"];
     if (![adFree isEqualToString:@"YES"]){
         [scoresView addSubview:bannerAdView];
@@ -986,9 +987,9 @@ Implementation of the cross-platform view controller
     
     // Add jewelsCollectedLabelLeft
     CGRect jewelsCollectedLabelLeftFrame = CGRectMake(centerInPoints.x-1.0*radius,
-                                                    centerInPoints.y+radius+jewelWidth+1.5*fontSize,
-                                                    1.5*radius,
-                                                    1.5*fontSize);
+                                                      centerInPoints.y+radius+jewelWidth+1.5*fontSize,
+                                                      1.5*radius,
+                                                      1.5*fontSize);
     UILabel *jewelsCollectedLabelLeft = [[UILabel alloc] initWithFrame:jewelsCollectedLabelLeftFrame];
     jewelsCollectedLabelLeft.layer.borderColor = [UIColor clearColor].CGColor;
     jewelsCollectedLabelLeft.layer.borderWidth = 1.0;
@@ -1001,18 +1002,18 @@ Implementation of the cross-platform view controller
     
     // Add jewelsCollectedLabelRight
     CGRect jewelsCollectedLabelRightFrame = CGRectMake(centerInPoints.x,
-                                                     centerInPoints.y+radius+jewelWidth+1.5*fontSize,
-                                                     1.0*radius,
-                                                     1.5*fontSize);
+                                                       centerInPoints.y+radius+jewelWidth+1.5*fontSize,
+                                                       1.0*radius,
+                                                       1.5*fontSize);
     UILabel *jewelsCollectedLabelRight = [[UILabel alloc] initWithFrame:jewelsCollectedLabelRightFrame];
     int numberOfJewelsCollected =   redJewelCount+
-                                    greenJewelCount+
-                                    blueJewelCount+
-                                    yellowJewelCount+
-                                    cyanJewelCount+
-                                    magentaJewelCount+
-                                    whiteJewelCount;
-//    int testCountTotalJewelsCollected = [appd countTotalJewelsCollected];
+    greenJewelCount+
+    blueJewelCount+
+    yellowJewelCount+
+    cyanJewelCount+
+    magentaJewelCount+
+    whiteJewelCount;
+    //    int testCountTotalJewelsCollected = [appd countTotalJewelsCollected];
     jewelsCollectedLabelRight.layer.borderColor = [UIColor clearColor].CGColor;
     jewelsCollectedLabelRight.layer.borderWidth = 1.0;
     jewelsCollectedLabelRight.text = [NSString stringWithString:[NSString stringWithFormat:@"%d", numberOfJewelsCollected]];
@@ -1069,12 +1070,12 @@ Implementation of the cross-platform view controller
     [totalSolutionTimeLabelLeft setTextColor:[UIColor whiteColor]];
     [scoresView addSubview: totalSolutionTimeLabelLeft];
     [scoresView bringSubviewToFront:totalSolutionTimeLabelLeft];
-
+    
     //     Add totalSolutionTimeLabelRight
     CGRect totalSolutionTimeLabelRightFrame = CGRectMake(centerInPoints.x,
-                                                        centerInPoints.y+radius+jewelWidth+4.5*fontSize,
-                                                        1.0*radius,
-                                                        1.5*fontSize);
+                                                         centerInPoints.y+radius+jewelWidth+4.5*fontSize,
+                                                         1.0*radius,
+                                                         1.5*fontSize);
     UILabel *totalSolutionTimeLabelRight = [[UILabel alloc] initWithFrame:totalSolutionTimeLabelRightFrame];
     long solutionTime = [appd fetchTotalSolutionTimeForAllPacks];
     totalSolutionTimeLabelRight.layer.borderColor = [UIColor clearColor].CGColor;
@@ -1083,10 +1084,10 @@ Implementation of the cross-platform view controller
     [totalSolutionTimeLabelRight setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:fontSize]];
     [totalSolutionTimeLabelRight setTextAlignment:NSTextAlignmentRight];
     [totalSolutionTimeLabelRight setTextColor:[UIColor whiteColor]];
-//    totalSolutionTimeLabelLeft.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.75];
+    //    totalSolutionTimeLabelLeft.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.75];
     [scoresView addSubview: totalSolutionTimeLabelRight];
     [scoresView bringSubviewToFront:totalSolutionTimeLabelRight];
-
+    
 }
 
 
@@ -1108,9 +1109,9 @@ Implementation of the cross-platform view controller
 - (UILabel *)createJewelLabel:(int)color
                      fontSize:(int)fontSize
                numberOfJewels:(int)numberOfJewels
-                        jewelWidth:(CGFloat)jewelWidth
-                         jewelPosX:(CGFloat)jewelPosX
-                         jewelPosY:(CGFloat)jewelPosY {
+                   jewelWidth:(CGFloat)jewelWidth
+                    jewelPosX:(CGFloat)jewelPosX
+                    jewelPosY:(CGFloat)jewelPosY {
     CGFloat labelWidth = 4.0*jewelWidth;
     CGFloat labelHeight = 1.25*fontSize;
     CGRect labelFrame = CGRectMake(jewelPosX-0.5*labelWidth, jewelPosY+0.5*jewelWidth, labelWidth, labelHeight);
@@ -1167,7 +1168,7 @@ Implementation of the cross-platform view controller
         NSMutableAttributedString *hintTitle1, *hintTitle2;
         NSString *hintTitle = [NSString stringWithFormat:@"Hints"];
         hintTitle1 = [[NSMutableAttributedString alloc] initWithString:hintTitle];
-
+        
         if (numberOfHintsRemainingObject == nil){
             hintTitle = [NSString stringWithFormat:@""];
         }
@@ -1180,7 +1181,7 @@ Implementation of the cross-platform view controller
                 hintTitle = [NSString stringWithFormat:@"\n%d hints left", appd.numberOfHintsRemaining];
             }
         }
-
+        
         NSRange range1 = NSMakeRange(0, [hintTitle length]);
         hintTitle2 = [[NSMutableAttributedString alloc] initWithString:hintTitle];
         [hintTitle2 addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFang SC Light" size:[self querySmallFontSize]] range:range1];
@@ -1235,7 +1236,7 @@ Implementation of the cross-platform view controller
             else {
                 gamePuzzleLabel.text = [NSString stringWithFormat:@"Puzzle Pack Completed!"];
             }
-//            numberOfPointsLabel.text = [NSString stringWithFormat:@"Points: %d", [appd countTotalPoints]];
+            //            numberOfPointsLabel.text = [NSString stringWithFormat:@"Points: %d", [appd countTotalPoints]];
         } else if (appCurrentGamePackType == PACKTYPE_DAILY) {
             todaysDateLabelGame.hidden = NO;
             gamePuzzleLabel.hidden = YES;
@@ -1275,11 +1276,11 @@ Implementation of the cross-platform view controller
 - (void)showLeaderboard {
     GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
     gameCenterController.delegate = self;
-//    if (leaderboardController != nil)
-//    {
-//        leaderboardController.leaderboardDelegate = appd;
-//        [self presentModalViewController: leaderboardController animated: YES];
-//    }
+    //    if (leaderboardController != nil)
+    //    {
+    //        leaderboardController.leaderboardDelegate = appd;
+    //        [self presentModalViewController: leaderboardController animated: YES];
+    //    }
 }
 
 - (void)showAchievements {
@@ -1332,7 +1333,7 @@ Implementation of the cross-platform view controller
     else if (aspectRatio < 2.0) {
         displayAspectRatio = ASPECT_16_9;
         topPaddingInPoints = appd.window.safeAreaInsets.top;
-//        topPaddingInPoints = appd.window.safeAreaInsets.top + 0.2*screenWidthInPixels/contentScaleFactor;
+        //        topPaddingInPoints = appd.window.safeAreaInsets.top + 0.2*screenWidthInPixels/contentScaleFactor;
         bottomPaddingInPoints = appd.window.safeAreaInsets.bottom;
         safeAreaScreenWidthInPixels = safeFrame.size.width*contentScaleFactor;
         safeAreaScreenHeightInPixels = (0.875*safeFrame.size.height-topPaddingInPoints-bottomPaddingInPoints)*contentScaleFactor;
@@ -1347,7 +1348,7 @@ Implementation of the cross-platform view controller
 }
 
 // Home page animated gradient utilities
-    
+
 - (UIColor *)getGradientColorValue:(uint)index {
     switch(index % 6){
         case 0:
@@ -1383,10 +1384,10 @@ Implementation of the cross-platform view controller
     }
     CGPoint startPoint, endPoint;
     // With gradient
-//    startPoint = CGPointMake(-0.4, -0.4);
-//    endPoint = CGPointMake(0.8, 0.8);
-//    [self animateColors:[UIColor blackColor] endColor1:[self getGradientColorValue:gradientAnimationIndex] startColor2:[UIColor blackColor] endColor2:[self getGradientColorValue:gradientAnimationIndex+1]
-//              startPoint:startPoint endPoint:endPoint view:rootView];
+    //    startPoint = CGPointMake(-0.4, -0.4);
+    //    endPoint = CGPointMake(0.8, 0.8);
+    //    [self animateColors:[UIColor blackColor] endColor1:[self getGradientColorValue:gradientAnimationIndex] startColor2:[UIColor blackColor] endColor2:[self getGradientColorValue:gradientAnimationIndex+1]
+    //              startPoint:startPoint endPoint:endPoint view:rootView];
     // Without gradient
     startPoint = CGPointMake(0, 0);
     endPoint = CGPointMake(1.0, 1.0);
@@ -1440,17 +1441,17 @@ Implementation of the cross-platform view controller
         case ASPECT_4_3:{
             // iPad (9th generation)
             packSmallFontSize = 20;
-           break;
+            break;
         }
         case ASPECT_10_7:{
             // iPad Air (5th generation)
             packSmallFontSize = 22;
-           break;
+            break;
         }
         case ASPECT_3_2: {
             // iPad Mini (6th generation)
             packSmallFontSize = 20;
-           break;
+            break;
         }
         case ASPECT_16_9: {
             // iPhone 8
@@ -1539,9 +1540,9 @@ Implementation of the cross-platform view controller
         adY = screenHeightInPixels/contentScaleFactor - bottomPaddingInPoints - 1.3*adHeight;
         adBannerFrame = CGRectMake(adX, adY, adWidth, adHeight);
         bannerAdView = [[UIView alloc]initWithFrame:adBannerFrame];
-//        bannerAdView.backgroundColor = [UIColor grayColor];
+        //        bannerAdView.backgroundColor = [UIColor grayColor];
         DLog("buildVungleAdView: (%d, %d, %d, %d)", (int)adX, (int)adY, (int)adWidth, (int)adHeight);
-
+        
         [rootView addSubview:bannerAdView];
         [rootView bringSubviewToFront:bannerAdView];
     }
@@ -1569,6 +1570,77 @@ Implementation of the cross-platform view controller
     rootView.opaque = YES;
     rootView.alpha = 1.0;
     rootView.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.14 alpha:1.0];
+    
+//    // Create spinnerView and add it to the top of the UIView stack
+//    CGFloat spinnerWidth, spinnerHeight;
+//    switch (displayAspectRatio) {
+//        case ASPECT_4_3:{
+//            // iPad (9th generation)
+//            spinnerWidth = 0.30*rootView.bounds.size.width;
+//            spinnerHeight = 0.20*rootView.bounds.size.width;
+//            break;
+//        }
+//        case ASPECT_10_7: {
+//            // iPad Air (5th generation)
+//            spinnerWidth = 0.30*rootView.bounds.size.width;
+//            spinnerHeight = 0.20*rootView.bounds.size.width;
+//            break;
+//        }
+//        case ASPECT_3_2: {
+//            // iPad Mini (6th generation)
+//            spinnerWidth = 0.30*rootView.bounds.size.width;
+//            spinnerHeight = 0.20*rootView.bounds.size.width;
+//           break;
+//        }
+//        case ASPECT_16_9: {
+//            // iPhone 8
+//            spinnerWidth = 0.50*rootView.bounds.size.width;
+//            spinnerHeight = 0.30*rootView.bounds.size.width;
+//            break;
+//        }
+//        case ASPECT_13_6:
+//        default:{
+//            // iPhone 14
+//            spinnerWidth = 0.50*rootView.bounds.size.width;
+//            spinnerHeight = 0.30*rootView.bounds.size.width;
+//            break;
+//        }
+//    }
+//    CGRect spinnerBounds = CGRectMake(0.5*rootView.bounds.size.width-0.5*spinnerWidth,
+//                                      0.4*rootView.bounds.size.height-0.5*spinnerHeight,
+//                                      spinnerWidth,
+//                                      spinnerHeight);
+//    spinnerView = [[UIView alloc] initWithFrame:spinnerBounds];
+//    spinnerView.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1.00];
+//    spinnerView.layer.cornerRadius = 20;
+//    // Create and start in-app purchase indicator spinner
+//    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
+//    CGRect spinnerFrame = CGRectMake(0.25*spinnerWidth,
+//                                     0.1*spinnerHeight,
+//                                     0.5*spinnerBounds.size.width,
+//                                     0.5*spinnerBounds.size.height);
+//    spinner.frame = spinnerFrame;
+//    spinner.color = [UIColor whiteColor];
+//    [spinner startAnimating];
+//    [spinnerView addSubview:spinner];
+//    [spinnerView bringSubviewToFront:spinner];
+//    // Create spinnerView label
+//    CGRect spinnerLabelFrame = CGRectMake(0.1*spinnerWidth,
+//                                          0.5*spinnerHeight,
+//                                          0.8*spinnerBounds.size.width,
+//                                          0.5*spinnerBounds.size.height);
+//    UILabel *spinnerLabel = [[UILabel alloc] initWithFrame:spinnerLabelFrame];
+//    spinnerLabel.text = @"Purchasing...";
+//    spinnerLabel.numberOfLines = 0;
+//    spinnerLabel.layer.borderColor = [UIColor clearColor].CGColor;
+//    spinnerLabel.textColor = [UIColor whiteColor];
+//    spinnerLabel.layer.borderWidth = 0.0;
+//    [spinnerLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
+//    spinnerLabel.textAlignment = NSTextAlignmentCenter;
+//    spinnerLabel.adjustsFontSizeToFitWidth = YES;
+//    [spinnerView addSubview:spinnerLabel];
+//    [spinnerView bringSubviewToFront:spinnerLabel];
+    
     
     //
     // Set up PAGE_HOME with homeView
@@ -1618,7 +1690,7 @@ Implementation of the cross-platform view controller
             logoHeight = 1.0*logoHeight;
             logoWidth = 1.0*logoWidth;
             logoCx = 0.5*screenWidthInPixels/contentScaleFactor - 0.5*logoWidth;
-//            logoCy = 0.17*screenHeightInPixels/contentScaleFactor - 0.5*logoHeight;
+            //            logoCy = 0.17*screenHeightInPixels/contentScaleFactor - 0.5*logoHeight;
             logoCy = 0.14*screenHeightInPixels/contentScaleFactor - 0.5*logoHeight;
             break;
         }
@@ -1684,7 +1756,7 @@ Implementation of the cross-platform view controller
             buttonWidth = 0.8*screenWidthInPixels/contentScaleFactor;
             buttonHeight = buttonWidth/6.0;
             buttonCy = logoCy + logoHeight + 1.0*buttonHeight;
-//            buttonCy = logoCy + logoHeight + 1.2*buttonHeight;
+            //            buttonCy = logoCy + logoHeight + 1.2*buttonHeight;
             dateLabelCy = buttonCy - 0.9*buttonWidth/8.0;
             break;
         }
@@ -1718,7 +1790,7 @@ Implementation of the cross-platform view controller
     [dailyPuzzleButtonCheckmark setBackgroundImage:checkImage forState:UIControlStateNormal];
     [homeView addSubview:dailyPuzzleButtonCheckmark];
     [homeView bringSubviewToFront:dailyPuzzleButtonCheckmark];
-
+    
     //
     // Add "Daily Reward" button to homeView
     //
@@ -1753,7 +1825,7 @@ Implementation of the cross-platform view controller
         [dailyRewardButton addTarget:self action:@selector(dailyRewardButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         dailyRewardButton.showsTouchWhenHighlighted = YES;
         dailyRewardButton.alpha = 1.0;
-//        [self enableSlowPulse:dailyRewardButton alphaMin:0.1];
+        //        [self enableSlowPulse:dailyRewardButton alphaMin:0.1];
         [homeView addSubview:dailyRewardButton];
         [homeView bringSubviewToFront:dailyRewardButton];
     }
@@ -1770,8 +1842,8 @@ Implementation of the cross-platform view controller
     todaysDateLabelHome.textColor = [UIColor whiteColor];
     [todaysDateLabelHome setFont:[UIFont fontWithName:@"PingFang SC Light" size:todaysDateLabelFontSizeHome]];
     todaysDateLabelHome.hidden = NO;
-//    [homeView addSubview:todaysDateLabelHome];
-//    [homeView bringSubviewToFront:todaysDateLabelHome];
+    //    [homeView addSubview:todaysDateLabelHome];
+    //    [homeView bringSubviewToFront:todaysDateLabelHome];
     
     //
     // Add startPuzzleButton to homeView
@@ -1846,7 +1918,7 @@ Implementation of the cross-platform view controller
     [startPuzzleButtonCheckmark setBackgroundImage:checkImage forState:UIControlStateNormal];
     [homeView addSubview:startPuzzleButtonCheckmark];
     [homeView bringSubviewToFront:startPuzzleButtonCheckmark];
-
+    
     selectAltIconsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     robotDinerSquareButton = [UIButton buttonWithType:UIButtonTypeCustom];
     //
@@ -2036,7 +2108,7 @@ Implementation of the cross-platform view controller
     [self updateMoreHintPacksButton];
     [homeView addSubview:moreHintPacksButton];
     [homeView bringSubviewToFront:moreHintPacksButton];
-        
+    
     //
     // Add "howToPlay" button to homeView
     //
@@ -2105,7 +2177,7 @@ Implementation of the cross-platform view controller
     //
     UIButton *scoresButton = [UIButton buttonWithType:UIButtonTypeCustom];
     int scoresButtonFontSize;
-//    CGFloat oldButtonLeft, oldButtonWidth, newButtonWidth, newButtonCx;
+    //    CGFloat oldButtonLeft, oldButtonWidth, newButtonWidth, newButtonCx;
     oldButtonWidth = buttonWidth;
     newButtonWidth = 0.475*buttonWidth;
     oldButtonLeft = buttonCx - 0.5*oldButtonWidth;
@@ -2330,11 +2402,11 @@ Implementation of the cross-platform view controller
     noAdsButton.alpha = 1.0;
     [homeView addSubview:noAdsButton];
     [homeView bringSubviewToFront:noAdsButton];
-
+    
     CGRect removeAdsLabelFrame = CGRectMake(buttonCx-3.0*buttonWidth/2.0,
-                                           buttonCy+0.75*buttonHeight,
-                                           3.0*buttonWidth,
-                                           buttonHeight);
+                                            buttonCy+0.75*buttonHeight,
+                                            3.0*buttonWidth,
+                                            buttonHeight);
     removeAdsLabel = [[UILabel alloc] initWithFrame:removeAdsLabelFrame];
     removeAdsLabel.text = [NSString stringWithFormat:@"Remove Ads"];
     [removeAdsLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:scoresButtonFontSize]];
@@ -2357,8 +2429,8 @@ Implementation of the cross-platform view controller
         noAdsButton.hidden = NO;
         removeAdsLabel.hidden = NO;
     }
-
-
+    
+    
     
     //
     // Add puzzlePacksButton to homeView
@@ -2404,6 +2476,10 @@ Implementation of the cross-platform view controller
     // Add homeView to rootView
     [rootView addSubview:homeView];
     [rootView bringSubviewToFront:homeView];
+    
+//    // Add spinnerView to rootView
+//    [rootView addSubview:spinnerView];
+//    [rootView bringSubviewToFront:spinnerView];
 }
 
 //
@@ -2517,7 +2593,7 @@ Implementation of the cross-platform view controller
         DLog("Daily Puzzle Already Completed - do not start");
         [self refreshHomeView];
         [self loadAppropriateSizeBannerAd];
-//        [self startMainScreenMusicLoop];
+        //        [self startMainScreenMusicLoop];
     }
 }
 
@@ -2593,7 +2669,7 @@ Implementation of the cross-platform view controller
 //    //    @[][1];
 //}
 
-// Borrow this button temporarily to test out reviews
+// User can directly request a Review
 - (void)reviewButtonPressed {
     // Test out SKStoreReviewController
     if ([appd reviewRequestIsAppropriate]){
@@ -2633,15 +2709,15 @@ Implementation of the cross-platform view controller
     }
     else {
         messageString = @"You have been awarded 1 free hint!";
-
+        
     }
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:titleString
-                               message:messageString
-                               preferredStyle:UIAlertControllerStyleAlert];
-
+                                                                   message:messageString
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                   handler:^(UIAlertAction * action) {}];
-
+                                                          handler:^(UIAlertAction * action) {}];
+    
     [alert addAction:defaultAction];
     [self presentViewController:alert animated:YES completion:nil];
 }
@@ -2659,11 +2735,100 @@ Implementation of the cross-platform view controller
     [self refreshHomeView];
 }
 
+//
 // Handle Puzzle Button press from BMDPacksViewController here
-
+//
 - (void)startNewPuzzleFromPacksViewController {
     DLog("Start a new puzzle");
     [self startPuzzleButtonPressed];
+}
+
+//
+// Methods handling the StoreKit in-app purchase spinnerView go here
+//
+- (void)showSpinnerView {
+    DLog("showSpinnerView");
+    // Create spinnerView and add it to the top of the UIView stack
+    CGFloat spinnerWidth, spinnerHeight;
+    switch (displayAspectRatio) {
+        case ASPECT_4_3:{
+            // iPad (9th generation)
+            spinnerWidth = 0.30*rootView.bounds.size.width;
+            spinnerHeight = 0.20*rootView.bounds.size.width;
+            break;
+        }
+        case ASPECT_10_7: {
+            // iPad Air (5th generation)
+            spinnerWidth = 0.30*rootView.bounds.size.width;
+            spinnerHeight = 0.20*rootView.bounds.size.width;
+            break;
+        }
+        case ASPECT_3_2: {
+            // iPad Mini (6th generation)
+            spinnerWidth = 0.30*rootView.bounds.size.width;
+            spinnerHeight = 0.20*rootView.bounds.size.width;
+           break;
+        }
+        case ASPECT_16_9: {
+            // iPhone 8
+            spinnerWidth = 0.50*rootView.bounds.size.width;
+            spinnerHeight = 0.30*rootView.bounds.size.width;
+            break;
+        }
+        case ASPECT_13_6:
+        default:{
+            // iPhone 14
+            spinnerWidth = 0.50*rootView.bounds.size.width;
+            spinnerHeight = 0.30*rootView.bounds.size.width;
+            break;
+        }
+    }
+    CGRect spinnerBounds = CGRectMake(0.5*rootView.bounds.size.width-0.5*spinnerWidth,
+                                      0.4*rootView.bounds.size.height-0.5*spinnerHeight,
+                                      spinnerWidth,
+                                      spinnerHeight);
+    spinnerView = [[UIView alloc] initWithFrame:spinnerBounds];
+    spinnerView.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1.00];
+    spinnerView.layer.cornerRadius = 20;
+    // Create and start in-app purchase indicator spinner
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
+    CGRect spinnerFrame = CGRectMake(0.25*spinnerWidth,
+                                     0.1*spinnerHeight,
+                                     0.5*spinnerBounds.size.width,
+                                     0.5*spinnerBounds.size.height);
+    spinner.frame = spinnerFrame;
+    spinner.color = [UIColor whiteColor];
+    [spinner startAnimating];
+    [spinnerView addSubview:spinner];
+    [spinnerView bringSubviewToFront:spinner];
+    // Create spinnerView label
+    CGRect spinnerLabelFrame = CGRectMake(0.1*spinnerWidth,
+                                          0.5*spinnerHeight,
+                                          0.8*spinnerBounds.size.width,
+                                          0.5*spinnerBounds.size.height);
+    UILabel *spinnerLabel = [[UILabel alloc] initWithFrame:spinnerLabelFrame];
+    spinnerLabel.text = @"Purchasing...";
+    spinnerLabel.numberOfLines = 0;
+    spinnerLabel.layer.borderColor = [UIColor clearColor].CGColor;
+    spinnerLabel.textColor = [UIColor whiteColor];
+    spinnerLabel.layer.borderWidth = 0.0;
+    [spinnerLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
+    spinnerLabel.textAlignment = NSTextAlignmentCenter;
+    spinnerLabel.adjustsFontSizeToFitWidth = YES;
+    [spinnerView addSubview:spinnerLabel];
+    [spinnerView bringSubviewToFront:spinnerLabel];
+    
+    // Add spinnerView to rootView
+    [rootView addSubview:spinnerView];
+    [rootView bringSubviewToFront:spinnerView];
+
+}
+
+- (void)hideSpinnerView {
+    DLog("hideSpinnerView");
+    if (spinnerView){
+        [spinnerView removeFromSuperview];
+    }
 }
 
 @end

@@ -81,6 +81,7 @@ API_AVAILABLE(ios(13.0))
     UIView *launchView;
     UIView *bannerAdView;
     UIView *scoresView;
+    UIView *spinnerView;
     //
     // Page subViews
     //
@@ -229,6 +230,7 @@ API_AVAILABLE(ios(13.0))
 @property (nonatomic, retain) MTKView *homeView;
 @property (nonatomic, retain) UIView *bannerAdView;
 @property (nonatomic, retain) UIView *scoresView;
+@property (nonatomic, retain) UIView *spinnerView;
 
 
 //@property (nonatomic, retain) UIButton *nextButton;
@@ -327,5 +329,8 @@ API_AVAILABLE(ios(13.0))
 - (NSMutableDictionary *)renderBackground;
 
 - (void)startNewPuzzleFromPacksViewController;
+
+- (void)showSpinnerView;
+- (void)hideSpinnerView;
 
 @end

@@ -3063,6 +3063,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
         productsRequestEnum = REQ_PURCHASE;
         SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:productionId]];
         productsRequest.delegate = self;
+        [rc showSpinnerView];
         [productsRequest start];
     }
     else{
@@ -3077,6 +3078,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
         productsRequestEnum = REQ_PURCHASE;
         SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:productionId]];
         productsRequest.delegate = self;
+        [rc showSpinnerView];
         [productsRequest start];
     }
     else{
@@ -3091,6 +3093,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
         productsRequestEnum = REQ_PURCHASE;
         SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:productionId]];
         productsRequest.delegate = self;
+        [rc showSpinnerView];
         [productsRequest start];
     }
     else{
@@ -3120,6 +3123,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
             if (removeAdsPermanentlyPI != nil){
                 SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:removeAdsPermanentlyPI]];
                 productsRequest.delegate = self;
+                [rc showSpinnerView];
                 [productsRequest start];
             }
         }
@@ -3418,6 +3422,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                 [self completeAdFreeRestore];
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
             }
+            [rc hideSpinnerView];
             break;
         }
     }
@@ -3506,6 +3511,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                     [self completeAdFreePurchase];
                     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
                 }
+                [rc hideSpinnerView];
                 DLog("Transaction state -> Purchased");
                 break;
             case SKPaymentTransactionStateRestored:
@@ -3526,6 +3532,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                     [self completeAdFreeRestore];
                     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
                 }
+                [rc hideSpinnerView];
                 DLog("Transaction state -> Restored");
                 break;
             case SKPaymentTransactionStateFailed:
@@ -3535,9 +3542,11 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                     //the user cancelled the payment ;(
                 }
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+                [rc hideSpinnerView];
                 break;
             case SKPaymentTransactionStateDeferred:
                 DLog("Transaction state -> Deferred");
+                [rc hideSpinnerView];
                 break;
         }
     }

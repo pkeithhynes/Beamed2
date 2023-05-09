@@ -547,15 +547,15 @@
         // Alt Icon not yet purchased
         
         // Create and start in-app purchase indicator spinner
-        UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
-        CGFloat spinnerSquareSize = rc.rootView.bounds.size.width/5.0;
-        spinner.frame = CGRectMake(rc.rootView.bounds.size.width/2.0-spinnerSquareSize/2.0,
-                                   rc.rootView.bounds.size.height/2.0-spinnerSquareSize/2.0,
-                                   spinnerSquareSize,
-                                   spinnerSquareSize);
-        [spinner startAnimating];
-        [iconsView addSubview:spinner];
-        [iconsView bringSubviewToFront:spinner];
+//        UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
+//        CGFloat spinnerSquareSize = rc.rootView.bounds.size.width/5.0;
+//        spinner.frame = CGRectMake(rc.rootView.bounds.size.width/2.0-spinnerSquareSize/2.0,
+//                                   rc.rootView.bounds.size.height/2.0-spinnerSquareSize/2.0,
+//                                   spinnerSquareSize,
+//                                   spinnerSquareSize);
+//        [spinner startAnimating];
+//        [iconsView addSubview:spinner];
+//        [iconsView bringSubviewToFront:spinner];
         
         // Start purchase
         NSString *productionId = [iconDict objectForKey:@"production_id"];
