@@ -270,7 +270,7 @@
                                             w,
                                             2.5*h);
         UILabel *iconsPageLabel1 = [[UILabel alloc] initWithFrame:iconsLabelFrame];
-        iconsPageLabel1.text = @"Buy us a snack and choose a new App Icon for yourself!";
+        iconsPageLabel1.text = @"Buy me a coffee and pick a new App Icon for yourself!";
         iconsPageLabel1.numberOfLines = 0;
         iconsPageLabel1.layer.borderColor = [UIColor clearColor].CGColor;
         iconsPageLabel1.textColor = [UIColor cyanColor];
@@ -609,6 +609,7 @@
             [self removeFromParentViewController];
         }
         else {
+            vc = (BMDPuzzleViewController *)self.parentViewController;
             // If not yet solved then store startTime for timeSegment
             long startTime = [[NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]] longValue];
             int currentPackNumber = -1;
@@ -648,7 +649,10 @@
                 [appd playMusicLoop:appd.loop2Player];
             }
             
-            [self willMoveToParentViewController:self.parentViewController];
+            [vc.view removeFromSuperview];
+            [vc removeFromParentViewController];
+            [rc startNewPuzzleFromPacksViewController];
+//            [self willMoveToParentViewController:self.parentViewController];
             [self.view removeFromSuperview];
             [self removeFromParentViewController];
         }

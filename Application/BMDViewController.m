@@ -162,8 +162,6 @@ Implementation of the cross-platform view controller
      selector: @selector (handleUIApplicationDidBecomeActiveNotification)
      name: UIApplicationDidBecomeActiveNotification
      object: nil];
-    
-    
 }
 
 
@@ -1570,78 +1568,7 @@ Implementation of the cross-platform view controller
     rootView.opaque = YES;
     rootView.alpha = 1.0;
     rootView.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.14 alpha:1.0];
-    
-//    // Create spinnerView and add it to the top of the UIView stack
-//    CGFloat spinnerWidth, spinnerHeight;
-//    switch (displayAspectRatio) {
-//        case ASPECT_4_3:{
-//            // iPad (9th generation)
-//            spinnerWidth = 0.30*rootView.bounds.size.width;
-//            spinnerHeight = 0.20*rootView.bounds.size.width;
-//            break;
-//        }
-//        case ASPECT_10_7: {
-//            // iPad Air (5th generation)
-//            spinnerWidth = 0.30*rootView.bounds.size.width;
-//            spinnerHeight = 0.20*rootView.bounds.size.width;
-//            break;
-//        }
-//        case ASPECT_3_2: {
-//            // iPad Mini (6th generation)
-//            spinnerWidth = 0.30*rootView.bounds.size.width;
-//            spinnerHeight = 0.20*rootView.bounds.size.width;
-//           break;
-//        }
-//        case ASPECT_16_9: {
-//            // iPhone 8
-//            spinnerWidth = 0.50*rootView.bounds.size.width;
-//            spinnerHeight = 0.30*rootView.bounds.size.width;
-//            break;
-//        }
-//        case ASPECT_13_6:
-//        default:{
-//            // iPhone 14
-//            spinnerWidth = 0.50*rootView.bounds.size.width;
-//            spinnerHeight = 0.30*rootView.bounds.size.width;
-//            break;
-//        }
-//    }
-//    CGRect spinnerBounds = CGRectMake(0.5*rootView.bounds.size.width-0.5*spinnerWidth,
-//                                      0.4*rootView.bounds.size.height-0.5*spinnerHeight,
-//                                      spinnerWidth,
-//                                      spinnerHeight);
-//    spinnerView = [[UIView alloc] initWithFrame:spinnerBounds];
-//    spinnerView.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1.00];
-//    spinnerView.layer.cornerRadius = 20;
-//    // Create and start in-app purchase indicator spinner
-//    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
-//    CGRect spinnerFrame = CGRectMake(0.25*spinnerWidth,
-//                                     0.1*spinnerHeight,
-//                                     0.5*spinnerBounds.size.width,
-//                                     0.5*spinnerBounds.size.height);
-//    spinner.frame = spinnerFrame;
-//    spinner.color = [UIColor whiteColor];
-//    [spinner startAnimating];
-//    [spinnerView addSubview:spinner];
-//    [spinnerView bringSubviewToFront:spinner];
-//    // Create spinnerView label
-//    CGRect spinnerLabelFrame = CGRectMake(0.1*spinnerWidth,
-//                                          0.5*spinnerHeight,
-//                                          0.8*spinnerBounds.size.width,
-//                                          0.5*spinnerBounds.size.height);
-//    UILabel *spinnerLabel = [[UILabel alloc] initWithFrame:spinnerLabelFrame];
-//    spinnerLabel.text = @"Purchasing...";
-//    spinnerLabel.numberOfLines = 0;
-//    spinnerLabel.layer.borderColor = [UIColor clearColor].CGColor;
-//    spinnerLabel.textColor = [UIColor whiteColor];
-//    spinnerLabel.layer.borderWidth = 0.0;
-//    [spinnerLabel setFont:[UIFont fontWithName:@"PingFang SC Semibold" size:24]];
-//    spinnerLabel.textAlignment = NSTextAlignmentCenter;
-//    spinnerLabel.adjustsFontSizeToFitWidth = YES;
-//    [spinnerView addSubview:spinnerLabel];
-//    [spinnerView bringSubviewToFront:spinnerLabel];
-    
-    
+        
     //
     // Set up PAGE_HOME with homeView
     // homeView holds the home page view
@@ -2476,10 +2403,6 @@ Implementation of the cross-platform view controller
     // Add homeView to rootView
     [rootView addSubview:homeView];
     [rootView bringSubviewToFront:homeView];
-    
-//    // Add spinnerView to rootView
-//    [rootView addSubview:spinnerView];
-//    [rootView bringSubviewToFront:spinnerView];
 }
 
 //

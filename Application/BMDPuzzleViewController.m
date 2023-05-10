@@ -93,7 +93,7 @@
 @synthesize promptUserAboutHintButtonTimer;
 
 - (void)viewDidLoad {
-    DLog("DEBUG1 - BMDPuzzleViewController.viewDidLoad");
+    DLog("> BMDPuzzleViewController.viewDidLoad");
     [super viewDidLoad];
     
     rc = (BMDViewController*)[[(BMDAppDelegate *)[[UIApplication sharedApplication]delegate] window] rootViewController];
@@ -132,7 +132,7 @@
     if (rc.appCurrentGamePackType == PACKTYPE_MAIN &&
         [appd editModeIsEnabled] == NO){
         unsigned int currentPackNumber = [appd fetchCurrentPackNumber];
-        unsigned int currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
+//        unsigned int currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
         puzzle = [appd fetchCurrentPuzzleFromPackGameProgress:currentPackNumber];
         
         // Test puzzle for validity here
@@ -303,13 +303,14 @@
         [appd->optics initWithDictionary:puzzle viewController:self];
     }
     
-    
     // Start rendering
     rc.renderPuzzleON = YES;
+    
+    DLog("< BMDPuzzleViewController.viewDidLoad");
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    DLog("BMDPuzzleViewController.viewDidAppear");
+    DLog("> BMDPuzzleViewController.viewDidAppear");
     puzzleView.preferredFramesPerSecond = METAL_RENDERER_FPS;
     rc.renderPuzzleON = YES;
     
@@ -342,6 +343,8 @@
     
     // Start rendering
     rc.renderPuzzleON = YES;
+    
+    DLog("< BMDPuzzleViewController.viewDidAppear");
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
@@ -3340,8 +3343,151 @@
 //
 
 - (void)handleUIApplicationDidBecomeActiveNotification {
-    DLog("DEBUG2: BMDPuzzleViewController handling handleUIApplicationDidBecomeActiveNotification");
+    DLog("> BMDPuzzleViewController.handleUIApplicationDidBecomeActiveNotification");
     
+    // Remove this observer.  It is only active when the application has resigned activity.
+    [[NSNotificationCenter defaultCenter]
+     removeObserver:self
+     name:UIApplicationDidBecomeActiveNotification
+     object:nil];
+
+    // Restart the appropriate music loop
+    if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+        [appd playMusicLoop:appd.loop3Player];
+    }
+    else {
+        [appd playMusicLoop:appd.loop2Player];
+    }
+    
+    // Set up puzzleView
+    CGRect puzzleBounds = rc.rootView.bounds;
+    puzzleView = [[MTKView alloc] initWithFrame:puzzleBounds device:MTLCreateSystemDefaultDevice()];
+    self.view = puzzleView;
+    
+    puzzleView.enableSetNeedsDisplay = NO;
+    puzzleView.preferredFramesPerSecond = METAL_RENDERER_FPS;
+    puzzleView.presentsWithTransaction = NO;
+    puzzleView.device = MTLCreateSystemDefaultDevice();
+    NSAssert(puzzleView.device, @"Metal is not supported on this device");
+    rc.renderer = [[BMDRenderer alloc] initWithMetalKitView:puzzleView];
+    NSAssert(rc.renderer, @"Renderer failed initialization");
+    // Initialize the renderer with the view size
+    [rc.renderer mtkView:puzzleView drawableSizeWillChange:puzzleView.drawableSize];
+    puzzleView.delegate = rc.renderer;
+    
+    // Load Textures
+    [appd initAllTextures:puzzleView metalRenderer:rc.renderer];
+    
+    // Fetch the current puzzle - Free and Paid Packs
+    NSMutableDictionary *pack = nil;
+    NSMutableDictionary *puzzle = nil;
+    if (rc.appCurrentGamePackType == PACKTYPE_MAIN &&
+        [appd editModeIsEnabled] == NO){
+        unsigned int currentPackNumber = [appd fetchCurrentPackNumber];
+//        unsigned int currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
+        puzzle = [appd fetchCurrentPuzzleFromPackGameProgress:currentPackNumber];
+        
+        // Test puzzle for validity here
+        BOOL puzzleIsValid = [self testWhetherPuzzleIsValid:puzzle];
+        // If puzzle not valid then load a fresh copy from the bundle and save it to progress data
+        if (!puzzleIsValid ||
+            puzzle == nil ||
+            [appd puzzleIsEmpty:puzzle] == YES){
+            // Handle case where no puzzle or an empty puzzle is stored
+            // Read puzzle from the main bundle
+            puzzle = [appd fetchCurrentPuzzleFromPackDictionary:currentPackNumber];
+            // Save the puzzle to PackGameProgress
+            [appd saveCurrentPuzzleToPackGameProgress:currentPackNumber puzzle:puzzle];
+        }
+    }
+    // Puzzle Play - Daily Puzzle
+    else if (rc.appCurrentGamePackType == PACKTYPE_DAILY &&
+             [appd editModeIsEnabled] == NO){
+        if ([self queryPuzzleExists:kDailyPuzzlesPackDictionary puzzle:appd.currentDailyPuzzleNumber]) {
+            // If the Daily Puzzle has changed from the previously stored Daily Puzzle then load and store a new one
+            if (appd.currentDailyPuzzleNumber != [appd fetchDailyPuzzleNumber]){
+                // Save the new daily puzzle number
+                [appd saveDailyPuzzleNumber:appd.currentDailyPuzzleNumber];
+                // Load a new Daily Puzzle from the main bundle (not pack parameter not used for daily puzzle)
+                puzzle = [appd fetchGamePuzzle:0 puzzleIndex:[appd fetchPackIndexForPackNumber:
+                                                              appd.currentDailyPuzzleNumber]];
+                // Save the new daily puzzle
+                [appd saveDailyPuzzle:appd.currentDailyPuzzleNumber puzzle:puzzle];
+            }
+            else {
+                // Fetch the stored version of the daily puzzle, which may include partial completion by the player
+                puzzle = [appd fetchDailyPuzzle:appd.currentDailyPuzzleNumber];
+                // Test stored puzzle for validity here
+                BOOL puzzleIsValid = [self testWhetherPuzzleIsValid:puzzle];
+                // If puzzle not valid then load a fresh copy from the bundle and save it to progress data
+                if (!puzzleIsValid){
+                    // Save the new daily puzzle number
+                    [appd saveDailyPuzzleNumber:appd.currentDailyPuzzleNumber];
+                    // Load a new Daily Puzzle from the main bundle (not pack parameter not used for daily puzzle)
+                    puzzle = [appd fetchGamePuzzle:0 puzzleIndex:[appd fetchPackIndexForPackNumber:
+                                                                  appd.currentDailyPuzzleNumber]];
+                    // Save the new daily puzzle
+                    [appd saveDailyPuzzle:appd.currentDailyPuzzleNumber puzzle:puzzle];
+                }
+            }
+        }
+    }
+    // Puzzle Play - Demo Pack
+    else if (rc.appCurrentGamePackType == PACKTYPE_DEMO &&
+             [appd editModeIsEnabled] == NO){
+        DLog("rc.appCurrentGamePackType == PACKTYPE_DEMO");
+        unsigned int demoPuzzleNumber = [appd fetchDemoPuzzleNumber];
+        [appd saveDemoPuzzleNumber:demoPuzzleNumber];
+        if ([self queryPuzzleExists:kDemoPuzzlePackDictionary puzzle:demoPuzzleNumber]){
+            puzzle = [appd fetchGamePuzzle:0 puzzleIndex:demoPuzzleNumber];
+        }
+    }
+
+    
+    // If not yet solved then store startTime for timeSegment
+    long startTime = [[NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]] longValue];
+    int currentPackNumber = -1;
+    int currentPuzzleNumber = 0;
+    NSMutableDictionary *emptyJewelCountDictionary = [appd buildEmptyJewelCountDictionary];
+    if (rc.appCurrentGamePackType == PACKTYPE_MAIN){
+        currentPackNumber = [appd fetchCurrentPackNumber];
+        currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
+        if ([appd puzzleSolutionStatus:currentPackNumber
+                          puzzleNumber:currentPuzzleNumber] == -1){
+            [appd updatePuzzleScoresArray:currentPackNumber
+                             puzzleNumber:currentPuzzleNumber
+                           numberOfJewels:emptyJewelCountDictionary
+                                startTime:startTime        // New segment startTime
+                                  endTime:-1
+                                   solved:NO];
+        }
+    }
+    else if (rc.appCurrentGamePackType == PACKTYPE_DAILY) {
+        currentPackNumber = -1;
+        currentPuzzleNumber = [appd fetchDailyPuzzleNumber];
+        if ([appd puzzleSolutionStatus:currentPackNumber
+                          puzzleNumber:currentPuzzleNumber] == -1){
+            [appd updatePuzzleScoresArray:currentPackNumber
+                             puzzleNumber:currentPuzzleNumber
+                           numberOfJewels:emptyJewelCountDictionary
+                                startTime:startTime        // New segment startTime
+                                  endTime:-1
+                                   solved:NO];
+        }
+    }
+    
+    appd->optics = [Optics alloc];
+    [appd->optics initWithDictionary:puzzle viewController:self];
+    
+    // Start rendering
+    rc.renderPuzzleON = YES;
+    DLog("< BMDPuzzleViewController.handleUIApplicationDidBecomeActiveNotification");
+}
+
+
+- (void)handleUIApplicationDidBecomeActiveNotification2 {
+    DLog("DEBUG2: BMDPuzzleViewController handling handleUIApplicationDidBecomeActiveNotification");
+
     // Remove this observer.  It is only active when the application has resigned activity.
     [[NSNotificationCenter defaultCenter]
      removeObserver:self
@@ -3379,16 +3525,16 @@
                                    solved:NO];
         }
     }
-    
+
     if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
         [appd playMusicLoop:appd.loop3Player];
     }
     else {
         [appd playMusicLoop:appd.loop2Player];
     }
-    
+
     self.view = puzzleView;
-    
+
     // Start rendering
     rc.renderPuzzleON = YES;
 }
@@ -3441,7 +3587,6 @@
      selector: @selector (handleUIApplicationDidBecomeActiveNotification)
      name: UIApplicationDidBecomeActiveNotification
      object: nil];
-
 }
 
 - (BOOL)puzzleIsEmpty:(NSMutableDictionary *)puzzle {

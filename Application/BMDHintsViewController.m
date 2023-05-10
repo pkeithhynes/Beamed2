@@ -21,6 +21,7 @@
 
 @implementation BMDHintsViewController{
     BMDViewController *rc;
+    BMDPuzzleViewController *vc;
     BMDAppDelegate *appd;
     BOOL playRewardedAd;
     CGRect hintsLabelFrame, hintPacksFrame;
@@ -500,6 +501,7 @@
         [rc startMainScreenMusicLoop];
     }
     else if ([self.parentViewController isKindOfClass:[BMDPuzzleViewController class]]){
+        vc = (BMDPuzzleViewController *)self.parentViewController;
         DLog("backButtonPressed parentViewController is BMDPuzzleViewController");
         
         // If not yet solved then store startTime for timeSegment
@@ -541,7 +543,10 @@
             [appd playMusicLoop:appd.loop2Player];
         }
 
-        [self willMoveToParentViewController:self.parentViewController];
+        [vc.view removeFromSuperview];
+        [vc removeFromParentViewController];
+        [rc startNewPuzzleFromPacksViewController];
+//        [self willMoveToParentViewController:self.parentViewController];
         [self.view removeFromSuperview];
         [self removeFromParentViewController];
     }
