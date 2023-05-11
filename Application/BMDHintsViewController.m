@@ -497,7 +497,9 @@
         rc.renderPuzzleON = NO;
         rc.renderOverlayON = NO;
         [rc refreshHomeView];
-        [rc loadAppropriateSizeBannerAd];
+        if (ENABLE_VUNGLE_ADS){
+            [rc loadAppropriateSizeBannerAd];
+        }
         [rc startMainScreenMusicLoop];
     }
     else if ([self.parentViewController isKindOfClass:[BMDPuzzleViewController class]]){

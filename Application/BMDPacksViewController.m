@@ -17,6 +17,7 @@
 
 @implementation BMDPacksViewController{
     BMDViewController *rc;
+    BMDPuzzleViewController *vc;
     BMDAppDelegate *appd;
     CGRect puzzlePacksFrame;
     CGFloat buttonWidth, buttonHeight, buttonCy;
@@ -36,6 +37,7 @@
     [super viewDidLoad];
     
     rc = (BMDViewController*)[[(BMDAppDelegate *)[[UIApplication sharedApplication]delegate] window] rootViewController];
+    vc = (BMDPuzzleViewController *)self.parentViewController;
     appd = (BMDAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     latchApplicationIsConnectedToNetwork = appd.applicationIsConnectedToNetwork;
@@ -759,7 +761,10 @@
             [appd playMusicLoop:appd.loop2Player];
         }
         
-        [self willMoveToParentViewController:self.parentViewController];
+        [vc.view removeFromSuperview];
+        [vc removeFromParentViewController];
+        [rc startNewPuzzleFromPacksViewController];
+//        [self willMoveToParentViewController:self.parentViewController];
         [self.view removeFromSuperview];
         [self removeFromParentViewController];
     }
