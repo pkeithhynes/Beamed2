@@ -4723,9 +4723,6 @@ extern void playSound(AVAudioPlayer *PLAYER);
                 packHasBeenCompleted = NO;
             }
         }
-        else {
-//            [self savePuzzleProgressToDefaults];
-        }
     }
 }
 
@@ -5380,9 +5377,6 @@ extern void playSound(AVAudioPlayer *PLAYER);
                                 packHasBeenCompleted = NO;
                             }
                         }
-                        else {
-//                            [self savePuzzleProgressToDefaults];
-                        }
                     }
                     // Increment numberOfMoves
                     rc.numberOfMoves++;
@@ -5474,9 +5468,6 @@ extern void playSound(AVAudioPlayer *PLAYER);
                                 vc.replayIconWhite.hidden = (rc.appCurrentGamePackType == PACKTYPE_DEMO);
                                 packHasBeenCompleted = NO;
                             }
-                        }
-                        else {
-//                            [self savePuzzleProgressToDefaults];
                         }
                     }
                     // Increment numberOfMoves
@@ -5613,10 +5604,7 @@ extern void playSound(AVAudioPlayer *PLAYER);
                             packHasBeenCompleted = NO;
                         }
                     }
-                    else {
-//                        [self savePuzzleProgressToDefaults];
-                    }
-                }
+               }
                 [tileCurrentlyBeingEdited snapTileToPreviousGridPosition];
             }
         }

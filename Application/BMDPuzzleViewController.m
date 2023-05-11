@@ -3485,59 +3485,59 @@
 }
 
 
-- (void)handleUIApplicationDidBecomeActiveNotification2 {
-    DLog("DEBUG2: BMDPuzzleViewController handling handleUIApplicationDidBecomeActiveNotification");
-
-    // Remove this observer.  It is only active when the application has resigned activity.
-    [[NSNotificationCenter defaultCenter]
-     removeObserver:self
-     name:UIApplicationDidBecomeActiveNotification
-     object:nil];
-
-    // If not yet solved then store startTime for timeSegment
-    long startTime = [[NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]] longValue];
-    int currentPackNumber = -1;
-    int currentPuzzleNumber = 0;
-    NSMutableDictionary *emptyJewelCountDictionary = [appd buildEmptyJewelCountDictionary];
-    if (rc.appCurrentGamePackType == PACKTYPE_MAIN){
-        currentPackNumber = [appd fetchCurrentPackNumber];
-        currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
-        if ([appd puzzleSolutionStatus:currentPackNumber
-                          puzzleNumber:currentPuzzleNumber] == -1){
-            [appd updatePuzzleScoresArray:currentPackNumber
-                             puzzleNumber:currentPuzzleNumber
-                           numberOfJewels:emptyJewelCountDictionary
-                                startTime:startTime        // New segment startTime
-                                  endTime:-1
-                                   solved:NO];
-        }
-    }
-    else if (rc.appCurrentGamePackType == PACKTYPE_DAILY) {
-        currentPackNumber = -1;
-        currentPuzzleNumber = [appd fetchDailyPuzzleNumber];
-        if ([appd puzzleSolutionStatus:currentPackNumber
-                          puzzleNumber:currentPuzzleNumber] == -1){
-            [appd updatePuzzleScoresArray:currentPackNumber
-                             puzzleNumber:currentPuzzleNumber
-                           numberOfJewels:emptyJewelCountDictionary
-                                startTime:startTime        // New segment startTime
-                                  endTime:-1
-                                   solved:NO];
-        }
-    }
-
-    if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
-        [appd playMusicLoop:appd.loop3Player];
-    }
-    else {
-        [appd playMusicLoop:appd.loop2Player];
-    }
-
-    self.view = puzzleView;
-
-    // Start rendering
-    rc.renderPuzzleON = YES;
-}
+//- (void)handleUIApplicationDidBecomeActiveNotification2 {
+//    DLog("DEBUG2: BMDPuzzleViewController handling handleUIApplicationDidBecomeActiveNotification");
+//
+//    // Remove this observer.  It is only active when the application has resigned activity.
+//    [[NSNotificationCenter defaultCenter]
+//     removeObserver:self
+//     name:UIApplicationDidBecomeActiveNotification
+//     object:nil];
+//
+//    // If not yet solved then store startTime for timeSegment
+//    long startTime = [[NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]] longValue];
+//    int currentPackNumber = -1;
+//    int currentPuzzleNumber = 0;
+//    NSMutableDictionary *emptyJewelCountDictionary = [appd buildEmptyJewelCountDictionary];
+//    if (rc.appCurrentGamePackType == PACKTYPE_MAIN){
+//        currentPackNumber = [appd fetchCurrentPackNumber];
+//        currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
+//        if ([appd puzzleSolutionStatus:currentPackNumber
+//                          puzzleNumber:currentPuzzleNumber] == -1){
+//            [appd updatePuzzleScoresArray:currentPackNumber
+//                             puzzleNumber:currentPuzzleNumber
+//                           numberOfJewels:emptyJewelCountDictionary
+//                                startTime:startTime        // New segment startTime
+//                                  endTime:-1
+//                                   solved:NO];
+//        }
+//    }
+//    else if (rc.appCurrentGamePackType == PACKTYPE_DAILY) {
+//        currentPackNumber = -1;
+//        currentPuzzleNumber = [appd fetchDailyPuzzleNumber];
+//        if ([appd puzzleSolutionStatus:currentPackNumber
+//                          puzzleNumber:currentPuzzleNumber] == -1){
+//            [appd updatePuzzleScoresArray:currentPackNumber
+//                             puzzleNumber:currentPuzzleNumber
+//                           numberOfJewels:emptyJewelCountDictionary
+//                                startTime:startTime        // New segment startTime
+//                                  endTime:-1
+//                                   solved:NO];
+//        }
+//    }
+//
+//    if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+//        [appd playMusicLoop:appd.loop3Player];
+//    }
+//    else {
+//        [appd playMusicLoop:appd.loop2Player];
+//    }
+//
+//    self.view = puzzleView;
+//
+//    // Start rendering
+//    rc.renderPuzzleON = YES;
+//}
 
 
 - (void)handleUIApplicationWillResignActiveNotification {
