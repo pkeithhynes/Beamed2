@@ -214,19 +214,14 @@
     }
     
     if (rc.appCurrentGamePackType == PACKTYPE_MAIN ||
-        rc.appCurrentGamePackType == PACKTYPE_DAILY){
+        rc.appCurrentGamePackType == PACKTYPE_DAILY ||
+        rc.appCurrentGamePackType == PACKTYPE_DEMO){
         // Detect when app loses focus so you can save puzzle timeSegment to pause timing
         [[NSNotificationCenter defaultCenter]
          addObserver: self
          selector: @selector (handleUIApplicationWillResignActiveNotification)
          name: UIApplicationWillResignActiveNotification
          object: nil];
-//        // Detect when app gains focus so you can restore puzzle timeSegment to reenable timing
-//        [[NSNotificationCenter defaultCenter]
-//         addObserver: self
-//         selector: @selector (handleUIApplicationDidBecomeActiveNotification)
-//         name: UIApplicationDidBecomeActiveNotification
-//         object: nil];
     }
     
     
@@ -3350,77 +3345,75 @@
      removeObserver:self
      name:UIApplicationDidBecomeActiveNotification
      object:nil];
-
-    // Restart the appropriate music loop
+    
+    // If resuming after a suspension during How to Play then show the home screen
     if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
-        [appd playMusicLoop:appd.loop3Player];
+        [puzzleView releaseDrawables];
+        [self willMoveToParentViewController:self.parentViewController];
+        [self.view removeFromSuperview];
+        [self removeFromParentViewController];
+        rc.renderPuzzleON = NO;
+        rc.renderOverlayON = NO;
+        [rc refreshHomeView];
+        [rc loadAppropriateSizeBannerAd];
+        [rc startMainScreenMusicLoop];
     }
     else {
-        [appd playMusicLoop:appd.loop2Player];
-    }
-    
-    // Set up puzzleView
-    CGRect puzzleBounds = rc.rootView.bounds;
-    puzzleView = [[MTKView alloc] initWithFrame:puzzleBounds device:MTLCreateSystemDefaultDevice()];
-    self.view = puzzleView;
-    
-    puzzleView.enableSetNeedsDisplay = NO;
-    puzzleView.preferredFramesPerSecond = METAL_RENDERER_FPS;
-    puzzleView.presentsWithTransaction = NO;
-    puzzleView.device = MTLCreateSystemDefaultDevice();
-    NSAssert(puzzleView.device, @"Metal is not supported on this device");
-    rc.renderer = [[BMDRenderer alloc] initWithMetalKitView:puzzleView];
-    NSAssert(rc.renderer, @"Renderer failed initialization");
-    // Initialize the renderer with the view size
-    [rc.renderer mtkView:puzzleView drawableSizeWillChange:puzzleView.drawableSize];
-    puzzleView.delegate = rc.renderer;
-    
-    // Load Textures
-    [appd initAllTextures:puzzleView metalRenderer:rc.renderer];
-    
-    // Fetch the current puzzle - Free and Paid Packs
-    NSMutableDictionary *pack = nil;
-    NSMutableDictionary *puzzle = nil;
-    if (rc.appCurrentGamePackType == PACKTYPE_MAIN &&
-        [appd editModeIsEnabled] == NO){
-        unsigned int currentPackNumber = [appd fetchCurrentPackNumber];
-//        unsigned int currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
-        puzzle = [appd fetchCurrentPuzzleFromPackGameProgress:currentPackNumber];
-        
-        // Test puzzle for validity here
-        BOOL puzzleIsValid = [self testWhetherPuzzleIsValid:puzzle];
-        // If puzzle not valid then load a fresh copy from the bundle and save it to progress data
-        if (!puzzleIsValid ||
-            puzzle == nil ||
-            [appd puzzleIsEmpty:puzzle] == YES){
-            // Handle case where no puzzle or an empty puzzle is stored
-            // Read puzzle from the main bundle
-            puzzle = [appd fetchCurrentPuzzleFromPackDictionary:currentPackNumber];
-            // Save the puzzle to PackGameProgress
-            [appd saveCurrentPuzzleToPackGameProgress:currentPackNumber puzzle:puzzle];
+        // Restart the appropriate music loop
+        if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+            [appd playMusicLoop:appd.loop3Player];
         }
-    }
-    // Puzzle Play - Daily Puzzle
-    else if (rc.appCurrentGamePackType == PACKTYPE_DAILY &&
-             [appd editModeIsEnabled] == NO){
-        if ([self queryPuzzleExists:kDailyPuzzlesPackDictionary puzzle:appd.currentDailyPuzzleNumber]) {
-            // If the Daily Puzzle has changed from the previously stored Daily Puzzle then load and store a new one
-            if (appd.currentDailyPuzzleNumber != [appd fetchDailyPuzzleNumber]){
-                // Save the new daily puzzle number
-                [appd saveDailyPuzzleNumber:appd.currentDailyPuzzleNumber];
-                // Load a new Daily Puzzle from the main bundle (not pack parameter not used for daily puzzle)
-                puzzle = [appd fetchGamePuzzle:0 puzzleIndex:[appd fetchPackIndexForPackNumber:
-                                                              appd.currentDailyPuzzleNumber]];
-                // Save the new daily puzzle
-                [appd saveDailyPuzzle:appd.currentDailyPuzzleNumber puzzle:puzzle];
+        else {
+            [appd playMusicLoop:appd.loop2Player];
+        }
+        
+        // Set up puzzleView
+        CGRect puzzleBounds = rc.rootView.bounds;
+        puzzleView = [[MTKView alloc] initWithFrame:puzzleBounds device:MTLCreateSystemDefaultDevice()];
+        self.view = puzzleView;
+        
+        puzzleView.enableSetNeedsDisplay = NO;
+        puzzleView.preferredFramesPerSecond = METAL_RENDERER_FPS;
+        puzzleView.presentsWithTransaction = NO;
+        puzzleView.device = MTLCreateSystemDefaultDevice();
+        NSAssert(puzzleView.device, @"Metal is not supported on this device");
+        rc.renderer = [[BMDRenderer alloc] initWithMetalKitView:puzzleView];
+        NSAssert(rc.renderer, @"Renderer failed initialization");
+        // Initialize the renderer with the view size
+        [rc.renderer mtkView:puzzleView drawableSizeWillChange:puzzleView.drawableSize];
+        puzzleView.delegate = rc.renderer;
+        
+        // Load Textures
+        [appd initAllTextures:puzzleView metalRenderer:rc.renderer];
+        
+        // Fetch the current puzzle - Free and Paid Packs
+        NSMutableDictionary *pack = nil;
+        NSMutableDictionary *puzzle = nil;
+        if (rc.appCurrentGamePackType == PACKTYPE_MAIN &&
+            [appd editModeIsEnabled] == NO){
+            unsigned int currentPackNumber = [appd fetchCurrentPackNumber];
+            //        unsigned int currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
+            puzzle = [appd fetchCurrentPuzzleFromPackGameProgress:currentPackNumber];
+            
+            // Test puzzle for validity here
+            BOOL puzzleIsValid = [self testWhetherPuzzleIsValid:puzzle];
+            // If puzzle not valid then load a fresh copy from the bundle and save it to progress data
+            if (!puzzleIsValid ||
+                puzzle == nil ||
+                [appd puzzleIsEmpty:puzzle] == YES){
+                // Handle case where no puzzle or an empty puzzle is stored
+                // Read puzzle from the main bundle
+                puzzle = [appd fetchCurrentPuzzleFromPackDictionary:currentPackNumber];
+                // Save the puzzle to PackGameProgress
+                [appd saveCurrentPuzzleToPackGameProgress:currentPackNumber puzzle:puzzle];
             }
-            else {
-                // Fetch the stored version of the daily puzzle, which may include partial completion by the player
-                puzzle = [appd fetchDailyPuzzle:appd.currentDailyPuzzleNumber];
-                // Test stored puzzle for validity here
-                BOOL puzzleIsValid = [self testWhetherPuzzleIsValid:puzzle];
-                // If puzzle not valid then load a fresh copy from the bundle and save it to progress data
-                if (!puzzleIsValid){
+        }
+        // Puzzle Play - Daily Puzzle
+        else if (rc.appCurrentGamePackType == PACKTYPE_DAILY &&
+                 [appd editModeIsEnabled] == NO){
+            if ([self queryPuzzleExists:kDailyPuzzlesPackDictionary puzzle:appd.currentDailyPuzzleNumber]) {
+                // If the Daily Puzzle has changed from the previously stored Daily Puzzle then load and store a new one
+                if (appd.currentDailyPuzzleNumber != [appd fetchDailyPuzzleNumber]){
                     // Save the new daily puzzle number
                     [appd saveDailyPuzzleNumber:appd.currentDailyPuzzleNumber];
                     // Load a new Daily Puzzle from the main bundle (not pack parameter not used for daily puzzle)
@@ -3429,58 +3422,74 @@
                     // Save the new daily puzzle
                     [appd saveDailyPuzzle:appd.currentDailyPuzzleNumber puzzle:puzzle];
                 }
+                else {
+                    // Fetch the stored version of the daily puzzle, which may include partial completion by the player
+                    puzzle = [appd fetchDailyPuzzle:appd.currentDailyPuzzleNumber];
+                    // Test stored puzzle for validity here
+                    BOOL puzzleIsValid = [self testWhetherPuzzleIsValid:puzzle];
+                    // If puzzle not valid then load a fresh copy from the bundle and save it to progress data
+                    if (!puzzleIsValid){
+                        // Save the new daily puzzle number
+                        [appd saveDailyPuzzleNumber:appd.currentDailyPuzzleNumber];
+                        // Load a new Daily Puzzle from the main bundle (not pack parameter not used for daily puzzle)
+                        puzzle = [appd fetchGamePuzzle:0 puzzleIndex:[appd fetchPackIndexForPackNumber:
+                                                                      appd.currentDailyPuzzleNumber]];
+                        // Save the new daily puzzle
+                        [appd saveDailyPuzzle:appd.currentDailyPuzzleNumber puzzle:puzzle];
+                    }
+                }
             }
         }
-    }
-    // Puzzle Play - Demo Pack
-    else if (rc.appCurrentGamePackType == PACKTYPE_DEMO &&
-             [appd editModeIsEnabled] == NO){
-        DLog("rc.appCurrentGamePackType == PACKTYPE_DEMO");
-        unsigned int demoPuzzleNumber = [appd fetchDemoPuzzleNumber];
-        [appd saveDemoPuzzleNumber:demoPuzzleNumber];
-        if ([self queryPuzzleExists:kDemoPuzzlePackDictionary puzzle:demoPuzzleNumber]){
-            puzzle = [appd fetchGamePuzzle:0 puzzleIndex:demoPuzzleNumber];
+        // Puzzle Play - Demo Pack
+        else if (rc.appCurrentGamePackType == PACKTYPE_DEMO &&
+                 [appd editModeIsEnabled] == NO){
+            DLog("rc.appCurrentGamePackType == PACKTYPE_DEMO");
+            unsigned int demoPuzzleNumber = [appd fetchDemoPuzzleNumber];
+            [appd saveDemoPuzzleNumber:demoPuzzleNumber];
+            if ([self queryPuzzleExists:kDemoPuzzlePackDictionary puzzle:demoPuzzleNumber]){
+                puzzle = [appd fetchGamePuzzle:0 puzzleIndex:demoPuzzleNumber];
+            }
         }
-    }
-
-    
-    // If not yet solved then store startTime for timeSegment
-    long startTime = [[NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]] longValue];
-    int currentPackNumber = -1;
-    int currentPuzzleNumber = 0;
-    NSMutableDictionary *emptyJewelCountDictionary = [appd buildEmptyJewelCountDictionary];
-    if (rc.appCurrentGamePackType == PACKTYPE_MAIN){
-        currentPackNumber = [appd fetchCurrentPackNumber];
-        currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
-        if ([appd puzzleSolutionStatus:currentPackNumber
-                          puzzleNumber:currentPuzzleNumber] == -1){
-            [appd updatePuzzleScoresArray:currentPackNumber
-                             puzzleNumber:currentPuzzleNumber
-                           numberOfJewels:emptyJewelCountDictionary
-                                startTime:startTime        // New segment startTime
-                                  endTime:-1
-                                   solved:NO];
+        
+        
+        // If not yet solved then store startTime for timeSegment
+        long startTime = [[NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]] longValue];
+        int currentPackNumber = -1;
+        int currentPuzzleNumber = 0;
+        NSMutableDictionary *emptyJewelCountDictionary = [appd buildEmptyJewelCountDictionary];
+        if (rc.appCurrentGamePackType == PACKTYPE_MAIN){
+            currentPackNumber = [appd fetchCurrentPackNumber];
+            currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
+            if ([appd puzzleSolutionStatus:currentPackNumber
+                              puzzleNumber:currentPuzzleNumber] == -1){
+                [appd updatePuzzleScoresArray:currentPackNumber
+                                 puzzleNumber:currentPuzzleNumber
+                               numberOfJewels:emptyJewelCountDictionary
+                                    startTime:startTime        // New segment startTime
+                                      endTime:-1
+                                       solved:NO];
+            }
         }
-    }
-    else if (rc.appCurrentGamePackType == PACKTYPE_DAILY) {
-        currentPackNumber = -1;
-        currentPuzzleNumber = [appd fetchDailyPuzzleNumber];
-        if ([appd puzzleSolutionStatus:currentPackNumber
-                          puzzleNumber:currentPuzzleNumber] == -1){
-            [appd updatePuzzleScoresArray:currentPackNumber
-                             puzzleNumber:currentPuzzleNumber
-                           numberOfJewels:emptyJewelCountDictionary
-                                startTime:startTime        // New segment startTime
-                                  endTime:-1
-                                   solved:NO];
+        else if (rc.appCurrentGamePackType == PACKTYPE_DAILY) {
+            currentPackNumber = -1;
+            currentPuzzleNumber = [appd fetchDailyPuzzleNumber];
+            if ([appd puzzleSolutionStatus:currentPackNumber
+                              puzzleNumber:currentPuzzleNumber] == -1){
+                [appd updatePuzzleScoresArray:currentPackNumber
+                                 puzzleNumber:currentPuzzleNumber
+                               numberOfJewels:emptyJewelCountDictionary
+                                    startTime:startTime        // New segment startTime
+                                      endTime:-1
+                                       solved:NO];
+            }
         }
+        
+        appd->optics = [Optics alloc];
+        [appd->optics initWithDictionary:puzzle viewController:self];
+        
+        // Start rendering
+        rc.renderPuzzleON = YES;
     }
-    
-    appd->optics = [Optics alloc];
-    [appd->optics initWithDictionary:puzzle viewController:self];
-    
-    // Start rendering
-    rc.renderPuzzleON = YES;
     DLog("< BMDPuzzleViewController.handleUIApplicationDidBecomeActiveNotification");
 }
 
@@ -3546,38 +3555,45 @@
     [appd.loop3Player pause];
     DLog("DEBUG2: BMDPuzzleViewController handling UIApplicationWillResignActiveNotification");
     
-    // Save progress before exiting
-    [appd->optics savePuzzleProgressToDefaults];
-    
-    // If not yet solved then store endTime for timeSegment
-    long endTime = [[NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]] longValue];
-    int currentPackNumber = -1;
-    int currentPuzzleNumber = 0;
-    NSMutableDictionary *emptyJewelCountDictionary = [appd buildEmptyJewelCountDictionary];
-    if (rc.appCurrentGamePackType == PACKTYPE_MAIN){
-        currentPackNumber = [appd fetchCurrentPackNumber];
-        currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
-        if ([appd puzzleSolutionStatus:currentPackNumber
-                          puzzleNumber:currentPuzzleNumber] == -1){
-            [appd updatePuzzleScoresArray:currentPackNumber
-                             puzzleNumber:currentPuzzleNumber
-                           numberOfJewels:emptyJewelCountDictionary
-                                startTime:-1        // Do not change startTime
-                                  endTime:endTime
-                                   solved:NO];
-        }
+    if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+        // If suspending while How to Play Guide is runningthen indicate that demo has been completed
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:@"YES" forKey:@"demoHasBeenCompleted"];
     }
-    else if (rc.appCurrentGamePackType == PACKTYPE_DAILY) {
-        currentPackNumber = -1;
-        currentPuzzleNumber = [appd fetchDailyPuzzleNumber];
-        if ([appd puzzleSolutionStatus:currentPackNumber
-                          puzzleNumber:currentPuzzleNumber] == -1){
-            [appd updatePuzzleScoresArray:currentPackNumber
-                             puzzleNumber:currentPuzzleNumber
-                           numberOfJewels:emptyJewelCountDictionary
-                                startTime:-1        // Do not change startTime
-                                  endTime:endTime
-                                   solved:NO];
+    else {
+        // Save progress before exiting
+        [appd->optics savePuzzleProgressToDefaults];
+        
+        // If not yet solved then store endTime for timeSegment
+        long endTime = [[NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]] longValue];
+        int currentPackNumber = -1;
+        int currentPuzzleNumber = 0;
+        NSMutableDictionary *emptyJewelCountDictionary = [appd buildEmptyJewelCountDictionary];
+        if (rc.appCurrentGamePackType == PACKTYPE_MAIN){
+            currentPackNumber = [appd fetchCurrentPackNumber];
+            currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
+            if ([appd puzzleSolutionStatus:currentPackNumber
+                              puzzleNumber:currentPuzzleNumber] == -1){
+                [appd updatePuzzleScoresArray:currentPackNumber
+                                 puzzleNumber:currentPuzzleNumber
+                               numberOfJewels:emptyJewelCountDictionary
+                                    startTime:-1        // Do not change startTime
+                                      endTime:endTime
+                                       solved:NO];
+            }
+        }
+        else if (rc.appCurrentGamePackType == PACKTYPE_DAILY) {
+            currentPackNumber = -1;
+            currentPuzzleNumber = [appd fetchDailyPuzzleNumber];
+            if ([appd puzzleSolutionStatus:currentPackNumber
+                              puzzleNumber:currentPuzzleNumber] == -1){
+                [appd updatePuzzleScoresArray:currentPackNumber
+                                 puzzleNumber:currentPuzzleNumber
+                               numberOfJewels:emptyJewelCountDictionary
+                                    startTime:-1        // Do not change startTime
+                                      endTime:endTime
+                                       solved:NO];
+            }
         }
     }
     
