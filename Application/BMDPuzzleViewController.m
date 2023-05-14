@@ -3347,7 +3347,11 @@
      object:nil];
     
     // If resuming after a suspension during How to Play then show the home screen
-    if (rc.appCurrentGamePackType == PACKTYPE_DEMO){
+    // also...
+    // Do the same thing if resuming aftre a suspension when a pack has been completed
+    if (rc.appCurrentGamePackType == PACKTYPE_DEMO ||
+        (rc.appCurrentGamePackType == PACKTYPE_MAIN &&
+         appd->optics->packHasBeenCompleted)){
         [puzzleView releaseDrawables];
         [self willMoveToParentViewController:self.parentViewController];
         [self.view removeFromSuperview];
@@ -3392,7 +3396,7 @@
         if (rc.appCurrentGamePackType == PACKTYPE_MAIN &&
             [appd editModeIsEnabled] == NO){
             unsigned int currentPackNumber = [appd fetchCurrentPackNumber];
-            //        unsigned int currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
+            unsigned int currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
             puzzle = [appd fetchCurrentPuzzleFromPackGameProgress:currentPackNumber];
             
             // Test puzzle for validity here
@@ -3560,8 +3564,8 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:@"YES" forKey:@"demoHasBeenCompleted"];
     }
-    else {
-        // Save progress before exiting
+    else if (!appd->optics->puzzleHasBeenCompleted) {
+        // If !puzzleHasBeenCompleted then save progress before exiting
         [appd->optics savePuzzleProgressToDefaults];
         
         // If not yet solved then store endTime for timeSegment

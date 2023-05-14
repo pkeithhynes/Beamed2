@@ -788,6 +788,7 @@
 }
 
 - (void)emailSupportButtonPressed {
+    [appd playSound:appd.tapPlayer];
     // Set up an email to support for the user to complete and send if desired
     MFMailComposeViewController* composeVC = [[MFMailComposeViewController alloc] init];
     composeVC.mailComposeDelegate = self;
@@ -819,6 +820,7 @@
 
 
 - (void)shareButtonPressed {
+    [appd playSound:appd.tapPlayer];
     NSMutableArray* sharedObjects=[NSMutableArray arrayWithObjects:@"http://beamed2.squarespace.com",
                                    @"Check out Beamed 2, a fun relaxing puzzle game I'm playing!",
                                    nil];
@@ -887,6 +889,7 @@
 
 
 - (void)aboutButtonPressed {
+    [appd playSound:appd.tapPlayer];
     NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString* versionString = [infoDict objectForKey:@"CFBundleShortVersionString"];
     NSString* titleString = @"Beamed 2, version ";
@@ -907,7 +910,7 @@
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Beamed 2"
                                message:@"All Puzzle Progress Erased"
                                preferredStyle:UIAlertControllerStyleAlert];
-
+    [appd playSound:appd.tapPlayer];
     [appd resetPuzzleProgressAndScores];
     
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault
