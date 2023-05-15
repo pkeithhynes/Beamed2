@@ -1904,7 +1904,7 @@ Implementation of the cross-platform view controller
                             buttonWidth,
                             buttonHeight);
     selectAltIconsButton.frame = buttonRect;
-    [selectAltIconsButton setTitle:@"Icon specials at the Robot Diner!" forState:UIControlStateNormal];
+    [selectAltIconsButton setTitle:@"Icons at the Robot Diner!" forState:UIControlStateNormal];
     [selectAltIconsButton addTarget:self action:@selector(selectAltIconsButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [selectAltIconsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     selectAltIconsButton.showsTouchWhenHighlighted = YES;

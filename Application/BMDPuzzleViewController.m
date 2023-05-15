@@ -1899,6 +1899,12 @@
         [puzzleView sendSubviewToBack:settingsGearButton];
         [settingsGearButton removeFromSuperview];
     }
+    
+    // Remove robotDinerButton
+    if (robotDinerButton != nil){
+        [puzzleView sendSubviewToBack:robotDinerButton];
+        [robotDinerButton removeFromSuperview];
+    }
 }
 
 - (void)setHintButtonLabel:(unsigned int)hintsRemaining {
