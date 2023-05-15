@@ -320,6 +320,9 @@ API_AVAILABLE(ios(13.0))
 - (void)requestHintPacksInfo;
 - (void)requestPuzzlePacksInfo;
 
+- (void)startAppropriateMusicLoop;
+
+
 //
 // GameCenter
 //

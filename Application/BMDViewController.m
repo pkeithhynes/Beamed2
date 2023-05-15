@@ -170,21 +170,21 @@ Implementation of the cross-platform view controller
     DLog(">>> BMDViewController.viewDidAppear");
     [super viewDidAppear:animated];
     
-    
-    // Start appropriate music loop
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    id demoHasBeenCompletedObject = [defaults objectForKey:@"demoHasBeenCompleted"];
-    if (demoHasBeenCompletedObject != nil){
-        if ([demoHasBeenCompletedObject isEqualToString:@"YES"]){
-            [appd playMusicLoop:appd.loop1Player];
-        }
-        else {
-            [appd playMusicLoop:appd.loop3Player];
-        }
-    }
-    else {
-        [appd playMusicLoop:appd.loop3Player];
-    }
+
+    // Start appropriate music loop
+//    id demoHasBeenCompletedObject = [defaults objectForKey:@"demoHasBeenCompleted"];
+//    if (demoHasBeenCompletedObject != nil){
+//        if ([demoHasBeenCompletedObject isEqualToString:@"YES"]){
+//            [appd playMusicLoop:appd.loop1Player];
+//        }
+//        else {
+//            [appd playMusicLoop:appd.loop3Player];
+//        }
+//    }
+//    else {
+//        [appd playMusicLoop:appd.loop3Player];
+//    }
     
     
     // No permittedToUseiCloud so ask the user if they wish to use iCloud to store defaults
@@ -400,7 +400,7 @@ Implementation of the cross-platform view controller
     [startPuzzleButton setAttributedTitle:packTitle1 forState:UIControlStateNormal];
     
     // Start loop1Player
-    [appd playMusicLoop:appd.loop1Player];
+    [appd startAppropriateMusicLoop];
     
     // Update the dailyPuzzleButton
     NSNumber *dailyPuzzleCompletionDay = [appd getObjectFromDefaults:@"dailyPuzzleCompletionDay"];

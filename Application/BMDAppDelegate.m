@@ -324,6 +324,20 @@ CGFloat _screenHeightInPixels;
     [rc updateTodaysDate];
     
     // Start appropriate music loop
+    [self startAppropriateMusicLoop];
+    
+    DLog("<<< Calling applicationDidBecomeActive");
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    DLog("Entering background.");
+    [loop1Player pause];
+    [loop2Player pause];
+    [loop3Player pause];
+}
+
+- (void)startAppropriateMusicLoop {
+    // Start appropriate music loop
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     id demoHasBeenCompletedObject = [defaults objectForKey:@"demoHasBeenCompleted"];
     if (demoHasBeenCompletedObject != nil){
@@ -340,19 +354,7 @@ CGFloat _screenHeightInPixels;
     else {
         [self playMusicLoop:loop1Player];
     }
-    
-//    [rc refreshHomeView];
-    
-    DLog("<<< Calling applicationDidBecomeActive");
 }
-
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    DLog("Entering background.");
-    [loop1Player pause];
-    [loop2Player pause];
-    [loop3Player pause];
-}
-
 
 //
 // Methods to handle Network Monitoring
