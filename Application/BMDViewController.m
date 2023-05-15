@@ -228,9 +228,13 @@ Implementation of the cross-platform view controller
         }];
     }
     if (![[defaults objectForKey:@"demoHasBeenCompleted"] isEqualToString:@"NOTHING"]){
-        if (![appd checkForEndlessHintsPurchased] && [defaults objectForKey:@"numberOfHintsRemaining"] == nil){
-            [defaults setObject:[NSNumber numberWithInt:kInitialFreeHints] forKey:@"numberOfHintsRemaining"];
+        if (![appd checkForEndlessHintsPurchased] &&
+            [appd getObjectFromDefaults:@"numberOfHintsRemaining"] == nil){
+            [appd setObjectInDefaults:[NSNumber numberWithInt:kInitialFreeHints] forKey:@"numberOfHintsRemaining"];
         }
+//        if (![appd checkForEndlessHintsPurchased] && [defaults objectForKey:@"numberOfHintsRemaining"] == nil){
+//            [defaults setObject:[NSNumber numberWithInt:kInitialFreeHints] forKey:@"numberOfHintsRemaining"];
+//        }
         //    appCurrentGamePackType = PACKTYPE_MAIN;
         [self refreshHomeView];
         [self hideLaunchScreen];
@@ -1171,7 +1175,7 @@ Implementation of the cross-platform view controller
             hintTitle = [NSString stringWithFormat:@""];
         }
         else {
-            appd.numberOfHintsRemaining = [[appd getObjectFromDefaults:@"numberOfHintsRemaining"] intValue];
+            appd.numberOfHintsRemaining = [numberOfHintsRemainingObject intValue];
             if (appd.numberOfHintsRemaining == 0){
                 hintTitle = [NSString stringWithFormat:@"\nNo hints left!"];
             }
