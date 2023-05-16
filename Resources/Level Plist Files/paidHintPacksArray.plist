@@ -12,7 +12,7 @@
 		<key>number_of_hints</key>
 		<integer>10</integer>
 		<key>AppStorePackCost</key>
-		<integer>99</integer>
+		<integer>29</integer>
 	</dict>
 	<dict>
 		<key>pack_number</key>
@@ -24,7 +24,7 @@
 		<key>number_of_hints</key>
 		<integer>25</integer>
 		<key>AppStorePackCost</key>
-		<integer>199</integer>
+		<integer>59</integer>
 	</dict>
 	<dict>
 		<key>pack_number</key>
@@ -36,7 +36,7 @@
 		<key>number_of_hints</key>
 		<integer>50</integer>
 		<key>AppStorePackCost</key>
-		<integer>299</integer>
+		<integer>89</integer>
 	</dict>
 	<dict>
 		<key>pack_number</key>
@@ -48,7 +48,7 @@
 		<key>number_of_hints</key>
 		<integer>75</integer>
 		<key>AppStorePackCost</key>
-		<integer>399</integer>
+		<integer>119</integer>
 	</dict>
 	<dict>
 		<key>pack_number</key>
@@ -60,7 +60,7 @@
 		<key>number_of_hints</key>
 		<integer>100</integer>
 		<key>AppStorePackCost</key>
-		<integer>499</integer>
+		<integer>149</integer>
 	</dict>
 	<dict>
 		<key>pack_number</key>
@@ -72,7 +72,7 @@
 		<key>number_of_hints</key>
 		<integer>-1000</integer>
 		<key>AppStorePackCost</key>
-		<integer>1999</integer>
+		<integer>499</integer>
 	</dict>
 </array>
 </plist>
