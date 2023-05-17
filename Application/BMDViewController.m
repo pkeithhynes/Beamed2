@@ -529,7 +529,7 @@ Implementation of the cross-platform view controller
         [self updateMoreHintPacksButton];
         [self->appd setObjectInDefaults:@"YES" forKey:@"musicEnabled"];
         [self->appd setObjectInDefaults:@"YES" forKey:@"soundsEnabled"];
-        [self->appd setObjectInDefaults:@"YES" forKey:@"editModeEnabled"];
+        [self->appd setObjectInDefaults:@"NO" forKey:@"editModeEnabled"];
         self->appd.numberOfHintsRemaining = [[self->appd getObjectFromDefaults:@"numberOfHintsRemaining"] intValue];
         if (ENABLE_PUZZLE_EDITOR == NO){
             //
@@ -563,7 +563,7 @@ Implementation of the cross-platform view controller
         [self updateMoreHintPacksButton];
         [self->appd setObjectInDefaults:@"YES" forKey:@"musicEnabled"];
         [self->appd setObjectInDefaults:@"YES" forKey:@"soundsEnabled"];
-        [self->appd setObjectInDefaults:@"YES" forKey:@"editModeEnabled"];
+        [self->appd setObjectInDefaults:@"NO" forKey:@"editModeEnabled"];
         self->appd.numberOfHintsRemaining = [[self->appd getObjectFromDefaults:@"numberOfHintsRemaining"] intValue];
         if (ENABLE_PUZZLE_EDITOR == NO){
             //

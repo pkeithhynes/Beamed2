@@ -2343,60 +2343,65 @@
 }
 
 - (void)robotDinerButtonPressed {
-    [self clearPromptUserAboutHintButtonTimer];
-    [appd playSound:appd.tapPlayer];
-    DLog("BMDPuzzleViewController.robotDinerButtonPressed");
-    
-    // Remove this observer.  It is only active when the BMDPuzzleViewController active.
-    [[NSNotificationCenter defaultCenter]
-     removeObserver:self
-     name:UIApplicationWillResignActiveNotification
-     object:nil];
-
-    // Save progress before exiting
-    [appd->optics savePuzzleProgressToDefaults];
-    
-    // If not yet solved then store endTime for timeSegment
-    long endTime = [[NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]] longValue];
-    int currentPackNumber = -1;
-    int currentPuzzleNumber = 0;
-    NSMutableDictionary *emptyJewelCountDictionary = [appd buildEmptyJewelCountDictionary];
-    if (rc.appCurrentGamePackType == PACKTYPE_MAIN){
-        currentPackNumber = [appd fetchCurrentPackNumber];
-        currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
-        if ([appd puzzleSolutionStatus:currentPackNumber
-                          puzzleNumber:currentPuzzleNumber] == -1){
-            [appd updatePuzzleScoresArray:currentPackNumber
-                             puzzleNumber:currentPuzzleNumber
-                           numberOfJewels:emptyJewelCountDictionary
-                                startTime:-1        // Do not change startTime
-                                  endTime:endTime
-                                   solved:NO];
-        }
-    }
-    else if (rc.appCurrentGamePackType == PACKTYPE_DAILY) {
-        currentPackNumber = -1;
-        currentPuzzleNumber = [appd fetchDailyPuzzleNumber];
-        if ([appd puzzleSolutionStatus:currentPackNumber
-                          puzzleNumber:currentPuzzleNumber] == -1){
-            [appd updatePuzzleScoresArray:currentPackNumber
-                             puzzleNumber:currentPuzzleNumber
-                           numberOfJewels:emptyJewelCountDictionary
-                                startTime:-1        // Do not change startTime
-                                  endTime:endTime
-                                   solved:NO];
-        }
-    }
-    
-    // Pause loop2Player
-    [appd.loop2Player pause];
-
-    // Transfer control to BMDIconsViewController
-    rc.iconsViewController = [[BMDIconsViewController alloc] init];
-    [self addChildViewController:rc.iconsViewController];
-    [self.view addSubview:rc.iconsViewController.view];
-    [rc.iconsViewController didMoveToParentViewController:self];
+    [self goToTheRobotDiner];
 }
+
+
+//- (void)robotDinerButtonPressed {
+//    [self clearPromptUserAboutHintButtonTimer];
+//    [appd playSound:appd.tapPlayer];
+//    DLog("BMDPuzzleViewController.robotDinerButtonPressed");
+//
+//    // Remove this observer.  It is only active when the BMDPuzzleViewController active.
+//    [[NSNotificationCenter defaultCenter]
+//     removeObserver:self
+//     name:UIApplicationWillResignActiveNotification
+//     object:nil];
+//
+//    // Save progress before exiting
+//    [appd->optics savePuzzleProgressToDefaults];
+//
+//    // If not yet solved then store endTime for timeSegment
+//    long endTime = [[NSNumber numberWithLong:[[NSDate date] timeIntervalSince1970]] longValue];
+//    int currentPackNumber = -1;
+//    int currentPuzzleNumber = 0;
+//    NSMutableDictionary *emptyJewelCountDictionary = [appd buildEmptyJewelCountDictionary];
+//    if (rc.appCurrentGamePackType == PACKTYPE_MAIN){
+//        currentPackNumber = [appd fetchCurrentPackNumber];
+//        currentPuzzleNumber = [appd fetchCurrentPuzzleNumber];
+//        if ([appd puzzleSolutionStatus:currentPackNumber
+//                          puzzleNumber:currentPuzzleNumber] == -1){
+//            [appd updatePuzzleScoresArray:currentPackNumber
+//                             puzzleNumber:currentPuzzleNumber
+//                           numberOfJewels:emptyJewelCountDictionary
+//                                startTime:-1        // Do not change startTime
+//                                  endTime:endTime
+//                                   solved:NO];
+//        }
+//    }
+//    else if (rc.appCurrentGamePackType == PACKTYPE_DAILY) {
+//        currentPackNumber = -1;
+//        currentPuzzleNumber = [appd fetchDailyPuzzleNumber];
+//        if ([appd puzzleSolutionStatus:currentPackNumber
+//                          puzzleNumber:currentPuzzleNumber] == -1){
+//            [appd updatePuzzleScoresArray:currentPackNumber
+//                             puzzleNumber:currentPuzzleNumber
+//                           numberOfJewels:emptyJewelCountDictionary
+//                                startTime:-1        // Do not change startTime
+//                                  endTime:endTime
+//                                   solved:NO];
+//        }
+//    }
+//
+//    // Pause loop2Player
+//    [appd.loop2Player pause];
+//
+//    // Transfer control to BMDIconsViewController
+//    rc.iconsViewController = [[BMDIconsViewController alloc] init];
+//    [self addChildViewController:rc.iconsViewController];
+//    [self.view addSubview:rc.iconsViewController.view];
+//    [rc.iconsViewController didMoveToParentViewController:self];
+//}
 
 - (void)morePuzzlePacksButtonPressed {
     [self clearPromptUserAboutHintButtonTimer];

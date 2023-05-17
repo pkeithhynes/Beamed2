@@ -16,6 +16,18 @@
 	</dict>
 	<dict>
 		<key>pack_number</key>
+		<integer>1</integer>
+		<key>pack_name</key>
+		<string>Pack of 25 Hints</string>
+		<key>production_id</key>
+		<string>BMD2_PAIDHINT_AAAA0002</string>
+		<key>number_of_hints</key>
+		<integer>25</integer>
+		<key>AppStorePackCost</key>
+		<integer>59</integer>
+	</dict>
+	<dict>
+		<key>pack_number</key>
 		<integer>2</integer>
 		<key>pack_name</key>
 		<string>Pack of 50 Hints</string>

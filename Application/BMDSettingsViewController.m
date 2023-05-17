@@ -19,6 +19,7 @@
 
 @implementation BMDSettingsViewController{
     BMDViewController *rc;
+    BMDPuzzleViewController *vc;
     BMDAppDelegate *appd;
 }
 
@@ -915,9 +916,39 @@
     
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault
                                    handler:^(UIAlertAction * action) {}];
-
     [alert addAction:defaultAction];
     [self presentViewController:alert animated:YES completion:nil];
+    
+    // Now return control to BMDViewController
+    if ([self.parentViewController isKindOfClass:[BMDViewController class]]){
+        // If the parentViewController is BMDViewController then retuen control there
+        [rc refreshHomeView];
+        [self willMoveToParentViewController:self.parentViewController];
+        [self.view removeFromSuperview];
+        [self removeFromParentViewController];
+        rc.renderPuzzleON = NO;
+        rc.renderOverlayON = NO;
+        [rc refreshHomeView];
+        [rc loadAppropriateSizeBannerAd];
+        [rc startMainScreenMusicLoop];
+    }
+    else if ([self.parentViewController isKindOfClass:[BMDPuzzleViewController class]]){
+        // Otherwise get rid of the current BMDPuzzleViewController and return control to BMDViewController
+        vc = (BMDPuzzleViewController *)self.parentViewController;
+        [vc.view removeFromSuperview];
+        [vc removeFromParentViewController];
+        [rc refreshHomeView];
+        [self willMoveToParentViewController:self.parentViewController];
+        [self.view removeFromSuperview];
+        [self removeFromParentViewController];
+        rc.renderPuzzleON = NO;
+        rc.renderOverlayON = NO;
+        [rc refreshHomeView];
+        [rc loadAppropriateSizeBannerAd];
+        [rc startMainScreenMusicLoop];
+        [self.view removeFromSuperview];
+        [self removeFromParentViewController];
+    }
 }
 
 

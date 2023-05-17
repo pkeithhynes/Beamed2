@@ -242,6 +242,8 @@ CGFloat _screenHeightInPixels;
     [defaults registerDefaults:defaultsDict];
     
     // Is this the first launch of the app (according to local NSDefaults)?
+    id firstLaunchOfThisApp = nil;
+    firstLaunchOfThisApp = [defaults objectForKey:@"firstLaunchOfThisApp"];
     if ([[defaults objectForKey:@"firstLaunchOfThisApp"] isEqualToString:@"NOTHING"]){
         [defaults setObject:@"NO" forKey:@"firstLaunchOfThisApp"];
         [defaults setObject:@"YES" forKey:@"musicEnabled"];
@@ -318,7 +320,7 @@ CGFloat _screenHeightInPixels;
         [self setObjectInDefaults:@"YES" forKey:@"soundsEnabled"];
     }
     if ([self getStringFromDefaults:@"editModeEnabled"] == nil){
-        [self setObjectInDefaults:@"YES" forKey:@"editModeEnabled"];
+        [self setObjectInDefaults:@"NO" forKey:@"editModeEnabled"];
     }
     
     [rc updateTodaysDate];
@@ -596,8 +598,38 @@ CGFloat _screenHeightInPixels;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSUbiquitousKeyValueStore *cloudStore = [NSUbiquitousKeyValueStore defaultStore];
     // Use iCloud storage if permitted
+    id permittedToUseiCloud = nil;
+    permittedToUseiCloud = [defaults objectForKey:@"permittedToUseiCloud"];
     if ([[defaults objectForKey:@"permittedToUseiCloud"] isEqualToString:@"YES"]){
+        id stringReturnedForKey = nil;
+        stringReturnedForKey = [cloudStore stringForKey:key];
         return [cloudStore stringForKey:key];
+    }
+    // iCloud use not permitted so use local default storage
+    else {
+        return [defaults objectForKey:key];
+    }
+}
+
+// Read NSString from local defaults or iCloud defaults
+- (NSString *)getStringFromDefaults2:(NSString *)key {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUbiquitousKeyValueStore *cloudStore = [NSUbiquitousKeyValueStore defaultStore];
+    // Use iCloud storage if permitted
+    id permittedToUseiCloud = nil;
+    permittedToUseiCloud = [defaults objectForKey:@"permittedToUseiCloud"];
+    if ([[defaults objectForKey:@"permittedToUseiCloud"] isEqualToString:@"YES"]){
+        id stringReturnedForKey = nil;
+        stringReturnedForKey = [cloudStore stringForKey:key];
+        if (stringReturnedForKey == nil){
+            return [defaults objectForKey:key];
+        }
+        else if ([stringReturnedForKey length] == 0){
+            return [defaults objectForKey:key];
+        }
+        else {
+            return [cloudStore stringForKey:key];
+        }
     }
     // iCloud use not permitted so use local default storage
     else {
@@ -712,16 +744,16 @@ CGFloat _screenHeightInPixels;
 // Methods to handle tracking Free and Paid Pack puzzle progress within puzzlePacksArray
 //
 
-// Initializes NSMutableArray PuzzlePacksProgress and puzzlePacksProgressPuzzleNumbers
+// Initializes NSMutableArray puzzlePacksProgress and puzzlePacksProgressPuzzleNumbers
 // Store in NSUbiquitousKeyValueStore or NSDefaults
 // puzzlePacksProgressPuzzleNumbersDictionary stores the current puzzle number for each pack
 // puzzlePacksProgressDictionary stores the current puzzle for each pack
 - (void)initializePuzzlePacksProgress {
     // Populate NSMutableArray puzzlePacksProgress from gameDictionaries
     NSMutableArray *puzzlePacksArray = [NSMutableArray arrayWithCapacity:1];
-    NSMutableDictionary *puzzlePack = [NSMutableDictionary dictionaryWithCapacity:1];
     NSMutableArray *puzzlesArray = [NSMutableArray arrayWithCapacity:1];
-    
+    NSMutableDictionary *puzzlePack = [NSMutableDictionary dictionaryWithCapacity:1];
+
     NSMutableDictionary *puzzlePacksProgressPuzzleNumbersDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
     NSMutableDictionary *puzzlePacksProgressDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
 
@@ -1480,11 +1512,23 @@ CGFloat _screenHeightInPixels;
     if ([[self getStringFromDefaults:@"soundsEnabled"] isEqualToString:@"YES"] && player != nil){
         [player play];
     }
+    else if ([self getStringFromDefaults:@"soundsEnabled"] == nil && player != nil){
+        [player play];
+    }
+    else if ([[self getStringFromDefaults:@"soundsEnabled"] length] == 0 && player != nil){
+        [player play];
+    }
 }
 
 - (void)playMusicLoop {
     // Play appropriate music when playing a Puzzle
     if ([[self getStringFromDefaults:@"musicEnabled"] isEqualToString:@"YES"]){
+        [loop1Player play];
+    }
+    else if ([self getStringFromDefaults:@"musicEnabled"] == nil){
+        [loop1Player play];
+    }
+    else if ([[self getStringFromDefaults:@"musicEnabled"] length] == 0){
         [loop1Player play];
     }
 }
