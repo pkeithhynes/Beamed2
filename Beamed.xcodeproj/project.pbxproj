@@ -242,8 +242,6 @@
 		801D0B0D28B4267F008D435B /* BMDPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801D0B0C28B4267F008D435B /* BMDPacksViewController.m */; };
 		801D0B0E28B4267F008D435B /* BMDPacksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801D0B0C28B4267F008D435B /* BMDPacksViewController.m */; };
 		801DFE6329EFA88D00D0036E /* TranslucentFilter.png in Resources */ = {isa = PBXBuildFile; fileRef = 801DFE6129EFA88D00D0036E /* TranslucentFilter.png */; };
-		801E34A62A158B3500CFE4D1 /* paidHintPacksArray-old.plist in Resources */ = {isa = PBXBuildFile; fileRef = 801E34A52A158B3500CFE4D1 /* paidHintPacksArray-old.plist */; };
-		801E34A72A158B3500CFE4D1 /* paidHintPacksArray-old.plist in Resources */ = {isa = PBXBuildFile; fileRef = 801E34A52A158B3500CFE4D1 /* paidHintPacksArray-old.plist */; };
 		8023B2AD2915AD9B00176960 /* JewelGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 8023B2AB2915AD9B00176960 /* JewelGreen.png */; };
 		8023B2AE2915AD9B00176960 /* JewelGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 8023B2AB2915AD9B00176960 /* JewelGreen.png */; };
 		8023B2B02915AD9B00176960 /* JewelRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8023B2AC2915AD9B00176960 /* JewelRed.png */; };
@@ -720,7 +718,6 @@
 		801D0B0B28B4267F008D435B /* BMDPacksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMDPacksViewController.h; sourceTree = "<group>"; };
 		801D0B0C28B4267F008D435B /* BMDPacksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMDPacksViewController.m; sourceTree = "<group>"; };
 		801DFE6129EFA88D00D0036E /* TranslucentFilter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TranslucentFilter.png; sourceTree = "<group>"; };
-		801E34A52A158B3500CFE4D1 /* paidHintPacksArray-old.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "paidHintPacksArray-old.plist"; sourceTree = "<group>"; };
 		8023B2AB2915AD9B00176960 /* JewelGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JewelGreen.png; sourceTree = "<group>"; };
 		8023B2AC2915AD9B00176960 /* JewelRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JewelRed.png; sourceTree = "<group>"; };
 		8023B2B32915AE9E00176960 /* Jewel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Jewel.png; sourceTree = "<group>"; };
@@ -1210,7 +1207,6 @@
 				808C49D028D41210002A768C /* puzzlePacksArray.plist */,
 				80A4F73A28D4D5ED007BDE13 /* demoPuzzlePackDictionary.plist */,
 				5251ACD7279667DA00A50A7B /* paidHintPacksArray.plist */,
-				801E34A52A158B3500CFE4D1 /* paidHintPacksArray-old.plist */,
 				80A4F73E28D4D855007BDE13 /* dailyPuzzlesPackDictionary.plist */,
 				8060060C2990486900460553 /* editedPuzzlePack.plist */,
 				8094B95D29A81AB00026228E /* failedPuzzleDictionary.plist */,
@@ -1846,7 +1842,6 @@
 				809DF29A28F2334E00AC4680 /* ringAnimations.plist in Resources */,
 				80A4F73C28D4D5ED007BDE13 /* demoPuzzlePackDictionary.plist in Resources */,
 				52994B6525DA13D700887B9C /* Rings_00026.png in Resources */,
-				801E34A72A158B3500CFE4D1 /* paidHintPacksArray-old.plist in Resources */,
 				809FEAA42971167200B13351 /* 67409516-intrigue-comedy-license.pdf in Resources */,
 				80DC5C0029CFFBA800C66781 /* icon18rounded.png in Resources */,
 				80D07E5A297E5AC800295271 /* Beamed2Logo_00008.png in Resources */,
@@ -2104,7 +2099,6 @@
 				80DC5BD329CFEBED00C66781 /* icon7rounded.png in Resources */,
 				526FBCE825926960001F5647 /* Beam-Angle00-09.png in Resources */,
 				809DF29528F22F9A00AC4680 /* beamAnimations.plist in Resources */,
-				801E34A62A158B3500CFE4D1 /* paidHintPacksArray-old.plist in Resources */,
 				8089548B291DB76B009C4D02 /* homeArrow.png in Resources */,
 				5286EACA2564706B00B43209 /* TileJewelActivated08.png in Resources */,
 				80BE38B6292FFE5900076A7E /* InAppMessagingDisplayResources.bundle in Resources */,

@@ -2824,7 +2824,7 @@ void getTextureAndAnimationLineWithinNSString(NSMutableString *inString, NSMutab
                     [scoreDictionary setObject:timeSegmentArray forKey:@"timeSegmentArray"];
                     // Add scoreDictionary to puzzleScoresArray
                     [puzzleScoresArray replaceObjectAtIndex:scoreDictionaryIndex withObject:scoreDictionary];
-                    // Save puzzleScoresArray to defaults so that we can calcuate solutionTime
+                    // Save puzzleScoresArray to defaults so that we can calculate solutionTime
                     [self setObjectInDefaults:puzzleScoresArray forKey:@"puzzleScoresArray"];
                     if (solved){
                         // If solved then calculate total solutionTime and add it to scoreDictionary
