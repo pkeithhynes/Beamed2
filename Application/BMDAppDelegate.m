@@ -658,6 +658,8 @@ CGFloat _screenHeightInPixels;
     NSMutableArray *returnArray = [NSMutableArray arrayWithCapacity:1];
     // Use iCloud storage if permitted
     if ([[defaults objectForKey:@"permittedToUseiCloud"] isEqualToString:@"YES"]){
+        id arrayReturnedForKey = nil;
+        arrayReturnedForKey = [cloudStore arrayForKey:key];
         returnArray = [NSMutableArray arrayWithArray:[cloudStore arrayForKey:key]];
         return returnArray;
     }
